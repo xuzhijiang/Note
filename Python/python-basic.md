@@ -60,3 +60,29 @@ def __init__(self, name, column_type, default, primary_key):
 #### Python Formatter
 
 * %015d: 整数一共占15位，不够的补0
+
+#### class decorator
+
+[参考](https://krzysztofzuraw.com/blog/2016/python-class-decorators.html)
+
+```python
+class decorator(object):
+
+	def __init__(self, func):
+		print('call init: func name: %s' % func.__name__)
+		self.func = func
+
+	def __call__(self, *args):
+		print('call {func} with args: {args}'.format(func=self.func.__name__, args=args))
+		self.func(*args)
+
+@decorator
+def foo(x, y):
+	return x, y
+
+# foo = decorator(foo)
+
+if __name__ == '__main__':
+	foo(1, 2)
+	# foo(1, 2) <=> decorator(foo).__call__((1, 2))
+```
