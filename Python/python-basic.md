@@ -86,3 +86,77 @@ if __name__ == '__main__':
 	foo(1, 2)
 	# foo(1, 2) <=> decorator(foo).__call__((1, 2))
 ```
+
+#### Importing * from a Package
+
+[官方文档](https://docs.python.org/3/tutorial/modules.html)
+
+```shell
+sound/                          Top-level package
+      __init__.py               Initialize the sound package
+      formats/                  Subpackage for file format conversions
+              __init__.py
+              wavread.py
+      effects/                  Subpackage for sound effects
+              __init__.py
+              echo.py
+              surround.py
+              reverse.py
+              other.py
+              ...
+      filters/                  Subpackage for filters
+              __init__.py
+              equalizer.py
+```
+
+```shell
+from sound import effects
+```
+
+> 先从package sound __init__.py中导入effects，如果没有，
+再假定他是sound目录下的一个模块(也就是假定sound目录下存在一个effects.py文件)，尝试去加载它:
+
+>  when using syntax like import item.subitem.subsubitem,
+ each item except for the last must be a package;
+ the last item can be a module or a package but can’t be a
+ class or function or variable defined in the previous item:
+
+```shell
+import sound.effects.echo
+```
+
+> import语句使用以下约定：如果包的__init__.py代码定义了名为__all__的列表，
+则它将被视为遇到包import *时应导入的模块名称列表,文件sound / effects / __ init__.py可能包含以下代码：
+
+```shell
+__all__ = ["echo", "surround", "reverse"]
+from sound.effects import *
+dir()
+```
+
+> 即使sound / effects / __ init__.py中除了这3个模块还有其他模块，也不会被导入,只会导入__all__列表中的module，
+加入有一个d.py在sound/effects下，如果__all__中包含了d，那么d模块也会被导入，或者如果effects/__init__.py中
+也包含了d，优先导入effects/__init__.py中的d
+
+> 使用from sound.effects import *,如果effects包的__init__.py中定义了__all__，就导入__all__列表里面的module
+names, 如果没有定义__all__,就把__init__.py中的所有函数，变量，class都导入,注意不会导入effects下的模块(也就是
+effects下定义的py文件)
+
+> 如果未定义__all__，则from sound.effects import *中的语句不会将包sound.effects
+中的所有子模块导入当前名称空间;它只确保已导入包sound.effects（可能在__init__.py中运行任何初始化代码），
+然后导入包中定义的任何名称。这包括__init__.py定义的任何名称（以及显式加载的子模块,也就是__init__中import语句加载的
+模块）。它还包括由以前的import语句显式加载的包的任何子模块。考虑以下代码：
+
+```shell
+import sound.effects.echo
+import sound.effects.surround
+from sound.effects import *
+In this example, the echo and surround modules are imported in the current namespace
+ because they are defined in the sound.effects package when the from...import
+ statement is executed. (This also works when __all__ is defined.)
+```
+
+> 如果在from sound.effects import *之前执行过import sound.effects.echo，以及import sound.effects.surround，
+那么，from sound.effects import *,之后dir(),会包含echo和surround,即使__init__.py中的__all__不包含echo和surround,
+
+> 相对导入基于当前模块的名称。由于主模块的名称始终为“__main__”
