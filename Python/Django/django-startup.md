@@ -76,14 +76,29 @@ def my_view(request):
 
 > {% comment %}multiple line comment{% endcomment %}
 
-#### variable
-
-> {{ name }} 如果变量本身是dict，list或object，用dot获取元素{{ adict.key }},{{ alist.0 }}, {{ aobject.attribute }}
-
-#### tag
-
-> {% keyword %}for, endfor, block, endblock, if, elif, else, endif,in,
-trans, as ,with, extends....
 
 #### filter
 > {% name|过滤器 %} {% name|f1|f1 %}过滤器对变量的值进行修饰: lower, escape, linebreaks, date, length...{{ my_date|date:"Y-m-d" }}
+
+"""DjangoBlog URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/1.10/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.conf.urls import url, include
+    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+Raw String
+In Python, r'^$'  is a regular expression that matches an empty line.
+This looks like a regular expression (regex) commonly used in Django URL configurations.
+The 'r' in front tells Python the expression is a raw string.
+In a raw string, escape sequences are not parsed. For example,
+'\n' is a single newline character. But, r'\n' would be two characters:
+a backslash and an 'n'.
+"""
