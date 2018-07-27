@@ -113,7 +113,7 @@ sound/                          Top-level package
 from sound import effects
 ```
 
-> 先从package sound __init__.py中导入effects，如果没有，
+> 先从package sound `__init__.py`中导入effects，如果没有，
 再假定他是sound目录下的一个模块(也就是假定sound目录下存在一个effects.py文件)，尝试去加载它:
 
 >  when using syntax like import item.subitem.subsubitem,
