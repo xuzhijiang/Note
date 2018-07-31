@@ -82,5 +82,6 @@ ThreadLocal最常用的地方就是为每个线程绑定一个数据库连接，
 而且，Process可以分布到多台机器上，而Thread最多只能分布到同一台机器的多个CPU上。
 Python的multiprocessing模块不但支持多进程，其中managers子模块还支持把多进程分布到多台机器上。
 
-
+谈谈你对Mixin的理解
+在面向对象的编程语言中，Mixin是一个包含其他类使用的方法的类，而不必是其他类的父类。
 

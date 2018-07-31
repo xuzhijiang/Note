@@ -160,3 +160,18 @@ In this example, the echo and surround modules are imported in the current names
 那么，from sound.effects import *,之后dir(),会包含echo和surround,即使__init__.py中的__all__不包含echo和surround,
 
 > 相对导入基于当前模块的名称。由于主模块的名称始终为“__main__”
+
+#### __getitem__
+
+> 如果CacheHandler没有实现\_\_getitem__,将raise 
+'cache' object is not subscriptable,实现了getitem方法后，
+如果没有找到'default'键，就默认调用getitem
+
+```python
+class CacheHandler():
+  def __getitem__(self, name):
+    return 'value'
+
+cache = CacheHandler()
+print(cache['default'])
+```
