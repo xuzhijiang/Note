@@ -43,6 +43,6 @@ def my_view(request):
 
 ```
 
-#### filter
-> {% name|过滤器 %} {% name|f1|f1 %}
-过滤器对变量的值进行修饰: lower, escape, linebreaks, date, length...{{ my_date|date:"Y-m-d" }}
+#### stringfilter
+
+[reference](https://docs.djangoproject.com/en/2.0/howto/custom-template-tags/#django.template.defaultfilters.stringfilter)
