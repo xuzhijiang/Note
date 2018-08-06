@@ -9,6 +9,7 @@
 		xhr.open('GET', '/track.json', true);
 		xhr.onload = function(){
 			console.log('xhr response text:' + xhr.responseText);
+			console.log(JSON.parse(xhr.responseText));
 		};
 		xhr.send(null);
 	</script>
