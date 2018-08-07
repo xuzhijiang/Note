@@ -872,8 +872,12 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 
 ## 1 事务
 
-数据库事务(Database Transaction) ，是指作为单个逻辑工作单元执行的一系列操作，要么完全地执行，要么完全地不执行。
-彻底理解数据库事务: http://www.hollischuang.com/archives/898
+数据库事务(Database Transaction) ，事务作为一个整体被执行，包含在其中的对数据库的操作要么全部被执行，要么都不执行。
+
+* 原子性（Atomicity）：事务作为一个整体被执行，包含在其中的对数据库的操作要么全部被执行，要么都不执行。
+* 一致性（Consistency）：操作前后，转账都是满足一致条件
+* 隔离性（Isolation）：多个事务并发执行时，一个事务的执行不应影响其他事务的执行。
+* 持久性（Durability）：一个事务一旦提交，他对数据库的修改应该永久保存在数据库中。
 
 ## 2 数据库索引
 
@@ -904,7 +908,6 @@ Bulid过程可以分解为4个步骤:预处理(Prepressing), 编译(Compilation)
 
 - 是数据库容量受到物理内存的限制,不能用作海量数据的高性能读写,因此Redis适合的场景主要局限在较小数据量的高性能操作和运算上。
 - Redis较难支持在线扩容，在集群容量达到上限时在线扩容会变得很复杂。为避免这一问题，运维人员在系统上线时必须确保有足够的空间，这对资源造成了很大的浪费。
-
 
 ## 4 乐观锁和悲观锁
 
@@ -986,8 +989,6 @@ _注意: 中断连接端可以是客户端，也可以是服务器端. 下面仅
 
 get: [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616#section-9.3)
 post: [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616#section-9.5)
-
-
 
 ## 6 Cookie和Session
 
