@@ -284,13 +284,13 @@ d = {key: value for (key, value) in iterable}
 ## 7 Python中单下划线和双下划线
 
 ```python
->>> class MyClass():
-...     def __init__(self):
-...             self.__superprivate = "Hello"
-...             self._semiprivate = ", world!"
-...
->>> mc = MyClass()
->>> print mc.__superprivate
+class MyClass():
+    def __init__(self):
+            self.__superprivate = "Hello"
+             self._semiprivate = ", world!"
+
+mc = MyClass()
+print mc.__superprivate
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 AttributeError: myClass instance has no attribute '__superprivate'
@@ -300,15 +300,15 @@ AttributeError: myClass instance has no attribute '__superprivate'
 {'_MyClass__superprivate': 'Hello', '_semiprivate': ', world!'}
 ```
 
-`__foo__`:一种约定,Python内部的名字,用来区别其他用户自定义的命名,以防冲突，就是例如`__init__()`,`__del__()`,`__call__()`这些特殊方法
+* 以单下划线开头_x，表示这是一个保护成员，只有类对象和子类对象自己能访问到这些变量。以单下划线开头的变量和函数被默认当作是内部函数，使用from module improt \*时不会被获取，但是使用import module可以获取
 
-`_foo`:一种约定,用来指定变量私有.程序员用来指定私有变量的一种方式.不能用from module import * 导入，其他方面和公有一样访问；
+* 以单下划线结尾, 例如class_,仅仅是为了区别该名称与关键词
 
-`__foo`:这个有真正的意义:解析器用`_classname__foo`来代替这个名字,以区别和其他类相同的命名,它无法直接像公有成员一样随便访问,通过对象名._类名__xxx这样的方式可以访问.
+* 双下划线开头__x，表示为私有成员，只允许类本身访问，子类也不行。但是python的私有方法并不是一个真正的私有方法，因为它还是能够被外部访问的，只不过是不能被简单的直接调用了,在文本上被替换为_class__method
+
+* 双下划线开头，双下划线结尾__x__。一种约定，Python内部的名字，用来区别其他用户自定义的命名,以防冲突,他不是私有成员。是一些 Python 的“魔术”对象，表示这是一个特殊成员，例如：定义类的时候，若是添加__init__方法，那么在创建类的实例的时候，实例会自动调用这个方法，一般用来对实例的属性进行初使化，Python不建议将自己命名的方法写为这种形式。
 
 详情见:http://stackoverflow.com/questions/1301346/the-meaning-of-a-single-and-a-double-underscore-before-an-object-name-in-python
-
-或者: http://www.zhihu.com/question/19754941
 
 ## 8 字符串格式化:%和.format
 
