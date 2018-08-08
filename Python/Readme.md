@@ -312,36 +312,33 @@ AttributeError: myClass instance has no attribute '__superprivate'
 
 ## 8 字符串格式化:%和.format
 
-.format在许多方面看起来更便利.对于`%`最烦人的是它无法同时传递一个变量和元组.你可能会想下面的代码不会有什么问题:
+### %
 
-```
-"hi there %s" % name
+```python
+print("hi there %s" % name)
 ```
 
 但是,如果name恰好是(1,2,3),它将会抛出一个TypeError异常.为了保证它总是正确的,你必须这样做:
 
+```python
+print("hi there %s" % (name,))
 ```
-"hi there %s" % (name,)   # 提供一个单元素的数组而不是一个参数
+### .format
+
+.format没有%那样的问题
+
+```python
+value = 'arg'
+'value is {0}'.format(value)
 ```
 
-但是有点丑..format就没有这些问题.你给的第二个问题也是这样,.format好看多了.
-
-你为什么不用它?
-
-* 不知道它(在读这个之前)
-* 为了和Python2.5兼容(譬如logging库建议使用`%`([issue #4](https://github.com/taizilongxu/interview_python/issues/4)))
-
-http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
-
-## 9 迭代器和生成器
+## 9 迭代器(iterable)和生成器(generator)
 
 这个是stackoverflow里python排名第一的问题,值得一看: http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python
 
-这是中文版: http://taizilongxu.gitbooks.io/stackoverflow-about-python/content/1/README.html
-
 这里有个关于生成器的创建问题面试官有考：
-问：  将列表生成式中[]改成() 之后数据结构是否改变？ 
-答案：是，从列表变为生成器
+问： 将列表生成式中[]改成() 之后数据结构是否改变？ 
+答案：改变，从(迭代器)列表变为生成器
 
 ```python
 >>> L = [x*x for x in range(10)]
@@ -350,8 +347,44 @@ http://stackoverflow.com/questions/5082452/python-string-formatting-vs-format
 >>> g = (x*x for x in range(10))
 >>> g
 <generator object <genexpr> at 0x0000028F8B774200>
+next(g) #可以通过next()函数获得generator的下一个返回值
+# 没有更多的元素时，抛出StopIteration的错误。所以我们一般不用next()
 ```
 通过列表生成式，可以直接创建一个列表。但是，受到内存限制，列表容量肯定是有限的。而且，创建一个包含百万元素的列表，不仅是占用很大的内存空间，如：我们只需要访问前面的几个元素，后面大部分元素所占的空间都是浪费的。因此，没有必要创建完整的列表（节省大量内存空间）。在Python中，我们可以采用生成器：边循环，边计算的机制—>generator
+
+generator也是可迭代对象，因此可以这么调用
+```python
+for v in g:
+  print(v)
+```
+可以把函数改成generator，只需要把return改成yield即可，遇到yield的时候就中断返回值，
+下次继续执行，也是通过for循环来迭代这样的generator,对于函数改成的generator来说，遇到return语句或者执行到函数体最后一行语句，就是结束generator的指令，for循环随之结束.
+普通函数和generator函数，普通函数调用直接返回结果,generator函数的“调用”实际返回一个generator对象(通过next()方法获得生成器的下一个返回值).
+
+### generator分类
+
+* 不包含yield关键字的generator
+* 带yield的generator function
+
+### 迭代器(Iterator)
+
+凡是可作用于next()函数的对象都是Iterator(迭代器)类型，它们表示一个惰性计算的序列；
+
+迭代器(Iterator)和可迭代对象(Iterable)的区别?
+
+可以直接作用于for循环的对象统称为可迭代对象：Iterable
+
+Note: 以通过iter()函数获得一个Iterator对象
+
+```python
+from collections import Iterable
+print(isinstance([], Iterable))# True
+print(isinstance('abc', Iterable))# True
+
+from collections import Iterator
+print(isinstance([], Iterator))#False
+isinstance({}, Iterator)#False
+```
 
 ## 10 `*args` and `**kwargs`
 
@@ -408,13 +441,30 @@ http://stackoverflow.com/questions/3394835/args-and-kwargs
 
 ## 11 面向切面编程AOP和装饰器
 
-这个AOP一听起来有点懵,同学面阿里的时候就被问懵了...
+这种在运行时，动态地将代码切入到类的指定方法、指定位置上的编程思想就是面向切面的编程
 
 装饰器是一个很著名的设计模式，经常被用于有切面需求的场景，较为经典的有插入日志、性能测试、事务处理等。装饰器是解决这类问题的绝佳设计，有了装饰器，我们就可以抽离出大量函数中与函数功能本身无关的雷同代码并继续重用。概括的讲，**装饰器的作用就是为已经存在的对象添加额外的功能。**
 
-这个问题比较大,推荐: http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python
+有多个装饰器的时候，最下面的装饰器(紧挨def关键字的)先起作用
 
-中文: http://taizilongxu.gitbooks.io/stackoverflow-about-python/content/3/README.html
+```python
+def makebold(fn):
+    def wrapped():
+        return "<b>" + fn() + "</b>"
+    return wrapped
+
+def makeitalic(fn):
+    def wrapped():
+        return "<i>" + fn() + "</i>"
+    return wrapped
+
+@makebold
+@makeitalic
+def hello():
+    return "hello world"
+
+print hello() ## returns "<b><i>hello world</i></b>"
+```
 
 ## 12 鸭子类型
 
