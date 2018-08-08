@@ -14,3 +14,7 @@
 ```
 * I want to resolve a domain name before it is called
 * The domain name is "cdn.varvy.com"
+
+#### css !important rule
+
+如果将！important添加到不太具体的选择器CSS声明中，它将具有优先级。
