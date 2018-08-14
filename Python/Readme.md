@@ -1027,11 +1027,14 @@ _注意: 中断连接端可以是客户端，也可以是服务器端. 下面仅
 
 ## 4 urllib和urllib2的区别
 
-这个面试官确实问过,当时答的urllib2可以Post而urllib不可以.
+Note That: The urllib2 module has been split across several modules in Python 3 named urllib.request and urllib.error.The urllib and urllib2 modules are merged together in python3 as urllib.
 
-1. urllib提供urlencode方法用来GET查询字符串的产生，而urllib2没有。这是为何urllib常和urllib2一起使用的原因。
-2. urllib2可以接受一个Request类的实例来设置URL请求的headers，urllib仅可以接受URL。这意味着，你不可以伪装你的User Agent字符串等。
+urllib提供的功能就是利用程序去执行各种HTTP请求。如果要模拟浏览器完成特定功能，需要把请求伪装成浏览器.
 
+urllib.request for opening and reading URLs
+urllib.error containing the exceptions raised by urllib.request
+urllib.parse for parsing URLs
+urllib.robotparser for parsing robots.txt files
 
 ## 5 Post和Get
 [GET和POST有什么区别？及为什么网上的多数答案都是错的](http://www.cnblogs.com/nankezhishi/archive/2012/06/09/getandpost.html)
