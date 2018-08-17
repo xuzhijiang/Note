@@ -365,6 +365,18 @@ for v in g:
 * 不包含yield关键字的generator
 * 带yield的generator function
 
+#### generator
+
+一个函数执行到某一个位置产生一个值，然后它被冻结，再次被唤醒的时候还是
+从这个位置继续去执行，那么每次执行的时候就可能产生一个数据，这样这个函数
+不停的执行就产生了源源不断的数据，这样的函数就叫generator.
+
+generator一般和循环语句一起使用,generator相比一次列出所有内容的advantages
+
+* 更节省存储空间
+* 响应更加迅速
+* 使用更加灵活
+
 ### 迭代器(Iterator)
 
 凡是可作用于next()函数的对象都是Iterator(迭代器)类型，它们表示一个惰性计算的序列；
