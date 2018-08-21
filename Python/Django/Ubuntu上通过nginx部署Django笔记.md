@@ -1,11 +1,9 @@
-> Django的部署可以有很多方式，采用nginx+uwsgi的方式是其中比较常见的一种方式。今天在Ubuntu上使用Nginx部署Django服务，虽然不是第一次搞这个了，但是发现还是跳进了好多坑，google了好久才搞定。想想还是把这个过程记录下来，免得下次再来踩同样的坑。
-
+> Django的部署可以有很多方式，采用nginx+uwsgi的方式是其中比较常见的一种方式。今天在Ubuntu上使用Nginx部署Django服务
 ## 安装Nginx
 
 ```shell
 apt-get install nginx
 ```
-
 ubantu安装完Nginx后，文件结构大致为：
 　　所有的配置文件都在 /etc/nginx下；
 　　启动程序文件在 /usr/sbin/nginx下；
@@ -15,8 +13,9 @@ ubantu安装完Nginx后，文件结构大致为：
 sudo /etc/init.d/nginx start    # 启动
 sudo /etc/init.d/nginx stop     # 停止
 sudo /etc/init.d/nginx restart  # 重启
+service ngnix status #查看nginx服务的状态
+sudo lsof -i TCP:80 #see what application is listening on port 80
 ```
-
 
 ## 安装uwsgi
 
@@ -24,7 +23,6 @@ sudo /etc/init.d/nginx restart  # 重启
 apt-get install python-dev
 pip install uwsgi
 ```
-至于为什么要使用uwsgi,可以参见这边博客：[快速部署Python应用：Nginx+uWSGI配置详解(1)](http://developer.51cto.com/art/201010/229615.htm)。
 这样大体的流程是：nginx作为服务器最前端，负责接收client的所有请求，统一管理。静态请求由Nginx自己处理。非静态请求通过uwsgi传递给Django，由Django来进行处理，从而完成一次WEB请求。
 通信原理是：
 `the web client <-> the web server(nginx) <-> the socket <-> uwsgi <-> Django`
@@ -93,7 +91,6 @@ vacuum          = true
 ```shell
 sudo uwsgi --ini uwsgi.ini 
 ```
-ps:如果实在不想配置nginx的话，单uwsgi就已经能完成部署了（把socket换成http），你可以把Django中的静态文件放到云平台中如七牛等等，这样你的Web也能被正常访问。
 
 ## 配置nginx
 
@@ -126,19 +123,21 @@ server {
     }
 }
 ```
+
 ## 收集Django静态文件
 
-把Django自带的静态文件收集到同一个static中，不然访问Django的admin页面会找不到静态文件。在django的setting文件中，添加下面一行内容：
+把Django自带的静态文件收集到一个目录中，在settings.py文件中，添加:
 ```python
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 ```
-然后到项目目录下执行:
-
+执行：
 ```shell
 python manage.py collectstatic
 ```
+这个命令会把`INSTALLED_APPS`中所有静态文件集中存放到STATIC_ROOT对应的目录中
 
-修改配置文件
+## 修改settings.py配置文件
+
 ```python
 DEBUG = False
 ALLOWED_HOSTS = ['*']
