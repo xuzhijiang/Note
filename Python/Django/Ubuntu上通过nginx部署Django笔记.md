@@ -1,4 +1,3 @@
-> Django的部署可以有很多方式，采用nginx+uwsgi的方式是其中比较常见的一种方式。今天在Ubuntu上使用Nginx部署Django服务
 ## 安装Nginx
 
 ```shell
