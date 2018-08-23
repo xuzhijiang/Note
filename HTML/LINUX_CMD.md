@@ -20,3 +20,9 @@ sudo service nginx restart
 service ngnix status #查看nginx服务的状态
 sudo lsof -i TCP:80 #see what application is listening on port 80
 ```
+
+```shell
+du -d 1 -h
+sudo netstat -tlpn | grep 800 #Check that the chosen port is already in use.
+mkdir -p dirname #recursively create directory.
+```
