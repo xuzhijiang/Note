@@ -1029,13 +1029,7 @@ obj.constructor.toString()	//"function Number(){[native code]}"
 
 obj.constructor就是为了保证后面的表达式(obj.constructor.toString().match(/function\s*([^(]*)/)[1])能够被执行的，obj.constructor如果存在，才会执行后面那一句，如果不存在，他就不执行了，如果不存在，后面的就不会执行
 obj是为了保证如果我的入参是null or undefined时，他也能够正常返回，因为我们知道null和undefined他是没有constructor的，因此如果我传入null和undefined,直接去执行obj.constructor就会报错了，所以要做判断，如果是null或者undefined，就直接返回他们本身
-chromium调试
-sources →  ctrl + o(查找某一个文件), ctrl+shift+o(查找函数)
-esc调出console
-Sources:可以看到和这个website的资源，css，js，图片等，而且在js文件中可以设置断来
-我们所定义的函数在chrome调试器中的结构：
-我们通过console.dir(add);来打印一下我们所定义的add函数
-在F12调试的时候，调用console.dir();打印
+
 Ajax
 XMLHttpRequest对象的open()方法有3个参数，第一个参数指定是GET还是POST，第二个参数指定URL地址，第三个参数指定是否使用异步，默认是true，所以不用写。
 注意，千万不要把第三个参数指定为false，否则浏览器将停止响应，直到AJAX请求完成。如果这个请求耗时10秒，那么10秒内你会发现浏览器处于“假死”状态。
@@ -1062,10 +1056,9 @@ cookie是明文传递的，所以不secure
 
 HTTP报文分为请求报文和响应报文,都是3部分组成:
 
-- 请求行，请求头部，请求主体.
-- 响应头行，响应头部，响应主体
-- 请求行:  GET   www.baidu.com  HTTP/1.1
-- 请求头部是有value-key构成的
+- 请求行，请求头，请求体.
+- 响应行，响应头，响应体
+- 请求头是由value-key构成的
 - get请求，所以请求体为空
 - post请求由请求体
 - 响应头行:HTTP/1.1 200 ok  (Http版本 Http状态码 Http状态码描述)
@@ -1325,8 +1318,12 @@ reverse,sort,push,unshift,shift,pop,splice
 inline: 默认宽度是内容的宽度,高度是内容高度,不可设置宽高(改为inline-block就可以设置宽高了)，同行显示, 默认情况下(没有设置display属性)display是inline的元素 span,a,em, label,cite.... 
 
 block是:一个element就占一行的空间
-<!--  默认情况下(没有设置display属性)display是 block的元素 - div,p,h1-h6,ul,li,form...-->
-<!--  block: 默认宽度是父元素的宽度,默认高度是元素高度,可以设置宽高的，换行显示 -->,像字体什么的，如果没有设置，就是默认继承父元素的值.
+
+默认情况下(没有设置display属性)display是block的元素: div,p,h1-h6,ul,li,form...
+
+block: 默认宽度是父元素的宽度,默认高度是元素高度,可以设置宽高的，换行显示 
+
+像字体什么的，如果没有设置，就是默认继承父元素的值.
 注意：text-align不能作用于block元素，必须要把block变成inline-block元素才可以.
 <!--  text-align 只能对行级元素(inline)起效果 -->
 
@@ -1372,10 +1369,10 @@ style:display:none;隐藏
 
 float: left | right | none | inherit, none是默认值,
 
-    1, 浮动元素的默认宽度是内容宽度(即使他是div元素)
+    1, 浮动元素的默认宽度是内容宽度
     2, 是半脱离文档流的,还是会占据旁边非浮动元素的空间，但是不会遮挡非浮动元素里面的内容，旁边的非浮动元素会环绕它，float对于后续的元素来说是脱离文档流的，但是对于后续的内容是在文档流中的
     3，向指定的方向一直移动(移动到不能移动的位置,靠住父元素)
-    4，float 的元素在同一文档流，按顺序排列 ，包含float的元素的父元素此时没有包含任何内容，因为float脱离了文档流，所以父元素没有了高度。用float来做多列布局
+    4，float的元素在同一文档流，按顺序排列 ，包含float的元素的父元素此时没有包含任何内容，因为float脱离了文档流，所以父元素没有了高度。用float来做多列布局
     5，浮动的元素可以同行显示(即使他是div)，所以可以实现块级别元素同行显示，之后在父元素上加一个清除浮动，这样的好处就是后续元素不受浮动的影响 ，这样就可以实现两列布局
 
 height is the vertical measurement of the container.
@@ -1387,7 +1384,7 @@ to the top of the second.
 > clear: both|left|right|none|inherit
  
     1，	clear：默认是none，通常使用both，因为both包含了left和right的功能，直接clear both就好了
-    2，	clear是应用于浮动元素的后续元素，来清除浮动元素对后续元素的影响，一般应用于block level element
+    2，	clear用来清除浮动元素对后续元素的影响，一般应用于block level element
 
 clear使用一般有两种方式:
 
@@ -1426,6 +1423,14 @@ transform: translateX(-50%);/*translateX就是自身宽度为参照物的*/
     Ctrl + shift + f: find in files
     ctrl+n: create new file
     ctrl+M:find matching bracket
+    sources →  ctrl + o(查找某一个文件), ctrl+shift+o(查找函数)
+    esc调出console
+    console.dir(function name);
+
+#### google search
+
+搜文档： max site:http://python.org
+问问题： how to find max value in a list site:http://stackoverflow.com
 
 #### 原型继承
 
@@ -1648,3 +1653,4 @@ git cherry-pick 62ecb3
 git checkout -b newbranch 62ecb3
 git rebase --onto master 76cada^
 ```
+
