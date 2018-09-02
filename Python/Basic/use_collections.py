@@ -4,21 +4,21 @@
 from collections import namedtuple
 
 # namedtuple('名称', [属性list])
-# namedtuple是一个函数，
-# 它用来创建一个自定义的tuple对象(给这个tuple一个名字)，并且规定了tuple元素的个数，
+# namedtuple是一个函数，它用来创建一个自定义的tuple类，并且给这个类个名字，并且规定了tuple元素的个数，
 # 并可以用属性而不是索引来引用tuple的某个元素。它具备tuple的不变性
-# 
-b = namedtuple('ball', ('b1', 'b2'))#生成一个命名元祖类
-bb = b(11, 22)#生成一个命名元祖的实例
+
+b = namedtuple('ball', ('b1', 'b2')) #生成一个命名元祖类
+bb = b(11, 22) # 生成一个命名元祖的实例
 print(bb.b1)
 print(bb.b2)
 print(bb[0])
 print(bb[1])
 print(type(bb))
 print(type(b))
-print(isinstance(b, tuple))#False
-print(isinstance(bb, tuple))#True
-print(isinstance(bb, b))#True
+print(isinstance(b, tuple)) # False
+print(isinstance(b, type)) # True
+print(isinstance(bb, tuple)) # True
+print(isinstance(bb, b)) # True
 
 
 #使用list存储数据时，按索引访问元素很快，但是插入和删除元素就很慢了，
@@ -52,8 +52,6 @@ d = dict([('a', 1), ('b', 2), (3, 'c'), ('d', 4), ('e', 5)])
 print(d)
 od = OrderedDict([('a', 1), ('b', 2), (3, 'c'), ('d', 4), ('e', 5)])
 print(od)
-print('>>>>>>>>>>>>>>>>>')
-
 # 注意，OrderedDict的Key会按照插入的顺序排列，不是Key本身排序：
 
 orderdict = OrderedDict()
