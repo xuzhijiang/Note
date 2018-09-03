@@ -52,12 +52,32 @@ Access-Control-Max-Age: 86400
 
 ```javascript
 var test = 'some value'; //js标准的定义全局变量的方法
-- 2, window.test = 'some value'; //相当于变量是window对象上的一个属性
-- 3, (function(){
+
+window.test = 'some value'; //相当于变量是window对象上的一个属性
+
+(function(){
 	var a;//a是局部变量，不是全局变量
 	test = 'some value';//写了变量的名字，但是没有使用var定义,这样的变量也会被定义到global上面去
 	_config = {dd: ‘dd-value’};//_config是全局变量，可以在外面访问,但是由于是以_开头，所以我们人为的把他看做是protected变量，不要在外面直接访问.(其中dd默认就是字符串)
 })();
+
+!function(){
+    function Modal(){
+
+    }//Modal是局部函数对象，要想在外面访问，必须window.Modal = Modal;
+
+    var a = 'aa';//局部变量
+
+    b = 'bb';//全局变量
+}();
+
+function foo(){
+    var tt = 'ty';//局部变量
+    gg = 'gy';//局部变量
+}
+
+kk = 'k_value';//全局变量
+window.kk === kk;//true
 ```
 
 #### 封装-信息隐藏:
@@ -71,9 +91,7 @@ function A(){
 }
 ```
 
-这个_config在外部是不可以使用，不可以通过this使用,外部通过getConfig来获取，这样就相当于开放api
-我们人为的规定:_step1//有_开头的就是protected的，没有_开头的就是public的
-
+这个_config在外部是不可以使用，不可以通过this使用,外部通过getConfig来获取，这样就相当于开放api,我们人为的规定:_step1//有_开头的就是protected的，没有_开头的就是public的
 
 #### 变量作用域
 
@@ -209,18 +227,14 @@ bar();
 ```
 
 ##### 变量的生命周期和作用范围
-a.	静态作用域,由程序定义的位置决定，也就是在编译阶段就可以知道(js)
 
-b.动态作用域，作用域由程序运行的位置有关系,动态栈来管理的，找离栈底最近的变量
-
-比如说在其他语言中if语句，for语句，while语句，他会产生一个块级作用域
-,js变量作用域是静态作用域,js没有块级作用域的,只有两种作用域:(全局作用域，函数作用域)
-ES5使用词法环境来管理静态作用域:
+1. 在其他语言中if语句，for语句，while语句，他会产生一个块级作用域
+2. js没有块级作用域的,只有两种作用域:(全局作用域，函数作用域)
+3. ES5使用词法环境来管理静态作用域:
 
 ##### 函数声明和函数表达式的区别：
 
-在引擎中，函数声明的函数对象是提前创建的，函数表达式创建的函数对象是执行到这个语句create的，
-2种都会创建一个函数对象
+在引擎中，函数声明的函数对象是提前创建的，函数表达式创建的函数对象是执行到这个语句create的，2种都会创建一个函数对象
 
 #### 闭包
 
@@ -284,18 +298,29 @@ var car = {
     color : "red",
     run : function(){alert("run")}
 };
+
+访问对象属性: 
 car.color;
-car.run();
 car["color"];
-car["run"]();
-car.type = "suv";//增加属性
-car.stop = function(){alert("stop")};
+
+修改对象属性
 car.color = "white";
+
+增加对象属性:
+car.type = "suv";
+
+运行对象方法：
+car.run();
+car["run"]();
+
+增加对象方法：
+car.stop = function(){alert("stop")};
+
+修改对象方法：
 car.run = function(){alert("run2")};
 
 delete car.color;
 car.color; //undefined
-car.constructor;//就可以找到这个car对象是由哪个方法构建出来的。
 
 var num = new Number(123);
 num.constructor;//得到num对象的构造函数
@@ -348,13 +373,13 @@ landWind.logo = 'landWind';
 landWind.start();
 ```
 
-2. 构造函数的方式
+2. 构造函数的方式创建对象
 
 - 函数可以作为构造函数，可以用函数来创建自定义的对象
 
 - 函数有个属性叫做prototype,使用prototype设置原型
 
-- 这个prototype属性呢就是这个自定义对象的原型(也就是原型是prototype)
+- 这个prototype属性呢就是这个自定义对象的原型
 
 - 使用new关键字作用于函数，创建对象
 
@@ -382,11 +407,13 @@ var landRover = new Car('landRover');
 var landWind = new Car('landWind');
 landRover.start();
 
-使用new key word来创建的时候，分为3 steps:
+使用new key word来创建的时候，分为3步:
+
 1. create a 新的Car 类型的对象landRover
 2. 设置landRover的_proto_,_proto_设置成构造函数Car的prototype的属性(很重要), _proto_这个属性是隐式的属性，是不能够在编程的时候被修改的
 3. 使用landRover作为this去执行这个构造函数Car.//Car.apply(landRover,arguments)
 
+note: landRover.constructor;//就可以找到这个landRover对象是由哪个方法构建出来的。
 ```
 
 #### 原型链
@@ -422,15 +449,20 @@ var landRover1 = new landRover(1000);
 var landRover2 = new landRover(1001);
 console.log(landRover1.serialNumber);//1000
 alert(landRover1.logo);//landRover
---------分割线--------以下内容与上无关系:
+```
+
+```javascript
 Car.prototype = new Object();
 alert(Car.prototype.__proto__ === Object.prototype); //car.prototype的原型(_proto_)是Object.prototype
 
 原型链作用,对象的属性的访问，修改，删除和原型链都直接相关
-js中访问对象的属性的时候，会优先在对象的本身去查找，那么对象本身没有定义这个属性,就会顺着这个链去查找，直到找到为止
+js中访问对象的属性的时候，会优先在对象的本身去查找，那么对象本身没有定义这个属性,
+就会顺着这个链去查找，直到找到为止
 找landRover1的toString方法，会顺着原型链去查找，直到找到了Object.prototype上有
 
-修改和删除只能修改和delete对象自身的属性，landRover1上的属性的删除和修改只会影响到landRover1，不会影响到landRover2，也不会影响到原型上的属性
+修改和删除只能修改和delete对象自身的属性，
+landRover1上的属性的删除和修改只会影响到landRover1，不会影响到landRover2，
+也不会影响到原型上的属性
 
 landRover1.logo = 'landWind';//会在自身创建logo属性来赋值，而不是修改_proto_上的logo
 删除属性
@@ -445,15 +477,17 @@ hasOwnProperty
 这个方法来自于Object.prototype上，会判断传入的属性是否是对象自身的属性，返回true和false
 landRover2.hasOwnProperty('logo');//false
 
-function在js中间也是对象，Car是可以通过new Function()来创建出来的
-Car既可以访问Function.prototype上的属性，也可以访问Object.prototype上的属性，也有hasOwnProperty这样的方法的.
+函数function在JS中也是对象，Car是可以通过new Function()来创建出来的
+Car既可以访问Function.prototype上的属性，也可以访问Object.prototype上的属性，
+也有hasOwnProperty这样的方法的.
 
-js中all object，无论是普通的对象还是函数对象，他背后都是有这个原型链的存在的
+Car.__proto__ === Function.prototype//true
+Function.prototype.__proto__ === Object.prototype//true
 ```
 
 #### 函数
 
-  The code inside a javascript function will execute when “something” invokes it.
+The code inside a javascript function will execute when “something” invokes it.
 It is common to use the term “call a function” instead of “invoke a function”
 In this tutorial, we will use invoke, because a javascript function can be invoked without being called.
 

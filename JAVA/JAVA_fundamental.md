@@ -18,7 +18,7 @@ find jar: local repo --->  private service repo(Enterprise) ---> central repo
 
 ![maven central repo all plugins](https://repo.maven.apache.org/maven2/org/apache/maven/plugins/)
 
-![find pom.xml dependency jar](http://mvnrepository.com/)
+![find pom.xml dependency jar format](http://mvnrepository.com/)
 
 mvn help:describe -Dplugin=eclipse
 
