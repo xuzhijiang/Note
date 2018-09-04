@@ -487,38 +487,26 @@ Function.prototype.__proto__ === Object.prototype//true
 
 #### 函数
 
-The code inside a javascript function will execute when “something” invokes it.
-It is common to use the term “call a function” instead of “invoke a function”
-In this tutorial, we will use invoke, because a javascript function can be invoked without being called.
+```javascript
+function foo(a, b) {}
+alert(foo === window.foo);// true
+```
 
-function myFunction(a, b) {
-    return a * b;
-}
-
-myFunction(10, 2);           // Will return 20
-window.myFunction(10, 2);    // Will also return 20
-
-The function above does not belong to any object. But in JavaScript there is always a default global object.
-In HTML the default global object is the HTML page itself, so the function above "belongs" to the HTML page.
-In a browser the page object is the browser window. The function above automatically becomes a window function.
-
-myFunction() and window.myFunction() is the same function:
 The This keyword:
 
-In javascript,the thing called this, is the object that “owns” the current code.
-The value of this, when used in a function, is the object that owns the function.
+In javascript,the thing called this, is the object that “owns” the current code. The value of this, when used in a function, is the object that owns the function.
 
-Example two:
 The Global Object:
+
 function myFunction() {
     return this;
 }
 
-myFunction();                // Will return the window object
+myFunction(); // will return the window object
 
-When a function is called without an owner object, the value of this becomes the global object.
-In a web browser the global object is the browser window.
+When a function is called without an owner object, the value of this becomes the global object.In a web browser the global object is the browser window.
 This example returns the window object as the value of this:
+
 Invoking a Function as a Method:（Object Method）
 
 The following example creates an object (myObject), with two properties (firstName and lastName), and a method (fullName):
@@ -531,7 +519,7 @@ var myObject = {
     }
 }
 
-myObject.fullName();         // Will return "John Doe"
+myObject.fullName(); //will return "John Doe"
 
 the fullName method is a function.The function belongs to the object.myObject is the owner of the function.the thing called this, is the object that “owns” the JavaScript code.In this case the value of this is myObject.
 Invoking a function as an object method, causes the value of this to be the object itself.
@@ -540,7 +528,8 @@ Invoking a Function with a Function Constructor
 If a function invocation is preceded with the new keyword, it is a constructor invocation.
 It looks like you create a new function, but since JavaScript functions are objects you actually create a new object:
 
-// This is a function constructor:
+This is a function constructor:
+
 function myFunction(arg1, arg2) {
     this.firstName = arg1;
     this.lastName  = arg2;
@@ -548,7 +537,7 @@ function myFunction(arg1, arg2) {
 
 // This creates a new object
 var x = new myFunction("John", "Doe");
-x.firstName;                             // Will return "John"
+x.firstName;// Will return "John"
 
 A constructor invocation creates a new object. The new object inherits the properties and methods from its constructor.
 The this keyword in the constructor does not have a value.
@@ -663,7 +652,6 @@ var add = function(i, j){
 通过对象实例化的方式不可以访问到父函数上的变量(也就是引用环境里面的变量)
 通过对象实例化的方式定义的函数都会定义在全局作用域,因此无法访问到他的父函数上面的所有的变量
 
-------------------------------------------------
 可以在console打印某一个对象的属性(console.dir(add);)，实例对象是没有prototype原型属性的，这样一个属性的，这说明原型属性prototype是函数的专利，只有函数有prototype这样一个属性
 
 构造函数和普通函数的区别：
@@ -700,9 +688,13 @@ Car.prototype.start = function(){
 Car.prototype.stop = function(){
 	
 }
-函数调用模式
-函数调用时，在函数内部会自动生成2个params，this参数和arguments参数
-函数调用(根据函数调用时this参数做一个分类4类)
+
+函数调用模式:
+
+函数调用时，在函数内部会自动生成2个parameters，this、arguments
+
+根据函数调用时this参数做一个分类4类:
+
 1,  构造函数的调用模式
 2， 方法调用模式
 3， 函数调用模式
@@ -747,52 +739,65 @@ new Car('LandRover')中的 this指向创建出的对象
 
 	任何在函数内部定义的子函数，他在调用是，函数内部的 this是window，而不是上一级对象
 
-函数调用(arguments参数)
-Array-like(like array but not array)
-	arguments[index]
-	arguments.length
-arguments.callee,在函数内部，arguments.callee指向函数本身
+### arguments
 
-//arguments转数组
+Array-like(like array but not array)
+
+- arguments[index]
+- arguments.length
+
+arguments converts to array:
+
+```javascript
 function add(i, j){
-	var args = Array.prototype.slice.apply(arguments);//arguments converts to ///array
-	args.forEach(function(item){//可以调用forEach说明args确实是一个数组
+	var arr = Array.prototype.slice.apply(arguments);
+    //可以调用forEach说明arr确实是一个数组
+	arr.forEach(function(item){
 		console.log(item);
-	})
+	});
 }
 add(1, 2, 3);
-//点.slice 除了通过 Array.prototype 访问当然还可以通过对象直接量访问:
-// [].slice.call(arguments)
-arguments.callee在函数内部指向函数本身，通常使用场景是匿名函数使用递归的场景
-(ES3之后，基本上不需要用到,因为可以用函数表达式的方式)
+```
 
+`.slice`除了通过`Array.prototype`访问当然还可以通过对象直接量访问:
+
+`[].slice.call(arguments)`
+
+#### arguments.callee
+
+```javascript
 console.log(
 	(function(i){
 		if(i==0){
 			return 1;
 		}
+        //arguments.callee在函数内部指向函数本身，使用场景是匿名函数递归调用
 		return i * arguments.callee(i-1);
 	})(5)
 );
-Quote: https://www.w3schools.com/js/
-The Difference Between call() and apply()
-The only difference is:
-call() takes any function arguments separately.
-apply() takes any function arguments as an array.
-The apply() method is very handy if you want to use an array instead of an argument list.
-Note: While the syntax of this function is almost identical to that of apply(), the fundamental difference is that call() accepts an argument list, while apply()accepts a single array of arguments.
-function.call(thisArg, arg1, arg2, ...)
-thisArg:Optional
-arg1,arg2..:Optional
+```
 
-4, apply(call):
+### The Difference Between call() and apply()
+
+The only difference is:
+
+- call() takes any function arguments separately.
+- apply() takes any function arguments as an array.
+
+The apply() method is very handy if you want to use an array instead of an argument list.
+
+Note: While the syntax of this function is almost identical to that of apply(), the fundamental difference is that call() accepts an argument list, while apply()accepts a single array of arguments.
+
+### apply
+
 apply指的是Function构造函数原型对象上面的方法(Function.prototype.apply),这说明所有的函数都可以调用apply这样
 一个方法,
+
 Object.prototype.toString.apply("123");//"[object String]"
 
-Function.prototype.apply:(借用函数的功能)
-Function.prototype.bind:
-创建绑定函数
+Function.prototype.apply: 借用函数的功能
+Function.prototype.bind: 创建绑定函数
+
 bind() 最简单的用法是创建一个函数，使这个函数不论怎么调用都有同样的 this 值。JavaScript新手经常犯的一个错误是将一个方法从对象中拿出来，然后再调用，希望方法中的 this 是原来的对象。（比如在回调中传入这个方法。）如果不做特殊处理的话，一般会丢失原来的对象。从原来的函数和原来的对象创建一个绑定函数，则能很漂亮地解决这个问题：
 this.x = 9; 
 var module = {
@@ -822,9 +827,6 @@ boundGetX(); // 返回 81
 // var circle = {x:1, y:1, r:1};
 // var circleMove = p.move.bind(circle, 2, 1);
 // circleMove();
-
-
-为什么js需要apply方法?
 
 闭包:
 在函数内部定义了一个函数，这个函数调用到了父函数上面的临时变量，
@@ -857,8 +859,8 @@ var add = new Function('a, b', 'return a + b');//我们通过new Function()
 //构造函数来创建一个函数，这时可以明显看出函数是对象：
 alert(add(1, 3));//4
 //在这段代码中，毫无疑问add()是一个对象，因为它是由构造函数创建的。这里并不推荐使用Function()
-//构造函数来创建函数（和eval()一样糟糕），因为程序逻辑代码是以字符串的形式传入构造器的。这样的代码可读性差，
-//写起来也很费劲，你还要对代码中的引号做转义处理，并需要特别关注为了保持可读性而保留的空格和缩进。
+//构造函数来创建函数（和eval()一样糟糕）
+
 alert(add.name);//anonymous
 
 // 具名函数表达式
@@ -1053,13 +1055,11 @@ getConstructorName([]) === "Array";//true
 
 obj.constructor.toString().match(/function\s*([^(]*)/)[1];	//获取对象构造函数的名称
 
-
 //将构造函数转换成字符串
 obj.constructor.toString()	//"function Number(){[native code]}"
 
 //提取Number
 .match(/function\s*([^(]*)/)[1];//"Number"
-
 
 obj.constructor就是为了保证后面的表达式(obj.constructor.toString().match(/function\s*([^(]*)/)[1])能够被执行的，obj.constructor如果存在，才会执行后面那一句，如果不存在，他就不执行了，如果不存在，后面的就不会执行
 obj是为了保证如果我的入参是null or undefined时，他也能够正常返回，因为我们知道null和undefined他是没有constructor的，因此如果我传入null和undefined,直接去执行obj.constructor就会报错了，所以要做判断，如果是null或者undefined，就直接返回他们本身
@@ -1088,15 +1088,6 @@ cookie作用域
 只要满足cookie的作用路径和域，都会带上cookie信息(携带请求头中的Cookie字段)，所以会产生流量代价，
 cookie是明文传递的，所以不secure
 
-HTTP报文分为请求报文和响应报文,都是3部分组成:
-
-- 请求行，请求头，请求体.
-- 响应行，响应头，响应体
-- 请求头是由value-key构成的
-- get请求，所以请求体为空
-- post请求由请求体
-- 响应头行:HTTP/1.1 200 ok  (Http版本 Http状态码 Http状态码描述)
-
 常用HTTP方法:
 
     方法            描述	          是否包含主体
@@ -1109,7 +1100,8 @@ HTTP报文分为请求报文和响应报文,都是3部分组成:
 常见的Http status code:
 
     200	  请求成功，一般用于GET POST请求         ok
-    301   资源移动，所请求的资源自动到新的URL，浏览器自动跳转到新的URL   Moved Permanently
+    301   资源移动，所请求的资源自动到新的URL，浏览器自动跳转到新的URL Moved Permanently
+    302 Moved temporarily
     304   你访问的资源未修改，所请求的资源未修改，浏览器读取缓存数据                   Not Modified
     400   请求语法错误，服务器无法理解		Bad Request
     404   未找到资源，可以设置个性的404界面		Not Found
@@ -1129,20 +1121,10 @@ HTTP报文分为请求报文和响应报文,都是3部分组成:
 #### 数组
 
 ```javascript
-创建数组:
-
+创建数组的方式:
 var array = new Array();
-var array = [];//用的更多
+var array = []; //用的更多
 var array = [163, "netease", {color:"red"}, [], true];//可以有多种类型
-
-var students = [
-  {id:1, score:80},
-  {id:2, score:50},
-  {id:3, score:20}
-];
-students.length//3
-student[0];得到第一个element
-student[0].score;得到第一个element的score80
 
 arr.indexOf(searchElement[,fromIndex=0]);//fromIndex默认为0，一般我们都不传第二个
 var telephones = [110,120,140];
