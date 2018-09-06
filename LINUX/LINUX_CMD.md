@@ -52,3 +52,8 @@ export JAVA_HOME=/usr/java/<jdk_directory>
 export PATH=$JAVA_HOME/bin:$PATH
 ```
 
+### create a symbolic link
+
+create a symlink at /usr/bin/bar which references the original file /opt/foo
+
+`ln -s /opt/foo /usr/bin/bar`
