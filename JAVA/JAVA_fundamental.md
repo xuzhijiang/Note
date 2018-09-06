@@ -12,26 +12,31 @@ SprintBoot必学
 
 GRADLE
 
-MAVEN： Maven is written in Java and primarily used to build Java programs.
+## MAVEN
 
-find jar: local repo --->  private service repo(Enterprise) ---> central repo
+Maven is written in Java and primarily used to build Java programs.
+
+`find jar: local repo -->  private service repo(Enterprise) --> central repo`
 
 ![maven central repo all plugins](https://repo.maven.apache.org/maven2/org/apache/maven/plugins/)
 
 ![find pom.xml dependency jar format](http://mvnrepository.com/)
 
+### 分析maven-eclipse-plugin:
+
+```shell
 mvn help:describe -Dplugin=eclipse
 
+maven-eclipse-plugin:
+Artifact Id: maven-eclipse-plugin
+Version: 2.10
+Goal Prefix:eclipse
+
+This plugin has 12 goals:
+
+eclipse:clean
+
+eclipse:configure-workspace
+
 mvn eclipse:eclipse
-
-mvn eclipse:clean
-
-mvn help:describe -Dplugin=idea
-
-mvn idea:idea
-
-mvn idea:clean
-
-mvn help:describe -Dplugin=compiler
-
-mvn compiler:compile
+```
