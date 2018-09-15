@@ -1071,19 +1071,6 @@ XMLHttpRequest对象的open()方法有3个参数，第一个参数指定是GET�
 
 #### Cookie
 
-虽然cookie是存在于浏览器端的，但是大部分时候，
-我们是在服务器端对cookie进行设置，我们可以通过http在Response Header中设置Set-Cookie: 这个字段来设置浏览器端需要存储的cookie,
-想标识一个唯一的cookie值，需要Name，Domain，Path的一个组合
-cookie作用域
-
-如果设置cookie的path为根目录，那么当设置cookie的domain为news.163.com的时候，
-当用户访问news.163.com的时候，会带上这个cookie,
-
-如果设置cookie的path为根目录，那么当设置cookie的domain为sports.163.com的时候，
-当用户访问sports.163.com的时候，会带上这个cookie,
-
-如果设置cookie的path为根目录，那么当设置cookie的domain为他的父域的时候，例如.163.com的时候，那用户访问news.163.com的时候和访问sports.163.com的时候都会带上这两个cookie
-
 缺陷：
 只要满足cookie的作用路径和域，都会带上cookie信息(携带请求头中的Cookie字段)，所以会产生流量代价，
 cookie是明文传递的，所以不secure
@@ -1109,14 +1096,6 @@ cookie是明文传递的，所以不secure
 
 两个主机拥有相同的protocol，port，host，就是同源(origin),
 不满足同源策略就是跨域资源访问cors，现在浏览器已经支持了cors的支持了
-
-```html
-['ContentType']='application/octet- stream'
-['Content-Disposition'] = 'attachment;filename="test.jpg"'
-# 指定下载文件的默认name
-# 这两者是MIME类型的标准定义
-# 在代码中使用这2个标记，客户端就体现为下载文件的形式
-```
 
 #### 数组
 
@@ -1669,4 +1648,3 @@ git cherry-pick 62ecb3
 git checkout -b newbranch 62ecb3
 git rebase --onto master 76cada^
 ```
-
