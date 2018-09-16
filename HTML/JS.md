@@ -1592,8 +1592,6 @@ git remote add origin ~/git-server(添加远程仓库别名)
 
 git remote -v查看远程仓库的信息
 
-cat .git/config
-
 一般会把默认远程分支的别名取为origin
 
 git push origin master
