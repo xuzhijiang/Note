@@ -3,18 +3,50 @@
 <head>
 	<title>AjaxSimpleDemo</title>
 	<script type="text/javascript">
-		//Ajax请求URL使用的是相对路径，由于浏览器的同源策略，默认情况下，JavaScript在//发送AJAX请求时，URL的域名必须和当前页面完全一致,完全一致的意思是，域名要相同//（www.example.com和example.com不同），协议要相同（http和https不同），端口//号要相同（默认是:80端口，它和:8080就不同）。有的浏览器口子松一点，允许端口不///同，大多数浏览器都会严格遵守这个限制。
-		xhr = new XMLHttpRequest();
-		//xhr.open('GET', 'http://api.money.126.net/data/feed/0000001,1399001?callback=refreshPrice', true);//报错
-		xhr.open('GET', '/track.json', true);
-		xhr.onload = function(){
-			console.log('xhr response text:' + xhr.responseText);
-			console.log(JSON.parse(xhr.responseText));
-		};
-		xhr.send(null);
+		function processResponse() {
+			if (XMLHttpReq.readyState == 4) {
+				if (XMLHttpReq.status == 200) {
+					//doSomething
+					setTimeout("myAjax();", 30000);//30 seconds执行myAjax();
+				}
+			}
+		}
+		function createXMLHttpRequest(){
+			if (window.XMLHttpRequest) { // Mozilla浏览器
+			XMLHttpReq = new XMLHttpRequest();
+			} else if (window.ActiveXObject) { // IE浏览器
+				try {
+					XMLHttpReq = new ActiveXObject("Msxml2.XMLHTTP");
+				} catch (e) {
+					try {
+						XMLHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+					} catch (e) {
+					}
+				}
+			}
+		}
+		function myAjax(){
+			//Ajax请求URL使用的是相对路径，由于浏览器的同源策略，默认情况下，JavaScript在//发送AJAX请求时，URL的域名必须和当前页面完全一致,完全一致的意思是，域名要相同//（www.example.com和example.com不同），协议要相同（http和https不同），端口//号要相同（默认是:80端口，它和:8080就不同）。有的浏览器口子松一点，允许端口不///同，大多数浏览器都会严格遵守这个限制。
+			xhr = new createXMLHttpRequest();
+			//xhr.open('GET', 'http://api.money.126.net/data/feed/0000001,1399001?callback=refreshPrice', true);//报错
+			xhr.open('GET', '/track.json', true);
+			xhr.onload = function(){
+				console.log('xhr response text:' + xhr.responseText);
+				console.log(JSON.parse(xhr.responseText));
+			};
+			// XMLHttpReq.onreadystatechange = processResponse;// 指定响应函数
+			xhr.send(null);//发送请求
+		}
+
+		function init(){
+			myAjax();
+		}
 	</script>
 </head>
-<body>
+<body onload="init();">
 	
 </body>
 </html>
+<!-- XMLHttpRequest对象的open()方法有3个参数，第一个参数指定是GET还是POST，第二个参数指定URL地址，第三个参数指定是否使用异步，默认是true,表示使用异步，所以不用写。
+注意，千万不要把第三个参数指定为false，否则浏览器将停止响应，直到AJAX请求完成。如果这个请求耗时10秒，那么10秒内你会发现浏览器处于“假死”状态。
+最后调用send()方法才真正发送请求。GET请求不需要参数，POST请求需要把body部分以字符串或者FormData对象传进去。 -->

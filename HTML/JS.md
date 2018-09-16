@@ -1,50 +1,6 @@
-#### CORS(Cross-Origin Resource Sharing)
+### JavaScript常用知识
 
-1，CORS是用来做什么的
-
-	是HTML5规范定义的如何跨域访问资源。如果浏览器支持HTML5，那么就可以一劳永逸地使用新的跨域策略：CORS了。
-
-2, 如何理解CORS
-
-Origin表示本域，也就是浏览器当前页面的域。当JavaScript向外域（如sina.com）发起请求后，浏览器收到响应后，首先检查Access-Control-Allow-Origin是否包含本域，如果是，则此次跨域请求成功，如果不是，则请求失败，JavaScript将无法获取到响应的任何数据。
-
-[CORS img](../img/CORS.png)
-
-假设本域是my.com，外域是sina.com，只要响应头Access-Control-Allow-Origin为http://my.com，或者是*，本次请求就可以成功。
-
-可见，跨域能否成功，取决于对方服务器是否愿意给你设置一个正确的Access-Control-Allow-Origin，决定权始终在对方手中。
-
-上面这种跨域请求，称之为“简单请求”。简单请求包括GET、HEAD和POST（POST的Content-Type类型，仅限application/x-www-form-urlencoded、multipart/form-data和text/plain），并且不能出现任何自定义头（例如，X-Custom: 12345），通常能满足90%的需求。
-
-在引用外域资源时，除了JavaScript和CSS外，都要验证CORS。例如，当你引用了某个第三方CDN上的字体文件时：
-
-```css
-/* CSS */
-@font-face {
-  font-family: 'FontAwesome';
-  src: url('http://cdn.com/fonts/fontawesome.ttf') format('truetype');
-}
-```
-如果该CDN服务商未正确设置Access-Control-Allow-Origin，那么浏览器无法加载字体资源。
-
-对于PUT、DELETE以及其他类型如application/json的POST请求，在发送AJAX请求之前，浏览器会先发送一个OPTIONS请求（称为preflighted请求）到这个URL上，询问目标服务器是否接受：
-
-```html
-OPTIONS /path/to/resource HTTP/1.1
-Host: bar.com
-Origin: http://my.com
-Access-Control-Request-Method: POST
-服务器必须响应并明确指出允许的Method：
-
-HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://my.com
-Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS
-Access-Control-Max-Age: 86400
-```
-
-浏览器确认服务器响应的`Access-Control-Allow-Methods`头确实包含将要发送的AJAX请求的Method，才会继续发送AJAX，否则，抛出一个错误。
-
-由于以POST、PUT方式传送JSON格式的数据在REST中很常见，所以要跨域正确处理POST和PUT请求，服务器端必须正确响应OPTIONS请求。
+`document.location === window.location; //true`
 
 #### 全局变量和局部变量
 
@@ -89,9 +45,63 @@ function A(){
 		return _config;
 	}
 }
+这个_config在外部是不可以使用，不可以通过this使用,外部通过getConfig来获取，这样就相当于开放api,我们人为的规定:_step1//有_开头的就是protected的，没有_开头的就是public的
 ```
 
-这个_config在外部是不可以使用，不可以通过this使用,外部通过getConfig来获取，这样就相当于开放api,我们人为的规定:_step1//有_开头的就是protected的，没有_开头的就是public的
+#### 原型继承
+
+```javascript
+(function(){
+    var proto = {
+        action1: function(){},
+        action2: function(){}
+    };
+    var obj = Object.create(proto);
+})();
+
+模拟Object.create(proto),实现clone：
+var clone = (function(){
+    var F = function(){};
+    return function(proto){
+        F.prototype = proto;
+        return new F();
+    };
+})();
+```
+
+#### 类继承
+
+```javascript
+(function(){
+    function ClassA(){}
+    ClassA.classMethod = function(){}
+    ClassA.prototype.api = function(){}
+    
+    function ClassB(){
+        ClassA.apply(this, arguments);
+    }
+    ClassB.prototype = new ClassA();
+    ClassB.prototype.constructor = ClassB;
+    ClassB.prototype.api = function(){
+        ClassA.prototype.api.apply(this, arguments);
+    }
+    var b = ClassB();
+    b.api();
+})();
+```
+
+class继承是我们去模拟其他语言的继承
+原型继承是js中固有的特性
+使用obj = Object.create(proto) 就可以基于原型创建出一个对象
+obj对象就以proto对象为原型
+obj这个对象有一个隐士的proto一个指针去指向proto这个对象，当我去访问obj对象上的属性的时候，他会顺着这个原型的原型链去查找的，这个就是原型继承的方式
+
+#### BOM
+
+页面需要包含一些基本信息来描述这个页面
+width=device-width;之后设置initial-scale=1.0;也就是初始缩放为1.0，当写了这个值的时候，这个网站就不会被缩小，这样设置就不会缩小了。user-scalable=no;防止用户手动缩放,一般情况下采用了响应式这种方式的话，我们不需要用户手动缩放的
+我们可以用display:none;display:block;去控制他们的显示或者隐藏
+避免使用使用import方式引入css，因为每个import都会产生一个同步的请求，就是第一个请求完成后再去请求第二个请求
 
 #### 变量作用域
 
@@ -1064,39 +1074,6 @@ obj.constructor.toString()	//"function Number(){[native code]}"
 obj.constructor就是为了保证后面的表达式(obj.constructor.toString().match(/function\s*([^(]*)/)[1])能够被执行的，obj.constructor如果存在，才会执行后面那一句，如果不存在，他就不执行了，如果不存在，后面的就不会执行
 obj是为了保证如果我的入参是null or undefined时，他也能够正常返回，因为我们知道null和undefined他是没有constructor的，因此如果我传入null和undefined,直接去执行obj.constructor就会报错了，所以要做判断，如果是null或者undefined，就直接返回他们本身
 
-Ajax
-XMLHttpRequest对象的open()方法有3个参数，第一个参数指定是GET还是POST，第二个参数指定URL地址，第三个参数指定是否使用异步，默认是true，所以不用写。
-注意，千万不要把第三个参数指定为false，否则浏览器将停止响应，直到AJAX请求完成。如果这个请求耗时10秒，那么10秒内你会发现浏览器处于“假死”状态。
-最后调用send()方法才真正发送请求。GET请求不需要参数，POST请求需要把body部分以字符串或者FormData对象传进去。
-
-#### Cookie
-
-缺陷：
-只要满足cookie的作用路径和域，都会带上cookie信息(携带请求头中的Cookie字段)，所以会产生流量代价，
-cookie是明文传递的，所以不secure
-
-常用HTTP方法:
-
-    方法            描述	          是否包含主体
-	GET    从服务器端获取一份文档     no
-	POST   向服务器发送需要处理的数据  yes
-	PUT    将请求的主体部分存储在服务器上 yes
-	DELETE 从服务器端删除一份文档        no
-	HEAD   只获取服务器端文档的头部     no
-
-常见的Http status code:
-
-    200	  请求成功，一般用于GET POST请求         ok
-    301   资源移动，所请求的资源自动到新的URL，浏览器自动跳转到新的URL Moved Permanently
-    302 Moved temporarily
-    304   你访问的资源未修改，所请求的资源未修改，浏览器读取缓存数据                   Not Modified
-    400   请求语法错误，服务器无法理解		Bad Request
-    404   未找到资源，可以设置个性的404界面		Not Found
-    500	   服务器内部错误	Internal Server error
-
-两个主机拥有相同的protocol，port，host，就是同源(origin),
-不满足同源策略就是跨域资源访问cors，现在浏览器已经支持了cors的支持了
-
 #### 数组
 
 ```javascript
@@ -1304,101 +1281,6 @@ reverse,sort,push,unshift,shift,pop,splice
 以上这些方法都改变了原来的array
 ```
 
-#### CSS
-
-##### Display
-
-<!--  display: block|inline|inline-block|none -->
-
-inline: 默认宽度是内容的宽度,高度是内容高度,不可设置宽高(改为inline-block就可以设置宽高了)，同行显示, 默认情况下(没有设置display属性)display是inline的元素 span,a,em, label,cite.... 
-
-block是:一个element就占一行的空间
-
-默认情况下(没有设置display属性)display是block的元素: div,p,h1-h6,ul,li,form...
-
-block: 默认宽度是父元素的宽度,默认高度是元素高度,可以设置宽高的，换行显示 
-
-像字体什么的，如果没有设置，就是默认继承父元素的值.
-注意：text-align不能作用于block元素，必须要把block变成inline-block元素才可以.
-<!--  text-align 只能对行级元素(inline)起效果 -->
-
-<!--  inline-block: 默认宽度是内容宽度,可以设置宽高的，如果前面和后面的元素是inline元素，那么同行显示 ,如果后续是inline-block的元素，并且宽度超过了这行的边界，会换行
-,如果是inline的元素，可以在元素内换行，这是不同。 默认的inline-block元素有 -input, textarea,select,button.... -->
-
-<!--  display:none，设置元素不显示. 和visibility:hidden的区别是后者占据空间. -->
-display: table;宽度跟着内容走
-display: flex;父元素有这个css属性，子元素自然就是flex item，flex item默认的宽度是auto的，也就是跟内容变化，/*justify-content: center;*/（居中对齐）
-
-<!-- Text-align:center指的是line-height的居中，而不是height的居中，所以此时一般都需要设置line-height等于height -->
-
-<!-- height is the vertical measurement of the container. -->
-
-<!-- 行高指的是文本行的基线间的距离。 -->
-
-<!--  position: static|relative|absolute|fixed 默认的是static -->
-
-<!--  relative 是以自己为参照物，仍然在文档流中,top,left是以自己原来在文档流中的位置为参考的，可以提高浮动元素的层级，使浮动元素被选中  -->
-
-<!--  relative使用场景: 绝对定位元素的参照物 （因为relative是不脱离文档流的，对其他元素的位置没有影响,所以当做绝对定位的参照物）-->
-
-<!--  absolute: 默认没有宽度,宽度是内容的宽度，脱离文档流(不再占据他原来占据的位置), 浮在其他元素上面 参照物为第一个有position:relative;的父元素,如果父元素上没有定位元素，那就以body为参照物 -->
-
-<!--  fixed: 脱离文档流（不再占据原来的位置），宽度为内容的宽度,固定定位元素的参照物为视窗，也就是窗口,注意他是相对于视窗来定位的，并不是相对于html元素, 相对于视窗，也就是即使有滚动条，他也不会随着滚动条滚动 -->
-
-<!--  元素叠加的效果用position来实现 -->
-
-css 中 overflow: hidden清楚浮动的真正原因
-外层ul设置overflow为hidden, 内层li设置float为left左浮动
-
-为什么ul去掉overflow: hidden之后没在了, 其实不是没在了, 看到由于没有设置高度, height: auto为自动值, 就是根据里面的内容自动设置高度, 但是li设置了左浮动, 已经浮动起来了属于浮动流, 不在普通流中, 但是ul还是在普通流, 他普通流中的内容为空, 所以没有高度.
-
-overflow的意思: 属性规定当内容溢出元素框时发生的事情, w3school解释如下, 简单的说hidden 的意思是超出的部分要裁切隐藏掉
-那么如果 float 的元素li不占普通流位置,
-普通流的包含的ul设置了overflow: hidden要根据内容高度裁切隐藏, 
-并且ul高度是默认值auto, 那么不计算其内浮动元素高度就裁切就有可能会裁掉float的li
-，所以li肯定要保留，所以如果没有明确设定容器ul高情况下，它要计算内容全部高度才能确定在什么位置hidden，浮动流的高度就要被计算进去, 就是li的高度, 一旦计算进去就顺带达成了清理浮动的目标
-body,ul的高度是不包含浮动元素的高度的
-style:display:none;隐藏
-
-##### 浮动Float
-
-float: left | right | none | inherit, none是默认值,
-
-    1, 浮动元素的默认宽度是内容宽度
-    2, 是半脱离文档流的,还是会占据旁边非浮动元素的空间，但是不会遮挡非浮动元素里面的内容，旁边的非浮动元素会环绕它，float对于后续的元素来说是脱离文档流的，但是对于后续的内容是在文档流中的
-    3，向指定的方向一直移动(移动到不能移动的位置,靠住父元素)
-    4，float的元素在同一文档流，按顺序排列 ，包含float的元素的父元素此时没有包含任何内容，因为float脱离了文档流，所以父元素没有了高度。用float来做多列布局
-    5，浮动的元素可以同行显示(即使他是div)，所以可以实现块级别元素同行显示，之后在父元素上加一个清除浮动，这样的好处就是后续元素不受浮动的影响 ，这样就可以实现两列布局
-
-height is the vertical measurement of the container.
-line-height is the distance from the top of the first line of text
-to the top of the second.
-
-##### clear
-
-> clear: both|left|right|none|inherit
- 
-    1，	clear：默认是none，通常使用both，因为both包含了left和right的功能，直接clear both就好了
-    2，	clear用来清除浮动元素对后续元素的影响，一般应用于block level element
-
-clear使用一般有两种方式:
-
-    .clearfix:after{content:'.';display: block;height: 0;overflow: hidden;visibility: hidden;clear: both;}
-    在浮动元素的父元素加一个 类名clearfix，他就会在浮动元素的后面，append一个点号，用一个不可见的点号来清除浮动
-    参考阮一峰网站
-    
-Note: 子元素默认会继承父元素的css属性
-
-##### CSS3
-
-transform: translateX(-50%);/*translateX就是自身宽度为参照物的*/
-弹性布局
-
-创建弹性布局flex container display: flex;
-
-只有弹性容器中的在文档流中的子元素才是flex item弹性元素,而且必须是直接子元素，不能使孙子元素
-一个布局是弹性的布局，那这个容器就叫做弹性容器flex container，flex item，main axis ,cross axis
-
 ##### sublime usage
 
     (ctrl+shift+p ssp，把语法设置为python)
@@ -1426,61 +1308,6 @@ transform: translateX(-50%);/*translateX就是自身宽度为参照物的*/
 
 搜文档： max site:http://python.org
 问问题： how to find max value in a list site:http://stackoverflow.com
-
-#### 原型继承
-
-```javascript
-(function(){
-    var proto = {
-        action1: function(){},
-        action2: function(){}
-    };
-    var obj = Object.create(proto);
-})();
-
-模拟Object.create(proto),实现clone：
-var clone = (function(){
-    var F = function(){};
-    return function(proto){
-        F.prototype = proto;
-        return new F();
-    };
-})();
-```
-
-#### 类继承
-
-```javascript
-(function(){
-    function ClassA(){}
-    ClassA.classMethod = function(){}
-    ClassA.prototype.api = function(){}
-    
-    function ClassB(){
-        ClassA.apply(this, arguments);
-    }
-    ClassB.prototype = new ClassA();
-    ClassB.prototype.constructor = ClassB;
-    ClassB.prototype.api = function(){
-        ClassA.prototype.api.apply(this, arguments);
-    }
-    var b = ClassB();
-    b.api();
-})();
-```
-
-class继承是我们去模拟其他语言的继承
-原型继承是js中固有的特性
-使用obj = Object.create(proto) 就可以基于原型创建出一个对象
-obj对象就以proto对象为原型
-obj这个对象有一个隐士的proto一个指针去指向proto这个对象，当我去访问obj对象上的属性的时候，他会顺着这个原型的原型链去查找的，这个就是原型继承的方式
-
-#### BOM
-
-页面需要包含一些基本信息来描述这个页面
-width=device-width;之后设置initial-scale=1.0;也就是初始缩放为1.0，当写了这个值的时候，这个网站就不会被缩小，这样设置就不会缩小了。user-scalable=no;防止用户手动缩放,一般情况下采用了响应式这种方式的话，我们不需要用户手动缩放的
-我们可以用display:none;display:block;去控制他们的显示或者隐藏
-避免使用使用import方式引入css，因为每个import都会产生一个同步的请求，就是第一个请求完成后再去请求第二个请求
 
 #### Git
 
@@ -1586,10 +1413,6 @@ git checkout v0.1
 
 git tag --list
 
-git init ~/git-server
-
-git remote add origin ~/git-server(添加远程仓库别名)
-
 git remote -v查看远程仓库的信息
 
 一般会把默认远程分支的别名取为origin
@@ -1646,3 +1469,6 @@ git cherry-pick 62ecb3
 git checkout -b newbranch 62ecb3
 git rebase --onto master 76cada^
 ```
+
+添加远程仓库别名: `git remote add origin ~/git-server`
+
