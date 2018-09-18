@@ -1,7 +1,7 @@
 package org.java.core.base.string;
 
 /**
- * StringµÄÖµ´«µİºÍÒıÓÃ´«µİ
+ * Stringçš„å€¼ä¼ é€’å’Œå¼•ç”¨ä¼ é€’
  *
  */
 public class ReferenceAndValueString {
@@ -22,7 +22,7 @@ public class ReferenceAndValueString {
 	}
 	
 	/**
-	 * @param ĞÎ²ÎstrºÍ´«ÈëµÄstr¶¼Ö¸ÏòÍ¬Ò»¸öString¶ÔÏó
+	 * @param å½¢å‚strå’Œä¼ å…¥çš„stréƒ½æŒ‡å‘åŒä¸€ä¸ªStringå¯¹è±¡
 	 */
 	public static void change(String str) {
 		System.out.println(str.hashCode());
@@ -32,7 +32,7 @@ public class ReferenceAndValueString {
 	}
 	
 	/**
-	 * @param ĞÎ²ÎsoºÍ´«ÈëµÄso¶¼Ö¸ÏòÍ¬Ò»¸öStringObject¶ÔÏó
+	 * @param å½¢å‚soå’Œä¼ å…¥çš„soéƒ½æŒ‡å‘åŒä¸€ä¸ªStringObjectå¯¹è±¡
 	 */
 	public static void change(StringObject so) {
 		System.out.println(so.hashCode());
