@@ -112,7 +112,20 @@ it will only be created in heap and will not be created in String pool.
 But if it is not present in String pool it will be created 
 in string pool as well as heap space (or we can say space apart from String pool)
 
+Java String subSequence
 
+为什么String实现subSequence方法?
+Java 1.4 introduced CharSequence interface and String implements this 
+interface, this is the only reason for the implementation of subSequence
+ method in String class. Internally it invokes the String substring method.
+Java在1.4引入了CharSequence接口，String实现了这个接口，这个是唯一的原因在String中实现这个方法
+此方法内部调用了substring方法.
 
+An invocation of this method of the form str.subSequence(begin, end) 
+behaves in exactly the same way as the invocation of str.substring(begin, end).
+str.subSequence(begin, end) 与 str.substring(begin, end)效果一模一样
+结论：
 
-
+There is no benefit in using subSequence method, ideally you should
+ always use String substring method.
+ 使用subSequence方法没有益处，理想情况下应该总是使用substring方法.

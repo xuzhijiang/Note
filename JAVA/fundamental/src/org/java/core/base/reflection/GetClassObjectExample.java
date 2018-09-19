@@ -1,6 +1,12 @@
 package org.java.core.base.reflection;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 import java.util.Arrays;
 
 /**
@@ -129,6 +135,59 @@ public class GetClassObjectExample {
 			e.printStackTrace();
 		}
 		
+		//Getting Type Parameters (generics)
+//		The type parameters are returned in the same order as declared.
+		try {
+			TypeVariable<?>[] typeParameters = Class.forName("java.util.HashMap").getTypeParameters();
+			for(TypeVariable t : typeParameters) {
+				System.out.println(t.getName() + ",");
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		//Get Implemented Interfaces
+		//etGenericInterfaces() method returns the array of 
+		//interfaces implemented by the class with generic type 
+		//information. We can also use getInterfaces() to get the
+		//class representation of all the implemented interfaces.
+		try {
+			Type[] interfaces = Class.forName("java.util.HashMap").getGenericInterfaces();
+			System.out.println(Arrays.toString(interfaces));
+			System.out.println(Arrays.toString(Class.forName("java.util.HashMap").getInterfaces()));
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		//Get All Public Methods
+		//getMethods() method returns the array of public methods 
+		//of the Class including public methods of it’s superclasses 
+		//and super interfaces.
+		Method[] publicMethods = concreteClass.getMethods();
+		System.out.println(Arrays.toString(publicMethods));
+		
+		//Get All Public Constructors
+		//getConstructors() method returns the list of public
+		//constructors of the class reference of object.
+		
+		Constructor<?>[] publicConstructors = concreteClass.getConstructors();
+		System.out.println(Arrays.toString(publicConstructors));
+		
+		//Get All Public Fields
+		//getFields() method returns the array of public fields 
+		//of the class including public fields of it’s super classes and super interfaces.
+		System.out.println("------------");
+		Field[] publicFields = concreteClass.getFields();
+		System.out.println(Arrays.toString(publicFields));
+		
+		//Get All Annotations
+		//getAnnotations() method returns all the annotations for 
+		//the element, we can use it with class, fields and methods also. 
+		//Note that only annotations available with reflection are with retention 
+		//policy of RUNTIME, 我们也可以将它与类，字段和方法一起使用。 请注意，只有带反射的注释才能使用RUNTIME的保留策略，
+		System.out.println("------------");
+		Annotation[] annotations = concreteClass.getAnnotations();
+		System.out.println(Arrays.toString(annotations));
 		
 	}
 }
