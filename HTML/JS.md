@@ -1067,10 +1067,21 @@ js是一种弱类型语言，因此语言本身会做一系列的隐式类型转
 由于JavaScript这个设计缺陷，不要使用==比较，始终坚持使用===比较
 另一个例外是NaN这个特殊的Number与所有其他值都不相等，包括它自己：
 
-NaN === NaN; // false
+`NaN === NaN; // false`
+
 唯一能判断NaN的方法是通过isNaN()函数：
 
-isNaN(NaN); // true
+`·isNaN(NaN); // true`
+
+* 逗号运算符
+
+```javascript
+if(a,b,c){}
+a = (b=2, c=3, 4==4);//a最后的值是true，也就是4==4的结果
+(s=a, b, c, ...., n);//s的值就是n的值，与前面的都没有关系
+```
+
+逗号运算符，之前所有的运算表达式都会执行，但整个语句的值是最后一个表达式的值
 
 数字型直接量和字符串直接量要看Number和String原型链上有多少构造方法就知道了
 所有的直接量用.（点号）去调用某一个方法的时候，js运行环境会将这个直接量转换成对应的对象类型，来调用对象类型的方法。
@@ -1462,8 +1473,6 @@ git checkout -b <branchname>
 git checkout <reference>(commit id)
 
 git checkout -b issue-26
-
-git reset:
 
 git reset --mixed <commit-id
 
