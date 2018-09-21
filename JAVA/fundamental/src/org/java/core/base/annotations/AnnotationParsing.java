@@ -28,7 +28,6 @@ public class AnnotationParsing {
 						if (methodAnno.revision() == 1) {
 							System.out.println("Method with revision no 1 = " + method);
 						}
-
 					} catch (Throwable ex) {
 						ex.printStackTrace();
 					}
@@ -38,5 +37,4 @@ public class AnnotationParsing {
 			e.printStackTrace();
 		}
 	}
-
 }

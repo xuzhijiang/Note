@@ -10,6 +10,9 @@ import java.lang.reflect.TypeVariable;
 import java.util.Arrays;
 
 /**
+ * Java反射提供了去监视和修改应用运行时行为的能力，用反射，我们可以监控一个类，接口，枚举，在运行时得到他们的结构，
+ * 方法，字段信息即使类在编译时是不可以访问的，我们可以用反射实例化一个对象，调用他的方法，改变他的字段值,也就是反射是作用于运行时.
+ * <p><br>
  * getCanonicalName() returns the canonical name of the underlying class. Notice
  * that java.lang.Class uses Generics, it helps frameworks in making sure that
  * the Class retrieved is subclass of framework Base Class. Check out Java
@@ -161,7 +164,7 @@ public class GetClassObjectExample {
 		
 		//Get All Public Methods
 		//getMethods() method returns the array of public methods 
-		//of the Class including public methods of it’s superclasses 
+		//of the Class including public methods of it’s superclasses
 		//and super interfaces.
 		Method[] publicMethods = concreteClass.getMethods();
 		System.out.println(Arrays.toString(publicMethods));
