@@ -1436,35 +1436,31 @@ reverse,sort,push,unshift,shift,pop,splice
 搜文档： max site:http://python.org
 问问题： how to find max value in a list site:http://stackoverflow.com
 
-#### Git
+### Git
 
-git rm $(git ls-files --deleted):
+仅从暂存区删除: `git rm --cached filename`
 
-删除已经在暂存区被记录但是在工作区被删除的文件
-
-git rm --cached :仅从暂存区删除
-
-git rm :从暂存区和workdir删除
+从暂存区和workdir删除: `git rm -f filename`
 
 git commit -a -m "full commit"
 
-git log --pretty=oneline(多用就会了)
+美化log输出: 
 
-git log --oneline
+`git log --pretty=oneline`
 
-master分支的内容会覆盖缓存区和工作区的相应文件，工作区和缓存区未提交的内容会丢失，慎重！(一般不要用):
+`git log --oneline`
 
-git checkout HEAD -- <filename>
+master分支的内容会覆盖缓存区和工作区的相应文件，工作区和缓存区未提交的内容会丢失，慎重！(一般不要用): `git checkout HEAD -- <filename>`
 
-git log -p <file> #查看指定文件的提交历史
+查看指定文件的提交历史: `git log -p <file>`
 
 #### 分支操作
 
-git branch <branchName> 创建一个分支
+创建一个分支: `git branch <branchName>`
 
-git branch -d <branchName> 删除
+删除: `git branch -d <branchName>`
 
-git branch -v 显示左右的分支信息
+显示左右的分支信息: `git branch -v`
 
 git checkout <branchname>
 
