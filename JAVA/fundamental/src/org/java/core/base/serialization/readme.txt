@@ -48,22 +48,29 @@ But for all these changes to work, the java class should have serialVersionUID d
  
 1. readObject(ObjectInputStream ois): If this method is present in the class, 
 ObjectInputStream readObject() method will use this method for reading the object from stream.
+如果这个方法存在于类中，ObjectInputStream 的readObject方法将用这个方法从流中读取类.
 
 2. writeObject(ObjectOutputStream oos): If this method is present in the class, 
 ObjectOutputStream writeObject() method will use this method for writing the 
-object to stream. One of the common usage is to obscure the object variables 
-to maintain data integrity.
+object to stream. 
+如果这个方法存在于类中，ObjectInputStream 的writeObject方法将用这个方法将对象写入流.
+
+One of the common usage is to obscure the object variables 
+to maintain data integrity.通用用法之一是隐藏对象变量以维持数据完整性.
 
 3. Object writeReplace(): If this method is present, then after serialization 
 process this method is called and the object returned is serialized to the stream.
+如果存在此方法，则在序列化过程之后调用此方法，并将返回的对象序列化到流中。
 
 4. Object readResolve(): If this method is present, then after 
 deserialization process, this method is called to return the final 
-object to the caller program. One of the usage of this method is to 
-implement Singleton pattern with Serialized classes. 
+object to the caller program.
+如果存在此方法，则在反序列化过程之后，将调用此方法以将最终对象返回给调用者程序。
+
+One of the usage of this method is to implement Singleton pattern with Serialized classes. 
 Read more at Serialization and Singleton.
 
 Usually while implementing above methods, it’s kept as private 
-so that subclasses can’t override them(子类不可以覆盖他们). They are meant for serialization 
+so that subclasses can’t override them(通常实现上述方法的时候，它保持为私有的，以便子类不能覆盖他们). They are meant for serialization 
 purpose only and keeping them private avoids any security issue.(他们用于序列化目的而已，保持他们私有
 避免任何安全隐患)

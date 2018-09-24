@@ -1,6 +1,8 @@
-package org.java.core.base.serialization;
+package org.java.core.base.serialization.inheritance;
 
 import java.io.IOException;
+
+import org.java.core.base.serialization.SerializationUtil;
 
 public class InheritanceSerializationTest {
 	public static void main(String[] args){

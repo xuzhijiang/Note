@@ -1,6 +1,8 @@
-package org.java.core.base.serialization;
+package org.java.core.base.serialization.ProxyPattern;
 
 import java.io.IOException;
+
+import org.java.core.base.serialization.SerializationUtil;
 
 public class SerializationProxyTest {
 	public static void main(String[] args){

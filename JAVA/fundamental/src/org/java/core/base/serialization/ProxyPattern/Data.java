@@ -1,4 +1,4 @@
-package org.java.core.base.serialization;
+package org.java.core.base.serialization.ProxyPattern;
 
 import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;

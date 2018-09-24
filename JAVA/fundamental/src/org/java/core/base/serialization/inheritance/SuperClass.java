@@ -1,4 +1,4 @@
-package org.java.core.base.serialization;
+package org.java.core.base.serialization.inheritance;
 
 public class SuperClass {
 
@@ -16,5 +16,5 @@ public class SuperClass {
 	}
 	public void setValue(String value) {
 		this.value = value;
-	}	
+	}
 }
