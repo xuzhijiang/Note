@@ -74,3 +74,30 @@ Usually while implementing above methods, it’s kept as private
 so that subclasses can’t override them(通常实现上述方法的时候，它保持为私有的，以便子类不能覆盖他们). They are meant for serialization 
 purpose only and keeping them private avoids any security issue.(他们用于序列化目的而已，保持他们私有
 避免任何安全隐患)
+
+Serialization in java comes with some serious pitfalls such as:
+序列化在Java中有一些严重的缺点:
+
+1. The class structure can’t be changed a lot without breaking 
+the java serialization process. So even though we don’t need some 
+variables later on, we need to keep them just for backward compatibility.
+在不破坏java序列化过程的情况下，类结构不能改变很多。 因此，即使我们以后不需要某些变量，我们也需要保留它们以便向后兼容。
+
+
+2. Serialization causes huge security risks, an attacker can change 
+the stream sequence and cause harm to the system. For example, user 
+role is serialized and an attacker change the stream value to make 
+it admin and run malicious code.
+序列化造成严重的安全风险，攻击者可以改变流的序列，对系统造成伤害，例如，用户角色被序列化，攻击者更改流值以使其成为管理员并运行恶意代码。
+
+Java Serialization Proxy pattern is a way to achieve greater 
+security with Serialization. In this pattern, an inner private
+ static class is used as a proxy class for serialization purpose. 
+ This class is designed in the way to maintain the state of the main 
+ class. This pattern is implemented by properly implementing readResolve() 
+ and writeReplace() methods.
+ Java Serialization Proxy模式是一种通过Serialization实现更高安全性的方法。 在此模式中，
+ 内部私有静态类用作序列化目的的代理类。此类的设计方式是维护主类的状态。 通过正确实现readResolve（）
+ 和writeReplace（）方法来实现此模式。
+
+ 
