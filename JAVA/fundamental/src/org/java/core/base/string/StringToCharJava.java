@@ -1,5 +1,7 @@
 package org.java.core.base.string;
 
+import java.util.Arrays;
+
 /**
  * convert String to character array or convert String to char 
  * from specific index.
@@ -20,8 +22,9 @@ public class StringToCharJava {
 		String str = "journaldev";
 		
 		//String to char array
-		char[] chars = str.toCharArray();
-		System.out.println(chars.length);
+		char[] charArr = str.toCharArray();
+		System.out.println(charArr.length);
+		System.out.println("String converted to char array: " + Arrays.toString(charArr));
 		
 		//char at specific index某个具体的索引
 		char c = str.charAt(2);

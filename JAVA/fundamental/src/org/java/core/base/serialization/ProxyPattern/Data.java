@@ -29,6 +29,9 @@ import java.io.Serializable;
  * fabricate Data object stream and parse it.
  * 最后在Data类中实现readObject（）方法并抛出InvalidObjectException
  * 以避免黑客攻击试图构造Data对象流并解析它。
+ * <p><br>
+ * it’s always better not to rely on default implementation
+ * 序列化最好不要依赖默认的实现
  */
 public class Data implements Serializable{
 
