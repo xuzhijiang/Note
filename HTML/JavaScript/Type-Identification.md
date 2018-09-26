@@ -158,8 +158,6 @@ instanceof
 Object.prototype.toString.call
 constructor
 
-JS世界里一切都是对象
-
 typeof是一个操作符,而不是一个方法,它总是返回一个字符串
 
 typeof("a")     //string
