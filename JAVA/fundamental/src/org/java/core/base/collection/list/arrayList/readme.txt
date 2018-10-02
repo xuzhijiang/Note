@@ -14,3 +14,12 @@ Java ArrayList是List接口的可调整大小的数组实现，这意味着它以默认大小开始，并在将
  除去用迭代器自身的add或remove之外的任何其他方式修改列表结构，则会抛出ConcurrentModificationException。
 7. Java ArrayList提供对其元素的随机访问，因为它适用于索引。 我们可以通过它的索引检索任何元素。
 8. Java ArrayList支持Generics，它是创建ArrayList的推荐方法。
+//List list = new ArrayList(); //not recommended
+//List<String> list1 = new ArrayList<String>(); // recommended way
+
+共有3中构造器:
+1. ArrayList(): 返回空列表并且初始容量为10.
+2. ArrayList(int initialCapacity):返回空列表并且初始容量initialCapacity，
+当您知道列表中包含大量数据并且希望通过提供大量初始容量来节省重新分配时间时，此构造函数非常有用。
+3. ArrayList(Collection<? extends E> c):此ArrayList构造函数将按照
+集合的迭代器返回的顺序返回包含指定集合元素的列表。
