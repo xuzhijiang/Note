@@ -1,4 +1,4 @@
-package org.java.core.base.scheduler;
+package org.java.core.base.multithreading.ScheduledThreadPoolExecutor;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

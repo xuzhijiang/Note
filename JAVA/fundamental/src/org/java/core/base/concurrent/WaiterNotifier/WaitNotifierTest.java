@@ -5,6 +5,8 @@ package org.java.core.base.concurrent.WaiterNotifier;
  * problem where consumer threads are waiting for the 
  * objects in Queue and producer threads put object in queue 
  * and notify the waiting threads.
+ * 这些方法可用于实现生产者消费者问题，其中消费者线程正在等待队列中的对象，
+ * 生产者线程将对象放入队列并通知等待的线程。
  */
 public class WaitNotifierTest {
 	public static void main(String[] args) {

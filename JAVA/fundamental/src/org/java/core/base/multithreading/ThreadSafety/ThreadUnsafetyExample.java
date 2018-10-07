@@ -1,15 +1,5 @@
-package org.java.core.base.multithreading.simple;
+package org.java.core.base.multithreading.ThreadSafety;
 
-/**
- * The reason for data inconsistency is because updating 
- * any field value is not an atomic process, it requires 
- * three steps; first to read the current value, second to 
- * do the necessary operations to get the updated value and 
- * third to assign the updated value to the field 
- * reference.数据不一致的原因是因为更新任何字段值不是原子过程，它需要三个步骤; 首先读取当前值，第二个读取必要的操作以获取更新的值，第三个将更新的值分配给字段引用。
- * <p>
- * 
- */
 public class ThreadUnsafetyExample {
 	public static void main(String[] args) {
         UnSafetyProcessingThread pt = new UnSafetyProcessingThread();

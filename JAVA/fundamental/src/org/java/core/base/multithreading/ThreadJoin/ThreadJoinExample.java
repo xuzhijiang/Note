@@ -1,4 +1,4 @@
-package org.java.core.base.multithreading.simple;
+package org.java.core.base.multithreading.ThreadJoin;
 
 /**
  * Java Thread join方法可用于暂停当前线程执行，除非指定的线程已死。

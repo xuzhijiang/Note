@@ -1,4 +1,4 @@
-package org.java.core.base.multithreading.simple;
+package org.java.core.base.multithreading.ThreadSleep;
 
 /**
  * hread.sleep() method can be used to pause the 

@@ -1,4 +1,4 @@
-package org.java.core.base.scheduler;
+package org.java.core.base.multithreading.TimeTask;
 
 import java.util.Timer;
 import java.util.TimerTask;

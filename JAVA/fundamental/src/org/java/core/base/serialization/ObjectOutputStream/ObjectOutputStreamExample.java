@@ -6,6 +6,13 @@ import java.io.ObjectOutputStream;
 
 import org.java.core.base.serialization.Employee;
 
+/**
+ * convert an object to output stream,把对象转换成流的过程叫做
+ * 序列化，一旦一个对象转换成了流，那么就可以保存到文件or数据库，就可以通过
+ * 网络传输or在socket连接中使用了，
+ * @author xu
+ *
+ */
 public class ObjectOutputStreamExample {
 	
 	public static void main(String[] args) {

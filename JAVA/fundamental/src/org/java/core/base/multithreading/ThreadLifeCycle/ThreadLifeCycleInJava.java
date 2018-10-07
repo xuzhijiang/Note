@@ -1,4 +1,4 @@
-package org.java.core.base.multithreading.simple;
+package org.java.core.base.multithreading.ThreadLifeCycle;
 
 /**
  * 理解Java中线程的生命周期以及线程的状态是对于多线程程序的环境是

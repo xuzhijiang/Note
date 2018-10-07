@@ -6,6 +6,7 @@ import java.io.Serializable;
  * 注意到这是一个简单的Java bean,有一些属性和getter setter方法，
  * 如果你想要一个对象属性不被序列化成流，你可以使用transient关键字，(transient: 暂时的)
  * 像我在salary变量上做的。
+ * Notice that getter/setter方法不是必须的，无参构造器也不是必须的，
  */
 public class Employee implements Serializable{
 

@@ -3,6 +3,7 @@ package org.java.core.base.multithreading.synchronization;
 import java.util.Arrays;
 
 /**
+ * Î´·­ÒëÍê³É,Çë¿´102.Thread Safety in Java ¨C Synchronization
  * <strong>Java synchronized</strong>
  * <p><br>
  * Synchronization is the tool using which we can achieve 

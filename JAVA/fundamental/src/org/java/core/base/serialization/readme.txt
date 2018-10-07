@@ -9,7 +9,8 @@ Java中的序列化起初看起来很容易使用，但它带来了一些简单的安全性和完整性问题，
 
 如果你想要一个类对象序列化，你只需做实现java.io.Serializable接口.
 Serializable在Java中是一个标记接口，没有字段或者方法的实现.他就像一个
-选择参加的 过程，通过它我们是我们的类序列化.
+选择参加的 过程，通过它我们是我们的类序列化.否则抛java.io.NotSerializableException
+异常，
 
 Serialization在Java中是由ObjectInputStream和ObjectOuputStream实现，
 所以我们需要的是一个包装器包装他们，把它门保存到文件或通过网络发送.
@@ -100,4 +101,6 @@ security with Serialization. In this pattern, an inner private
  内部私有静态类用作序列化目的的代理类。此类的设计方式是维护主类的状态。 通过正确实现readResolve（）
  和writeReplace（）方法来实现此模式。
 
- 
+ serialVersionUID的作用：
+ 它由ObjectOutputStream和ObjectInputStream类用于写入和读取对象操作。 
+ 虽然拥有这个字段不是强制性的，但你应该保留它。 否则，以后你修改类的结构，反序列化的时候就会失败.
