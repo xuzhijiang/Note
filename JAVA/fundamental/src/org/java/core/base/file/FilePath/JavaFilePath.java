@@ -8,7 +8,7 @@ import java.net.URISyntaxException;
 //Î´Íê
 //
 public class JavaFilePath {
-	
+
 	public static void main(String[] args) throws IOException, URISyntaxException {
 		File file = new File("C:\\Users\\xu\\Desktop\\test\\text.txt");
 		printPaths(file);
