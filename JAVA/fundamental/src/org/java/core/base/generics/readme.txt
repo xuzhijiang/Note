@@ -72,4 +72,18 @@ i.e <T extends A & B & C>. In this case A can be an interface or class.
 If A is class then B and C should be interfaces. 
 We can’t have more than one class in multiple bounds.
  
+// 使用泛型通配符可以进行子类型化
+//	List<? extends Integer> intList = new ArrayList<>();
+//	List<? extends Number>  numList = intList;  
+// OK. List<? extends Integer> is a subtype of List<? extends Number>
 
+泛型不支持子类型：List<Number> numbers = new ArrayList<Integer>(); will not compile,
+我们不能创建泛型数组：List<Integer>[] array = new ArrayList<Integer>[10]
+
+List<Long> listLong = new ArrayList<Long>();
+listLong.add(Long.valueOf(10));
+List<Number> listNumbers = listLong; // compiler error
+listNumbers.add(Double.valueOf(1.23));
+
+正如您从上面的代码中可以看到，如果泛型支持子类型，我们可以轻松地将Double添加到Long列表中，
+这会在遍历Long列表时在运行时导致ClassCastException。

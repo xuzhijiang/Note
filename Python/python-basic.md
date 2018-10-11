@@ -175,3 +175,10 @@ class CacheHandler():
 cache = CacheHandler()
 print(cache['default'])
 ```
+
+### Install module and uninstall module
+
+```shell
+pip freeze > requirements.txt
+pip install -r requirements.txt
+```

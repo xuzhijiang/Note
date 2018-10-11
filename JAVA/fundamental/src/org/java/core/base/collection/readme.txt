@@ -1,3 +1,6 @@
+Java Collections是Java语言的核心框架之一.,我们几乎在每个应用程序中都使用集合，
+本教程将详细介绍Java集合框架。 详细了解集合框架接口，类和算法。
+
 Java Collections Framework consists of following parts:(Java集合框架包含下述部分)
 
 Interfaces: Java Collections Framework interfaces provides the abstract data 

@@ -4,12 +4,16 @@ import java.util.logging.LogRecord;
 import java.util.logging.StreamHandler;
 
 /**
- * ���ǿ�����java logger�����Ӷ��handlers��
- * ÿ�����Ǽ�¼�κ���Ϣʱ��ÿ����������handler��������Ӧ�ش�����
- *  Java Logging API�ṩ������Ĭ�ϴ�������handler����
+ *  我们可以向java logger中添加多个handlers，
+ *  每当我们记录任何消息时，每个处理程序（handler）都会相应地处理它
+ *  Java Logging API提供了两个默认处理程序（handler）。
  * 
- * @author a
+ * ConsoleHandler： 此处理程序将所有日志消息写入控制台
+ * FileHandler：此处理程序以XML格式将所有日志记录消息写入文件。
  *
+ *	我们也可以创建自己的自定义处理程序来执行特定任务。 
+ * 	要创建我们自己的Handler类，我们需要扩展java.util.logging.Handler类或其任何子类，
+ * 	如StreamHandler，SocketHandler等。
  */
 public class MyHandler extends StreamHandler{
 	
