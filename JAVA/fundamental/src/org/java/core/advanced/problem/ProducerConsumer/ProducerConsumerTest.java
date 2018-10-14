@@ -1,4 +1,4 @@
-package org.java.core.base.copy;
+package org.java.core.advanced.problem.ProducerConsumer;
 
 public class ProducerConsumerTest {
 	public static void main(String[] args) {
