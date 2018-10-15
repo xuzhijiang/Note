@@ -1,4 +1,4 @@
-package org.java.core.base.copy.practice;
+package org.java.core.base.clone.practice;
 
 import java.util.HashMap;
 import java.util.Iterator;

@@ -1,12 +1,18 @@
-package org.java.core.base.collection.list.arrayList;
+package org.java.core.base.collection.arrayList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Below is a simple program for Arraylist example showing 
+ * commonly used methods.
+ * @author PopovichXu
+ */
 public class ArrayListExample {
 
 	public static void main(String args[]) {
+		
 		List<String> letters = new ArrayList<String>();
 		
 		//add example

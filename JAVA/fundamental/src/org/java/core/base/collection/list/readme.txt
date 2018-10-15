@@ -1,35 +1,41 @@
-List是一个有序集合,List是一个接口，继承自Collection接口.(注意interface内部是可以实现方法的,当然也可以不用实现)
+Java Collections是Java语言的核心框架之一.,我们几乎在每个应用程序中都使用集合，
+本教程将详细介绍Java集合框架。 详细了解集合框架接口，类和算法。
 
-public interface List<E> extends Collection<E>{}
+Java Collections Framework consists of following parts:(Java集合框架包含下述部分)
 
-public interface Collection<E> extends Iterable<E> {}
+Interfaces: Java Collections Framework interfaces provides the abstract data 
+type to represent collection. java.util.Collection is the root interface of 
+Collections Framework. It is on the top of Collections framework hierarchy. 
+It contains some important methods such as size(), iterator(), add(), remove(), clear() 
+that every Collection class must implement. Some other important interfaces are 
+java.util.List, java.util.Set, java.util.Queue and java.util.Map. Map is the only 
+interface that doesn’t inherits from Collection interface but it’s part of Collections 
+framework. All the collections framework interfaces are present in java.util package.
 
-public interface Iterable<T> {}
+接口: Java集合框架提供了表示集合的抽象数据类型，java.util.Collection是集合框架的根接口，它位于Collections框架层次的
+顶部，它包含了一些像size(),iterator(),add(),remove(),clear()等每一个集合类必须要实现的重要方法。
+一些其他的重要接口是java.util.List, java.util.Set, java.util.Queue, java.util.Map, Map是唯一的不从
+Collection继承的接口，但是他是Collections框架的一部分，所有的集合框架接口都存在于java.util包中。
 
-Some of the important points about Java List are:
-1. Java List interface is a member of the Java Collections Framework.
-2. List allows you to add duplicate elements.可以添加重复元素
-3. List allows you to have ‘null’ elements.可以有null元素
-4. List interface got many default methods in Java 8, for example replaceAll, sort and spliterator.
-5. List indexes start from 0, just like arrays.
-6. List supports Generics and we should use it whenever possible. 
-Using Generics with List will avoid ClassCastException at runtime.将Generics与List一起使用将在运行时避免ClassCastException。
+Implementation Classes: Collections in Java provides core implementation classes for 
+collections. We can use them to create different types of collections in java program. 
+Some important collection classes are ArrayList, LinkedList, HashMap, TreeMap, HashSet, 
+TreeSet.These classes solve most of our programming needs but if we need some special 
+collection class, we can extend them to create our custom collection class.
 
-最常使用的List的实现类是: ArrayList, LinkedList, Vector, Stack, CopyOnWriteArrayList. 
-AbstractList provides a skeletal implementation of the List interface to reduce the effort in implementing List.
-AbstractList提供了List接口的骨干实现，以减少实现List的工作量。例如ArrayList是直接extends AbstractList
+实现类: 一些重要的集合类是ArrayList, LinkedList, HashMap, TreeMap, HashSet, TreeSet.
+这些类解决了我们大部分的编程需要，但是如果我们需要一些特殊集合类，我们可以扩展他们去创建我们自定义的集合类
 
-Some of the useful Java List methods are：有用的List方法:
+Java 1.5 came up with thread-safe collection classes that allowed to modify Collections 
+while iterating over it, some of them are CopyOnWriteArrayList, ConcurrentHashMap, 
+CopyOnWriteArraySet. These classes are in java.util.concurrent package. All the collection 
+classes are present in java.util and java.util.concurrent package.
 
-size(), isEmpty(), contains(Object o), iterator(), toArray(), add(), 
-remove(Object o): Removes the first occurrence of the specified element from this list.
-retainAll(Collection<?> c):Retains only the elements in this list that are contained in the specified collection.
-只保留在这个list中的元素，这些元素包含在指定的集合中.
-clear(), get(int index),set(int index, E element), 
-ListIterator<E> listIterator(): Returns a list iterator over the elements in the list.返回列表中元素的列表迭代器。
-List<E> subList(int fromIndex, int toIndex)
+Java1.5提出了线程安全的集合类，允许当迭代它的时候修改集合，他们中的一些是CopyOnWriteArrayList, ConcurrentHashMap, 
+CopyOnWriteArraySet, 这些类是在java.util.concurrent保重，所有的这些集合类都存在于java.util和java.util.concurrent包中.
 
-Java8默认实现了这几个方法: replaceAll, sort(), Spliterator
+Algorithms: Algorithms are useful methods to provide some common functionalities, 
+for example searching, sorting and shuffling.
 
-Most common operations performed on java list are add, remove, set, clear, size etc. 
-最常用的操作在Java list是add，remove，set，clear， size等.
+算法：算法是提供一些常用功能的有用方法，例如搜索，排序和混洗。
+

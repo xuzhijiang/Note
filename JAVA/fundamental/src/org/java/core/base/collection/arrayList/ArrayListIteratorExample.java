@@ -1,9 +1,19 @@
-package org.java.core.base.collection.list.arrayList;
+package org.java.core.base.collection.arrayList;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Iterator是Java Collections框架中的一个接口。
+ * 
+ * 如果在迭代时对列表进行任何结构修改，则next（）操作将抛
+ * 出ConcurrentModificationException。
+ * 
+ * 注意： iterator.remove()不会产生异常
+ * @author a
+ *
+ */
 public class ArrayListIteratorExample {
 	public static void main(String[] args) {
 

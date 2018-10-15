@@ -1,4 +1,4 @@
-package org.java.core.base.copy;
+package org.java.core.base.clone;
 
 /**
  * A class implements the {@link java.lang.Cloneable} interface to

@@ -1,4 +1,4 @@
-package org.java.core.base.copy.practice;
+package org.java.core.base.clone.practice;
 
 public class EmployeeWrap extends Employee implements Cloneable {
 
@@ -14,7 +14,6 @@ public class EmployeeWrap extends Employee implements Cloneable {
 
 	@Override
 	public Object clone() throws CloneNotSupportedException {
-
 		return super.clone();
 	}
 }

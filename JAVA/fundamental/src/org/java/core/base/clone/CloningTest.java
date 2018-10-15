@@ -1,4 +1,4 @@
-package org.java.core.base.copy;
+package org.java.core.base.clone;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package org.java.core.base.copy.practice;
+package org.java.core.base.clone.practice;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +26,7 @@ public class CloningTest {
 
 		System.out.println("clonedEmpWrap mutable property value = "+clonedEmpWrap.getProps());
 		
+		// So it worked perfectly as we expected.
 	}
 
 }

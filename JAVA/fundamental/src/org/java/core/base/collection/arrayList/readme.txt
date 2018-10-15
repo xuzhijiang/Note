@@ -1,7 +1,17 @@
 ArrayList是使用最多的集合类，
 
 ArrayList继承自AbstractList，AbstractList是一个List接口的骨干实现，也就是实现了List接口的大部分方法.
-Java ArrayList是List接口的可调整大小的数组实现，这意味着它以默认大小开始，并在将更多数据添加到数组列表时自动增长
+
+ArrayList的大小：
+
+	Java ArrayList是List接口的可调整大小的数组实现，这意味着它以默认大小开始，
+并在将更多数据添加到数组列表时自动增长.
+
+当然ArrayList也implements了List:
+class ArrayList<E> extends AbstractList<E>
+implements List<E>, RandomAccess, Cloneable, java.io.Serializable.
+
+abstract class AbstractList<E> extends AbstractCollection<E> implements List<E>.
 
 一些重要的方法是:
 
@@ -14,8 +24,8 @@ Java ArrayList是List接口的可调整大小的数组实现，这意味着它以默认大小开始，并在将
  除去用迭代器自身的add或remove之外的任何其他方式修改列表结构，则会抛出ConcurrentModificationException。
 7. Java ArrayList提供对其元素的随机访问，因为它适用于索引。 我们可以通过它的索引检索任何元素。
 8. Java ArrayList支持Generics，它是创建ArrayList的推荐方法。
-//List list = new ArrayList(); //not recommended
-//List<String> list1 = new ArrayList<String>(); // recommended way
+// List list = new ArrayList(); //not recommended
+// List<String> list1 = new ArrayList<String>(); // recommended way
 
 共有3中构造器:
 1. ArrayList(): 返回空列表并且初始容量为10.
@@ -23,3 +33,24 @@ Java ArrayList是List接口的可调整大小的数组实现，这意味着它以默认大小开始，并在将
 当您知道列表中包含大量数据并且希望通过提供大量初始容量来节省重新分配时间时，此构造函数非常有用。
 3. ArrayList(Collection<? extends E> c):此ArrayList构造函数将按照
 集合的迭代器返回的顺序返回包含指定集合元素的列表。
+
+// Java ArrayList default constructor
+List<String> vowels = new ArrayList<String>();
+
+//Java ArrayList constructor with initial capacity
+List<String> dictionaryWordsList = new ArrayList<String>(50000);
+
+vowels.add("A");
+vowels.add("B");
+vowels.add("C");
+vowels.add("D");
+vowels.add("E");
+
+//Creating my list from different collection source
+List<String> myList = new ArrayList<String>(vowels);
+
+	线程安全:
+		
+		Java ArrayList不是线程安全的。 因此，如果您在多线程环境中工作，请使用下面的代码来获取线程安全的ArrayList:
+
+List<Integer> synchronizedList = Collections.synchronizedList(ints);
