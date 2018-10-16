@@ -111,8 +111,8 @@ git cherry-pick 62ecb3
 
 合并feature分支的76cada ~ 62ecb3到master分支。
 
-1. 基于feature创建一个新的分支，并指明新分支的最后一个commit,
-2. rebase这个新分支的commit到master，76cada^指明你想从哪个特定的commit开始。
+1. 基于feature创建一个新的newbranch分支，并指明newbranch分支的最后一个commit
+2. rebase这个newbranch分支的提交到master，76cada^指明你想从哪个特定的commit开始。
 3. 结果就是feature分支的76cada ~ 62ecb3都被合并到了master分支。
 
 ```shell

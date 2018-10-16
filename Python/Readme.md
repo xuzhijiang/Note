@@ -258,20 +258,6 @@ print Person.name  # [1]
 
 参考:http://stackoverflow.com/questions/6470428/catch-multiple-exceptions-in-one-line-except-block
 
-## 5 Python自省
-
-这个也是python彪悍的特性.
-
-自省就是面向对象的语言所写的程序在运行时,所能知道对象的类型.简单一句就是运行时能够获得对象的类型.比如type(),dir(),getattr(),hasattr(),isinstance().
-
-```python
-a = [1,2,3]
-b = {'a':1,'b':2,'c':3}
-c = True
-print type(a),type(b),type(c) # <class 'list'> <class 'dict'> <class 'bool'>
-print isinstance(a,list)  # True
-```
-
 ## 6 字典推导式
 
 可能你见过列表推导时,却没有见过字典推导式,在2.7中才加入的:

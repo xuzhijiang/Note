@@ -182,3 +182,17 @@ print(cache['default'])
 pip freeze > requirements.txt
 pip install -r requirements.txt
 ```
+
+### 获取对象的类型(自省)
+
+运行时能够获得对象的类型:
+
+比如type(),dir(),getattr(),hasattr(),isinstance().
+
+```python
+a = [1,2,3]
+b = {'a':1,'b':2,'c':3}
+c = True
+print type(a),type(b),type(c) # <class 'list'> <class 'dict'> <class 'bool'>
+print isinstance(a, list)  # True
+```
