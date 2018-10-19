@@ -25,4 +25,5 @@ public class SocketObjectAdapterImpl implements SocketAdapter{
 	private Volt convertVolt(Volt v, int i) {
 		return new Volt(v.getVolts()/i);
 	}
+	
 }

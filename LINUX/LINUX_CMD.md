@@ -71,3 +71,20 @@ create a symlink at /usr/bin/bar which references the original file /opt/foo
 7. src net 192.168.1.0/24 : 数据包的源网络地址为192.168.1.0/24, 表示需要匹配源地址的网络编号有24位的数据包
 8. -w ./target.cap : 保存成pcap文件，方便用ethereal(即wireshark)分析, 即存储路径
 
+### linux系统目录下bin的差异
+
+如果系统支持某个命令，则在/system/bin或/system/sbin路径下会有该命令的二进制文件
+
+sbin: The 's' in sbin means 'system'. Therefore, system binaries reside in sbin directories.
+
+/bin: /bin和/sbin,用于在mounted较大的分区例如/usr等分区之前需要的在小的分区上的程序，
+目前，它主要用作关键程序（如/bin/sh）的标准位置，以及需要在单用户模式下可用的基本命令二进制文件。
+
+/sbin: /sbin，与/bin不同，用于mount /usr等分区之前所需的系统管理程序（普通用户通常不使用）,基本系统二进制文件(system bin),
+uperuser (root) privileges required.
+
+/usr/bin: 用于分发管理的普通用户程序。
+
+/usr/sbin: /usr/sbin与/usr/bin具有相同的关系，和/sbin与/bin一样。
+
+/usr/local/bin: 用于不由分发包管理器管理的普通用户程序，例如， 本地编译的包。 您不应将它们安装到/usr/bin中，因为将来的分发升级可能会在没有警告的情况下修改或删除它们。superuser (root) privileges required.
