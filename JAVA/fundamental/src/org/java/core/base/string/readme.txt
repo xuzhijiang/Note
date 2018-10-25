@@ -45,7 +45,7 @@ can do unwanted things to your database.
 去加载java.sql.Connection类的实例，但是引用的值被改成myhacked.Connection类，可以
 对数据库执行不想做的事情.
 
-5. since String is immutable, its hashcode is cached at the time of creation 
+5. ince String is immutable, its hashcode is cached at the time of creation 
 and it doesn’t need to be calculated again. This makes it a great 
 candidate for key in a Map and it’s processing is fast than other 
 HashMap key objects. This is why String is mostly used Object as HashMap keys.

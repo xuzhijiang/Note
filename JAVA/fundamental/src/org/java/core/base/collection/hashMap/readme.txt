@@ -69,7 +69,7 @@ public void replaceAll£¨BiFunction <£¿super K£¬£¿super V£¬£¿extends V> function£
 How HashMap works in java?
 
 javaÖĞµÄHashMapÊ¹ÓÃËüµÄinner class Node<K£¬V>À´´æ´¢Ó³Éämappings.
-HashMapÊ¹ÓÃÉ¢ÁĞËã·¨(hashing algorithm)£¬²¢ÔÚkeyÉÏÊ¹ÓÃhashCode£¨£©ºÍequals£¨£©·½·¨½øĞĞgetºÍput²Ù×÷¡£
+HashMapÊ¹ÓÃÉ¢ÁĞËã·¨£¬²¢ÔÚkeyÉÏÊ¹ÓÃhashCode£¨£©ºÍequals£¨£©·½·¨½øĞĞgetºÍput²Ù×÷¡£
 
 HashMapÊ¹ÓÃµ¥Á´±íÀ´´æ´¢ÔªËØ£¬ÕâĞ©ÔªËØ³ÆÎªbin»òbuckets¡£µ±ÎÒÃÇµ÷ÓÃput·½·¨Ê±£¬
 keyµÄhashCodeÓÃÓÚÈ·¶¨´æ´¢Ó³Éä(storing the mappings)µÄ´æ´¢Çø(buckets)¡£
@@ -85,36 +85,11 @@ keyµÄhashCodeÓÃÓÚÈ·¶¨´æ´¢Ó³Éä(storing the mappings)µÄ´æ´¢Çø(buckets)¡£
 »¹ÓĞ¸ü¶àµÄÊÂÇéÉæ¼°µ½ÖîÈçÉ¢ÁĞËã·¨ÒÔ»ñÈ¡ÃÜÔ¿£¬ÖØĞÂÓ³ÉäÓ³ÉäµÈµÈ¡£µ«ÊÇ¶ÔÓÚÎÒÃÇµÄ¹¤×÷£¬
 Ö»Ğè¼Ç×¡HashMap²Ù×÷ÔÚKeyÉÏ¹¤×÷£¬²¢ÇÒĞèÒªÁ¼ºÃµÄhashCodeÊµÏÖºÍequals·½·¨ÒÔ±ÜÃâ²»±ØÒªµÄĞĞÎª¡£
 
-How HashMap works in java?
-HashMap in java use it¡¯s inner class Node<K,V> for 
-storing mappings. HashMap works on hashing algorithm 
-and uses hashCode() and equals() method on key for get and put operations.
+Ä¬ÈÏload factor 0.75Ìá¹©ÁË¿Õ¼äºÍÊ±¼ä¸´ÔÓ¶ÈÖ®¼äµÄÁ¼ºÃÕÛÖÔ¡£
+µ«Äú¿ÉÒÔ¸ù¾İĞèÒª½«ÆäÉèÖÃÎª²»Í¬µÄÖµ¡£Èç¹ûÄãÏë½ÚÊ¡¿Õ¼ä£¬ÄÇÃ´Äã¿ÉÒÔ½«ËüµÄÖµÔö¼Óµ½0.80»ò0.90£¬
+µ«ÊÇ»ñÈ¡/·ÅÖÃ²Ù×÷½«»¨·Ñ¸ü¶àÊ±¼ä¡£
 
-HashMap use singly linked list to store elements, 
-these are called bins or buckets. When we call put 
-method, hashCode of key is used to determine the 
-bucket that will be used to store the mapping.
+Load Factor is used to figure out when HashMap will be rehashed and bucket size will be increased. 
+Default value of bucket or capacity is 16 and load factor is 0.75. 
 
-Once bucket is identified, hashCode is used to check 
-if there is already a key with same hashCode or not. 
-If there is an existing key with same hashCode, 
-then equals() method is used on key. If equals returns true,
- then value is overwritten, otherwise a new mapping 
- is made to this singly linked list bucket. If there 
- is no key with same hashCode then mapping is 
- inserted into the bucket.
 
-For HashMap get operation, again key hashCode is used
- to determine the bucket to look for the value. 
- After bucket is identified, entries are traversed 
- to find out the Entry using hashCode and equals 
- method. If match is found, value is returned 
- otherwise null is returned.
-
-There are much more things involved such as 
-hashing algorithm to get the bucket for the key, 
-rehashing of mappings etc. But for our working, 
-just remember that HashMap operations work on Key 
-and good implementation of hashCode and equals 
-method is required to avoid unwanted behaviour. 
-Below image shows the explanation of get and put operations.
