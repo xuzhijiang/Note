@@ -55,4 +55,37 @@ E pop（）：移除此堆栈顶部的对象，并将该对象作为此函数的值返回。
 E推（E项）：将项目推到此堆栈的顶部。
 int search（Object o）：返回对象在此堆栈上的从1开始的位置。
 
+How Stack’s push() and pop() operations works Internally?
+Stack的push（）和pop（）操作如何在内部工作？
+
+As we know Stack’s push() and pop() are most frequently 
+used Stack operations. The push() operation is used to 
+insert an element into a Stack at top. The pop() operation 
+is sued to remove a top element from a Stack.
+我们知道Stack的push（）和pop（）是最常用的Stack操作。 push（）操作用于将
+元素插入到顶部的Stack中。 执行pop（）操作以从堆栈中删除顶部元素。
+
+Stack data structure has one internal property: top to refer 
+top element of that stack. If Stack is empty, this top refers 
+to the before first element as shown below:
+
+堆栈数据结构有一个内部属性：top用于引用该堆栈的顶部元素。 
+如果Stack为空，则此top指的是存放第一个元素位置的前一个元素:
+
+				|		|
+				|		|
+				|		|
+				|		|
+				|		|
+				|		|
+				|		|
+				|		|
+				|_______|
+						<------Top
+				Empty Stack
+
+Stack的Push操作始终在Stack的顶部插入新元素。
+Stack的Pop操作总是从Stack顶部删除一个元素。
+
+
 
