@@ -1,3 +1,9 @@
+算法: https://github.com/michaelliao/algorithms
+springcloud: https://github.com/michaelliao/springcloud
+
+Spring、SpringMVC、MyBatis、Spring Boot:https://github.com/lenve/JavaEETest
+Sprint blog: https://github.com/Raysmond/SpringBlog
+
 DAO: Data access object
 
 SSH: Struts2 + Spring + Hibernate

@@ -1,3 +1,4 @@
+Java DataBase Connectivity（JDBC）API提供行业标准和数据库无关的连接，以便与关系数据库一起使用。 
 JDBC提供了从Java程序连接到关系型数据库的框架.
 
 JDBC API helps us in writing loosely-coupled code for database connectivity.JDBC帮我们写松耦合的代码.

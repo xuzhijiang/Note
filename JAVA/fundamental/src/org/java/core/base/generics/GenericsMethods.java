@@ -33,4 +33,16 @@ public class GenericsMethods {
 		//without specifying a type between angle brackets.
 		//Compiler will infer the type that is needed
 	}
+	
+	/**
+	 * 用于判断一个元素数组中是包含指定的元素
+	 */
+	public static <T> boolean contain(T[] elements, T element) {
+		for (T e : elements) {
+			if (e.equals(element)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
