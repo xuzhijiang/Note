@@ -14,9 +14,12 @@ public class DBConnection {
 		Properties props = new Properties();
 		FileInputStream fis = null;
 		try {
+			// db.properties指的是项目根目录下的db.properties,
+			// 也就是和src同级目录下的db.properties，
+			// 而不是和当前Java文件同级目录下的db.properties
 			fis = new FileInputStream("db.properties");
 			props.load(fis);
-			
+
 			//load the Driver Class
 			Class.forName(props.getProperty("DB_DRIVER_CLASS"));
 			

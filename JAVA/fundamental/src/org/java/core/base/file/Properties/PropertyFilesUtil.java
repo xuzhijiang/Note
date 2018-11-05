@@ -55,9 +55,9 @@ public class PropertyFilesUtil {
 	 */
 	private static void readPropertyFileFromClasspath(String propertyFileName) throws IOException {
 		Properties prop = new Properties();
-		
 		// 该类路径是项目的src目录。
-		prop.load(PropertyFilesUtil.class.getClassLoader().getResourceAsStream(propertyFileName));
+		InputStream input = PropertyFilesUtil.class.getClassLoader().getResourceAsStream(propertyFileName);
+		prop.load(input);
 		System.out.println(propertyFileName + " loaded from Classpath::db.host= " + prop.getProperty("db.host"));
 		System.out.println(propertyFileName + " loaded from Classpath::db.user= " + prop.getProperty("db.user"));
 		System.out.println(propertyFileName + " loaded from Classpath::db.pwd= " + prop.getProperty("db.pwd"));

@@ -1,12 +1,3 @@
---mysql create table
-create table Users(
-id int(3) primary key,
-name varchar(20),
-email varchar(20),
-country varchar(20),
-password varchar(20)
-);
-
 --oracle create table
 create table Users(
 id number(3) primary key,
