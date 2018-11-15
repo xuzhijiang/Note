@@ -54,3 +54,13 @@ network calls and slow performance. Hence this is also not widely used JDBC driv
 因为它将JDBC调用转换为数据库服务器可以理解的网络协议。此解决方案不需要客户端的任何额外API，并且适合通过网络进行数据库连接。
 但是对于此解决方案，我们应该使用特定于数据库的驱动程序，例如Oracle for Oracle DB提供的OJDBC 
 jar和MySQL Connector for J for MySQL数据库。   
+
+使用JDBC API时，数据库配置是最重要的细节。 我们应该知道的第一件事是要使用的Driver类。
+ 对于Oracle数据库，驱动程序类是oracle.jdbc.driver.OracleDriver。 对于MySQL数据库，
+ 驱动程序类是com.mysql.jdbc.Driver。 您将在各自的驱动程序jar文件中找到这些驱动程序类。
+  这两个都实现了JDBC java.sql.Driver接口。
+  
+MySQL数据库连接字符串格式为jdbc:mysql://<HOST>:<PORT>/<SCHEMA>.
+
+Oracle数据库连接字符串格式为jdbc：jdbc:oracle:thin:@<HOST>:<PORT>:<SID>.
+
