@@ -40,56 +40,18 @@
       * [28 Python2和3的区别](#28-python2和3的区别)
       * [29 super init](#29-super-init)
       * [30 range and xrange](#30-range-and-xrange)
-   * [操作系统](#操作系统)
-      * [1 select,poll和epoll](#1-selectpoll和epoll)
-      * [2 调度算法](#2-调度算法)
-      * [3 死锁](#3-死锁)
-      * [4 程序编译与链接](#4-程序编译与链接)
-         * [1 预处理](#1-预处理)
-         * [2 编译](#2-编译)
-         * [3 汇编](#3-汇编)
-         * [4 链接](#4-链接)
-      * [5 静态链接和动态链接](#5-静态链接和动态链接)
-      * [6 虚拟内存技术](#6-虚拟内存技术)
-      * [7 分页和分段](#7-分页和分段)
-         * [分页与分段的主要区别](#分页与分段的主要区别)
-      * [8 页面置换算法](#8-页面置换算法)
-      * [9 边沿触发和水平触发](#9-边沿触发和水平触发)
-   * [数据库](#数据库)
-      * [1 事务](#1-事务)
-      * [2 数据库索引](#2-数据库索引)
-      * [3 Redis原理](#3-redis原理)
-         * [Redis是什么？](#redis是什么)
-         * [Redis数据库](#redis数据库)
-         * [Redis缺点](#redis缺点)
-      * [4 乐观锁和悲观锁](#4-乐观锁和悲观锁)
-      * [5 MVCC](#5-mvcc)
-         * [<a href="http://lib.csdn.net/base/mysql">MySQL</a>的innodb引擎是如何实现MVCC的](#mysql的innodb引擎是如何实现mvcc的)
-      * [6 MyISAM和InnoDB](#6-myisam和innodb)
    * [网络](#网络)
       * [1 三次握手](#1-三次握手)
       * [2 四次挥手](#2-四次挥手)
       * [3 ARP协议](#3-arp协议)
-      * [4 urllib和urllib2的区别](#4-urllib和urllib2的区别)
       * [5 Post和Get](#5-post和get)
       * [6 Cookie和Session](#6-cookie和session)
       * [7 apache和nginx的区别](#7-apache和nginx的区别)
       * [8 网站用户密码保存](#8-网站用户密码保存)
       * [9 HTTP和HTTPS](#9-http和https)
       * [10 XSRF和XSS](#10-xsrf和xss)
-      * [11 幂等 Idempotence](#11-幂等-idempotence)
-      * [12 RESTful架构(SOAP,RPC)](#12-restful架构soaprpc)
-      * [13 SOAP](#13-soap)
-      * [14 RPC](#14-rpc)
-      * [15 CGI和WSGI](#15-cgi和wsgi)
-      * [16 中间人攻击](#16-中间人攻击)
-      * [17 c10k问题](#17-c10k问题)
-      * [18 socket](#18-socket)
-      * [19 浏览器缓存](#19-浏览器缓存)
       * [20 HTTP1.0和HTTP1.1](#20-http10和http11)
       * [21 Ajax](#21-ajax)
-   * [*NIX](#nix)
-      * [unix进程间通信方式(IPC)](#unix进程间通信方式ipc)
    * [数据结构](#数据结构)
       * [1 红黑树](#1-红黑树)
    * [编程题](#编程题)
@@ -723,33 +685,6 @@ d =  [1, 2, 3, 4, ['a', 'b']]
 
 Python GC主要使用引用计数（reference counting）来跟踪和回收垃圾。在引用计数的基础上，通过“标记-清除”（mark and sweep）解决容器对象可能产生的循环引用问题，通过“分代回收”（generation collection）以空间换时间的方法提高垃圾回收效率。
 
-### 1 引用计数
-
-PyObject是每个对象必有的内容，其中`ob_refcnt`就是做为引用计数。当一个对象有新的引用时，它的`ob_refcnt`就会增加，当引用它的对象被删除，它的`ob_refcnt`就会减少.引用计数为0时，该对象生命就结束了。
-
-优点:
-
-1. 简单
-2. 实时性
-
-缺点:
-
-1. 维护引用计数消耗资源
-2. 循环引用
-
-### 2 标记-清除机制
-
-基本思路是先按需分配，等到没有空闲内存的时候从寄存器和程序栈上的引用出发，遍历以对象为节点、以引用为边构成的图，把所有可以访问到的对象打上标记，然后清扫一遍内存空间，把所有没标记的对象释放。
-
-### 3 分代技术
-
-分代回收的整体思想是：将系统中的所有内存块根据其存活时间划分为不同的集合，每个集合就成为一个“代”，垃圾收集频率随着“代”的存活时间的增大而减小，存活时间通常利用经过几次垃圾回收来度量。
-
-Python默认定义了三代对象集合，索引数越大，对象存活时间越长。
-
-举例：
-当某些内存块M经过了3次垃圾收集的清洗之后还存活时，我们就将内存块M划到一个集合A中去，而新分配的内存都划分到集合B中去。当垃圾收集开始工作时，大多数情况都只对集合B进行垃圾回收，而对集合A进行垃圾回收要隔相当长一段时间后才进行，这就使得垃圾收集机制需要处理的内存少了，效率自然就提高了。在这个过程中，集合B中的某些内存块由于存活时间长而会被转移到集合A中，当然，集合A中实际上也存在一些垃圾，这些垃圾的回收会因为这种分代的机制而被延迟。
-
 ## 26 Python的is
 
 is是对比地址,==是对比值
@@ -760,18 +695,6 @@ is是对比地址,==是对比值
 * readline    读取下一行,使用生成器方法
 * readlines   读取整个文件到一个迭代器以供我们遍历
 
-## 28 Python2和3的区别
-推荐：[Python 2.7.x 与 Python 3.x 的主要差异](http://chenqx.github.io/2014/11/10/Key-differences-between-Python-2-7-x-and-Python-3-x/)
-
-## 29 super init
-super() lets you avoid referring to the base class explicitly, which can be nice. But the main advantage comes with multiple inheritance, where all sorts of fun stuff can happen. See the standard docs on super if you haven't already.
-
-Note that the syntax changed in Python 3.0: you can just say super().`__init__`() instead of super(ChildB, self).`__init__`() which IMO is quite a bit nicer.
-
-http://stackoverflow.com/questions/576169/understanding-python-super-with-init-methods
-
-[Python2.7中的super方法浅见](http://blog.csdn.net/mrlevo520/article/details/51712440)
-
 ## 30 range and xrange
 都在循环时使用，xrange内存性能更好。
 for i in range(0, 20):
@@ -781,117 +704,6 @@ What is the difference between range and xrange functions in Python 2.X?
  xrange is a sequence object that evaluates lazily.
 
 http://stackoverflow.com/questions/94935/what-is-the-difference-between-range-and-xrange-functions-in-python-2-x
-
-## 6 虚拟内存技术
-
-虚拟存储器是指具有请求调入功能和置换功能,能从逻辑上对内存容量加以扩充的一种存储系统.
-
-## 7 分页和分段
-
-分页: 用户程序的地址空间被划分成若干固定大小的区域，称为“页”，相应地，内存空间分成若干个物理块，页和块的大小相等。可将用户程序的任一页放在内存的任一块中，实现了离散分配。
-
-分段: 将用户程序地址空间分成若干个大小不等的段，每段可以定义一组相对完整的逻辑信息。存储分配时，以段为单位，段与段在内存中可以不相邻接，也实现了离散分配。
-
-### 分页与分段的主要区别
-
-1. 页是信息的物理单位,分页是为了实现非连续分配,以便解决内存碎片问题,或者说分页是由于系统管理的需要.段是信息的逻辑单位,它含有一组意义相对完整的信息,分段的目的是为了更好地实现共享,满足用户的需要.
-2. 页的大小固定,由系统确定,将逻辑地址划分为页号和页内地址是由机器硬件实现的.而段的长度却不固定,决定于用户所编写的程序,通常由编译程序在对源程序进行编译时根据信息的性质来划分.
-3. 分页的作业地址空间是一维的.分段的地址空间是二维的.
-
-## 8 页面置换算法
-
-1. 最佳置换算法OPT:不可能实现
-2. 先进先出FIFO
-3. 最近最久未使用算法LRU:最近一段时间里最久没有使用过的页面予以置换.
-4. clock算法
-
-## 9 边沿触发和水平触发
-
-边缘触发是指每当状态变化时发生一个 io 事件，条件触发是只要满足条件就发生一个 io 事件
-
-# 数据库
-
-## 1 事务
-
-数据库事务(Database Transaction) ，事务作为一个整体被执行，包含在其中的对数据库的操作要么全部被执行，要么都不执行。
-
-* 原子性（Atomicity）：事务作为一个整体被执行，包含在其中的对数据库的操作要么全部被执行，要么都不执行。
-* 一致性（Consistency）：操作前后，转账都是满足一致条件
-* 隔离性（Isolation）：多个事务并发执行时，一个事务的执行不应影响其他事务的执行。
-* 持久性（Durability）：一个事务一旦提交，他对数据库的修改应该永久保存在数据库中。
-
-## 2 数据库索引
-
-推荐: http://tech.meituan.com/mysql-index.html
-
-[MySQL索引背后的数据结构及算法原理](http://blog.codinglabs.org/articles/theory-of-mysql-index.html)
-
-聚集索引,非聚集索引,B-Tree,B+Tree,最左前缀原理
-
-## 3 Redis原理
-
-### Redis是什么？
-
-1. 是一个完全开源免费的key-value内存数据库 
-2. 通常被认为是一个数据结构服务器，主要是因为其有着丰富的数据结构 strings、map、 list、sets、 sorted sets
-
-### Redis数据库
-
-> ​	通常局限点来说，Redis也以消息队列的形式存在，作为内嵌的List存在，满足实时的高并发需求。在使用缓存的时候，redis比memcached具有更多的优势，并且支持更多的数据类型，把redis当作一个中间存储系统，用来处理高并发的数据库操作
-
-- 速度快：使用标准C写，所有数据都在内存中完成，读写速度分别达到10万/20万 
-- 持久化：对数据的更新采用Copy-on-write技术，可以异步地保存到磁盘上，主要有两种策略，一是根据时间，更新次数的快照（save 300 10 ）二是基于语句追加方式(Append-only file，aof) 
-- 自动操作：对不同数据类型的操作都是自动的，很安全 
-- 快速的主--从复制，官方提供了一个数据，Slave在21秒即完成了对Amazon网站10G key set的复制。 
-- Sharding技术： 很容易将数据分布到多个Redis实例中，数据库的扩展是个永恒的话题，在关系型数据库中，主要是以添加硬件、以分区为主要技术形式的纵向扩展解决了很多的应用场景，但随着web2.0、移动互联网、云计算等应用的兴起，这种扩展模式已经不太适合了，所以近年来，像采用主从配置、数据库复制形式的，Sharding这种技术把负载分布到多个特理节点上去的横向扩展方式用处越来越多。
-
-### Redis缺点
-
-- 是数据库容量受到物理内存的限制,不能用作海量数据的高性能读写,因此Redis适合的场景主要局限在较小数据量的高性能操作和运算上。
-- Redis较难支持在线扩容，在集群容量达到上限时在线扩容会变得很复杂。为避免这一问题，运维人员在系统上线时必须确保有足够的空间，这对资源造成了很大的浪费。
-
-## 4 乐观锁和悲观锁
-
-悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作
-
-乐观锁：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性。
-
-乐观锁与悲观锁的具体区别: http://www.cnblogs.com/Bob-FD/p/3352216.html
-
-## 5 MVCC
-
-
-> ​	全称是Multi-Version Concurrent Control，即多版本并发控制，在MVCC协议下，每个读操作会看到一个一致性的snapshot，并且可以实现非阻塞的读。MVCC允许数据具有多个版本，这个版本可以是时间戳或者是全局递增的事务ID，在同一个时间点，不同的事务看到的数据是不同的。
-
-### [MySQL](http://lib.csdn.net/base/mysql)的innodb引擎是如何实现MVCC的
-
-innodb会为每一行添加两个字段，分别表示该行**创建的版本**和**删除的版本**，填入的是事务的版本号，这个版本号随着事务的创建不断递增。在repeated read的隔离级别（[事务的隔离级别请看这篇文章](http://blog.csdn.net/chosen0ne/article/details/10036775)）下，具体各种数据库操作的实现：
-
-- select：满足以下两个条件innodb会返回该行数据：
-  - 该行的创建版本号小于等于当前版本号，用于保证在select操作之前所有的操作已经执行落地。
-  - 该行的删除版本号大于当前版本或者为空。删除版本号大于当前版本意味着有一个并发事务将该行删除了。
-- insert：将新插入的行的创建版本号设置为当前系统的版本号。
-- delete：将要删除的行的删除版本号设置为当前系统的版本号。
-- update：不执行原地update，而是转换成insert + delete。将旧行的删除版本号设置为当前版本号，并将新行insert同时设置创建版本号为当前版本号。
-
-其中，写操作（insert、delete和update）执行时，需要将系统版本号递增。
-
-​	由于旧数据并不真正的删除，所以必须对这些数据进行清理，innodb会开启一个后台线程执行清理工作，具体的规则是将删除版本号小于当前系统版本的行删除，这个过程叫做purge。
-
-通过MVCC很好的实现了事务的隔离性，可以达到repeated read级别，要实现serializable还必须加锁。
-
->  参考：[MVCC浅析](http://blog.csdn.net/chosen0ne/article/details/18093187)
-
-
-
-## 6 MyISAM和InnoDB
-
-MyISAM 适合于一些需要大量查询的应用，但其对于有大量写操作并不是很好。甚至你只是需要update一个字段，整个表都会被锁起来，而别的进程，就算是读进程都无法操作直到读操作完成。另外，MyISAM 对于 SELECT COUNT(*) 这类的计算是超快无比的。
-
-InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应用，它会比 MyISAM 还慢。他是它支持“行锁” ，于是在写操作比较多的时候，会更优秀。并且，他还支持更多的高级应用，比如：事务。
-
-mysql 数据库引擎: http://www.cnblogs.com/0201zcr/p/5296843.html
-MySQL存储引擎－－MyISAM与InnoDB区别: https://segmentfault.com/a/1190000008227211
 
 # 网络
 
@@ -933,17 +745,6 @@ _注意: 中断连接端可以是client，也可以是server. 下面仅以客户
 ## 3 ARP协议
 
 地址解析协议(Address Resolution Protocol)，其基本功能为透过目标设备的IP地址，查询目标的MAC地址，以保证通信的顺利进行。它是IPv4网络层必不可少的协议，不过在IPv6中已不再适用，并被邻居发现协议（NDP）所替代。
-
-## 4 urllib和urllib2的区别
-
-Note That: The urllib2 module has been split across several modules in Python 3 named urllib.request and urllib.error.The urllib and urllib2 modules are merged together in python3 as urllib.
-
-urllib提供的功能就是利用程序去执行各种HTTP请求。如果要模拟浏览器完成特定功能，需要把请求伪装成浏览器.
-
-urllib.request for opening and reading URLs
-urllib.error containing the exceptions raised by urllib.request
-urllib.parse for parsing URLs
-urllib.robotparser for parsing robots.txt files
 
 ## 5 Post和Get
 [GET和POST有什么区别？及为什么网上的多数答案都是错的](http://www.cnblogs.com/nankezhishi/archive/2012/06/09/getandpost.html)
@@ -996,7 +797,6 @@ apache 相对nginx 的优点：
 | 5xx 服务器出错 | 服务器无法完成显然有效的请求   |
 
 403: Forbidden
-404: Not Found
 
 HTTPS握手,对称加密,非对称加密,TLS/SSL,RSA
 
@@ -1007,60 +807,13 @@ HTTPS握手,对称加密,非对称加密,TLS/SSL,RSA
 
 CSRF重点在请求,XSS重点在脚本
 
-## 11 幂等 Idempotence
+## 14 RPC, SOAP, RESTful
 
-HTTP方法的幂等性是指一次和多次请求某一个资源应该具有同样的**副作用**。(注意是副作用)
+RPC（Remote Procedure Call Protocol）——远程过程调用协议
 
-`GET http://www.bank.com/account/123456`，不会改变资源的状态，不论调用一次还是N次都没有副作用。请注意，这里强调的是一次和N次具有相同的副作用，而不是每次GET的结果相同。`GET http://www.news.com/latest-news`这个HTTP请求可能会每次得到不同的结果，但它本身并没有产生任何副作用，因而是满足幂等性的。
-
-DELETE方法用于删除资源，有副作用，但它应该满足幂等性。比如：`DELETE http://www.forum.com/article/4231`，调用一次和N次对系统产生的副作用是相同的，即删掉id为4231的帖子；因此，调用者可以多次调用或刷新页面而不必担心引起错误。
-
-
-POST所对应的URI并非创建的资源本身，而是资源的接收者。比如：`POST http://www.forum.com/articles`的语义是在`http://www.forum.com/articles`下创建一篇帖子，HTTP响应中应包含帖子的创建状态以及帖子的URI。两次相同的POST请求会在服务器端创建两份资源，它们具有不同的URI；所以，POST方法不具备幂等性。
-
-PUT所对应的URI是要创建或更新的资源本身。比如：`PUT http://www.forum/articles/4231`的语义是创建或更新ID为4231的帖子。对同一URI进行多次PUT的副作用和一次PUT是相同的；因此，PUT方法具有幂等性。
-
-
-## 12 RESTful架构(SOAP,RPC)
-
-推荐: http://www.ruanyifeng.com/blog/2011/09/restful.html
-
-## 14 RPC
-
-RPC（Remote Procedure Call Protocol）——远程过程调用协议，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。RPC协议假定某些传输协议的存在，如TCP或UDP，为通信程序之间携带信息数据。在OSI网络通信模型中，RPC跨越了传输层和应用层。RPC使得开发包括网络分布式多程序在内的应用程序更加容易。
-
-总结:服务提供的两大流派.传统意义以方法调用为导向通称RPC。为了企业SOA,若干厂商联合推出webservice,制定了wsdl接口定义,传输soap.当互联网时代,臃肿SOA被简化为http+xml/json.但是简化出现各种混乱。以资源为导向,任何操作无非是对资源的增删改查，于是统一的REST出现了.
+当互联网时代,臃肿SOA被简化为http+xml/json.但是简化出现各种混乱。以资源为导向,任何操作无非是对资源的增删改查，于是统一的REST出现了.
 
 进化的顺序: RPC -> SOAP -> RESTful
-
-## 15 CGI和WSGI
-CGI是通用网关接口，是连接web服务器和应用程序的接口，用户通过CGI来获取动态数据或文件等。
-CGI程序是一个独立的程序，它可以用几乎所有语言来写，包括perl，c，lua，python等等。
-
-WSGI, Web Server Gateway Interface，是Python应用程序或框架和Web服务器之间的一种接口，WSGI的其中一个目的就是让用户可以用统一的语言(Python)编写前后端。
-
-官方说明：[PEP-3333](https://www.python.org/dev/peps/pep-3333/)
-
-## 16 中间人攻击
-
-在GFW里屡见不鲜的,呵呵.
-
-中间人攻击（Man-in-the-middle attack，通常缩写为MITM）是指攻击者与通讯的两端分别创建独立的联系，并交换其所收到的数据，使通讯的两端认为他们正在通过一个私密的连接与对方直接对话，但事实上整个会话都被攻击者完全控制。
-
-## 17 c10k问题
-
-所谓c10k问题，指的是服务器同时支持成千上万个客户端的问题，也就是concurrent 10 000 connection（这也是c10k这个名字的由来）。
-推荐: https://my.oschina.net/xianggao/blog/664275
-
-## 18 socket
-
-推荐: http://www.360doc.com/content/11/0609/15/5482098_122692444.shtml
-
-Socket=Ip address+ TCP/UDP + port
-
-## 19 浏览器缓存
-
-推荐: http://www.cnblogs.com/skynet/archive/2012/11/28/2792503.html
 
 304 Not Modified
 
@@ -1123,20 +876,6 @@ PATCH方法出现的较晚，它在2010年的RFC 5789标准中被定义。PATCH�
 
 ## 21 Ajax
 AJAX,Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）, 是与在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页的技术。
-
-# *NIX
-
-## unix进程间通信方式(IPC)
-
-1. 管道（Pipe）：管道可用于具有亲缘关系进程间的通信，允许一个进程和另一个与它有共同祖先的进程之间进行通信。
-2. 命名管道（named pipe）：命名管道克服了管道没有名字的限制，因此，除具有管道所具有的功能外，它还允许无亲缘关系进程间的通信。命名管道在文件系统中有对应的文件名。命名管道通过命令mkfifo或系统调用mkfifo来创建。
-3. 信号（Signal）：信号是比较复杂的通信方式，用于通知接受进程有某种事件发生，除了用于进程间通信外，进程还可以发送信号给进程本身；linux除了支持Unix早期信号语义函数sigal外，还支持语义符合Posix.1标准的信号函数sigaction（实际上，该函数是基于BSD的，BSD为了实现可靠信号机制，又能够统一对外接口，用sigaction函数重新实现了signal函数）。
-4. 消息（Message）队列：消息队列是消息的链接表，包括Posix消息队列system V消息队列。有足够权限的进程可以向队列中添加消息，被赋予读权限的进程则可以读走队列中的消息。消息队列克服了信号承载信息量少，管道只能承载无格式字节流以及缓冲区大小受限等缺
-5. 共享内存：使得多个进程可以访问同一块内存空间，是最快的可用IPC形式。是针对其他通信机制运行效率较低而设计的。往往与其它通信机制，如信号量结合使用，来达到进程间的同步及互斥。
-6. 内存映射（mapped memory）：内存映射允许任何多个进程间通信，每一个使用该机制的进程通过把一个共享的文件映射到自己的进程地址空间来实现它。
-7. 信号量（semaphore）：主要作为进程间以及同一进程不同线程之间的同步手段。
-8. 套接口（Socket）：更为一般的进程间通信机制，可用于不同机器之间的进程间通信。起初是由Unix系统的BSD分支开发出来的，但现在一般可以移植到其它类Unix系统上：Linux和System V的变种都支持套接字。
-
 
 # 数据结构
 
