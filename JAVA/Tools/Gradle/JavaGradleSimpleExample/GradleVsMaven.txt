@@ -1,0 +1,49 @@
+We will also see how to run gradle commands from Command Prompt”.
+
+Here we will look more into gradle commands and corresponding maven commands.
+
+We are going to use Gradle Spring MVC example program to 
+demonstrate most of the gradle commands in this post.
+
+gradle和maven都是构建和依赖管理工具。 我们将在比较gradle与maven时考虑以下几点。
+
+1. Gradle vs Maven命令
+2. 将Gradle项目安装到Maven Repo
+3. Maven vs Gradle构建脚本主要元素
+4. Maven vs Gradle命令简介
+
+#### Gradle vs Maven命令
+
+由于我们都已经非常熟悉maven构建工具，因此最好将maven命令与gradle命令进行比较，以便轻松学习gradle。
+
+在本节中，我们将尝试获取每个maven命令并找出gradle中的对应命令。
+
+In this section, we will try to take each maven command and 
+find out the counterpart in gradle.
+
+与Maven一样，我们可以通过使用Eclipse IDE，Spring STS IDE，IntelliJ IDEA等
+IDE以及命令提示符来运行gradle命令。
+
+首先我们应该知道的是我们的软件版本，以便我们可以了解我们可以在应用程序开发中使用哪些功能。
+
+要知道maven的版本，我们需要使用以下maven命令：
+
+mvn --version
+
+gradle --version
+
+To create JAR/WAR/EAR
+
+To deploy our application into any Web or Application servers, 
+we need to create our application JAR/WAR/EAR files.
+
+To create JAR/WAR/EAR, we need to use the following maven command:
+
+`mvn package`
+
+To create JAR/WAR/EAR in gradle, we need to use the following gradle command:
+
+`gradle assemble`
+
+
+
