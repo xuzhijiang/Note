@@ -26,6 +26,8 @@ public class JavaInternationalizationExample {
 			// Get resource bundle when Locale needs to be created
 			ResourceBundle bundleSWE = ResourceBundle.getBundle("ApplicationMessages", new Locale("sv", "SE"));
 
+			// Note: 配置文件要放到src下面，不要放到和当前java文件同级目录
+			
 			// lets print some messages
 			printMessages(bundle);
 			printMessages(bundleFR);

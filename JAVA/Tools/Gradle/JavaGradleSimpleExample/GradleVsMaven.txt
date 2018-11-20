@@ -45,5 +45,191 @@ To create JAR/WAR/EAR in gradle, we need to use the following gradle command:
 
 `gradle assemble`
 
+We can observe newly generate war file at ${PROJECT_ROOT_DIR}/build/libs/ as shown below.
+
+We can observe compiled *.class files at 
+${PROJECT_ROOT_DIR}/build/classes/main/[our-package-structure]/*.class.
 
 
+To run Unit Tests
+
+To run only JUnit tests without creating our application JAR/WAR/EAR file, 
+we need to use the following commands:
+
+To compile and run unit tests:
+
+mvn test
+
+gradle test
+
+To Skip Unit Tests
+
+To skip JUnit tests and do required other tasks, 
+we need to use the following commands:
+
+mvn install -DskipTests
+#OR
+mvn install -Dmaven.test.skip=true
+
+gradle -x test install
+
+To run JUnits and create JAR/WAR/EAR
+
+To run JUnit tests first then create our application JAR/WAR/EAR files,
+ we need to use the following commands:
+
+To compile, tests and assemble:
+
+mvn test package
+
+gradle build
+
+NOTE: In both maven and gradle, we can pipe two or more commands 
+and execute them at once as shown above.
+
+To clean
+
+It¡¯s always recommended to clean everything before compile and build our application code.
+
+To delete build directory:
+
+mvn clean
+
+gradle clean
+
+To Install
+
+To compile, build and install to local maven repository, 
+we need to use following commands.
+
+mvn install
+
+gradle install
+
+To deploy Web Application
+
+To deploy application WAR/EAR file into server, we need to use following commands.
+
+mvn deploy
+
+To run on Jetty embedded server:
+
+mvn jetty:run
+
+Gradle has separate commands for each server to run created WAR/WAR file.
+
+To run our Web Application with already created WAR file 
+in an embedded Jetty server:
+
+gradle jettyRun
+
+To build WAR file, deploy and run it in an embedded jetty server:
+
+mvn jetty:run-war
+
+gradle jettyRunWar
+
+To create JAR file
+
+To create JAR file from compiled class files, 
+we need to use following command.
+
+mvn jar
+
+gradle jar
+#or 
+gradle libs
+
+Eclipse IDE Commands
+To Generate a Project and all Eclipse required files:
+
+mvn eclipse:eclipse
+
+gradle eclipse
+
+To clean all Eclipse required files:
+
+mvn eclipse:clean
+
+gradle cleanEclipse
+
+Install Gradle Project To Maven Repo
+
+We can use gradle install command to build and install our 
+application JAR/WAR file to our local maven repository.
+
+We cannot execute ¡°gradle install¡± command with our previous 
+gradle project example from Gradle Spring MVC¡± 
+because we have not specified any maven plugins in build.gradle file.
+
+Now we will change our build.gradle file to include this functionality. 
+Please follow these simple steps.
+
+Add maven plugin to build.gradle file
+
+apply plugin: 'maven'
+
+Add GroupId and our JAR/WAR file version
+Add build.gradle file root elements as shown below.
+
+group = "com.journaldev"
+version = "1.0"
+
+If we don¡¯t specify version element here, 
+then it uses war file version declaration as shown below.
+
+war {
+    baseName = 'SpringMVCExample'
+    version = '1.0.0-BUILD-SNAPSHOT'
+}
+
+That¡¯s it. Now our gradle install will copy application 
+jar/war file to maven repository too.
+
+Our complete and new build.gradle file
+
+<-- start -->
+
+
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "war"
+apply plugin: 'maven'
+ 
+sourceCompatibility = 1.7
+
+group = "com.journaldev"
+version = "1.0"
+
+war {
+    baseName = 'SpringMVCExample'
+    version = '1.0.0-BUILD-SNAPSHOT'
+}
+ 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework:spring-context:4.0.0.RELEASE")
+    compile("org.springframework:spring-webmvc:4.0.0.RELEASE")
+    compile("org.aspectj:aspectjrt:1.7.4")
+	compile("javax.inject:javax.inject:1")
+    compile("javax.servlet:servlet-api:2.5")
+    compile("javax.servlet:jstl:1.2")
+    compile("javax.servlet.jsp:jsp-api:2.1")	
+    compile("org.slf4j:slf4j-api:1.7.5")
+    compile("org.slf4j:jcl-over-slf4j:1.7.5")
+    compile("org.slf4j:slf4j-log4j12:1.7.5")
+    compile("log4j:log4j:1.2.15")
+
+    testCompile("junit:junit:4.7") 
+}
+
+<-- end -->
+
+Execute ¡°gradle install¡± command
+
+gradle install
+
+Observe our Local Maven Repository(.m2\repository\com.journaldev\)

@@ -9,3 +9,6 @@ gen/
 bin/
 .gradle
 .springBeans
+*.jar
+*.class
+*.war
