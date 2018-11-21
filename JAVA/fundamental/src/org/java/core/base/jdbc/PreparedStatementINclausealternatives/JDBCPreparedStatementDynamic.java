@@ -12,9 +12,11 @@ public class JDBCPreparedStatementDynamic {
 		String query = createQuery(ids.length);
 		
 		System.out.println("Query="+query);
+		
 		Connection con = DBConnection.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		
 		try {
 			ps = con.prepareStatement(query);
 			
@@ -44,11 +46,17 @@ public class JDBCPreparedStatementDynamic {
 		}
 	}
 
+	// 此方法涉及编写逻辑以根据IN子句中元素的大小动态创建PreparedStatement查询。
 	private static String createQuery(int length) {
 		String query = "select empid, name from Employee where empid in (";
 		StringBuilder queryBuilder = new StringBuilder(query);
 		for( int i = 0; i< length; i++){
-			queryBuilder.append(" ?");
+			if(i == 0) {
+				queryBuilder.append("?");
+			}else {
+				queryBuilder.append(" ?");
+			}
+			// 如果是最后一个，则不拼接,
 			if(i != length -1) queryBuilder.append(",");
 		}
 		queryBuilder.append(")");

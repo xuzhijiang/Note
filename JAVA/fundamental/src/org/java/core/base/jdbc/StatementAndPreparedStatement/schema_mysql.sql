@@ -1,6 +1,6 @@
-/* 1. mysql -u root ¨Cp */
+/* 1. mysql -u root â€“p */
 /* 2. mysql> source D:\java\Note\JAVA\fundamental\src\org\java\core\base\jdbc\StatementAndPreparedStatement\schema_mysql.sql */
-/* ÓÃ--×¢ÊÍ±¨´í */
+/* ç”¨--æ³¨é‡ŠæŠ¥é”™ */
 
 drop database if exists UserDB;
 

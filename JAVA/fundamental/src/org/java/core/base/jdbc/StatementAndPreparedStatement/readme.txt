@@ -1,3 +1,12 @@
+Since JDBC PreparedStatement is pre-compiled, we can’t use it with 
+IN clause. Rather than going back to Statement, there are some 
+alternative approaches that we can use to get over this shortcomings 
+of Prepared Statement. This article provides four different 
+alternative approaches that we can take to support IN clause
+ with prepared statements. You should read it because you never 
+ know when you are going to need it, also it’s one of the most 
+ asked interview question related to JDBC.
+
 Why we should avoid JDBC Statement.
 
 JDBC Statement 有一些主要问题，应该在所有情况下都避免使用.
