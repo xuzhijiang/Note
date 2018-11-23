@@ -18,9 +18,9 @@ public class JDBCBatchExceptions2 {
 
 			ps = con.prepareStatement(query);
 
-			String name1 = "Pankaj";
-			String name2 = "Pankaj Kumar"; // longer than column length
-			String name3 = "Kumar";
+			String name1 = "xuzhijiang";
+			String name2 = "xuzhijiang xuzhijiang"; // longer than column length
+			String name3 = "xuzhijiang";
 
 			ps.setInt(1, 1);
 			ps.setString(2, name1);
@@ -46,6 +46,12 @@ public class JDBCBatchExceptions2 {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+			// 正如您所看到的，如果出现任何SQL异常，我将回滚事务。 如果批处理成功，我显式提交事务。
+			// 这就是JDBC批量插入更新示例的所有内容，请确保试验您的数据以获得批量查询的批量大小的最佳值。
+
+			// jdbc批处理的一个限制是我们不能在批处理中执行不同类型的查询。
+			// One of the limitation of jdbc batch processing 
+			// is that we can’t execute different type of queries in the batch.
 		} finally {
 			try {
 				ps.close();

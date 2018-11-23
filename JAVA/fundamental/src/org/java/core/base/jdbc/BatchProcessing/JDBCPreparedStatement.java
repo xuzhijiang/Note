@@ -4,6 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * 
+ * 此方法与使用Statement类似，但PreparedStatement提供了性能优势并避免了SQL注入攻击。
+ *
+ */
 public class JDBCPreparedStatement {
 
 	public static void main(String[] args) {

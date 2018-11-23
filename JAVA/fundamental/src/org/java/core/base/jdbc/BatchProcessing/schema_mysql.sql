@@ -24,6 +24,7 @@ CREATE TABLE Employee (
 );
 */
 
+/*
 INSERT INTO `Employee` (`empid`, `name`)
 VALUES (1, 'xzj'),
 (2, 'xzj2'),
@@ -36,3 +37,4 @@ VALUES (1, 'xzj'),
 (9, 'xzj9'),
 (10, 'xzj10');
 commit;
+*/
