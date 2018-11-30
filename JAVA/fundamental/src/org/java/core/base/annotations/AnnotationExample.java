@@ -7,7 +7,7 @@ import java.util.List;
 public class AnnotationExample {
 
 	public static void main(String[] args) {
-		
+
 	}
 
 	@Override

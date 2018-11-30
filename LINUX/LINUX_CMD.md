@@ -85,3 +85,7 @@ uperuser (root) privileges required.
 /usr/sbin: /usr/sbin与/usr/bin具有相同的关系，和/sbin与/bin一样。
 
 /usr/local/bin: 用于不由分发包管理器管理的普通用户程序，例如， 本地编译的包。 您不应将它们安装到/usr/bin中，因为将来的分发升级可能会在没有警告的情况下修改或删除它们。superuser (root) privileges required.
+
+linux下paste code对齐命令:
+
+按v，然后上下键，然后按=

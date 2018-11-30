@@ -1,7 +1,7 @@
 package org.java.core.base.annotations.Override;
 
 /**
- * Java注解在1.5被引入，Java@Override注解是Java默认注解之一，
+ * Java注解在1.5被引入，Java @Override注解 是Java默认注解之一，
  * 当我们为一个方法使用这个注解的时候，他告诉编译器我们在尝试覆盖父类的方法.
  * Java @Override annotation benefits
  * It’s clear that using java @Override annotation will make
