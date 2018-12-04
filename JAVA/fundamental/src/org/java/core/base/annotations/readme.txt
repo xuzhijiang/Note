@@ -8,7 +8,7 @@ Annotations(标注解释)
 we will look into following:
 
 1. (注解用法以及怎么用反射去解析注解)
-2. Annotations在Java1.5被引入,now it’s heavily used (大量使用)in Java EE 
+2. Annotations在Java1.5被引入,now it’s heavily used (大量使用)in Java EE
 frameworks like Hibernate, Jersey, Spring.
 
 For example, in Jersey webservice we add PATH annotation 
@@ -54,19 +54,61 @@ public @interface WebServlet {
 5. Annotations can have meta annotations attached to them. (注解可以附加元注解)
 
 6. Meta annotations are used to provide information about the annotation.
-(元注解是用于提供关于注解的信息)
+(元注解是用于提供关于注解的信息,也就是元注解是注解的注解)
 
-7. Meta Annotations In Java(There are four types of meta annotations这里有4中类型的元注解)
- 
- * 1. @Documented – indicates that elements using this annotation
- * should be documented by javadoc and similar tools
- * (表示使用此批注的元素应由javadoc和类似工具记录。)
- * This type should be used to annotate the declarations of types whose 
- * annotations affect the use of annotated elements by their 
- * clients. 
- * 此类型应用于注解类型的声明，其注解会影响其客户端对带注解元素的使用
- * If a type declaration is annotated with Documented, 如果使用Documented注解一个类型声明
- * its annotations become part of the public API of the annotated elements.
- * 则其注释将成为带注解元素的公共API的一部分。
- * <p><br>
+7. Meta Annotations In Java
 
+(There are four types of meta annotations这里有4中类型的元注解)
+
+	A. @Documented – indicates that elements using this annotation
+	should be documented by javadoc and similar tools.
+	表示使用此批注的元素应由javadoc和类似工具记录。
+	
+	This type should be used to annotate the declarations of types whose 
+	annotations affect the use of annotated elements by their clients. 
+	此类型应用于注解类型的声明，其注解会影响其客户端对带注解元素的使用
+	
+	If a type declaration is annotated with Documented, 如果使用Documented注解一个类型声明
+	,its annotations become part of the public API of the annotated elements.
+	则其注释将成为带注解元素的公共API的一部分。
+	
+	B. @Target – indicates the kinds of program element to which an annotation 
+	type is applicable. 表示注释类型适用的程序元素的种类. 
+	
+	Some possible values are TYPE, METHOD, CONSTRUCTOR,FIELD etc. 
+	If Target meta-annotation is not present, 
+	then annotation can be used on any program element.
+	如果目标元注解不存在，可以在任何程序上使用注解
+
+	C. @Inherited – indicates that an annotation type is automatically
+	inherited.表示自动继承注释类型。
+	
+	If user queries the annotation type on a class 
+	declaration,and the class declaration has no annotation for this type,
+	 then the class’s superclass will automatically be 
+	queried for the annotation type.
+	 如果注释类型声明中存在Inherited元注释，并且用户在类声明上查询注释类型，
+	 并且类声明没有此类型的注释，则将自动查询类的超类以获取注释类型。
+
+	This process will be repeated until an annotation for this type is found, 
+	这个过程将会重复，直到此类型的注解被找到
+	or the top of the class hierarchy (Object) is reached.
+	达到类层次结构(对象)的顶部.
+
+	D. @Retention – indicates how long annotations with the 
+	annotated type are to be retained(表示带注解类型的注解被保留多长时间). It takes RetentionPolicy 
+	argument whose Possible values are SOURCE, CLASS and RUNTIME.
+	(它需要RetentionPolicy参数，其可能值为SOURCE，CLASS和RUNTIME)
+
+
+Built-in annotations in Java(Java中内建的注解)
+
+Java Provides three built-in annotations.
+(Java提供了3中内建注解)
+
+	1. @Override,我们用这个注解通知编译器我们正在覆盖父类的方法.所以当父类方法被删除或者被改变的时候，编译器将会展示错误消息
+	2. @Deprecated, 我们想让编译器知道这个方法过时了，不建议使用了，我们应该提供为什么
+	这个方法过时以及替代这个方法去使用的相关信息
+	3. @SuppressWarnings,这个只是告诉编译器忽略某些警告，
+
+	
