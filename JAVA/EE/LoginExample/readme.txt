@@ -214,35 +214,47 @@ public abstract class HttpServlet extends GenericServlet {
 Servlet Attributes
 
 Servlet属性用于servlet间通信，我们可以在Web应用程序中设置，获取和删除属性。
- servlet属性有三个范围 - 请求范围，会话范围和应用程序范围。
- 
+servlet属性有三个范围 - 请求范围，会话范围和应用程序范围。
+
 ServletRequest，HttpSession和ServletContext接口提供了分别从请求，会话和应用程序范围获取/设置/删除属性的方法。
 
 Servlet属性与web.xml中为ServletConfig或ServletContext定义的init参数不同。
 
-
-Annotations in Servlet 3
+Annotations in Servlet 3(Servlet3中的注解)
 
 Prior to Servlet 3(在Servlet 3之前),所有servlet映射及其init参数都用于在web.xml中定义，
 当应用程序中的servlet数量巨大时，这不方便且更容易出错。
 
-Servlet 3引入了使用java注释来定义servlet，过滤器和监听器servlet以及init参数。
+Servlet 3引入了使用java注释来定义servlet，filter(过滤器)和listener(监听器)servlets以及init参数。
 
 一些重要的Servlet注释是：
 
-WebServlet - 我们可以将这个注释与Servlet类一起使用来定义init parameters, loadOnStartup value, 
-description and url patterns etc.至少一个URL pattern在annotation的value或urlPattern属性中声明
-但不能同时在两者中声明。声明此批注的类必须扩展HttpServlet。
+WebServlet:
+	1. 声明此批注的类必须extends HttpServlet。The class on which this annotation is declared MUST extend HttpServlet.
+	2. 我们可以将这个注释与Servlet类一起使用来定义init parameters, loadOnStartup value(大概就是在
+	开始的时候加载的值), description and url patterns etc.
+	3. 在WebServlet这个注解的value属性，或者是WebServlet的urlPatterns属性至少声明一个url匹配模式
+	，但是不能同时声明两者。At least one URL pattern MUST be declared in either the value or urlPattern
+	 attribute of the annotation, but not both.
 
-WebInitParam - 此注释用于定义servlet或filter的init参数，它包含name, value pair and we can provide description also. 
-此批注可以在WebFilter或WebServlet批注中使用。 This annotation can be used within a WebFilter or WebServlet annotation.
+WebInitParam：
+	1. 此注释用于定义servlet或filter的init参数，它包含name, value pair 
+	and we can provide description also. 
+	2. 此批注可以在WebFilter注解或WebServlet注解中使用。 
+	This annotation can be used within a WebFilter or WebServlet annotation.
 
-WebFilter - 此注释用于声明servlet过滤器。该注释在部署期间由容器处理，其中找到它的Filter类将根据配置创建并应用于URL模式，
-Servlet和DispatcherTypes。带注释的类必须实现javax.servlet.Filter接口。
-the Filter class in which it is found will be created as per the configuration and applied to 
-the URL patterns, Servlets and DispatcherTypes. 
+WebFilter:
+	1. 此注释用于声明servlet过滤器(filter)。该注释在部署期间由容器处理，
+	其中找到它的Filter类将根据配置创建并应用于URL模式，Servlet和DispatcherTypes。
+	the Filter class in which it is found will be created as per the configuration and applied to 
+	the URL patterns, Servlets and DispatcherTypes.
+	
+	2.带WebFilter注解的类 MUST implements javax.servlet.Filter interface。
+	 
 
-WebListener - 用于在给定的Web应用程序上下文中为各种类型的事件声明侦听器的注释。
+WebListener:
+	1. 用于在 in a given(给定的) Web application context(上下文) 中为 
+	各种类型的事件 (for various types of event)声明侦听器(listener)的注解。
 
 注意：我们将在以后的文章中研究Servlet过滤器和监听器，在本文中我们的重点是学习Servlet API的基接口和类。
 

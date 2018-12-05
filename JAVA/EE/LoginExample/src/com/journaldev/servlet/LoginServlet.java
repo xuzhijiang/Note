@@ -16,9 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet(
-		description = "Login Servlet", 
-		urlPatterns = { "/LoginServlet" },
+@WebServlet(description = "Login Servlet", urlPatterns = {"/LoginServlet"},
 		initParams = {
 				@WebInitParam(name = "user", value = "xzj"), 
 				@WebInitParam(name = "password", value = "password")
@@ -26,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-       
+
 	public void init() throws ServletException {
 		
 		//we can create DB connection resource here and set it to Servlet context
@@ -56,8 +54,6 @@ public class LoginServlet extends HttpServlet {
 		//get request parameters for userID and password
 		String user = request.getParameter("user");
 		String pwd = request.getParameter("pwd");
-		
-		
 		
 		
 //		ServletConfig Interface

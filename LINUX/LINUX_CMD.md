@@ -9,7 +9,7 @@ ubantu安装完Nginx后，文件结构大致为：
 1. 所有的配置文件都在 /etc/nginx下；
 2. 启动程序文件在 /usr/sbin/nginx下；
 3. 日志文件在 /var/log/nginx/下，分别是access.log和error.log；
-4. 并且在  /etc/init.d下创建了启动脚本nginx。
+4. 并且在/etc/init.d下创建了启动脚本nginx。
 
 ```shell
 sudo /etc/init.d/nginx start    # 启动
