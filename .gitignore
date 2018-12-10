@@ -1,14 +1,14 @@
 .idea
 __pycache__
-.classpath
-.project
 .settings
 *.class
 *.ser
 gen/
 bin/
-.gradle
 .springBeans
 *.jar
 *.class
 *.war
+*.bin
+*.lock
+.gradle/
