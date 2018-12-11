@@ -12,3 +12,4 @@ bin/
 *.bin
 *.lock
 .gradle/
+.DS_Store

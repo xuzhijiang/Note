@@ -3,7 +3,6 @@ Java Servlet FilterÓÃÓÚÀ¹½ØÇëÇó(intercept request)²¢½øĞĞÒ»Ğ©Ô¤´¦Àí(pre-process)£
 
 ÎÒÃÇ½«ÑĞ¾¿servlet filterµÄ¸÷ÖÖÓÃ·¨£¬ÎÒÃÇÈçºÎ´´½¨¹ıÂËÆ÷²¢Í¨¹ı¼òµ¥µÄWebÓ¦ÓÃ³ÌĞòÁË½âËüµÄÓÃ·¨¡£
 
-
 Why do we have Servlet Filter?
 
 ÔÚÉÏÒ»ÆªÎÄÕÂÖĞ£¬ÎÒÃÇÑ§Ï°ÁËÈçºÎÔÚWebÓ¦ÓÃ³ÌĞòÖĞ¹ÜÀí»á»°£¬we learnd how we can manage session in web application.
@@ -56,7 +55,6 @@ public interface Filter {
 	void destroy() 
 }
 
-
 Servlet WebFilter×¢ÊÍ
 
 ÔÚServlet 3.0ÖĞÒıÈëÁËjavax.servlet.annotation.WebFilter£¬
@@ -67,5 +65,6 @@ Servlet WebFilter×¢ÊÍ
 If you make frequent changes to the filter configurations, its better to use web.xml 
 because that will not require you to recompile the filter class.
 
+Õâ¾ÍÊÇJavaÖĞµÄServlet¹ıÂËÆ÷,ËüÊÇJ2EE WebÓ¦ÓÃ³ÌĞòµÄÒ»¸öÖØÒªÌØĞÔ£¬ÎÒÃÇÓ¦¸Ã½«ËüÓÃÓÚ¸÷ÖÖservletÖ´ĞĞµÄ³£¼ûÈÎÎñ.
 
-
+Struts 2Ê¹ÓÃServlet FilterÀ¹½Ø¿Í»§¶ËÇëÇó²¢½«ËüÃÇ×ª·¢µ½ÊÊµ±µÄ¶¯×÷Àà£¬ÕâĞ©¶¯×÷Àà³ÆÎªStruts 2 Interceptor¡£ 

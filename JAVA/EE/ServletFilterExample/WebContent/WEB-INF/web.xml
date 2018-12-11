@@ -9,6 +9,7 @@
 	</welcome-file-list>
 
 	<!-- We can declare a servlet filter in web.xml like below. -->
+	
 	<filter>
 		<filter-name>RequestLoggingFilter</filter-name><!-- mandatory(强制性) -->
 		<filter-class>com.journaldev.servlet.filters.RequestLoggingFilter</filter-class><!-- 
@@ -18,18 +19,20 @@
 			<param-value>testValue</param-value>
 		</init-param>
 	</filter>
+	
 	<filter>
 		<filter-name>AuthenticationFilter</filter-name>
 		<filter-class>com.journaldev.servlet.filters.AuthenticationFilter</filter-class>
 	</filter>
 
 
-	
+	<!-- Now we will configure these filters mapping in the web.xml file. -->
 	<filter-mapping>
 		<filter-name>RequestLoggingFilter</filter-name><!-- mandatory -->
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
+	
 	<filter-mapping>
 		<filter-name>AuthenticationFilter</filter-name>
 		<url-pattern>/*</url-pattern>

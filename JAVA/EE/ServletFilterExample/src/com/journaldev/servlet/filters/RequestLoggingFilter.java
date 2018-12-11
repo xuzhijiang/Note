@@ -43,6 +43,7 @@ public class RequestLoggingFilter implements Filter {
 		Cookie[] cookies = req.getCookies();
 		if(cookies != null){
 			for(Cookie cookie : cookies){
+				// In server log file，您可以看到servlet filters和servlets 打印的日志。
 				this.context.log(req.getRemoteAddr() + "::Cookie::{"+cookie.getName()+","+cookie.getValue()+"}");
 			}
 		}

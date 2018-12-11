@@ -19,12 +19,13 @@ if(cookies !=null){
 		if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
 	}
 }
-/* 请注意，上面的JSP中没有会话验证逻辑。它包含指向另一个JSP页面CheckoutPage.jsp的链接。 */
+/* 请注意，上面的JSP中没有session验证逻辑。它包含指向另一个JSP页面CheckoutPage.jsp的链接。 */
 %>
 <h3>Hi <%=userName %>, Login successful. Your Session ID=<%=sessionID %></h3>
 <br>
 User=<%=user %>
 <br>
+<!-- 当客户端点击任何JSP页面中的Logout按钮时，将调用LogoutServlet。 -->
 <a href="CheckoutPage.jsp">Checkout Page</a>
 <form action="LogoutServlet" method="post">
 <input type="submit" value="Logout" >
