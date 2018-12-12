@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// 一个简单的servlet，它将演示在具有特定路径的SetCookie中设置的cookie不会被浏览器发送到此servlet。
 @WebServlet("/cookie/GetCookie")
 public class GetCookie extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +24,7 @@ public class GetCookie extends HttpServlet {
 		out.write("<html><head></head><body>");
 		out.write("<h3>Hello Browser!!</h3>");
 		if(requestCookies != null){
+			// print cookies from client
 			out.write("<h3>Request Cookies:</h3>");
 			for(Cookie c : requestCookies){
 				out.write("Name="+c.getName()+", Value="+c.getValue()+", Comment="+c.getComment()
@@ -37,6 +39,7 @@ public class GetCookie extends HttpServlet {
 			}
 		}
 		out.write("</body></html>");
+		// GetCookie将“测试”cookie的最大年龄设置为0，以便客户端浏览器将其过期并删除
 	}
 
 }

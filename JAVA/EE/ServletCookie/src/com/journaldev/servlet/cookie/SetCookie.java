@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// This servlet will set some cookies and send it to browser.
 @WebServlet("/cookie/SetCookie")
 public class SetCookie extends HttpServlet {
 	
@@ -20,7 +21,7 @@ public class SetCookie extends HttpServlet {
 		Cookie[] requestCookies = request.getCookies();
 		
 		out.write("<html><head></head><body>");
-		out.write("<h3>Hello Browser!!</h3>");
+		out.write("<h3>Hello Browser!! xzj</h3>");
 		if(requestCookies != null){
 			out.write("<h3>Request Cookies:</h3>");
 			for(Cookie c : requestCookies){
@@ -30,6 +31,8 @@ public class SetCookie extends HttpServlet {
 				out.write("<br>");
 			}
 		}
+		// we will set a cookie for every domain and a cookie with Path settings 
+		// so that other servlet won’t receive this from client.
 		
 		//Set cookies for counter, accessible to only this servlet
 		count++;
@@ -45,11 +48,20 @@ public class SetCookie extends HttpServlet {
 		response.addCookie(counterCookie);
 		
 		//set a domain specific cookie
-		Cookie domainCookie = new Cookie("Test", "Test Cookie"+String.valueOf(count));
+		// Note: Throws:IllegalArgumentException - if the cookie name is null or 
+		// empty or contains any illegal characters (for example, a comma, space, 
+		// or semicolon) or matches a token reserved for use by the cookie protocol
+		// Cookie的value不能包含空格
+		Cookie domainCookie = new Cookie("Test", "TestCookie"+String.valueOf(count));
 		domainCookie.setComment("Test Cookie");
 		response.addCookie(domainCookie);
 		
 		out.write("</body></html>");
+		
+		// 当您运行该程序时，您会注意到以下几点：
+		
+		// Cookie“Counter”仅发送到SetCookie，GetCookie将永远不会收到此Cookie。
+		// 除名称和值外，所有其他变量都是打印默认值。 MaxAge默认值为-1，版本默认值为0。
 	}
 
 }
