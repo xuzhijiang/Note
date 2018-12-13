@@ -4,14 +4,42 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  
+
+  <!-- 使用error-page元素为应用程序指定Exception处理程序servlet非常容易。 每个error-page元素都应该包含error-code或exception-type元素。 我们在location元素中定义异常处理程序servlet。
+  -->
   <error-page>
   	<error-code>404</error-code>
   	<location>/AppExceptionHandler</location>
   </error-page>
-  
+
   <error-page>
   <exception-type>javax.servlet.ServletException</exception-type>
   <location>/AppExceptionHandler</location>
   </error-page>
+
+  <!--
+  基于以上配置，如果应用程序抛出404错误或ServletException，它将由AppExceptionHandler servlet处理。
+  -->
+
+  <!--
+  当前例子中，出现此类异常(ServletException)和错误(404)情况时，servlet container将调用Exception Handler servlet(AppExceptionHandler)的相应HTTP方法并传递请求和响应对象。 
+  -->
+
+  <!--
+  如果要在单个异常处理程序(也就是一个error-page中)中处理运行时异常和所有其他异常，可以将异常类型提供为Throwable。
+  如下:
+
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/AppExceptionHandler</location>
+  </error-page>
+  -->
+
+  <!--
+  如果有多个error-page entries,假设一个处理Throwable异常，一个处理IOException异常，应用程序抛出FileNotFoundException，那么它将由IOException的错误处理程序处理。
+  -->
+
+  <!--
+  还可以使用JSP页面作为异常处理程序，只提供jsp文件的位置而不是servlet映射。
+  -->
 </web-app>

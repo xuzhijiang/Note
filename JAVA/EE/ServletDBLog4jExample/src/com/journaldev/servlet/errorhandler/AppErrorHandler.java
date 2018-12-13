@@ -1,33 +1,26 @@
-package com.journaldev.servlet.exception;
+package com.journaldev.servlet.errorhandler;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// 请注意，我提供了doGet（）和doPost（）方法的实现，以便它可以处理GET和POST请求
-// 
-@WebServlet("/AppExceptionHandler")
-public class AppExceptionHandler extends HttpServlet {
+@WebServlet("/AppErrorHandler")
+public class AppErrorHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processError(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processError(request, response);
 	}
-
-	// 在servlet容器调用servlet来处理异常之前，它在请求中设置一些属性以获取有关
-	// 异常的有用信息，其中一些是javax.servlet.error.exception，
-	// javax.servlet.error.status_code，javax.servlet。 
-	// error.servlet_name和javax.servlet.error.request_uri。
+	
 	private void processError(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		// Analyze the servlet exception
@@ -46,11 +39,6 @@ public class AppExceptionHandler extends HttpServlet {
 			requestUri = "Unknown";
 		}
 		
-		// 例外，对应于“内部服务器错误”，状态代码始终为500，
-		// 对于其他类型的错误，我们会得到不同的错误代码，如404,403等。
-
-		// 如果我们尝试访问无效网址,会提示404错误，
-
 		// Set response content type
 	      response.setContentType("text/html");
 	 
@@ -68,9 +56,9 @@ public class AppExceptionHandler extends HttpServlet {
 	    	  out.write("<li>Exception Message:"+throwable.getMessage()+"</li>");
 	    	  out.write("</ul>");
 	      }
-
+	      
 	      out.write("<br><br>");
-	      out.write("<a href=\"index.html\">Home Page</a>");
+	      out.write("<a href=\"login.html\">Login Page</a>");
 	      out.write("</body></html>");
 	}
 }
