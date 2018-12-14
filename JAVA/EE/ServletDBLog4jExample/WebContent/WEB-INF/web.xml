@@ -18,7 +18,7 @@
 	<!-- context-param中的name和value会通过ServletContext.getInitParameter(name)获取 -->
 	<context-param>
 		<param-name>dbUser</param-name>
-		<param-value>root</param-value>
+		<param-value>xuzhijiang</param-value>
 	</context-param>
 	
 	<context-param>

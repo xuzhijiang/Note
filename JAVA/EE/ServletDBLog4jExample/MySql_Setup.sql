@@ -3,9 +3,16 @@
 /* 用--注释报错 */
 /* login with root to create user, DB and table and provide grants */
 
+/* The MySQL server is running with the --skip-grant-tables 
+option so it cannot execute this statement ，通过FLUSH PRIVILEGES解决这个问题*/
+
+FLUSH PRIVILEGES;
+
 create user 'xuzhijiang'@'localhost' identified by 'password';
 
 grant all on *.* to 'xuzhijiang'@'localhost' identified by 'password';
+
+FLUSH PRIVILEGES;
 
 drop database if exists UserDB;
 

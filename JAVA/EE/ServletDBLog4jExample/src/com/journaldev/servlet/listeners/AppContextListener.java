@@ -23,6 +23,8 @@ public class AppContextListener implements ServletContextListener {
     	String pwd = ctx.getInitParameter("dbPassword");
     	
     	try {
+    		System.out.println("-----------user: " + user);
+    		System.out.println("-----------pwd: " + pwd);
 			DBConnectionManager connectionManager = new DBConnectionManager(dbURL, user, pwd);
 			ctx.setAttribute("DBConnection", connectionManager.getConnection());
 			System.out.println("DB Connection initialized successfully.");

@@ -1,53 +1,3 @@
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
-**Table of Contents**
-
-   * [Python语言特性](#python语言特性)
-      * [1 Python的函数参数传递](#1-python的函数参数传递)
-      * [2 Python中的元类(metaclass)](#2-python中的元类metaclass)
-      * [3 @staticmethod和@classmethod](#3-staticmethod和classmethod)
-      * [4 类变量和实例变量](#4-类变量和实例变量)
-      * [5 Python自省](#5-python自省)
-      * [6 字典推导式](#6-字典推导式)
-      * [7 Python中单下划线和双下划线](#7-python中单下划线和双下划线)
-      * [8 字符串格式化:\x和.format](#8-字符串格式化和format)
-      * [9 迭代器和生成器](#9-迭代器和生成器)
-      * [10 *args and <code>**kwargs</code>](#10-args-and-kwargs)
-      * [11 面向切面编程AOP和装饰器](#11-面向切面编程aop和装饰器)
-      * [12 鸭子类型](#12-鸭子类型)
-      * [13 Python中重载](#13-python中重载)
-      * [14 新式类和旧式类](#14-新式类和旧式类)
-      * [15 __new__和<code>__init__</code>的区别](#15-__new__和__init__的区别)
-      * [16 单例模式](#16-单例模式)
-         * [1 使用__new__方法](#1-使用__new__方法)
-         * [2 共享属性](#2-共享属性)
-         * [3 装饰器版本](#3-装饰器版本)
-         * [4 import方法](#4-import方法)
-      * [17 Python中的作用域](#17-python中的作用域)
-      * [18 GIL线程全局锁](#18-gil线程全局锁)
-      * [19 协程](#19-协程)
-      * [20 闭包](#20-闭包)
-      * [21 lambda函数](#21-lambda函数)
-      * [22 Python函数式编程](#22-python函数式编程)
-      * [25 Python的List](#25-python的list)
-      * [26 Python的is](#26-python的is)
-      * [27 read,readline和readlines](#27-readreadline和readlines)
-      * [28 Python2和3的区别](#28-python2和3的区别)
-      * [29 super init](#29-super-init)
-      * [30 range and xrange](#30-range-and-xrange)
-   * [网络](#网络)
-      * [1 三次握手](#1-三次握手)
-      * [2 四次挥手](#2-四次挥手)
-      * [5 Post和Get](#5-post和get)
-      * [6 Cookie和Session](#6-cookie和session)
-      * [7 apache和nginx的区别](#7-apache和nginx的区别)
-      * [9 HTTP和HTTPS](#9-http和https)
-      * [10 XSRF和XSS](#10-xsrf和xss)
-      * [20 HTTP1.0和HTTP1.1](#20-http10和http11)
-      * [21 Ajax](#21-ajax)
-
-<!-- markdown-toc end -->
-
-
 # Python语言特性
 
 ## 1 Python的函数参数传递
@@ -127,15 +77,6 @@ A.class_foo(param)
 | :------ | :------- | :------------- | :-------------- |
 | a = A() | a.foo(x) | a.class_foo(x) | a.static_foo(x) |
 | A       | 不可用    | A.class_foo(x) | A.static_foo(x) |
-
-### 类方法和静态方法的作用与区别
-
-* 有利于组织代码，把某些应该属于某个类的函数给放到那个类里去，同时有利于命名空间的整洁。
-* 在@staticmethod中要调用到这个类的一些属性方法，只能直接类名.属性名或类名.方法名。
-* @classmethod因为持有cls参数，可以来调用类的属性，类的方法，实例化对象等（通过工厂的方式构造对象，而不用通过构造函数的 方式），避免硬编码
-
-更多关于这个问题:
-https://realpython.com/blog/python/instance-class-and-static-methods-demystified/
 
 ## 4 类变量和实例变量
 
@@ -403,30 +344,7 @@ file-like Object不要求从特定类继承，只要写个对应的鸭子方法�
 
 鸭子类型在动态语言中经常使用，非常灵活，使得python不想java那样专门去弄一大堆的设计模式。
 
-## 13 Python中重载
-
-函数重载主要是为了解决两个问题。
-
-1. 可变参数类型。
-2. 可变参数个数。
-
-另外，一个基本的设计原则是，仅仅当两个函数除了参数类型和参数个数不同以外，其功能是完全相同的，此时才使用函数重载，如果两个函数的功能其实不同，那么不应当使用重载，而应当使用一个名字不同的函数。
-
-那么对于情况 1 ，函数功能相同，但是参数类型不同，python 如何处理？答案是根本不需要处理，因为 python 可以接受任何类型的参数，如果函数的功能相同，那么不同的参数类型在 python 中很可能是相同的代码，没有必要做成两个不同函数。
-
-那么对于情况 2 ，函数功能相同，但参数个数不同，python 如何处理？大家知道，答案就是缺省参数。对那些缺少的参数设定为缺省参数即可解决问题。因为你假设函数功能相同，那么那些缺少的参数终归是需要用的。
-
-好了，鉴于情况 1 跟 情况 2 都有了解决方案，python 自然就不需要函数重载了。
-
 ## 14 新式类和旧式类
-
-这个面试官问了,我说了老半天,不知道他问的真正意图是什么.
-
-[stackoverflow](http://stackoverflow.com/questions/54867/what-is-the-difference-between-old-style-and-new-style-classes-in-python)
-
-这篇文章很好的介绍了新式类的特性: http://www.cnblogs.com/btchenguang/archive/2012/09/17/2689146.html
-
-新式类很早在2.2就出现了,所以旧式类完全是兼容的问题,Python3里的类全部都是新式类.这里有一个MRO问题可以了解下(新式类是广度优先,旧式类是深度优先),<Python核心编程>里讲的也很多.
 
 > 一个旧式类的深度优先的例子
 
@@ -538,11 +456,10 @@ from mysingleton import my_singleton
 my_singleton.foo()
 
 ```
-**[单例模式伯乐在线详细解释](http://python.jobbole.com/87294/)**
 
 ## 17 Python中的作用域
 
-Python 中，一个变量的作用域总是由在代码中被赋值的地方所决定的。
+Python中，一个变量的作用域总是由在代码中被赋值的地方所决定的。
 
 当 Python 遇到一个变量的话他会按照这样的顺序进行搜索：
 
@@ -556,36 +473,7 @@ Python 中，一个变量的作用域总是由在代码中被赋值的地方所�
 
 解决办法就是多进程和下面的协程(协程也只是单CPU,但是能减小切换代价提升性能).
 
-## 19 协程
-
-知乎被问到了,呵呵哒,跪了
-
-简单点说协程是进程和线程的升级版,进程和线程都面临着内核态和用户态的切换问题而耗费许多切换时间,而协程就是用户自己控制切换的时机,不再需要陷入系统的内核态.
-
-Python里最常见的yield就是协程的思想!可以查看第九个问题.
-
-## 20 闭包
-
-闭包(closure)是函数式编程的重要的语法结构。闭包也是一种组织代码的结构，它同样提高了代码的可重复使用性。
-
-当一个内嵌函数引用其外部作作用域的变量,我们就会得到一个闭包. 总结一下,创建一个闭包必须满足以下几点:
-
-1. 必须有一个内嵌函数
-2. 内嵌函数必须引用外部函数中的变量
-3. 外部函数的返回值必须是内嵌函数
-
-## 21 lambda函数
-
-其实就是一个匿名函数,为什么叫lambda?因为和后面的函数式编程有关.
-
-推荐: [知乎](http://www.zhihu.com/question/20125256)
-
-
 ## 22 Python函数式编程
-
-这个需要适当的了解一下吧,毕竟函数式编程在Python中也做了引用.
-
-推荐: [酷壳](http://coolshell.cn/articles/10822.html)
 
 python中函数式编程支持:
 
@@ -647,182 +535,8 @@ d =  [1, 2, 3, 4, ['a', 'b']]
 
 * 如果是拷贝list，深拷贝，拷贝出来的对象地址就是一个新地址，会新开辟一块空间，容器内如果是不可变对象，地址依然和源对象中元素的地址一样，如果是可变对象，地址就是一个全新的地址，这个就是和浅拷贝的区别.
 
-## 26 Python的is
-
-is是对比地址,==是对比值
-
 ## 27 read,readline和readlines
 
 * read        读取整个文件
 * readline    读取下一行,使用生成器方法
 * readlines   读取整个文件到一个迭代器以供我们遍历
-
-## 30 range and xrange
-都在循环时使用，xrange内存性能更好。
-for i in range(0, 20):
-for i in xrange(0, 20):
-What is the difference between range and xrange functions in Python 2.X?
- range creates a list, so if you do range(1, 10000000) it creates a list in memory with 9999999 elements.
- xrange is a sequence object that evaluates lazily.
-
-http://stackoverflow.com/questions/94935/what-is-the-difference-between-range-and-xrange-functions-in-python-2-x
-
-# 网络
-
-## 1 三次握手(建立连接)
-
-```
-SYN: synchronization(同步)
-ACK: acknowledged(得到承认)
-RST: reset
-```
-
-1. client通过向服务器端每个可能的端口发送一个SYN(synchronization) packet来主动发起连接请求，尝试和服务器的每个可能的端口建立TCP/IP连接, 作为三次握手的一部分。 客户端把这段连接的序号设定为随机数 A(seq=client_isn)。
-client  SYN=1，seq=client_isn    ---->          server
-
-2.  如果服务器使用来自特定端口的SYN/ACK（同步确认）数据包进行响应，ACK 的确认码应为 A+1()，SYN/ACK 包本身又有一个随机序号 B。则表示该端口已打开。(If the server responds with a SYN/ACK (synchronization acknowledged) packet from a particular port, it means the port is open.)
-client      <----  SYN=1，seq=server_isn,ack=client_isn+1      server
-
-3. 最后，客户端再发送一个ACK。当服务端受到这个ACK的时候，就完成了三路握手，并进入了连接创建状态。此时包序号seq被设定为收到的确认号A+1，而ack则为 B+1。
-client  SYN=0，seq=client_isn+1,ack=client_isn+1    ---->          server
-
-## 2 四次挥手(断开连接)
-
-_注意: 中断连接端可以是client，也可以是server. 下面仅以客户端断开连接举例, 反之亦然._
-
-1. Client端发起中断连接请求，也就是发送FIN标记设置为1,客户端进入 FIN-WAIT 状态.该状态下客户端只接收数据, 不再发送数据.
-
-2. Server端接到FIN=1的数据分段报文后，server会这么理解："Client端没有数据要发给server了"，但是如果server还有数据没有发送完成，则不必急着关闭Socket，可以继续发送数据。所以server发送ACK=1,表示"server告诉Client端，你的FIN请求我收到了，但是我还有数据没有传输完成，请继续等我的数据"。这个时候Client端就进入FIN_WAIT状态
-
-3. client继续等待Server。当Server端确定已经没有数据传输了，则向Client端发送FIN=1数据分段，"告诉Client端，server数据发完了，准备好关闭连接了,并进入 CLOSE-WAIT 状态,等待客户端发来带有ACK=1的确认报文"。
-
-4. Client端收到FIN=1报文后，"就知道可以关闭连接了，但需要通知server说client已经收到FIN=1，以防止服务器重复发送FIN=1，所以client给server发送 ACK=1的报文确认,之后进入后进入TIME_WAIT状态,服务器接收到ACK=1后关闭连接，如果Server端没有收到ACK=1，会重传
-
-5. 客户端等待2MSL后未收到回复, 则认为服务器成功关闭, 客户端就关闭连接.
-
-为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？
-
-答：按道理，四个报文都发送完毕，可以直接进入CLOSE状态了，但是我们必须假象网络是不可靠的，有可能最后一个ACK丢失。所以TIME_WAIT状态就是用来在Server最后没有收到ACK=1的时候，重发FIN=1，直到收到client发送的ACK=1。
-
-## 5 Post和Get
-[GET和POST有什么区别？及为什么网上的多数答案都是错的](http://www.cnblogs.com/nankezhishi/archive/2012/06/09/getandpost.html)
-[知乎回答](https://www.zhihu.com/question/31640769?rf=37401322)
-
-get: [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616#section-9.3)
-post: [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](http://tools.ietf.org/html/rfc2616#section-9.5)
-
-## 6 Cookie和Session
-
-|      | Cookie                     | Session |
-| :--- | :------------------------- | :------ |
-| 储存位置 | 客户端                        | 服务器端    |
-| 目的   | 跟踪会话，也可以保存用户偏好设置或者保存用户名密码等 | 跟踪会话    |
-| 安全性  | 不安全                        | 安全      |
-
-session技术是要使用到cookie的，之所以出现session技术，主要是为了安全。
-
-## 7 apache和nginx的区别
-
-nginx 相对 apache 的优点：
-* 轻量级，同样起web 服务，比apache 占用更少的内存及资源
-* 抗并发，nginx 处理请求是异步非阻塞的，支持更多的并发连接，而apache 则是阻塞型的，在高并发下nginx 能保持低资源低消耗高性能
-* 配置简洁
-* 高度模块化的设计，编写模块相对简单
-* 社区活跃
-
-apache 相对nginx 的优点：
-* rewrite ，比nginx 的rewrite 强大
-* 模块超多，基本想到的都可以找到
-* 少bug ，nginx 的bug 相对较多
-* 超稳定
-
-## 9 HTTP和HTTPS
-
-| 状态码       | 定义               |
-| :-------- | :--------------- |
-| 1xx 报告    | 接收到请求，继续进程       |
-| 2xx 成功    | 步骤成功接收，被理解，并被接受  |
-| 3xx 重定向   | 为了完成请求,必须采取进一步措施 |
-| 4xx 客户端出错 | 请求包括错的顺序或不能完成    |
-| 5xx 服务器出错 | 服务器无法完成显然有效的请求   |
-
-403: Forbidden
-
-HTTPS握手,对称加密,非对称加密,TLS/SSL,RSA
-
-## 10 XSRF和XSS
-
-* CSRF(Cross-site request forgery)跨站请求伪造
-* XSS(Cross Site Scripting)跨站脚本攻击
-
-CSRF重点在请求,XSS重点在脚本
-
-## 14 RPC, SOAP, RESTful
-
-RPC（Remote Procedure Call Protocol）——远程过程调用协议
-
-当互联网时代,臃肿SOA被简化为http+xml/json.但是简化出现各种混乱。以资源为导向,任何操作无非是对资源的增删改查，于是统一的REST出现了.
-
-进化的顺序: RPC -> SOAP -> RESTful
-
-304 Not Modified
-
-## 20 HTTP1.0和HTTP1.1
-
-推荐: http://blog.csdn.net/elifefly/article/details/3964766
-
-1. 请求头Host字段,一个服务器多个网站
-2. 长链接
-3. 文件断点续传
-4. 身份认证,状态管理,Cache缓存
-
-HTTP请求8种方法介绍 
-HTTP/1.1协议中共定义了8种HTTP请求方法，HTTP请求方法也被叫做“请求动作”，不同的方法规定了不同的操作指定的资源方式。服务端也会根据不同的请求方法做不同的响应。
-
-GET
-
-GET请求会显示请求指定的资源。一般来说GET方法应该只用于数据的读取，而不应当用于会产生副作用的非幂等的操作中。
-
-GET会方法请求指定的页面信息，并返回响应主体，GET被认为是不安全的方法，因为GET方法会被网络蜘蛛等任意的访问。
-
-HEAD
-
-HEAD方法与GET方法一样，都是向服务器发出指定资源的请求。但是，服务器在响应HEAD请求时不会回传资源的内容部分，即：响应主体。这样，我们可以不传输全部内容的情况下，就可以获取服务器的响应头信息。HEAD方法常被用于客户端查看服务器的性能。
-
-POST
-
-POST请求会 向指定资源提交数据，请求服务器进行处理，如：表单数据提交、文件上传等，请求数据会被包含在请求体中。POST方法是非幂等的方法，因为这个请求可能会创建新的资源或/和修改现有资源。
-
-PUT
-
-PUT请求会身向指定资源位置上传其最新内容，PUT方法是幂等的方法。通过该方法客户端可以将指定资源的最新数据传送给服务器取代指定的资源的内容。
-
-DELETE
-
-DELETE请求用于请求服务器删除所请求URI（统一资源标识符，Uniform Resource Identifier）所标识的资源。DELETE请求后指定资源会被删除，DELETE方法也是幂等的。
-
-CONNECT
-
-CONNECT方法是HTTP/1.1协议预留的，能够将连接改为管道方式的代理服务器。通常用于SSL加密服务器的链接与非加密的HTTP代理服务器的通信。
-
-OPTIONS
-
-OPTIONS请求与HEAD类似，一般也是用于客户端查看服务器的性能。 这个方法会请求服务器返回该资源所支持的所有HTTP请求方法，该方法会用’*’来代替资源名称，向服务器发送OPTIONS请求，可以测试服务器功能是否正常。JavaScript的XMLHttpRequest对象进行CORS跨域资源共享时，就是使用OPTIONS方法发送嗅探请求，以判断是否有对指定资源的访问权限。 允许
-
-TRACE
-
-TRACE请求服务器回显其收到的请求信息，该方法主要用于HTTP请求的测试或诊断。
-
-HTTP/1.1之后增加的方法
-
-在HTTP/1.1标准制定之后，又陆续扩展了一些方法。其中使用中较多的是 PATCH 方法：
-
-PATCH
-
-PATCH方法出现的较晚，它在2010年的RFC 5789标准中被定义。PATCH请求与PUT请求类似，同样用于资源的更新。二者有以下两点不同：
-
-但PATCH一般用于资源的部分更新，而PUT一般用于资源的整体更新。 
-当资源不存在时，PATCH会创建一个新的资源，而PUT只会对已在资源进行更新。
-
-## 21 Ajax
-AJAX,Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）, 是与在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页的技术。
