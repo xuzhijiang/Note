@@ -1,14 +1,14 @@
-We have developed Spring MVC gradle application successfully. 
-Now it¡¯s time to deploy and test this application. 
+ï»¿We have developed Spring MVC gradle application successfully. 
+Now itâ€™s time to deploy and test this application. 
 You can deploy this application into any Web/Application Server. 
-I¡¯m going to test this application using Apache Tomcat 8.
+Iâ€™m going to test this application using Apache Tomcat 8.
 
-ÅäÖÃTomcat»·¾³±äÁ¿:
+é…ç½®Tomcatç¯å¢ƒå˜é‡:
 
 0${TOMCAT8_HOME} = D:\apache-tomcat-8.0.24
 ${TOMCAT8_BIN} = D:\apache-tomcat-8.0.24\bin
 
-1. Copy our war file ¡°SpringMVCExample-1.0.0-BUILD-SNAPSHOT.war¡± 
+1. Copy our war file â€œSpringMVCExample-1.0.0-BUILD-SNAPSHOT.warâ€ 
 to ${TOMCAT8_HOME}/webapps/ folder
 
 2. Open CMD Prompt at ${TOMCAT8_BIN} and start Tomcat server:
@@ -24,16 +24,16 @@ Access Login page using this
 
 url: localhost:8080/SpringMVCExample-1.0.0-BUILD-SNAPSHOT/login/
 
-Provide Username,click on ¡°Login¡± button and observe next page as shown below:
+Provide Username,click on â€œLoginâ€ button and observe next page as shown below:
 
 
-GradleºÍMavenÏîÄ¿Ö®¼äµÄ¹Û²ì
+Gradleå’ŒMavené¡¹ç›®ä¹‹é—´çš„è§‚å¯Ÿ
 
-Èç¹ûÎÒÃÇ¹Û²ì»ùÓÚSpringMVCExample MavenºÍGradleµÄÏîÄ¿£¬ÎÒÃÇ¿ÉÒÔ¹Û²ìµ½ÒÔÏÂÄÚÈİ¡£
+å¦‚æœæˆ‘ä»¬è§‚å¯ŸåŸºäºSpringMVCExample Mavenå’ŒGradleçš„é¡¹ç›®ï¼Œæˆ‘ä»¬å¯ä»¥è§‚å¯Ÿåˆ°ä»¥ä¸‹å†…å®¹ã€‚
 
-1. ÎÒÃÇµÃµ½ÏàÍ¬µÄwarÎÄ¼şºÍÊä³ö¡£
-2. MavenµÄbuild.xmlÊÇXMLÎÄ¼ş£¬ÆäÖĞGradleµÄbuild.gradleÎÄ¼şÊÇ´¿ÎÄ±¾ÎÄ¼ş¡£
-3 MavenµÄbuild.xmlÌ«´óÁË£¬°üº¬ºÜ¶àXMLÅäÖÃ¡£ GradleµÄbuild.gradle°üº¬·Ç³£Ğ¡µÄÅäÖÃ¡£
-4. GradleµÄbuild.gradleÎÄ¼ş°üº¬½ÏÉÙµÄÅäÖÃºÍ·Ç³£ÇáÁ¿¼¶µÄ¹¹½¨½Å±¾ÎÄ¼ş¡£
+1. æˆ‘ä»¬å¾—åˆ°ç›¸åŒçš„waræ–‡ä»¶å’Œè¾“å‡ºã€‚
+2. Mavençš„build.xmlæ˜¯XMLæ–‡ä»¶ï¼Œå…¶ä¸­Gradleçš„build.gradleæ–‡ä»¶æ˜¯çº¯æ–‡æœ¬æ–‡ä»¶ã€‚
+3 Mavençš„build.xmlå¤ªå¤§äº†ï¼ŒåŒ…å«å¾ˆå¤šXMLé…ç½®ã€‚ Gradleçš„build.gradleåŒ…å«éå¸¸å°çš„é…ç½®ã€‚
+4. Gradleçš„build.gradleæ–‡ä»¶åŒ…å«è¾ƒå°‘çš„é…ç½®å’Œéå¸¸è½»é‡çº§çš„æ„å»ºè„šæœ¬æ–‡ä»¶ã€‚
 
-ÓÉÓÚÕâĞ©Ô­Òò£¬ÏÖÔÚ´ó¶àÊıĞÂÏîÄ¿¶¼ÊÇ´ÓGradle¹¹½¨¹¤¾ß¿ªÊ¼£¬ÏÖÓĞÏîÄ¿ÕıÔÚ´ÓMaven×ª»»ÎªGradle¡£
+ç”±äºè¿™äº›åŸå› ï¼Œç°åœ¨å¤§å¤šæ•°æ–°é¡¹ç›®éƒ½æ˜¯ä»Gradleæ„å»ºå·¥å…·å¼€å§‹ï¼Œç°æœ‰é¡¹ç›®æ­£åœ¨ä»Mavenè½¬æ¢ä¸ºGradleã€‚

@@ -1,7 +1,7 @@
-Below are the steps to follow for converting maven to gradle application:
+ï»¿Below are the steps to follow for converting maven to gradle application:
 
 1. Import this spring mvc maven project into Eclipse IDE.
-2. Remove pom.xml file(Òª×¢Òâ±¸·İÒ»ÏÂ)
+2. Remove pom.xml file(è¦æ³¨æ„å¤‡ä»½ä¸€ä¸‹)
 3. Create empty build.gradle file.
 4. Now start converting each and every component from pom.xml to build.gradle file.
 
@@ -9,7 +9,7 @@ a. Base build.gradle template file: build.gradle
 
 b. As it is a Spring MVC web application, we need to create WAR file. 
 So Please apply war plugin and define war attributes as shown below.
-Also Provide war file name and it¡¯s version.
+Also Provide war file name and itâ€™s version.
 
 apply plugin: "war"
 war {
@@ -27,7 +27,7 @@ dependencies {
 
 
 Add rest of our application Dependencies as shown below:
-Ìí¼ÓÎÒÃÇµÄÆäËûÓ¦ÓÃ³ÌĞòÒÀÀµÏî£¬ÈçÏÂËùÊ¾:
+æ·»åŠ æˆ‘ä»¬çš„å…¶ä»–åº”ç”¨ç¨‹åºä¾èµ–é¡¹ï¼Œå¦‚ä¸‹æ‰€ç¤º:
 
 
 dependencies {
@@ -47,15 +47,15 @@ dependencies {
     testCompile("junit:junit:4.7") 
 }
 
-We use ¡°compile()¡± element to add dependencies:
+We use â€œcompile()â€ element to add dependencies:
 
 compile("org.springframework:spring-context:4.0.0.RELEASE")
 
-We use ¡°providedRuntime()¡± element to add dependencies at runtime:
+We use â€œprovidedRuntime()â€ element to add dependencies at runtime:
 
 providedRuntime("javax.servlet:jstl:2.5")
 
-We use ¡°testCompile()¡± element to add dependencies for running only unit tests:
+We use â€œtestCompile()â€ element to add dependencies for running only unit tests:
 
 testCompile("junit:junit:4.7") 
 
@@ -88,11 +88,11 @@ gradle clean
 gradle build
 
 Or execute both commands at once using the following syntax.
- It¡¯s similar to executing Maven commands.
+ Itâ€™s similar to executing Maven commands.
 
 gradle clean build
 
-I always recommend everyone to use ¡°clean¡± command 
+I always recommend everyone to use â€œcleanâ€ command 
 before building our application. It cleans our 
 old build stuff,compiles and creates new WAR/JAR 
 with latest files.

@@ -1,45 +1,17 @@
-We will also see how to run gradle commands from Command Prompt¡±.
+ï»¿gradleå’Œmavenéƒ½æ˜¯æ„å»ºå’Œä¾èµ–ç®¡ç†å·¥å…·ã€‚ æˆ‘ä»¬å°†åœ¨æ¯”è¾ƒgradleä¸mavenæ—¶è€ƒè™‘ä»¥ä¸‹å‡ ç‚¹ã€‚
 
-Here we will look more into gradle commands and corresponding maven commands.
+1. Gradle vs Mavenå‘½ä»¤
+2. å°†Gradleé¡¹ç›®å®‰è£…åˆ°Maven Repo
+3. Maven vs Gradleæ„å»ºè„šæœ¬ä¸»è¦å…ƒç´ 
+4. Maven vs Gradleå‘½ä»¤ç®€ä»‹
 
-We are going to use Gradle Spring MVC example program to 
-demonstrate most of the gradle commands in this post.
 
-gradleºÍmaven¶¼ÊÇ¹¹½¨ºÍÒÀÀµ¹ÜÀí¹¤¾ß¡£ ÎÒÃÇ½«ÔÚ±È½ÏgradleÓëmavenÊ±¿¼ÂÇÒÔÏÂ¼¸µã¡£
+#### Gradle vs Mavenå‘½ä»¤
 
-1. Gradle vs MavenÃüÁî
-2. ½«GradleÏîÄ¿°²×°µ½Maven Repo
-3. Maven vs Gradle¹¹½¨½Å±¾Ö÷ÒªÔªËØ
-4. Maven vs GradleÃüÁî¼ò½é
+2. To deploy our application into any Web or Application servers, 
+we need to create our application JAR/WAR/EAR files using the following maven command:
 
-#### Gradle vs MavenÃüÁî
-
-ÓÉÓÚÎÒÃÇ¶¼ÒÑ¾­·Ç³£ÊìÏ¤maven¹¹½¨¹¤¾ß£¬Òò´Ë×îºÃ½«mavenÃüÁîÓëgradleÃüÁî½øĞĞ±È½Ï£¬ÒÔ±ãÇáËÉÑ§Ï°gradle¡£
-
-ÔÚ±¾½ÚÖĞ£¬ÎÒÃÇ½«³¢ÊÔ»ñÈ¡Ã¿¸ömavenÃüÁî²¢ÕÒ³ögradleÖĞµÄ¶ÔÓ¦ÃüÁî¡£
-
-In this section, we will try to take each maven command and 
-find out the counterpart in gradle.
-
-ÓëMavenÒ»Ñù£¬ÎÒÃÇ¿ÉÒÔÍ¨¹ıÊ¹ÓÃEclipse IDE£¬Spring STS IDE£¬IntelliJ IDEAµÈ
-IDEÒÔ¼°ÃüÁîÌáÊ¾·ûÀ´ÔËĞĞgradleÃüÁî¡£
-
-Ê×ÏÈÎÒÃÇÓ¦¸ÃÖªµÀµÄÊÇÎÒÃÇµÄÈí¼ş°æ±¾£¬ÒÔ±ãÎÒÃÇ¿ÉÒÔÁË½âÎÒÃÇ¿ÉÒÔÔÚÓ¦ÓÃ³ÌĞò¿ª·¢ÖĞÊ¹ÓÃÄÄĞ©¹¦ÄÜ¡£
-
-ÒªÖªµÀmavenµÄ°æ±¾£¬ÎÒÃÇĞèÒªÊ¹ÓÃÒÔÏÂmavenÃüÁî£º
-
-mvn --version
-
-gradle --version
-
-To create JAR/WAR/EAR
-
-To deploy our application into any Web or Application servers, 
-we need to create our application JAR/WAR/EAR files.
-
-To create JAR/WAR/EAR, we need to use the following maven command:
-
-`mvn package`
+`mvn package`(åˆ›å»ºJAR/WAR/EAR)
 
 To create JAR/WAR/EAR in gradle, we need to use the following gradle command:
 
@@ -47,29 +19,26 @@ To create JAR/WAR/EAR in gradle, we need to use the following gradle command:
 
 We can observe newly generate war file at ${PROJECT_ROOT_DIR}/build/libs/ as shown below.
 
-We can observe compiled *.class files at 
-${PROJECT_ROOT_DIR}/build/classes/main/[our-package-structure]/*.class.
+We can observe compiled *.class files at ${PROJECT_ROOT_DIR}/build/classes/main/[our-package-structure]/*.class.
 
 
-To run Unit Tests
+3. è¿è¡Œå•å…ƒæµ‹è¯•
 
 To run only JUnit tests without creating our application JAR/WAR/EAR file, 
 we need to use the following commands:
 
 To compile and run unit tests:
 
-mvn test
+`mvn test`
 
-gradle test
+`gradle test`
 
 To Skip Unit Tests
 
 To skip JUnit tests and do required other tasks, 
 we need to use the following commands:
 
-mvn install -DskipTests
-#OR
-mvn install -Dmaven.test.skip=true
+mvn install -DskipTests æˆ– mvn install -Dmaven.test.skip=true
 
 gradle -x test install
 
@@ -87,9 +56,7 @@ gradle build
 NOTE: In both maven and gradle, we can pipe two or more commands 
 and execute them at once as shown above.
 
-To clean
-
-It¡¯s always recommended to clean everything before compile and build our application code.
+4. Itâ€™s always recommended to clean everything before compile and build our application code.
 
 To delete build directory:
 
@@ -136,9 +103,7 @@ we need to use following command.
 
 mvn jar
 
-gradle jar
-#or 
-gradle libs
+gradle jar #or gradle libs
 
 Eclipse IDE Commands
 To Generate a Project and all Eclipse required files:
@@ -158,8 +123,8 @@ Install Gradle Project To Maven Repo
 We can use gradle install command to build and install our 
 application JAR/WAR file to our local maven repository.
 
-We cannot execute ¡°gradle install¡± command with our previous 
-gradle project example from Gradle Spring MVC¡± 
+We cannot execute â€œgradle installâ€ command with our previous 
+gradle project example from Gradle Spring MVCâ€ 
 because we have not specified any maven plugins in build.gradle file.
 
 Now we will change our build.gradle file to include this functionality. 
@@ -175,7 +140,7 @@ Add build.gradle file root elements as shown below.
 group = "com.journaldev"
 version = "1.0"
 
-If we don¡¯t specify version element here, 
+If we donâ€™t specify version element here, 
 then it uses war file version declaration as shown below.
 
 war {
@@ -183,13 +148,12 @@ war {
     version = '1.0.0-BUILD-SNAPSHOT'
 }
 
-That¡¯s it. Now our gradle install will copy application 
+Thatâ€™s it. Now our gradle install will copy application 
 jar/war file to maven repository too.
 
 Our complete and new build.gradle file
 
 <-- start -->
-
 
 apply plugin: "java"
 apply plugin: "eclipse"
@@ -228,7 +192,7 @@ dependencies {
 
 <-- end -->
 
-Execute ¡°gradle install¡± command
+Execute â€œgradle installâ€ command
 
 gradle install
 

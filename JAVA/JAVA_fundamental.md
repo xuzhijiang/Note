@@ -1,3 +1,6 @@
+使用Notepad++的时候，默认编码要设置为UTF-8 without BOM即可,千万
+不要使用UTF-8-BOM，因为会出现所编辑文本第一个字符是？的问题.
+
 算法: https://github.com/michaelliao/algorithms
 springcloud: https://github.com/michaelliao/springcloud
 

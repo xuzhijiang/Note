@@ -1,4 +1,4 @@
-apply plugin: 'java'
+﻿apply plugin: 'java'
 apply plugin: 'eclipse'
 
 sourceCompatibility = 1.8

@@ -1,6 +1,6 @@
-// Gradle¹¹½¨½Å±¾ËùĞèµÄ²å¼ş,ÀàËÆÓÚÒÔÏÂmaven¹¹½¨½Å±¾¶¨Òå:
+// Gradleæ„å»ºè„šæœ¬æ‰€éœ€çš„æ’ä»¶,ç±»ä¼¼äºä»¥ä¸‹mavenæ„å»ºè„šæœ¬å®šä¹‰:
 /*
-defining ¡°maven-eclipse-plugin¡± plugin,´ËpluginÊ¹ÓÃJava1.7°æ±¾.
+defining â€œmaven-eclipse-pluginâ€ plugin,æ­¤pluginä½¿ç”¨Java1.7ç‰ˆæœ¬.
 <build>
   <plugins>
 	<plugin>
@@ -15,27 +15,27 @@ defining ¡°maven-eclipse-plugin¡± plugin,´ËpluginÊ¹ÓÃJava1.7°æ±¾.
  </plugins>
 </build>
 */
-// ×¢Òâ£ºÓëGradle Eclipse²å¼şÒ»Ñù£¬Maven Eclipse²å¼şÊ¹ÓÃJava 1.5°æ±¾×÷ÎªÄ¬ÈÏÖµ¡£
+// æ³¨æ„ï¼šä¸Gradle Eclipseæ’ä»¶ä¸€æ ·ï¼ŒMaven Eclipseæ’ä»¶ä½¿ç”¨Java 1.5ç‰ˆæœ¬ä½œä¸ºé»˜è®¤å€¼ã€‚
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
 // it is referring Java 1.5
-// ÎÒÃÇÔÚIDEºÍGradleµÄ¹¹½¨½Å±¾ÎÄ¼şÖĞÊ¹ÓÃÏàÍ¬µÄJava°æ±¾,¾Í²»»á
-// ÓĞ¾¯¸æ£¬·ñÔò»áÓĞ¾¯¸æ: Òıµ¼Àà(bootstrap class path)Â·¾¶Ã»ÓĞÉèÖÃ
-// ÔÚbuild.gradleÎÄ¼şÖĞ£¬ÎÒÃÇÊ¹ÓÃ¡°sourceCompatibility¡±
-// ÔªËØÀ´¶¨Òågradle¹¹½¨¹¤¾ßÊ¹ÓÃµÄjava°æ±¾¡£
+// æˆ‘ä»¬åœ¨IDEå’ŒGradleçš„æ„å»ºè„šæœ¬æ–‡ä»¶ä¸­ä½¿ç”¨ç›¸åŒçš„Javaç‰ˆæœ¬,å°±ä¸ä¼š
+// æœ‰è­¦å‘Šï¼Œå¦åˆ™ä¼šæœ‰è­¦å‘Š: å¼•å¯¼ç±»(bootstrap class path)è·¯å¾„æ²¡æœ‰è®¾ç½®
+// åœ¨build.gradleæ–‡ä»¶ä¸­ï¼Œæˆ‘ä»¬ä½¿ç”¨â€œsourceCompatibilityâ€
+// å…ƒç´ æ¥å®šä¹‰gradleæ„å»ºå·¥å…·ä½¿ç”¨çš„javaç‰ˆæœ¬ã€‚
 sourceCompatibility = 1.8
 
-// ´ò°üÏîÄ¿ÎÄ¼ş(Packing Project Files)
-// ÔÚ¿ª·¢ÈÎºÎÏîÄ¿»òÔÚ²»Í¬»·¾³£¨Dev£¬QA£¬PRODµÈ£©ÖĞ²âÊÔ/²¿ÊğÏîÄ¿Ö®ºó£¬
-// ÎÒÃÇĞèÒª½«Æä´ò°ü³ÉÎÒÃÇËùĞèµÄ¸ñÊ½£¬ÈçJarÎÄ¼ş£¬WarÎÄ¼ş»òEARÎÄ¼ş¡£
+// æ‰“åŒ…é¡¹ç›®æ–‡ä»¶(Packing Project Files)
+// åœ¨å¼€å‘ä»»ä½•é¡¹ç›®æˆ–åœ¨ä¸åŒç¯å¢ƒï¼ˆDevï¼ŒQAï¼ŒPRODç­‰ï¼‰ä¸­æµ‹è¯•/éƒ¨ç½²é¡¹ç›®ä¹‹åï¼Œ
+// æˆ‘ä»¬éœ€è¦å°†å…¶æ‰“åŒ…æˆæˆ‘ä»¬æ‰€éœ€çš„æ ¼å¼ï¼Œå¦‚Jaræ–‡ä»¶ï¼ŒWaræ–‡ä»¶æˆ–EARæ–‡ä»¶ã€‚
 
-// ÔÚGradleÖĞ£¬ÎÒÃÇĞèÒªÊ¹ÓÃ¡°jar¡±ÔªËØÀ´Í¨Öª¡°gradle¡±ÃüÁîÀ´´´½¨JARÎÄ¼ş
-// JarµÄÎÄ¼şÃû(filename)ºÍ°æ±¾ºÅ(version)£º
+// åœ¨Gradleä¸­ï¼Œæˆ‘ä»¬éœ€è¦ä½¿ç”¨â€œjarâ€å…ƒç´ æ¥é€šçŸ¥â€œgradleâ€å‘½ä»¤æ¥åˆ›å»ºJARæ–‡ä»¶
+// Jarçš„æ–‡ä»¶å(filename)å’Œç‰ˆæœ¬å·(version)ï¼š
 // Jar Filename: By default, gradle uses project name as jar file name.
 // Jar File Version: We need to define project jar file version 
-// using ¡°version¡± element in build.gradle file as shown below.
+// using â€œversionâ€ element in build.gradle file as shown below.
 version = '1.0'
 // This Gradle element is similar to the following Maven element.
 // <version>1.0</version>
@@ -46,11 +46,11 @@ jar {
     }
 }
 // Finally, our project jar file name = Project name + Version name. 
-// That¡¯s why our jar file name is JavaGradleSimpleExample-1.0.jar.
+// Thatâ€™s why our jar file name is JavaGradleSimpleExample-1.0.jar.
 
 
 // This Gradle element is similar to the following Maven element
-// ´ËGradleÔªËØÀàËÆÓÚÒÔÏÂMavenÔªËØ:
+// æ­¤Gradleå…ƒç´ ç±»ä¼¼äºä»¥ä¸‹Mavenå…ƒç´ :
 // <packaging>jar</packaging>
 
 // To create WAR (WebApplication Archive) file, we need to use below gradle syntax.
@@ -58,7 +58,7 @@ jar {
 //war {
 //}
 
-// ´ËGradleÔªËØÀàËÆÓÚÒÔÏÂMavenÔªËØ:
+// æ­¤Gradleå…ƒç´ ç±»ä¼¼äºä»¥ä¸‹Mavenå…ƒç´ :
 // <packaging>war</packaging>
 
 // To create EAR(Enterprise Application Archive) file, we need to use this syntax:
@@ -68,9 +68,9 @@ jar {
 //This Gradle element is similar to the following Maven element
 //<packaging>ear</packaging>
 
-// Èç¹ûÎÒÃÇ´í¹ı´ò°ü»ò»ã±àÔªËØ¶¨Òå(miss packaging or assemble element definition)£¬mavenºÍgradle¶¼Ê¹ÓÃÄ¬ÈÏÖµ£º¡°jar¡±°ü²å¼ş¡£
-// ÓÉÓÚ¡°jar¡±ÊÇÄ¬ÈÏµÄ»ã±àÖµ(default assemble value)£¬ÎÒÃÇ²»ĞèÒªÔÚgradleµÄ¹¹½¨½Å±¾ÎÄ¼şÖĞÓ¦ÓÃjar²å¼ş¡£ 
-// µ«ÊÇ£¬Òª´´½¨WAR»òEAR£¬ÎÒÃÇĞèÒªÓ¦ÓÃÏàÓ¦µÄ²å¼ş£¬ÈçÏÂËùÊ¾£º
+// å¦‚æœæˆ‘ä»¬é”™è¿‡æ‰“åŒ…æˆ–æ±‡ç¼–å…ƒç´ å®šä¹‰(miss packaging or assemble element definition)ï¼Œmavenå’Œgradleéƒ½ä½¿ç”¨é»˜è®¤å€¼ï¼šâ€œjarâ€åŒ…æ’ä»¶ã€‚
+// ç”±äºâ€œjarâ€æ˜¯é»˜è®¤çš„æ±‡ç¼–å€¼(default assemble value)ï¼Œæˆ‘ä»¬ä¸éœ€è¦åœ¨gradleçš„æ„å»ºè„šæœ¬æ–‡ä»¶ä¸­åº”ç”¨jaræ’ä»¶ã€‚ 
+// ä½†æ˜¯ï¼Œè¦åˆ›å»ºWARæˆ–EARï¼Œæˆ‘ä»¬éœ€è¦åº”ç”¨ç›¸åº”çš„æ’ä»¶ï¼Œå¦‚ä¸‹æ‰€ç¤ºï¼š
 
 // To create WAR file:
 
@@ -85,9 +85,9 @@ jar {
 //}
 
 // How to provide our required Project name and Version?
-// ÈçºÎÌá¹©ÎÒÃÇËùĞèµÄÏîÄ¿Ãû³ÆºÍ°æ±¾:
-// ÕıÈçÎÒÃÇËùÌÖÂÛµÄ£¬ÎÒÃÇ¿ÉÒÔÊ¹ÓÃbuild.gradleÎÄ¼şµÄ¡°version¡±ÔªËØÀ´¶¨ÒåJar/WAR/EARÎÄ¼şµÄ°æ±¾¡£
-// µ«ÊÇ½¨ÒéÊ¹ÓÃ´ËÓï·¨À´¶¨ÒåÎÒÃÇµÄjarÎÄ¼şÃûºÍ°æ±¾:
+// å¦‚ä½•æä¾›æˆ‘ä»¬æ‰€éœ€çš„é¡¹ç›®åç§°å’Œç‰ˆæœ¬:
+// æ­£å¦‚æˆ‘ä»¬æ‰€è®¨è®ºçš„ï¼Œæˆ‘ä»¬å¯ä»¥ä½¿ç”¨build.gradleæ–‡ä»¶çš„â€œversionâ€å…ƒç´ æ¥å®šä¹‰Jar/WAR/EARæ–‡ä»¶çš„ç‰ˆæœ¬ã€‚
+// ä½†æ˜¯å»ºè®®ä½¿ç”¨æ­¤è¯­æ³•æ¥å®šä¹‰æˆ‘ä»¬çš„jaræ–‡ä»¶åå’Œç‰ˆæœ¬:
 
 /*
 jar {
@@ -109,9 +109,9 @@ war{
 }
 */
 
-// Ëü½«Ê¹ÓÃÒÔÏÂÃû³Æ´´½¨Ò»¸öWARÎÄ¼ş£ºMyJavaGradleProject-2.0.war¡£ 
-// ÎÒÃÇ¿ÉÒÔ½«´ËwarÎÄ¼ş²¿Êğµ½ÈÎºÎWeb»òApplication Server£¨ÈçTomcat£¬WeblogicµÈ£©ÖĞ£¬
-// »òÕßÎÒÃÇ¿ÉÒÔÊ¹ÓÃ¡°java -jar¡±ÃüÁîÔËĞĞËü¡£
+// å®ƒå°†ä½¿ç”¨ä»¥ä¸‹åç§°åˆ›å»ºä¸€ä¸ªWARæ–‡ä»¶ï¼šMyJavaGradleProject-2.0.warã€‚ 
+// æˆ‘ä»¬å¯ä»¥å°†æ­¤waræ–‡ä»¶éƒ¨ç½²åˆ°ä»»ä½•Webæˆ–Application Serverï¼ˆå¦‚Tomcatï¼ŒWeblogicç­‰ï¼‰ä¸­ï¼Œ
+// æˆ–è€…æˆ‘ä»¬å¯ä»¥ä½¿ç”¨â€œjava -jarâ€å‘½ä»¤è¿è¡Œå®ƒã€‚
 
 // NOTE:- If we define both version elements like below, what will happen?
 
@@ -122,8 +122,8 @@ jar {
     version =  '2.0'
 }
 */
-//gradle command use ¡°version¡± element from ¡°jar{ }¡± element so that our Jar file name will be MyJavaGradleProject-2.0.jar because inner ¡°version¡± element has higher priority than outer element.
-//Inner ¡°version¡± element overrides outer ¡°version¡± element value.
+//gradle command use â€œversionâ€ element from â€œjar{ }â€ element so that our Jar file name will be MyJavaGradleProject-2.0.jar because inner â€œversionâ€ element has higher priority than outer element.
+//Inner â€œversionâ€ element overrides outer â€œversionâ€ element value.
 
 
 // Gradle Repository Definitions
@@ -139,17 +139,17 @@ repositories {
 
 
 
-// ÎÒÃÇĞèÒªÔÚbuild.gradleÎÄ¼şÖĞÊ¹ÓÃ¡°dependencies¡±ÔªËØÀ´¶¨ÒåÎÒÃÇµÄÏîÄ¿ÒÀÀµÏî¡£
-// µ±ÎÒÃÇ¶¨ÒåÒÀÀµÏîÊ±£¬Gradle½«´ÓMavenRepositoryÖĞ¼ì²éÕâĞ©jarÎÄ¼ş²¢½«ËüÃÇÏÂÔØµ½±¾µØ²¢Ìí¼Óµ½ÎÒÃÇµÄÏîÄ¿¹¹½¨Â·¾¶ÖĞ¡£
+// æˆ‘ä»¬éœ€è¦åœ¨build.gradleæ–‡ä»¶ä¸­ä½¿ç”¨â€œdependenciesâ€å…ƒç´ æ¥å®šä¹‰æˆ‘ä»¬çš„é¡¹ç›®ä¾èµ–é¡¹ã€‚
+// å½“æˆ‘ä»¬å®šä¹‰ä¾èµ–é¡¹æ—¶ï¼ŒGradleå°†ä»MavenRepositoryä¸­æ£€æŸ¥è¿™äº›jaræ–‡ä»¶å¹¶å°†å®ƒä»¬ä¸‹è½½åˆ°æœ¬åœ°å¹¶æ·»åŠ åˆ°æˆ‘ä»¬çš„é¡¹ç›®æ„å»ºè·¯å¾„ä¸­ã€‚
 
-// Here we use ¡°compile¡± element to define project development dependencies 
-// and ¡°testCompile¡± element to define JUnit/Testing Dependencies.
+// Here we use â€œcompileâ€ element to define project development dependencies 
+// and â€œtestCompileâ€ element to define JUnit/Testing Dependencies.
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
-// We can define above ¡°dependencies¡± element even simpler as shown below:
+// We can define above â€œdependenciesâ€ element even simpler as shown below:
 /*
 dependencies {
 	compile("commons-collections:commons-collections:3.2")
@@ -157,16 +157,16 @@ dependencies {
 }
 */
 
-// We can also use the following syntax to define ¡°dependencies¡± element (without brackets):
+// We can also use the following syntax to define â€œdependenciesâ€ element (without brackets):
 /*
 dependencies {
 	compile "commons-collections:commons-collections:3.2"
 	testCompile "junit:junit:4.+"
 }
 */
-// ÕâÒâÎ¶×Å£¬Èç¹û²»Ö¸¶¨Ã¿¸öÒÀÀµjarÎÄ¼şµÄ×é(group)£¬Ãû³Æ(name)ºÍ°æ±¾(version)£¬ÎÒÃÇ¿ÉÒÔÊ¹ÓÃ´Ë¸ñÊ½¶¨ÒåËüÃÇ¡£
-// µ«ÊÇÎÒÃÇÓ¦¸Ã°´ÕÕÏàÍ¬µÄË³ĞòÀ´¶¨ÒåËüÃÇ£ºgroup£¬nameÈ»ºóÊÇversion¡£ 
-// ÎÒÃÇĞèÒªÊ¹ÓÃÃ°ºÅ£¨:)ÔËËã·ûÀ´·Ö¸ôËüÃÇ,¶ø²»ÊÇ¶ººÅ£¨£¬£©
+// è¿™æ„å‘³ç€ï¼Œå¦‚æœä¸æŒ‡å®šæ¯ä¸ªä¾èµ–jaræ–‡ä»¶çš„ç»„(group)ï¼Œåç§°(name)å’Œç‰ˆæœ¬(version)ï¼Œæˆ‘ä»¬å¯ä»¥ä½¿ç”¨æ­¤æ ¼å¼å®šä¹‰å®ƒä»¬ã€‚
+// ä½†æ˜¯æˆ‘ä»¬åº”è¯¥æŒ‰ç…§ç›¸åŒçš„é¡ºåºæ¥å®šä¹‰å®ƒä»¬ï¼šgroupï¼Œnameç„¶åæ˜¯versionã€‚ 
+// æˆ‘ä»¬éœ€è¦ä½¿ç”¨å†’å·ï¼ˆ:)è¿ç®—ç¬¦æ¥åˆ†éš”å®ƒä»¬,è€Œä¸æ˜¯é€—å·ï¼ˆï¼Œï¼‰
 
 // Like maven, in gradle build script also we define group, name and version of each dependency jar file.
 
@@ -191,10 +191,10 @@ compile group:'commons-collections',name:'commons-collections',version:'3.2'
 */
 
 /*
-That means Gradle¡¯s ¡°group¡± element is similar to Maven¡¯s ¡°groupId¡± element.
+That means Gradleâ€™s â€œgroupâ€ element is similar to Mavenâ€™s â€œgroupIdâ€ element.
 
-Gradle¡¯s ¡°name¡± element is similar to Maven¡¯s ¡°artifactId¡± element 
-and Gradle¡¯s ¡°version¡± element is similar to Maven¡¯s ¡°version¡± element.
+Gradleâ€™s â€œnameâ€ element is similar to Mavenâ€™s â€œartifactIdâ€ element 
+and Gradleâ€™s â€œversionâ€ element is similar to Mavenâ€™s â€œversionâ€ element.
 */
 
 
@@ -216,6 +216,6 @@ When we execute Maven/Gradle commands, they will interact with
 online maven repository and download required jars into Local repository.
 
 In Windows Systems, this Local Repository is stored at 
-¡°C:\Users\[Windos-UserName]\.m2\repository¡± as shown below. 
+â€œC:\Users\[Windos-UserName]\.m2\repositoryâ€ as shown below. 
 In Unix/Mac systems, .m2 folder is created in home directory of user.
 */

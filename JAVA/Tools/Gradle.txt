@@ -1,0 +1,4 @@
+gradle是构建和依赖管理工具
+
+1. 查看gradle版本: gradle --version
+2. 

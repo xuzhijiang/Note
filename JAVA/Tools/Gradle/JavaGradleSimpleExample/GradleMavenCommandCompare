@@ -1,13 +1,13 @@
-Maven vs Gradle Build Script Major Elements
+ï»¿Maven vs Gradle Build Script Major Elements
 
-If we observe both maven¡¯s pom.xml and gradle¡¯s build.gradle file, 
+If we observe both mavenâ€™s pom.xml and gradleâ€™s build.gradle file, 
 we can find the following things.
 
 MAVEN ELEMENTS	GRADLE ELEMENTS
 
-<groupId>	Gradle¡¯s ¡°group¡± Element
-<artifactId>	Gradle¡¯s ¡°baseName¡± Element
-<version>	Gradle¡¯s ¡°version¡± Element
+<groupId>	Gradleâ€™s â€œgroupâ€ Element
+<artifactId>	Gradleâ€™s â€œbaseNameâ€ Element
+<version>	Gradleâ€™s â€œversionâ€ Element
 
 1. Like Maven, we can integrate existing ANT tasks in Gradle and use them in our projects.
 2. Like Maven, we can create our own project specific Gradle tasks and use them in our projects.
@@ -22,10 +22,10 @@ MAVEN COMMAND	GRADLE COMMAND
 mvn package	gradle assemble
 mvn test	gradle test
 mvn clean	gradle clean
-mvn ¨Chelp	gradle ¨Chelp
+mvn â€“help	gradle â€“help
 mvn install	gradle install
-mvn ¨Cversion	gradle ¨Cversion
+mvn â€“version	gradle â€“version
 
-It¡¯s a brief comparison between Maven vs Gradle build tools. 
-It¡¯s not enough to include everything in one post to list all commands with suitable examples. 
+Itâ€™s a brief comparison between Maven vs Gradle build tools. 
+Itâ€™s not enough to include everything in one post to list all commands with suitable examples. 
 I hope we have given enough basics to dig into these two tools further to become an expert.
