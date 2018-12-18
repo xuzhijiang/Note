@@ -44,7 +44,13 @@
 	<bean name="employeeXMLConfigAspect"
 		class="com.journaldev.spring.aspect.EmployeeXMLConfigAspect" />
 
+	<!-- We can configure "Spring AOP XML Configuration" by including 
+	following configuration in the Spring Bean config file.
+	-->
 	<!-- Spring AOP XML Configuration -->
+	<!-- AOP xml config elements purpose is clear from their name, so I 
+	won’t go into much detail about it.
+	AOP xml配置元素的目的很明显，因此我不会详细介绍它。 -->
 	<aop:config>
 		<aop:aspect ref="employeeXMLConfigAspect"
 			id="employeeXMLConfigAspectID" order="1">

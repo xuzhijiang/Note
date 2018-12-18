@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+	default-autowire="byName" default-autowire-candidates="*">
+
+	<!-- Spring bean配置文件是任何spring应用程序的主要部分，
+	 -->
+	 
+	 <!-- 关于Spring bean配置文件的重点是： -->
+	 
+	 <!-- 1. beans元素“default-autowire” 用于定义默认的自动装配方法。
+			   在这里，我将默认的自动装配方法定义为byName。
+		  
+		  2. beans元素“default-autowire-candidates”用于提供 可用于自动装配的 bean名称的模式。
+		            为简单起见，我允许所有bean定义都符合自动装配的条件，但是如果我们可以为自动装配定义一些模式。
+		            例如，如果我们只想要自动装配DAO bean定义，我们可以将其指定为default-autowire-candidates =“* DAO”。
+		          
+		  3. autowire-candidate =“false”用于bean定义，使其不符合自动装配的条件。
+		  	  当我们为单个类型提供多个bean定义并且我们希望其中一些不是自动装配时，它很有用。
+		  	  例如，在下面的spring bean配置中，“employee1”bean不会用于自动装配。
+		  	  
+		  4. autowire属性byName，byType和构造函数是自我理解的，没什么可解释的。
+		  
+		  5. context：annotation-config用于启用基于注释的配置支持。请注意，
+		  employeeAutowiredByTypeService和employeeAutowiredByConstructorService bean
+		     没有autowire属性。 -->
+
+	<bean name="employee"
+		class="com.journaldev.spring.autowiring.model.Employee">
+		<property name="name" value="Pankaj"></property>
+	</bean>
+
+	<bean name="employee1"
+		class="com.journaldev.spring.autowiring.model.Employee"
+		autowire-candidate="false">
+		<property name="name" value="Dummy Name"></property>
+	</bean>
+
+	<!-- autowiring byName, bean name should be same as the property name -->
+	<bean name="employeeServiceByName"
+		class="com.journaldev.spring.autowiring.service.EmployeeService"
+		autowire="byName" />
+
+	<!-- autowiring byType, there should be only one bean definition for the 
+		mapping -->
+	<bean name="employeeServiceByType"
+		class="com.journaldev.spring.autowiring.service.EmployeeService"
+		autowire="byType" />
+
+	<!-- autowiring by constructor -->
+	<bean name="employeeServiceConstructor"
+		class="com.journaldev.spring.autowiring.service.EmployeeService"
+		autowire="constructor" />
+
+	<!-- Enable Annotation based configuration -->
+	<context:annotation-config />
+
+	<!-- using @Autowiring annotation in below beans, byType and constructor -->
+	<bean name="employeeAutowiredByTypeService"
+		class="com.journaldev.spring.autowiring.service.EmployeeAutowiredByTypeService" />
+	<bean name="employeeAutowiredByConstructorService"
+		class="com.journaldev.spring.autowiring.service.EmployeeAutowiredByConstructorService" />
+</beans>

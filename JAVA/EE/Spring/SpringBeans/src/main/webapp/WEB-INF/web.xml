@@ -3,6 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+	<!-- Deployment Descriptor
+		我们需要为Spring Framework配置我们的应用程序，以便加载配置元数据并初始化上下文。 -->
+		
+		<!-- 以下几乎所有配置都是由STS工具自动生成的样板代码 boiler-plate code。 -->
+
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
