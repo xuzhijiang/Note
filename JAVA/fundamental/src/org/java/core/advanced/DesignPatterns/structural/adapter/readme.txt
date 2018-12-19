@@ -1,17 +1,17 @@
-ÊÊÅäÆ÷Éè¼ÆÄ£Ê½(Adapter Design Pattern):
+é€‚é…å™¨è®¾è®¡æ¨¡å¼(Adapter Design Pattern):
 	
-	ÊÊÅäÆ÷Éè¼ÆÄ£Ê½µÄÒ»¸öÖØÒªÏÖÊµÀý×ÓÊÇÒÆ¶¯³äµçÆ÷¡£
-ÒÆ¶¯µç³ØÐèÒª3·ü³äµç²ÅÄÜ³äµç£¬µ«ÆÕÍ¨²å×ùproduces 120V£¨ÃÀ¹ú£©»ò240V£¨Ó¡¶È£©,
- Òò´Ë£¬ÒÆ¶¯³äµçÆ÷¿É×÷ÎªÒÆ¶¯³äµç²å×ùºÍÇ½±Ú²å×ùÖ®¼äµÄÊÊÅäÆ÷¡£
+	é€‚é…å™¨è®¾è®¡æ¨¡å¼çš„ä¸€ä¸ªé‡è¦çŽ°å®žä¾‹å­æ˜¯ç§»åŠ¨å……ç”µå™¨ã€‚
+ç§»åŠ¨ç”µæ± éœ€è¦3ä¼å……ç”µæ‰èƒ½å……ç”µï¼Œä½†æ™®é€šæ’åº§produces 120Vï¼ˆç¾Žå›½ï¼‰æˆ–240Vï¼ˆå°åº¦ï¼‰,
+ å› æ­¤ï¼Œç§»åŠ¨å……ç”µå™¨å¯ä½œä¸ºç§»åŠ¨å……ç”µæ’åº§å’Œå¢™å£æ’åº§ä¹‹é—´çš„é€‚é…å™¨ã€‚
  
-Ê¹ÓÃÊÊÅäÆ÷Éè¼ÆÄ£Ê½Ê¹µÃÁ½¸ö²»Ïà¹ØµÄ½Ó¿Ú¿ÉÒÔÒ»Æð¹¤×÷¡£ Á¬½ÓÕâÐ©²»Ïà¹Ø½Ó¿ÚµÄ¶ÔÏó³ÆÎªÊÊÅäÆ÷¡£
+ä½¿ç”¨é€‚é…å™¨è®¾è®¡æ¨¡å¼ä½¿å¾—ä¸¤ä¸ªä¸ç›¸å…³çš„æŽ¥å£å¯ä»¥ä¸€èµ·å·¥ä½œã€‚ è¿žæŽ¥è¿™äº›ä¸ç›¸å…³æŽ¥å£çš„å¯¹è±¡ç§°ä¸ºé€‚é…å™¨ã€‚
 
-ÔÚÊµÏÖAdapterÄ£Ê½Ê±£¬ÓÐÁ½ÖÖ·½·¨ - ÀàÊÊÅäÆ÷ºÍ¶ÔÏóÊÊÅäÆ÷ - µ«ÊÇÕâÁ½ÖÖ·½·¨¶¼²úÉúÏàÍ¬µÄ½á¹û¡£
+åœ¨å®žçŽ°Adapteræ¨¡å¼æ—¶ï¼Œæœ‰ä¸¤ç§æ–¹æ³• - ç±»é€‚é…å™¨å’Œå¯¹è±¡é€‚é…å™¨ - ä½†æ˜¯è¿™ä¸¤ç§æ–¹æ³•éƒ½äº§ç”Ÿç›¸åŒçš„ç»“æžœã€‚
 
-ÀàÊÊÅäÆ÷ - ´ËÐÎÊ½Ê¹ÓÃjava¼Ì³Ð²¢À©Õ¹Ô´½Ó¿Ú
-¶ÔÏóÊÊÅäÆ÷ - ´ËÐÎÊ½Ê¹ÓÃJava Composition£¬¶øÊÊÅäÆ÷°üº¬Ô´¶ÔÏó¡£
+ç±»é€‚é…å™¨ - æ­¤å½¢å¼ä½¿ç”¨javaç»§æ‰¿å¹¶æ‰©å±•æºæŽ¥å£
+å¯¹è±¡é€‚é…å™¨ - æ­¤å½¢å¼ä½¿ç”¨Java Compositionï¼Œè€Œé€‚é…å™¨åŒ…å«æºå¯¹è±¡ã€‚
 
-JDKÖÐµÄÊÊÅäÆ÷Éè¼ÆÄ£Ê½Ê¾Àý:
+JDKä¸­çš„é€‚é…å™¨è®¾è®¡æ¨¡å¼ç¤ºä¾‹:
 
 java.util.Arrays#asList()
 java.io.InputStreamReader(InputStream) (returns a Reader)

@@ -4,6 +4,8 @@
   <artifactId>SpringBeanLifeCycle</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+  <!-- 我们不需要包含任何额外的依赖项来配置spring bean生命周期方法 -->
+  
   <properties>
 
 		<!-- Generic properties -->

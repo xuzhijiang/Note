@@ -4,6 +4,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.journaldev.spring.service.MyAwareService;
 
+// Spring *Aware Test Program
 public class SpringAwareMain {
 
 	public static void main(String[] args) {

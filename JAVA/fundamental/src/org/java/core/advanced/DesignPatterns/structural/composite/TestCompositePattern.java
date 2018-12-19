@@ -3,6 +3,7 @@ package org.java.core.advanced.DesignPatterns.structural.composite;
 public class TestCompositePattern {
 
 	public static void main(String[] args) {
+		
 		Shape tri = new Triangle();
 		Shape tri1 = new Triangle();
 		Shape cir = new Circle();

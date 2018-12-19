@@ -5,6 +5,7 @@ import org.springframework.beans.factory.InitializingBean;
 
 import com.journaldev.spring.bean.Employee;
 
+// 创建一个服务类，我们将实现post-init和pre-destroy方法的接口。
 public class EmployeeService implements InitializingBean, DisposableBean{
 
 	private Employee employee;

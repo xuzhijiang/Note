@@ -19,6 +19,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.type.AnnotationMetadata;
 
+// 让我们通过在一个我们将配置为spring bean的类中实现其中的
+// 一些Aware接口的使用。
 public class MyAwareService implements ApplicationContextAware,
 		ApplicationEventPublisherAware, BeanClassLoaderAware, BeanFactoryAware,
 		BeanNameAware, EnvironmentAware, ImportAware, ResourceLoaderAware {
