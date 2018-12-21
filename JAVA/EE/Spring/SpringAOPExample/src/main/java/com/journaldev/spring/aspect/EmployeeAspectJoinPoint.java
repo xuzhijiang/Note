@@ -5,11 +5,8 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 
-// We can use JoinPoint as parameter in the advice methods 
-// and using it get the method signature or the target object.
-// 我们可以使用JoinPoint作为 advice methods(通知方法)中的参数，
-// 并使用它来获取方法签名或目标对象。
-
+// 我们可以使用JoinPoint作为 advice methods(advice方法)中的参数，
+// 并使用它(JoinPoint)来获取方法签名或目标对象。
 
 /**
  * We can use args() expression in the pointcut(切入点) to be applied 

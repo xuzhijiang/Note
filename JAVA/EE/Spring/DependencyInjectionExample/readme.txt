@@ -1,7 +1,7 @@
 Java依赖注入设计模式允许我们删除硬编码的依赖项，并使我们的应用程序松散耦合，可扩展和可维护。 
 我们可以在java中实现依赖注入，以将依赖项解析从编译时移动到运行时。
 
- java中的依赖注入至少需要以下内容：
+java中的依赖注入至少需要以下内容：
  
 服务组件应设计为基类或接口。 最好选择定义服务契约的接口或抽象类。
 消费者类应该根据服务接口来编写。
@@ -25,7 +25,6 @@ of changes are known at runtime.如果过度使用，则可能导致维护问题
 2. Dependency injection in java hides the service class dependencies 
 that can lead to runtime errors that would have been caught at compile time.
 java中的依赖注入隐藏了可能导致在编译时捕获的运行时错误的服务类依赖项。
-
 
 It’s good to know and use it when we are in control of the services.
  当我们控制服务时，了解并使用它是很好的。

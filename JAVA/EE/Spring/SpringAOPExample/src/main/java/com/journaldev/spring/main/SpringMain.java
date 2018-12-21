@@ -6,19 +6,21 @@ import com.journaldev.spring.service.EmployeeService;
 
 // how all these aspects cut through the bean methods.
 // 所有这些aspects如何切入bean方法。
+
 public class SpringMain {
 
 	public static void main(String[] args) {
 		
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		
+		// 参数1：要检索的bean的名字
 		EmployeeService employeeService = ctx.getBean("employeeService", EmployeeService.class);
 		
 		System.out.println(employeeService.getEmployee().getName());
 		
 		employeeService.getEmployee().setName("xzj");
 		
-		employeeService.getEmployee().throwException();
+		//employeeService.getEmployee().throwException();
 		
 		ctx.close();
 	}

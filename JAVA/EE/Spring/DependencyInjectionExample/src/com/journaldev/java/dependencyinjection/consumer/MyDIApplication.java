@@ -2,7 +2,8 @@ package com.journaldev.java.dependencyinjection.consumer;
 
 import com.journaldev.java.dependencyinjection.service.MessageService;
 
-// 消费者类应该根据服务接口来编写。
+// 消费者类应该根据服务接口来编写。(即Consumer接口应该根据MessageService接口来编写,
+// 他们的参数应该相同)
 
 // 使用service interface还允许我们通过模拟mock MessageService轻松测试应用程序，
 // 并在运行时而不是编译时绑定服务。
@@ -13,7 +14,7 @@ import com.journaldev.java.dependencyinjection.service.MessageService;
 // 策略模式Strategy Pattern和服务定位模式 Service Locator pattern来实现IoC。
 
 // Spring依赖注入，Google Guice和Java EE CDI框架通过使用Java Reflection API和Java annotation
-// 来促进依赖注入的过程。我们所需要的只是annotation字段、构造函数、setter方法，并在配置xml文件或类中配置它们。
+// 来实现依赖注入的过程。我们所需要的只是annotation字段、构造函数、setter方法，并在配置xml文件或类中配置它们。
 public class MyDIApplication implements Consumer {
 
 	// 我们的应用程序类只是使用该MessageService服务。

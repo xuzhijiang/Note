@@ -5,7 +5,9 @@ import com.journaldev.java.dependencyinjection.consumer.MyDIApplication;
 import com.journaldev.java.dependencyinjection.service.EmailServiceImpl;
 // Java Dependency Injection – Injectors Classes
 
-//  java dependency injector classes 将初始化服务以及消费者类。
+//  java dependency injector classes 初始化服务以及消费者类。
+
+// 在EmailServiceInjector注入器中创建EmailServiceImpl服务
 public class EmailServiceInjector implements MessageServiceInjector {
 
 	// Now for every service, we will have to create injector classes like below.

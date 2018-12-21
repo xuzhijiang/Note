@@ -5,19 +5,20 @@
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 	<!-- 文件名可以是任何内容 -->
 	
-	<!-- 配置XML文件放在source目录中，因此它将在构建后位于classes目录中。 -->
+	<!-- 配置XML文件放在源码目录中，因此它将在构建后位于classes目录中。 -->
 	
-	<!-- 请注意，xia的XML包含基于构造函数和基于setter的spring依赖项注入的配置。
+	<!-- 请注意，下面的XML包含基于构造函数和基于setter的spring依赖项注入的配置。
 	 由于MyXMLApplication使用setter方法进行注入，因此bean配置包含用于注入的属性元素"property"。
 	 对于基于构造函数的注入，我们必须使用"constructor-arg"元素。 -->
-
-<!-- 
-	<bean id="MyXMLApp" class="com.journaldev.spring.di.consumer.MyXMLApplication">
-		<constructor-arg>
-			<bean class="com.journaldev.spring.di.services.TwitterService" />
-		</constructor-arg>
-	</bean>
--->
+	 
+	<!-- 
+		<bean id="MyXMLApp" class="com.journaldev.spring.di.consumer.MyXMLApplication">
+			<constructor-arg>
+				<bean class="com.journaldev.spring.di.services.TwitterService" />
+			</constructor-arg>
+		</bean>
+	-->
+	
 	<bean id="twitter" class="com.journaldev.spring.di.services.TwitterService"></bean>
 	<bean id="MyXMLApp" class="com.journaldev.spring.di.consumer.MyXMLApplication">
 		<property name="service" ref="twitter"></property>

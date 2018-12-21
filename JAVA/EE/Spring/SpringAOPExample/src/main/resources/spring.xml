@@ -4,13 +4,18 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+	
+	<!-- spring bean配置文件 -->
 
-	<!-- 要在Spring bean中使用Spring AOP，我们需要执行以下操作
-	1.  声明AOP名称空间，如xmlns：aop =“http://www.springframework.org/schema/aop”
-	2. Add aop:aspectj-autoproxy element to enable Spring AspectJ support with auto proxy at runtime
-	添加aop：aspectj-autoproxy元素以在运行时使用自动代理启用Spring AspectJ支持
-	3. Configure Aspect classes as other Spring beans
-	将Aspect类配置为其他Spring bean -->
+	<!-- 
+		要在Spring bean中使用Spring AOP，我们需要执行以下操作:
+	
+		1.  声明AOP名称空间，如xmlns:aop =“http://www.springframework.org/schema/aop”
+		2. Add aop:aspectj-autoproxy element to enable Spring AspectJ support 
+		with auto proxy at runtime
+			添加aop：aspectj-autoproxy元素以在运行时使用自动代理启用Spring AspectJ支持
+		3. Configure Aspect classes as other Spring beans
+			将Aspect类配置为其他Spring bean -->
 
 	<!-- Enable AspectJ style of Spring AOP -->
 	<aop:aspectj-autoproxy />
@@ -25,6 +30,7 @@
 		class="com.journaldev.spring.service.EmployeeService">
 		<property name="employee" ref="employee"></property>
 	</bean>
+
 
 	<!-- 可以看到我在spring bean配置文件中定义了很多aspects ， it’s time to 
 	look into those one by one.是时候逐个查看它们了。 -->
@@ -41,8 +47,10 @@
 		class="com.journaldev.spring.aspect.EmployeeAroundAspect" />
 	<bean name="employeeAnnotationAspect"
 		class="com.journaldev.spring.aspect.EmployeeAnnotationAspect" />
+		
 	<bean name="employeeXMLConfigAspect"
 		class="com.journaldev.spring.aspect.EmployeeXMLConfigAspect" />
+
 
 	<!-- We can configure "Spring AOP XML Configuration" by including 
 	following configuration in the Spring Bean config file.
