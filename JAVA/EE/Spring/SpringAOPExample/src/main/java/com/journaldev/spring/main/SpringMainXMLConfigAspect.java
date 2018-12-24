@@ -2,12 +2,12 @@ package com.journaldev.spring.main;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.journaldev.spring.model.Employee;
 import com.journaldev.spring.service.EmployeeService;
 
-// how all these aspects cut through the bean methods.
-// 所有这些aspects如何切入bean方法。
+// 看看这些aspects如何切入bean方法:
 
-public class SpringMain {
+public class SpringMainXMLConfigAspect {
 
 	public static void main(String[] args) {
 		
@@ -16,17 +16,17 @@ public class SpringMain {
 		// 参数1：要检索的bean的名字
 		EmployeeService employeeService = ctx.getBean("employeeService", EmployeeService.class);
 		
+		System.out.println("2-----------Dividing line----------");
+		
 		System.out.println(employeeService.getEmployee().getName());
 		
 		employeeService.getEmployee().setName("xzj");
 		
-		//employeeService.getEmployee().throwException();
+		// employeeService.getEmployee().throwException();
 		
 		ctx.close();
+		
+		// 从console可以看到advices 根据其切入点配置(pointcut configurations)逐个执行。
 	}
 	
-	// 您可以看到 advices 根据其切入点配置(pointcut configurations)逐个执行。 
-	// 您应该逐个配置它们以避免混淆。
-	
-	// Note that: 打印最后会抛java.lang.RuntimeException: Dummy Exception，这个是正常的
 }

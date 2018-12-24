@@ -14,6 +14,7 @@ public class EmployeeService {
 	private Employee employee;
 	
 	public Employee getEmployee(){
+		System.out.println("--------- EmployeeService getEmployee executed!");
 		return this.employee;
 	}
 	

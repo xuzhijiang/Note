@@ -11,6 +11,7 @@ public class Employee {
 	private String name;
 	
 	public String getName() {
+		System.out.println("------------ Employee getName() called");
 		return name;
 	}
 
@@ -21,9 +22,11 @@ public class Employee {
 	//义的自定义Java注解。 我们稍后会研究它的用法。
 	@Loggable
 	public void setName(String nm) {
+		System.out.println("------------ Employee setName() called");
 		this.name=nm;
 	}
 	
+	// 调用此方法会抛java.lang.RuntimeException: Dummy Exception
 	public void throwException(){
 		throw new RuntimeException("Dummy Exception");
 	}

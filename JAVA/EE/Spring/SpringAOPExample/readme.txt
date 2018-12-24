@@ -66,14 +66,16 @@ Spring Tool Suite提供有关aspects的有用信息，因此我建议您使用�
 我建议您查看Spring MVC Tutorial，我已经解释了如何使用它。
 
 
+-------------------------------------------------
 
-具有自定义 annotation Pointcut(切入点)的Spring Advice
 
-如果你看上述所有 "advices pointcut expressions"，则有可能将它们应用于其他不适合的bean。 例如，
-有人可以使用getName（）方法定义一个新的spring bean，并且即使它不是预期的，也会开始应用它。
- 这就是我们应该尽可能缩小切入点表达范围的原因。
+Spring Advice with Custom Annotation Pointcut:(具有自定义 annotation Pointcut的Spring Advice)
 
-另一种方法是创建自定义注释, 并注释我们希望应用advice的方法。 这是使用@Loggable annotation
-注解Employee setName（）方法的目的。
+如果你看上述所有 "advices pointcut expressions"，则有可能将它们应用于其他一些我们不希望应用的bean method上。
+例如：有人在一个新的spring bean使用getName()方法定义，但是他并不希望advice pointcut expression
+应用于他自己定义的getName()方法上，这就是我们应该尽可能缩小切入点表达范围的原因。
+
+另一种方法是创建自定义注解, 并注解我们希望应用advice的方法。 这是使用@Loggable annotation
+注解Employee setName（）方法的目的。也就是只应用于使用了@Loggable注解的setName() method.
 
 Spring Framework @Transactional annotation 是Spring 事务管理(Transaction Management)的一种很好的例子。
