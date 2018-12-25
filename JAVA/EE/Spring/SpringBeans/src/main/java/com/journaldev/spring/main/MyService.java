@@ -2,10 +2,12 @@ package com.journaldev.spring.main;
 
 import java.util.Date;
 
-// Java Based Spring Bean Configuration
+// 基于Java的Spring Bean配置
 
-//对于独立应用程序，我们可以使用基于注释的配置以及基于XML的配置。
-// 唯一的要求是在我们使用它之前,要在程序中的某个位置初始化上下文。
+// 1. 对于独立应用程序，我们可以使用"基于注释的配置"以及"基于XML的配置"。
+
+// 2. 唯一的要求是在我们使用context之前,要在程序中的某个位置初始化context。
+
 public class MyService {
 
 	public void log(String msg){

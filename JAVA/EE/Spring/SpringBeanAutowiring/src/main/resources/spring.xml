@@ -6,61 +6,91 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd"
 	default-autowire="byName" default-autowire-candidates="*">
 
-	<!-- Spring bean配置文件是任何spring应用程序的主要部分，
-	 -->
+	<!-- Spring bean配置文件是任何spring应用程序的主要部分 -->
+	<!-- 看这个配置文件的时候要只保留一个配置来看，把其他的都注释掉，否则自己会晕 -->
 	 
-	 <!-- 关于Spring bean配置文件的重点是： -->
-	 
-	 <!-- 1. beans元素“default-autowire” 用于定义默认的自动装配方法。
+	 <!--
+	 			关于Spring bean配置文件的重点是：
+	 	  
+	 	  1. beans元素“default-autowire” 用于定义默认的自动装配方法。
 			   在这里，我将默认的自动装配方法定义为byName。
 		  
 		  2. beans元素“default-autowire-candidates”用于提供 可用于自动装配的 bean名称的模式。
 		            为简单起见，我允许所有bean定义都符合自动装配的条件，但是如果我们可以为自动装配定义一些模式。
 		            例如，如果我们只想要自动装配DAO bean定义，我们可以将其指定为default-autowire-candidates =“* DAO”。
 		          
-		  3. autowire-candidate =“false”用于bean定义，使其不符合自动装配的条件。
-		  	  当我们为单个类型提供多个bean定义并且我们希望其中一些不是自动装配时，它很有用。
-		  	  例如，在下面的spring bean配置中，“employee1”bean不会用于自动装配。
-		  	  
 		  4. autowire属性byName，byType和构造函数是自我理解的，没什么可解释的。
 		  
 		  5. context：annotation-config用于启用基于注释的配置支持。请注意，
 		  employeeAutowiredByTypeService和employeeAutowiredByConstructorService bean
-		     没有autowire属性。 -->
+		     没有autowire属性。
+		     
+	 -->
 
+
+	<!-- 会创建Employee实例，然后设置其name属性值为xzj -->
+	<!-- 这个bean的name必须为employee，否则byName就找不到这个bean了 -->
 	<bean name="employee"
 		class="com.journaldev.spring.autowiring.model.Employee">
-		<property name="name" value="Pankaj"></property>
+		<property name="name" value="xzj"></property>
 	</bean>
 
+
+	<!--
+		 3. autowire-candidate =“false”用于bean定义，使其不符合自动装配的条件。
+	  	  当我们为单个类型提供多个bean定义并且我们希望其中一些不是自动装配时，它很有用。
+	  	  例如，在下面的spring bean配置中，“employee1”bean不会用于自动装配。
+	-->
+	<!-- 会创建Employee实例，然后设置其name属性值为Dummy Name -->
 	<bean name="employee1"
 		class="com.journaldev.spring.autowiring.model.Employee"
 		autowire-candidate="false">
 		<property name="name" value="Dummy Name"></property>
 	</bean>
 
-	<!-- autowiring byName, bean name should be same as the property name -->
-	<bean name="employeeServiceByName"
-		class="com.journaldev.spring.autowiring.service.EmployeeService"
-		autowire="byName" />
 
-	<!-- autowiring byType, there should be only one bean definition for the 
-		mapping -->
-	<bean name="employeeServiceByType"
+	<!-- 通过名称自动装配，bean名称应与属性名称相同 -->
+	<!-- 
+		autowiring byName(通过EmployeeService的属性名称自动装配), 
+		bean name should be same as the property name
+	 -->
+	 <!--
+	 	会创建EmployeeService实例，然后通过EmployeeService的属性名称自动装配Employee实例，
+	 	也就是调用EmployeeService.setEmployee()设置成员变量Employee,如何在spring.xml这个
+	 	配置文件中找到这个成员变量呢，是根据bean的name为employee找到的
+	 -->
+	<!-- <bean name="employeeServiceByName"
 		class="com.journaldev.spring.autowiring.service.EmployeeService"
-		autowire="byType" />
+		autowire="byName" /> -->
+
+
+
+	<!-- 
+		autowiring byType, there should be only one bean definition for the mapping
+		通过Type(Employee)自动装配，映射应该只有一个bean定义
+	-->
+	<!-- <bean name="employeeServiceByType"
+		class="com.journaldev.spring.autowiring.service.EmployeeService"
+		autowire="byType" /> -->
+
+
 
 	<!-- autowiring by constructor -->
-	<bean name="employeeServiceConstructor"
+	<!-- <bean name="employeeServiceConstructor"
 		class="com.journaldev.spring.autowiring.service.EmployeeService"
-		autowire="constructor" />
+		autowire="constructor" /> -->
+
 
 	<!-- Enable Annotation based configuration -->
+	<!-- 启动基于注解的配置 -->
 	<context:annotation-config />
 
 	<!-- using @Autowiring annotation in below beans, byType and constructor -->
-	<bean name="employeeAutowiredByTypeService"
-		class="com.journaldev.spring.autowiring.service.EmployeeAutowiredByTypeService" />
+	<!-- <bean name="employeeAutowiredByTypeService"
+		class="com.journaldev.spring.autowiring.service.EmployeeAutowiredByTypeService" /> -->
+	
+	
+	
 	<bean name="employeeAutowiredByConstructorService"
 		class="com.journaldev.spring.autowiring.service.EmployeeAutowiredByConstructorService" />
 </beans>

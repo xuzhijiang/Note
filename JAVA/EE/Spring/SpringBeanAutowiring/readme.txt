@@ -1,5 +1,6 @@
-Spring @Autowired注释用于"自动依赖注入"。 Spring框架是基于依赖注入构建的，
-我们通过spring bean配置文件注入类依赖项。
+Spring @Autowired注释用于"自动依赖注入"。 
+
+Spring框架是基于依赖注入构建的，我们通过spring bean配置文件注入类依赖项。
 
 通常我们在spring bean配置文件中提供bean配置细节，我们还使用"ref"属性指定将要被注入到其他bean中的bean。
 但Spring框架也提供了自动装配功能(autowiring features)，在那里我们不需要明确提供bean注入细节。
@@ -29,12 +30,3 @@ org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcesso
 6. @Qualifier注释 - 此注释用于避免bean映射中的冲突，我们需要提供将用于自动装配的bean名称。
 这样我们就可以避免为同一类型定义多个bean的问题。此注释通常与@Autowired注释一起使用。
 对于具有多个参数的构造函数，我们可以将此注释与方法中的参数名称一起使用。
-
-默认情况下，Spring bean自动装配已关闭。 Spring bean autowire默认值为“default”，
-表示不执行自动装配。 autowire值“no”也具有相同的行为(不执行自动装配)。
-
-为了展示(showcase)Spring Bean自动装配的使用，让我们创建一个简单的Spring Maven项目:
-
-Spring @Autowired，Spring autowiring，@Autowired annotation
-
-让我们逐个研究每个autowire选项。为此，我们将创建一个Model bean和一个服务类(我们将在服务类中注入模型bean)。

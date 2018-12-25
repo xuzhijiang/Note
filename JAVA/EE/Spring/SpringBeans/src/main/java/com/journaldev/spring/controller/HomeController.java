@@ -3,21 +3,30 @@ package com.journaldev.spring.controller;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.journaldev.spring.beans.MyAnnotatedBean;
 import com.journaldev.spring.beans.MyBean;
 
 // Spring IoC Controller Class
 
-// HomeController类将处理应用程序home page的HTTP请求。
-// 我们将通过WebApplicationContext容器将Spring bean注入此控制器类。
+// 1. HomeController类将处理应用程序home page的HTTP请求。
+
+// 2. 我们将通过WebApplicationContext容器将Spring bean注入此控制器类。
+
+// 现在，当启动Web应用程序时，主页将被加载,console输出以下内容:
+
+// MyBean hashcode=118267258
+// MyAnnotatedBean hashcode=1703899856
+// MyBean hashcode=118267258
+// MyAnnotatedBean hashcode=1115599742
+// MyBean hashcode=118267258
+// MyAnnotatedBean hashcode=516457106
+
 @Controller
 @Scope("request")
 public class HomeController {
@@ -53,15 +62,5 @@ public class HomeController {
 		
 		return "home";
 	}
-	
-//	现在，当您启动Web应用程序时，主页将被加载，并且在您多次刷新页面时，将在控制台中打印日志。
-
-//MyBean hashcode=118267258
-//MyAnnotatedBean hashcode=1703899856
-//MyBean hashcode=118267258
-//MyAnnotatedBean hashcode=1115599742
-//MyBean hashcode=118267258
-//MyAnnotatedBean hashcode=516457106
-
 	
 }
