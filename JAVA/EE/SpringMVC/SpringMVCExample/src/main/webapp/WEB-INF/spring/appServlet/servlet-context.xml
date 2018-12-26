@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 
+		
+		这就是标准Spring配置文件的样子，想象一下你自己编写所有这些，你就会开始喜欢STS工具了。
+
+		annotation-driven元素用于让Controller servlet知道注释将用于bean配置。
+		
+		resources element定义了我们可以放置静态文件(例如我们不希望通过Spring框架获取的images，HTML page等)的位置.
+		
+		InternalResourceViewResolver是view resolver(视图解析器)，
+		我们可以通过前缀和后缀属性提供视图页面位置(view pages location)。
+		 所以我们所有的JSP页面都应该在/WEB-INF/views/目录中。
+		
+		context：component-scan element用于提供扫描Controller类的基本包位置。 
+		记住项目创建时给出的顶级包(view pages location)的价值，这里使用的是相同值。
+
+	-->
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.journaldev.spring" />	
+	
+</beans:beans>
