@@ -5,8 +5,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- Spring Bean Configuration File: 
+				有三个重要的配置:
+		1. annotation-driven告诉DispatcherServlet使用@Controller注释查找
+		Controller类。
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		2. context：component-scan告诉DispatcherServlet在哪里查找控制器类。
+
+		3. InternalResourceViewResolver bean配置指定视图页面的位置和使用的后缀。 控制器类方法返回视图页面的名称(jsp的名称)，然后添加后缀以确定用于呈现响应的视图页面(view page to use 
+		for rendering the response.)。
+	 -->
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing
 		infrastructure -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -15,6 +25,7 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
+
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />

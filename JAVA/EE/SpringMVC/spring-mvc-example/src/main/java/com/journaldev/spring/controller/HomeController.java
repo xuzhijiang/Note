@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.journaldev.spring.model.User;
 
+// Controller Class
+
 @Controller
 public class HomeController {
 

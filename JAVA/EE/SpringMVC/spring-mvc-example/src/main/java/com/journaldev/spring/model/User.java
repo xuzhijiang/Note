@@ -1,5 +1,6 @@
 package com.journaldev.spring.model;
 
+// Model Class
 public class User {
 	private String userName;
 
