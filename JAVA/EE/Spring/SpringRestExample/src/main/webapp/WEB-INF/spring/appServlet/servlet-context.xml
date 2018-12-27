@@ -7,6 +7,13 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!-- 
+		大部分零件是自动生成的，包含样板配置。 但需要注意的重点是为了支持基于注释的配置的annotation-driven element，
+		以及将MappingJackson2HttpMessageConverter插入RequestMappingHandlerAdapter 
+		messageConverters，以便Jackson API启动并将JSON转换为Java Bean，
+		反之亦然。 通过这种配置，我们将在request body中使用JSON，我们将在响应中接收JSON数据。
+	-->
+	
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->

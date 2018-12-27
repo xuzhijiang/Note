@@ -8,7 +8,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 
-		
 		这就是标准Spring配置文件的样子，想象一下你自己编写所有这些，你就会开始喜欢STS工具了。
 
 		annotation-driven元素用于让Controller servlet知道注释将用于bean配置。
@@ -21,8 +20,8 @@
 		
 		context：component-scan element用于提供扫描Controller类的基本包位置。 
 		记住项目创建时给出的顶级包(view pages location)的价值，这里使用的是相同值。
-
 	-->
+	
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->

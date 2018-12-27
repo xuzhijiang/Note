@@ -9,10 +9,11 @@
 <!-- 
 	一个简单的JSP页面，供用户提供userName作为输入。
 	 请注意，表单变量名称与Model User类变量名称相同。 
-	 此外，表单操作是“home”，方法是“post”。 很明显HomeController的login（）方法会处理这个请求。
+	 此外，表单action是“home”(也就是要往http://localhost:8080/SpringMVCExample/home/地址发起post请求)，
+	 方法是“post”。 很明显HomeController的login（）方法会处理这个请求。
 -->
 <body>
-	<form action="home" method="post">
+	<form action="login/home" method="post">
 		<input type="text" name="userName"><br>
 		<input type="submit" value="Login">
 	</form>

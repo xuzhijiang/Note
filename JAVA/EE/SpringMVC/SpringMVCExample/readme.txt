@@ -5,7 +5,7 @@ Spring MVC框架广泛用于java Web应用程序。
 与Struts Framework一样，Spring MVC也基于Java EE Servlet和JSP技术，
 并实现了Model-View-Controller设计模式(MVC)。
 
-### STS
+### STS(Spring Tool Suite)
 
 我们可以使用Eclipse或IntelliJ IDE进行Spring项目开发，但SpringSource提供Spring Tool Suite（STS），
 它是一个基于Eclipse的IDE，并带有内置的VMware vFabric tc Server，它构建在Apache Tomcat容器之上
@@ -27,7 +27,7 @@ Spring MVC框架广泛用于java Web应用程序。
 
 6. 通过AspectJ的集成，为面向方面编程（AOP）提供最佳支持。
 
-只需从STS官方下载页面下载STS并安装即可:https://spring.io/tools3/sts/all
+只需从STS官方下载页面下载STS并安装即可: “https://spring.io/tools3/sts/all”
 
 如果您不想使用STS并希望在现有Eclipse中使用它，那么您需要从Eclipse Marketplace安装其插件。
 (在eclipse的应用市场中输入STS，然后按照匹配eclipse version的STS)
@@ -36,7 +36,29 @@ Spring MVC框架广泛用于java Web应用程序。
 例如Tomcat，JBoss等。对于本教程，我将使用STS附带的服务器，
 但我已通过导出测试了该应用程序它作为WAR文件进入单独的tomcat服务器，它工作正常。
 
-创建我们的第一个Spring MVC项目。以下步骤适用于STS或带有STS插件的Eclipse:
+
+-------------------------------------------------------
+
+
+使用使用Spring Tool Suite或Eclipse的STS plugin中创建Spring MVC应用程序。
+(以下步骤适用于standalone STS executable或带有STS插件的Eclipse):
+(以下步骤都是在spring-tool-suite-3.9.7.RELEASE-e4.10.0独立的STS.exe上运行的)
+
+第1步：File -> New -> Spring Legacy Project
+
+Spring MVC，Spring MVC Project，Spring MVC示例
+
+步骤2：在New Spring Legacy Project window中，
+Project name:"SpringMVCExample"，并选择Templates:"Spring MVC Project"。
+
+步骤3：下载模板后，在下一个屏幕中，您需要提供顶级包名称。该包将用作Spring组件的基础包。
+
+如果您的项目未编译并且您看到一些错误，请在项目上右键 -> 运行Maven/Update Project。
+请务必勾选上“Force update of Snapshots/Releases” options
+
+Spring MVC，Maven Force更新项目
+
+整个项目看起来就像任何其他基于maven的带有Spring配置文件的Web应用程序一样。
 
 您可以看到使用STS插件创建Spring MVC应用程序是多么容易。 代码大小非常少，
 大多数配置都由Spring MVC处理，因此我们可以专注于业务逻辑。

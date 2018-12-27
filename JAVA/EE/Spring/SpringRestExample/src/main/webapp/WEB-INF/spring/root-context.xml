@@ -3,6 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
+	<!-- 
+		这个文件包含所有Web组件都可以看到的共享资源，
+		我们将开发一个简单的rest service，这就是我没有在这里做任何改变的原因。
+	-->
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 </beans>
