@@ -8,6 +8,13 @@
 	<name>Spring MVC Example</name>
 	<description>Spring MVC Hello World Example</description>
 
+	<!--
+		Spring MVC Dependencies to pom.xml
+		Spring MVC依赖于pom.xml
+		
+		我们需要在pom.xml中添加spring-web和spring-webmvc依赖项，还要添加servlet-api，jsp-api和jstl依赖项.
+	-->
+
 	<!-- Add Spring Web and MVC dependencies -->
 	<dependencies>
 		<dependency>
@@ -59,5 +66,8 @@
 			</plugin>
 		</plugins>
 		<finalName>${project.artifactId}</finalName> <!-- added to remove Version from WAR file -->
+		<!--
+			请注意构建中的finalName配置，以便我们的WAR文件名没有版本详细信息
+		-->
 	</build>
 </project>
