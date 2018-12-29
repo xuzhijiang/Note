@@ -6,13 +6,22 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!--
+		唯一需要注意的重点是employeeValidator bean，
+		我们将注入这个bean到控制器之一和messageSource bean中，以从资源包中读取本地化数据。 
+		其余部分是支持注释，查看解析器和提供包来扫描Controller类和其他组件。
+	-->
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!--
+		Handles HTTP GET requests for /resources/** by efficiently 
+		serving up static resources in the ${webappRoot}/resources directory 
+	-->
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

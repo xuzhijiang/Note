@@ -14,6 +14,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.journaldev.spring.form.validator.Phone;
 
+// 我们在这个项目中有两个模型类 - 第一个我们将使用JSR-303注释和我们的基于
+// 自定义注释的验证器，第二个我们将只使用我们的Validator实现。
+
+//请注意，我们使用的是@Email，@ NoEmpty和@DateTimeFormat注释，它们是JSR-303的附加内容，
+// 由hibernate验证器实现提供。 我们使用的一些JSR-303注释是@ Size，@ NotNull等。
+//@Phone注释使用的是我们基于JSR-303规范的自定义实现，我们将在下一节中对其进行研究。
 public class Customer {
 
 	@Size(min=2, max=30) 

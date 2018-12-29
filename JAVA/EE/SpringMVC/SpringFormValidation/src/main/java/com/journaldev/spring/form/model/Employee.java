@@ -1,5 +1,6 @@
 package com.journaldev.spring.form.model;
 
+// 我们将使用我们的自定义Validator实现来使用Employee bean验证表单。
 public class Employee {
 
 	private int id;

@@ -8,6 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+// 为简单起见，扩展抽象类HandlerInterceptorAdapter。 
+// HandlerInterceptorAdapter是HandlerInterceptor接口的抽象适配器类，
+// 用于简化pre-only / post-only拦截器的实现。
+
+// 逻辑非常简单，我只是记录处理程序方法执行的时序和处理请求所花费的总时间(包括渲染视图页面)
+// The logic is really simple, I am just logging the timings of 
+// handler method execution and total time taken in processing 
+// the request including rendering view page.
 public class RequestProcessingTimeInterceptor extends HandlerInterceptorAdapter {
 
 	private static final Logger logger = LoggerFactory
