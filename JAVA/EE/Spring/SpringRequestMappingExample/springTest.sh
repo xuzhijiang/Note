@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Spring RestMapping测试程序
+
+# 我们可以使用Spring RestTemplate来测试上面的不同方法，
+# 但今天我将使用cURL命令(catch url)来测试这些方法，因为这些方法很简单并且没有太多数据流动。
+
+# 我创建了一个简单的shell脚本springTest.sh来调用所有上述方法并打印它们的输出。 它看起来像下面。
+
 echo "curl http://localhost:9090/SpringRequestMappingExample/home/method0";
 curl http://localhost:9090/SpringRequestMappingExample/home/method0;
 printf "\n\n*****\n\n";
