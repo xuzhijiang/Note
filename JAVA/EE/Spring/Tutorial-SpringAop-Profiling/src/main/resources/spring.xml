@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+		">
+	
+	<!--  
+		1. 首先我们告诉spring Spring组件使用的扫描类路径（而不是在这个xml中不方便地逐个定义它们），
+		并且我们还启用了Spring注释检测。
+		
+		2. 我们配置Spring-AOP，以捕获服务包中所有类的所有方法：
+			a. 我们定义了一个“切入点pointcut”的切面 - 每个服务方法，
+			b. 我们为这些切入点定义了一个“around” method，该方法以SimpleProfiler的“profile”命名方法为目标。
+	-->
+
+	<!-- Scans the classpath for annotated components that will be auto-registered as Spring beans -->
+	<context:component-scan base-package="hu.daniel.hari.learn.spring.aop.profiling" />
+	<!-- Activates various annotations to be detected in bean classes e.g: @Autowired -->
+	<context:annotation-config />
+
+	<!-- AOP Configuration for profiling -->
+
+	<!-- Our profiler class that we want to use to measure process time of service methods. -->
+	<bean id="profiler" class="hu.daniel.hari.learn.spring.aop.profiling.core.profiler.SimpleProfiler" />
+
+	<!-- Spring AOP -->
+	<aop:config>
+		<aop:aspect ref="profiler">
+			<!-- Catch all method in the service package through AOP. -->
+			<aop:pointcut id="serviceMethod" 
+				expression="execution(* hu.daniel.hari.learn.spring.aop.profiling.service.*.*(..))" />
+			<!-- For these methods use the profile named method in the profiler class we defined below. -->
+			<aop:around pointcut-ref="serviceMethod" method="profile" />
+		</aop:aspect>
+	</aop:config>
+
+</beans>

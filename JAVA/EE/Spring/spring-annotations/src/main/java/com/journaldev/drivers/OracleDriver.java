@@ -1,5 +1,6 @@
 package com.journaldev.drivers;
 
+// OracleDriver是一个简单的bean，我们将使用服务类为这个bean注入属性。
 public class OracleDriver implements DataBaseDriver {
 
     protected String url;
