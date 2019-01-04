@@ -18,6 +18,9 @@
 		<java.version>10</java.version>
 	</properties>
 
+	<!--  
+		在我们使用任何Spring框架类之前，我们必须将它的依赖项添加到maven项目中。
+	-->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>

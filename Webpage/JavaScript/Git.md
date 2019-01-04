@@ -20,7 +20,7 @@ master分支的内容会覆盖缓存区和工作区的相应文件，工作区�
 
 创建一个分支: `git branch <branchName>`
 
-删除: `git branch -d <branchName>`
+删除: `git branch -D <branchName>`
 
 显示左右的分支信息: `git branch -v`
 
