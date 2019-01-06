@@ -2,10 +2,15 @@ package com.journaldev.spring;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.http.HttpStatus;
-
 import com.journaldev.spring.config.AppConfig;
 import com.journaldev.spring.config.PersonClient;
 import com.journaldev.spring.model.Person;
+
+// Spring RestTemplate Test Class
+
+// 下面的类显示了如何在Spring方式中使用RestTemplate方法。
+
+//执行上述程序之前和之后的Web服务数据库表数据会发生变化
 
 public class Main {
 

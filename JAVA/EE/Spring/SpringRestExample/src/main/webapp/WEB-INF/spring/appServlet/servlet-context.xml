@@ -33,6 +33,7 @@
 		<beans:property name="messageConverters">
 			<beans:list>
 				<beans:ref bean="jsonMessageConverter"/>
+				<beans:ref bean="xmlMessageConverter"/>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -40,6 +41,13 @@
 	<!-- Configure bean to convert JSON to POJO and vice versa -->
 	<beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 	</beans:bean>	
+	
+	<!-- extend the existing application to support XML -->
+	<!-- Add below configured bean to RequestMappingHandlerAdapter property messageConverters.
+	 -->
+	<beans:bean id="xmlMessageConverter" class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
+	</beans:bean>
+	
 	
 	<context:component-scan base-package="com.journaldev.spring.controller" />
 	

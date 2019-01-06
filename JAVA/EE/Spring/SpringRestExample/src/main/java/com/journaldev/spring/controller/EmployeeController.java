@@ -18,12 +18,6 @@ import com.journaldev.spring.model.Employee;
 
 /*
 EmployeeController类将发布上面提到的所有Web服务端点(service end points)
-
-其余代码(Rest of the code)简单易懂，我们的应用程序已准备好进行部署和测试。
-只需导出为WAR文件并将其复制到servlet容器Web应用程序目录中。如果您在STS中配置了服务器，则只需在服务器上运行它即可部署它。
-
-我正在使用WizTools RestClient来调用the rest calls，但您也可以使用Chrome的扩展Postman。
-
 */
 
 /**
@@ -34,12 +28,12 @@ public class EmployeeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
-	// 为简单起见，我将所有employee数据存储在HashMap empData中
+	// 为简单起见，我将所有employee数据存储在HashMap empData中.
 	//Map to store employees, ideally we should use database
 	Map<Integer, Employee> empData = new HashMap<Integer, Employee>();
 	
 	// @RequestMapping注释用于将请求URI映射到处理程序方法。
-	// 我们还可以指定客户端应用程序应该使用的HTTP方法来调用rest方法。
+	// 我们还可以指定客户端应用程序应该使用的HTTP方法来调用rest方法( to invoke the rest method)。
 	@RequestMapping(value = EmpRestURIConstants.DUMMY_EMP, method = RequestMethod.GET)
 	public @ResponseBody Employee getDummyEmployee() {
 		logger.info("Start getDummyEmployee");
@@ -74,6 +68,7 @@ public class EmployeeController {
 	
 	// @RequestBody注释用于将"请求主体JSON数据(request body JSON data)"映射到Employee对象，
 	// 这也是由MappingJackson2HttpMessageConverter映射完成的。
+	// again this is done by the MappingJackson2HttpMessageConverter mapping.
 	@RequestMapping(value = EmpRestURIConstants.CREATE_EMP, method = RequestMethod.POST)
 	public @ResponseBody Employee createEmployee(@RequestBody Employee emp) {
 		logger.info("Start createEmployee.");
@@ -92,3 +87,8 @@ public class EmployeeController {
 	}
 	
 }
+
+// 只需导出为WAR文件并将其复制到servlet容器Web应用程序目录中。
+// 如果您在STS中配置了服务器，则只需在服务器上运行它即可部署它。
+
+//我正在使用WizTools RestClient来调用the rest calls，但您也可以使用Chrome的扩展Postman。

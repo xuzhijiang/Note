@@ -21,8 +21,7 @@ import com.journaldev.spring.model.Employee;
 	我们可以编写一个实用工具(a utility)方法来将LinkedHashMap转换为我们的Java Bean对象。
 	
 	另一点是RestTemplate put方法没有设置响应对象response object的选项，
-	因为PUT方法应该用于在服务器上存储某些东西，
-	而简单的HTTP 200状态代码就足够了。
+	因为PUT方法应该用于在服务器上存储某些东西，而简单的HTTP 200状态代码就足够了。
 */
 public class TestSpringRestExample {
 

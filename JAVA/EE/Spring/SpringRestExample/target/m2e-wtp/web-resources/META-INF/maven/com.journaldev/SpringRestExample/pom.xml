@@ -8,6 +8,14 @@
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	
+	<!--
+		STS工具为我们生成pom.xml文件，但是我已经将Spring Framework，AspectJ，
+		SLF4J和Jackson版本更新到了今天的最新版本。
+ 		
+ 		大多数部分是常见的并且是自动生成的，需要注意的重要一点是我在依赖项中添加了Jackson JSON库，
+ 		
+ 		因为我们将使用它将对象转换为JSON，反之亦然。
+	-->
 	<!-- 需要注意的重要一点是我在依赖项中添加了Jackson JSON库，因为我们将使用它将对象转换为JSON -->
 	<properties>
 		<java-version>1.6</java-version>

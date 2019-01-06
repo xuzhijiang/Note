@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.journaldev.spring.model.Person;
 
+// 我们基于URI和HTTP方法调用RestTemplate methods，并在需要时传递适当的请求对象。
 @Service
 public class PersonClientImpl implements PersonClient {
 

@@ -6,6 +6,15 @@
 	<groupId>com.journaldev.spring</groupId>
 	<artifactId>SpringRestTemplate</artifactId>
 	<version>1.0-SNAPSHOT</version>
+	
+	<!--
+		我们需要Spring框架的spring-core，spring-context依赖。
+		 
+		然后我们需要包含RestTemplate类的spring-web artifact。
+		
+		We also need jackson-mapper-asl for Spring JSON support through Jackson API. 
+		我们还需要通过Jackson API支持Spring JSON的jackson-mapper-asl。
+	-->
 	<properties>
 		<spring.framework>4.3.0.RELEASE</spring.framework>
 		<spring.web>3.0.2.RELEASE</spring.web>

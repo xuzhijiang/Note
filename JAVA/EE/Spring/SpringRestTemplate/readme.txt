@@ -7,13 +7,15 @@ Spring RestTemplate
 3. RestTemplate类为不同的HTTP methods 提供overloaded methods，例如GET，POST，PUT，DELETE等。
 
 
-我们将测试在Spring Data JPA文章中创建的REST Web服务。 下表说明了此休息Web服务支持的URI。
+我们将测试在Spring Data JPA文章中创建的REST Web服务, 
+下表说明了此rest Web service支持的URIs。
 
-URI HTTP方法描述
-/ springData / person GET从数据库中获取所有人员
-/ springData / person / {id} GET按ID获取人物
-/ springData / person POST将人员添加到数据库
-/ springData / person PUT更新人
-/ springData / person / {id} DELETE按ID删除人员
+URI 						HTTP方法				DESCRIPTION(描述)
+/springData/person 			GET					Get all persons from database
+/springData/person/{id} 	GET					Get person by id
+/springData/person 			POST				Add person to database
+/springData/person 			PUT					Update person
+/springData/person/{id} 	DELETE				Delete person by id
+
 让我们开始创建我们的Rest客户端项目来测试这些Web服务
 
