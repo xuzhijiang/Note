@@ -1,0 +1,36 @@
+maven是构建和依赖管理工具
+
+中央服务器地址(central server):https://repo.maven.apache.org/maven2/
+
+MAVEN的元素:
+1. <groupId>
+2. <artifactId>
+3. <version>
+
+
+1. 查看maven版本: mvn -version
+
+2. mvn package(创建JAR/WAR/EAR---要将我们的应用程序部署到任何Web或应用程序服务器,
+我们需要使用以下maven命令创建应用程序JAR/WAR/EAR文件)
+
+3. mvn test(要在不创建应用程序JAR/WAR/EAR文件的情况下仅运行JUnit测试)
+4. mvn clean(总是建议在编译和构建我们的应用程序代码之前清理所有内容--删除构建目录)
+5. mvn –help
+6. mvn install(要编译，构建(构建成jar/war/ear文件)并且安装到本地maven存储库)
+7. mvn –version
+8. mvn install -DskipTests 或 mvn install -Dmaven.test.skip=true(要跳过JUnit测试并执行其他任务)
+9. mvn test package (运行JUnits并创建JAR/WAR/EAR[To compile, tests and assemble去编译，测试，然后组装成jar/war/ear文件]---注意：在maven和gradle中，我们可以管道两个或更多命令执行它们。)
+10. mvn deploy(将应用程序WAR/EAR文件部署到服务器)
+11. mvn jetty:run(要在Jetty嵌入式服务器上运行---run on Jetty embedded server)
+12. mvn jetty:run-war(构建WAR文件，并且部署并运行它到嵌入式jetty服务器中)
+13. mvn jar(从已经编译好的class文件创建JAR文件)
+14. mvn eclipse:eclipse(生成项目和所有Eclipse所需的文件)
+15. mvn eclipse:clean(清理Eclipse所需的所有文件)
+
+
+mvn compile (just compile)
+mvn test (compile and run unit tests)
+mvn package (compile, run unit tests, and build the distributable package)
+mvn install (all of the above, and install distributable package into local repository.Install is very useful if you need to build other packages which depend on changes to this package)
+mvn deploy (all of the above, and install package into remote (aka public) repository for sharing with other developers)
+

@@ -1,0 +1,79 @@
+Install Gradle Project To Maven Repo
+
+We can use gradle install command to build and install our 
+application JAR/WAR file to our local maven repository.
+
+We cannot execute “gradle install” command with our previous 
+gradle project example from Gradle Spring MVC” 
+because we have not specified any maven plugins in build.gradle file.
+
+Now we will change our build.gradle file to include this functionality. 
+Please follow these simple steps.
+
+Add maven plugin to build.gradle file
+
+apply plugin: 'maven'
+
+Add GroupId and our JAR/WAR file version
+Add build.gradle file root elements as shown below.
+
+group = "com.journaldev"
+version = "1.0"
+
+If we don’t specify version element here, 
+then it uses war file version declaration as shown below.
+
+war {
+    baseName = 'SpringMVCExample'
+    version = '1.0.0-BUILD-SNAPSHOT'
+}
+
+That’s it. Now our gradle install will copy application 
+jar/war file to maven repository too.
+
+Our complete and new build.gradle file
+
+<-- start -->
+
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "war"
+apply plugin: 'maven'
+ 
+sourceCompatibility = 1.7
+
+group = "com.journaldev"
+version = "1.0"
+
+war {
+    baseName = 'SpringMVCExample'
+    version = '1.0.0-BUILD-SNAPSHOT'
+}
+ 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework:spring-context:4.0.0.RELEASE")
+    compile("org.springframework:spring-webmvc:4.0.0.RELEASE")
+    compile("org.aspectj:aspectjrt:1.7.4")
+	compile("javax.inject:javax.inject:1")
+    compile("javax.servlet:servlet-api:2.5")
+    compile("javax.servlet:jstl:1.2")
+    compile("javax.servlet.jsp:jsp-api:2.1")	
+    compile("org.slf4j:slf4j-api:1.7.5")
+    compile("org.slf4j:jcl-over-slf4j:1.7.5")
+    compile("org.slf4j:slf4j-log4j12:1.7.5")
+    compile("log4j:log4j:1.2.15")
+
+    testCompile("junit:junit:4.7") 
+}
+
+<-- end -->
+
+Execute “gradle install” command
+
+gradle install
+
+Observe our Local Maven Repository(.m2\repository\com.journaldev\)
