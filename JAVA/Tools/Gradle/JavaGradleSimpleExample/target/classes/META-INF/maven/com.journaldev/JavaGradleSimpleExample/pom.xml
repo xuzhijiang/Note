@@ -1,9 +1,8 @@
-﻿<!-- 将Gradle转换为Maven -->
-<!-- 最后，如果我们转换Gradle的build.gradle构建
-将文件放入Maven的pom.xml文件中，它将如下所示Finally, if we convert our Gradle’s build.gradle build 
+﻿<!--Convert Gradle to Maven  -->
+<!-- Finally, if we convert our Gradle’s build.gradle build 
 file into Maven’s pom.xml file, it will looks like the following:
  -->
-
+ 
 <!-- If we observe both Gradle build.gradle file and maven pom.xml file,
  we can observe that maven’s pom.xml file is XML file and need a lot of 
  XML start tags and end tags.

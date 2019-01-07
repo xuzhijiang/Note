@@ -19,11 +19,7 @@ SprintBoot必学
 
 要选Spring Cloud全家桶必学
 
-GRADLE
-
 ## MAVEN
-
-Maven is written in Java and primarily used to build Java programs.
 
 `find jar: local repo -->  private service repo(Enterprise) --> central repo`
 

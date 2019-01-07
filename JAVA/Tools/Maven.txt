@@ -1,7 +1,18 @@
 maven是构建和依赖管理工具
 
+MAVEN的元素:
+1. <groupId>
+2. <artifactId>
+3. <version>
+
+
 1. 查看maven版本: mvn -version
-2. 
+2. mvn package
+3. mvn test
+4. mvn clean
+5. mvn –help
+6. mvn install
+7. mvn –version
 
 
 mvn compile (just compile)

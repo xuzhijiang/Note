@@ -1,9 +1,9 @@
-﻿Below are the steps to follow for converting maven to gradle application:
+﻿以下是将maven转换为gradle应用程序的步骤：
 
-1. Import this spring mvc maven project into Eclipse IDE.
-2. Remove pom.xml file(要注意备份一下)
-3. Create empty build.gradle file.
-4. Now start converting each and every component from pom.xml to build.gradle file.
+1. 将这个spring mvc maven项目导入Eclipse IDE
+2. 删除pom.xml(要注意备份一下)
+3. 创建空的build.gradle文件
+4. 现在开始从pom.xml中将每个组件转换为build.gradle文件。
 
 a. Base build.gradle template file: build.gradle
 
@@ -57,7 +57,7 @@ providedRuntime("javax.servlet:jstl:2.5")
 
 We use “testCompile()” element to add dependencies for running only unit tests:
 
-testCompile("junit:junit:4.7") 
+testCompile("junit:junit:4.7")
 
 Our Application complete build.gradle dependencies are shown below.
 
@@ -105,4 +105,3 @@ spring mvc gradle war file
 War file is created with given Name 
 and Version in build.gradle file. i.e:
 SpringMVCExample-1.0.0-BUILD-SNAPSHOT.war
-
