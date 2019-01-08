@@ -69,6 +69,7 @@ cookie是明文传递的，所以不secure
     304   你访问的资源未修改，所请求的资源未修改，浏览器读取缓存数据                   Not Modified
     400   请求语法错误，服务器无法理解		Bad Request
     404   未找到资源，可以设置个性的404界面		Not Found
+    403 for Access Forbidden
     500	   服务器内部错误	Internal Server error
 
 两个主机拥有相同的protocol，port，host，就是同源(origin),

@@ -3,18 +3,14 @@ package org.java.ee;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// Before Servlet 3, we need to provide the url pattern information 
-// in web application deployment descriptor but servlet 3.0 uses java 
-// annotations that is easy to understand and chances of errors are less.
-
-// Servlet is a server side technology.
+// 在Servlet 3之前，我们需要在Web应用程序deployment descriptor中提供url pattern 信息，
+// 但servlet 3.0使用易于理解的Java注释，并且错误的可能性较小。
 
 /**
  * Servlet implementation class FirstServlet
@@ -48,6 +44,7 @@ public class FirstServlet extends HttpServlet {
 	// 我们实际上是在创建HTML文档时将其写入响应PrintWriter对象中，并且我们在需要它的地方添加动态信息。
 		
 	// 但如果响应很大，有很多动态数据，那么它很容易出错并且难以阅读和维护。 这是引入JSP的主要原因。
+	// JSP is also server side technology.
 	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
