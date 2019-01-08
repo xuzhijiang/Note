@@ -2,6 +2,16 @@ maven是构建和依赖管理工具
 
 中央服务器地址(central server):https://repo.maven.apache.org/maven2/
 
+查找jar包的顺序:
+
+1. find jar: local repo(本地仓库)
+2. private service repo(Enterprise企业私有仓库)
+3. central repo(中央仓库)
+
+![maven central repo all plugins(maven中央仓库的所有插件地址:)](https://repo.maven.apache.org/maven2/org/apache/maven/plugins/)
+
+![find pom.xml dependency jar format](http://mvnrepository.com/)
+
 MAVEN的元素:
 1. <groupId>
 2. <artifactId>
@@ -26,6 +36,8 @@ MAVEN的元素:
 13. mvn jar(从已经编译好的class文件创建JAR文件)
 14. mvn eclipse:eclipse(生成项目和所有Eclipse所需的文件)
 15. mvn eclipse:clean(清理Eclipse所需的所有文件)
+16. mvn help:describe -Dplugin=eclipse(查看eclipse插件的所有命令)
+17. Goal Prefix:eclipse(目标前缀是eclipse)
 
 
 mvn compile (just compile)
@@ -33,4 +45,3 @@ mvn test (compile and run unit tests)
 mvn package (compile, run unit tests, and build the distributable package)
 mvn install (all of the above, and install distributable package into local repository.Install is very useful if you need to build other packages which depend on changes to this package)
 mvn deploy (all of the above, and install package into remote (aka public) repository for sharing with other developers)
-

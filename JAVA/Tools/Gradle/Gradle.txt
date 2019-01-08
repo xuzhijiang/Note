@@ -1,3 +1,49 @@
+Grunt和Gulp是两个流行的构建和自动化工具，用于JavaScript项目，如NodeJS或jQuery。 Gant是一种主要用于基于Groovy的应用程序的构建工具。 SBT代表Scala Build Tool。 SBT主要用于基于Scala的应用程序。
+
+现在，大多数java项目都使用maven或gradle构建工具，因为与ant相比它们具有优势。
+
+简单一点： Gradle = Ant + Ivy + Maven + Gant
+
+这意味着Gradle结合了所有流行构建工具的最佳功能：
+
+- Ivy和Ant的强大(Power)和灵活性
+- Maven易于使用，生命周期管理和依赖管理
+- Gant的构建脚本
+
+What is Gradle’s Motto?(什么是Gradle的座右铭？)
+
+“Make the impossible possible, make the possible easy, and make the easy elegant”.
+
+截至目前，Gradle作为以下项目的构建和自动化工具:
+
+- Java/Scala/Groovy Based Projects
+- Android Projects
+- C/C++ Projects
+- JavaScript Based Projects
+
+* Ant的默认构建脚本名称为build.xml
+* Maven默认构建脚本名称为pom.xml
+* Gradle默认构建脚本名称为build.gradle
+
+### Using Gradle Eclipse Plugin
+
+> File >> New >> Other >> Gradle(STS) Project
+
+Gradle项目与Maven项目结构相同。 是的，Gradle使用Maven Project结构，但是我们有build.gradle文件而不是pom.xml文件。
+
+#### Eclipse中如何构建我们的项目?
+
+1.右键单击Project的build.gradle文件，然后选择“Run As”>>“Gradle build”
+
+2. 我们需要输入我们所需的Gradle命令“build”(We need to type our required Gradle commands “build”)，点击“Apply”按钮来应用我们的更改, 然后单击“运行”按钮启动我们的Gradle构建commnad“gradle build”
+
+
+当我们运行gradle build命令时，它会执行以下操作：
+
+- 它编译java文件,生成class文件.
+- 它在${PROJECT_ROOT_DIR}\build\libs中生成名对应的jar
+- 它执行JUnit文件
+
 gradle是构建和依赖管理工具
 
 1. 与Maven一样(Like Maven)，我们可以将现有的ANT任务集成到Gradle中，并在我们的项目中使用它们

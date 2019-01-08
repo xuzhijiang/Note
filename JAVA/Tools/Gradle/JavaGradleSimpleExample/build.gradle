@@ -1,201 +1,200 @@
-// Gradle构建脚本所需的插件,类似于以下maven构建脚本定义:
+// 1. Gradle构建脚本所需的插件,类似于maven构建脚本所需插件:
+
 /*
-defining “maven-eclipse-plugin” plugin,此plugin使用Java1.7版本.
-<build>
-  <plugins>
-	<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-eclipse-plugin</artifactId>
-    <version>3.1</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-        </configuration>
-  </plugin>
- </plugins>
-</build>
+  defining “maven-eclipse-plugin” plugin,此plugin使用Java1.7版本.
+  <build>
+    <plugins>
+  	<plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-eclipse-plugin</artifactId>
+      <version>3.1</version>
+          <configuration>
+            <source>1.7</source>
+            <target>1.7</target>
+          </configuration>
+    </plugin>
+   </plugins>
+  </build>
 */
-// 注意：与Gradle Eclipse插件一样，Maven Eclipse插件使用Java 1.5版本作为默认值。
+
+// 2. 注意：与Gradle Eclipse插件一样，
+// Maven Eclipse插件使用Java 1.5版本作为默认值。
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-// it is referring Java 1.5
-// 我们在IDE和Gradle的构建脚本文件中使用相同的Java版本,就不会
-// 有警告，否则会有警告: 引导类(bootstrap class path)路径没有设置
-// 在build.gradle文件中，我们使用“sourceCompatibility”
+
+// 3. 它指的是Java 1.5, 我们在IDE和Gradle的构建脚本文件中使用相同的Java版本,
+// 就不会有警告，否则会有警告: 引导类(bootstrap class path)路径没有设置
+
+// 4. 在build.gradle文件中，我们使用“sourceCompatibility”
 // 元素来定义gradle构建工具使用的java版本。
 sourceCompatibility = 1.8
 
-// 打包项目文件(Packing Project Files)
-// 在开发任何项目或在不同环境（Dev，QA，PROD等）中测试/部署项目之后，
-// 我们需要将其打包成我们所需的格式，如Jar文件，War文件或EAR文件。
 
-// 在Gradle中，我们需要使用“jar”元素来通知“gradle”命令来创建JAR文件
+// 5. 在Gradle中，我们需要使用“jar”元素来通知“gradle”命令来创建JAR文件
 // Jar的文件名(filename)和版本号(version)：
-// Jar Filename: By default, gradle uses project name as jar file name.
-// Jar File Version: We need to define project jar file version 
-// using “version” element in build.gradle file as shown below.
+// Jar Filename: 默认情况下，gradle使用项目名称作为jar文件名。
+// Jar File Version: 在build.gradle中用“version”元素定义jar Version
+// 此Gradle元素类似于以下Maven元素: <version>1.0</version>
 version = '1.0'
-// This Gradle element is similar to the following Maven element.
-// <version>1.0</version>
 jar {
     manifest {
         attributes 'Implementation-Title': 'Gradle Quickstart',
                    'Implementation-Version': version
     }
 }
-// Finally, our project jar file name = Project name + Version name. 
-// That’s why our jar file name is JavaGradleSimpleExample-1.0.jar.
+// 6. Finally: jar file name = ProjectName + Version name. 
+// (JavaGradleSimpleExample-1.0.jar)
+// 7. 此Gradle元素类似于以下Maven元素: <packaging>jar</packaging>
 
 
-// This Gradle element is similar to the following Maven element
-// 此Gradle元素类似于以下Maven元素:
-// <packaging>jar</packaging>
 
-// To create WAR (WebApplication Archive) file, we need to use below gradle syntax.
-
-//war {
-//}
-
-// 此Gradle元素类似于以下Maven元素:
-// <packaging>war</packaging>
-
-// To create EAR(Enterprise Application Archive) file, we need to use this syntax:
-//ear {
-//}
-
-//This Gradle element is similar to the following Maven element
-//<packaging>ear</packaging>
-
-// 如果我们错过打包或汇编元素定义(miss packaging or assemble element definition)，maven和gradle都使用默认值：“jar”包插件。
-// 由于“jar”是默认的汇编值(default assemble value)，我们不需要在gradle的构建脚本文件中应用jar插件。 
-// 但是，要创建WAR或EAR，我们需要应用相应的插件，如下所示：
-
-// To create WAR file:
-
-//apply plugin: "war"
-//war {
-//}
-
-//To create EAR file:
-
-//apply plugin: "ear"
-//ear {
-//}
-
-// How to provide our required Project name and Version?
-// 如何提供我们所需的项目名称和版本:
-// 正如我们所讨论的，我们可以使用build.gradle文件的“version”元素来定义Jar/WAR/EAR文件的版本。
-// 但是建议使用此语法来定义我们的jar文件名和版本:
+// 8. 为了创建WAR文件(WebApplication Archive),要用以下语法:
+// 此Gradle元素类似于以下Maven元素: <packaging>war</packaging>
 
 /*
-jar {
-    baseName = 'MyJavaGradleProject'
-    version =  '2.0'
-}
+  war {
+
+  }
 */
 
-// Here baseName element defines jar file name and 
-// version element defines version number.
-// Now our newly created jar file name is MyJavaGradleProject-2.0.jar.
 
-
-// To create war file, we need to use this element definition:
+// 9. 为了创建EAR文件(Enterprise Application Archive) file,:
+// 此Gradle元素类似于以下Maven元素: <packaging>ear</packaging>
 /*
-war{
-    baseName = 'MyJavaGradleProject'
-    version =  '2.0'
-}
+  ear {
+
+  }
 */
 
-// 它将使用以下名称创建一个WAR文件：MyJavaGradleProject-2.0.war。 
-// 我们可以将此war文件部署到任何Web或Application Server（如Tomcat，Weblogic等）中，
-// 或者我们可以使用“java -jar”命令运行它。
+// 10. 如果我们丢失打包或汇编元素定义, maven和gradle都使用默认值：“jar”包插件。
+// 11. 由于“jar”是默认的汇编值，我们不需要在gradle的构建脚本文件中应用jar插件。 
+// 12. 但是，要创建WAR或EAR，我们需要应用相应的插件，如下所示：
 
-// NOTE:- If we define both version elements like below, what will happen?
+// 13. 为了创建WAR file:
 
 /*
-version = '1.0'
-jar {
-    baseName = 'MyJavaGradleProject'
-    version =  '2.0'
-}
+  apply plugin: "war"
+  war {
+
+  }
 */
-//gradle command use “version” element from “jar{ }” element so that our Jar file name will be MyJavaGradleProject-2.0.jar because inner “version” element has higher priority than outer element.
-//Inner “version” element overrides outer “version” element value.
 
+// 14.为了创建EAR file:
 
-// Gradle Repository Definitions
+/*
+  apply plugin: "ear"
+  ear {
+  
+  }
+*/
 
-// We use the following Gradle build script element to define our 
-// required repository to connect and download our project dependencies 
-// to the Local Repository.
+// 15. 如何提供我们所需的项目名称和版本? 正如我们所讨论的，
+// 我们可以使用build.gradle文件的“version”元素来定义Jar/WAR/EAR文件的版本。
+// 但是建议使用以下语法来定义我们的jar文件名和版本:
+// baseName元素定义了jar文件的文件名，version元素定义了版本号.
+// Finally: MyJavaGradleProject-2.0.jar
+
+/*
+  jar {
+      baseName = 'MyJavaGradleProject'
+      version =  '2.0'
+  }
+*/
+
+// 16. 为了创建war file:
+// Finally: MyJavaGradleProject-2.0.war
+// 我们可以将此war文件部署到任何Web或Application Server（如Tomcat，Weblogic等）中
+// 或者我们可以使用“java -jar”命令运行它
+
+/*
+  war{
+      baseName = 'MyJavaGradleProject'
+      version =  '2.0'
+  }
+*/
+
+// 17. 如果我们如下定义，会发生什么?
+// gradle命令会使用jar{}元素中的version元素，
+// 因此Jar文件名为MyJavaGradleProject-2.0.jar,
+// 因为内部的version元素比外部的version元素有更高的
+// 优先级，内部的version元素会覆盖外部version元素的值.
+
+/*
+  version = '1.0'
+  jar {
+      baseName = 'MyJavaGradleProject'
+      version =  '2.0'
+  }
+*/
+
+// 18. Gradle Repository Definitions(仓库定义):
+// 我们使用以下Gradle构建脚本元素来定义"连接"和"下载"我们的项目依赖项
+// 到Local Repository所需的存储库(repository)：
+// 我们通知“Gradle eclipse插件”使用maven的存储库来下载所需的依赖项
+
 repositories {
     mavenCentral()
 }
-// Here we are informing to Gradle eclipse plugin that use maven 
-//repository to download required dependencies.
 
+// 19. 在build.gradle文件中使用“dependencies”元素来定义我们的项目依赖项，
+// 当我们定义依赖项时，Gradle将从MavenRepository中检查这些jar文件
+// 并将它们下载到本地并添加到我们的项目构建路径中。
 
-
-// 我们需要在build.gradle文件中使用“dependencies”元素来定义我们的项目依赖项。
-// 当我们定义依赖项时，Gradle将从MavenRepository中检查这些jar文件并将它们下载到本地并添加到我们的项目构建路径中。
-
-// Here we use “compile” element to define project development dependencies 
-// and “testCompile” element to define JUnit/Testing Dependencies.
+// 20. 这里我们使用“compile"元素来定义项目部署依赖项，
+// 使用“testCompile” element来定义JUnit/Testing Dependencies.
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
-// We can define above “dependencies” element even simpler as shown below:
+// 21. 我们也可以这么定义上述依赖项:
+
 /*
-dependencies {
-	compile("commons-collections:commons-collections:3.2")
-	testCompile("junit:junit:4.+")
-}
+  dependencies {
+  	compile("commons-collections:commons-collections:3.2")
+  	testCompile("junit:junit:4.+")
+  }
 */
 
-// We can also use the following syntax to define “dependencies” element (without brackets):
-/*
-dependencies {
-	compile "commons-collections:commons-collections:3.2"
-	testCompile "junit:junit:4.+"
-}
-*/
-// 这意味着，如果不指定每个依赖jar文件的组(group)，名称(name)和版本(version)，我们可以使用此格式定义它们。
-// 但是我们应该按照相同的顺序来定义它们：group，name然后是version。 
+// 22. 我们应该按照group，name然后是version的顺序来定义它们,
 // 我们需要使用冒号（:)运算符来分隔它们,而不是逗号（，）
 
-// Like maven, in gradle build script also we define group, name and version of each dependency jar file.
-
-// This gradle element definition;
 /*
-dependencies {
-compile group:'commons-collections',name:'commons-collections',version:'3.2'
-}
+  dependencies {
+  	compile "commons-collections:commons-collections:3.2"
+  	testCompile "junit:junit:4.+"
+  }
 */
 
-// is similar to the following Maven definition
-/*
 
-<dependencies>
-	<dependency>
-		<groupId>commons-collections</groupId>
-		<artifactId>commons-collections</artifactId>
-		<version>3.2</version>
-	</dependency>
-<dependencies>
 
-*/
+// 23. Like maven, in gradle build script also we define group, 
+// name and version of each dependency jar file.
+// This gradle element definition:
 
 /*
-That means Gradle’s “group” element is similar to Maven’s “groupId” element.
-
-Gradle’s “name” element is similar to Maven’s “artifactId” element 
-and Gradle’s “version” element is similar to Maven’s “version” element.
+  dependencies {
+    compile group:'commons-collections',name:'commons-collections',version:'3.2'
+  }
 */
+
+// 24. it is similar to the following Maven definition:
+
+/*
+  <dependencies>
+  	<dependency>
+  		<groupId>commons-collections</groupId>
+  		<artifactId>commons-collections</artifactId>
+  		<version>3.2</version>
+  	</dependency>
+  <dependencies>
+*/
+
+// 25. That means Gradle’s “group” element is similar to Maven’s “groupId” element.
+// Gradle’s “name” element is similar to Maven’s “artifactId” element 
+// Gradle’s “version” element is similar to Maven’s “version” element.
 
 
 test {
@@ -210,12 +209,9 @@ uploadArchives {
     }
 }
 
-/*
-Maven/Gradle Local Repository
-When we execute Maven/Gradle commands, they will interact with 
-online maven repository and download required jars into Local repository.
-
-In Windows Systems, this Local Repository is stored at 
-“C:\Users\[Windos-UserName]\.m2\repository” as shown below. 
-In Unix/Mac systems, .m2 folder is created in home directory of user.
-*/
+// 26. Maven/Gradle Local Repository
+// 当我们执行Maven/Gradle命令时, 它们回和远程的maven repository交互，
+// 并且下载要求的jars到Local repository.
+// 27. In Windows Systems, this Local Repository is stored at 
+// “C:\Users\[Windos-UserName]\.m2\repository”
+// 28. In Unix/Mac systems, .m2 folder is created in home directory of user.
