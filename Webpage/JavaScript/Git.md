@@ -24,8 +24,6 @@ master分支的内容会覆盖缓存区和工作区的相应文件，工作区�
 
 显示左右的分支信息: `git branch -v`
 
-git checkout <branchname>
-
 git checkout -b <branchname>
 
 git checkout <reference>(commit id)
@@ -45,6 +43,8 @@ git reset --hard <commit-id>
 移动到commit-id的提交,将当前的 内容复制到暂存区和工作目录
 
 git reset HEAD <filename> (撤销暂存区的内容)
+
+git clean -df(还原)
 
 git stash: 保存目前的工作目录和暂存区返回到干净的工作空间
 

@@ -13,23 +13,26 @@ import javax.servlet.http.HttpServletResponse;
 // 但servlet 3.0使用易于理解的Java注释，并且错误的可能性较小。
 
 // 访问: http://localhost:8080/FirstServlet/jsps/hello.jsp
+// 直接请求的是webapp下的jsps/hello.jsp文件
 
 /**
  * Servlet implementation class FirstServlet
  */
-@WebServlet("/FirstServlet")
+// 因为此项目没有web.xml文件，所以取而代之使用注解的方式来映射url patterns 和 servlet
+@WebServlet(name = "/FirstServlet", urlPatterns = {"/hello"}, loadOnStartup = 1)
 public class FirstServlet extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 	
 	public static final String HTML_START="<html><body>";
 	public static final String HTML_END="</body></html>";
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
     public FirstServlet() {
         super();
-        // TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub
     }
 
 	/**
