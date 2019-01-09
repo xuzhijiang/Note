@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:javaee="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- <servlet>
+		<servlet-name>FirstServletPro</servlet-name>
+		<servlet-class>com.javadev.servlet.FirstServlet.FirstServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FirstServletPro</servlet-name>
+		<url-pattern>/FirstServletProject/jsps/hello.jsp</url-pattern>
+	</servlet-mapping> -->
+</web-app>

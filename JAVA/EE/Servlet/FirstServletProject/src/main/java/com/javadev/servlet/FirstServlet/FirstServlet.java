@@ -1,4 +1,4 @@
-package org.java.ee;
+package com.javadev.servlet.FirstServlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 // 在Servlet 3之前，我们需要在Web应用程序deployment descriptor中提供url pattern 信息，
 // 但servlet 3.0使用易于理解的Java注释，并且错误的可能性较小。
+
+// 访问: http://localhost:8080/FirstServlet/jsps/hello.jsp
 
 /**
  * Servlet implementation class FirstServlet
