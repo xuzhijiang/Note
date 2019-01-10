@@ -10,17 +10,35 @@
 CGI技术有许多缺点（drawbacks），例如为每个请求创建单独的进程，
 (platform dependent code)平台相关代码（C，C++），高内存使用和低性能。
 
-### Servlet与Servlet容器
+### Servlet与Servlet容器以及Web服务器和JVM的关系
 
 引入Java Servlet技术来克服CGI技术的缺点。
 
+Servlet容器也叫做Servlet引擎，是Web服务器的一部分，Servlet容器也仅仅不过是一个Java程序,Servlet容器也仅仅不过是一个Java程序,Servlet容器就是用来装Servlet的。引入servlet容器是为了处理复杂的HTTP请求。Servlet容器负责servlet的创建、执行和销毁。
+
 Java Servlet(Java服务器小程序)是一个基于Java技术的Web组件，运行在服务器端，它由Servlet容器所管理，用于生成动态的内容。 Servlet是平台独立的Java类(jdk中的jvm是和平台相关的，java是运行在jvm上，编写一个Servlet，实际上就是按照Servlet规范编写一个Java类。Servlet被编译为平台独立 的字节码，可以被动态地加载到支持Java技术的Web服务器中运行。 
 
-Servlet容器也叫做Servlet引擎，是Web服务器的一部分，Servlet没有main方法，不能独立运行，它必须被部署到Servlet容器中，由容器来实例化和调用Servlet的方法（如doGet()和doPost()），Servlet容器在Servlet的生命周期内包容和管理Servlet。在JSP技术 推出后，管理和运行Servlet/JSP的容器也称为Web容器。
+Servlet没有main方法，不能独立运行，它必须被部署到Servlet容器中，由容器来实例化和调用Servlet的方法（如doGet()和doPost()），Servlet容器在Servlet的生命周期内包容和管理Servlet。在JSP技术 推出后，管理和运行Servlet/JSP的容器也称为Web容器。
 
 有了servlet之后，用户在浏览器的地址栏中输入URL发来请求，Web服务器接收到该请求后，并不是将请求直接交给Servlet，而是交给Servlet容器。当Servlet容器接受到Web服务器传来的请求，发现处理请求的资源是Servlet时，然后Servlet容器(Web容器)创建两个对象HTTPServletRequest和HTTPServletResponse, 然后，它根据URL找到正确的servlet, 并为请求创建一个线程, Servlet容器实例化Servlet，然后它调用servlet service()方法, 然后基于HTTP method，service()方法调用doGet()或doPost()方法对请求进行处理,Servlet方法生成动态页面并将其写入response, servlet线程完成后,这个response由Servlet容器返回给Web服务器，Web服务器包装这个响应，以HTTP响应的形式发送给Web浏览器。
 
 Web browser ---> Web Server ------> servlet Container(web container) ----> GenericServlet ---> HttpServlet ---> OurServelt ----> find resource and generate response ---> servlet Container(web container)----> Web Server ----> Web browser
+
+#### Servlet容器和Web服务器如何处理一个请求
+
+1. Web服务器接收到HTTP请求
+2. Web服务器将请求转发给servlet容器
+3. 如果容器中存在所需的servlet，容器就会检索servlet，并将其加载到容器的地址空间中(load servlet)
+4. 容器调用servlet的init()方法对servlet进行初始化（该方法只会在servlet第一次被载入时调用）
+5. 容器调用servlet的service()方法来处理HTTP请求，即，读取请求中的数据，创建一个响应。servlet会被保留在容器的地址空间中，继续处理其他的HTTP请求
+6. Web服务器将动态生成的结果返回到正确的location。
+
+#### JVM扮演的角色
+
+1. 使用servlet，就要允许JVM为处理每个请求分配独立的Java线程，这也是Servlet容器主要的优势之一。
+2. 每一个servlet都是一个拥有能响应HTTP请求的特定元素的Java类。
+3. Servlet容器的主要作用是将请求转发给相应的servlet进行处理，并在JVM处理完请求后，将动态生成的结果返回至正确的location。
+4. 在大多数情况下，servlet容器运行在独立的JVM中，但如果容器需要多个JVM，也有相应的解决方案。
 
 #### servlet容器(web容器)能提供什么？
 
@@ -99,13 +117,15 @@ Tomcat服务器接受客户请求并做出响应的过程如下：
 1. 核心组件是Catalina Servlet容器，它是所有其他Tomcat组件的顶层容器
 2. Server元素表示整个Catalina servlet容器。
 3. Server中可以有多个Service。
-4. Service元素表示一或多个连接器组件的组合，这些组件共享一个用于处理传入请求的引擎组件
+4. Service是存活在Server内部的中间组件，它将一个或多个连接器（Connector）组件绑定到一个单独的引擎（Engine）上。在Server中，可以包含一个或多个Service组件。
 5. Executor表示可以在Tomcat中的组件之间共享的线程池。
-6. Connector代表连接组件。Tomcat 支持三种协议：HTTP/1.1、HTTP/2.0、AJP。
-7. Context元素表示一个Web应用程序，它在特定的虚拟主机中运行。每个Web应用程序都基于Web应用程序存档（WAR）文件，或者包含相应的解包内容的相应目录
+6. 连接器（Connector）处理与客户端的通信，它负责接收客户请求，以及向客户返回响应结果。在Tomcat中，有多个连接器可以使用。
 8. Engine元素表示与特定的Catalina服务相关联的整个请求处理机器。它接收并处理来自一个或多个连接器的所有请求，并将完成的响应返回给连接器，以便最终传输回客户端。
-9. Host元素表示一个虚拟主机，它是一个服务器的网络名称（如“www.mycompany.com”）与运行Tomcat的特定服务器的关联。
+9. HHost表示一个虚拟主机，一个引擎可以包含多个Host。
+10. 在Tomcat中，每个Service只能包含一个Servlet引擎（Engine）。引擎表示一个特定的Service的请求处理流水线。作为一个Service可以有多个连接器，引擎从连接器接收和处理所有的请求，将响应返回给适合的连接器，通过连接器传输给用户。用户允许通过实现Engine接口提供自定义的引擎，但通常不需要这么做。
+11. Context元素表示一个Web应用程序，它在特定的虚拟主机中运行。什么是Web应用程序呢？Servlet规范中，对Web应用程序做出了如下的定义：“一个Web应用程序是由一组Servlet、HTML页面、类，以及其他的资源组成的运行在Web服务器上的完整的应用程序。它可以在多个供应商提供的实现了Servlet规范的Servlet容器中运行”。一个Host可以包含多个Context（代表Web应用程序），每一个Context都有一个唯一的路径。用户通常不需要创建自定义的Context，因为Tomcat给出的Context接口的实现（类StandardContext）提供了重要的附加功能.每个Web应用程序都基于Web应用程序存档（WAR）文件，或者包含相应的解包内容的相应目录
 
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Server port="8005" shutdown="SHUTDOWN">
   <Service name="Catalina">
@@ -139,25 +159,26 @@ Tomcat服务器接受客户请求并做出响应的过程如下：
     </Engine>
   </Service>
 </Server>
+```
 
-Servlet API Hierarchy(Servlet API层次结构)
+## Servlet API Hierarchy(Servlet API层次结构)
 
-javax.servlet.Servlet是Servlet API的基本接口。 在使用Servlet时，我们应该注意一些其他接口和类。
-同样使用Servlet 3.0规范，servlet API引入了注释的使用，而不是在部署描述符中使用所有servlet配置。
-在本节中，我们将研究重要的Servlet API接口，类和注释，我们将在开发应用程序时进一步使用它们
+1. javax.servlet.Servlet是Servlet API的基本接口。 
+2. 同样使用Servlet 3.0规范，servlet API引入了注释的使用，
+而不是在部署描述符中使用所有servlet配置。
+3. Servlet接口声明了servlet生命周期中必不可少的三个方法-init()、service()和destroy()
+4. 所有servlet类都需要实现此接口来实现这3个方法,而且由服务器在特定的时刻调用。
+5. 和所有的Java程序一样，servlet运行在JVM中。
 
-
-Servlet接口
-
-javax.servlet.Servlet是Java Servlet API的基本接口。
- Servlet接口声明了servlet的生命周期方法。 所有servlet类都需要实现此接口。
-
+```java
 public interface Servlet {
 	/**
-	这是servlet容器调用以初始化servlet和ServletConfig参数的非常重要的方法。 
-	除非init（）方法执行完毕，否则servlet尚未准备好处理客户机请求。 此方法在servlet
-	生命周期中仅调用一次，并使Servlet类与普通java对象不同。 我们可以在servlet类中扩
-	展此方法来初始化资源，例如DB Connection，Socket连接等。
+	1. init()方法在servlet生命周期的初始化阶段被调用。
+	2. 它传递一个实现了javax.servlet.ServletConfig接口的对象，使得servlet能够从web application中获取初始化参数
+	3. 这是servlet容器调用以初始化servlet和ServletConfig参数的非常重要的方法。 
+	4. 除非init()方法执行完毕，否则servlet尚未准备好处理客户机请求。
+	5. 此方法在servlet生命周期中仅调用一次，并使Servlet类与普通java对象不同。 
+	6. 我们可以在servlet类中扩展此方法来初始化资源，例如DB Connection，Socket连接
 	*/
 	public void init(ServletConfig config) throws ServletException;
 	
@@ -169,8 +190,14 @@ public interface Servlet {
 	public ServletConfig getServletConfig();
 	
 	/**
-	此方法负责处理客户端请求。 每当servlet容器收到任何请求时，它都会创建一个新线程并通过
-	将请求和响应作为参数传递来执行service（）方法。 Servlet通常在多线程环境中运行，
+	1. servlet初始化之后,每接收一个请求，就会调用service()方法.
+	2. 每个请求的处理都在独立的线程中进行。
+	3. Web服务器对每个请求都会调用一次service()方法。
+	4. service()方法判断请求的类型，并把它转发给相应的方法进行处理。
+	5. 此方法负责处理客户端请求。 
+	6. 每当servlet容器收到任何请求时，它都会创建一个新线程并通过
+	将请求和响应作为参数传递来执行service（）方法。 
+	7. Servlet通常在多线程环境中运行，
 	因此开发人员有责任使用synchronization保持共享资源的线程安全。
 	*/
 	public void service(ServletRequest req, ServletResponse res);
@@ -181,12 +208,13 @@ public interface Servlet {
 	public String getServletInfo();
 	
 	/**
-	此方法只能在servlet生命周期中调用一次，并用于关闭任何打开的资源。 这就像java类的finalize方法。
+	 此方法只能在servlet生命周期中调用一次，并用于关闭任何打开的资源。 这就像java类的finalize方法。该方法释放被占用的资源.
 	*/
 	public void destroy();
 }
+```
 
-ServletContext interface
+### ServletContext interface
 
 javax.servlet.ServletContext接口提供对servlet的Web应用程序变量的访问。 
 ServletContext是唯一对象，可供Web应用程序中的所有servlet使用。 当我们希望一些
@@ -200,6 +228,7 @@ getServletContext（）方法获取ServletContext对象。
 注意：理想情况下，此接口的名称应为ApplicationContext，因为它适用于应用程序，
 而不是特定于任何servlet。 另外，不要将它与URL中传递的以访问Web应用程序的servlet上下文混淆。
 
+```java
 public interface ServletContext {
 	// Some of the important methods of ServletContext are:
 
@@ -231,12 +260,14 @@ public interface ServletContext {
 	boolean setInitParameter（String paramString1，String paramString2） - 我们可以使用此方法
 	为应用程序设置init参数。
 }
+```
 
-ServletRequest interface
+### ServletRequest interface
 
 ServletRequest接口用于向servlet提供client请求信息。 Servlet容器从client request
 创建ServletRequest对象，并将其传递给servlet service（）方法进行处理。
 
+```java
 public interface ServletRequest {
 
 	// returns the value of named attribute as Object and null if it’s not present. 
@@ -252,16 +283,18 @@ public interface ServletRequest {
 	int getServerPort() – returns the port number of the server on which it’s listening.
 	
 }
+```
 
 ServletRequest的子接口是HttpServletRequest，它包含一些其他用于会话管理，cookie和请求授权的方法。
 public interface HttpServletRequest extends ServletRequest {}
 
-ServletResponse interface
+### ServletResponse interface
 
 servlet使用ServletResponse接口向客户端发送响应。 
 Servlet容器创建ServletResponse对象并将其传递给servlet service（）方法，
 然后使用response object为客户端生成HTML响应。
 
+```java
 public interface ServletResponse {
 	void addCookie(Cookie cookie) – Used to add cookie to the response.
 	
@@ -279,8 +312,9 @@ public interface ServletResponse {
 	
 	void setStatus(int sc) – used to set the status code for the response.
 }
+```
 
-RequestDispatcher interface
+### RequestDispatcher interface
 
 RequestDispatcher接口用于将请求转发到另一个资源，该资源可以是同一上下文中的HTML，
 JSP或其他servlet。 我们还可以使用它将另一个资源的内容包含在响应中。 
@@ -295,13 +329,15 @@ resource that can be HTML, JSP or another servlet in the same context.
 我们可以使用ServletContext getRequestDispatcher（String path）方法在servlet中
 获取RequestDispatcher。 路径必须以/开头，并且被解释为相对于当前上下文根。
 
+```java
 public interface RequestDispatcher {
 	void forward（ServletRequest请求，ServletResponse响应） - 将请求从servlet转发到服务器上的另一个资源（servlet，JSP文件或HTML文件）。
 	
 	void include（ServletRequest请求，ServletResponse响应） - 包括响应中的资源（servlet，JSP页面，HTML文件）的内容。
 }
+```
 
-GenericServlet class
+### GenericServlet class
 
 GenericServlet是一个实现Servlet，ServletConfig和Serializable接口的抽象类。 
 GenericServlet提供了所有Servlet生命周期方法和ServletConfig方法的默认实现，
@@ -311,21 +347,23 @@ GenericServlet提供了所有Servlet生命周期方法和ServletConfig方法的�
 GenericServlet类中一个重要的方法是无参数的init（）方法，如果我们必须在处理来自servlet的任何请
 求之前初始化一些资源，我们应该在servlet程序中覆盖这个方法。
 
+```java
 public abstract class GenericServlet implements Servlet, ServletConfig{}
+```
 
-
-HTTPServlet class
+### HTTPServlet class
 
 HTTPServlet是一个抽象类，它扩展了GenericServlet，并为创建基于HTTP的Web应用程序提供了基础。 
 有些方法被子类重写为不同的HTTP方法。
 
+```java
 public abstract class HttpServlet extends GenericServlet {
 	doGet(), for HTTP GET requests
 	doPost(), for HTTP POST requests
 	doPut(), for HTTP PUT requests
 	doDelete(), for HTTP DELETE requests
 };
-
+```
 
 Servlet Attributes
 
@@ -373,4 +411,3 @@ WebListener:
 	各种类型的事件 (for various types of event)声明侦听器(listener)的注解。
 
 注意：我们将在以后的文章中研究Servlet过滤器和监听器，在本文中我们的重点是学习Servlet API的基接口和类。
-
