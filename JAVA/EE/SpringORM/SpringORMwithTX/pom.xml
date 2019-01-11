@@ -14,8 +14,16 @@
 		<!-- SPRING & HIBERNATE / JPA -->
 		<spring.version>4.0.0.RELEASE</spring.version>
 		<hibernate.version>4.1.9.Final</hibernate.version>
-
 	</properties>
+	
+	<!--  
+		1. 我们需要spring-context和spring-orm作为Spring依赖项。
+		2. 我们将hibernate-entitymanager用于Hibernate作为JPA实现。 
+		hibernate-entitymanager依赖于hibernate-core，
+		这就是为什么我们不必将hibernate-core显示地放在pom.xml中。
+		它通过maven传递依赖会被拉入到我们的项目中。
+		3. 我们还需要JDBC驱动程序作为数据库访问的依赖项。 我们正在使用包含JDBC驱动程序和内存数据库的HSQLDB。
+	-->
 
 	<dependencies>
 		<!-- LOG -->
@@ -37,6 +45,7 @@
 			<version>${spring.version}</version>
 		</dependency>
 
+		<!-- having Spring ORM dependencies -->
 		<!-- JPA Vendor -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
