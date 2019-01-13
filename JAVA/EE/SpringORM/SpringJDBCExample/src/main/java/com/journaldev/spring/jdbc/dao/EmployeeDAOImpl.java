@@ -10,7 +10,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.journaldev.spring.jdbc.model.Employee;
-
+//CRUD操作的实现很容易理解。 如果您想了解有关DataSource的更多信息，请阅读JDBC DataSource示例。
 public class EmployeeDAOImpl implements EmployeeDAO {
 
 	private DataSource dataSource;

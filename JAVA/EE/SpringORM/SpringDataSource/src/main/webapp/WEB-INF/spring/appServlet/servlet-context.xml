@@ -8,6 +8,19 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!--  
+		Spring Bean配置
+		
+		我们可以通过两种方式查找JNDI并将其连接到Controller DataSource，
+		我的spring bean配置文件包含它们，但其中一个被注释。 您可以在这些之间切换，响应也是一样的。
+		
+		1. 使用jee namespace标签执行JNDI查找并将其配置为Spring Bean。
+		 在这种情况下，我们还需要包含jee命名空间和模式定义。
+		
+		2. 通过传递JNDI上下文名称来创建org.springframework.jndi.JndiObjectFactoryBean类型的bean。 
+		jndiName是此配置的必需参数。
+	-->
+
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
@@ -48,7 +61,7 @@
 	</beans:bean>
 	 
 	 <!-- using JEE namespace for lookup -->
-	 <!-- 
+	 <!--
 	 <jee:jndi-lookup id="dbDataSource" jndi-name="jdbc/MyLocalDB"
    			expected-type="javax.sql.DataSource" />
 	  -->

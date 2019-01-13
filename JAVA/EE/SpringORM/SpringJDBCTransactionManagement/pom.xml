@@ -5,6 +5,16 @@
 	<artifactId>SpringJDBCTransactionManagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<!--  
+		Spring事务管理 -  Maven依赖
+		
+		由于我们使用的是JDBC API，因此我们必须在应用程序中包含spring-jdbc依赖项。 
+		我们还需要MySQL数据库驱动程序来连接mysql数据库，所以我们也将包含mysql-connector-java依赖。
+
+		spring-tx artifact提供了事务管理依赖，通常它由STS自动包含，但如果STS没有包含，那么你也需要包含它。 
+		您可能会看到一些其他依赖项用于日志记录和单元测试，但我们不会使用其中任何一个。 
+	-->
+
 	<properties>
 
 		<!-- Generic properties -->

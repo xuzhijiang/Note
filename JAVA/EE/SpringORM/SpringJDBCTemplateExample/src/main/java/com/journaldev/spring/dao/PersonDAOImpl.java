@@ -11,6 +11,10 @@ import org.springframework.stereotype.Component;
 import com.journaldev.model.Person;
 import com.journaldev.model.PersonMapper;
 
+//PersonDAOImpl类使用@Component注释进行注释，在此类中我们使用类型为JdbcTemplate的字段。
+
+//当调用此类的构造函数时，将向其中注入一个DataSource实例，
+// 我们可以创建一个JdbcTemplate实例。 之后我们可以在我们的方法中使用。
 @Component
 public class PersonDAOImpl implements PersonDAO {
 

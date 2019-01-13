@@ -2,6 +2,7 @@ package com.journaldev.spring.jdbc.model;
 
 import java.io.Serializable;
 
+// 我们在Employee表之后建模的Employee bean
 public class Employee implements Serializable{
 
 	private static final long serialVersionUID = -7788619177798333712L;

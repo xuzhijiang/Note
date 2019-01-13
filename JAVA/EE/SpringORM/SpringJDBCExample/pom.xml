@@ -5,6 +5,16 @@
 	<artifactId>SpringJDBCExample</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<!--  
+		首先，我们需要在maven项目pom.xml文件中包含Spring JDBC和Database驱动程序。
+		
+		大多数部分是由STS自动生成的
+
+		我们还添加了所需的artifacts spring-jdbc和mysql-connector-java。 
+		第一个包含Spring JDBC支持类，第二个包含数据库驱动程序。 
+		我正在使用MySQL数据库进行测试，因此我添加了MySQL JConnector jar依赖项。
+		 如果您正在使用其他一些RDBMS，那么您应该在依赖项中进行相应的更改。
+	-->
 	<properties>
 
 		<!-- Generic properties -->

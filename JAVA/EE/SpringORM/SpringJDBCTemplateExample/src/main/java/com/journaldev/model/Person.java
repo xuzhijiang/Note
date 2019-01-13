@@ -1,5 +1,7 @@
 package com.journaldev.model;
 
+//Spring JDBC模型类
+//下一步是创建模型类来映射到我们的数据库表。
 public class Person {
 	private Long id;
 	private Integer age;

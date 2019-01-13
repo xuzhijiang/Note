@@ -6,6 +6,7 @@ import com.journaldev.model.Person;
 import com.journaldev.spring.config.AppConfig;
 import com.journaldev.spring.dao.PersonDAO;
 
+// 输出将根据样本数据和多次执行而有所不同，我的想法是在这里学习如何通过示例程序使用Spring JdbcTemplate。
 public class Main {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);

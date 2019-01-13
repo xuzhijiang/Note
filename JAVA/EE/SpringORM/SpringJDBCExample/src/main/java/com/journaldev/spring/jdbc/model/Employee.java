@@ -1,5 +1,8 @@
 package com.journaldev.spring.jdbc.model;
 
+// 我们将使用DAO Pattern进行JDBC操作，
+// 所以让我们创建一个将为Employee表建模(model)的java bean。
+
 public class Employee {
 
 	private int id;
