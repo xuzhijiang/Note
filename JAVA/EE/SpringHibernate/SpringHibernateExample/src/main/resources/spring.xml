@@ -6,6 +6,27 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+	<!--
+		Spring Bean Configuration File for Hibernate 3 Integration
+		
+		我们可以通过两种方式为Hibernate提供数据库连接细节，
+
+		第一种是通过传递hibernateProperties中所有内容
+
+		第二种是然后通过创建DataSource然后将其传递给hibernate。
+
+		我更喜欢第二种方法，这就是为什么我们通过设置数据库连接属性来使用Apache Commons DBCP依赖来创建BasicDataSource。
+
+		对于Spring和Hibernate 3集成，Spring ORM提供了两个类 - 当hibernate映射是基于XML时的org.springframework.orm.hibernate3.LocalSessionFactoryBean和用于基于注释的org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean。
+
+		如果您使用基于XML的映射，我在注释中提供了LocalSessionFactoryBean的简单bean配置。 AnnotationSessionFactoryBean扩展了LocalSessionFactoryBean类，因此它具有hibernate集成的所有基本属性。
+
+		这些属性是自我理解的，并且大多与hibernate相关，因此我不会详细介绍它们。但是如果你想知道hibernateProperties，annotatedClasses即将到来的地方，你需要查看bean类源代码。
+
+		注意personDAO的bean定义，就像我之前说过的，
+		如果我们必须切换到其他一些ORM框架，我们需要在这里更改实现类并设置我们需要的任何其他属性。
+	-->
+
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />

@@ -5,6 +5,17 @@
 	<artifactId>SpringHibernateExample</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<!--  
+		Spring和Hibernate Integration Project的重要依赖项是：
+
+		spring-context和spring-tx用于核心Spring功能。 请注意，我使用的是版本4.0.3.RELEASE。
+		
+		SpringORM支持的Spring-orm依赖，它是我们的spring项目中集成hibernate所必需的
+
+		Hibernate框架的hibernate-entitymanager和hibernate-core依赖项。 请注意，版本是3.6.9.，对于使用Hibernate4，我们需要的是将其更改为4.3.5
+
+		mysql-connector-java for MySQL驱动程序，用于数据库连接。
+	-->
 	<properties>
 
 		<!-- Generic properties -->

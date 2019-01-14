@@ -7,6 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+// 模型类或实体Bean
+// 
+//我们可以使用基于Hibernate XML的映射以及基于JPA注释的映射。 
+//这里我使用JPA注释进行映射，因为hibernate提供了JPA实现。
+
 /**
  * Entity bean with JPA annotations
  * Hibernate provides JPA implementation
