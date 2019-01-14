@@ -357,32 +357,6 @@ def node(l1, l2):
 
 思路: http://humaoli.blog.163.com/blog/static/13346651820141125102125995/
 
-
-## 10 二分查找
-
-```python
-
-#coding:utf-8
-def binary_search(list,item):
-    low = 0
-    high = len(list)-1
-    while low<=high:
-        mid = (low+high)/2
-        guess = list[mid]
-        if guess>item:
-            high = mid-1
-        elif guess<item:
-            low = mid+1
-        else:
-            return mid
-    return None
-mylist = [1,3,5,7,9]
-print binary_search(mylist,3)
-
-```
-
-参考: http://blog.csdn.net/u013205877/article/details/76411718
-
 ## 11 快排
 
 ```python

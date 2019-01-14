@@ -1,3 +1,5 @@
+一个jar包的gradle如何配置：https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5
+
 Grunt和Gulp是两个流行的构建和自动化工具，用于JavaScript项目，如NodeJS或jQuery。 Gant是一种主要用于基于Groovy的应用程序的构建工具。 SBT代表Scala Build Tool。 SBT主要用于基于Scala的应用程序。
 
 现在，大多数java项目都使用maven或gradle构建工具，因为与ant相比它们具有优势。

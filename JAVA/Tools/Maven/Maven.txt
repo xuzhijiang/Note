@@ -2,6 +2,8 @@ maven是构建和依赖管理工具
 
 中央服务器地址(central server):https://repo.maven.apache.org/maven2/
 
+一个jar包的maven如何配置：https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5
+
 查找jar包的顺序:
 
 1. find jar: local repo(本地仓库)
