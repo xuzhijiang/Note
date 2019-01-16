@@ -3,6 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+	<!--
+		contextConfigLocation是我们提供spring安全bean配置文件名的context参数。 ContextLoaderListener在我们的应用程序中使用它配置身份验证。
+
+		我们还添加了HttpSessionEventPublisher侦听器，以将session created/destroyed events发布到Spring Root WebApplicationContext。
+
+		我还将会话超时设置为15分钟，用于自动超时。当用户处于非活动状态的时候，也就是超过15分钟时没有活跃，就会自动超时.
+
+		DelegatingFilterProxy是定义的应用程序过滤器，用于拦截HTTP请求和执行与身份验证相关的任务。
+
+		DispatcherServlet servlet是Spring MVC应用程序的前端控制器。
+	-->
+
 	<!-- Spring Security Configuration File -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

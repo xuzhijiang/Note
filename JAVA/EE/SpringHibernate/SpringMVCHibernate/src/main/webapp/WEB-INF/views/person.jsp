@@ -3,6 +3,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
 <html>
+<!--  
+	注意在Controller处理程序方法中添加到Model的属性，我们将使用它们来创建我们的视图页面。 我们还将使用JSTL标签， spring core and spring form tags.
+-->
 <head>
 	<title>Person Page</title>
 	<style type="text/css">

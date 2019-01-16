@@ -1,3 +1,4 @@
+/*DB Setup Script*/
 CREATE TABLE `Person` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL DEFAULT '',

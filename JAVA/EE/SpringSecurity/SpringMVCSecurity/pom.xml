@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<!--
+		我们为Spring Security添加了spring-security-config和spring-security-web依赖项
+
+		除此之外，我们还有spring-jdbc依赖，因为我们也将使用Spring JDBC身份验证。
+
+		其余的依赖项与Spring MVC，日志记录，AOP等有关。
+	-->
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.journaldev.spring</groupId>
 	<artifactId>SpringMVCSecurity</artifactId>

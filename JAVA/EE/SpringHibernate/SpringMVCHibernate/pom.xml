@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<!--
+		下面的一些依赖项是当我创建Spring MVC项目时由Spring Tool Suite（STS）包含的。 
+
+		下面的重要依赖项是spring-context，spring-webmvc，spring-tx，
+		hibernate-core，hibernate-entitymanager和spring-orm。 
+		我正在使用Apache Commons DBCP进行连接池，但在现实生活中，
+		最有可能通过容器完成连接池,我们需要提供JNDI参考详细信息。
+
+		注意：我注意到有些读者遇到了数据库连接问题。 请注意，在我的pom.xml中，没有数据库驱动程序。 这对我奏效，因为
+		我在tomcat lib文件夹中有MySQl驱动，并且我有一些DataSource连接配置它。 对于任何与数据库连接相关的问题，或把数据库驱动放到container的lib中，
+		或者在pom.xml中包含依赖.
+	-->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.journaldev.spring</groupId>
 	<artifactId>SpringMVCHibernate</artifactId>

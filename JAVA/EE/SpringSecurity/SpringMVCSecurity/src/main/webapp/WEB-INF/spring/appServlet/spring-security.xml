@@ -4,6 +4,40 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<!--
+		Spring MVC Security Configuration
+
+		这是我们教程中最重要的部分
+
+		1. 定义了accessDecisionManager bean，以便我们可以拥有自定义角色，默认情况下，所有角色都应以ROLE_开头，我们将在roleVoter bean属性rolePrefix中覆盖此设置。
+
+		2. 我们可以在spring安全配置中定义多个身份验证管理器。我已经为 in-memory authentication(内存中身份验证)定义了in-memory-auth，为UserDetailsS​​ervice DAO实现定义了dao-auth，为JDBC身份验证定义了jdbc-auth。对于JDBC身份验证，我已经为应用程序中定义的DataSource提供了配置，以及我们是否要使用servlet容器中定义的JNDI资源。
+
+		3. http authentication-manager-ref用于定义将用于验证用户的身份验证管理器。目前，它已配置为使用基于JDBC的身份验证。
+
+		4. http access-decision-manager-ref用于指定AccessDecisionManager实现的ID,此实现 "应该用于授权HTTP请求"。
+
+		5. intercept-url用于定义可以访问此页面的用户的URL模式和权限。例如，
+		我们已经定义了URI“/emp/**”只能由具有“Admin”访问权限的用户访问。
+
+		6. form-login定义登录表单配置，我们可以提供用户名和密码参数名称。 
+
+		7. authentication-failure-url用于定义身份验证失败页面的URL。如果未指定登录失败URL，
+		Spring Security将自动在/spring_security_login？login_error创建失败登录URL
+		和一个相应的过滤器来渲染那个登录失败URL(在请求时)
+
+		8. default-target-url用于定义在成功验证后将重定向到的默认URL，如果用户以前的操作无法resumed。
+		如果用户在没有首先请求触发认证的安全操作的情况下访问登录页面，则通常会发生这种情况。如果未指定，则默认为应用程序的根目录。
+
+		9. logout用于定义注销处理过滤器。这里我们使会话无效并在成功注销后将登录页面发送到用户。 logout-url用于定义用于logout action.(注销操作)的URL。
+
+		10. 如果拒绝用户访问，则access-denied-handler定义全局错误页面，因为他无权执行指定的操作。
+
+		11. 会话管理会将SessionManagementFilter过滤器添加到会话管理的过滤器堆栈中。
+
+		还有一些其他配置，但我已经包含了我们使用的大多数重要配置。
+	-->
+
 	<!-- Configuring RoleVoter bean to use custom access roles, by default roles 
 		should be in the form ROLE_{XXX} -->
 	<beans:bean id="roleVoter"

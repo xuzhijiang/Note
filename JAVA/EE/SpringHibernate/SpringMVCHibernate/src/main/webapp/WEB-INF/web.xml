@@ -3,6 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+	<!--
+		部署描述符
+
+		我们需要插入spring framework到web应用程序，这是通过将Spring框架DispatcherServlet配置为前端控制器来完成的.
+
+		大部分内容是样板代码，spring context file location where we will configure our spring beans and services.。 如果需要，您可以根据项目要求进行更改。
+	-->
+
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

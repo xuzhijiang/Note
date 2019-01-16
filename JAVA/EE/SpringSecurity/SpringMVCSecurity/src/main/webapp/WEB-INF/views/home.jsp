@@ -4,6 +4,8 @@
 <head>
 <title>Home</title>
 </head>
+<!-- home.jsp is returned for “/home” URI and it should not require any authentication.
+ -->
 <body>
 	<h1>Hello world!</h1>
 

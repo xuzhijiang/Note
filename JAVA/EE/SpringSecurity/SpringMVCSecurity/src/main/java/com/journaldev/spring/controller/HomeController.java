@@ -3,9 +3,7 @@ package com.journaldev.spring.controller;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,6 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+// spring安全示例控制器类
+// 这是我们的控制器类，它定义了两个我们可以访问的URIs
+
+// 在我们的示例中，我们仅将身份验证应用于URI“/emp/get/{id}” 
+// 所有其他URI可以在 没有 任何身份验证的情况下访问。 
+
+//  login, logout and denied URIs用于在请求
+//secured URL时发送相应的响应页面。
 @Controller
 public class HomeController {
 	

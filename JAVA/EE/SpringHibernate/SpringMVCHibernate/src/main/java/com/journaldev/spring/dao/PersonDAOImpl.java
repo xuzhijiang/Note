@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.journaldev.spring.model.Person;
 
+// 特定于Hibernate的DAO实现:
+// 请注意，我没有使用Hibernate Transaction，因为它将由Spring框架处理。
 @Repository
 public class PersonDAOImpl implements PersonDAO {
 	

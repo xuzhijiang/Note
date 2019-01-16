@@ -1,5 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!--
+		我们有以下与Spring Framework相关的依赖项。
+
+		spring-jdbc：这个用于JDBC身份验证方法的JDBC操作。 它需要将DataSource设置为JNDI。 有关它的用法的完整示例，请参阅Spring DataSource JNDI示例
+
+		spring-security-taglibs：Spring Security tag库，我用它在JSP页面中显示用户角色。 大多数时候，你不会需要它。
+		
+		spring-security-config：用于配置身份验证提供程序，是否使用JDBC，DAO，LDAP等。
+		
+		spring-security-web：该组件将Spring Security与Servlet API集成在一起。 我们需要它来在Web应用程序中插入我们的security configuration
+		
+		另请注意，我们将使用Servlet API 3.0功能通过编程方式添加 listener and filters，这就是依赖项中的servlet api版本应为3.0或更高的原因。
+	-->
+	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>WebappSpringSecurity</groupId>
 	<artifactId>WebappSpringSecurity</artifactId>

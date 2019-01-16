@@ -7,6 +7,28 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+	<!--
+		Spring Bean配置
+
+		我们的服务已准备就绪，我们所需要的只是通过spring bean配置连接它们。 我们的root-context.xml文件是空的，因此我们只查看servlet-context.xml文件。
+
+		dataSource bean是为org.apache.commons.dbcp.BasicDataSource类定义的，用于基本连接池。
+
+		org.springframework.orm.hibernate4.LocalSessionFactoryBean bean用于Hibernate 4 SessionFactory。
+
+		对于Hibernate 3，您将找到与org.springframework.orm.hibernate3.LocalSessionFactoryBean和org.springframework.orm.hibernate3.AnnotationSessionFactoryBean类似的类。
+
+		一个重要的一点是，当我们依赖Spring框架进行Hibernate会话管理时，我们不应该定义hibernate.current_session_context_class，否则，你会得到很多与会话事务相关的问题(session transaction-related issues.)
+
+
+		Spring ORM需要org.springframework.orm.hibernate4.HibernateTransactionManager的transactionManager bean定义来支持hibernate会话事务管理。
+
+		对于Hibernate 3，您将找到与org.springframework.orm.hibernate3.HibernateTransactionManager类似的类。 
+
+		Spring使用AOP进行事务管理，现在可以将它与@Transactional注释联系起来。
+	-->
+
+
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 

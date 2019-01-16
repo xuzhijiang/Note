@@ -9,6 +9,11 @@
 <title>Home Page</title>
 </head>
 <body>
+	<!--  
+		Spring Security会处理CSRF攻击，因此当我们提交注销表单时，我们会将CSRF令牌发送回服务器以将其删除。 
+
+		Spring Security组件设置的CSRF对象是_csrf，我们使用它的属性名称和token value在注销请求中传递。
+	-->
 <h3>Home Page</h3>
 
 	<p>

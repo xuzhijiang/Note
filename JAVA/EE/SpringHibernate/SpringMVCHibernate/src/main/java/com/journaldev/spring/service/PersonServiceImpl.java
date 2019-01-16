@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.journaldev.spring.dao.PersonDAO;
 import com.journaldev.spring.model.Person;
 
+// 请注意，通过使用@Transactional注释来应用spring声明式事务管理。
 @Service
 public class PersonServiceImpl implements PersonService {
 	
