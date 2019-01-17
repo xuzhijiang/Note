@@ -5,6 +5,11 @@
 <head>
 <title>Login Page</title>
 </head>
+<!--  
+	这里有几点需要注意。 第一个是登录URL是“/ j_spring_security_check”。 这是默认的登录处理URL，就像logout-url一样。
+
+	另一个重点是用户名和密码的表单参数名称。 它们应与spring security configurations中配置的相同。
+-->
 <body>
 	<h3>Login with Username and Password</h3>
 	<c:url var="loginUrl" value="/j_spring_security_check"></c:url>

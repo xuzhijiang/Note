@@ -4,7 +4,8 @@
 <head>
 <title>Home</title>
 </head>
-<!-- home.jsp is returned for “/home” URI and it should not require any authentication.
+<!--
+	为“/home”URI返回home.jsp，不应该要求任何身份验证。
  -->
 <body>
 	<h1>Hello world!</h1>
