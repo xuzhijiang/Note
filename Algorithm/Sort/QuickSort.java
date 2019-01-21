@@ -1,6 +1,5 @@
 package net.sunniwell.sort;
 
-//Java program for implementation of QuickSort
 class QuickSort {
 	/*
 	 * This function takes last element as pivot, places the pivot element at

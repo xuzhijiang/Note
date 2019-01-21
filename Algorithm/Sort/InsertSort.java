@@ -2,7 +2,7 @@ package net.sunniwell.sort;
 
 /*
  * 1, It is very efficient for small data sets.
- * 2,  It is much less efficient on large lists than other sort algorithms.
+ * 2, It is much less efficient on large lists than other sort algorithms.
  */
 public class InsertSort {
 	public static void main(String a[]){

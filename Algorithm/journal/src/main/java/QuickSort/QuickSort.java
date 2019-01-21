@@ -6,47 +6,72 @@ import com.google.gson.Gson;
 
 public class QuickSort {
 
-	static void sort(int[] array, int lo, int hi) {
-		if (lo >= hi) {
-			return;
-		}
-		int i = lo;
-		int j = hi + 1;
-		int base = array[lo];
-		while (true) {
-			while (array[++i] < base && i < hi);
-			while (base < array[--j] && lo < j);
-			if (i >= j) {
-				break;
+	static int partition(int arr[], int low, int high) {
+		// 最后的元素作为哨兵
+		int pivot = arr[high];
+		// index of smaller element(更小元素的索引)
+		int i = (low - 1);
+		for (int j = low; j < high; j++) {
+			// If current element is smaller than or equal to pivot
+			if (arr[j] <= pivot) {
+				i++;
+
+				// swap arr[i] and arr[j]
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
 			}
-			int tmp = array[i];
-			array[i] = array[j];
-			array[j] = tmp;
 		}
-		array[lo] = array[j];
-		array[j] = base;
-		// sort left part:
-		sort(array, lo, j - 1);
-		// sort right part:
-		sort(array, j + 1, hi);
+
+		// swap arr[i+1] and arr[high] (or pivot)
+		int temp = arr[i + 1];
+		arr[i + 1] = arr[high];
+		arr[high] = temp;
+
+		return i + 1;
 	}
 
-	public static void sort(int[] array) {
+	/*
+	 * The main function that implements QuickSort() arr[] --> Array to be sorted,
+	 * low --> Starting index, high --> Ending index
+	 */
+	static void sort(int arr[], int low, int high) {
+		if (low < high) {
+			/*
+			 * pi is partitioning index, arr[pi] is now at right place
+			 */
+			int pi = partition(arr, low, high);
+
+			// Recursively sort elements before
+			// partition and after partition
+			sort(arr, low, pi - 1);
+			sort(arr, pi + 1, high);
+		}
+	}
+
+	static void sort(int[] array) {
 		sort(array, 0, array.length - 1);
 	}
 
-	public static void main(String[] args) throws Exception {
-		QuickSortInput[] inputs = new Gson().fromJson(new FileReader("quick-sort/input.json"), QuickSortInput[].class);
-		for (QuickSortInput input : inputs) {
-			int[] array = new int[input.array.length];
-			System.arraycopy(input.array, 0, array, 0, array.length);
-			System.out.println("original => " + new Gson().toJson(array));
-			sort(array);
-			System.out.println("sorted => " + new Gson().toJson(array));
-			if (!Objects.deepEquals(array, input.result)) {
-				throw new Exception("failed. expected = " + new Gson().toJson(input.result) + ", actual = "
-						+ new Gson().toJson(array));
+	public static void main(String[] args) {
+		try {
+			ClassLoader classLoader = QuickSort.class.getClassLoader();
+			String filePath = classLoader.getResource("quick-sort/input.json").getFile();
+			System.out.println("filePath: " + filePath);
+			QuickSortInput[] inputs = new Gson().fromJson(new FileReader(filePath), QuickSortInput[].class);
+			for (QuickSortInput input : inputs) {
+				int[] array = new int[input.array.length];
+				System.arraycopy(input.array, 0, array, 0, array.length);
+				System.out.println("original => " + new Gson().toJson(array));
+				sort(array);
+				System.out.println("sorted => " + new Gson().toJson(array));
+				if (!Objects.deepEquals(array, input.result)) {
+					throw new Exception("failed. expected = " + new Gson().toJson(input.result) + ", actual = "
+							+ new Gson().toJson(array));
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
