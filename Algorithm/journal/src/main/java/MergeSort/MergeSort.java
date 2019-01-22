@@ -1,12 +1,13 @@
-package net.sunniwell.sort;
+package MergeSort;
 
 import java.util.Arrays;
 
 /*
  * 时间复杂度:  O（n*log2n）
- * 归并排序的时间复杂度与插入排序相比，已经降低了很多，这一点在数组的输入规模较大时将会非常明显，因为log函数的增加速度将远远低于n的增加速度。
+ * 归并排序的时间复杂度与插入排序相比，已经降低了很多，
+ * 这一点在数组的输入规模较大时将会非常明显，因为log函数的增加速度将远远低于n的增加速度。
  */
-public abstract class MergeSort {
+public class MergeSort {
     
     public static void merge(int[] a, int low, int mid, int high) {
         int[] temp = new int[high - low + 1];

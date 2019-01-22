@@ -10,9 +10,10 @@ public class QuickSort {
 		// 最后的元素作为哨兵
 		int pivot = arr[high];
 		// index of smaller element(更小元素的索引)
-		int i = (low - 1);
+		int i = (low - 1); // i是记录着小于等于哨兵元素的索引
 		for (int j = low; j < high; j++) {
 			// If current element is smaller than or equal to pivot
+			// 如果当前的元素小于等于哨兵
 			if (arr[j] <= pivot) {
 				i++;
 
@@ -24,6 +25,8 @@ public class QuickSort {
 		}
 
 		// swap arr[i+1] and arr[high] (or pivot)
+		// 将哨兵放到所有元素的中间位置，使哨兵左边的元素都小于等于哨兵，哨兵右边的
+		// 元素大于等于哨兵
 		int temp = arr[i + 1];
 		arr[i + 1] = arr[high];
 		arr[high] = temp;
