@@ -2,7 +2,7 @@ package org.java.core.advanced.HeapStack;
 
 /**
  * how they are being used to store primitive, Objects and reference variables.
- * ËüÃÇ(Stack memory(¶ÑÕ») and heap(¶Ñ) memory)ÊÇÈçºÎ±»Ê¹ÓÃÈ¥´æ´¢Ô­Ê¼Öµ£¬¶ÔÏóÒÔ¼°ÒýÓÃ±äÁ¿µÄ¡£
+ * å®ƒä»¬(Stack memory(å †æ ˆ) and heap(å †) memory)æ˜¯å¦‚ä½•è¢«ä½¿ç”¨åŽ»å­˜å‚¨åŽŸå§‹å€¼ï¼Œå¯¹è±¡ä»¥åŠå¼•ç”¨å˜é‡çš„ã€‚
  */
 public class Memory {
 	
@@ -19,21 +19,21 @@ public class Memory {
 	}//line 8
 }
 
-//1. Ò»µ©ÎÒÃÇÔËÐÐ³ÌÐò£¬Ëü¾Í»á½«ËùÓÐÔËÐÐÊ±Àà¼ÓÔØµ½Heap SpaceÖÐ¡£µ±ÔÚµÚ1ÐÐÕÒµ½main£¨£©·½·¨Ê±£¬
-// Java Runtime»á´´½¨ÒªÓÉmain()·½·¨Ïß³ÌÊ¹ÓÃµÄStack memory¡£
+//1. ä¸€æ—¦æˆ‘ä»¬è¿è¡Œç¨‹åºï¼Œå®ƒå°±ä¼šå°†æ‰€æœ‰è¿è¡Œæ—¶ç±»åŠ è½½åˆ°Heap Spaceä¸­ã€‚å½“åœ¨ç¬¬1è¡Œæ‰¾åˆ°mainï¼ˆï¼‰æ–¹æ³•æ—¶ï¼Œ
+// Java Runtimeä¼šåˆ›å»ºè¦ç”±main()æ–¹æ³•çº¿ç¨‹ä½¿ç”¨çš„Stack memoryã€‚
 
-//2. ÎÒÃÇÔÚµÚ2ÐÐ´´½¨Ô­Ê¼¾Ö²¿±äÁ¿£¬Òò´ËËü±»´´½¨²¢´æ´¢ÔÚmain()·½·¨µÄstack memoryÖÐ¡£
+//2. æˆ‘ä»¬åœ¨ç¬¬2è¡Œåˆ›å»ºåŽŸå§‹å±€éƒ¨å˜é‡ï¼Œå› æ­¤å®ƒè¢«åˆ›å»ºå¹¶å­˜å‚¨åœ¨main()æ–¹æ³•çš„stack memoryä¸­ã€‚
 
-//3. ÓÉÓÚÎÒÃÇÔÚµÚ3ÐÐ´´½¨ÁËÒ»¸öObject£¬ËüÔÚ¶ÑÄÚ´æ(Heap space)ÖÐ´´½¨£¬
-// ¶ÑÕ»ÄÚ´æ(Stack memory)°üº¬ËüµÄÒýÓÃ¡£ µ±ÎÒÃÇÔÚµÚ4ÐÐ´´½¨Memory¶ÔÏóÊ±£¬»á·¢ÉúÀàËÆµÄ¹ý³Ì¡£
+//3. ç”±äºŽæˆ‘ä»¬åœ¨ç¬¬3è¡Œåˆ›å»ºäº†ä¸€ä¸ªObjectï¼Œå®ƒåœ¨å †å†…å­˜(Heap space)ä¸­åˆ›å»ºï¼Œ
+// å †æ ˆå†…å­˜(Stack memory)åŒ…å«å®ƒçš„å¼•ç”¨ã€‚ å½“æˆ‘ä»¬åœ¨ç¬¬4è¡Œåˆ›å»ºMemoryå¯¹è±¡æ—¶ï¼Œä¼šå‘ç”Ÿç±»ä¼¼çš„è¿‡ç¨‹ã€‚
 
-//4. ÏÖÔÚ£¬µ±ÎÒÃÇÔÚµÚ5ÐÐµ÷ÓÃfoo£¨£©·½·¨Ê±£¬»á´´½¨¶ÑÕ»¶¥²¿µÄ¿éÒÔ¹©foo£¨£©·½·¨Ê¹ÓÃ¡£
-// ÓÉÓÚJavaÊÇ°´Öµ´«µÝµÄ£¬Òò´ËÔÚµÚ6ÐÐµÄfoo£¨£©¶ÑÕ»¿éÖÐ´´½¨ÁË¶ÔObjectµÄÐÂÒýÓÃ¡£
+//4. çŽ°åœ¨ï¼Œå½“æˆ‘ä»¬åœ¨ç¬¬5è¡Œè°ƒç”¨fooï¼ˆï¼‰æ–¹æ³•æ—¶ï¼Œä¼šåˆ›å»ºå †æ ˆé¡¶éƒ¨çš„å—ä»¥ä¾›fooï¼ˆï¼‰æ–¹æ³•ä½¿ç”¨ã€‚
+// ç”±äºŽJavaæ˜¯æŒ‰å€¼ä¼ é€’çš„ï¼Œå› æ­¤åœ¨ç¬¬6è¡Œçš„fooï¼ˆï¼‰å †æ ˆå—ä¸­åˆ›å»ºäº†å¯¹Objectçš„æ–°å¼•ç”¨ã€‚
 
-//5. ÔÚµÚ7ÐÐ´´½¨Ò»¸ö×Ö·û´®£¬ËüÔÚ¶Ñ¿Õ¼ä(Heap Space)µÄString PoolÖÐ£¬
-// ²¢ÔÚfoo£¨£©¶ÑÕ»¿Õ¼äÖÐÎªËü´´½¨Ò»¸öÒýÓÃ¡£
+//5. åœ¨ç¬¬7è¡Œåˆ›å»ºä¸€ä¸ªå­—ç¬¦ä¸²ï¼Œå®ƒåœ¨å †ç©ºé—´(Heap Space)çš„String Poolä¸­ï¼Œ
+// å¹¶åœ¨fooï¼ˆï¼‰å †æ ˆç©ºé—´ä¸­ä¸ºå®ƒåˆ›å»ºä¸€ä¸ªå¼•ç”¨ã€‚
 
-//6. foo£¨£©·½·¨ÔÚµÚ8ÐÐÖÕÖ¹£¬´ËÊ±ÔÚ¶ÑÕ»ÖÐÎªfoo£¨£©·ÖÅäµÄÄÚ´æ¿é±äÎª¿ÕÏÐ¡£
+//6. fooï¼ˆï¼‰æ–¹æ³•åœ¨ç¬¬8è¡Œç»ˆæ­¢ï¼Œæ­¤æ—¶åœ¨å †æ ˆä¸­ä¸ºfooï¼ˆï¼‰åˆ†é…çš„å†…å­˜å—å˜ä¸ºç©ºé—²ã€‚
 
-//7. ÔÚµÚ9ÐÐÖÐ£¬main£¨£©·½·¨ÖÕÖ¹£¬²¢ÇÒÎªmain£¨£©·½·¨´´½¨µÄ¶ÑÕ»ÄÚ´æ±»Ïú»Ù¡£ 
-// ´Ë³ÌÐòÒ²ÔÚ´ËÐÐ½áÊø£¬Òò´ËJava RuntimeÊÍ·ÅËùÓÐÄÚ´æ²¢½áÊø³ÌÐòµÄÖ´ÐÐ¡£
+//7. åœ¨ç¬¬9è¡Œä¸­ï¼Œmainï¼ˆï¼‰æ–¹æ³•ç»ˆæ­¢ï¼Œå¹¶ä¸”ä¸ºmainï¼ˆï¼‰æ–¹æ³•åˆ›å»ºçš„å †æ ˆå†…å­˜è¢«é”€æ¯ã€‚ 
+// æ­¤ç¨‹åºä¹Ÿåœ¨æ­¤è¡Œç»“æŸï¼Œå› æ­¤Java Runtimeé‡Šæ”¾æ‰€æœ‰å†…å­˜å¹¶ç»“æŸç¨‹åºçš„æ‰§è¡Œã€‚

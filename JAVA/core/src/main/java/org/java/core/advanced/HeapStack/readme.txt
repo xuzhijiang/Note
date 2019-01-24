@@ -1,79 +1,92 @@
-Java Heap Memory and Stack Memory(Java¶ÑÄÚ´æºÍÕ»ÄÚ´æ):
+Java Heap Memory and Stack Memory(Javaå †å†…å­˜å’Œæ ˆå†…å­˜):
 
 Java Heap Space
 
-Java ¶ÑÄÚ´æÊÇÔÚ javaÔËĞĞÊ±Îª¶ÔÏóºÍJRE classes·ÖÅäÄÚ´æµÄÊ±ºò±»Ê¹ÓÃ,ÎŞÂÛÊ²Ã´Ê±ºòÎÒÃÇ´´½¨ÈÎºÎ¶ÔÏó£¬
-Ëü×ÜÊÇÔÚ¶ÑÄÚ´æÖĞ±»´´½¨¡£
+    Javaå †å†…å­˜(å †ç©ºé—´)æ˜¯åœ¨javaè¿è¡Œæ—¶ä¸ºå¯¹è±¡å’ŒJRE classesåˆ†é…å†…å­˜çš„æ—¶å€™è¢«ä½¿ç”¨,æ— è®ºä»€ä¹ˆæ—¶å€™æˆ‘ä»¬åˆ›å»ºä»»ä½•å¯¹è±¡ï¼Œ
+    å®ƒæ€»æ˜¯åœ¨å †å†…å­˜ä¸­è¢«åˆ›å»ºã€‚
 
-À¬»øÊÕ¼¯ÔÚ¶ÑÄÚ´æÉÏÔËĞĞ£¬ÒÔÊÍ·ÅÃ»ÓĞÈÎºÎÒıÓÃµÄ¶ÔÏóÊ¹ÓÃµÄÄÚ´æ¡£ÔÚ¶Ñ¿Õ¼äÖĞ´´½¨µÄÈÎºÎ¶ÔÏó¶¼¾ßÓĞÈ«¾Ö·ÃÎÊÈ¨ÏŞ£¬¿ÉÒÔ´ÓÓ¦ÓÃ³ÌĞòµÄÈÎºÎÎ»ÖÃÒıÓÃ¡£
+    åƒåœ¾æ”¶é›†åœ¨å †å†…å­˜ä¸Šè¿è¡Œï¼Œä»¥é‡Šæ”¾æ²¡æœ‰ä»»ä½•å¼•ç”¨çš„å¯¹è±¡ä½¿ç”¨çš„å†…å­˜ã€‚åœ¨å †ç©ºé—´ä¸­åˆ›å»ºçš„ä»»ä½•å¯¹è±¡éƒ½å…·æœ‰å…¨å±€è®¿é—®æƒé™ï¼Œ
+    å¯ä»¥ä»åº”ç”¨ç¨‹åºçš„ä»»ä½•ä½ç½®å¼•ç”¨ã€‚
 
 Java Stack Memory
 
-Java Stack Memory ÓÃÓÚÖ´ĞĞÏß³Ì, ËüÃÇ°üº¬·½·¨ÖĞµÄÌØ¶¨Öµ,ÕâĞ©ÖµÉùÃ÷ÖÜÆÚÊÇ¶ÌÔİµÄ(short-lived)£¬»¹°üº¬ÁËÔÚ¶ÑÄÚ´æÖĞµÄ¶ÔÆäËû¶ÔÏóµÄÒıÓÃ£¬
-ÕâĞ©¶ÔÏóµÄÒıÓÃ¶¼ÊÇÔÚ·½·¨ÖĞÒıÓÃµÄ¡£
+    Java Stack Memory ç”¨äºæ‰§è¡Œçº¿ç¨‹, å®ƒä»¬åŒ…å«æ–¹æ³•ä¸­çš„ç‰¹å®šå€¼,è¿™äº›å€¼å£°æ˜å‘¨æœŸæ˜¯çŸ­æš‚çš„(short-lived)ï¼Œ
+    è¿˜åŒ…å«äº†åœ¨å †å†…å­˜ä¸­çš„å¯¹å…¶ä»–å¯¹è±¡çš„å¼•ç”¨ï¼Œè¿™äº›å¯¹è±¡çš„å¼•ç”¨éƒ½æ˜¯åœ¨æ–¹æ³•ä¸­å¼•ç”¨çš„ã€‚
 
-Stack memory ×ÜÊÇÒÔLIFO(ºó½øÏÈ³ö)µÄË³Ğò±»ÒıÓÃ£¬Ã¿µ±µ÷ÓÃÒ»¸ö·½·¨Ê±£¬¶¼»áÔÚStack MemoryÖĞ´´½¨Ò»¸öĞÂµÄ¿é£¬
-ÒÔ±ã¸Ã·½·¨ ±£´æ locak primitive values(±¾µØÔ­Ê¼Öµ) ºÍ ÔÚ·½·¨ÖĞÆäËû¶ÔÏóµÄÒıÓÃ
+    Stack memory æ€»æ˜¯ä»¥LIFO(åè¿›å…ˆå‡º)çš„é¡ºåºè¢«å¼•ç”¨ï¼Œæ¯å½“è°ƒç”¨ä¸€ä¸ªæ–¹æ³•æ—¶ï¼Œéƒ½ä¼šåœ¨Stack Memoryä¸­åˆ›å»ºä¸€ä¸ªæ–°çš„å—ï¼Œ
+    ä»¥ä¾¿è¯¥æ–¹æ³• ä¿å­˜ local primitive values(æœ¬åœ°åŸå§‹å€¼) å’Œ åœ¨æ–¹æ³•ä¸­å…¶ä»–å¯¹è±¡çš„å¼•ç”¨
 
-Ö»Òª·½·¨½áÊø£¬Õâ¸ö¿é¾Í±ä³ÉÃ»ÓĞÓÃµÄ£¬Õâ¸ö¿éµÄ¿Õ¼ä¶ÔÓÚÏÂÒ»¸ö·½·¨¾Í±äµÃ¿ÉÓÃ£¬Stack memoryµÄ´óĞ¡Ïà±ÈÓÚHeap MemoryÊÇ·Ç³£Ğ¡µÄ¡£
-As soon as method ends, the block becomes unused and become available for next method.
-Stack memory size is very less compared to Heap memory.
-
+    åªè¦æ–¹æ³•ç»“æŸï¼Œè¿™ä¸ªå—å°±å˜æˆæ²¡æœ‰ç”¨çš„ï¼Œè¿™ä¸ªå—çš„ç©ºé—´å¯¹äºä¸‹ä¸€ä¸ªæ–¹æ³•å°±å˜å¾—å¯ç”¨ï¼Œ
+    Stack memoryçš„å¤§å°ç›¸æ¯”äºHeap Memoryæ˜¯éå¸¸å°çš„ã€‚
+    As soon as method ends, the block becomes unused
+    and become available for next method. Stack memory size is
+    very less compared to Heap memory.
 
 Difference between Java Heap Space and Stack Memory
 
 1. Heap memory is used by all the parts of the application 
 whereas stack memory is used only by one thread of execution.
-heap memory±»Ó¦ÓÃ³ÌĞòµÄËùÓĞ³ÌĞò¹²ÓÃ£¬¶østack memory½ö±»Ò»¸öÖ´ĞĞµÄÏß³ÌËùÊ¹ÓÃ¡£
+heap memoryè¢«åº”ç”¨ç¨‹åºçš„æ‰€æœ‰ç¨‹åºå…±ç”¨ï¼Œè€Œstack memoryä»…è¢«ä¸€ä¸ªæ‰§è¡Œçš„çº¿ç¨‹æ‰€ä½¿ç”¨ã€‚
 
-2. Whenever an object is created, it¡¯s always stored in the Heap 
+2. Whenever an object is created, itâ€™s always stored in the Heap 
 space and stack memory contains the reference to it. Stack memory only 
 contains local primitive variables and reference variables to objects in heap space.
-Ã¿µ±´´½¨Ò»¸ö¶ÔÏóµÄÊ±ºò£¬Ëü×ÜÊÇ±»´æ´¢ÔÚheap spaceÖĞ£¬stack memoryÖĞ°üº¬ÁË¶ÔËüµÄÒıÓÃ¡£
-Stack memory½ö°üº¬ÁË±¾µØÔ­Ê¼Öµ±äÁ¿ÒÔ¼°¶Ôheap spaceÖĞ¶ÔÏóµÄÒıÓÃ±äÁ¿
+æ¯å½“åˆ›å»ºä¸€ä¸ªå¯¹è±¡çš„æ—¶å€™ï¼Œå®ƒæ€»æ˜¯è¢«å­˜å‚¨åœ¨heap spaceä¸­ï¼Œstack memoryä¸­åŒ…å«äº†å¯¹å®ƒçš„å¼•ç”¨ã€‚
+Stack memoryä»…åŒ…å«äº†æœ¬åœ°åŸå§‹å€¼å˜é‡ä»¥åŠå¯¹heap spaceä¸­å¯¹è±¡çš„å¼•ç”¨å˜é‡
 
 3. Objects stored in the heap are globally accessible whereas 
-stack memory can¡¯t be accessed by other threads.
-´æ´¢ÔÚheapÖĞµÄ¶ÔÏóÊÇ³ÌĞòÈ«¾Ö·ÃÎÊµÄ£¬È»¶østack memory²»¿ÉÒÔ±»ÆäËûÏß³Ì·ÃÎÊ£¬Ö»ÄÜ±»Ö´ĞĞËüµÄÒ»¸öÏß³Ì·ÃÎÊ¡£
+stack memory canâ€™t be accessed by other threads.
+å­˜å‚¨åœ¨heapä¸­çš„å¯¹è±¡æ˜¯ç¨‹åºå…¨å±€è®¿é—®çš„ï¼Œç„¶è€Œstack memoryä¸å¯ä»¥è¢«å…¶ä»–çº¿ç¨‹è®¿é—®ï¼Œåªèƒ½è¢«æ‰§è¡Œå®ƒçš„ä¸€ä¸ªçº¿ç¨‹è®¿é—®ã€‚
 
 4. Memory management in stack is done in LIFO manner 
-whereas it¡¯s more complex in Heap memory because it¡¯s used globally. 
+whereas itâ€™s more complex in Heap memory because itâ€™s used globally. 
 Heap memory is divided into Young-Generation, Old-Generation etc, 
 more details at Java Garbage Collection.
-stackÖĞµÄÄÚ´æ¹ÜÀí·½Ê½ÊÇLIFO(LAST IN FIRST OUTºó½øÏÈ³ö)£¬È»¶ø¶ÔÓÚheap spaceÊÇ¸ü¼Ó¸´ÔÓµÄ£¬ÒòÎªËüÊÇ
-¿ÉÒÔ±»³ÌĞòÈ«¾Ö·ÃÎÊµÄ£¬Heap memory±»·Ö³ÉÁËÄêÇáÒ»´ú£¬ÀÏÒ»´úµÈµÈ£¬¸ü¶àÏ¸½Ú¿´JavaÀ¬»øÊÕ¼¯¡£
+stackä¸­çš„å†…å­˜ç®¡ç†æ–¹å¼æ˜¯LIFO(LAST IN FIRST OUTåè¿›å…ˆå‡º)ï¼Œç„¶è€Œå¯¹äºheap spaceæ˜¯æ›´åŠ å¤æ‚çš„ï¼Œå› ä¸ºå®ƒæ˜¯
+å¯ä»¥è¢«ç¨‹åºå…¨å±€è®¿é—®çš„ï¼ŒHeap memoryè¢«åˆ†æˆäº†å¹´è½»ä¸€ä»£ï¼Œè€ä¸€ä»£ç­‰ç­‰ï¼Œæ›´å¤šç»†èŠ‚çœ‹Javaåƒåœ¾æ”¶é›†ã€‚
 
 5. Stack memory is short-lived whereas heap memory lives from 
 the start till the end of application execution.
-stackÄÚ´æÊÇ¶ÌÃüµÄ£¬È»¶ìheap ÄÚ´æÊÇ´Ó³ÌĞò¿ªÊ¼µ½³ÌĞòÖ´ĞĞ½áÊø¡£
+stackå†…å­˜æ˜¯çŸ­å‘½çš„ï¼Œç„¶é¹…heap å†…å­˜æ˜¯ä»ç¨‹åºå¼€å§‹åˆ°ç¨‹åºæ‰§è¡Œç»“æŸã€‚
 
 6. We can use -Xms and -Xmx JVM option to define the startup size and 
 maximum size of heap memory. We can use -Xss to define the stack memory size.
-ÎÒÃÇ¿ÉÒÔÓÃ-Xms ºÍ-Xmx JVMÑ¡ÏîÈ¥¶¨ÒåheapÄÚ´æµÄ¿ªÊ¼´óĞ¡ºÍ×î´ó´óĞ¡£¬ÎÒÃÇ¿ÉÒÔÓÃ-XssÈ¥¶¨ÒåstackÄÚ´æµÄ´óĞ¡.
+æˆ‘ä»¬å¯ä»¥ç”¨-Xms å’Œ-Xmx JVMé€‰é¡¹å»å®šä¹‰heapå†…å­˜çš„å¼€å§‹å¤§å°å’Œæœ€å¤§å¤§å°ï¼Œæˆ‘ä»¬å¯ä»¥ç”¨-Xsså»å®šä¹‰stackå†…å­˜çš„å¤§å°.
 
 7. When stack memory is full, Java runtime throws java.lang.StackOverFlowError 
 whereas if heap memory is full, it throws java.lang.OutOfMemoryError: Java Heap Space error.
-µ±stackÄÚ´æÂúµÄÊ±ºò£¬JavaÔËĞĞÊ±Å×³öjava.lang.StackOverFlowError £¬È»¶øµ±heap memoryÂıµÄÊ±ºò£¬»áÅ×³ö
-java.lang.OutOfMemoryError£¬java heap space error.
+å½“stackå†…å­˜æ»¡çš„æ—¶å€™ï¼ŒJavaè¿è¡Œæ—¶æŠ›å‡ºjava.lang.StackOverFlowError ï¼Œç„¶è€Œå½“heap memoryæ…¢çš„æ—¶å€™ï¼Œä¼šæŠ›å‡º
+java.lang.OutOfMemoryErrorï¼Œjava heap space error.
 
 8. Stack memory size is very less when compared to Heap memory. 
 Because of simplicity in memory allocation (LIFO), 
 stack memory is very fast when compared to heap memory.
-stack memory´óĞ¡Ïà±ÈÓÚheap¿Õ¼äµÄÊÇ·Ç³£Ğ¡µÄ£¬ÒòÎªLIFOÄÚ´æ·ÖÅäµÄ¼òµ¥£¬stack ÄÚ´æÏà±ÈÓÚheap memoryÄÚ´æÊÇ·Ç³£¿ìËÙµÄ¡£
+stack memoryå¤§å°ç›¸æ¯”äºheapç©ºé—´çš„æ˜¯éå¸¸å°çš„ï¼Œå› ä¸ºLIFOå†…å­˜åˆ†é…çš„ç®€å•ï¼Œ
+stack å†…å­˜ç›¸æ¯”äºheap memoryå†…å­˜æ˜¯éå¸¸å¿«é€Ÿçš„ã€‚
 
-9. That¡¯s all for Java Heap Space vs Stack Memory in terms of 
+9. Thatâ€™s all for Java Heap Space vs Stack Memory in terms of 
 java application, I hope it will clear your doubts regarding 
 memory allocation when any java program is executed.
-
 
 
 java.lang.OutOfMemoryError: Java heap space
 
 java.lang.OutOfMemoryError is thrown when JVM is unable to allocate 
 memory to create an object. Java OutOfMemoryError is an Error and occurs a runtime.
-µ±JVMÎŞ·¨·ÖÅäÄÚ´æÀ´´´½¨¶ÔÏóÊ±£¬Å×³öjava.lang.OutOfMemoryError¡£
- Java OutOfMemoryErrorÊÇÒ»¸ö´íÎó£¬·¢ÉúÔÚÔËĞĞÊ±¡£
+å½“JVMæ— æ³•åˆ†é…å†…å­˜æ¥åˆ›å»ºå¯¹è±¡æ—¶ï¼ŒæŠ›å‡ºjava.lang.OutOfMemoryErrorã€‚
+Java OutOfMemoryErroræ˜¯ä¸€ä¸ªé”™è¯¯ï¼Œå‘ç”Ÿåœ¨è¿è¡Œæ—¶ã€‚
 
-ÔÚÕâÖÖÇé¿öÏÂ£¬À¬»øÊÕ¼¯Æ÷²»¿ÉÒÔÊÇ·ñ¸ü¶à¿Õ¼äÈ¥Âú×ã³ÌĞòĞèÒª£¬Òò´Ë´íÎó·¢Éú£¬Òò´ËjavaÔËĞĞÊ±Å×³ö´ËÒì³£¡£
+åœ¨è¿™ç§æƒ…å†µä¸‹ï¼Œåƒåœ¾æ”¶é›†å™¨ä¸å¯ä»¥å›æ”¶æ›´å¤šç©ºé—´å»æ»¡è¶³ç¨‹åºéœ€è¦ï¼Œå› æ­¤é”™è¯¯å‘ç”Ÿï¼Œå› æ­¤javaè¿è¡Œæ—¶æŠ›å‡ºæ­¤å¼‚å¸¸ã€‚
 
 see more: https://www.journaldev.com/21010/java-lang-outofmemoryerror-java-heap-space
+
+ä¿®æ”¹è¿è¡Œclassæ–‡ä»¶çš„heap spaceï¼š
+
+    You can use g or G for GB, m or M for MB, k or K for KB.
+    For example all of the following are equivalent to saying that
+    the maximum Java heap space is 1GB:
+
+        java -Xmx1073741824 com.mycompany.MyClass
+        java -Xmx1048576k com.mycompany.MyClass
+        java -Xmx1024m com.mycompany.MyClass
+        java -Xmx1g com.mycompany.MyClass

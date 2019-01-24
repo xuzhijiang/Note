@@ -1,5 +1,5 @@
-Java×ÜÊÇÖµ´«µİ
+Javaæ€»æ˜¯å€¼ä¼ é€’
 
  just remember that variables are references or pointers 
- and it¡¯s copy is passed to the methods, so java is always pass by value
- ¼ÇµÃ±äÁ¿ÊÇÒıÓÃ»òÖ¸Õë£¬ËüµÄ¸±±¾´«µİ¸ø·½·¨(»òÕßÀí½âÎªÖ»ÊÇ°ÑËüµÄÖµ´«µİ¸´ÖÆ¸ø·½·¨²ÎÊı¶øÒÑ)£¬Òò´Ëjava×ÜÊÇ°´Öµ´«µİ
+ and itâ€™s copy is passed to the methods, so java is always pass by value
+ è®°å¾—å˜é‡æ˜¯å¼•ç”¨æˆ–æŒ‡é’ˆï¼Œå®ƒçš„å‰¯æœ¬ä¼ é€’ç»™æ–¹æ³•(æˆ–è€…ç†è§£ä¸ºåªæ˜¯æŠŠå®ƒçš„å€¼ä¼ é€’å¤åˆ¶ç»™æ–¹æ³•å‚æ•°è€Œå·²)ï¼Œå› æ­¤javaæ€»æ˜¯æŒ‰å€¼ä¼ é€’

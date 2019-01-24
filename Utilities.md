@@ -1,4 +1,4 @@
-##### sublime usage
+### sublime usage
 
     (ctrl+shift+p ssp，把语法设置为python)
     ctrl+p(可以快速找到某文件)
@@ -21,7 +21,13 @@
     esc调出console
     console.dir(function name);
 
-#### google search
+### google search
 
 max site:http://python.org
 how to find max value in a list site:http://stackoverflow.com
+
+### IntelliJ IDEA usage
+
+1. 寻找某个类: ctrl + N
+2. 自动实现某一个接口的方法: ctrl + i
+3. 修改运行时head space: `Run -> Edit Configurations -> VM options,输入-Xmx1g`,此时heap sapce大小为1G

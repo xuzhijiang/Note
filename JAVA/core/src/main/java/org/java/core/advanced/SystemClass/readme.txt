@@ -1,15 +1,15 @@
 java.lang.System
 
-System class is final and all of it¡¯s members and methods are static so that we can¡¯t 
-subclass and override it¡¯s behavior through inheritance.
-ÏµÍ³ÀàÊÇfinalµÄ£¬ËüµÄËùÓĞ³ÉÔ±ºÍ·½·¨¶¼ÊÇ¾²Ì¬µÄ£¬ËùÒÔÎÒÃÇ²»ÄÜ³ÉÎªËüµÄ×ÓÀà£¬²¢Í¨¹ı¼Ì³Ğ¸²¸ÇËüµÄĞĞÎª¡£
-(Èç¹ûÒ»¸öÀàÊÇfinalµÄ£¬¾Í´ú±í²»ÄÜ¼Ì³ĞÕâ¸öÀà)
+System class is final and all of itâ€™s members and methods are static so that we canâ€™t 
+subclass and override itâ€™s behavior through inheritance.
+ç³»ç»Ÿç±»æ˜¯finalçš„ï¼Œå®ƒçš„æ‰€æœ‰æˆå‘˜å’Œæ–¹æ³•éƒ½æ˜¯é™æ€çš„ï¼Œæ‰€ä»¥æˆ‘ä»¬ä¸èƒ½æˆä¸ºå®ƒçš„å­ç±»ï¼Œå¹¶é€šè¿‡ç»§æ‰¿è¦†ç›–å®ƒçš„è¡Œä¸ºã€‚
+(å¦‚æœä¸€ä¸ªç±»æ˜¯finalçš„ï¼Œå°±ä»£è¡¨ä¸èƒ½ç»§æ‰¿è¿™ä¸ªç±»)
 
-System class in java doesn¡¯t provide any public constructors.
- So we can¡¯t instantiate this class 
+System class in java doesnâ€™t provide any public constructors.
+ So we canâ€™t instantiate this class 
 (for argument sake, we can instantiate it using Java Reflection) 
-and that¡¯s why all of it¡¯s methods are static.
-System classÔÚjavaÖĞ²»Ìá¹©ÈÎºÎµÄpublic¹¹ÔìÆ÷£¬Òò´ËÎÒÃÇ²»¿ÉÒÔÊµÀı»¯Õâ¸öÀà£¬ÄÇ¾ÍÊÇÎªÊ²Ã´ËüËùÓĞµÄ
-·½·¨¶¼ÊÇ¾²Ì¬µÄ¡£
+and thatâ€™s why all of itâ€™s methods are static.
+System classåœ¨javaä¸­ä¸æä¾›ä»»ä½•çš„publicæ„é€ å™¨ï¼Œå› æ­¤æˆ‘ä»¬ä¸å¯ä»¥å®ä¾‹åŒ–è¿™ä¸ªç±»ï¼Œé‚£å°±æ˜¯ä¸ºä»€ä¹ˆå®ƒæ‰€æœ‰çš„
+æ–¹æ³•éƒ½æ˜¯é™æ€çš„ã€‚
 
 

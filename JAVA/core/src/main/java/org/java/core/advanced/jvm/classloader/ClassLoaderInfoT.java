@@ -4,9 +4,9 @@ public class ClassLoaderInfoT {
 	
 	public static void main(String[] args) {
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		System.out.println("µ±Ç°Àà¼ÓÔØÆ÷: " + loader);
-		System.out.println("µ±Ç°ÀàµÄ¸¸Ç×¼ÓÔØÆ÷£¨¸ù¼ÓÔØÆ÷£©£º" + loader.getParent());
-		 System.out.println("µ±Ç°Àà¸¸Ç×µÄ¸¸Ç×¼ÓÔØÆ÷£¨ÎŞ£©£º" + loader.getParent().getParent());
+		System.out.println("å½“å‰ç±»åŠ è½½å™¨: " + loader);
+		System.out.println("å½“å‰ç±»çš„çˆ¶äº²åŠ è½½å™¨ï¼ˆæ ¹åŠ è½½å™¨ï¼‰ï¼š" + loader.getParent());
+		 System.out.println("å½“å‰ç±»çˆ¶äº²çš„çˆ¶äº²åŠ è½½å™¨ï¼ˆæ— ï¼‰ï¼š" + loader.getParent().getParent());
 	}
 	
 }

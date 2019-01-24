@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <description>
+        Function tag examples
+    </description>
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>reverseString</short-name>
+    <!--???????jar???????????????taglib??????uri-->
+    <uri>http://jinxuliang.com/function</uri>
+
+    <!--????????-->
+    <function>
+        <description>Reverses a String</description>
+        <name>reverseString</name>
+        <function-class>cn.edu.bit.cs.functions.StringFunctions</function-class>
+        <function-signature>
+            java.lang.String myReverseString(java.lang.String)
+        </function-signature>
+    </function>
+
+</taglib>

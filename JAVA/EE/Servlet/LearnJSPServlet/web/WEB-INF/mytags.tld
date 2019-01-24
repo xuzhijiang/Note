@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <description>
+        Simple tag examples
+    </description>
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>MyFirstTaglib</short-name>
+    <uri>http://jinxuliang.com</uri>
+
+    <!--???????-->
+   <tag>
+       <name>firstTag</name>
+       <tag-class>cn.edu.bit.cs.tags.MyFirstTag</tag-class>
+       <body-content>empty</body-content>
+   </tag>
+
+    <tag>
+        <name>dataFormatter</name>
+        <tag-class>cn.edu.bit.cs.tags.DataFormatterTag</tag-class>
+        <body-content>empty</body-content>
+        <!--tag??????-->
+        <attribute>
+            <name>header</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>items</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>select</name>
+        <tag-class>cn.edu.bit.cs.tags.SelectElementTag</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+
+</taglib>

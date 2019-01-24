@@ -4,15 +4,15 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 /**
- *  Àà¼ÓÔØ - Class.forName
+ *  ç±»åŠ è½½ - Class.forName
  */
 public class StringCL {
     public static void main(String[] args) throws ClassNotFoundException {
         Class clzStr = Class.forName("java.lang.String");
-        // ·µ»Ø¶ÔÏó·½·¨Êı×é
+        // è¿”å›å¯¹è±¡æ–¹æ³•æ•°ç»„
         Method[] methods = clzStr.getDeclaredMethods();
         for (Method m : methods) {
-            // »ñÈ¡ĞŞÊÎ·û±êÖ¾µÄ×Ö·û´®
+            // è·å–ä¿®é¥°ç¬¦æ ‡å¿—çš„å­—ç¬¦ä¸²
             String mod = Modifier.toString(m.getModifiers());
             System.out.print(mod + " " + m.getName() + "(");
             Class<?>[] ps = m.getParameterTypes();

@@ -1,12 +1,12 @@
 package org.java.core.advanced.jvm.classloader;
 
 /**
- * 输出浮点数在虚拟机的实际表示
+ * 杈撳嚭娴偣鏁板湪铏氭嫙鏈虹殑瀹為檯琛ㄧず
  */
 public class FloatInJvm {
     public static void main(String[] args) {
         float a = -5;
-        // 输出-5的补码，即虚拟机内部实际表示
+        // 杈撳嚭-5鐨勮ˉ鐮侊紝鍗宠櫄鎷熸満鍐呴儴瀹為檯琛ㄧず
         System.out.println(Integer.toBinaryString(Float.floatToRawIntBits(a)));
     }
 }

@@ -1,15 +1,15 @@
 package org.java.core.advanced.jvm.classloader;
 
 /**
- * 子类的初始化过程和主动引用：
- * 	子类初始化，先初始化父类
+ * 瀛愮被鐨勫垵濮嬪寲杩囩▼鍜屼富鍔ㄥ紩鐢細
+ * 	瀛愮被鍒濆鍖栵紝鍏堝垵濮嬪寲鐖剁被
  *
  */
 public class InitMain {
 	public static void main(String[] args) {
-//        new Child();// new关键字初始化 注释开启和未开启作比较
+//        new Child();// new鍏抽敭瀛楀垵濮嬪寲 娉ㄩ噴寮�鍚拰鏈紑鍚綔姣旇緝
         System.out.println("======");
-        System.out.println(Child.v); // 此时Child已经被加载，但未被初始化，因为只打印了Parent init，没有打印Child init
+        System.out.println(Child.v); // 姝ゆ椂Child宸茬粡琚姞杞斤紝浣嗘湭琚垵濮嬪寲锛屽洜涓哄彧鎵撳嵃浜哖arent init锛屾病鏈夋墦鍗癈hild init
     }
 }
 

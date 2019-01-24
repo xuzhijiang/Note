@@ -1,17 +1,17 @@
 package org.java.core.advanced.HeapStack;
 
 /**
- * ´òÓ¡¶ÑÄÚ´æ
+ * æ‰“å°å †å†…å­˜
  */
 public class JvmXmxArgs {
 	
 	// input: java -Xmx33m org.jvmcore.heap.JvmXmxArgs a b
-	//´òÓ¡Ê¼ÖÕĞ¡ÓÚ 33M , ÒòÎªGCÔÚ²»Í¬ÇøÓò²ÉÓÃ²»Í¬»ØÊÕËã·¨£¬¿ÉÓÃÄÚ´æµÄ¼õÉÙÎªÁËÆäÊ¹ÓÃ¿Õ¼ä»»Ê±¼äµÄ²ßÂÔ¡£
+	//æ‰“å°å§‹ç»ˆå°äº 33M , å› ä¸ºGCåœ¨ä¸åŒåŒºåŸŸé‡‡ç”¨ä¸åŒå›æ”¶ç®—æ³•ï¼Œå¯ç”¨å†…å­˜çš„å‡å°‘ä¸ºäº†å…¶ä½¿ç”¨ç©ºé—´æ¢æ—¶é—´çš„ç­–ç•¥ã€‚
     public static void main(String[] args) {
         for (String arg : args)
-            System.out.println("²ÎÊıÎª" + arg);
+            System.out.println("å‚æ•°ä¸º" + arg);
         
-        // ¶ÑÄÚ´æ
+        // å †å†…å­˜
         System.out.println("-Xmx:" + Runtime.getRuntime().maxMemory() / 1024 / 1024 + "M");
     }
 }

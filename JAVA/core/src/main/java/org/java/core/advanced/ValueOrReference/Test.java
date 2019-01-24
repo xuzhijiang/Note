@@ -4,9 +4,9 @@ public class Test {
 	
 	public static void main(String[] args) {
 
-		//let¡¯s assume that ¡°red¡± is pointing to 50 and ¡°blue¡± is pointing 
+		//letâ€™s assume that â€œredâ€ is pointing to 50 and â€œblueâ€ is pointing 
 		//to 100 and these are the memory location of both Balloon objects.
-		//50ºÍ100ÊÇ2¸ö¶ÔÏóÔÚheapÄÚ´æµÄÎ»ÖÃ
+		//50å’Œ100æ˜¯2ä¸ªå¯¹è±¡åœ¨heapå†…å­˜çš„ä½ç½®
 		
 		Balloon red = new Balloon("Red"); //memory reference 50
 		Balloon blue = new Balloon("Blue"); //memory reference 100
@@ -28,11 +28,11 @@ public class Test {
 
 	//when we are calling swap() method, two new variables o1 and o2 
 	//are created pointing to 50 and 100 respectively.
-	//µ±ÎÒÃÇÖ´ĞĞswap·½·¨µÄÊ±ºò£¬2¸öĞÂµÄ±äÁ¿o1ºÍo2±»´´½¨£¬²¢ÇÒ·Ö±ğ¸÷×ÔÖ¸Ïò50ºÍ100
-	//the variables are just the reference to the objects,±äÁ¿Ö»ÊÇ¶ÔÏóµÄÒıÓÃ,¸Ä±äµÄ²»ÊÇ¶ÔÏó±¾Éí£¬
-	//¶øÊÇ±äÁ¿¶øÒÑ.
-	// However we are passing a copy of the reference and hence it¡¯s pass by value
-	//ÎÒÃÇ´«µİ¸øswapµÄÖ»ÊÇÒıÓÃ±äÁ¿¶øÒÑ£¬Òò´ËÊÇÖµ´«µİ.
+	//å½“æˆ‘ä»¬æ‰§è¡Œswapæ–¹æ³•çš„æ—¶å€™ï¼Œ2ä¸ªæ–°çš„å˜é‡o1å’Œo2è¢«åˆ›å»ºï¼Œå¹¶ä¸”åˆ†åˆ«å„è‡ªæŒ‡å‘50å’Œ100
+	//the variables are just the reference to the objects,å˜é‡åªæ˜¯å¯¹è±¡çš„å¼•ç”¨,æ”¹å˜çš„ä¸æ˜¯å¯¹è±¡æœ¬èº«ï¼Œ
+	//è€Œæ˜¯å˜é‡è€Œå·².
+	// However we are passing a copy of the reference and hence itâ€™s pass by value
+	//æˆ‘ä»¬ä¼ é€’ç»™swapçš„åªæ˜¯å¼•ç”¨å˜é‡è€Œå·²ï¼Œå› æ­¤æ˜¯å€¼ä¼ é€’.
 	
 	//Generic swap method
 	public static void swap(Object o1, Object o2){

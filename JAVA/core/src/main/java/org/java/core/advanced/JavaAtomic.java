@@ -3,7 +3,7 @@ package org.java.core.advanced;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * ԭ�Ӳ����ڵ�������Ԫ��ִ�У��������������ĸ��� �ڶ��̻߳����б������ԭ�Ӳ����Ա������ݲ�һ�¡�
+ * 原子操作在单个任务单元中执行，不受其他操作的干扰 在多线程环境中必须进行原子操作以避免数据不一致。
  *
  */
 public class JavaAtomic {
@@ -45,10 +45,10 @@ public class JavaAtomic {
 //    }
 //}
 
-//�����������������������ע�⵽����ֵ��5,6,7,8֮��仯��
-//ԭ������Ϊcount++����ԭ�Ӳ����� ����count=4����һ���̶߳�ȡ����ֵ���������1ʱ���������ʱ��count�ڵ�ǰ
-//�߳��в�û�����count+1֮����ֵ5��ֵ��count�Ĳ��������������̶߳�ȡ��count���Ǿɵ�count(4)��
-//�Ӷ����´���Ľ����
+//如果您将运行上述程序，您会注意到计数值在5,6,7,8之间变化。
+//原因是因为count++不是原子操作。 例如count=4，当一个线程读取它的值并将其递增1时，但是这个时候，count在当前
+//线程中并没有完成count+1之后将新值5赋值给count的操作，导致其他线程读取的count还是旧的count(4)，
+//从而导致错误的结果。
 
 class ProcessingThread implements Runnable {
     private AtomicInteger count = new AtomicInteger();
@@ -76,5 +76,5 @@ class ProcessingThread implements Runnable {
 
 }
 
-//ʹ�ò��������ԭ�Ӳ����ĺô������ǲ���Ҫ����ͬ����
-//������˴���Ŀɶ��ԣ������˴���Ŀ����ԡ�ʹ�ò��������ԭ�Ӳ������漰������Դ��ͬ������Ч��
+//使用并发类进行原子操作的好处是我们不需要担心同步。
+//这提高了代码的可读性，减少了错误的可能性。使用并发类进行原子操作比涉及锁定资源的同步更有效。
