@@ -5,6 +5,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
+// 有一些排序算法如归并排序、快速排序等可以分解为子问题的
+// 算法是可以使用多线程来加速排序的
+
 // fork/join框架充分运用了CPU的计算能力
 public class ForkJoinMergeSortTest {
 
