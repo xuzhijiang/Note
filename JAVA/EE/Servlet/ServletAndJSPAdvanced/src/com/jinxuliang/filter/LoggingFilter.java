@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
+// 创建一个log.txt文件，记录每次的HTTP请求
 @WebFilter(filterName = "LoggingFilter", urlPatterns = { "/*"},
         asyncSupported = true,
         initParams = {

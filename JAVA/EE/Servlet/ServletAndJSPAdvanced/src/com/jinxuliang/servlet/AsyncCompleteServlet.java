@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+// access: http:localhost:8080/asyncComplete
+// 中途向浏览器报告进度……
 public class AsyncCompleteServlet extends HttpServlet {
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)

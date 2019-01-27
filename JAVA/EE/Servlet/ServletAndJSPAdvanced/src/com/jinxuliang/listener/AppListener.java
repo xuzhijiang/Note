@@ -22,6 +22,9 @@ public class AppListener implements ServletContextListener{
     // ServletContextListener implementation
     // -------------------------------------------------------
     public void contextInitialized(ServletContextEvent sce) {
+        // 在初始化时向servletContext中保存数据，
+        // 之后就可以显示在JSP网页上 
+        // access: http://localhost:8080/countries.jsp
         ServletContext servletContext = sce.getServletContext();
         Map<String, String> countries = new HashMap<String, String>();
         countries.put("ca", "Canada");
@@ -35,6 +38,5 @@ public class AppListener implements ServletContextListener{
          Application Server shuts down.
       */
     }
-
 
 }

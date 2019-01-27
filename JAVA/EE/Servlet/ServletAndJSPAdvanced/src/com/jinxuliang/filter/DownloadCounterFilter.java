@@ -11,6 +11,7 @@ import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+// 统计访问Web资源的次数
 @WebFilter(filterName = "DownloadCounterFilter", urlPatterns = { "/*" },
         asyncSupported = true)
 public class DownloadCounterFilter implements Filter {

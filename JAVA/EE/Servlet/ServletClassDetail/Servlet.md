@@ -20,6 +20,7 @@
 5. ServletConfig(接口)
 6. RequestDispatcher(接口)
 7. Filter(接口)
+
 #### 基本原理
 
 1. Servlet容器将Servlet类载入内存，并在Servlet实例上调用具体的方法。在

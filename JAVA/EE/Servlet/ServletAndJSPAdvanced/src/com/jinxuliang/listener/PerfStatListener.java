@@ -6,6 +6,7 @@ import javax.servlet.ServletRequestListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServletRequest;
 
+// 基于ServletRequestListener监控方法执行时间
 @WebListener
 public class PerfStatListener implements ServletRequestListener {
     @Override

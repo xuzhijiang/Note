@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import java.util.concurrent.atomic.AtomicInteger;
 
+// 统计在线人数
 @WebListener
 public class SessionListener implements HttpSessionListener, ServletContextListener {
     @Override
@@ -21,6 +22,7 @@ public class SessionListener implements HttpSessionListener, ServletContextListe
     }
     @Override
     public void sessionCreated(HttpSessionEvent se) {
+        // 每创建一个Session，用户计数加1
         HttpSession session = se.getSession();
         ServletContext servletContext = session.getServletContext();
         AtomicInteger userCounter = (AtomicInteger) servletContext.getAttribute("userCounter");
@@ -30,6 +32,7 @@ public class SessionListener implements HttpSessionListener, ServletContextListe
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
+        // 每销毁一个Session，用户计数减1
         HttpSession session = se.getSession();
         ServletContext servletContext = session.getServletContext();
         AtomicInteger userCounter = (AtomicInteger) servletContext.getAttribute("userCounter");

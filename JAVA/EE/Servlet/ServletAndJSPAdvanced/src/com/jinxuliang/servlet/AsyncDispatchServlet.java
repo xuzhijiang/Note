@@ -8,6 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// access: http:localhost:8080/asyncDispatch
+// 示例展示了一个支持异步执行的Servlet，它休眠3秒之后，
+// 然后再调用一个jsp显示其内容。
+// 
+// 注意：当有一个Servlet启用了异步特性，
+// 则项目中的其他filter也应该启用异步特性，否则， tomcat将会抛出异常
 @WebServlet(name = "AsyncDispatchServlet",
         urlPatterns = { "/asyncDispatch" },
         asyncSupported = true)
