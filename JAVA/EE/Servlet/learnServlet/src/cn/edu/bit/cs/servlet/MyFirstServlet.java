@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 /**
  * 直接实现Servlet接口，定义"原生的"Servlet
  */
+// urlPatterns = {"/myfirst"})中的myfirst就是指定的URL
 @WebServlet(name = "MyFirstServlet",urlPatterns = {"/myfirst"})
 public class MyFirstServlet implements Servlet {
     
@@ -32,12 +33,14 @@ public class MyFirstServlet implements Servlet {
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse)
             throws ServletException, IOException {
+        // 访问localhost:8080/myfirst，可以看到浏览器显示了Servlet输出的信息"Hello from servlet"
         String servletName = servletConfig.getServletName();
         servletResponse.setContentType("text/html");
         PrintWriter writer = servletResponse.getWriter();
         writer.print("<html><head></head>"
                 + "<body>Hello from " + servletName
                 + "</body></html>");
+        // 向浏览器返回一个html文档
     }
 
     @Override

@@ -7,6 +7,9 @@
 
 > 示例项目： StateManageDemos
 
+>这四种技术在现代Web开发中非常常用，尤其是后两个，使用得更多。
+因此，学习与掌握这四种技术，知道其特性，懂得其原理是非常重要的。
+
 ### URL重写
 
 `url?key-1=value-1&key-2=value-2 ... &key-n=value-n`
