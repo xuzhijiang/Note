@@ -73,11 +73,11 @@ IntelliJ IDEA是最受欢迎的Java集成开发环境，在实际开
 本文介绍如何使用IntelliJ IDEA开发传统的Java Web
 （即Servlet和JSP）项目的步骤与方法，掌握好它们，就可
 以使用IntelliJ来编写程序，深入地学习Java Web开发技
-术，同时，这些技能也为实际工作所需要，因此，掌握本
-PPT所介绍的内容，是很重要的。
+术，同时，这些技能也为实际工作所需要，因此，掌握以下内容是很重要的。
 
-File/New Project..., 选择“Java Enterprise”下的“Web Application”项目模板……
-，注意一下右上角的各项设置(Project SDK, Java EE Version, Application Server(Tomcat或其他Server))，如果为空时，点击“New…”按钮创建相应的配置,然后next，然后给Web项目起名字，然后生成项目模板,IDEA生成的项目模板如下:
+1. File/New Project/Create New
+2. 选择“Java Enterprise”下的“Web Application”项目模板……
+3. 注意一下右上角的各项设置(Project SDK, Java EE Version, Application Server(Tomcat或其他Server))，如果为空时，点击“New…”按钮创建相应的配置,然后next，然后给Web项目起名字，然后生成项目模板,IDEA生成的项目模板如下:
 
 ```
 .
@@ -168,8 +168,8 @@ access: http://localhost:8080/
 想让某一个资源可以被Servlet访问，但不可以被用户访问，那么就要把它放在WEB-INF目录下。
 * 部署描述符总是命名为web.xml，并且放在WEB-INF目录下
 
-将war包复制到Tomcat的webapps文件夹下(把war改个好一点的名字……)，Tomcat启动之后，可以发现war包会被自解压，测试Tomcat承载的JavaWeb项目
-http://localhost:8080/myfirstservlet/，此时页面会显示“当前时间的index.jsp”,
+将war包复制到Tomcat的webapps文件夹下(把war改个好一点的名字……)，例如我的war包名字为XzjFirstServlet.war，Tomcat启动之后，可以发现war包会被自解压为XzjFirstServlet文件夹，然后访问
+http://localhost:8080/XzjFirstServlet/，此时页面会显示XzjFirstServlet文件夹下的index.jsp
 
 http://localhost:8080/myfirstservlet/myfirst,此时页面会显示Hello from servlet,表明MyFirstServlet运行正常。
 

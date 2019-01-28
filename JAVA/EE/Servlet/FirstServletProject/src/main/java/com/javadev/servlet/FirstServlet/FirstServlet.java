@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 // 在Servlet 3之前，我们需要在Web应用程序deployment descriptor中提供url pattern 信息，
 // 但servlet 3.0使用易于理解的Java注释，并且错误的可能性较小。
 
-// 访问: http://localhost:8080/FirstServlet/jsps/hello.jsp
-// 直接请求的是webapp下的jsps/hello.jsp文件
+// 注意我把war打包成XzjMyFirstServlet.war,
+// 我们访问http://localhost:8080/XzjMyFirstServlet/hello,会返回FirstServlet中doGet方法内容
 
+// 当然我们也可以直接访问: http://localhost:8080/XzjMyFirstServlet/jsps/hello.jsp
+// 直接请求的是webapp下的jsps/hello.jsp文件
 /**
  * Servlet implementation class FirstServlet
  */
@@ -43,7 +45,7 @@ public class FirstServlet extends HttpServlet {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		PrintWriter out = response.getWriter();
 		Date date = new Date();
-		out.println(HTML_START + "<h2>Hi There!</h2><br/><h3>Date="+date +"</h3>"+HTML_END);
+		out.println(HTML_START + "<h2>Hi There!!!!!doGet</h2><br/><h3>Date="+date +"</h3>"+HTML_END);
 	}
 	// 因此，servlet用于生成HTML并将其作为响应发送，如果您将查看doGet（）实现，
 	// 我们实际上是在创建HTML文档时将其写入响应PrintWriter对象中，并且我们在需要它的地方添加动态信息。
