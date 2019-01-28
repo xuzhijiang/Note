@@ -17,4 +17,3 @@ public class WelcomeServlet extends HttpServlet {
                 + "<body>Welcome</body></html>");
     }
 }
-

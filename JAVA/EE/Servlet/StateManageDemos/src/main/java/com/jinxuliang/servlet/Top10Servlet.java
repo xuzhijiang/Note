@@ -44,6 +44,7 @@ public class Top10Servlet extends HttpServlet {
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws ServletException,
             IOException {
+        // URL重写
         String city = request.getParameter("city");
         if (city != null && (city.equals("london") || city.equals("paris"))) {
             // show attractions
@@ -55,7 +56,7 @@ public class Top10Servlet extends HttpServlet {
     }
 
     private void showMainPage(HttpServletRequest request,
-                              HttpServletResponse response) throws ServletException,IOException {
+                              HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
         writer.print("<html><head>" +

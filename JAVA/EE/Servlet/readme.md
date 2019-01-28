@@ -9,7 +9,7 @@ Servlet和JSP只是Java EE众多技术中的两个，其他Java EE技
 
 #### Servlet
 
-比如,虽然Servlet已经被Spring MVC这样的框架所封装，但掌握它仍然是必需的. 再举例，Servlet就算是到了2018年才发布的Spring Boot 2.0中，它仍然是其核心技术栈之一。
+比如,虽然Servlet已经被Spring MVC这样的框架所封装，但掌握它仍然是必需的. 再举例，就算是到了2018年才发布的Spring Boot 2.0中，Servlet仍然没有被废弃。
 
 #### JSP
 
@@ -54,6 +54,18 @@ redirectPort="8443" />
     ├── lib
     │   └── xxx.jar(防止JAR文件)
     └── web.xml(部署描述符)
+```
+
+#### Tomcat部署war文件
+
+```xml
+<Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true">
+        <!-- 这个配置的意思是把webapps/test文件夹下的内容暴露到
+            path="/"下，这样我们直接访问localhost:8080/就可以访问test下的内容了,
+            而且访问相对于test路径的内容也没问题-->
+        <Context path="/" docBase="test" debug="0" privileged="true"/>
+      </Host>
 ```
 
 #### 关于Tomcat的学习策略
@@ -127,7 +139,7 @@ access: http://localhost:8080/
 
 在项目src节点上右击，选择Servlet,向项目中添加一个Servlet……,给Servlet指定类名和包
 
-下面再介绍一下如何部署Java Web项目。
+### 下面再介绍一下如何部署Java Web项目
 
 > File -> Project Structure -> Artifacts -> + -> Web Application: Archive(注意类型不要选错了)-> For 'MyFirstServletProject:war exploded'
 

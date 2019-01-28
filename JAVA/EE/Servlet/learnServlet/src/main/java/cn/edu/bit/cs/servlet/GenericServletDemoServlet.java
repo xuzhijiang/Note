@@ -10,14 +10,15 @@ import java.io.PrintWriter;
 
 // 重写GenericServlet示例
 @WebServlet(name = "GenericServletDemoServlet",
-        urlPatterns = { "/generic" },
+        urlPatterns = {"/generic"},
         initParams = {
-                @WebInitParam(name="admin", value="Harry Taciak"),
-                @WebInitParam(name="email", value="admin@example.com")
+                @WebInitParam(name = "admin", value = "Harry Taciak"),
+                @WebInitParam(name = "email", value = "admin@example.com")
         }
 )
 public class GenericServletDemoServlet extends GenericServlet {
     private static final long serialVersionUID = 62500890L;
+
     @Override
     public void service(ServletRequest request,
                         ServletResponse response)

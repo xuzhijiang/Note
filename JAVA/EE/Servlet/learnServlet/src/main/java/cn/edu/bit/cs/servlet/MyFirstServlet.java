@@ -2,9 +2,6 @@ package cn.edu.bit.cs.servlet;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -12,9 +9,9 @@ import java.io.PrintWriter;
  * 直接实现Servlet接口，定义"原生的"Servlet
  */
 // urlPatterns = {"/myfirst"})中的myfirst就是指定的URL
-@WebServlet(name = "MyFirstServlet",urlPatterns = {"/myfirst"})
+@WebServlet(name = "MyFirstServlet", urlPatterns = {"/myfirst"})
 public class MyFirstServlet implements Servlet {
-    
+
     private transient ServletConfig servletConfig;
 
     @Override
@@ -51,6 +48,5 @@ public class MyFirstServlet implements Servlet {
     @Override
     public void destroy() {
         System.out.println("My First Servlet Destoryed.");
-
     }
 }

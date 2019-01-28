@@ -14,10 +14,11 @@ import java.util.Enumeration;
 /**
  * 展示如何处理表单域
  */
-@WebServlet(name = "FormServlet", urlPatterns = { "/form" })
+@WebServlet(name = "FormServlet", urlPatterns = {"/form"})
 public class FormServlet extends HttpServlet {
     private static final long serialVersionUID = 54L;
     private static final String TITLE = "Order Form";
+
     @Override
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
@@ -81,6 +82,7 @@ public class FormServlet extends HttpServlet {
         writer.println("</body>");
         writer.println("</html>");
     }
+
     @Override
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response)

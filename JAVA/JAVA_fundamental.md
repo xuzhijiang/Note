@@ -26,6 +26,8 @@ SprintBoot必学
 
 要选Spring Cloud全家桶必学
 
+开发JavaEE，用没有Tomcat插件的Community Edition可以让你开发更快/更爽。因为main方法+本地调试的效率比那些乱七八糟的插件不知道高效到哪里去了。
+
 https://www.zhihu.com/lives/889495940065538048
 https://www.zhihu.com/lives/961612944417701888
 http://jinxuliang.com/course2/CoursePortal/Details/5a9268a9a664d72f041e0a6a

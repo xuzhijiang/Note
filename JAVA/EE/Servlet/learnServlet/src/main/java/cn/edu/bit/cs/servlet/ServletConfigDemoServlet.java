@@ -8,14 +8,15 @@ import java.io.PrintWriter;
 
 // 使用注解定义初始化参数
 @WebServlet(name = "ServletConfigDemoServlet",
-        urlPatterns = { "/servletConfigDemo" },
+        urlPatterns = {"/servletConfigDemo"},
         initParams = {
-                @WebInitParam(name="admin", value="Harry Taciak"),
-                @WebInitParam(name="email", value="admin@example.com")
+                @WebInitParam(name = "admin", value = "Harry Taciak"),
+                @WebInitParam(name = "email", value = "admin@example.com")
         }
 )
 public class ServletConfigDemoServlet implements Servlet {
     private transient ServletConfig servletConfig;
+
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         this.servletConfig = servletConfig;
@@ -29,7 +30,8 @@ public class ServletConfigDemoServlet implements Servlet {
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse)
             throws ServletException, IOException {
-        // 使用ServletConfig，可以获取初始化参数值
+        // 使用ServletConfig，可以获取初始化参数值，
+        // 可以获取WebServlet中的initParams中的参数.
         ServletConfig servletConfig = getServletConfig();
         String admin = servletConfig.getInitParameter("admin");
         String email = servletConfig.getInitParameter("email");
