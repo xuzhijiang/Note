@@ -119,10 +119,22 @@ public class BeanConfig {
 #### Spring初始化Bean的过程
 
 1. 资源定位(例如@ComponentScan所定义的扫描包)
-2. Bean定义()
-3. 发布Bean定义
-4. 实例化
-5. 依赖注入(DI)
+2. Bean定义(将Bean的定义保存到BeanDefinition的实例中)
+3. 发布Bean定义(IoC容器装载Bean定义)
+4. 实例化(创建Bean的实例对象)
+5. 依赖注入(DI)(例如@Autowired注入的各类资源)
 
 #### Spring IoC容器中的Bean生命周期
 
+1. 初始化
+2. 依赖注入
+3. setBeanName方法(接口BeanNameAware)
+4. setBeanFactory方法(接口BeanFactoryAware)
+5. setApplicationContext方法(接口ApplicationContextAware(需要容器实现ApplicationContext接口才会被调用))
+6. postProcessBeforeInitialization方法(BeanPostProcessor的预初始化方法(注意，它是针对全部bean生效))
+7. 自定义初始化方法(@PostConstruct标注方法)
+8. afterPropertiesSet方法(接口InitializingBean)
+9. postProcessAfterInitialization方法(BeanPostProcessor的后初始化方法(注意，它是针对全部bean生效))
+10. 生存期
+11. 自定义销毁方法(@PostDestroy标注方法)
+12. destroy方法(接口DisposableBean)
