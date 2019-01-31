@@ -22,3 +22,12 @@ __MACOSX
 
 target/
 .mvn
+
+# Eclipse
+.classpath
+.project
+gen/
+bin/
+
+# Maven
+/target

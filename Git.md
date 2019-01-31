@@ -14,7 +14,10 @@ git commit -a -m "full commit"
 
 master分支的内容会覆盖缓存区和工作区的相应文件，工作区和缓存区未提交的内容会丢失，慎重！(一般不要用): `git checkout HEAD -- <filename>`
 
-查看指定文件的提交历史: `git log -p <file>`
+查看某文件的修改记录: 
+
+`git log -p <file>`
+`git log <file>`
 
 ### 分支操作
 
@@ -70,7 +73,7 @@ git whatchanged fileName
 
 git show commitid --stat
 
-git show 某次的提交哈希值 文件名(查看某次提交某个文件的变化)
+git show commit-id filename
 
 ### merge
 
