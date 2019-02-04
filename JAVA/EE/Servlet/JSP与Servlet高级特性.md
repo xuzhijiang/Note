@@ -68,7 +68,7 @@ public class ListenerClass implements ListenerInterface {
 }
 ```
 
-2. 第二种方法是在部署描述文档中增加一个listener元素。
+2. 第二种方法是在部署描述文档中增加一个listener元素
 
 ```xml
 <listener>
@@ -122,7 +122,7 @@ public class ListenerClass implements ListenerInterface {
 </servlet>
 ```
 
-#### 编写异步Servlets
+#### 编写异步Servlets步骤
 
 1. 调用ServletRequest中的startAsync方法。 该startAsync返一个AsyncContext 。
 2. 调用AsyncContext的setTimeout()，传递容器等待任务完成的超时时间的毫秒数。此步骤是可选的，但如果你不设置超时，容器的将使用默认的超时时间。如果任务未能在指定的超时时间内完成，将会抛出一个超时异常。

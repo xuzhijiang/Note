@@ -47,7 +47,7 @@ cookies可存储在多个页面间传递的信息。 Cookie作为HTTP header的�
 
 > Cookies的问题在于用户可以通过改变其浏览器设置来拒绝接受cookies
 
-要使用cookies，需要熟悉javax.servlet.http.Cookie类以及
+> 要使用cookies，需要熟悉javax.servlet.http.Cookie类以及
 HttpServletRequest和HttpServlet Response两个接口
 
 可以通过传递name和value两个参数给Cookie类的构造函数来创建一个
@@ -57,11 +57,11 @@ cookies： `Cookie cookie = new Cookie(name, value);`
 其中， maxAge属性决定cookie何时过期
 
 要将cookie发送到浏览器，需要调用HttpServletResponse的add方法：
-httpServletResponse.addCookie(cookie);
+`httpServletResponse.addCookie(cookie);`
 
 浏览器在访问同一Web服务器时，会将之前收到的cookie一并发送。
 
-服务端若要读取浏览器提交的cookie，可以通过HttpServletRequest接
+> 服务端若要读取浏览器提交的cookie，可以通过HttpServletRequest接
 口的getCookies方法，该方法返回一个Cookie数组，若没有cookies则返
 回null。你需要遍历整个数组来查询某个特定名称的cookie
 
