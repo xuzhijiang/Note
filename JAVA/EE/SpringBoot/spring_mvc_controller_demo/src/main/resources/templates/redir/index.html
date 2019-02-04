@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!--用于显示转发信息的视图-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>转发功能演示</title>
+</head>
+<body style="text-align: center">
+    <h2>转发功能演示</h2>
+    <!--在此显示控制器传来的信息-->
+    <p th:if="${message}!=null" th:text="${message}">
+    </p>
+</body>
+</html>
+

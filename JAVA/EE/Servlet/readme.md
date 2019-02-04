@@ -88,7 +88,7 @@ IntelliJ IDEA是最受欢迎的Java集成开发环境，在实际开
 术，同时，这些技能也为实际工作所需要，因此，掌握以下内容是很重要的。
 
 1. File/New Project/Create New
-2. 选择“Java Enterprise”下的“Web Application”项目模板……
+2. 选择“Java Enterprise”,然后勾选 Additional Libraries and Frameworks下的“Web Application”，勾选创建web.xml
 3. 注意一下右上角的各项设置(Project SDK, Java EE Version, Application Server(Tomcat或其他Server))，如果为空时，点击“New…”按钮创建相应的配置,然后next，然后给Web项目起名字，然后生成项目模板,IDEA生成的项目模板如下:
 
 ```
@@ -110,34 +110,33 @@ IntelliJ IDEA是最受欢迎的Java集成开发环境，在实际开
         └── web.xml
 ```
 
-创建一个全局的库以便：
+#### 创建一个全局的库以便以后使用
 
 > File -> Project Structure -> Global Libraries -> + -> Java
 -> 选择Tomcat安装文件夹下的lib子文件夹，它包
-容Java Web项目所需的各种jar包 -> ok -> 给lib取名tomcat-8.5
+容Java Web项目所需的各种jar包 -> ok -> 给lib取名tomcat-8.5.
 
-设置Web项目模板依赖：
+> 然后在File -> Project Structure -> Modules -> Dependencies -> + -> 使项目依赖于tomcat-8.5的库，并且其Scope是Provided,表明
+这些包是由外部容器提供的.
 
-> File -> Project Structure -> Modules -> Dependencies
-，使项目依赖于tomcat-8.5的库，并且其Scope是Provided,表明
-这些包是由外部容器提供的。
-
-如果IntelliJ检测到了不一致，点击Artifacts的fix按钮将lib的scope
+> 如果IntelliJ检测到了不一致，点击Project Structure -> Artifacts的fix按钮将lib的scope
 修正为“provided(change lib scope to provided)”
 
-在完成了编译相关的设置之后，我们接着需要设置“Run”相关的配置:
+> 在完成了编译相关的设置之后，我们接着需要设置“Run”相关的配置:
 
 > Run -> Edit Configurations...
 
-在Run/Debug Configurations窗口中，默认情况下左边列表是空的（除
+> 在Run/Debug Configurations窗口中，默认情况下左边列表是空的（除
 非你以前创建过相应的配置），点击左上角“+”号，选择“Tomcat Server”，创建一个新的“Local(本地)” Tomcat Server配置。
 
-切换到Tomcat配置界面，点击Configure,点击左上角的+
+> 切换到Tomcat配置界面，点击Configure,点击左上角的+,在弹出的对话
+窗口中配置Tomcat所在的路径.
 
-启动Tomcat并将Web项目部署到它上面运行……
-access: http://localhost:8080/
+> 启动Tomcat并将Web项目部署到它上面运行……
 
-在项目src节点上右击，选择Servlet,向项目中添加一个Servlet……,给Servlet指定类名和包
+> access: http://localhost:8080/
+
+> 在项目src节点上右击，选择Servlet,向项目中添加一个Servlet……,给Servlet指定类名和包
 
 ### 下面再介绍一下如何部署Java Web项目
 

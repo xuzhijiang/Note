@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${info}"></title>
+    <link type="text/css" rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap-theme.css"/>
+</head>
+<body class="container text-center">
+    <h2 th:text="${info}"></h2>
+
+    <div id="app">
+      <div>
+          <button class="btn btn-default" @click="btnClick">ClickMe!</button>
+      </div>
+        <br>
+      <p class="well" v-if="message.length>0">
+          {{message}}
+      </p>
+    </div>
+
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script src="/webjars/vue/2.5.16/dist/vue.js"></script>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:'',
+                counter:0
+            },
+            methods:{
+                btnClick:function(){
+                    this.counter++;
+                    this.message="clicked "+this.counter+" times";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

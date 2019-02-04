@@ -1,0 +1,90 @@
+### Spring Boot Web页面设计
+
+> 示例项目: webjar_demo
+
+#### Thymeleaf基础概述
+
+在传统的Spring Boot MVC项目中，需要在Server端使用特定的网页模板（称为视图模板），基于这些模板“填空”以得到一张完整的HTML网页，再把它传回给浏览器。负责完成这一“填空” 工作的， 是“视图引擎”。
+
+Thymeleaf是Spring Boot Web项目可用的诸多视图引擎中的一种，Spring官方推荐使用它（而不是历史更为悠久的JSP）来编写视图模板。
+
+Thymeleaf提供了诸如循环、条件判断、样式处理等手段，可以方便地控制HTML代码的生成过程，既可以用于在Server端生成全部HTML页面的传统Web应用，也可用于开发“单页面应用（SPA： Single PageApplication）”类型的现代Web应用。
+
+#### Spring Boot MVC支持的视图引擎
+
+Spring Boot MVC支持多种视图模板引擎，在当前版本中，能自动检测并配置好上述四种
+引擎。比较常用的（官方推荐）是Thymeleaf。
+
+> 注意：在Spring早期Web项目中比较常见的JSP，Spring官方己经不再推荐在Spring
+Boot项目中使用。
+
+#### Thymeleaf的项目依赖
+
+Spring Boot MVC项目要使用Thymeleaf非常简单，只需要在pom.xml中添加以下项目起步依赖即可：
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+```
+
+#### 控制器与模板之间的信息交换方式
+
+      Model对象
+控制器 ------> 视图模板 -------> HTML网页
+
+> Thymeleaf模板标签以“th:”打头，包容条件、循环等常用功能，请查询官网了解其语
+法及技术细节。
+
+#### 补充知识： Spring Boot Web项目中的静态资源
+
+Thymleleaf的模板文件被视为静态资源，只不过它比较特殊，与普通的html，图片， js代表等常规静态资源不一样，需要经过模板引擎的处理之后再传给客户端罢了。
+
+Spring Boot将放置在以下文件夹中的文件视为静态资源文件，并将其映射为一个唯一的URL：
+
+* /static
+* /public
+* /resources
+* /META-INF/resources
+
+默认情况下， Thymeleaf从classpath:/templates/处加载模板
+
+### WebJars基础
+
+现代网页设计，离不开各种各样的Web前端UI库。各种UI库通常都会包容多个文件（比如.css， .js，字体，图标等）。
+
+Spring Boot支持一种被称为webjar的技术，将一些前端框架（比如Bootstrap）打包为单个文件， 从而在Thymeleaf模板中可以作为一个整体进行引用。
+
+使用WebJars打包的资源，其URL以“/webjars/”打头，也就是说，所有指向/webjars/的HTTP请求，都会被导向这个包中所包容的静态资源文件。
+
+#### 获取webjar的maven依赖（以Bootstrap为例）
+
+要想在Spring Boot Web项目中使用诸如Bootstrap等前端框架，需要访问webjars或
+MavenRepository网站去搜索其Maven依赖声明。
+
+添加完依赖之后，可以看到相关的js文件、 css样式表和字体等静态
+资源，都被放到了jar包中，并且准备好了在视图模板文件中访问。
+
+#### 如何引用WebJars包？
+
+特别注意其包名：`resources.webjars.jquery.1.11.1，`这实际上就是文件夹名，你可以这样看：所有jquery文件位于resources文件夹下的
+/webjars/jquery/1.11.1下。
+
+现在，就可以在网页中使用以下URL引用到它们：
+```html
+<script src="/webjars/jquery/1.11.1/jquery.min.js">
+</script>
+```
+
+#### WebJar示例： webjar_demo
+
+本示例使用Bootstrap布局页面并使用其样式调整UI控件显示效果，然后使用Vue来通过数据绑定显示数据和响应按钮单击事件。
+
+### 小结
+
+本讲主要介绍了两种用于编写Spring Boot Web前端页面的技术，一个是Thymeleaf视图引擎，另一个是WebJars。
+
+只需要将静态Web资源（比如.html， .css， .js，图片）放到Spring Boot Web项目的指定文件夹下，就可以在Web页面中通过URL访问它们。
+
+本讲所介绍的技术仅仅只是一个入门，是进一步学习的基础和前提，但只要掌握好本讲所介绍的内容， 就己经足够让你开发出一个“单页面应用”。

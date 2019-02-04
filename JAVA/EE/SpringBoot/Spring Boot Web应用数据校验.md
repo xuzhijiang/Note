@@ -1,0 +1,59 @@
+## Spring Boot Web应用数据校验
+
+在实际开发中，为了保证数据的安全，必须对用户提交上来的数据进行有效性检测。
+
+> 数据有效性检测分为两类
+
+1. 一类是在客户端进行的，常用的Web前端框架（比如Vue和React）都提供了相应的功能，在提交数据之前对数据的有效性进行检测;
+2. 另一类则是服务端数据检测，就是在调用Spring Boot
+MVC控制器方法之前对客户端数据的有效性进行校验。
+
+> 本讲介绍的是如何使用Spring Boot MVC框架在服务端完成数据有效性检测的工作。
+
+### Spring MVC数据检验的基本步骤(示例datavalidator_demo)
+
+1. 给数据实体类附加注解
+2. 在调用控制器方法之前检测数据是否有效
+3. 数据有效，正常执行，无效，走另外流程（比如提示用户修正后重新提交）
+
+* 使用Postman进行测试，提交的数据有效时，控制器方法将返回一个有效的ValidatorPojo对象。
+* 非法数据,SpringMVC给出的校验结果
+
+```
+// 提交的数据有效时
+POST: localhost:8080/datavalidate/post
+
+JSON(application/json)
+{
+	"id": 100,
+	"date": "2019-12-19T03:28:45.449+0000",
+	"doubleValue":500.0,
+	"integer":34,
+	"range":888,
+	"email":"xuzhijing@bit.edu.cn",
+	"size":"String length must be [20 30]."
+}
+
+```
+
+```
+// 提交非法数据
+POST: localhost:8080/datavalidate/post
+
+JSON(application/json)
+{
+	"id": 100,
+	"date": "2019-12-19T03:28:45.449+0000",
+	"doubleValue":1500.0,
+	"integer":34,
+	"range":888,
+	"email":"xuzhijing@bit.edu.",
+	"size":"很短的字符串."
+}
+
+```
+
+### 小结
+
+1. 本讲介绍了Spring Boot Web项目中如何在服务端实现数据校验的基本方法，适用于开发“前后端分离”的现代Web应用。
+2. 本讲示例未涉及如何在Spring Boot MVC项目的视图上显示数据校验信息，其实在掌握了Spring Boot MVC视图编程技术（比如Thymeleaf）之后，这块是很容易补上的，只需将数据校验信息直接发给视图引擎即可。

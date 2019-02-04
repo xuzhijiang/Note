@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!--用于显示重定向数据的视图-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>重定向功能演示</title>
+</head>
+<body style="text-align: center">
+    <h2>重定向功能演示</h2>
+    <!--用于显示从控制器传过来的数据，而这些数据其实保存于Session中。-->
+    <div th:if="${demo_obj.getId()!=null}">
+        <p th:text="${demo_obj.getId()}"></p>
+        <p th:text="${demo_obj.getName()}"></p>
+    </div>
+
+</body>
+</html>
