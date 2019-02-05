@@ -104,6 +104,7 @@ public class CustomerServlet extends HttpServlet {
                       HttpServletResponse response)
             throws ServletException, IOException {
         String uri = request.getRequestURI();
+        System.out.println("-------URI: " + uri);
         if (uri.endsWith("/customer")) {
             sendCustomerList(response);
         } else if (uri.endsWith("/editCustomer")) {
@@ -118,9 +119,7 @@ public class CustomerServlet extends HttpServlet {
         // update customer
         int customerId = 0;
         try {
-            customerId =
-                    Integer.parseInt(request.getParameter("id")
-                    );
+            customerId = Integer.parseInt(request.getParameter("id"));
         } catch (NumberFormatException e) {
         }
         Customer customer = getCustomer(customerId);

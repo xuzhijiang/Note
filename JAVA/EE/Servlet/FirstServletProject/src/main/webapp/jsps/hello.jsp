@@ -8,7 +8,7 @@
 <title>hello</title>
 </head>
 <body>
-<h2>Hello There!Jsp</h2>
+<h2>this is jsps/hello.jsp!</h2>
 <br>
 <h3>Date=<%= new Date()%>></h3>
 </body>

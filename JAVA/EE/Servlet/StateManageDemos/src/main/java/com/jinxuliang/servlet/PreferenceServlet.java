@@ -63,16 +63,32 @@ public class PreferenceServlet extends HttpServlet {
         String maxRecords = request.getParameter("maxRecords");
         String[] titleStyleAndWeight = request.getParameterValues("titleStyleAndWeight");
         String titleFontSize =request.getParameter("titleFontSize");
+
         response.addCookie(new Cookie("maxRecords", maxRecords));
         response.addCookie(new Cookie("titleFontSize",titleFontSize));
+
         // delete titleFontWeight and titleFontStyle cookies first
         // Delete cookie by adding a cookie with the maxAge = 0;
+
+        // Cookies是一个很小的信息片段，可自动地在浏览器和Web服务器间交互，因此
+        // cookies可存储在多个页面间传递的信息。
+        // Cookie作为HTTP header的一部 分，其传输由HTTP协议控制。此外，
+        // 可以控制cookies的有效时间。浏览器通 常支持每个网站设置20个cookies。
+
+        // 可以通过传递name和value两个参数给Cookie类的构造函数来创建一个
+        // cookies： `Cookie cookie = new Cookie(name, value);`
         Cookie cookie = new Cookie("titleFontWeight", "");
+        // 创建完一个Cookie对象后，你可以设置domain、 path和maxAge属性。
+        // 其中， maxAge属性决定cookie何时过期
         cookie.setMaxAge(0);
+        // 要将cookie发送到浏览器，需要调用HttpServletResponse的add方法：
+        // `httpServletResponse.addCookie(cookie);`
         response.addCookie(cookie);
+
         cookie = new Cookie("titleFontStyle", "");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
+
         if (titleStyleAndWeight != null) {
             for (String style : titleStyleAndWeight) {
                 if (style.equals("bold")) {

@@ -26,8 +26,6 @@
 4. 某些字符，例如空格、与和问号等必须用base64编码.
 5. 所有的信息都是可见的，某些情况下不合适
 
-access(注意URL的变化): http://localhost:8080/top10
-
 ### 隐藏域
 
 1. 使用隐藏域来保持状态类似于URL重写技术，但不是将值附加到URL上，而是放到HTML表单的隐藏域中。
@@ -36,30 +34,12 @@ access(注意URL的变化): http://localhost:8080/top10
 4. 该技术相对于URL重写的优势在于：没有字符数限制，同时无须额外的编码。
 但该技术同URL重写一样，不适合跨越多个界面。
 
-access: http://localhost:8080/customer
-
 ### Cookie
-
-Cookies是一个很小的信息片段，可自动地在浏览器和Web服务器间交互，因此
-cookies可存储在多个页面间传递的信息。 Cookie作为HTTP header的一部
-分，其传输由HTTP协议控制。此外，可以控制cookies的有效时间。浏览器通
-常支持每个网站设置20个cookies。
 
 > Cookies的问题在于用户可以通过改变其浏览器设置来拒绝接受cookies
 
 > 要使用cookies，需要熟悉javax.servlet.http.Cookie类以及
-HttpServletRequest和HttpServlet Response两个接口
-
-可以通过传递name和value两个参数给Cookie类的构造函数来创建一个
-cookies： `Cookie cookie = new Cookie(name, value);`
-
-创建完一个Cookie对象后，你可以设置domain、 path和maxAge属性。
-其中， maxAge属性决定cookie何时过期
-
-要将cookie发送到浏览器，需要调用HttpServletResponse的add方法：
-`httpServletResponse.addCookie(cookie);`
-
-浏览器在访问同一Web服务器时，会将之前收到的cookie一并发送。
+HttpServletRequest和HttpServletResponse两个接口
 
 > 服务端若要读取浏览器提交的cookie，可以通过HttpServletRequest接
 口的getCookies方法，该方法返回一个Cookie数组，若没有cookies则返
@@ -88,26 +68,9 @@ cookie.setMaxAge(0);
 response.addCookie(cookie)
 ```
 
-access: 
-http://localhost:8080/preference
-http://localhost:8080/cookieClass
-http://localhost:8080/cookieInfo
-
 ### Session
 
 #### HttpSession
-
-一个用户可以有且最多有一个HttpSession，并且不会被其他用户访问到。
-HttpSession对象在用户第一次访问网站的时候自动被创建，你可以通过调用
-HttpServletRequest的getSession方法获取该对象。可以通过HttpSession的setAttribute方法将值放入HttpSession，放到HttpSession的值不限于String类型，可以是任意实现java.io.Serializable的java对象
-
-```java
-void setAttribute(String name, Object value)
-```
-
-放入到HttpSession 的值，是存储在内存中的，因此，不要往HttpSession放入太多
-对象或大对象。尽管现代的Servlet容器在内存不够用的时候会将保存在HttpSessions
-的对象转储到二级存储上，但这样有性能问题，因此小心存储。另外，使用Session会给Web应用的水平伸缩带来麻烦
 
 调用setAttribute方法时，若传入的name参数此前已经使用过，则会用
 新值覆盖旧值。
@@ -119,11 +82,10 @@ HttpSession 还有一个非常有用的方法，名为getAttributeNames，该
 方法会返回一个Enumeration 对象来迭代访问保存在HttpSession中的所
 有值。`Enumeration<String> getAttributeNames();`
 
-* Servlet容器为每个HttpSession 生成唯一的标识，并将该标识发送
+Servlet容器为每个HttpSession生成唯一的标识，并将该标识发送
 给浏览器，或创建一个名为JSESSIONID的cookie，或者在URL后附加
-一个名为jsessionid 的参数。
-* 可以通过调用 HttpSession的getId方法来读取该标识。
-* 在后续的请求中，浏览器会将标识提交给服务端，这样服务器就可以识
+一个名为jsessionid 的参数。可以通过调用HttpSession的getId方法来读取该标识。
+在后续的请求中，浏览器会将标识提交给服务端，这样服务器就可以识
 别该请求是由哪个用户发起的。 Servlet容器会自动选择一种方式传递
 会话标识，无须开发人员介入。
 

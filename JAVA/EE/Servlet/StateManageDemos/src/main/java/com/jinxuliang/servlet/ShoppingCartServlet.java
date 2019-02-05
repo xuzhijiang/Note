@@ -18,8 +18,9 @@ import java.util.Locale;
 
 @WebServlet(name = "ShoppingCartServlet", urlPatterns = {
         "/products", "/viewProductDetails",
-        "/addToCart", "/viewCart" })
-public class ShoppingCartServlet  extends HttpServlet {
+        "/addToCart", "/viewCart"})
+public class ShoppingCartServlet extends HttpServlet {
+
     private static final String CART_ATTRIBUTE = "cart";
     private List<Product> products = new ArrayList<Product>();
     private NumberFormat currencyFormat = NumberFormat
@@ -37,7 +38,7 @@ public class ShoppingCartServlet  extends HttpServlet {
                 129.95F));
         products.add(new Product(4, "Bravo iPod player",
                 "An iPod plug-in that can play multiple formats",
-        39.95F));
+                39.95F));
     }
 
     @Override
@@ -55,27 +56,33 @@ public class ShoppingCartServlet  extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request,
-                       HttpServletResponse response) throws ServletException,IOException {
-// add to cart
+                       HttpServletResponse response) throws ServletException, IOException {
+        // add to cart
         int productId = 0;
         int quantity = 0;
         try {
-            productId = Integer.parseInt(
-                    request.getParameter("id"));
-            quantity = Integer.parseInt(request
-                    .getParameter("quantity"));
+            productId = Integer.parseInt(request.getParameter("id"));
+            quantity = Integer.parseInt(request.getParameter("quantity"));
         } catch (NumberFormatException e) {
         }
         Product product = getProduct(productId);
         if (product != null && quantity >= 0) {
-            ShoppingItem shoppingItem = new ShoppingItem(product,
-                    quantity);
+            ShoppingItem shoppingItem = new ShoppingItem(product, quantity);
+            // 一个用户可以有且最多有一个HttpSession，并且不会被其他用户访问到。
+            // HttpSession对象在用户第一次访问网站的时候自动被创建，你可以通过调用
+            // HttpServletRequest的getSession方法获取该对象。可以通过HttpSession
+            // 的setAttribute方法将值放入HttpSession，放到HttpSession的值不限于String类型，
+            // 可以是任意实现java.io.Serializable的java对象
             HttpSession session = request.getSession();
-            List<ShoppingItem> cart = (List<ShoppingItem>) session
-                    .getAttribute(CART_ATTRIBUTE);
+            System.out.println("session id: " + session.getId());
+            List<ShoppingItem> cart = (List<ShoppingItem>) session.getAttribute(CART_ATTRIBUTE);
             if (cart == null) {
                 cart = new ArrayList<ShoppingItem>();
                 session.setAttribute(CART_ATTRIBUTE, cart);
+                // 放入到HttpSession的值，是存储在内存中的，因此，不要往HttpSession放入太多
+                // 对象或大对象。尽管现代的Servlet容器在内存不够用的时候会将保存在HttpSessions
+                // 的对象转储到二级存储上，但这样有性能问题，因此小心存储。另外，
+                // 使用Session会给Web应用的水平伸缩带来麻烦.
             }
             cart.add(shoppingItem);
         }
@@ -115,8 +122,7 @@ public class ShoppingCartServlet  extends HttpServlet {
         PrintWriter writer = response.getWriter();
         int productId = 0;
         try {
-            productId = Integer.parseInt(
-                    request.getParameter("id"));
+            productId = Integer.parseInt(request.getParameter("id"));
         } catch (NumberFormatException e) {
         }
         Product product = getProduct(productId);
@@ -157,15 +163,13 @@ public class ShoppingCartServlet  extends HttpServlet {
         writer.println("<body><a href='products'>" +
                 "Product List</a>");
         HttpSession session = request.getSession();
-        List<ShoppingItem> cart = (List<ShoppingItem>) session
-                .getAttribute(CART_ATTRIBUTE);
+        List<ShoppingItem> cart = (List<ShoppingItem>) session.getAttribute(CART_ATTRIBUTE);
         if (cart != null) {
             writer.println("<table>");
-            writer.println("<tr><td style='width:150px'>Quantity"
-                            + "</td>"
-                            + "<td style='width:150px'>Product</td>"
-                            + "<td style='width:150px'>Price</td>"
-                            + "<td>Amount</td></tr>");
+            writer.println("<tr><td style='width:150px'>Quantity" + "</td>"
+                    + "<td style='width:150px'>Product</td>"
+                    + "<td style='width:150px'>Price</td>"
+                    + "<td>Amount</td></tr>");
             double total = 0.0;
             for (ShoppingItem shoppingItem : cart) {
                 Product product = shoppingItem.getProduct();
@@ -173,17 +177,11 @@ public class ShoppingCartServlet  extends HttpServlet {
                 if (quantity != 0) {
                     float price = product.getPrice();
                     writer.println("<tr>");
-                    writer.println("<td>" + quantity + "</td>")
-                    ;
-                    writer.println("<td>" + product.getName()
-                            + "</td>");
-                    writer.println("<td>"
-                            + currencyFormat.format(price)
-                            + "</td>");
+                    writer.println("<td>" + quantity + "</td>");
+                    writer.println("<td>" + product.getName() + "</td>");
+                    writer.println("<td>" + currencyFormat.format(price) + "</td>");
                     double subtotal = price * quantity;
-                    writer.println("<td>"
-                            + currencyFormat.format(subtotal)
-                            + "</td>");
+                    writer.println("<td>" + currencyFormat.format(subtotal) + "</td>");
                     total += subtotal;
                     writer.println("</tr>");
                 }

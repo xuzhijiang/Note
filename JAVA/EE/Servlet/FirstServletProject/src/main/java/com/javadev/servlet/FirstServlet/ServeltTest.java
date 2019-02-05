@@ -29,7 +29,7 @@ public class ServeltTest extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
         writer.print("<html><head></head>"
-                + "<body>Hello from servlet"
+                + "<body>Hello from servletTest doGet!"
                 + "</body></html>");
         writer.close();
     }

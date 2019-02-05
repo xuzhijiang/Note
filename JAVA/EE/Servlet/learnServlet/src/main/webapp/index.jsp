@@ -20,6 +20,5 @@
   <div>
     <a href="/form">Servlet生成并处理表单的示例——FormServlet</a>
   </div>
-
 </body>
 </html>

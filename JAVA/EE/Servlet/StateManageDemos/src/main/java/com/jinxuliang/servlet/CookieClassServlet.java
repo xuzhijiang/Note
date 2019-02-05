@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(name = "CookieClassServlet",
-        urlPatterns = { "/cookieClass" })
+        urlPatterns = {"/cookieClass"})
 public class CookieClassServlet extends HttpServlet {
     private String[] methods = {
             "clone", "getComment", "getDomain",
@@ -23,7 +23,7 @@ public class CookieClassServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request,
-                      HttpServletResponse response) throws ServletException,IOException {
+                      HttpServletResponse response) throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
         Cookie maxRecordsCookie = null;
         if (cookies != null) {
@@ -37,8 +37,7 @@ public class CookieClassServlet extends HttpServlet {
         int maxRecords = 5; // default
         if (maxRecordsCookie != null) {
             try {
-                maxRecords = Integer.parseInt(
-                        maxRecordsCookie.getValue());
+                maxRecords = Integer.parseInt(maxRecordsCookie.getValue());
             } catch (NumberFormatException e) {
                 // do nothing, use maxRecords default value
             }
@@ -46,10 +45,10 @@ public class CookieClassServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
         writer.print("<html><head>" + "<title>Cookie Class</title>"
-                        + "</head><body>"
-                        + PreferenceServlet.MENU
-                        + "<div>Here are some of the methods in " +
-                        "javax.servlet.http.Cookie");
+                + "</head><body>"
+                + PreferenceServlet.MENU
+                + "<div>Here are some of the methods in " +
+                "javax.servlet.http.Cookie");
         writer.print("<ul>");
         for (int i = 0; i < maxRecords; i++) {
             writer.print("<li>" + methods[i] + "</li>");
