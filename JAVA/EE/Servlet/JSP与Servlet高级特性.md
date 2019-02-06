@@ -30,12 +30,11 @@ Servlet API提供了一系列的`事件和事件监听接口`。
 
 #### 监听器接口
 
-监听器接口主要在javax.servlet和javax.servlet.http的包中。有以下这些接口
+监听器接口主要在javax.servlet和javax.servlet.http的包中。有以下这些接口:
 
 接口 					说明
 ServletContextListener  它能够响应ServletContext生命周期事件，它提供了
-
-ServletContext   	    创建之后和ServletContext关闭之前的会被调用的方法。
+						ServletContext创建之后和ServletContext关闭之前的会被调用的方法。
 
 ServletContextAttributeListener 它能够响应ServletContext范围的属性添加、删除、替换
 事件。

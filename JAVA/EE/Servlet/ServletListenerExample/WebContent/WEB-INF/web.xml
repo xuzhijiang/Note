@@ -4,10 +4,11 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	
+	<!-- 
+		I will define some context init params and listener configuration. 
+	-->
+		
 	<display-name>ServletListenerExample</display-name>
-
-	<!-- web.xml: In deployment descriptor, I will define some context init 
-		params and listener configuration. -->
 
 	<context-param>
 		<param-name>DBUSER</param-name>

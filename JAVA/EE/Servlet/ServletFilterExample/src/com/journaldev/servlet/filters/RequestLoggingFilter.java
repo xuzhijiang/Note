@@ -2,7 +2,6 @@ package com.journaldev.servlet.filters;
 
 import java.io.IOException;
 import java.util.Enumeration;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,13 +13,11 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-// ÓÃÓÚÈÕÖ¾¼ÇÂ¼ºÍ»á»°ÑéÖ¤µÄServlet¹ıÂËÆ÷Ê¾Àı
+// ç”¨äºæ—¥å¿—è®°å½•å’Œä¼šè¯éªŒè¯çš„Servletè¿‡æ»¤å™¨ç¤ºä¾‹
 
-// ÔÚÎÒÃÇµÄservlet¹ıÂËÆ÷Ê¾ÀıÖĞ£¬ÎÒÃÇ½«´´½¨¹ıÂËÆ÷À´¼ÇÂ¼ÇëÇócookieºÍ²ÎÊı£¬log request cookies and parameters
-// ²¢ÑéÖ¤³ıstatic HTMLºÍLoginServletÖ®ÍâµÄËùÓĞ×ÊÔ´µÄsession£¬ÒòÎªËüÃ»ÓĞ»á»°¡£
-/**
- * Servlet Filter implementation class RequestLoggingFilter
- */
+// åœ¨æˆ‘ä»¬çš„servletè¿‡æ»¤å™¨ç¤ºä¾‹ä¸­ï¼Œæˆ‘ä»¬å°†åˆ›å»ºè¿‡æ»¤å™¨æ¥è®°å½•è¯·æ±‚cookieå’Œå‚æ•°ï¼Œ
+// log request cookies and parameters
+// å¹¶éªŒè¯é™¤static HTMLå’ŒLoginServletä¹‹å¤–çš„æ‰€æœ‰èµ„æºçš„sessionï¼Œå› ä¸ºå®ƒæ²¡æœ‰ä¼šè¯ã€‚
 @WebFilter("/RequestLoggingFilter")
 public class RequestLoggingFilter implements Filter {
 
@@ -34,6 +31,7 @@ public class RequestLoggingFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		Enumeration<String> params = req.getParameterNames();
+		
 		while(params.hasMoreElements()){
 			String name = params.nextElement();
 			String value = request.getParameter(name);
@@ -43,7 +41,7 @@ public class RequestLoggingFilter implements Filter {
 		Cookie[] cookies = req.getCookies();
 		if(cookies != null){
 			for(Cookie cookie : cookies){
-				// In server log file£¬Äú¿ÉÒÔ¿´µ½servlet filtersºÍservlets ´òÓ¡µÄÈÕÖ¾¡£
+				// In server log fileï¼Œæ‚¨å¯ä»¥çœ‹åˆ°servlet filterså’Œservlets æ‰“å°çš„æ—¥å¿—ã€‚
 				this.context.log(req.getRemoteAddr() + "::Cookie::{"+cookie.getName()+","+cookie.getValue()+"}");
 			}
 		}

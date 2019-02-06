@@ -1,7 +1,6 @@
 package com.jinxuliang.servlet;
 
 import com.jinxuliang.listener.MyAsyncListener;
-
 import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "AsyncListenerServlet",
-        urlPatterns = { "/asyncListener" },
-        asyncSupported = true)
+        urlPatterns = { "/asyncListener" }, asyncSupported = true)
 public class AsyncListenerServlet extends HttpServlet {
     @Override
     public void doGet(final HttpServletRequest request,

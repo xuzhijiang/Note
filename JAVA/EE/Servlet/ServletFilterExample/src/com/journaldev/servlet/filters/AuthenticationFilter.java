@@ -1,7 +1,6 @@
 package com.journaldev.servlet.filters;
 
 import java.io.IOException;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,8 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-// ÓÃÓÚ»á»°ÑéÖ¤µÄServlet¹ıÂËÆ÷Ê¾Àı
-
+// ç”¨äºä¼šè¯éªŒè¯çš„Servletè¿‡æ»¤å™¨
 @WebFilter("/AuthenticationFilter")
 public class AuthenticationFilter implements Filter {
 
@@ -36,18 +34,17 @@ public class AuthenticationFilter implements Filter {
 		
 		HttpSession session = req.getSession(false);
 		
+		// ç›´æ¥è®¿é—®http://localhost:8080/ServletFilterExample/LoginSuccess.jsp
 		if(session == null && !(uri.endsWith("html") || uri.endsWith("LoginServlet"))){
 			this.context.log("Unauthorized access request");
 			res.sendRedirect("login.html");
-			// Èç¹ûÄúÎ´µÇÂ¼²¢³¢ÊÔ·ÃÎÊÈÎºÎJSPÒ³Ãæ£¬Ôò»á×ªµ½µÇÂ¼Ò³Ãæ¡£
+			// å¦‚æœæ‚¨æœªç™»å½•å¹¶å°è¯•è®¿é—®ä»»ä½•JSPé¡µé¢ï¼Œåˆ™ä¼šè½¬åˆ°ç™»å½•é¡µé¢ã€‚
 		}else{
 			// pass the request along the filter chain
 			chain.doFilter(request, response);
 		}
 		
 	}
-
-	
 
 	public void destroy() {
 		//close any resources here

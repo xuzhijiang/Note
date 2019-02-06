@@ -3,13 +3,14 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
+
 	<display-name>ServletFilterExample</display-name>
 	<welcome-file-list>
 		<welcome-file>login.html</welcome-file>
 	</welcome-file-list>
 
 	<!-- We can declare a servlet filter in web.xml like below. -->
-	
+
 	<filter>
 		<filter-name>RequestLoggingFilter</filter-name><!-- mandatory(强制性) -->
 		<filter-class>com.journaldev.servlet.filters.RequestLoggingFilter</filter-class><!-- 
@@ -19,12 +20,11 @@
 			<param-value>testValue</param-value>
 		</init-param>
 	</filter>
-	
+
 	<filter>
 		<filter-name>AuthenticationFilter</filter-name>
 		<filter-class>com.journaldev.servlet.filters.AuthenticationFilter</filter-class>
 	</filter>
-
 
 	<!-- Now we will configure these filters mapping in the web.xml file. -->
 	<filter-mapping>
@@ -32,26 +32,35 @@
 		<url-pattern>/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
-	
+
 	<filter-mapping>
 		<filter-name>AuthenticationFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-		<!-- We can map a Filter to servlet classes or url-patterns like below. -->
-	
-<!-- 	<filter-mapping>
-	  <filter-name>RequestLoggingFilter</filter-name> mandatory
-	  <url-pattern>/*</url-pattern> either url-pattern or servlet-name is mandatory
-	  <servlet-name>LoginServlet</servlet-name>
-	  <dispatcher>REQUEST</dispatcher>
-	</filter-mapping> -->
-	
-	<!-- 注意：在为servlet创建过滤器链时，容器首先处理url-patterns，然后处理servlet-names，
-	因此如果必须确保以特定顺序执行过滤器，请在定义过滤器映射时给予额外注意。 -->
-	
-	<!-- ervlet过滤器通常用于客户端请求，但有时我们也希望使用RequestDispatcher应用过滤器，
-	 在这种情况下我们可以使用dispatcher元素，可能的值是REQUEST，FORWARD，INCLUDE，ERROR和ASYNC。
-	  如果未定义dispatcher，则仅应用于客户端请求。If no dispatcher is defined then it’s applied only to client requests.-->
-	
+
+	<!-- We can map a Filter to servlet classes or url-patterns like below. -->
+
+	<!-- 
+		<filter-mapping> 
+			<filter-name>RequestLoggingFilter</filter-name> mandatory 
+			<url-pattern>/*</url-pattern> 
+			either url-pattern or servlet-name is mandatory 
+			<servlet-name>LoginServlet</servlet-name> 
+			<dispatcher>REQUEST</dispatcher> 
+		</filter-mapping> 
+	-->
+
+	<!-- 
+		注意：在为servlet创建过滤器链时，容器首先处理url-patterns，然后处理servlet-names， 
+		因此如果必须确保以特定顺序执行过滤器，请在定义过滤器映射时给予额外注意。 
+	-->
+
+	<!-- 
+		servlet过滤器通常用于客户端请求，但有时我们也希望使用RequestDispatcher应用过滤器， 
+		在这种情况下我们可以使用dispatcher元素，可能的值是REQUEST，FORWARD，INCLUDE，ERROR和ASYNC。 
+		
+		如果未定义dispatcher，则仅应用于客户端请求。If no dispatcher is defined then it’s applied 
+		only to client requests. 
+	-->
+
 </web-app>

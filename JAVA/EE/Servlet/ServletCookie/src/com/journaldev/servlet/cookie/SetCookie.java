@@ -9,30 +9,37 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// This servlet will set some cookies and send it to browser.
+
+// å½“æ‚¨è¿è¡Œè¯¥ç¨‹åºæ—¶ï¼Œæ‚¨ä¼šæ³¨æ„åˆ°ä»¥ä¸‹å‡ ç‚¹ï¼š
+
+// Cookieâ€œCounterâ€ä»…å‘é€åˆ°SetCookieï¼ŒGetCookieå°†æ°¸è¿œä¸ä¼šæ”¶åˆ°æ­¤Cookieã€‚
+// é™¤åç§°å’Œå€¼å¤–ï¼Œæ‰€æœ‰å…¶ä»–å˜é‡éƒ½æ˜¯æ‰“å°é»˜è®¤å€¼ã€‚ MaxAgeé»˜è®¤å€¼ä¸º-1ï¼Œç‰ˆæœ¬é»˜è®¤å€¼ä¸º0ã€‚
 @WebServlet("/cookie/SetCookie")
 public class SetCookie extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	private static int count = 0;
-       
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		Cookie[] requestCookies = request.getCookies();
 		
+		PrintWriter out = response.getWriter();
 		out.write("<html><head></head><body>");
 		out.write("<h3>Hello Browser!! xzj</h3>");
-		if(requestCookies != null){
+		
+		// è·å–æµè§ˆå™¨æºå¸¦çš„Cookie
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null){
 			out.write("<h3>Request Cookies:</h3>");
-			for(Cookie c : requestCookies){
+			for(Cookie c : cookies){
 				out.write("Name="+c.getName()+", Value="+c.getValue()+", Comment="+c.getComment()
 						+", Domain="+c.getDomain()+", MaxAge="+c.getMaxAge()+", Path="+c.getPath()
 						+", Version="+c.getVersion());
 				out.write("<br>");
 			}
 		}
-		// we will set a cookie for every domain and a cookie with Path settings 
-		// so that other servlet won¡¯t receive this from client.
+		
+		// æˆ‘ä»¬å°†ä¸ºæ¯ä¸ªcookieè®¾ç½®ä¸€ä¸ªdomainä»¥åŠè·¯å¾„ã€‚
+		// ä»¥ä¾¿å…¶ä»–servletä¸ä¼šä»å®¢æˆ·ç«¯æ”¶åˆ°æ­¤cookieã€‚
 		
 		//Set cookies for counter, accessible to only this servlet
 		count++;
@@ -47,21 +54,12 @@ public class SetCookie extends HttpServlet {
 		//adding cookie to the response
 		response.addCookie(counterCookie);
 		
-		//set a domain specific cookie
-		// Note: Throws:IllegalArgumentException - if the cookie name is null or 
-		// empty or contains any illegal characters (for example, a comma, space, 
-		// or semicolon) or matches a token reserved for use by the cookie protocol
-		// CookieµÄvalue²»ÄÜ°üº¬¿Õ¸ñ
+		// è®¾ç½®ä¸€ä¸ªæŒ‡å®šdomainçš„cookie
 		Cookie domainCookie = new Cookie("Test", "TestCookie"+String.valueOf(count));
 		domainCookie.setComment("Test Cookie");
 		response.addCookie(domainCookie);
 		
 		out.write("</body></html>");
-		
-		// µ±ÄúÔËĞĞ¸Ã³ÌĞòÊ±£¬Äú»á×¢Òâµ½ÒÔÏÂ¼¸µã£º
-		
-		// Cookie¡°Counter¡±½ö·¢ËÍµ½SetCookie£¬GetCookie½«ÓÀÔ¶²»»áÊÕµ½´ËCookie¡£
-		// ³ıÃû³ÆºÍÖµÍâ£¬ËùÓĞÆäËû±äÁ¿¶¼ÊÇ´òÓ¡Ä¬ÈÏÖµ¡£ MaxAgeÄ¬ÈÏÖµÎª-1£¬°æ±¾Ä¬ÈÏÖµÎª0¡£
 	}
 
 }

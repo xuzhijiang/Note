@@ -35,7 +35,7 @@ if(cookies !=null){
 <!-- 当我们运行此项目时，在浏览器中禁用cookie，下面的图像显示响应页面，
 注意浏览器地址栏的URL中的jsessionid。 -->
 
-<!-- 如果未禁用cookie，则不会在URL中看到jsessionid，因为在这种情况下Servlet会话API将使用cookie。 -->
+<!-- 如果未禁用cookie，则不会在URL中看到jsessionid，因为在这种情况下Servlet会话API将使用cookie开存储session id。 -->
 <h3>Hi <%=userName %>, Login successful. Your Session ID=<%=sessionID %></h3>
 <br>
 User=<%=user %>

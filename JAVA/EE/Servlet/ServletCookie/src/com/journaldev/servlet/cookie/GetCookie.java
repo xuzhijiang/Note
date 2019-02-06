@@ -2,7 +2,6 @@ package com.journaldev.servlet.cookie;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -10,15 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// Ò»¸ö¼òµ¥µÄservlet£¬Ëü½«ÑİÊ¾ÔÚ¾ßÓĞÌØ¶¨Â·¾¶µÄSetCookieÖĞÉèÖÃµÄcookie²»»á±»ä¯ÀÀÆ÷·¢ËÍµ½´Ëservlet¡£
+// ä¸€ä¸ªç®€å•çš„servletï¼Œå®ƒå°†æ¼”ç¤ºåœ¨å…·æœ‰ç‰¹å®šè·¯å¾„çš„
+// åœ¨SetCookieä¸­è®¾ç½®çš„cookieä¸ä¼šè¢«æµè§ˆå™¨å‘é€åˆ°æ­¤servletã€‚
 @WebServlet("/cookie/GetCookie")
 public class GetCookie extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		// ·µ»ØÒ»¸öclient·¢ËÍµÄ°éËæÕâ¸örequestµÄ£¬°üº¬ËùÓĞcookie¶ÔÏóµÄÊı×é¡£
-		// Èç¹ûÃ»ÓĞ·¢ËÍcookie£¬Ôò´Ë·½·¨·µ»Ønull¡£
+		// è¿”å›ä¸€ä¸ªclientå‘é€çš„ä¼´éšè¿™ä¸ªrequestçš„ï¼ŒåŒ…å«æ‰€æœ‰cookieå¯¹è±¡çš„æ•°ç»„ã€‚
+		// å¦‚æœæ²¡æœ‰å‘é€cookieï¼Œåˆ™æ­¤æ–¹æ³•è¿”å›nullã€‚
 		Cookie[] requestCookies = request.getCookies();
 		
 		out.write("<html><head></head><body>");
@@ -33,13 +33,13 @@ public class GetCookie extends HttpServlet {
 				out.write("<br>");
 				//delete cookie
 				if(c.getName().equals("Test")){
+					// GetCookieå°†â€œæµ‹è¯•â€cookieçš„MaxAgeè®¾ç½®ä¸º0ï¼Œä»¥ä¾¿å®¢æˆ·ç«¯æµè§ˆå™¨å°†å…¶è¿‡æœŸå¹¶åˆ é™¤
 					c.setMaxAge(0);
 					response.addCookie(c);
 				}
 			}
 		}
 		out.write("</body></html>");
-		// GetCookie½«¡°²âÊÔ¡±cookieµÄ×î´óÄêÁäÉèÖÃÎª0£¬ÒÔ±ã¿Í»§¶Ëä¯ÀÀÆ÷½«Æä¹ıÆÚ²¢É¾³ı
 	}
 
 }

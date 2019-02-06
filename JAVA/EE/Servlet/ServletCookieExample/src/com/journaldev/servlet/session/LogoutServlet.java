@@ -7,11 +7,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class LogoutServlet
- */
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
 	
@@ -21,13 +17,11 @@ public class LogoutServlet extends HttpServlet {
     	response.setContentType("text/html");
     	Cookie loginCookie = null;
     	Cookie[] cookies = request.getCookies();
-    	if(cookies != null){
     	for(Cookie cookie : cookies){
     		if(cookie.getName().equals("user")){
     			loginCookie = cookie;
     			break;
     		}
-    	}
     	}
     	if(loginCookie != null){
     		loginCookie.setMaxAge(0);

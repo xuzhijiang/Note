@@ -1,27 +1,20 @@
 #### ServletContext
 
-ServletContext表示Servlet应用程序。每个Web应用程序只有`一个上下文`。在将一个应用程序同时部署到多个容器的分布式环境中，每台Java虚拟机上的Web应用都会有一个ServletContext对象
+1. ServletContext表示Servlet应用程序上下文。每个Web应用程序只有`一个上下文`。在将一个应用程序同时部署到多个容器的分布式环境中，每台Java虚拟机上的Web应用都会有一个ServletContext对象.
+2. javax.servlet.ServletContext接口提供对servlet的Web应用程序变量的访问。 ServletContext是唯一对象，`可供Web应用程序中的所有servlet使用,当我们希望一些init参数可用于Web应用程序中的多个或所有servlet时`,我们可以使用ServletContext对象并使用<context-param>元素在web.xml中定义参数。 
+3. 我们可以通过ServletConfig的getServletContext()方法获取ServletContext对象。
 
-通过在ServletConfig中调用getServletContext方法，可以获得
-ServletContext，这一对象拥有以下重要的方法，可以用来保存各
-种数据：
+> 这一对象拥有以下重要的方法，可以用来保存各种数据：
 
 * getAttribute
 * getAttributeNames
 * setAttribute
 * removeAttribute
 
-javax.servlet.ServletContext接口提供对servlet的Web应用程序变量的访问。 
-ServletContext是唯一对象，可供Web应用程序中的所有servlet使用。 当我们希望一些
-init参数可用于Web应用程序中的多个或所有servlet时，我们可以使用ServletContext对
-象并使用<context-param>元素在web.xml中定义参数。 我们可以通过ServletConfig的
-getServletContext（）方法获取ServletContext对象。
-
- Servlet engines may also provide context objects that are unique to a group of servlets 
- ，并且该上下文对象context object与主机的URL路径命名空间的特定部分相关联。
+Servlet engines may also provide context objects that are unique to a group of servlets,并且该上下文对象与主机的URL路径命名空间的特定部分相关联。
 
 注意：理想情况下，此接口的名称应为ApplicationContext，因为它适用于应用程序，
-而不是特定于任何servlet。 另外，不要将它与URL中传递的以访问Web应用程序的servlet上下文混淆。
+而不是特定于任何servlet。另外，不要将它与URL中传递的以访问Web应用程序的servlet上下文混淆。
 
 ```java
 public interface ServletContext {

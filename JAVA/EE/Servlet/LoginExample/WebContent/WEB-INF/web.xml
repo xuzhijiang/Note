@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>LoginExample</display-name>
-  
-  <!-- Here is the web.xml deployment descriptor file where 
-  we have defined servlet context init parameters and welcome page.-->
-  <welcome-file-list>
-  	<!-- we will put login.html in the welcome files list in the web.xml so that 
-  	when we launch the application it will open the login page. -->
-    <welcome-file>login.html</welcome-file>
-  </welcome-file-list>
-  
-  <context-param>
-  <param-name>dbURL</param-name>
-  <param-value>jdbc:mysql://localhost/mysql_db</param-value>
-  </context-param>
-  
-  <context-param>
-  <param-name>dbUser</param-name>
-  <param-value>mysql_user</param-value>
-  </context-param>
-  
-  <context-param>
-  <param-name>dbUserPwd</param-name>
-  <param-value>mysql_pwd</param-value>
-  </context-param>
-  
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>LoginExample</display-name>
+
+	<!-- 我们定义了servlet context init参数和welcome页面 -->
+	<welcome-file-list>
+		<!-- 我们将login.html放在web.xml的欢迎文件列表中， 这样当我们启动应用程序时，它将打开登录页面,也就是当我 们将此应用部署到tomcat上访问http://localhost:8080/LoginExample/,即访问 
+			此应用程序的根目录时，会打开此页面 -->
+		<welcome-file>login.html</welcome-file>
+	</welcome-file-list>
+
+	<context-param>
+		<param-name>dbURL</param-name>
+		<param-value>jdbc:mysql://localhost/mysql_db</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>dbUser</param-name>
+		<param-value>mysql_user</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>dbUserPwd</param-name>
+		<param-value>mysql_pwd</param-value>
+	</context-param>
+
 </web-app>

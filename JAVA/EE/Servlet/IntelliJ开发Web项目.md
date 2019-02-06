@@ -8,7 +8,7 @@
 想让某一个资源可以被Servlet访问，但不可以被用户访问，那么就要把它放在WEB-INF目录下。
 4. 部署描述符总是命名为web.xml，并且放在WEB-INF目录下
 
-> java的web应用，其标准打包方式是war， war和jar类似，只不过它包含更多内容，如jsp文件、servlet文件、java类、web.xml配置，依赖包、静态web资源(html css js文件)等。
+> java的web应用，其标准打包方式是war， war和jar类似，只不过它包含更多内容，如jsp文件、servlet文件、java类、web.xml配置，依 赖包、静态web资源(html css js文件)等。
 
 war文件目录结构如下：
 
@@ -56,6 +56,22 @@ jar文件目录结构如下：
 5. 注意：WAR包中有一个lib目录包含所有依赖JAR包，但Maven项目结构中没有这样一个目录，这是因为依赖都配置在POM中，M aven在使用WAR方式打包的时候会根据POM的配置从本地仓库复制相应的JAR文件。
 6. 而对于JAR方式打包的时候不会把依赖打包进去，但是会在META-INF文件中包含pom.xml文件信息用于表明该jar包的依赖情况。
 
+### Eclipse的Jave web项目结构
+
+```
+.
+├── build
+│   └── classes
+├── src
+└── WebContent
+    ├── login.html
+    ├── LoginSuccess.jsp
+    ├── META-INF
+    │   └── MANIFEST.MF
+    └── WEB-INF
+        └── web.xml
+```
+
 ### IntelliJ开发Web项目
 
 本文介绍如何使用IntelliJ IDEA开发传统的Java Web
@@ -70,6 +86,8 @@ jar文件目录结构如下：
 ```
 注意区分idea的web项目结构和maven的web项目结构,以下是idea的项目结构.
 .
+├── .classpath
+├── .project
 ├── out
 │   └── artifacts
 │       └── learnServletProject_war
@@ -110,14 +128,11 @@ jar文件目录结构如下：
 
 > 在项目src节点上右击，选择Servlet,向项目中添加一个Servlet……,给Servlet指定类名和包
 
-### 下面再介绍一下如何部署Java Web项目
+### 如何打包WAR并且部署WAR到Web容器
 
-> File -> Project Structure -> Artifacts -> + -> Web Application: Archive(注意类型不要选错了)-> For 'MyFirstServletProject:war exploded'
-
-> 选中添加好的war Artifacts,在Output Layout下,点击create Manifest,
-需要为war创建一个清单文件,在项目的rootDir/web/下创建META-INF文件夹,然后在META-INF文件夹下创建MANIFEST.MF,然后点击ok
-
-> 然后，build -> Build Artifacts -> MyFirstServletProject:war -> Build -> 发现out/artifacts/learnServletProject_war/learnServletProject_war.war已经生成(如果是maven项目，会在target目录下生成war)
+1. File -> Project Structure -> Artifacts -> + -> Web Application: Archive(注意类型不要选错了)-> For 'MyFirstServletProject:war exploded'
+2. 选中添加好的war Artifacts,点击create Manifest,需要为war创建一个清单文件,在项目的rootDir/web下创建META-INF文件夹,然后在META-INF文件夹下创建MANIFEST.MF,然后点击ok
+3. 然后，build -> Build Artifacts -> MyFirstServletProject:war -> Build -> 发现out/artifacts/learnServletProject_war/learnServletProject_war.war已经生成(如果是maven项目，会在target目录下生成war)
 
 > 将war包复制到Tomcat的webapps文件夹下(把war改个好一点的名字……)，例如我的war包名字为XzjFirstServlet.war，Tomcat启动之后，可以发现war包会被自解压为XzjFirstServlet文件夹，然后访问
 http://localhost:8080/XzjFirstServlet/,此时页面会显示XzjFirstServlet文件夹下的index.jsp
@@ -135,5 +150,3 @@ http://localhost:8080/myfirstservlet/myfirst,此时页面会显示Hello from ser
 
 > 项目开发完毕后之后，通常是将所有文件打包为“war”，然后部
 署到Tomcat的webapps文件夹下。
-
-只要掌握了这些内容，学习JSP和Servlet的大门就己经打开。

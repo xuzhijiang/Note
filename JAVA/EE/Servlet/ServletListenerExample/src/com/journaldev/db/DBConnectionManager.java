@@ -17,7 +17,6 @@ public class DBConnectionManager {
 		this.user=u;
 		this.password=p;
 		//create db connection now
-		
 	}
 	
 	public Connection getConnection(){

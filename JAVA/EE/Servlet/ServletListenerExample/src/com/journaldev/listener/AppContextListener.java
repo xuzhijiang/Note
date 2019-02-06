@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebListener;
 
 import com.journaldev.db.DBConnectionManager;
 
+//ServletContextListener是我们拥有的众多Servlet Listener之一。
 @WebListener
 public class AppContextListener implements ServletContextListener {
 

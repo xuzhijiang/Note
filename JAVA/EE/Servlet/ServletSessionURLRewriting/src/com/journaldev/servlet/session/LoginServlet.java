@@ -38,26 +38,26 @@ public class LoginServlet extends HttpServlet {
 			Cookie userName = new Cookie("user", user);
 			response.addCookie(userName);
 			
-			// ÎÒÃÇ¿ÉÒÔÊ¹ÓÃHttpServletResponse encodeURL£¨£©·½·¨¶ÔURL½øÐÐ±àÂë£¬
-			// Èç¹ûÎÒÃÇ±ØÐë½«ÇëÇóÖØ¶¨Ïòµ½ÁíÒ»¸ö×ÊÔ´²¢ÇÒÎÒÃÇÏëÒªÌá¹©»á»°ÐÅÏ¢£¬
-			// ÎÒÃÇ¿ÉÒÔÊ¹ÓÃencodeRedirectURL£¨£©·½·¨¡£
+			// æˆ‘ä»¬å¯ä»¥ä½¿ç”¨HttpServletResponse encodeURLï¼ˆï¼‰æ–¹æ³•å¯¹URLè¿›è¡Œç¼–ç ï¼Œ
+			// å¦‚æžœæˆ‘ä»¬å¿…é¡»å°†è¯·æ±‚é‡å®šå‘åˆ°å¦ä¸€ä¸ªèµ„æºå¹¶ä¸”æˆ‘ä»¬æƒ³è¦æä¾›ä¼šè¯ä¿¡æ¯ï¼Œ
+			// æˆ‘ä»¬å¯ä»¥ä½¿ç”¨encodeRedirectURLï¼ˆï¼‰æ–¹æ³•ã€‚
 			String encodedURL = response.encodeRedirectURL("LoginSuccess.jsp");
 			log("----------- encodedURL: " + encodedURL); // LoginSuccess.jsp;jsessionid=DDBB069A5B0CB7FE66F50B28637D8AFC
-			// 1. encodeRedirectURL: ¶ÔÖ¸¶¨µÄURL½øÐÐ±àÂëÒÔÔÚsendRedirect·½·¨ÖÐÊ¹ÓÃ£¬
-			// 2.   »òÕß£¬Èç¹û²»ÐèÒª±àÂë£¬Ôò·µ»ØURL²»±ä¡£
-			// 3.   ¸Ã·½·¨µÄÊµÏÖ°üÀ¨`È·¶¨`ÊÇ·ñÐèÒªÔÚURLÖÐ±àÂë»á»°IDµÄÂß¼­
-			// 4.   ÓÉÓÚ½øÐÐ´Ë`È·¶¨`µÄ¹æÔò¿ÉÄÜÓëÓÃÓÚ`¾ö¶¨`ÊÇ·ñ±àÂëÆÕÍ¨Á´½ÓµÄ¹æÔò²»Í¬£¬Òò´Ë´Ë·½·¨ÓëencodeURL·½·¨·Ö¿ª¡£
-			// 5. ±àÂë³öµÄurl¶¼Ó¦¸ÃÍ¨¹ýHttpServletResponse.sendRedirect·½·¨ÔËÐÐ.
-			// ·ñÔò£¬URLÖØÐ´²»ÄÜÓÃÓÚ²»Ö§³ÖcookieµÄä¯ÀÀÆ÷¡£
+			// 1. encodeRedirectURL: å¯¹æŒ‡å®šçš„URLè¿›è¡Œç¼–ç ä»¥åœ¨sendRedirectæ–¹æ³•ä¸­ä½¿ç”¨ï¼Œ
+			// 2.   æˆ–è€…ï¼Œå¦‚æžœä¸éœ€è¦ç¼–ç ï¼Œåˆ™è¿”å›žURLä¸å˜ã€‚
+			// 3.   è¯¥æ–¹æ³•çš„å®žçŽ°åŒ…æ‹¬`ç¡®å®š`æ˜¯å¦éœ€è¦åœ¨URLä¸­ç¼–ç ä¼šè¯IDçš„é€»è¾‘
+			// 4.   ç”±äºŽè¿›è¡Œæ­¤`ç¡®å®š`çš„è§„åˆ™å¯èƒ½ä¸Žç”¨äºŽ`å†³å®š`æ˜¯å¦ç¼–ç æ™®é€šé“¾æŽ¥çš„è§„åˆ™ä¸åŒï¼Œå› æ­¤æ­¤æ–¹æ³•ä¸ŽencodeURLæ–¹æ³•åˆ†å¼€ã€‚
+			// 5. ç¼–ç å‡ºçš„urléƒ½åº”è¯¥é€šè¿‡HttpServletResponse.sendRedirectæ–¹æ³•è¿è¡Œ.
+			// å¦åˆ™ï¼ŒURLé‡å†™ä¸èƒ½ç”¨äºŽä¸æ”¯æŒcookieçš„æµè§ˆå™¨ã€‚
 			
 			response.sendRedirect(encodedURL);
-			// Ê¹ÓÃÖ¸¶¨µÄÖØ¶¨ÏòÎ»ÖÃURLÏò¿Í»§¶Ë·¢ËÍÁÙÊ±ÖØ¶¨ÏòÏìÓ¦²¢Çå³ý»º³åÇø¡£ 
-			// »º³åÇø½«Ìæ»»Îª´Ë·½·¨ÉèÖÃµÄÊý¾Ý¡£ µ÷ÓÃ´Ë·½·¨½«×´Ì¬´úÂëÉèÖÃÎªSC_FOUND 302£¨Found£©¡£
-			// ´Ë·½·¨¿ÉÒÔ½ÓÊÜÏà¶ÔURL;ÔÚ½«ÏìÓ¦·¢ËÍµ½¿Í»§¶ËÖ®Ç°£¬servletÈÝÆ÷±ØÐë½«Ïà¶ÔURL×ª»»Îª¾ø¶ÔURL¡£
-			// Èç¹ûÎ»ÖÃÊÇÏà¶ÔµÄ¶øÃ»ÓÐÇ°µ¼'/'£¬ÔòÈÝÆ÷½«Æä½âÊÍÎªÏà¶ÔÓÚµ±Ç°ÇëÇóURI¡£ Èç¹û¸ÃÎ»ÖÃÓëÇ°µ¼'/'Ïà¶Ô£¬
-			// ÔòÈÝÆ÷½«Æä½âÊÍÎªÏà¶ÔÓÚservletÈÝÆ÷¸ù¡£
+			// ä½¿ç”¨æŒ‡å®šçš„é‡å®šå‘ä½ç½®URLå‘å®¢æˆ·ç«¯å‘é€ä¸´æ—¶é‡å®šå‘å“åº”å¹¶æ¸…é™¤ç¼“å†²åŒºã€‚ 
+			// ç¼“å†²åŒºå°†æ›¿æ¢ä¸ºæ­¤æ–¹æ³•è®¾ç½®çš„æ•°æ®ã€‚ è°ƒç”¨æ­¤æ–¹æ³•å°†çŠ¶æ€ä»£ç è®¾ç½®ä¸ºSC_FOUND 302ï¼ˆFoundï¼‰ã€‚
+			// æ­¤æ–¹æ³•å¯ä»¥æŽ¥å—ç›¸å¯¹URL;åœ¨å°†å“åº”å‘é€åˆ°å®¢æˆ·ç«¯ä¹‹å‰ï¼Œservletå®¹å™¨å¿…é¡»å°†ç›¸å¯¹URLè½¬æ¢ä¸ºç»å¯¹URLã€‚
+			// å¦‚æžœä½ç½®æ˜¯ç›¸å¯¹çš„è€Œæ²¡æœ‰å‰å¯¼'/'ï¼Œåˆ™å®¹å™¨å°†å…¶è§£é‡Šä¸ºç›¸å¯¹äºŽå½“å‰è¯·æ±‚URIã€‚ å¦‚æžœè¯¥ä½ç½®ä¸Žå‰å¯¼'/'ç›¸å¯¹ï¼Œ
+			// åˆ™å®¹å™¨å°†å…¶è§£é‡Šä¸ºç›¸å¯¹äºŽservletå®¹å™¨æ ¹ã€‚
 
-			// Èç¹ûÏìÓ¦ÒÑÌá½»£¬Ôò´Ë·½·¨½«Å×³öIllegalStateException¡£ Ê¹ÓÃ´Ë·½·¨ºó£¬Ó¦ÈÏÎªÏìÓ¦ÒÑÌá½»£¬²»Ó¦Ð´Èë¡£
+			// å¦‚æžœå“åº”å·²æäº¤ï¼Œåˆ™æ­¤æ–¹æ³•å°†æŠ›å‡ºIllegalStateExceptionã€‚ ä½¿ç”¨æ­¤æ–¹æ³•åŽï¼Œåº”è®¤ä¸ºå“åº”å·²æäº¤ï¼Œä¸åº”å†™å…¥ã€‚
 			
 		}else{
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");

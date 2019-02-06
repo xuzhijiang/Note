@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII"
-    pageEncoding="US-ASCII"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,7 +9,8 @@
 <body>
 <%
 // 当使用JSP资源时，容器会自动为其创建会话，
-// 因此我们无法检查会话是否为null以确保用户是否已通过登录页面，因此我们使用会话属性来验证请求。
+// 因此我们无法检查会话是否为null以确保用户是否已通过登录页面，
+// 因此我们使用会话属性来验证请求。
 //allow access only if session exists
 String user = null;
 if (session.getAttribute("user") == null) {
