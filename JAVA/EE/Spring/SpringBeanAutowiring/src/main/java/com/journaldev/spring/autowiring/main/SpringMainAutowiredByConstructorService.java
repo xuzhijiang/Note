@@ -12,7 +12,7 @@ public class SpringMainAutowiredByConstructorService {
 		
 		EmployeeAutowiredByConstructorService autowiredByConstructorService = ctx.getBean("employeeAutowiredByConstructorService",EmployeeAutowiredByConstructorService.class);
 		
-		System.out.println("@Autowired by Constructor. Employee Name="+autowiredByConstructorService.getEmployee().getName());
+		//System.out.println("@Autowired by Constructor. Employee Name="+autowiredByConstructorService.getEmployee().getName());
 
 		ctx.close();
 	}

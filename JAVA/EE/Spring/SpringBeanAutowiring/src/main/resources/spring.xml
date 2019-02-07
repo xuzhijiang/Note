@@ -35,7 +35,6 @@
 		<property name="name" value="xzj"></property>
 	</bean>
 
-
 	<!--
 		 3. autowire-candidate =“false”用于bean定义，使其不符合自动装配的条件。
 	  	  当我们为单个类型提供多个bean定义并且我们希望其中一些不是自动装配时，它很有用。
@@ -59,37 +58,30 @@
 	 	也就是调用EmployeeService.setEmployee()设置成员变量Employee,如何在spring.xml这个
 	 	配置文件中找到这个成员变量呢，是根据bean的name为employee找到的
 	 -->
-	<!-- <bean name="employeeServiceByName"
+	 <bean name="employeeServiceByName"
 		class="com.journaldev.spring.autowiring.service.EmployeeService"
-		autowire="byName" /> -->
+		autowire="byName" />
 
-
-
-	<!-- 
+	<!--
 		autowiring byType, there should be only one bean definition for the mapping
 		通过Type(Employee)自动装配，映射应该只有一个bean定义
 	-->
-	<!-- <bean name="employeeServiceByType"
+	 <bean name="employeeServiceByType"
 		class="com.journaldev.spring.autowiring.service.EmployeeService"
-		autowire="byType" /> -->
-
-
+		autowire="byType" />
 
 	<!-- autowiring by constructor -->
-	<!-- <bean name="employeeServiceConstructor"
+	 <bean name="employeeServiceConstructor"
 		class="com.journaldev.spring.autowiring.service.EmployeeService"
-		autowire="constructor" /> -->
-
+		autowire="constructor" />
 
 	<!-- Enable Annotation based configuration -->
 	<!-- 启动基于注解的配置 -->
 	<context:annotation-config />
 
 	<!-- using @Autowiring annotation in below beans, byType and constructor -->
-	<!-- <bean name="employeeAutowiredByTypeService"
-		class="com.journaldev.spring.autowiring.service.EmployeeAutowiredByTypeService" /> -->
-	
-	
+	<bean name="employeeAutowiredByTypeService"
+		class="com.journaldev.spring.autowiring.service.EmployeeAutowiredByTypeService" />
 	
 	<bean name="employeeAutowiredByConstructorService"
 		class="com.journaldev.spring.autowiring.service.EmployeeAutowiredByConstructorService" />

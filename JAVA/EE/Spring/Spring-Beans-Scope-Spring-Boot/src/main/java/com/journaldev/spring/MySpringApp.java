@@ -2,12 +2,10 @@ package com.journaldev.spring;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-// create a main method and test the singleton scope.
-
+// test the singleton scope.
 public class MySpringApp {
 
 	public static void main(String[] args) {
-
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 
 		ctx.register(MyConfiguration.class);
@@ -22,5 +20,4 @@ public class MySpringApp {
 
 		ctx.close();
 	}
-
 }

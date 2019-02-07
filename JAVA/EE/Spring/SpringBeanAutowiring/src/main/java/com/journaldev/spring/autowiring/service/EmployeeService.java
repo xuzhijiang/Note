@@ -36,14 +36,13 @@ public class EmployeeService {
 	}
 
 	// used for autowire byName and byType
-	// 用于通过名称和类型自动装配Employee(也就是通过这个setEmployee方法类设置成员变量this.employee)
+	// 用于通过name和type自动装配Employee(也就是通过这个setEmployee方法类设置成员变量this.employee)
 	public void setEmployee(Employee emp) {
-		System.out.println("--------- EmployeeService setEmployee called name: " + emp.getName());
+		System.out.println("------------xzj");
 		this.empl = emp;
 	}
 
 	public Employee getEmployee() {
-		System.out.println("--------- EmployeeService getEmployee called");
 		return this.empl;
 	}
 }

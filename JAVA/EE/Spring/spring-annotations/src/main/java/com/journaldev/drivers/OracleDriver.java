@@ -9,7 +9,6 @@ public class OracleDriver implements DataBaseDriver {
     protected String driver;
     protected Integer port;
 
-
     public String getUrl() {
         return url;
     }
@@ -50,7 +49,6 @@ public class OracleDriver implements DataBaseDriver {
         this.url = url;
     }
 
-
     public String getInfo() {
         return "[ Driver: Oracle" +
                 ", url: " + url +
@@ -60,7 +58,4 @@ public class OracleDriver implements DataBaseDriver {
                 ", driver: " + driver +
                 " ] ";
     }
-
-
-
 }

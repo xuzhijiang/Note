@@ -16,17 +16,16 @@ public class BeanscopeApplication {
         ApplicationContext context = SpringApplication.run(BeanscopeApplication.class, args);
 
         //演示BeanScope的作用
-        //testSingletonBean(context);
-        //testPrototypeBean(context);
+        testSingletonBean(context);
+        testPrototypeBean(context);
 
 
-//        System.out.println("指定Bean的初始化和销毁方法");
-//        InitAndDestoryBean initAndDestoryBean = context.getBean(InitAndDestoryBean.class);
-//        System.out.println(initAndDestoryBean);
-//
-//        InitAndDestoryAnnotationBean initAndDestoryAnnotationBean = context.getBean(InitAndDestoryAnnotationBean.class);
-//        System.out.println(initAndDestoryAnnotationBean);
+        System.out.println("指定Bean的初始化和销毁方法");
+        InitAndDestoryBean initAndDestoryBean = context.getBean(InitAndDestoryBean.class);
+        System.out.println(initAndDestoryBean);
 
+        InitAndDestoryAnnotationBean initAndDestoryAnnotationBean = context.getBean(InitAndDestoryAnnotationBean.class);
+        System.out.println(initAndDestoryAnnotationBean);
     }
 
     private static void testPrototypeBean(ApplicationContext context) {

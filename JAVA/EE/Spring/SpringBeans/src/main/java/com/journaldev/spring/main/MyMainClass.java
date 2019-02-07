@@ -7,11 +7,11 @@ public class MyMainClass {
 
 	public static void main(String[] args) {
 		
-		//对于独立应用程序(本程序)，您需要在应用程序中的某个位置初始化容器，然后使用它来获取spring bean。
+		// 对于独立应用程序(本程序)，您需要在应用程序中的某个位置初始化容器，
+		// 然后使用它来获取spring bean。
 
-		// 1. 我们初始化AnnotationConfigApplicationContext上下文
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
-				MyConfiguration.class);
+		// 1. 我们初始化AnnotationConfigApplicationContext上下文(即Spring IoC容器)
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MyConfiguration.class);
 		
 		// 2. 然后使用getBean（）方法获取MyService的实例。
 		MyService service = ctx.getBean(MyService.class);

@@ -30,7 +30,6 @@ public class EmployeeAutowiredByConstructorService {
 	}
 	
 	public Employee getEmployee() {
-		System.out.println("-------EmployeeAutowiredByConstructorService getEmployee called");
 		return this.employee;
 	}
 }

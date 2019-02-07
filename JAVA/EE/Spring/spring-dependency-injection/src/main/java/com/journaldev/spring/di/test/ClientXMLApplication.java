@@ -1,7 +1,6 @@
 package com.journaldev.spring.di.test;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.journaldev.spring.di.consumer.MyXMLApplication;
 
 public class ClientXMLApplication {

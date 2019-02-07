@@ -18,7 +18,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.type.AnnotationMetadata;
 
-/*Spring Aware Interfaces
+/* Spring Aware Interfaces
 
 有时我们需要在bean中使用Spring Framework对象来执行某些操作，
 例如读取ServletConfig和ServletContext参数或者知道ApplicationContext加载的bean定义。
@@ -34,7 +34,6 @@ Spring Aware接口类似于具有回调方法和实现观察者设计模式的se
 */
 
 // 在一个我们将配置为spring bean的类中实现其中的一些Aware接口
-
 public class MyAwareService implements ApplicationContextAware,
 		ApplicationEventPublisherAware, BeanClassLoaderAware, BeanFactoryAware,
 		BeanNameAware, EnvironmentAware, ImportAware, ResourceLoaderAware {
@@ -46,7 +45,8 @@ public class MyAwareService implements ApplicationContextAware,
 	然后spring context使用基于setter的依赖注入来在bean中注入相应的对象并使其可供我们使用
 	(make it available for our use.)。*/
 	
-	// 1. ApplicationContextAware  - 注入ApplicationContext对象，示例用法是获取bean定义名称的数组。
+	// 1. ApplicationContextAware接口  - 注入ApplicationContext对象，
+	// 示例用法是获取bean定义名称的数组。
 	@Override
 	public void setApplicationContext(ApplicationContext ctx)
 			throws BeansException {
@@ -54,7 +54,6 @@ public class MyAwareService implements ApplicationContextAware,
 		System.out.println("setApplicationContext:: Bean Definition Names="
 				+ Arrays.toString(ctx.getBeanDefinitionNames()));
 	}
-
 
 //3. BeanNameAware  - 知道配置文件中定义的bean名称。
 	@Override

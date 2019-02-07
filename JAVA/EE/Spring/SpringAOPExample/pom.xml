@@ -59,8 +59,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-
-
 		<!-- Spring框架默认提供AOP支持，但由于我们使用AspectJ注解来configuring aspects and advices，
 		我们需要将它们包含在pom.xml文件中。 -->
 		<!-- Spring AOP AspectJ Dependencies -->
@@ -76,7 +74,6 @@
 			<artifactId>aspectjtools</artifactId>
 			<version>${aspectj.version}</version>
 		</dependency>
-		
 		
 	</dependencies>
 </project>

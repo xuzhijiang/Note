@@ -12,8 +12,7 @@ import com.journaldev.drivers.OracleDriver;
 
 // Spring Configuration Class
 
-
-// @Configuration：用于表示此类声明了一个或多个@Bean方法。 
+// @Configuration：用于表示此类声明了一个或多个@Bean方法。
 // 这些类(用@Configuration修饰的类)由Spring容器处理，以在运行时为这些bean生成bean定义和服务请求
 
 // @Bean：表示a method生成一个由Spring容器管理的bean。 这是最常用和最重要的Spring注释之一。
@@ -27,7 +26,6 @@ import com.journaldev.drivers.OracleDriver;
 
 // @PropertySource：提供了一个简单的声明机制，用于向Spring的Environment添加property source。
 // 有一个类似的注释(即@PropertySources)用于添加一个属性源文件数组(array of property source files)
-
 @Configuration
 @ComponentScan("com.journaldev")
 @PropertySource("classpath:oracledatabase.properties")

@@ -1,5 +1,6 @@
 package com.jinxuliang.dependency_inject;
 
+import com.javax.other.bean.OtherBean;
 import com.jinxuliang.dependency_inject.bean.*;
 import com.jinxuliang.dependency_inject.controller.BeanServiceController;
 import com.jinxuliang.dependency_inject.other.MyOtherClass;
@@ -8,15 +9,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+// @SpringBootApplication会通知Spring，启动一个组件扫描（Component Scan），查找所有使用相
+// 关注解的类（比如@Component、 @Configuration等），并将它们注册为可实例化的Bean。
 @SpringBootApplication
 public class DependencyInjectApplication {
 
 	public static void main(String[] args) {
-
 	    //获取Spring的IoC容器
-		ApplicationContext context= SpringApplication.run(DependencyInjectApplication.class, args);
+		ApplicationContext context = SpringApplication.run(DependencyInjectApplication.class, args);
 
-		//获取Bean的实例
+		//外界通过IoC容器按类型获取Bean的实例
 		MyAnnotationBean myAnnotationBean = context.getBean(MyAnnotationBean.class);
 		System.out.println(myAnnotationBean);
 
@@ -29,14 +31,13 @@ public class DependencyInjectApplication {
         CustomerService customerService=context.getBean(CustomerService.class);
         System.out.println(customerService);
 
-        //通过名字实现Bean的实例化
-		// 不懂
+		// 外界通过IoC容器按名称获取Bean的实例
         POJOBeanContainer beanContainer= (POJOBeanContainer) context.getBean("beanContainer");
         System.out.println(beanContainer);
 
-		System.out.println("扫描获取其他包中的组件");
-		MyOtherClass myOtherClass=context.getBean(MyOtherClass.class);
-		System.out.println(myOtherClass);
+		System.out.println("扫描获取除了程序入口点所在的包及下属子包中的Bean组件");
+		OtherBean otherBean = context.getBean(OtherBean.class);
+		System.out.println(otherBean);
 
 		//由于ContextAwareBean实现了ApplicationContextAware接口，所以，
 		//IoC容器在实例化ContextAwareBean时，会自动地将ApplicationContext注入进去

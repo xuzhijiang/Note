@@ -5,20 +5,31 @@
 3. Spring提供了几种典型的对象创建策略，称为“Scope”，可以很方
 便地配置特定类对象的创建策略。
 
+### Spring Bean定义
+
+通常，如果您正在使用Spring MVC应用程序并且您的应用程序使用Spring Framework配置的.则Spring IoC容器会在应用程序启动时初始化Spring bean，并且在请求Bean时，会自动注入依赖项。
+
+Spring Bean没什么特别之处(Spring Bean is nothing special,)，
+我们通过Spring container初始化的Spring framework中的任何对象都称为Spring Bean。
+
+任何普通的Java POJO类如果它被配置为通过容器通过提供配置元数据信息来初始化都可以是Spring Bean
+
 ### Bean的Scope
 
-Scope决定了Spring容器如何新建和管理Bean的实例，分为5种。
+Scope决定了Spring容器如何新建和管理Bean的实例，分为五个范围(Scopes)。
 
 1. 适合于所有项目的Scope：
 
-* Singleton：一个Spring容器中只有一个Bean的实例，此为Spring
-的默认配置，全容器共享一个实例。
-* Prototype：每次调用新建一个Bean的实例。
+* Singleton：一个Spring容器中只有一个Bean的实例，这是spring bean的默认范围，每个容器只创建一个bean实例,全容器共享一个实例。使用此范围时，请确保bean没有共享实例变量，否则可能导致数据不一致问题
+* Prototype：每次调用bean时都会新建一个Bean的实例。
 
 2. 仅适合于Web项目：
-* Request： Web项目中， 为每一个Http Request新建一个Bean实例。
-* Session： Web项目中，为每一个Http Session新建一个Bean实例。
-* GlobalSession： 仅在portal应用（现在很少用的技术） 中有用。
+* Request： 这与原型范围相同，但它意味着用于Web应用程序,将为每个HTTP请求创建一个新的bean实例.
+* Session： 它意味着用于Web应用程序，将通过容器为每个HTTP session创建一个新bean
+* GlobalSession： 用于为Portlet应用程序创建全局session bean.(现在很少用的技术).
+
+> Spring Framework是可扩展的，我们也可以创建自己的范围。但是，
+大多数情况下，我们对框架提供的范围很满意。
 
 #### SingleTon示例：
 
@@ -110,11 +121,36 @@ public class BeanConfig {
 }
 ```
 
+### Spring Bean Configuration:
+
+> Spring Framework提供了三种配置bean方法,以便在application中使用:
+
+1. Annotation Based Configuration (基于注释的配置 )- 使用@Service或@Component annotations。
+可以使用@Scope annotations提供范围详细信息。
+
+2. XML Based Configuration基于XML的配置 - 通过创建Spring配置XML文件来配置bean。
+如果您使用的是Spring MVC框架，则可以通过在web.xml文件中编写一些样板代码来自动加载基于xml的配置。
+
+3. (Java Based Configuration)基于Java的配置 - 从Spring 3.0开始，我们可以使用java程序配置Spring bean。
+用于基于java的配置的一些重要注释是@Configuration，@ ComponentScan和@Bean。
+
 ### 思考题
 
 向一个Singleton Bean注入一个Prototype Bean，后者会被实例化几次？
 
 ### 小结
+
+### Spring Bean生命周期
+
+Spring Bean是任何Spring应用程序中最重要的部分。
+
+1. Spring ApplicationContext负责初始化spring bean配置文件中定义的Spring Beans。
+
+2. Spring Context还负责bean中的注入依赖，可以通过setter或构造函数方法，
+也可以通过spring autowiring(自动装配)实现依赖注入.
+
+有时我们想要初始化bean类中的资源，例如在任何客户端请求之前初始化时创建数据库连接或验证第三方服务。 Spring框架提供了不同的方法，通过它我们可以在springbean生命周期中提供后初始化和预破坏方法。
+(post-initialization and pre-destroy methods)
 
 #### Spring初始化Bean的过程
 
@@ -124,7 +160,7 @@ public class BeanConfig {
 4. 实例化(创建Bean的实例对象)
 5. 依赖注入(DI)(例如@Autowired注入的各类资源)
 
-#### Spring IoC容器中的Bean生命周期
+#### Spring IoC容器中的Bean生命周期(示例SpringBeanLifeCycle)
 
 1. 初始化
 2. 依赖注入

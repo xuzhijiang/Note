@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.journaldev.spring.autowiring.model.Employee;
 
 // 创建一个单独的类,并且用Spring @Autowired注释用于自动装配byType。
-
 public class EmployeeAutowiredByTypeService {
 
 	// 1. 请注意，我已经使用Spring @Autowired注解注释了Employee变量和它的setter方法，
@@ -23,7 +22,6 @@ public class EmployeeAutowiredByTypeService {
 	}
 	
 	public Employee getEmployee(){
-		System.out.println("-------EmployeeAutowiredByTypeService getEmployee called");
 		return this.employee;
 	}
 }

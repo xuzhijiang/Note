@@ -15,18 +15,19 @@ import com.journaldev.spring.di.services.MessageService;
 
 // 2. @ComponentScan annotation is used with @Configuration annotation 
 // to specify the packages to look for Component classes.
-// @ComponentScan注解和@Configuration注解一起使用去指定搜索组件类(组件类就是用@Component注解的类)的包
+// @ComponentScan注解和@Configuration注解一起使用去指定搜索
+// 组件类(组件类就是用@Component注解的类)的包
 
 @Configuration
 @ComponentScan(value={"com.journaldev.spring.di.consumer"})
 public class DIConfiguration {
 
-	// 3. @Bean annotation is used to let Spring framework know that this method 
+	// 3. @Bean annotation is used to let Spring framework know that this method
 	// should be used to get the bean implementation to inject in Component classes.
-	// @Bean注解用于让Spring框架知道应该使用此方法来获取 要在Component类中注入的bean的实现。
+	// @Bean注解用于让Spring框架知道应该使用此方法来获取要在Component类中注入的bean的实现。
 	@Bean
 	public MessageService getMessageService(){
 		return new EmailService();//创建bean
 	}
-	
+
 }

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import com.journaldev.spring.di.services.MessageService;
 
 // Component classes that will consume MessageService.
-// 将会消费MessageService服务的组件
+// 将会消费MessageService服务的组件类
 
 // 带有自动装配(自动连线)功能的Spring注释的MessageService的Consumer类
 // a consumer class for MessageService with Spring annotations for autowiring
@@ -24,7 +24,8 @@ public class MyApplication {
 	/*For our example, I am using method-based dependency injection. 
 	You can uncomment the constructor method to 
 	switch to constructor based dependency injection.
-	对于我们的示例，我使用基于方法的依赖注入。 您可以取消注释构造函数方法以切换到基于构造函数的依赖项注入。*/
+	对于我们的示例，我使用基于方法的依赖注入。 您可以取消注释构造函数方法
+	以切换到基于构造函数的依赖项注入。*/
 	
 	//constructor-based dependency injection	
 	/*@Autowired

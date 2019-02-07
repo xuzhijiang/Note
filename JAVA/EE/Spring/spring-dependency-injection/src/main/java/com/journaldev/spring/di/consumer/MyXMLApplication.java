@@ -9,7 +9,6 @@ import com.journaldev.spring.di.services.MessageService;
 
 // without annotation and wiring configuration will be provided in the XML configuration file.
 // 没有注解和接线配置的注释将在XML配置文件中提供。
-
 public class MyXMLApplication {
 
 	private MessageService service;

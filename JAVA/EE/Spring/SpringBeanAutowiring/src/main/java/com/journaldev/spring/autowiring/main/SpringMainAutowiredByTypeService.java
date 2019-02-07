@@ -13,7 +13,7 @@ public class SpringMainAutowiredByTypeService {
 		//Testing @Autowired annotations
 		EmployeeAutowiredByTypeService autowiredByTypeService = ctx.getBean("employeeAutowiredByTypeService",EmployeeAutowiredByTypeService.class);
 		
-		System.out.println("@Autowired byType. Employee Name="+autowiredByTypeService.getEmployee().getName());
+		//System.out.println("@Autowired byType. Employee Name="+autowiredByTypeService.getEmployee().getName());
 
 		ctx.close();
 	}
