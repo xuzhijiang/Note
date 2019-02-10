@@ -1,7 +1,7 @@
 package com.jinxuliang.springboot2jdbcdemo.model;
 
 // 首先创建一个User类，代表user表中的一条记录。
-//起到这种作用的类，称为“数据实体类”。
+// 起到这种作用的类，称为“数据实体类”。
 public class User {
     private Integer id;
     private String name;

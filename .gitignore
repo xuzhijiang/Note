@@ -1,13 +1,7 @@
-.idea
-out
-*.iml
-
 __pycache__
 .settings/
 *.class
 *.ser
-gen/
-bin/
 .springBeans
 *.jar
 *.class
@@ -35,3 +29,30 @@ bin/
 # Gradle
 .gradle/
 build/
+
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

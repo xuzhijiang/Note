@@ -3,7 +3,6 @@ package com.jinxuliang.springbootjpademo.jpa;
 import com.jinxuliang.springbootjpademo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
 import java.util.List;
 
 // 定义数据存取接口:
@@ -14,7 +13,7 @@ import java.util.List;
 // 2. 依据JPA约定编写自定义查询方法
 // 3. 直接指定查询命令的查询方法
 
-// JpaRepository定义的所有方法（比如findAll和findById方法），
+// JpaRepository定义的所有方法(比如findAll和findById方法),
 // 均可以直接使用，而根本不需要你写任何一行代码去实现这些功能！这就是Spring
 // Data JPA所提供给你的“魔术”
 
@@ -26,6 +25,10 @@ import java.util.List;
 // 如果你觉得前面所介绍的“魔术”不太可控，你也可以为查询方法直
 // 接执行要执行的SQL命令，或者使用JPA所专门定义的一种查询语言编
 // 写查询话句，满足你的“控制欲”。
+
+// 在实际开发中，通常从JpaRepository中派生出自己的数据存取接口，
+// 无需编写具体的接口实现类，就可以访问关系型数据库。
+// 如下:
 public interface JpaUserRepository extends JpaRepository<User, Integer> {
 
     //遵循Jpa的惯例，定义查询方法
@@ -47,5 +50,3 @@ public interface JpaUserRepository extends JpaRepository<User, Integer> {
     List<User> findAllByGenderUseNativeSQL(String gender);
 
 }
-
-

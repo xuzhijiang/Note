@@ -11,9 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-// 设计并实现一个数据存取对象，里面展示了如何使用 JdbcTemplate存取MySQL数据库
+// 设计并实现一个数据存取对象(Data Access Object)，
+// 里面展示了如何使用JdbcTemplate存取MySQL数据库
 @Repository
 public class UserDao {
+
     //自动注入Spring所提供的JdbcTemplate对象
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -27,6 +29,7 @@ public class UserDao {
         jdbcTemplate.query(sql, new RowCallbackHandler() {
             public void processRow(ResultSet resultSet) throws SQLException {
                 //调用辅助函数创建User对象，并将其加入到对象集合中
+                System.out.println("processRow called!");
                 users.add(DaoHelper.fillUser(resultSet));
             }
         });

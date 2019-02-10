@@ -1,17 +1,13 @@
 package com.journaldev.spring.controller;
 
-
 //rest web services end points(rest web 服务端点):
 
-// URI						HTTP METHOD				DETAILS
-///rest/emp/dummy				GET						Health Check service, to insert a dummy data in the Employees data storage
-///rest/emp/{id}				GET						To get the Employee object based on the id
-///rest/emps					GET						To get the list of all the Employees in the data store
-///rest/emp/create			   POST					To create the Employee object and store it
-///rest/emp/delete/{id}		   PUT						To delete the Employee object from the data storage based on the id
-
-
-// 将所有这些rest web services URI定义为String常量。
+// URI						HTTP METHOD			DETAILS
+///rest/emp/dummy			GET					Health Check service, to insert a dummy data in the Employees data storage
+///rest/emp/{id}			GET					To get the Employee object based on the id
+///rest/emps				GET					To get the list of all the Employees in the data store
+///rest/emp/create			POST				To create the Employee object and store it
+///rest/emp/delete/{id}		PUT					To delete the Employee object from the data storage based on the id
 
 public class EmpRestURIConstants {
 
@@ -30,15 +26,7 @@ public class EmpRestURIConstants {
 	// To delete the Employee object from the data storage based on the id
 	public static final String DELETE_EMP = "/rest/emp/delete/{id}";
 	
-	// 下面显示了我们的应用程序所暴露的rest apis的不同调用 及其输出:
-	
-	// Health Check – Get Dummy Employee Rest Call
-	// 健康检查 - 获得Dummy Employee rest call
-	// http://localhost:9090/SpringRestExample/rest/emp/dummy
-	// output: 
-	
-	
-	// Create Employee POST Rest Call: 
+	// Create Employee POST Rest Call:
 	// Make sure request Content-Type is set to “application/json” otherwise 
 	// you will get HTTP Error Code 415.
 	// http://localhost:9090/SpringRestExample/rest/emp/create

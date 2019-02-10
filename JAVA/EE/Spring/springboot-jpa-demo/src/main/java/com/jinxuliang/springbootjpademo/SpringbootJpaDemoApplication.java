@@ -1,15 +1,12 @@
 package com.jinxuliang.springbootjpademo;
 
-
 import com.jinxuliang.springbootjpademo.jpa.JpaUserRepository;
 import com.jinxuliang.springbootjpademo.model.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
 import java.util.List;
 import java.util.Optional;
-
 
 @SpringBootApplication
 public class SpringbootJpaDemoApplication {
@@ -21,7 +18,8 @@ public class SpringbootJpaDemoApplication {
         List<User> users = null;
         User user = null;
 
-        // 我们只要定义好接口，Spring Data JPA会自动 地帮助我们生成一个实现了这个接口的数据存取对象
+        // 我们只要定义好接口JpaUserRepository，Spring Data JPA会自动地帮助
+        // 我们生成一个实现了这个接口的数据存取对象,本例中即JpaUserRepository的实现类对象
         JpaUserRepository repo = context.getBean(JpaUserRepository.class);
         //默认情况下，是org.springframework.data.jpa.repository.support.SimpleJpaRepository
         System.out.println(repo);
@@ -68,9 +66,6 @@ public class SpringbootJpaDemoApplication {
             System.out.println(u);
         });
 
-
         context.close();
     }
-
-
 }

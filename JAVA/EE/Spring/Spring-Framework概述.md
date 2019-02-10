@@ -115,12 +115,12 @@ WebApplicationContext。 Spring Framework提供了许多有用的ApplicationCont
 化架构，并且这些组件可以随着技术的发展而被单独替换掉，`遵循开放规范且可方便替换，是Spring生命力的主要来源`。
 
 ```
-        Data Access / Integration                      Web
+        Data Access / Integration                     Web
           JDBC            ORM                 WebSocket   Servlet
           OXM             JMS                   Web        Portlet
               Transaction
 
-                AOP       Aspects     Instrumentation Messaging
+                AOP       Aspects     Instrumentation     Messaging
 
                             Core Container
           Beans         Core           Context        SpEL
@@ -128,6 +128,55 @@ WebApplicationContext。 Spring Framework提供了许多有用的ApplicationCont
                                 Test
 
 ```
+
+#### Spring Framework核心组件:SpEL，Context，Core，Beans
+
+1. SpEL模块为执行期间操作对象提供了强大的表达式语言(expression language)
+2. Context是在Beans和Core的基础上构建的，允许您访问设置中定义的任何对象。 Context模块的关键元素是ApplicationContext接口。
+3. Core模块提供了框架的关键部分，包括IoC和DI属性。
+4. Bean模块负责创建和管理Spring Beans  - 是应用程序上下文结构单元。
+
+#### Spring Framework Web
+
+Spring框架Web层由Web，Web-MVC，Web-Socket，Web-Portlet等组成。
+
+1. Web模块提供下载文件，创建Web应用程序，rest web service等功能。
+2. Web-MVC包含用于Web应用程序的Spring MVC实现。
+3. Web-Socket使用Web应用程序中的Web-Sockets为客户端和服务器之间的通信提供支持
+4. Web-Portlet通过portlet环境提供MVC实现
+
+#### Spring框架数据访问
+
+The Data Access/Integration container由JDBC,ORM,OXM,JMS和Transactions模块组成。
+
+1. JDBC提供了一个JDBC抽象层，使开发人员无需手动注册与连接数据库相关的单调代码
+2. Spring ORM提供与Hibernate，JDO，JPA等流行ORM的集成
+3. OXM模块负责链接Object/XML - XMLBeans，JAXB等
+4. JMS（Java消息传递服务）模块负责创建，发送和接收消息。
+5. Transactions支持实现某些方法和POJO的类的事务管理。
+
+#### Spring Framework其他模块
+
+Spring还包括许多其他重要的模块，例如AOP，Aspects，Instrumentation，Messaging和Test。
+
+1. AOP实现面向方面的编程，并允许使用整个AOP功能库。
+2. Aspects模块提供与AspectJ的集成，AspectJ也是一个功能强大的AOP框架。
+3. Instrumentation负责支持在服务器应用程序中使用的类检测和类加载器。
+4. Messaging模块提供STOMP支持。
+5. 最后，Test模块使用TestNG或JUnit Framework提供测试。
+
+#### Spring 5 Features
+
+> Spring 5为Spring 4带来了大量的更新.Spring 5的一些重要特性是：
+
+1. 支持Java 8，Java 9，Java EE 7，Java EE 8，Servlet 4.0，Bean Validation 2.0和JPA2.2。我很高兴看到Spring正在努力追赶所使用的主要技术的最新版本。
+2. 使用新模块改进了日志记录 -  spring-jcl。
+3. 文件操作使用NIO 2流，从而提高了性能。
+4. 支持Reactor 3.1 Flux和Mono以及RxJava 1.3和2.1作为Spring MVC控制器方法的返回值。
+5. 支持Kotlin，Project Lombok，JSON Binding API作为Jackson和GSON的替代品。
+6. Spring WebFlux – Spring getting Reactive.
+7. 支持JUnit 5
+8. 通过Kotlin提供功能编程支持。
 
 #### 小结： Spring Framework的主要特性
 

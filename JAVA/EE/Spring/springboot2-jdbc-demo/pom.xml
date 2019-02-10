@@ -24,6 +24,9 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <!--
+        入的JDBC依赖，导入的MySQL依赖.(不同的数据库，应该导入不同的依赖)
+    -->
     <dependencies>
 
         <dependency>

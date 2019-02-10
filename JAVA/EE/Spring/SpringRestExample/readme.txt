@@ -1,11 +1,21 @@
-使用JSON，Jackson和Client Program的Spring Restful Web服务示例
+@RequestMapping注释用于将请求URI映射到处理程序方法。
+我们还可以指定客户端应用程序应该使用的HTTP方法来调用rest方法(to invoke the rest method)。
+
+@ResponseBody注释用于映射response对象中的response体。
+一旦handler method返回响应对象，MappingJackson2HttpMessageConverter
+就会启动(kicks in)并将其转换为JSON响应。
+
+@RequestBody注释用于将"请求主体JSON数据(request body JSON data)"映射到Employee对象，
+这也是由MappingJackson2HttpMessageConverter映射完成的。
+again this is done by the MappingJackson2HttpMessageConverter mapping.
+
+@PathVariable注释是从rest URI中提取数据并将其映射到method argument的简单方法。
 
 Spring是使用最广泛的Java EE框架之一。 我们之前已经看到了如何使用Spring MVC来创建基于Java的Web应用程序。 
-今天我们将学习使用Spring MVC创建Spring Restful Web Services，然后使用Rest client进行测试。
+今天将学习使用Spring MVC创建Spring Restful Web Services，然后使用Rest client进行测试。
 最后，我们还将研究如何使用Spring RestTemplate API调用Spring Restful Web服务。
 
 我们将使用Spring最新版本4.0.0.RELEASE并利用Spring Jackson JSON集成在其余的调用响应中发送JSON响应。 
-本教程是在Spring STS IDE中开发的，用于轻松创建Spring MVC框架代码，然后扩展为实现Restful架构。
 
 UPDATE更新：由于有很多请求提供类似的XML示例 以及支持XML和JSON的示例，
 我已经在Spring REST XML JSON示例中扩展了这个应用程序，以支持xml和JSON请求和响应。 
@@ -37,3 +47,5 @@ POST:http://localhost:8080/SpringRestExample/rest/emp/create
 
 这就是支持XML和JSON的Spring Restful Web服务示例。
  您可以看到扩展Spring框架是多么容易，这是Spring框架流行的主要原因之一。
+
+ //我正在使用WizTools RestClient来调用the rest calls，但您也可以使用Chrome的扩展Postman。

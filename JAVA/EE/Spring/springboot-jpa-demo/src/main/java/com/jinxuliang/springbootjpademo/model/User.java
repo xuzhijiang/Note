@@ -2,18 +2,17 @@ package com.jinxuliang.springbootjpademo.model;
 
 import javax.persistence.*;
 
-// 标明是一个实体类
-// 类和字段上的注释是由JPA规范 所定义的，用于指明类名和属性
-// 名如何与表名和字段名进行配对。
-@Entity(name="user")
-// 定义映射的表
-@Table(name = "user")
+// 类和字段上的注释是由JPA规范 所定义的
+//用于指明类名和属性名如何与表名和字段名进行配对。
+
+@Entity(name="user")// 标明是一个实体类
+@Table(name = "user")// 定义映射的表
 public class User {
-    // 标明主键
-    @Id
-    // 主键策略，递增
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id// 标明主键
+    @GeneratedValue(strategy = GenerationType.IDENTITY)// 主键策略，递增
     private int id;
+
     // 定义属性和表的映射关系
     @Column(name = "name")
     private String name;

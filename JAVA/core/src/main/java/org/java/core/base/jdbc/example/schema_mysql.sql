@@ -1,6 +1,6 @@
-/* 1. mysql -u root ¨Cp */
+/* 1. mysql -u root â€“p */
 /* 2. mysql> source D:\java\Note\JAVA\fundamental\src\org\java\core\base\jdbc\example\schema_mysql.sql */
-/* ÓÃ--×¢ÊÍ±¨´í */
+/* ç”¨--æ³¨é‡ŠæŠ¥é”™ */
 
 drop database if exists UserDB;
 
@@ -25,5 +25,5 @@ INSERT INTO Users (id, name, email, country, password)
 VALUES (5, 'Rose', 'Rose@Apple.com', 'UK', 'Rose123456');
 commit;
 
-/*Çë×¢Òâ£¬OracleºÍMySQLÊı¾İ¿âÖĞµÄÊı¾İÀàĞÍ²»Í¬£¬
-Õâ¾ÍÊÇÎªÊ²Ã´ÎÒÌá¹©ÁËÁ½¸ö²»Í¬µÄSQL DDL²éÑ¯À´´´½¨Users±íµÄÔ­Òò*/
+/*è¯·æ³¨æ„ï¼ŒOracleå’ŒMySQLæ•°æ®åº“ä¸­çš„æ•°æ®ç±»å‹ä¸åŒï¼Œ
+è¿™å°±æ˜¯ä¸ºä»€ä¹ˆæˆ‘æä¾›äº†ä¸¤ä¸ªä¸åŒçš„SQL DDLæŸ¥è¯¢æ¥åˆ›å»ºUsersè¡¨çš„åŸå› */

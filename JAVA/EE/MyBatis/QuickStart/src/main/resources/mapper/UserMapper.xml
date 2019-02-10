@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!--
+        mapper元素:
+
+        xml映射文件的根元素。namespace属性表示命名空间，不同的xml映射文件namespace必须不同。
+        原因在于mybatis使用namespace.id的方式来唯一定位一个sql，id指的是<mapper>元素中内部包含对的
+        insert、select、update、delete子元素中的id属性。
+
+        例如现在还有另外一个mapper文件UserAccountMapper.xml，用于操作user_account表，
+        其也要进行相应的增删改查。在这个配置文件中的<select>元素中，我们可能也设置了id="selectById"，
+        那么只通过id属性无法进行区分，因此有了namespace的概念。
+    -->
+<mapper namespace="org.mybatis.core.mapper.UserMapper">
+
+    <!--
+        insert、select、delete、update元素：
+
+        这四个元素都是mapper文件中表示增删改查操作的子元素，每个子元素都可以配置多个，
+        例如这里配置了两个select元素，我们将sql直接写在这些子元素的内部。每个元素都有一个id属性，
+        通过namespace.id唯一定位这个sql。
+
+         前面一直提到，mapper文件是用于定义数据库表字段和java实体属性的映射关系，
+         但是这里好像只看到了一些xml元素中，编写了一些语法有点奇怪sql而已，事实上，
+         映射关系就是通过这种方式已经确定的。关于映射，可以分为正向映射和反向映射(这是笔者自己提出的概念)：
+
+        正向映射：指的是，我们通过保存java对象，mybatis将java对象的属性名映射为数据库表字段名。
+
+        反向映射：指的是，我们从数据库查询数据，mybatis自动将数据库表字段名映射到对应的java对象属性名。
+
+        对于select，我们是将数据库记录查出来封装到java对象中，属于反向映射。
+     -->
+
+    <!--
+        例如对于insert、update，使用了mybatis之后，我们在代码中插入和更新的都是一个java对象，
+        由mybatis帮我们映射到数据库表的字段上，属于正向映射。
+
+        正向映射通过parameterType属性指定，如insert和update元素，parameterType属性值
+        为org.mybatis.core.model.User，这是一个java对象。mybatis会自动帮我们将java对象的值取出来，
+        来替换sql中的变量。例如insert和update中的#{name}和#{age}就分别会被User对象的name和age属性值替换，
+        即mybatis会调用user.getName()来替换#{name}，调用user.getAge()来替换#{age}。
+
+        不过我们还看到了，delete和select元素也配置了parameterType属性，
+        这是因为在删除和查询的时候，我们也是需要指定条件的。
+        这两个元素指定parameterType类型都是int，对应java的包装数据类型Integer。-->
+    <insert id="insert" parameterType="org.mybatis.core.model.User">
+             INSERT INTO user(id,name,age) VALUES (#{id},#{name},#{age})
+    </insert>
+
+    <!--
+        我们可以将<insert>、<select>中parameterType、resultType属性值直接指定为User，
+        即mybatis-config.xml中的typeAlias
+    -->
+
+    <select id="selectById" parameterType="int"
+            resultType="org.mybatis.core.model.User">
+             SELECT id,name,age FROM user where id= #{id}
+       </select>
+    <!--
+        反向映射通过resultType或者resultMap属性指定，这两个属性只能出现在<select>元素中。
+        在UserMapper.xml配置中，只出现了resultType，resultMap我们将在之后讲解。
+
+       这里<select>元素配置的resultType属性值也是org.mybatis.core.model.User，
+       表示将数据库结果封装到这个类中。
+
+       resultType这种反向映射关系是基于数据库表字段与User类属性是完全对应的。
+       例如对于数据库id、name、age字段，会自动调用User类的、setId、setName、setAge方法进行设置。
+       如果表字段与实体属性不能一一对应的话，如数据库表字段为username，
+       但是java类中定义的属性为name，则无法进行映射。-->
+    <select id="selectAll" resultType="org.mybatis.core.model.User">
+             SELECT id,name,age FROM user;
+       </select>
+    <update id="updateById" parameterType="org.mybatis.core.model.User">
+             UPDATE user SET name=#{name},age=#{age} WHERE id=#{id}
+       </update>
+    <delete id="deleteById" parameterType="int">
+             DELETE FROM user WHERE id=#{id}
+       </delete>
+
+    <delete id="deleteAll">
+             DELETE FROM user
+    </delete>
+</mapper>

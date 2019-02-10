@@ -6,7 +6,6 @@ import com.jinxuliang.springboot2jdbcdemo.model.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,11 +18,11 @@ public class Springboot2JdbcDemoApplication {
 
        ConfigurableApplicationContext context= SpringApplication.run(Springboot2JdbcDemoApplication.class, args);
 
-        testConnection(context);
+//        testConnection(context);
 
-        //testSaveUsers(context);
+        testSaveUsers(context);
 
-        //testGetAllUsers(context);
+        testGetAllUsers(context);
 
     }
 
@@ -60,6 +59,5 @@ public class Springboot2JdbcDemoApplication {
             System.out.println("未能连接:"+ e.getMessage());
         }
     }
-
 
 }
