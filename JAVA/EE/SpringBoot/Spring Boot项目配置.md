@@ -4,6 +4,11 @@ Spring Boot比之早期的Spring，最大的特色之一就是它“自动化”
 
 掌握本讲所介绍的内容是很重要的，因为它们在Spring Boot应用开发中是必备技能。
 
+> Spring Boot的主要优点：
+
+1. 内嵌式容器简化Web项目
+2. 没有冗余代码生成和XML配置的要求
+
 ### Spring发展的一串足迹
 
 Xml配置(Spring 1.x) ->  注解配置(Spring 2.x + JDK 1.5) -> Java配置(Spring 4.X +

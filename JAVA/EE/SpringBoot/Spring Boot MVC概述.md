@@ -66,12 +66,15 @@ Spring Boot MVC = Spring框架 + Servlet + JSP
 
 ### IntelliJ创建之Spring Boot Web项目结构
 
-1. 程序入口点： SpringBootWebApplication(注意项目名称为:spring_boot_web)
-2. 程序配置参数： application.properties
+1. src/main/java下的程序入口： SpringBootWebApplication(注意项目名称为:spring_boot_web)
+2. src/main/resources下的配置文件：application.properties
+3. src/test/下的测试入口：Chapter1ApplicationTests
 3. Maven配置放在： pom.xml
 4. Maven的资源文件目录： /src/Java/resources
 5. spring-boot项目静态文件目录(比如css)：/src/java/resources/static
 6. spring-boot项目thymeleaf模板文件目录：/src/java/resources/templates/
+
+> 生成的SpringBootWebApplication.java和SpringBootWebApplicationTests.java类都可以直接运行来启动当前创建的项目.
 
 ### Spring Boot的Web自动配置特性
 

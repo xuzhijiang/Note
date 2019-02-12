@@ -24,6 +24,7 @@ public class MyServiceController {
     @GetMapping(path="/hello")
     public MyClass hello(){
         // RESTful Controller方法的返回值，默认情况下会自动地转换为JSON。
+        // 可以通过看Http请求的Response Headers的Content-Type来确认.
         return new MyClass(1,"Hello");
     }
 
@@ -43,7 +44,10 @@ public class MyServiceController {
         return message;
     }
 
-    //将多个查询参数合成为一个参数对象-2
+
+    // 将多个查询参数合成为一个参数对象-1
+    // http://localhost:8080/myservice/querycondition?usename=John&isMale=true&age=30
+    // 关键点：查询参数的key，与Java类UserQueryCondition中的字段名称一致。
     @GetMapping("/querycondition")
     //合并多个查询参数为查询参数对象
     public UserQueryCondition testQueryObject(UserQueryCondition condition){
@@ -51,7 +55,10 @@ public class MyServiceController {
         return  condition;
     }
 
-    // 分页功能的实现
+
+
+
+    // 分页功能的实现:
     // Spring MVC提供了一个Page接口（归属于org.springframework.data.domain），
     // 只需要给其传入size， page和sort参数值，
     //其实方法得到的是一个PageRequest对象，其成员见下：
@@ -68,7 +75,11 @@ public class MyServiceController {
         return pageable;
     }
 
-    // 生成特定状态码的响应
+
+
+
+    // 生成特定状态码的响应:
+
     // 当需要将特定的状态码和相关信息返回给客户端时，需要使用ResponseEntity<T>这个类：
     //将Repository注入到Controller中
     @Autowired
@@ -102,12 +113,16 @@ public class MyServiceController {
         }
     }
 
-    // 处理 HTTP Header
+
+
+
+
+    // 处理 HTTP Header:
     // http://localhost:8080/myservice/header/hello
     // 在实际开发中， Web Server经常使用这种方式向浏览
     // 器端发送特定的HTTP Header，完成诸如缓存控制、跨域访问等各种功能。
-
     //相应地，浏览器端应用也经常发送特定的HTTPHeader到Web Server，完成诸如认证和授权等功能。
+
     //添加自定义的Header
     @GetMapping("/header/{value}")
     public ResponseEntity creatHeader(@PathVariable("value") String value){
