@@ -73,3 +73,12 @@ log4j.appender.STDOUT.layout=org.apache.log4j.PatternLayout
 log4j.appender.STDOUT.layout.ConversionPattern=%d [%t] %-5p %c %x - %m%n
 ```
 
+在使用mybatis打印sql日志时需要注意的几点，笔者让读者彻底掌握不同版本的mybatis如何打印日志。
+
+1. 打印sql日志的logger一定要是debug级别的(注意这里说的不是root logger')，在其他级别下不论如何配置，mybatis也不会打印sql日志
+2. mybatis 3.0.6,3.1.0,3.2.0版本前后打印日志的配置方式是不同的，这也是我们经常在网上照搬一些配置，但是依然打印不了sql的原因(博客的搬运工实在太多)。
+3. 当应用中存在多种日志框架jar包的依赖时，如果没有进行合适的配置，也是无法打印sql的。例如slf4j和commons-logging都是facade设计模式的实现，用于统一各种日志框架，底层依赖于具体的日志框架实现如log4j、logback、log4j2、jdk logging，并且需要引入相应的桥接jar依赖。
+4. mybatis 版本>=3.2.0之后，<settings>元素中提供了logPrefix和logImpl配置项来帮助配置日志框架，这也是笔者建议的mybatis日志打印方式
+
+未完
+

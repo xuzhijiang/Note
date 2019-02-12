@@ -9,7 +9,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
-// 转发的实现
+// 用于展示转发和重定向功能的编程技巧
 
 // 请特别注意一下在请求之间如何传送数据。
 @Controller
@@ -23,6 +23,7 @@ public class RedirectController {
         model.addAttribute("message",request.getAttribute("message"));
         return "redir/index";
     }
+
     //实现转发
     @RequestMapping("/forward")
     public String forward(HttpServletRequest request){
@@ -30,6 +31,7 @@ public class RedirectController {
         request.setAttribute("message","从/forward转发过来");
         return "forward:/redir/index";
     }
+
 
     //重定向的实现（使用redirect实现）
 
@@ -52,4 +54,3 @@ public class RedirectController {
         return "redirect:/redir/showInfo";
     }
 }
-

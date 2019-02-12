@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Class-Path: .
-Main-Class: com.jinxuliang.spring_boot_web.SpringBootWebApplication
-
