@@ -1,6 +1,8 @@
 package org.mybatis.core.mapper;
 
 import org.mybatis.core.model.User;
+
+import java.util.HashMap;
 import java.util.List;
 
 // UserMapper接口的全路径org.mybatis.core.mapper.UserMapper，
@@ -34,6 +36,8 @@ import java.util.List;
 public interface UserMapper {
 
     public int insert(User user);
+    public List<User> select(HashMap<String, Object> map);
+    public List<User> selectChoose(HashMap<String, Object> map);
     public User selectById(int id);
     public List<User> selectAll();
 

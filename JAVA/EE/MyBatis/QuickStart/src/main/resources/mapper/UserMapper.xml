@@ -71,6 +71,36 @@
     <select id="selectAll" resultType="org.mybatis.core.model.User">
              SELECT id,name,age FROM user;
        </select>
+
+    <select id="select" parameterType="hashmap" resultType="User">
+      SELECT id,name,age FROM user
+      where 1=1
+      <if test="name != null">
+        AND name like #{name}
+      </if>
+      <if test="age != null and age > 0">
+        AND age>#{age}
+      </if>
+    </select>
+
+    <!--还是上面的例子，但是这次变为提供了“name”就按“name”查找，
+    提供了“age”就按“age”查找，若两者都没有提供，就返回所有id>5的用户。-->
+    <select id="selectChoose" parameterType="hashmap" resultType="User">
+        SELECT id,name,age FROM user
+        WHERE 1=1
+        <choose>
+            <when test="name != null">
+                AND name like #{name}
+            </when>
+            <when test="age !=null and age >0">
+                AND age>#{age}
+            </when>
+            <otherwise>
+                AND id>5
+            </otherwise>
+        </choose>
+    </select>
+
     <update id="updateById" parameterType="org.mybatis.core.model.User">
              UPDATE user SET name=#{name},age=#{age} WHERE id=#{id}
        </update>

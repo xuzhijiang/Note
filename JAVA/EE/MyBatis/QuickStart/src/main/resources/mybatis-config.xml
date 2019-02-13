@@ -3,7 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-    <!-- cofiguration元素：全局配置文件的根元素，作为mybatis对配置进行解析的入口 -->
+    <!-- cofiguration元素：全局配置文件的根元素，作为mybatis对配置进行解析的入口,注意这里面的标签是有顺序的-->
+
+
+    <settings>
+        <!--logger公共前缀，value值随意，不过记得加上一个"."-->
+        <setting name="logPrefix" value="mybatis."/>
+    </settings>
+
 
     <!--列出所有类的别名-->
     <typeAliases>
@@ -84,4 +91,5 @@
 
        最常见的方式还是通过resource属性来指定。
     -->
+
 </configuration>

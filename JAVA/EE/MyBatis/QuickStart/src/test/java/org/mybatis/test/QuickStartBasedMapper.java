@@ -16,6 +16,7 @@ import java.util.List;
 
 
 public class QuickStartBasedMapper {
+
     public static SqlSessionFactory sqlSessionFactory;
     public SqlSession sqlSession;
     //添加UserMapper接口
@@ -26,7 +27,8 @@ public class QuickStartBasedMapper {
         InputStream in = Resources.getResourceAsStream("mybatis-config.xml");
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(in);
     }
-    // 每个单元测试方法(添加@Test注解的方法)在执行前，创建一个新的SqlSession实例，并获得UserMapper接口的动态代理对象
+    // 每个单元测试方法(添加@Test注解的方法)在执行前，创建一个新的SqlSession实例，
+    // 并获得UserMapper接口的动态代理对象
     @Before
     public void before() {
         sqlSession = sqlSessionFactory.openSession();

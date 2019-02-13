@@ -1,6 +1,24 @@
-### Spring Boot Web页面设计
+## Spring Boot Web页面设计
 
 > 示例项目: webjar_demo
+
+在之前的示例中，我们都是通过@RestController来处理请求，所以返回的内容为json对象。那么如果需要渲染html页面的时候，要如何实现呢？
+
+### 模板引擎
+
+在动态HTML实现上Spring Boot依然可以完美胜任，并且提供了多种模板引擎的默认配置支持，所以在推荐的模板引擎下，我们可以很快的上手开发动态网站。
+
+Spring Boot提供了默认配置的模板引擎主要有以下几种：
+
+1. Thymeleaf
+2. FreeMarker
+3. Velocity
+4. Groovy
+5. Mustache
+
+>Spring Boot建议使用这些模板引擎，避免使用JSP，若一定要使用JSP将无法实现Spring Boot的多种特性
+
+当你使用上述模板引擎中的任何一个，它们默认的模板配置路径为：src/main/resources/templates。当然也可以修改这个路径，具体如何修改，可在后续各模板引擎的配置属性中查询并修改。
 
 #### Thymeleaf基础概述
 
@@ -8,7 +26,57 @@
 
 Thymeleaf是Spring Boot Web项目可用的诸多视图引擎中的一种，Spring官方推荐使用它（而不是历史更为悠久的JSP）来编写视图模板。
 
+Thymeleaf是一个XML/XHTML/HTML5模板引擎，可用于Web与非Web环境中的应用开发。它是一个开源的Java库.
+
+Thymeleaf提供了一个用于整合Spring MVC的可选模块，在应用开发中，你可以使用Thymeleaf来完全代替JSP或其他模板引擎，如Velocity、FreeMarker等。Thymeleaf的主要目标在于提供一种可被浏览器正确显示的、格式良好的模板创建方式，因此也可以用作静态建模。你可以使用它创建经过验证的XML与HTML模板。相对于编写逻辑或代码，开发者只需将标签属性添加到模板中即可。接下来，这些标签属性就会在DOM（文档对象模型）上执行预先制定好的逻辑。
+
+示例模板：
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th th:text="#{msgs.headers.name}">Name</td>
+      <th th:text="#{msgs.headers.price}">Price</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="prod : ${allProducts}">
+      <td th:text="${prod.name}">Oranges</td>
+      <td th:text="${#numbers.formatDecimal(prod.price,1,2)}">0.99</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+>可以看到Thymeleaf主要以属性的方式加入到html标签中，浏览器在解析html时，当检查到没有的属性时候会忽略，所以Thymeleaf的模板可以通过浏览器直接打开展现，这样非常有利于前后端的分离。
+
 Thymeleaf提供了诸如循环、条件判断、样式处理等手段，可以方便地控制HTML代码的生成过程，既可以用于在Server端生成全部HTML页面的传统Web应用，也可用于开发“单页面应用（SPA： Single PageApplication）”类型的现代Web应用。
+
+#### Thymeleaf的默认参数配置
+
+如有需要修改默认配置的时候，只需复制下面要修改的属性到application.properties中，并修改成需要的值，如修改模板文件的扩展名，修改默认的模板路径等:
+
+```
+# Enable template caching.
+spring.thymeleaf.cache=true 
+# Check that the templates location exists.
+spring.thymeleaf.check-template-location=true 
+# Content-Type value.
+spring.thymeleaf.content-type=text/html 
+# Enable MVC Thymeleaf view resolution.
+spring.thymeleaf.enabled=true 
+# Template encoding.
+spring.thymeleaf.encoding=UTF-8 
+# Comma-separated list of view names that should be excluded from resolution.
+spring.thymeleaf.excluded-view-names= 
+# Template mode to be applied to templates. See also StandardTemplateModeHandlers.
+spring.thymeleaf.mode=HTML5 
+# Prefix that gets prepended to view names when building a URL.
+spring.thymeleaf.prefix=classpath:/templates/ 
+# Suffix that gets appended to view names when building a URL.
+spring.thymeleaf.suffix=.html  spring.thymeleaf.template-resolver-order= # Order of the template resolver in the chain. spring.thymeleaf.view-names= # Comma-separated list of view names that can be resolved.
+```
 
 #### Spring Boot MVC支持的视图引擎
 
@@ -38,6 +106,17 @@ Spring Boot MVC项目要使用Thymeleaf非常简单，只需要在pom.xml中添�
 法及技术细节。
 
 #### 补充知识： Spring Boot Web项目中的静态资源
+
+在我们开发Web应用的时候，需要引用大量的js、css、图片等静态资源。
+
+Spring Boot默认提供静态资源目录位置需置于classpath下，目录名需符合如下规则：
+
+* /static
+* /public
+* /resources
+* /META-INF/resources
+
+我们可以在src/main/resources/目录下创建static，在该位置放置一个图片文件。启动程序后，尝试访问http://localhost:808/D.jpg。如能显示图片，配置成功。
 
 Thymleleaf的模板文件被视为静态资源，只不过它比较特殊，与普通的html，图片， js代表等常规静态资源不一样，需要经过模板引擎的处理之后再传给客户端罢了。
 

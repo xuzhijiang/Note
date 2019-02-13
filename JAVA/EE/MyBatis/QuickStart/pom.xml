@@ -34,6 +34,30 @@
             <version>3.4.6</version>
         </dependency>
 
+        <!--其中slf4j和slf4j-log4j12是用于桥接用的，可以不引入。
+        但是如果想用log4j作为日志框架，且项目中依赖了slf4j，就一定要引入slf4j-log4j12。-->
+        <!--log4j依赖-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+        <!--slf4j依赖-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <!--桥接-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+
         <!-- juint测试框架 -->
         <dependency>
             <groupId>junit</groupId>

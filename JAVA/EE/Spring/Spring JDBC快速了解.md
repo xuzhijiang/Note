@@ -14,6 +14,20 @@
 
 在创建Spring Boot项目时，添加对JDBC和要访问的关系型数据库的引用……(即勾选JDBC和MySQL)
 
+### 嵌入式数据库支持
+
+嵌入式数据库通常用于开发和测试环境，不推荐用于生产环境。Spring Boot提供自动配置的嵌入式数据库有H2、HSQL、Derby，你不需要提供任何连接配置就能使用。
+
+比如，我们可以在pom.xml中引入如下配置使用HSQL
+
+```xml
+<dependency>
+    <groupId>org.hsqldb</groupId>
+    <artifactId>hsqldb</artifactId>
+    <scope>runtime</scope>
+</dependency>
+```
+
 ### 小结
 
 1. 对于比较简单的项目，使用JDBC去访问数据库是可行的，但对于真实的项目，现在很少直接使用它了，所以，对这块内容，了解即可。
