@@ -63,3 +63,8 @@ com.didispace.blog.desc=${com.didispace.blog.name} - 《${com.didispace.blog.tit
 
 通过命令行来修改属性值固然提供了不错的便利性，但是通过命令行就能更改应用运行的参数，那岂不是很不安全？是的，所以Spring Boot也贴心的提供了屏蔽命令行访问属性的设置，只需要这句设置就能屏蔽：SpringApplication.setAddCommandLineProperties(false)。
 
+#### 解决SpringBoot内嵌服务器端口占用的问题
+
+1. netstat  -ano|findstr  8080（查看占用8080端口的进程）
+
+2. taskkill  /pid  6856  /f （运行windows自带taskkill命令，结束掉进程）

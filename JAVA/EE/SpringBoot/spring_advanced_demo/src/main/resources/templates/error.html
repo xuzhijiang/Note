@@ -5,6 +5,8 @@
     <title>Error</title>
 </head>
 <body>
+<!--视图模板文件error.html定义了出错信息显示页面的内容。
+其中“${…}”中的信息从ControllerAdvice对象的exception()方法中传入。这 是Thymeleaf模板语法。-->
 <h2>出错了！</h2>
 <p th:text="${errorMessage}"></p>
 <p th:text="${now}"></p>

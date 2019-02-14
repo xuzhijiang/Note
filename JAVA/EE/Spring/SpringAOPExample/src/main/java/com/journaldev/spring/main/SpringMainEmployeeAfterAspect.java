@@ -12,15 +12,10 @@ public class SpringMainEmployeeAfterAspect {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		
 		// 参数1：要检索的bean的名字
-		// 此步会调用com.journaldev.spring.model.Employee的setName method
 		EmployeeService employeeService = ctx.getBean("employeeService", EmployeeService.class);
-		
-		System.out.println("1-----------Dividing line----------");
 		
 		System.out.println(employeeService.getEmployee().getName());
 		
-		System.out.println("2-----------Dividing line----------");
-
 		employeeService.getEmployee().setName("xzj");
 		
 		ctx.close();

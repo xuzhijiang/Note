@@ -2,13 +2,12 @@ package com.jinxuliang.spring_advanced_demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-// 示例中定义了一个User类，里面
-// 又定义了两个内部接口。
+// 示例中定义了一个User类，里面又定义了两个内部接口。
 
-//这两个内部接口将实体类的属性 分为两组：一是简单属性组UserSimpleView，
-// 只包容id和name两个属性，除了password属性之外的所有属 性，都归于UserDetailView组。
 public class User {
-    //定义两个视图
+    // 定义两个视图
+    // 这两个内部接口将实体类的属性 分为两组：一是简单属性组UserSimpleView，只包容id和name两个属性，
+    // 除了password属性之外的所有属性，都归于UserDetailView组。
     public interface UserSimpleView{};
     public interface UserDetailView {};
 
@@ -18,6 +17,7 @@ public class User {
     private int age;
     private String gender;
 
+    //使用@JsonView给字段加上标识，让其归属于特定的接口（即“组”）
     @JsonView({UserSimpleView.class,UserDetailView.class})
     public int getId() {
         return id;
@@ -27,15 +27,17 @@ public class User {
     public String getUsername() {
         return username;
     }
-    //使用@JsonView给字段加上标识，让其归属于特定的接口（即“组”）
+
     @JsonView({UserDetailView.class})
     public int getAge() {
         return age;
     }
+
     @JsonView({UserDetailView.class})
     public String getGender() {
         return gender;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -55,8 +57,6 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
-
-
 
     public void setGender(String gender) {
         this.gender = gender;

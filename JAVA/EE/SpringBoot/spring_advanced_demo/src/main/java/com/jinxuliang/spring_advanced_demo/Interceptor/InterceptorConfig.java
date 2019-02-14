@@ -15,7 +15,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(new WebStopWatch());
     }
 }
+
 //测试拦截器
 
-// 打开浏览器访问:localhost:8080/hello,即访问HelloController，加载
-//hello模板，可以看到加载的 两个拦截器都在控制台窗口中输出了信息。
+// 打开浏览器访问:localhost:8080/hello,即访问HelloController

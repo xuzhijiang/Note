@@ -73,3 +73,109 @@ make
 make install
 ```
 
+>Redis没有其他外部依赖，最好在编译后直接执行make install命令来将这些可执行程序复制到/usr/local/bin目录中以便以后执行程序时可以不用输入完整的路径。
+
+可以用ps命令查看到相关信息：`ps -ef | grep redis`
+
+## 启动Redis和停止Redis
+
+Redis可执行文件说明:
+
+1. redis-server: Redis服务器
+2. redis-cli(Redis Command Line Interface): Redis命令行客户端
+3. redis-benchmark: Redis性能测试工具
+4. redis-check-aof: AOF文件修复工具
+5. redis-check-dump: RDB文件检查工具
+
+我们最常使用的两个程序是redis-server和redis-cli.
+
+### 停止Redis
+
+考虑到Redis有可能正在将内存中的数据同步到硬盘中，强行终止Redis进程可能会导致数据丢失。正确停止Redis的方式应该是向Redis发送SHUTDOWN命令，方法为：
+
+`redis-cli SHUTDOWN`
+
+>当Redis收到SHUTDOWN命令后，会先断开所有客户端连接，然后根据配置`执行持久化`，最后完成退出。
+
+>Redis可以妥善处理SIGTERM信号，所以使用“kill Redis进程的PID”也可以正常结束Redis，效果与发送SHUTDOWN命令一样。
+
+启动Redis有`直接启动`和`通过初始化脚本`启动两种方式，分别适用于`开发环境`和`生产环境`。
+
+### 直接启动
+
+直接运行redis-server即可启动Redis，十分简单： `redis-server`
+
+Redis服务器默认会使用6379端口 ，通过--port参数可以自定义端口号：
+`redis-server --port 6380`
+
+### 作为服务启动
+
+/usr/local/bin/redis-server /etc/redis/redis.conf   #指定配置文件 启动
+
+redis-cli向Redis发送命令有两种方式:
+
+1. 将命令作为redis-cli的参数执行,redis-cli执行时会自动按照默认配置（服务器地址为127.0.0.1，端口号为6379）连接Redis如: `redis-cli SHUTDOWN`,通过-h和-p参数可以自定义地址和端口号：`redis-cli -h 127.0.0.1 -p 6379`
+2. 不附带参数运行redis-cli，这样会进入交互模式，可以自由输入命令:
+
+```shell
+redis-cli
+redis 127.0.0.1:6379> PING
+PONG
+redis 127.0.0.1:6379> ECHO hi
+"hi"
+```
+
+>Redis提供了PING命令来测试客户端与Redis的连接是否正常，如果连接正常会收到回复PONG。如：
+
+```shell
+redis-cli PING
+PONG
+```
+
+#### 命令返回值
+
+1. 状态回复:PING命令的回复PONG就是状态回复，再比如向Redis发送SET命令设置某个键的值时，Redis会回复状态OK表示设置成功。
+2. 错误回复：当出现命令不存在或命令格式有错误等情况时Redis会返回错误回复（error reply）。错误回复以(error)开头。
+3. 整数回复：Redis没有整数类型，但是却提供了一些用于整数操作的命令，如递增键值的INCR命令会以整数形式返回递增后的键值。可以获取当前数据库中键的数量的DBSIZE命令也会返回整数。整数回复（integer reply）以(integer)开头，并在后面跟上整数数据：
+```shell
+redis>INCR foo
+(integer) 1
+```
+4. 字符串回复:字符串回复（bulk reply）是最常见的一种回复类型，当请求一个字符串类型键的键值或一个其他类型键中的某个元素时就会得到一个字符串回复。字符串回复以双引号包裹：
+```shell
+redis>GET foo
+"1"
+```
+
+>特殊情况是当请求的键值不存在时会得到一个空结果，显示为(nil)。如：
+```shell
+redis>GET noexists
+(nil)
+```
+
+5．多行字符串回复:(multi-bulk reply）同样很常见，如当请求一个非字符串类型键的元素列表时就会收到多行字符串回复。多行字符串回复中的每行字符串都以一个序号开头，如：
+```shell
+redis> KEYS *
+1) "bar"
+2) "foo"
+```
+
+提示: KEYS命令的作用是获取数据库中符合指定规则的键名，由于读者的Redis中还没有存储数据，所以得到的返回值应该是（empty list or set）.
+
+## 多数据库
+
+Redis是一个字典结构的存储服务器，而实际上`一个Redis实例`提供了`多个用来存储数据的字典`，客户端可以指定将数据存储在哪个字典中。这与我们熟知的在一个关系数据库实例中可以创建多个数据库类似，所以可以将其中的`每个字典`都`理解成一个独立的数据库`。
+
+每个数据库对外都是以一个从0开始的递增数字命名，Redis默认支持16个数据库，可以通过配置参数databases来修改这一数字。客户端与Redis建立连接后会自动选择0号数据库，不过可以随时使用SELECT命令更换数据库，如要选择1号数据库：
+
+```shell
+redis>SELECT 1
+OK
+redis [1]>GET foo
+(nil)
+```
+
+然而这些以数字命名的数据库又与我们理解的数据库有所区别。首先Redis不支持自定义数据库的名字，每个数据库都以编号命名，开发者必须自己记录哪些数据库存储了哪些数据。另外Redis也不支持为每个数据库设置不同的访问密码，所以一个客户端要么可以访问全部数据库，要么连一个数据库也没有权限访问。最重要的一点是多个数据库之间并不是完全隔离，比如FLUSHALL命令可以清空一个Redis实例中所有数据库中的数据。综上所述，这些数据库更像是一种命名空间，而不适宜存储不同应用程序的数据。
+
+比如可以使用0号数据库存储某个应用生产环境中的数据，使用1号数据库存储测试环境中的数据，但不适宜使用0号数据库存储A应用的数据而使用1号数据库存储B应用的数据，不同的应用应该使用不同的Redis实例存储数据。由于Redis非常轻量级，一个空Redis实例占用的内存只有1MB左右，所以不用担心多个Redis实例会额外占用很多内存。
+

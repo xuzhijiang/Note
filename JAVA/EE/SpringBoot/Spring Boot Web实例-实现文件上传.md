@@ -21,19 +21,3 @@ spring.servlet.multipart.max-request-size=20MB
 # 是否延迟多部件文件请求的参数和文件的解析
 spring.servlet.multipart.resolve-lazily=false
 ```
-
-#### 下面我们通过一个示例来展(uploader_demo)
-
-示文件上传的基本方法……示例解决方案中的FileController负责保存上传的文件， upload.html则负责显示文件上传页面：
-
-#### 配置文件上传选项
-
-在application.properties中定义文件上传的相关参数，注意事先创建好用于保存文件的文件夹：
-
-#### 文件上传的主要代码
-
-上传文件的核心类型是Spring MVC所提供的MultipartFile类，它完成了所有困难的工作，我们只需要调用它的几个方法就可以实现文件上传功能。
-
-运行:localhost:8080/file/upload
-
-> 上传成功之后，在upload文件夹中出现了上传的文件。

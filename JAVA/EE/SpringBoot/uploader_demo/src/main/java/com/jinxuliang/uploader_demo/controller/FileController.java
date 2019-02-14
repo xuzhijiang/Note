@@ -11,6 +11,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+// FileController负责保存上传的文件， upload.html则负责显示文件上传页面：
 @Controller
 @RequestMapping("/file")
 public class FileController {
@@ -23,6 +24,12 @@ public class FileController {
     public String uploadPage() {
         return "upload";
     }
+
+
+
+    // 上传文件的核心类型是Spring MVC所提供的MultipartFile类，
+    // 它完成了所有困难的工作，我们只需要调用它的几个方法就可以实现文件上传功能。
+
     // 使用Spring MVC的MultipartFile类作为参数
     @PostMapping("/upload")
     @ResponseBody

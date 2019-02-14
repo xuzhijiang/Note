@@ -78,3 +78,9 @@ DemoObject{id=1000, name='DemoObject Post from Client'}
 
 1. 本讲介绍了Spring Boot MVC项目中控制器的基础编程技巧，这些编程技巧在实际开发中用得极多，一定要熟练地掌握。
 2. 学习过程中需要特别注意一下数据的传送方式，主要有两种：一是数据如何从客户端传给Server端，二是如何在Server端保存多个HTTP请求之间的状态信息。
+
+### 拦截器
+
+Spring MVC提供了一个HandlerInterceptor接口，实现了这一接口的类中的方法，会在SpringMVC响应HTTP请求的特定阶段被调用。
+
+我们可以利用这一特性完成一些特殊的任务，比如统计特定方法的调用次数，了解其执行时间，等等。

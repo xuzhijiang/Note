@@ -10,10 +10,10 @@ import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 
 // 一个简单的POJO类(即普通的Jave对象类)，它将作为Restful Web service methods的输入和输出。
 
-// 我们知道，对于使用JAXB marshalling的类，
-// 我们需要使用@XmlRootElement注释来注释它。 所以将它添加到我们的Employee模型类中。
-
-// 我们的Spring应用程序将同时支持JSON和XML。它甚至支持带有JSON响应的XML请求，反之亦然。
+// 我们知道，对于使用JAXB marshalling的类(servlet-context.xml中
+// 定义了类型为Jaxb2RootElementHttpMessageConverter的bean)，
+// 我们需要使用@XmlRootElement注释来注释它。
+// 所以这个注解添加到Employee。
 
 @XmlRootElement
 public class Employee implements Serializable {

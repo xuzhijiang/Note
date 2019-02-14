@@ -8,9 +8,11 @@ import com.journaldev.spring.model.Person;
 
 // Spring RestTemplate Test Class
 
+// Spring RestTemplate提供了一种测试RESTful Web Service的便捷方式。
+
 // 下面的类显示了如何在Spring方式中使用RestTemplate方法。
 
-//执行上述程序之前和之后的Web服务数据库表数据会发生变化
+// 执行上述程序之前和之后的Web服务数据库表数据会发生变化
 
 public class Main {
 

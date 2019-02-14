@@ -2,7 +2,6 @@ package com.jinxuliang.datavalidator_demo.domain;
 
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.validation.constraints.*;
 import java.util.Date;
 

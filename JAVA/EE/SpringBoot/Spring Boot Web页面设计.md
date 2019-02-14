@@ -22,11 +22,9 @@ Spring Boot提供了默认配置的模板引擎主要有以下几种：
 
 #### Thymeleaf基础概述
 
-在传统的Spring Boot MVC项目中，需要在Server端使用特定的网页模板（称为视图模板），基于这些模板“填空”以得到一张完整的HTML网页，再把它传回给浏览器。负责完成这一“填空” 工作的， 是“视图引擎”。
+在传统的Spring Boot MVC项目中，需要在Server端使用特定的视图模板，基于这些模板“填空”以得到一张完整的HTML网页，再把它传回给浏览器。负责完成这一“填空” 工作的， 是“模板引擎”。
 
-Thymeleaf是Spring Boot Web项目可用的诸多视图引擎中的一种，Spring官方推荐使用它（而不是历史更为悠久的JSP）来编写视图模板。
-
-Thymeleaf是一个XML/XHTML/HTML5模板引擎，可用于Web与非Web环境中的应用开发。它是一个开源的Java库.
+Thymeleaf是Spring Boot Web项目可用的诸多视图引擎中的一种，Spring官方推荐使用它（而不是历史更为悠久的JSP）来编写视图模板。Thymeleaf是一个XML/XHTML/HTML5模板引擎，可用于Web与非Web环境中的应用开发。它是一个开源的Java库.
 
 Thymeleaf提供了一个用于整合Spring MVC的可选模块，在应用开发中，你可以使用Thymeleaf来完全代替JSP或其他模板引擎，如Velocity、FreeMarker等。Thymeleaf的主要目标在于提供一种可被浏览器正确显示的、格式良好的模板创建方式，因此也可以用作静态建模。你可以使用它创建经过验证的XML与HTML模板。相对于编写逻辑或代码，开发者只需将标签属性添加到模板中即可。接下来，这些标签属性就会在DOM（文档对象模型）上执行预先制定好的逻辑。
 
@@ -80,26 +78,14 @@ spring.thymeleaf.suffix=.html  spring.thymeleaf.template-resolver-order= # Order
 
 #### Spring Boot MVC支持的视图引擎
 
-Spring Boot MVC支持多种视图模板引擎，在当前版本中，能自动检测并配置好上述四种
-引擎。比较常用的（官方推荐）是Thymeleaf。
+Spring Boot MVC支持多种视图模板引擎，能自动检测并配置好几种引擎。比较常用的（官方推荐）是Thymeleaf。
 
 > 注意：在Spring早期Web项目中比较常见的JSP，Spring官方己经不再推荐在Spring
 Boot项目中使用。
 
-#### Thymeleaf的项目依赖
-
-Spring Boot MVC项目要使用Thymeleaf非常简单，只需要在pom.xml中添加以下项目起步依赖即可：
-
-```xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-thymeleaf</artifactId>
-</dependency>
-```
-
 #### 控制器与模板之间的信息交换方式
 
-      Model对象
+      Model对象          生成
 控制器 ------> 视图模板 -------> HTML网页
 
 > Thymeleaf模板标签以“th:”打头，包容条件、循环等常用功能，请查询官网了解其语
@@ -144,6 +130,8 @@ MavenRepository网站去搜索其Maven依赖声明。
 
 添加完依赖之后，可以看到相关的js文件、 css样式表和字体等静态
 资源，都被放到了jar包中，并且准备好了在视图模板文件中访问。
+
+>http://www.webjars.org/, https://mvnrepository.com
 
 #### 如何引用WebJars包？
 

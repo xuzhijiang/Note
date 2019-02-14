@@ -52,5 +52,5 @@ public class MVCDemoController {
         throw new IllegalArgumentException("参数有误！");
     }
     //控制器的方法中出现了未捕获的异常，就会由@ControllerAdivice配
-    // 置的全局异常处理器（见前页PPT）进行处理，显示一个异常处理页。
+    // 置的全局异常处理器进行处理，显示一个异常处理页。
 }

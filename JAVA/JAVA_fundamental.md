@@ -34,3 +34,8 @@ http://jinxuliang.com/course2/CoursePortal/Details/5a9268a9a664d72f041e0a6a
 http://jinxuliang.com/course2/CoursePortal/Details/54004d84137e45731c99035b
 
 ibatis
+
+Java技术栈
+
+JDBC基础
+熟练编写单元测试.

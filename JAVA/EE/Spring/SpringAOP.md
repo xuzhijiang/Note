@@ -1,15 +1,8 @@
-Spring AOP概述
+## Spring AOP概述
 
-大多数企业应用程序都有一些常见的横切关注点，适用于不同类型的对象和模块。
-一些常见的横切关注点是日志记录，事务管理，数据验证等。在"面向对象编程"中，
-应用程序的模块化是通过类实现的，而在"面向切面编程"应用程序中，模块化由Aspects(切面)实现，
-并且它们被配置为跨越不同的类。
+大多数企业应用程序都有一些常见的"横切关注点"，一些常见的横切关注点是日志记录，事务管理，数据验证等。在"面向对象编程"中，应用程序的模块化是通过类实现的，而在"面向切面编程"应用程序中，模块化由Aspects(切面)实现，并且它们被配置为跨越不同的类。
 
-Spring AOP从类中获取横切任务的直接依赖关系, 我们不可以通过普通"面向对象编程"模型实现这种功能。
-例如，我们可以有一个单独的记录日志的类A，但功能类B必须再次调用这些方法来实现跨应用程序的日志记录。
-
-
-面向方面的编程核心概念
+### 面向方面的编程核心概念
 
 在我们深入实现Spring AOP实现之前，我们应该了解AOP的核心概念:
 
@@ -62,12 +55,7 @@ around advice负责 去调用join point方法并此方法返回某些内容时�
 让我们开始用AOP实现创建一个简单的Spring项目。 Spring支持使用AspectJ注释创建aspects，
 为简单起见，我们将使用它。所有上述AOP注释都在org.aspectj.lang.annotation包中定义。
 
-Spring Tool Suite提供有关aspects的有用信息，因此我建议您使用它。如果您不熟悉STS，
-我建议您查看Spring MVC Tutorial，我已经解释了如何使用它。
-
-
 -------------------------------------------------
-
 
 Spring Advice with Custom Annotation Pointcut:(具有自定义 annotation Pointcut的Spring Advice)
 
@@ -79,3 +67,21 @@ Spring Advice with Custom Annotation Pointcut:(具有自定义 annotation Pointc
 注解Employee setName（）方法的目的。也就是只应用于使用了@Loggable注解的setName() method.
 
 Spring Framework @Transactional annotation 是Spring 事务管理(Transaction Management)的一种很好的例子。
+
+### Spring AOP Method Profiling(方法分析)
+
+此示例展示给你 ”如何配置Spring AOP method profiling“。 
+我们可以在任何服务（或其他）类中使用Spring AOP和任何方法，
+而无需在任何服务类中编写任何一行性能分析代码(profiling code)。 
+面向方面编程（AOP）允许我们将（通常是重复的和样板）分析代码与服务代码分开。
+
+
+我们只在一个单独的类（SimpleProfiler.java）中编写我们的探查器代码(profiler code)一次，
+这就是全部，其余的只是spring.xml中的AOP配置.
+
+因此我们可以对以下内容 进行方法分析(profiler code):
+
+1. 分析任何（服务）类，profiling any (service) classes,
+2. 没有触及（服务）类的代码，without touching (service) classes’ code,
+3. 通过Spring-AOP方法。through Spring-AOP approach.
+

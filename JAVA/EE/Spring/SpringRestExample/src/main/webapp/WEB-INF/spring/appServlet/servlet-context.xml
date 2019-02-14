@@ -8,8 +8,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 
-		大部分零件是自动生成的，包含样板配置。
-		但需要注意的重点是为了支持基于注释的配置的annotation-driven element，
+		1. 大部分零件是自动生成的，包含样板配置。
+
+		2. 但需要注意的重点是为了支持基于注释的配置的annotation-driven element，
 		以及将MappingJackson2HttpMessageConverter插入RequestMappingHandlerAdapter 
 		messageConverters，以便Jackson API启动并将JSON转换为Java Bean，
 		反之亦然。
@@ -25,13 +26,34 @@
 	serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp
-	resources in the /WEB-INF/views directory -->
+	<!--
+		Resolves views selected for rendering by @Controllers to .jsp
+		resources in the /WEB-INF/views directory。
+		解析由@Controllers选择的用于渲染的views为/WEB-INF/views/目录下的.jsp资源.
+	-->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
+	<!--
+		Configure bean to convert JSON to POJO and vice versa.
+		配置下面的bean以支持"JSON到POJO的转换以及POJO到JSON的转换".
+	-->
+	<beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	</beans:bean>
+
+	<!--
+		定义一个类型为Jaxb2RootElementHttpMessageConverter的bean，
+		extend the existing application to support XML
+		扩展已有的应用去支持XML.
+	-->
+	<beans:bean id="xmlMessageConverter" class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
+	</beans:bean>
+
+	<!--Add below configured bean to RequestMappingHandlerAdapter
+		property messageConverters.
+		增加下面的配置bean到RequestMappingHandlerAdapter属性messageConverters。-->
 	<!-- Configure to plugin JSON as request and response in method handler -->
 	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<beans:property name="messageConverters">
@@ -40,18 +62,6 @@
 				<beans:ref bean="xmlMessageConverter"/>
 			</beans:list>
 		</beans:property>
-	</beans:bean>
-	
-	<!-- Configure bean to convert JSON to POJO and vice versa -->
-	<beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-	</beans:bean>	
-	
-	<!-- extend the existing application to support XML -->
-	<!--
-		Add below configured bean to RequestMappingHandlerAdapter
-		property messageConverters.
-	 -->
-	<beans:bean id="xmlMessageConverter" class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
 	</beans:bean>
 	
 	<context:component-scan base-package="com.journaldev.spring.controller" />

@@ -16,10 +16,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.journaldev.spring.model.Employee;
 
-/*
-	EmployeeController类将发布EmpRestURIConstants的所有Web服务端点(service end points)
-*/
+// 我们的Spring应用程序将同时支持JSON和XML。它甚至支持带有JSON响应的XML请求，反之亦然。
 
+/*
+1. XML Response: Make sure you pass Accept header as “application/xml”.
+GET: http://localhost:8080/SpringRestExample/rest/emp/dummy
+Accept: application/xml
+
+2. JSON Response: Make sure you pass Accept header as “application/json”.
+GET: http://localhost:8080/SpringRestExample/rest/emp/dummy
+Accept: application/json
+
+3. XML Request with JSON Response: Make sure Accept header is “application/json”
+and Content-Type header is “text/xml” as shown in below images.
+POST:http://localhost:8080/SpringRestExample/rest/emp/create
+*/
 /**
  * Handles requests for the Employee service.
  */
@@ -36,10 +47,10 @@ public class EmployeeController {
 	public @ResponseBody Employee getDummyEmployee() {
 		logger.info("Start getDummyEmployee");
 		Employee emp = new Employee();
-		emp.setId(9999);
+		emp.setId(new java.util.Random().nextInt(100));
 		emp.setName("Dummy");
 		emp.setCreatedDate(new Date());
-		empData.put(9999, emp);
+		empData.put(emp.getId(), emp);
 		return emp;
 	}
 	

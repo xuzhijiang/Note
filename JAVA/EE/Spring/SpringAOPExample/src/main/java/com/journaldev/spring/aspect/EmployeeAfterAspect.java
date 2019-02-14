@@ -9,13 +9,14 @@ import org.aspectj.lang.annotation.Aspect;
 @Aspect
 public class EmployeeAfterAspect {
 
-	// 本例中应用于Employee.setName() method执行之后
+	// Employee.setName() method执行之后
 	@After("args(name)")
 	public void logStringArguments(String name){
 		System.out.println("Running After Advice. String argument passed="+name);
 	}
 	
-	// 我们可以在pointcut expression(切入点表达式)中使用"within" 来将advice应用于类中的所有方法。
+	// 我们可以在pointcut expression(切入点表达式)中
+	// 使用"within" 来将advice应用于类中的所有方法。
 	
 	// 我们在Employee bean中有throwException（）方法来展示 "After Throwing device"的使用。
 	// 当com.journaldev.spring.model.Employee中抛出异常的时候调用此方法

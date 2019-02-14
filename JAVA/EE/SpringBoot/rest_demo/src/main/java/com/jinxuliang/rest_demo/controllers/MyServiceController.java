@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-
 //指定本控制器中的方法是RESTful Service
 @RestController
 @RequestMapping(path="/myservice")
@@ -43,7 +41,6 @@ public class MyServiceController {
     public String testQueryParam(@RequestParam(name="info",defaultValue = "hello") String message){
         return message;
     }
-
 
     // 将多个查询参数合成为一个参数对象-1
     // http://localhost:8080/myservice/querycondition?usename=John&isMale=true&age=30

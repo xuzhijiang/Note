@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 
 //加上了数据校验功能的数据实体类
 public class User {
+
     //在实际开发中，数据实体类往往会 加上数据校验相关的注解……
     private int id;
     @NotBlank(message = "姓名不能为空")

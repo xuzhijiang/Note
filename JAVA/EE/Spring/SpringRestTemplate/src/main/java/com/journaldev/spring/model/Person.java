@@ -1,6 +1,6 @@
 package com.journaldev.spring.model;
 
-//模型类(Model Class)
+// 模型类(Model Class)
 
 // 由于我们尝试使用jackson mapper将我们的Web服务返回的JSON转换为java对象，
 // 因此我们必须为此创建模型类。 请注意，此模型类与Web服务中使用的模型类非常相似，
