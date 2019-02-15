@@ -3,13 +3,17 @@
 		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 		"http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
+
+	<!--基于xml的Hibernate Configuration Files-->
+
+	<!--大多数属性与数据库配置相关，其他属性详细信息在注释中给出。-->
 	<session-factory>
 		<!-- Database connection properties - Driver, URL, user, password -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost/TestDB</property>
-		<property name="hibernate.connection.username">pankaj</property>
-		<property name="hibernate.connection.password">pankaj123</property>
-		<!-- Connection Pool Size -->
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/test</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">password</property>
+		<!-- Connection Pool Size,注意基于注解的xml配置没有设置这个属性，所以就是默认值20 -->
 		<property name="hibernate.connection.pool_size">1</property>
 		
 		<!-- org.hibernate.HibernateException: No CurrentSessionContext configured! -->
@@ -24,6 +28,8 @@
 			Hibernate 4 automatically figure out Dialect from Database Connection Metadata -->
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> 
 
+		<!-- 注意hibernate映射文件的配置，我们可以定义多个hibernate映射文件并在这里配置它们。
+		另请注意，映射特定于某一个会话工厂。-->
 		<!-- mapping file, we can use Bean annotations too --> 
 		<mapping resource="employee.hbm.xml" />
 	</session-factory>

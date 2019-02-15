@@ -2,6 +2,13 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
+<!--
+    Hibernate Mapping XML Configuration
+    Hibernate映射xml配置
+-->
+
+<!-- 我们可以选择任何名称，但为了清楚起见，最好选择表或java bean名称：employee.hbm.xml-->
+<!--此xml文件映射到Employee这个bean-->
 <hibernate-mapping>
 	<class name="com.journaldev.hibernate.model.Employee" table="EMPLOYEE">
         <id name="id" type="int">

@@ -10,7 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-@Entity
+//Employee1是一个java bean，其中的字段用JPA注释注释，因此我们不需要在单独的XML文件中提供映射。
+@Entity//javax.persistence.Entity注释用于将类标记为可以由hibernate持久化的Entity bean，因为hibernate提供了JPA实现。
 @Table(name="Employee", 
 	   uniqueConstraints={@UniqueConstraint(columnNames={"ID"})})
 public class Employee1 {

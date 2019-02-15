@@ -1,9 +1,7 @@
 package com.journaldev.hibernate.main;
 
 import java.util.Date;
-
 import org.hibernate.Session;
-
 import com.journaldev.hibernate.model.Employee;
 import com.journaldev.hibernate.util.HibernateUtil;
 

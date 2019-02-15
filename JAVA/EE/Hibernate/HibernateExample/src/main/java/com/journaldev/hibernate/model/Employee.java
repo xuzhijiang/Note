@@ -2,6 +2,7 @@ package com.journaldev.hibernate.model;
 
 import java.util.Date;
 
+//Employee是一个简单的Java Bean类，我们将使用基于XML的配置来提供它的映射细节。
 public class Employee {
 
 	private int id;
