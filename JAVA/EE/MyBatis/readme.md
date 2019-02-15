@@ -11,6 +11,8 @@
 1. 保存记录：直接保存java对象即可，ORM框架会自动将java对象每个属性的值保存到对应的数据库表对应的字段上。
 2. 查询记录：ORM框架会将查询到的结果集(ResultSet)封装成对应的Java对象。
 
+> ORM就是以操作Java实体的方式最终将数据改变映射到数据库表中
+
 ### MyBatis与其他orm框架的对比
 
 ORM框架有很多，除了Mybatis，比较著名的还有Hibernate、Toplink等。通常我们把Mybatis称之为半自动的ORM框架，把Hibernate、TopLink等称之为全自动的ORM框架。

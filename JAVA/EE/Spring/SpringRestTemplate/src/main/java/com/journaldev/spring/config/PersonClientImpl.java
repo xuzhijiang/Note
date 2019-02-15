@@ -2,7 +2,6 @@ package com.journaldev.spring.config;
 
 import java.util.Arrays;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +15,7 @@ import com.journaldev.spring.model.Person;
 @Service
 public class PersonClientImpl implements PersonClient {
 
+	// 最后一步是创建将使用RestTemplate bean的客户端类。
 	@Autowired
 	RestTemplate restTemplate;
 
