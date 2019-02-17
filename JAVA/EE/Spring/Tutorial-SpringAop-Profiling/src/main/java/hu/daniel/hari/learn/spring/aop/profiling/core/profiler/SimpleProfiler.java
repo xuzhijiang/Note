@@ -15,12 +15,12 @@ import org.springframework.util.StopWatch.TaskInfo;
 // 该对象在执行该方法之前表示此情况下的方法执行关节点( method execution joint point)。
 // 该对象还有关于我们可以获得的要执行的方法的信息。
 
-// 3. 我们负责通过调用它的proceed（）来执行该方法。
+// 3. 我们负责通过调用它的proceed(）来执行该方法。
 
 // 4. 我们也知道在执行的日志记录方法中抛出的异常，
 // 但是我们将其推向透明，我们不希望处理此级别的异常，只记录它。
 
-//（“profile”方法签名受限于将调用它的Spring AOP，
+//(“profile”方法签名受限于将调用它的Spring AOP，
 // 但方法名称可以是将在spring.xml中设置的任何其他内容。）
 
 /**

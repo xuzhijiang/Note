@@ -15,7 +15,7 @@
 	<!-- spring bean configuration file (Spring Config)-->
 	
 	<!--
-		1. 首先我们告诉spring我们要对Spring组件（Services，DAOs）使用类路径扫描，
+		1. 首先我们告诉spring我们要对Spring组件(Services，DAOs）使用类路径扫描，
 		而不是在spring xml中逐个定义它们。我们还启用了Spring注释检测。
 		2. 添加数据源，即当前HSQLDB内存数据库。
 		3. 我们设置了一个JPA EntityManagerFactory，它将由应用程序使用来获取EntityManager。

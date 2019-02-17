@@ -17,7 +17,7 @@
 		">
 	
 	<!--
-		1. 首先我们告诉spring我们要对Spring组件（Services，DAOs）使用类路径扫描，
+		1. 首先我们告诉spring我们要对Spring组件(Services，DAOs）使用类路径扫描，
 		而不是不方便的在spring xml中逐个定义它们。我们还启用了Spring注释检测。
 		2. 添加数据源，即当前HSQLDB内存数据库。
 		3. 我们设置了一个JPA EntityManagerFactory，它将由应用程序使用来获取EntityManager。
@@ -32,7 +32,7 @@
 		4. 我们通过以下方式配置Spring-AOP行为：我们希望 in the service package(服务包中)的所有方法都是事务性的，
 		对于以“get *”或“list *”开头的方法，我们希望它们是只读read-only事务性的。 这很简单。
 		5. 我们创建Spring的PlatformTransactionManager实例,并将其作为为JpaTransactionManager。
-		（此事务管理器适用于使用单个JPA EntityManagerFactory进行事务数据访问的应用程序。）
+		(此事务管理器适用于使用单个JPA EntityManagerFactory进行事务数据访问的应用程序。）
 	-->
 
 	<!-- Scans the classpath for annotated components that will be auto-registered as Spring beans -->

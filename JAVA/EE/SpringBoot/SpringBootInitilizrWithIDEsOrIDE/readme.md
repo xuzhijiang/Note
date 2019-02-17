@@ -19,7 +19,7 @@ Spring Boot Initilizr用于快速启动新的Spring Boot Maven/Gradle项目。�
 
 ### Spring Boot Initilizr With IDEs/IDE Plugins
 
-请按照以下步骤使用Spring STS Suite创建Spring MVC Maven项目。（与其他IDE几乎相似的步骤。）
+请按照以下步骤使用Spring STS Suite创建Spring MVC Maven项目。(与其他IDE几乎相似的步骤。）
 
 File -> New -> Spring Stater Project
 
@@ -88,7 +88,7 @@ Web: WS, Web
 	@SpringBootApplication执行以下操作：
 
 	a. 由于@Configuration注释，它会扫描@Bean方法来创建beans
-	b. 由于@ComponentScan注释，它执行组件扫描（Components表示使用@Component，@Service，@Repository，@Controller等注释的Bean）。
+	b. 由于@ComponentScan注释，它执行组件扫描(Components表示使用@Component，@Service，@Repository，@Controller等注释的Bean）。
 	c. 由于@EnableAutoConfiguration注释，它会触发Spring Boot Auto-Configuration
 
 4. 默认情况下，SpringApplication类创建“AnnotationConfigEmbeddedWebApplicationContext”实例.
@@ -112,7 +112,7 @@ TomcatEmbeddedServletContainerFactory	JettyEmbeddedServletContainerFactory
 
 6. 默认情况下，Spring STS IDE将所有必需的Tomcat容器JAR添加到我们新创建的Spring Boot Project Classpath中。这就是“AnnotationConfigEmbeddedWebApplicationContext”实例创建“TomcatEmbeddedServletContainerFactory”类实例的原因。
 
-7. “EmbeddedServletContainerFactory”（“JettyEmbeddedServletContainerFactory”或“TomcatEmbeddedServletContainerFactory”）用于创建“EmbeddedServletContainer”实现的实例。
+7. “EmbeddedServletContainerFactory”(“JettyEmbeddedServletContainerFactory”或“TomcatEmbeddedServletContainerFactory”）用于创建“EmbeddedServletContainer”实现的实例。
 
 							EmbeddedServletContainer
 									^

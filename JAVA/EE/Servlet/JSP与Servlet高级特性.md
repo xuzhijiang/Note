@@ -79,7 +79,7 @@ public class ListenerClass implements ListenerInterface {
 
 1. Filter是拦截Request请求的对象：在用户的请求访问资源前处理ServletRequest以及ServletResponse，它可用于日志记录、加解密、Session检查、图像文件保护等。
 2. 通过Filter可以拦截处理某个资源或者某些资源。
-3. Filter的配置可以通过Annotation或者部署描述（web.xml）来完成。当一个资源或者某些资源需要被多个Filter所使用到，且它的触发顺序很重要时，只能通过部署描述来配置。
+3. Filter的配置可以通过Annotation或者部署描述(web.xml）来完成。当一个资源或者某些资源需要被多个Filter所使用到，且它的触发顺序很重要时，只能通过部署描述来配置。
 
 #### Filter的生命周期
 
@@ -90,7 +90,7 @@ public class ListenerClass implements ListenerInterface {
 
 #### Filter链条
 
-一个资源可能需要被多个Filter关联到（更专业一点来说，这应该叫作Filter链条），这时Filter.doFilter()的方法将触发Filter链条中下一个Filter。只有在Filter链条中最后一个Filter里调用的FilterChain.doFilter()，才会触发处理资源的方法。
+一个资源可能需要被多个Filter关联到(更专业一点来说，这应该叫作Filter链条），这时Filter.doFilter()的方法将触发Filter链条中下一个Filter。只有在Filter链条中最后一个Filter里调用的FilterChain.doFilter()，才会触发处理资源的方法。
 
 如果在Filter.doFilter()的实现中，没有在结尾处调用FilterChain.doFilter()的方法，那么该Request请求中止，后面的处理就会中断。
 

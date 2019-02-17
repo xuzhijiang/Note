@@ -2,7 +2,7 @@
 
 在这篇文章中，我们将开发Spring 4 MVC Security Web Application，通过使用In-Memory选项提供登录和注销功能。
 
-此示例使用带有Spring Annotations的Spring Java Config，这意味着不使用web.xml和Spring XML Configuration（旧样式）。
+此示例使用带有Spring Annotations的Spring Java Config，这意味着不使用web.xml和Spring XML Configuration(旧样式）。
 
 Spring 4安全模块支持以下选项来存储和管理用户凭据：
 

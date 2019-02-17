@@ -9,17 +9,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 //代码说明
 
-// 1. 在configureGlobal（）方法中，我们添加了两个用户：一个用户具有“ROLE_USER”角色，
+// 1. 在configureGlobal(）方法中，我们添加了两个用户：一个用户具有“ROLE_USER”角色，
 // 另一个用户具有“ROLE_USER”和“ROLE_ADMIN”角色。
 // 这意味着第二个用户将充当管理员用户。 像这样我们可以配置任意数量的用户和角色。
 // 2. 我们可以使用authorities(ROLE) or roles(ROLE)方法在我们的应用程序中配置角色。
 
-// 3. authority（）和roles（）方法之间的区别：
-// 		a. authorities（）需要完整的角色名称，如“ROLE_USER”
-//		b. roles（）需要像“USER”这样的角色名称， 它会自动将“ROLE_”值添加到此“USER”角色名称。
+// 3. authority(）和roles(）方法之间的区别：
+// 		a. authorities(）需要完整的角色名称，如“ROLE_USER”
+//		b. roles(）需要像“USER”这样的角色名称， 它会自动将“ROLE_”值添加到此“USER”角色名称。
 
 
-//在configure（）方法中，我们已经定义了具有"所需访问角色"的不同URL。
+//在configure(）方法中，我们已经定义了具有"所需访问角色"的不同URL。
 //antMatchers("/homePage").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 
 

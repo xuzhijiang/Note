@@ -2,7 +2,7 @@ package hu.daniel.hari.learn.spring.aop.profiling.service;
 
 import org.springframework.stereotype.Component;
 
-// Spring Service类（待分析to be profiled）
+// Spring Service类(待分析to be profiled）
 
 // 我们首先编写我们的服务类，它具有模拟短进程和长进程的方法，还有一个抛出异常的方法。
 

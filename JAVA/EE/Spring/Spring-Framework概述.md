@@ -2,20 +2,20 @@
 
 掌握Spring Framework的基础知识，是进一步学习其他Spring技术，比如Spring MVC和Spring Cloud等的基础
 
-### “失败”的Java EE（原先的J2EE）
+### “失败”的Java EE(原先的J2EE）
 
-因为J2EE实在弄得太复杂了，难学难用！JavaEE是一组规范的集合，其技术的核心就是EJB（EnterpriseJava Bean）及其容器。
+因为J2EE实在弄得太复杂了，难学难用！JavaEE是一组规范的集合，其技术的核心就是EJB(EnterpriseJava Bean）及其容器。
 
-开发一个EJB需要实现特定的接口，还有大量的配置文件（直至EJB2.0的年代，开发一个EJB还需要配置两个文件），`弄得配置的工作量比写代码的工作量还要大`，一旦配置有错，噩梦开始……
+开发一个EJB需要实现特定的接口，还有大量的配置文件(直至EJB2.0的年代，开发一个EJB还需要配置两个文件），`弄得配置的工作量比写代码的工作量还要大`，一旦配置有错，噩梦开始……
 
-EJB跑在EJB容器中，而Java Web（主要是JSP和Servlet）跑在Web容器中，可以想象，如果Servlet要调用EJB，就意味着Web容器调用EJB容器，这里头的配置实在太烦人了！而且性能不佳，调试复杂.
+EJB跑在EJB容器中，而Java Web(主要是JSP和Servlet）跑在Web容器中，可以想象，如果Servlet要调用EJB，就意味着Web容器调用EJB容器，这里头的配置实在太烦人了！而且性能不佳，调试复杂.
 
 Java EE败就败在太复杂！类似的，微软的WCF也是输在这点上！
 
 ### Spring的主要特点
 
 1. Spring使用“依赖注入”这种手段来管理`各类Java资源`，降低了各种资源的耦合。
-2. Spring通过动态代理技术实现了面向切面的编程（AOP），避免了编写大量重复的代码。
+2. Spring通过动态代理技术实现了面向切面的编程(AOP），避免了编写大量重复的代码。
 
 ### Spring技术的演化
 
@@ -27,14 +27,14 @@ Spring技术家庭是当前Java的主流技术。Spring“全家桶”历经多�
 
 ### Spring Framework的技术特点
 
-Spring框架主要提供了对IoC（依赖反转）容器、 AOP（面向切面编程）、 数据访问、 Web开发、消息、测试等相关技术特性的支持。
+Spring框架主要提供了对IoC(依赖反转）容器、 AOP(面向切面编程）、 数据访问、 Web开发、消息、测试等相关技术特性的支持。
 
-> Spring使用简单的POJO（Plain Old Java Object，即无特殊要求的普通Java对象）来进行企业级开发。每一个被Spring管理的Java对象都称之为Bean；而Spring提供了一个IoC容器用来初始化Bean对象， 解决Bean对象间的依赖管理和对象的使用。
+> Spring使用简单的POJO(Plain Old Java Object，即无特殊要求的普通Java对象）来进行企业级开发。每一个被Spring管理的Java对象都称之为Bean；而Spring提供了一个IoC容器用来初始化Bean对象， 解决Bean对象间的依赖管理和对象的使用。
 
 ## Spring Framework中最重要的两个核心特性
 
-* 依赖注入（DI： DependencyInjection）
-* 面向切面编程（AOP： Aspect-OrientedProgramming）
+* 依赖注入(DI： DependencyInjection）
+* 面向切面编程(AOP： Aspect-OrientedProgramming）
 
 ### 依赖注入
 
@@ -104,14 +104,14 @@ WebApplicationContext。 Spring Framework提供了许多有用的ApplicationCont
 
 ### AOP
 
-面向切面编程（aspectoriented programming,AOP）有助于将遍布应用各处的功
+面向切面编程(aspectoriented programming,AOP）有助于将遍布应用各处的功
 能分离出来形成可重用的组件.
 
 系统由许多不同的组件组成，每一个组件各负责一块特定功能，其职责不能也不应该重叠.诸如日志模块、事务管理和安全模块，等这样的系统服务为多个组件所需要，它们通常被称为“横切关注点”， AOP能方便让它们被多个组件所重用.
 
 ### Spring Framework Runtime
 
-下图展示了Spring Framework（5.0以前版本）的各个组成部分，可以看到它拥有一个分层的组件
+下图展示了Spring Framework(5.0以前版本）的各个组成部分，可以看到它拥有一个分层的组件
 化架构，并且这些组件可以随着技术的发展而被单独替换掉，`遵循开放规范且可方便替换，是Spring生命力的主要来源`。
 
 ```
@@ -152,7 +152,7 @@ The Data Access/Integration container由JDBC,ORM,OXM,JMS和Transactions模块组
 1. JDBC提供了一个JDBC抽象层，使开发人员无需手动注册与连接数据库相关的单调代码
 2. Spring ORM提供与Hibernate，JDO，JPA等流行ORM的集成
 3. OXM模块负责链接Object/XML - XMLBeans，JAXB等
-4. JMS（Java消息传递服务）模块负责创建，发送和接收消息。
+4. JMS(Java消息传递服务）模块负责创建，发送和接收消息。
 5. Transactions支持实现某些方法和POJO的类的事务管理。
 
 #### Spring Framework其他模块
@@ -193,18 +193,18 @@ Spring还包括许多其他重要的模块，例如AOP，Aspects，Instrumentati
 
 > Spring Framework + 自动化配置 = Spring Boot
 
-Spring Boot是当前Spring应用开发的主流。新项目不要再使用早期的Spring技术（比如使用XML定义Bean）。
+Spring Boot是当前Spring应用开发的主流。新项目不要再使用早期的Spring技术(比如使用XML定义Bean）。
 
 #### Spring Boot的特点
 
-1. Spring Boot提供了一些预先组织好的“起步依赖（spring-bootstarter）”，从而使开发者不再需要自行维护复杂的组件（jar包）依赖，而是只需要声明“我需要什么功能”就行了。
+1. Spring Boot提供了一些预先组织好的“起步依赖(spring-bootstarter）”，从而使开发者不再需要自行维护复杂的组件(jar包）依赖，而是只需要声明“我需要什么功能”就行了。
 2. Spring Boot让Spring应用开发，从早期的以“组件为中心”，转换为“以功能为中心”。
 3. Spring Boot 2.0与1.0有许多变化，并且只支持JDK 8及以上版本。
-4. Spring Boot 在应用程序里嵌入了一个Servlet容器（Tomcat、 Jetty或Undertow），可独立运行，无需部署到外部的Servlet容器中。
-5. Spring Boot 2.0还提供了支持响应式编程特性的容器（默认为Netty）， 因此，它就是一个jar包，可以直接使用java –jar命令来运行。
+4. Spring Boot 在应用程序里嵌入了一个Servlet容器(Tomcat、 Jetty或Undertow），可独立运行，无需部署到外部的Servlet容器中。
+5. Spring Boot 2.0还提供了支持响应式编程特性的容器(默认为Netty）， 因此，它就是一个jar包，可以直接使用java –jar命令来运行。
 6. Spring Boot提供了一整套工具，称为Spring Boot Actuator，可以用于
 监控Spring Boot应用程序运行的状态。
-7. Spring技术家族的其他成员（比如Spring MVC），基本上都针对Spring
+7. Spring技术家族的其他成员(比如Spring MVC），基本上都针对Spring
 Boot进行了调整或重写，并且增加了新的成员，比如Web Flux。
 8. Spring Boot还是Spring Cloud技术的基础，单个的微服务，可以使用Spring Boot来开发。
 9. 要学习Spring，从Spring Boot起步！

@@ -7,7 +7,7 @@
 
 ### Spring Data JPA
 
-JPA(Java Persistence API，Java持久化API，是定义了对象关系映射（ORM）以及实体对象持久化的标准接口，属于Java EE规范的组成部分。Hibernate从3.2版本开始就已经对JPA实现了完全的支持。
+JPA(Java Persistence API，Java持久化API，是定义了对象关系映射(ORM）以及实体对象持久化的标准接口，属于Java EE规范的组成部分。Hibernate从3.2版本开始就已经对JPA实现了完全的支持。
 
 Spring Data JPA是对Hibernate的再一层封装，提供了一组Repository接口，通过动态代理实现数据存取功能
 

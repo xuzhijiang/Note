@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // URL + HTTP method，唯一确定某控制器的某方法用于响应此HTTP请求。
 
 
-// 给类添加@Controller（或@RestController）注解， 表明这个
+// 给类添加@Controller(或@RestController）注解， 表明这个
 // 类是一个控制器， Spring IoC容器能自动识别@Controller注解
 // 并在合适的时候实例化它。
 @Controller

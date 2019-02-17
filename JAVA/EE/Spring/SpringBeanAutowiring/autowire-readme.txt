@@ -22,8 +22,8 @@ We recommend this in most cases as it makes documentation
 more explicit. Note that this default mode also allows for annotation-driven autowiring, if activated. 
 "no" refers to externally driven autowiring only, not affecting any autowiring demands that the bean 
 class itself expresses. 
-"no"是传统的Spring默认值。 没有自动接线。 必须在XML文件中 通过  <ref />元素（或“ref”属性）定义Bean引用。
-在大多数情况下，我们建议使用此文档更明确。 请注意，此默认模式还允许注释驱动的自动装配（如果已激活）。
+"no"是传统的Spring默认值。 没有自动接线。 必须在XML文件中 通过  <ref />元素(或“ref”属性）定义Bean引用。
+在大多数情况下，我们建议使用此文档更明确。 请注意，此默认模式还允许注释驱动的自动装配(如果已激活）。
 “否”仅指外部驱动的自动装配，不影bean class本身表达的 任何自动装配要求。
 
 
@@ -53,7 +53,7 @@ It can be shared through the 'default-autowire' attribute at the 'beans' level
 and potentially inherited from outer 'beans' defaults in case of nested 'beans' sections 
 (e.g. with different profiles).
 注意：子bean定义不会继承此属性。 因此，需要指定每个具体bean定义。 它可以通过'beans'级别的'default-autowire'属性共享
-在嵌套的'beans'部分的情况下可能从外部'beans'默认值继承（例如不同的简介）。
+在嵌套的'beans'部分的情况下可能从外部'beans'默认值继承(例如不同的简介）。
 
 Data Type : string
 Default Value : default

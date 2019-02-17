@@ -6,19 +6,25 @@
 	<class name="com.journaldev.hibernate.model.Customer" table="CUSTOMER">
 		<id name="id" type="long">
 			<column name="txn_id" />
+			<!--generator class =“foreign”是用于hibernate外键实现的重要部分。-->
 			<generator class="foreign">
 				<param name="property">txn</param>
 			</generator>
 		</id>
+
+		<!--要注意的重点是customer属性的hibernate一对一元素-->
 		<one-to-one name="txn" class="com.journaldev.hibernate.model.Txn"
-			constrained="true"></one-to-one>
+			constrained="true">
+		</one-to-one>
 			
 		<property name="name" type="string">
 			<column name="cust_name"></column>
 		</property>
+
 		<property name="email" type="string">
 			<column name="cust_email"></column>
 		</property>
+
 		<property name="address" type="string">
 			<column name="cust_address"></column>
 		</property>

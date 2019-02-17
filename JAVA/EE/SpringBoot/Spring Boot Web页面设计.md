@@ -24,9 +24,9 @@ Spring Boot提供了默认配置的模板引擎主要有以下几种：
 
 在传统的Spring Boot MVC项目中，需要在Server端使用特定的视图模板，基于这些模板“填空”以得到一张完整的HTML网页，再把它传回给浏览器。负责完成这一“填空” 工作的， 是“模板引擎”。
 
-Thymeleaf是Spring Boot Web项目可用的诸多视图引擎中的一种，Spring官方推荐使用它（而不是历史更为悠久的JSP）来编写视图模板。Thymeleaf是一个XML/XHTML/HTML5模板引擎，可用于Web与非Web环境中的应用开发。它是一个开源的Java库.
+Thymeleaf是Spring Boot Web项目可用的诸多视图引擎中的一种，Spring官方推荐使用它(而不是历史更为悠久的JSP）来编写视图模板。Thymeleaf是一个XML/XHTML/HTML5模板引擎，可用于Web与非Web环境中的应用开发。它是一个开源的Java库.
 
-Thymeleaf提供了一个用于整合Spring MVC的可选模块，在应用开发中，你可以使用Thymeleaf来完全代替JSP或其他模板引擎，如Velocity、FreeMarker等。Thymeleaf的主要目标在于提供一种可被浏览器正确显示的、格式良好的模板创建方式，因此也可以用作静态建模。你可以使用它创建经过验证的XML与HTML模板。相对于编写逻辑或代码，开发者只需将标签属性添加到模板中即可。接下来，这些标签属性就会在DOM（文档对象模型）上执行预先制定好的逻辑。
+Thymeleaf提供了一个用于整合Spring MVC的可选模块，在应用开发中，你可以使用Thymeleaf来完全代替JSP或其他模板引擎，如Velocity、FreeMarker等。Thymeleaf的主要目标在于提供一种可被浏览器正确显示的、格式良好的模板创建方式，因此也可以用作静态建模。你可以使用它创建经过验证的XML与HTML模板。相对于编写逻辑或代码，开发者只需将标签属性添加到模板中即可。接下来，这些标签属性就会在DOM(文档对象模型）上执行预先制定好的逻辑。
 
 示例模板：
 
@@ -49,7 +49,7 @@ Thymeleaf提供了一个用于整合Spring MVC的可选模块，在应用开发�
 
 >可以看到Thymeleaf主要以属性的方式加入到html标签中，浏览器在解析html时，当检查到没有的属性时候会忽略，所以Thymeleaf的模板可以通过浏览器直接打开展现，这样非常有利于前后端的分离。
 
-Thymeleaf提供了诸如循环、条件判断、样式处理等手段，可以方便地控制HTML代码的生成过程，既可以用于在Server端生成全部HTML页面的传统Web应用，也可用于开发“单页面应用（SPA： Single PageApplication）”类型的现代Web应用。
+Thymeleaf提供了诸如循环、条件判断、样式处理等手段，可以方便地控制HTML代码的生成过程，既可以用于在Server端生成全部HTML页面的传统Web应用，也可用于开发“单页面应用(SPA： Single PageApplication）”类型的现代Web应用。
 
 #### Thymeleaf的默认参数配置
 
@@ -78,7 +78,7 @@ spring.thymeleaf.suffix=.html  spring.thymeleaf.template-resolver-order= # Order
 
 #### Spring Boot MVC支持的视图引擎
 
-Spring Boot MVC支持多种视图模板引擎，能自动检测并配置好几种引擎。比较常用的（官方推荐）是Thymeleaf。
+Spring Boot MVC支持多种视图模板引擎，能自动检测并配置好几种引擎。比较常用的(官方推荐）是Thymeleaf。
 
 > 注意：在Spring早期Web项目中比较常见的JSP，Spring官方己经不再推荐在Spring
 Boot项目中使用。
@@ -117,13 +117,13 @@ Spring Boot将放置在以下文件夹中的文件视为静态资源文件，并
 
 ### WebJars基础
 
-现代网页设计，离不开各种各样的Web前端UI库。各种UI库通常都会包容多个文件（比如.css， .js，字体，图标等）。
+现代网页设计，离不开各种各样的Web前端UI库。各种UI库通常都会包容多个文件(比如.css， .js，字体，图标等）。
 
-Spring Boot支持一种被称为webjar的技术，将一些前端框架（比如Bootstrap）打包为单个文件， 从而在Thymeleaf模板中可以作为一个整体进行引用。
+Spring Boot支持一种被称为webjar的技术，将一些前端框架(比如Bootstrap）打包为单个文件， 从而在Thymeleaf模板中可以作为一个整体进行引用。
 
 使用WebJars打包的资源，其URL以“/webjars/”打头，也就是说，所有指向/webjars/的HTTP请求，都会被导向这个包中所包容的静态资源文件。
 
-#### 获取webjar的maven依赖（以Bootstrap为例）
+#### 获取webjar的maven依赖(以Bootstrap为例）
 
 要想在Spring Boot Web项目中使用诸如Bootstrap等前端框架，需要访问webjars或
 MavenRepository网站去搜索其Maven依赖声明。
@@ -152,6 +152,6 @@ MavenRepository网站去搜索其Maven依赖声明。
 
 本讲主要介绍了两种用于编写Spring Boot Web前端页面的技术，一个是Thymeleaf视图引擎，另一个是WebJars。
 
-只需要将静态Web资源（比如.html， .css， .js，图片）放到Spring Boot Web项目的指定文件夹下，就可以在Web页面中通过URL访问它们。
+只需要将静态Web资源(比如.html， .css， .js，图片）放到Spring Boot Web项目的指定文件夹下，就可以在Web页面中通过URL访问它们。
 
 本讲所介绍的技术仅仅只是一个入门，是进一步学习的基础和前提，但只要掌握好本讲所介绍的内容， 就己经足够让你开发出一个“单页面应用”。

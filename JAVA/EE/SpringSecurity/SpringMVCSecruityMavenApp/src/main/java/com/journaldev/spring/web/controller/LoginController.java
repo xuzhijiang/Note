@@ -10,10 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 //代码说明： - 我们在“LoginController”中定义了三种方法来处理三种不同类型的客户端请求
 
-//welcomePage（）将处理所有使用“/”URI的客户端请求。
-//homePage（）将处理使用“/homePage”URI的所有客户端请求。
-//loginPage（）将处理使用“/loginPage”URI的所有客户端请求。
-//在loginPage（）中，我们负责处理错误和注销消息。
+//welcomePage(）将处理所有使用“/”URI的客户端请求。
+//homePage(）将处理使用“/homePage”URI的所有客户端请求。
+//loginPage(）将处理使用“/loginPage”URI的所有客户端请求。
+//在loginPage(）中，我们负责处理错误和注销消息。
 @Controller
 public class LoginController {
 

@@ -10,7 +10,7 @@ RST: reset
 1. client通过向服务器端每个可能的端口发送一个SYN(synchronization) packet来主动发起连接请求，尝试和服务器的每个可能的端口建立TCP/IP连接, 作为三次握手的一部分。 客户端把这段连接的序号设定为随机数 A(seq=client_isn)。
 client  SYN=1，seq=client_isn    ---->          server
 
-2.  如果服务器使用来自特定端口的SYN/ACK（同步确认）数据包进行响应，ACK 的确认码应为 A+1()，SYN/ACK 包本身又有一个随机序号 B。则表示该端口已打开。(If the server responds with a SYN/ACK (synchronization acknowledged) packet from a particular port, it means the port is open.)
+2.  如果服务器使用来自特定端口的SYN/ACK(同步确认）数据包进行响应，ACK 的确认码应为 A+1()，SYN/ACK 包本身又有一个随机序号 B。则表示该端口已打开。(If the server responds with a SYN/ACK (synchronization acknowledged) packet from a particular port, it means the port is open.)
 client      <----  SYN=1，seq=server_isn,ack=client_isn+1      server
 
 3. 最后，客户端再发送一个ACK。当服务端受到这个ACK的时候，就完成了三路握手，并进入了连接创建状态。此时包序号seq被设定为收到的确认号A+1，而ack则为 B+1。

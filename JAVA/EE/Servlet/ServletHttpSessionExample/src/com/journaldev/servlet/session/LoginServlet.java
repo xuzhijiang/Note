@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 			
 			// Understanding JSESSIONID Cookie
 
-//			当我们使用HttpServletRequest的getSession（）方法的时候，它会创建一个新请求，
+//			当我们使用HttpServletRequest的getSession(）方法的时候，它会创建一个新请求，
 //			并且它会创建新的HttpSession对象，并将具有name是JSESSIONID，value是session id的
 //			Cookie添加到response object中，此cookie用于在将来的来自客户端的进一步请求中标识HttpSession对象。 
 

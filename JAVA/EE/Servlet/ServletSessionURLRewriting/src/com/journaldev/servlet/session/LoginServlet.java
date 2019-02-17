@@ -38,9 +38,9 @@ public class LoginServlet extends HttpServlet {
 			Cookie userName = new Cookie("user", user);
 			response.addCookie(userName);
 			
-			// 我们可以使用HttpServletResponse encodeURL（）方法对URL进行编码，
+			// 我们可以使用HttpServletResponse encodeURL(）方法对URL进行编码，
 			// 如果我们必须将请求重定向到另一个资源并且我们想要提供会话信息，
-			// 我们可以使用encodeRedirectURL（）方法。
+			// 我们可以使用encodeRedirectURL(）方法。
 			String encodedURL = response.encodeRedirectURL("LoginSuccess.jsp");
 			log("----------- encodedURL: " + encodedURL); // LoginSuccess.jsp;jsessionid=DDBB069A5B0CB7FE66F50B28637D8AFC
 			// 1. encodeRedirectURL: 对指定的URL进行编码以在sendRedirect方法中使用，
@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			
 			response.sendRedirect(encodedURL);
 			// 使用指定的重定向位置URL向客户端发送临时重定向响应并清除缓冲区。 
-			// 缓冲区将替换为此方法设置的数据。 调用此方法将状态代码设置为SC_FOUND 302（Found）。
+			// 缓冲区将替换为此方法设置的数据。 调用此方法将状态代码设置为SC_FOUND 302(Found）。
 			// 此方法可以接受相对URL;在将响应发送到客户端之前，servlet容器必须将相对URL转换为绝对URL。
 			// 如果位置是相对的而没有前导'/'，则容器将其解释为相对于当前请求URI。 如果该位置与前导'/'相对，
 			// 则容器将其解释为相对于servlet容器根。

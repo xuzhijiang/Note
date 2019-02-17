@@ -4,7 +4,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 // 我们的JSR-303规范验证器实现应该实现javax.validation.ConstraintValidator接口。 
-// 如果我们使用一些资源，比如DataSource，我们可以在initialize（）方法中初始化它们。
+// 如果我们使用一些资源，比如DataSource，我们可以在initialize(）方法中初始化它们。
 // 验证方法是isValid，如果数据有效则返回true，否则返回false。
 public class PhoneValidator implements ConstraintValidator<Phone, String> {
 

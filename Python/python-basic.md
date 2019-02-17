@@ -143,8 +143,8 @@ names, 如果没有定义__all__,就把__init__.py中的所有函数，变量，
 effects下定义的py文件)
 
 > 如果未定义__all__，则from sound.effects import *中的语句不会将包sound.effects
-中的所有子模块导入当前名称空间;它只确保已导入包sound.effects（可能在__init__.py中运行任何初始化代码），
-然后导入包中定义的任何名称。这包括__init__.py定义的任何名称（以及显式加载的子模块,也就是__init__中import语句加载的
+中的所有子模块导入当前名称空间;它只确保已导入包sound.effects(可能在__init__.py中运行任何初始化代码），
+然后导入包中定义的任何名称。这包括__init__.py定义的任何名称(以及显式加载的子模块,也就是__init__中import语句加载的
 模块）。它还包括由以前的import语句显式加载的包的任何子模块。考虑以下代码：
 
 ```shell

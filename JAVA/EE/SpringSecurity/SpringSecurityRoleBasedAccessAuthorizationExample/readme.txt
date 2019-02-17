@@ -8,7 +8,7 @@
 
 这个例子也是使用Spring 4 MVC Security with In-Memory Store和Spring Java Configuration Feature来开发应用程序。 这意味着我们不会使用web.xml文件，也不会编写一行Spring XML Configuration。
 
-我们将使用“In-Memory Store”选项来存储和管理User Credentials.（用户凭据）
+我们将使用“In-Memory Store”选项来存储和管理User Credentials.(用户凭据）
 
 我们将使用Spring 4.0.2.RELEASE，Spring STS 3.7 Suite IDE，带有Java 1.8的Spring TC Server 3.1和Maven构建工具来开发此示例
 

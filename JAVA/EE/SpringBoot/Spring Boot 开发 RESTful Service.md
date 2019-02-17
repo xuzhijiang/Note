@@ -23,7 +23,7 @@
 ### REST的由来
 
 REST这个词，是Roy Thomas Fielding在他2000年的博士论文中提出的。
-Fielding将他对互联网软件的架构原则，命名为“REST（Representational State Transfer）”。
+Fielding将他对互联网软件的架构原则，命名为“REST(Representational State Transfer）”。
 
 如果一个架构符合REST原则，就称它为“REST风格”架构。
 
@@ -40,19 +40,19 @@ Fielding将他对互联网软件的架构原则，命名为“REST（Representat
 
 ##### 状态转换
 
-* 资源可以创建（create）、访问（visit）、修改（update）和删除（delete）。
+* 资源可以创建(create）、访问(visit）、修改(update）和删除(delete）。
 * 状态转换过程基于HTTP协议所定义的method实现
 
 ### HTTP method定义了若干种资源访问方式
 
 HTTP method 			说明
-GET（VISIT） 	访问服务器资源（一个或者多个资源）。
-POST（CREATE） 	提交服务器资源信息，用来创建新的资源。
-PUT（UPDATE） 	修改服务器已经存在的资源，使用PUT时需要
+GET(VISIT） 	访问服务器资源(一个或者多个资源）。
+POST(CREATE） 	提交服务器资源信息，用来创建新的资源。
+PUT(UPDATE） 	修改服务器已经存在的资源，使用PUT时需要
 把资源的所有属性一并提交。
-PATCH（UPDATE）  修改服务器已经存在的资源，使用PATCH时只
+PATCH(UPDATE）  修改服务器已经存在的资源，使用PATCH时只
 需要将部分资源属性提交。
-DELETE（DELETE） 从服务器将资源删除。
+DELETE(DELETE） 从服务器将资源删除。
 HEAD 			获取资源的元数据。
 OPTIONS   		提供资源可供客户端修改的属性信息。
 
@@ -72,7 +72,7 @@ OPTIONS   		提供资源可供客户端修改的属性信息。
 ### 小结： RESTful Service的特点
 
 * 使用URL来标识可访问的Web资源。
-* 使用HTTP方法描述数据存取行为（即CRUD），使用HTTP状态码来表示不同的处理结果。
+* 使用HTTP方法描述数据存取行为(即CRUD），使用HTTP状态码来表示不同的处理结果。
 * 客户端与Web Server之间使用json作为数据交换标准。
 * RESTful只是一种风格，并不是强制的标准。
 

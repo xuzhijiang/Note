@@ -41,9 +41,9 @@ Spring Boot Starters是Spring Boot Framework的主要关键特性或组件之一
 
 如果我们想添加一些数据库内容，那么我们需要添加数据库相关的jar，如Spring JDBC jar文件，Spring ORM jar文件，Spring Transaction Jar文件等:
 
-5. Spring JDBC Jar文件（spring-jdbc-xx.jar）
-6. Spring ORM Jar文件（spring-orm-xx.jar）
-7. Spring Transaction Jar文件（spring-transaction-xx.jar）
+5. Spring JDBC Jar文件(spring-jdbc-xx.jar）
+6. Spring ORM Jar文件(spring-orm-xx.jar）
+7. Spring Transaction Jar文件(spring-transaction-xx.jar）
 
 我们需要在构建文件中定义很多依赖项。对于开发人员来说，这是非常繁琐和繁琐的任务。它还增加了我们的构建文件大小。
 
@@ -79,7 +79,7 @@ spring-boot-starter-web---|
 
 #### Spring Boot AutoConfigurator
 
-Spring Boot Framework的另一个重要关键组件是Spring Boot AutoConfigurator。大多数Spring IO平台（Spring Framework）批评者的观点是“开发基于Spring的应用程序需要大量配置（注释配置的XML配置）。那怎么解决这个问题呢。
+Spring Boot Framework的另一个重要关键组件是Spring Boot AutoConfigurator。大多数Spring IO平台(Spring Framework）批评者的观点是“开发基于Spring的应用程序需要大量配置(注释配置的XML配置）。那怎么解决这个问题呢。
 
 这个问题的解决方案是Spring Boot AutoConfigurator。 Spring Boot AutoConfigurator的主要职责是减少Spring配置。如果我们在Spring Boot中开发Spring应用程序，那么我们不需要定义单个XML配置，几乎没有或只有最小的Annotation配置。 Spring Boot AutoConfigurator组件将负责提供这些信息。
 
@@ -115,7 +115,7 @@ That is, @SpringBootApplication = @Configuration + @ComponentScan + @EnableAutoC
 
 #### Spring Boot CLI
 
-Spring Boot CLI（Command Line Interface-命令行界面）是一个Spring Boot软件，用于从命令提示符运行和测试Spring Boot应用程序。当我们使用CLI运行Spring Boot应用程序时，它在内部使用Spring Boot Starter和Spring Boot AutoConfigurate组件来解析所有依赖项并执行应用程序。
+Spring Boot CLI(Command Line Interface-命令行界面）是一个Spring Boot软件，用于从命令提示符运行和测试Spring Boot应用程序。当我们使用CLI运行Spring Boot应用程序时，它在内部使用Spring Boot Starter和Spring Boot AutoConfigurate组件来解析所有依赖项并执行应用程序。
 
 我们可以使用简单的Spring Boot CLI命令运行Spring Web应用程序。
 
@@ -148,11 +148,11 @@ Spring Boot Actuator组件提供了许多功能，但两个主要功能是：
 
 总是建议理解Spring Boot Framework如何减少构建的依赖性，Spring配置等.Spring Boot如何工作。
 
-如果您熟悉Groovy编程语言，那么您就知道了大部分内容。在Groovy中，我们不需要添加一些导入，也不需要为Groovy项目添加一些依赖项。当我们使用Groovy Compiler（groovyc）编译Groovy脚本时，它会自动添加所有默认的import语句然后编译它。
+如果您熟悉Groovy编程语言，那么您就知道了大部分内容。在Groovy中，我们不需要添加一些导入，也不需要为Groovy项目添加一些依赖项。当我们使用Groovy Compiler(groovyc）编译Groovy脚本时，它会自动添加所有默认的import语句然后编译它。
 
 同样，Groovy Programming语言包含一个JAR依赖关系解析器，用于解析并将所有必需的jar文件添加到Groovy Project classpath中。
 
-Spring Boot Framework在内部使用Groovy添加一些默认值，如Default import语句，Application main（）方法等。当我们从CLI命令提示符运行Groovy Scripts时，它使用此main（）方法运行Spring Boot Application
+Spring Boot Framework在内部使用Groovy添加一些默认值，如Default import语句，Application main(）方法等。当我们从CLI命令提示符运行Groovy Scripts时，它使用此main(）方法运行Spring Boot Application
 
 #### Grape-葡萄
 

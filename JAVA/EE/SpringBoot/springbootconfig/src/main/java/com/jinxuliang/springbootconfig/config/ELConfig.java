@@ -36,7 +36,7 @@ public class ELConfig {
     @Value("${book.name}")
     private String bookName;
 
-    //注入环境变量（会自动地从test.properties中提取数据）
+    //注入环境变量(会自动地从test.properties中提取数据）
     @Autowired
     Environment environment;
 

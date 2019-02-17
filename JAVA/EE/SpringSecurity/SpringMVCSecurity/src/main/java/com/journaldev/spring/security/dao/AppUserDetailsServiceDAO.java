@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 // UserDetailsService
 // 如果我们想要使用任何DAO类进行身份验证，
 // 我们需要实现UserDetailsService接口。
-// 配置DAO后，它的loadUserByUsername（）用于验证用户。
+// 配置DAO后，它的loadUserByUsername(）用于验证用户。
 
 // 请注意，我通过使用匿名内部类实现返回UserDetails实例。
  // 理想情况下，我们应该有一个UserDetails的实现类，

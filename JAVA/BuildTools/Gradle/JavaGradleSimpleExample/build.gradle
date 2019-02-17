@@ -105,7 +105,7 @@ jar {
 
 // 16. 为了创建war file:
 // Finally: MyJavaGradleProject-2.0.war
-// 我们可以将此war文件部署到任何Web或Application Server（如Tomcat，Weblogic等）中
+// 我们可以将此war文件部署到任何Web或Application Server(如Tomcat，Weblogic等）中
 // 或者我们可以使用“java -jar”命令运行它
 
 /*
@@ -159,7 +159,7 @@ dependencies {
 */
 
 // 22. 我们应该按照group，name然后是version的顺序来定义它们,
-// 我们需要使用冒号（:)运算符来分隔它们,而不是逗号（，）
+// 我们需要使用冒号(:)运算符来分隔它们,而不是逗号(，）
 
 /*
   dependencies {

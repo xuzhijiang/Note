@@ -3,7 +3,7 @@
 #### Jave web war包目录结构说明
 
 1. 如果需要第三方jar包，则会在WEB-INF(WEB INFormation)下创建一个lib文件夹，用于保存jar包。
-2. 在应用程序根目录（与WEB-INF同级）下，还可以创建子文件夹，比如js,css之类，用于保存各种Web资源
+2. 在应用程序根目录(与WEB-INF同级）下，还可以创建子文件夹，比如js,css之类，用于保存各种Web资源
 3. 放在应用程序目录下的任何资源，用户只要输入资源URL，都可以直接访问到。如果
 想让某一个资源可以被Servlet访问，但不可以被用户访问，那么就要把它放在WEB-INF目录下。
 4. 部署描述符总是命名为web.xml，并且放在WEB-INF目录下
@@ -75,7 +75,7 @@ jar文件目录结构如下：
 ### IntelliJ开发Web项目
 
 本文介绍如何使用IntelliJ IDEA开发传统的Java Web
-（即Servlet和JSP）项目的步骤与方法，掌握好它们，就可
+(即Servlet和JSP）项目的步骤与方法，掌握好它们，就可
 以使用IntelliJ来编写程序，深入地学习Java Web开发技
 术，同时，这些技能也为实际工作所需要，因此，掌握以下内容是很重要的。
 
@@ -116,7 +116,7 @@ jar文件目录结构如下：
 
 > Run -> Edit Configurations...
 
-> 在Run/Debug Configurations窗口中，默认情况下左边列表是空的（除
+> 在Run/Debug Configurations窗口中，默认情况下左边列表是空的(除
 非你以前创建过相应的配置），点击左上角“+”号，选择“Tomcat Server”，创建一个新的“Local(本地)” Tomcat Server配置。
 
 > 切换到Tomcat配置界面，点击Configure,点击左上角的+,在弹出的对话

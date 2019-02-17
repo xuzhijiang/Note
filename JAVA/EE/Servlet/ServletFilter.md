@@ -48,7 +48,7 @@ public interface Filter {
 	doFilter(ServletRequest paramServletRequest, ServletResponse paramServletResponse, FilterChain paramFilterChain)
 	
 	/**
-	* 当容器卸载Filter实例时，它会调用destroy（）方法,这是我们可以关闭过滤器打开的任何资源的方法。 此方法在过滤器的生命周期中仅调用一次。
+	* 当容器卸载Filter实例时，它会调用destroy(）方法,这是我们可以关闭过滤器打开的任何资源的方法。 此方法在过滤器的生命周期中仅调用一次。
 	*/
 	void destroy() 
 }

@@ -11,7 +11,7 @@ import com.journaldev.spring.security.config.LoginApplicationConfig;
 // 注意：-
 
 // 当我们访问我们的应用程序时，默认情况下SpringMVCWebAppInitializer
-//的getServletMappings（）将允许访问根URL：“/”。 我们可以覆盖转发到不同的URL。
+//的getServletMappings(）将允许访问根URL：“/”。 我们可以覆盖转发到不同的URL。
 
 // Spring或Pivotal团队正在通过引入注释来解决这个问题以避免这么多Java代码。 
 // 请访问https://jira.spring.io/browse/SPR-10359查看此信息。

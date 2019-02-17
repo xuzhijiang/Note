@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 // 编写一个简单的单元测试来模拟http请求
 
 // 使用MockServletContext来构建一个空的WebApplicationContext，
-// 这样我们的HelloController就可以在@Before函数中创建并传递到MockMvcBuilders.standaloneSetup（）函数中。
+// 这样我们的HelloController就可以在@Before函数中创建并传递到MockMvcBuilders.standaloneSetup(）函数中。
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MockServletContext.class)
 @WebAppConfiguration

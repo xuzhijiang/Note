@@ -47,7 +47,7 @@ public class FirstServlet extends HttpServlet {
 		out.println(HTML_START + "<h2>FirstServlet doGet called!</h2><br/><h3>Date="+date +"</h3>"+HTML_END);
 	}
 
-	// 因此，servlet用于生成HTML并将其作为响应发送，如果您将查看doGet（）实现，
+	// 因此，servlet用于生成HTML并将其作为响应发送，如果您将查看doGet(）实现，
 	// 我们实际上是在创建HTML文档时将其写入响应PrintWriter对象中，并且我们在需要它的地方添加动态信息。
 		
 	// 但如果响应很大，有很多动态数据，那么它很容易出错并且难以阅读和维护。 这是引入JSP的主要原因。

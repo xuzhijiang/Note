@@ -14,7 +14,7 @@ import com.journaldev.webapp.spring.dao.AppUserDetailsServiceDAO;
 // 我们可以实现WebSecurityConfigurer接口，
 // 或者我们可以extend the base实现类WebSecurityConfigurerAdapter并覆盖这些方法。
 
-// 请注意，我们通过覆盖configure（WebSecurity web）方法忽略所有HTML文件。
+// 请注意，我们通过覆盖configure(WebSecurity web）方法忽略所有HTML文件。
 
 // 该代码显示了如何插入JDBC身份验证。 
 // 我们需要通过提供DataSource来配置它。 由于我们使用自定义表，
@@ -27,7 +27,7 @@ import com.journaldev.webapp.spring.dao.AppUserDetailsServiceDAO;
 // 因此spring框架知道此类将用于spring安全性配置。
 
 // Spring Security Configuration使用Builder Pattern并基于authenticate方法，
-// 某些方法在稍后将无法使用。 例如，auth.userDetailsService（）
+// 某些方法在稍后将无法使用。 例如，auth.userDetailsService(）
 // 返回UserDetailsService的实例，然后我们就不能有任何其他选项，
 // 例如我们不能在它之后设置DataSource。
 

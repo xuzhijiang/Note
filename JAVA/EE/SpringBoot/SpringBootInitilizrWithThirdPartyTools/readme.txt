@@ -7,7 +7,7 @@
 
 ### Spring Boot Example with “curl” Tool
 
-“curl”是一个开源库和命令行工具，用于使用各种协议（如FTP，FTPS，HTTP，HTTPS，SMTP，POP3，LDAP等）传输数据。我们也可以使用此工具轻松地引导Spring Boot应用程序。
+“curl”是一个开源库和命令行工具，用于使用各种协议(如FTP，FTPS，HTTP，HTTPS，SMTP，POP3，LDAP等）传输数据。我们也可以使用此工具轻松地引导Spring Boot应用程序。
 
 “curl”官方网站可在以下网址获得：http：//curl.haxx.se/
 
@@ -55,7 +55,7 @@ curl http://start.spring.io/starter.zip -d dependencies=web,data-jpa,jms,ws
 
 这里我们使用“-d”选项指定参数。
 
-“-d type=gradle-project”表示创建Gradle项目。我们可以为Maven项目指定相同的方式：“-d type=maven-project”（它是“type”参数的默认值）。
+“-d type=gradle-project”表示创建Gradle项目。我们可以为Maven项目指定相同的方式：“-d type=maven-project”(它是“type”参数的默认值）。
 
 示例3： - 为Maven构建工具创建具有所需“依赖关系”和所需打包类型的Spring Boot项目
 
@@ -68,7 +68,7 @@ curl http://start.spring.io/starter.zip
 
 这里我们使用“-d”选项指定参数。
 
-“-d type=gradle-project”表示创建Gradle项目。 “type=maven-project”使用pom.xml文件创建Maven项目（它是“type”参数的默认值）。
+“-d type=gradle-project”表示创建Gradle项目。 “type=maven-project”使用pom.xml文件创建Maven项目(它是“type”参数的默认值）。
 
 它使用Spring MVC，Spring JDBC，Spring WS，带有AWS的Spring Cloud，H2数据库功能创建Mavenized项目。
 
@@ -91,7 +91,7 @@ curl http://start.spring.io/starter.zip
 	“-d javaVersion=1.7”选项用于指定Java版本，如1.7,1.8等。
 	“-d bootVersion=1.2.5.RELEASE”选项用于指定Spring Boot Framework版本，如1.2.5,1.3等。
 	“-d type=gradle-project”表示创建Gradle项目。
-	“type = maven-project”使用pom.xml文件创建Maven项目（它是“type”参数的默认值）。
+	“type = maven-project”使用pom.xml文件创建Maven项目(它是“type”参数的默认值）。
 	“-d dependencies=web，jdbc，ws，cloud-aws，h2”指定了我们的项目功能。
 	“-d packaging=war”选项指定包装类型为“war”。默认值为“jar”。它接受“pom，jar，war，ear，rar，par”
 
@@ -167,7 +167,7 @@ Httpie官方网站：https：//github.com/jkbrzt/httpie
 
 它创建了一个新的Spring Boot项目，默认设置如下：create project filename是“demo.zip”，Build工具是“Maven”。它采用System Variables的默认Java版本和Spring Boot Framework版本。
 
-示例2： - 创建Spring Boot WebAppilcation（war）项目具有Gradle构建工具所需的依赖项
+示例2： - 创建Spring Boot WebAppilcation(war）项目具有Gradle构建工具所需的依赖项
 
 
 python -m httpie https://start.spring.io/starter.zip 

@@ -5,7 +5,7 @@
 
 1, It is very efficient for small data sets.
 2, It is much less efficient on large lists than other sort algorithms.
-插入排序（Insertion Sort）算法是一个对少量元素进行排序的有效算法。
+插入排序(Insertion Sort）算法是一个对少量元素进行排序的有效算法。
 时间复杂度: O(n*2)
 
 是否稳定: 是

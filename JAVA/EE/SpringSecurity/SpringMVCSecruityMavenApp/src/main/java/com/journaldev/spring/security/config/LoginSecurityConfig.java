@@ -25,21 +25,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 //“LoginSecurityConfig”类或任何指定用于配置Spring Security的类，应extend 
 // “WebSecurityConfigurerAdapter”类或实现相关接口。
 
-//configureGlobal（）方法用于存储和管理用户凭据。
+//configureGlobal(）方法用于存储和管理用户凭据。
 
-//在configureGlobal（）方法中，我们可以使用authorities（）方法来
-// 定义我们的应用程序角色，如“ROLE_USER”。我们也可以将roles（）方法用于相同的目的。
+//在configureGlobal(）方法中，我们可以使用authorities(）方法来
+// 定义我们的应用程序角色，如“ROLE_USER”。我们也可以将roles(）方法用于相同的目的。
 
 
 
-//authority（）和roles（）方法之间的区别：
+//authority(）和roles(）方法之间的区别：
 
-//1. authorities（）需要完整的角色名称，如“ROLE_USER”
-//2. roles（）需要角色名称，如“USER”。它会自动将“ROLE_”值添加到此“USER”角色名称。
+//1. authorities(）需要完整的角色名称，如“ROLE_USER”
+//2. roles(）需要角色名称，如“USER”。它会自动将“ROLE_”值添加到此“USER”角色名称。
 
 //注意： - 在我即将发布的帖子中, 我们将开发另一个示例，演示“USER”，“ADMIN”等角色。
 
-// 负责“登录和注销”security的重要方法是configure（HttpSecurity http）
+// 负责“登录和注销”security的重要方法是configure(HttpSecurity http）
 
 // 以下代码用于避免未经授权访问“/homePage”。
 // 如果您尝试直接访问此页面，我们将自动重定向到“/loginPage”页面。
@@ -50,7 +50,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 // 如果我们删除 access(“hasRole(‘ROLE_USER’)” )方法调用，
 // 那么我们可以访问此页面而无需登录我们的应用程序。
 
-//我们使用formLogin（）和logout（）方法配置了登录和注销功能。
+//我们使用formLogin(）和logout(）方法配置了登录和注销功能。
 
 @Configuration
 @EnableWebSecurity

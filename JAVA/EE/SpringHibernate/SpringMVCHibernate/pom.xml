@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<!--
-		下面的一些依赖项是当我创建Spring MVC项目时由Spring Tool Suite（STS）包含的。 
+		下面的一些依赖项是当我创建Spring MVC项目时由Spring Tool Suite(STS）包含的。 
 
 		下面的重要依赖项是spring-context，spring-webmvc，spring-tx，
 		hibernate-core，hibernate-entitymanager和spring-orm。 

@@ -7,13 +7,13 @@ Spring MVC框架广泛用于java Web应用程序。
 
 ### STS(Spring Tool Suite)
 
-我们可以使用Eclipse或IntelliJ IDE进行Spring项目开发，但SpringSource提供Spring Tool Suite（STS），
+我们可以使用Eclipse或IntelliJ IDE进行Spring项目开发，但SpringSource提供Spring Tool Suite(STS），
 它是一个基于Eclipse的IDE，并带有内置的VMware vFabric tc Server，它构建在Apache Tomcat容器之上
 并进行了优化对于基于Spring的应用程序。
 
 我会将使用STS用于Spring MVC教程和其他未来的教程，因为它通过提供以下功能使开发人员的生活更轻松：
 
-1. 支持创建骨架Spring应用程序（MVC，Rest，Batch等），适合从头开始创建项目。
+1. 支持创建骨架Spring应用程序(MVC，Rest，Batch等），适合从头开始创建项目。
 我们很快就会在Spring MVC教程中看到创建Spring MVC项目是多么容易。
 
 2. 提供有用的功能，例如创建Spring配置文件，解析配置文件和类以提供有关它们的有用信息。
@@ -25,7 +25,7 @@ Spring MVC框架广泛用于java Web应用程序。
 5. 代码辅助不仅适用于类，还适用于配置文件，我非常喜欢这个功能，
 因为大多数时候我们需要知道我们可以使用什么以及它的细节。
 
-6. 通过AspectJ的集成，为面向方面编程（AOP）提供最佳支持。
+6. 通过AspectJ的集成，为面向方面编程(AOP）提供最佳支持。
 
 只需从STS官方下载页面下载STS并安装即可: “https://spring.io/tools3/sts/all”
 

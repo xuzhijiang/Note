@@ -75,9 +75,9 @@ create a symlink at /usr/bin/bar which references the original file /opt/foo
 sbin: The 's' in sbin means 'system'. Therefore, system binaries reside in sbin directories.
 
 /bin: /bin和/sbin,用于在mounted较大的分区例如/usr等分区之前需要的在小的分区上的程序，
-目前，它主要用作关键程序（如/bin/sh）的标准位置，以及需要在单用户模式下可用的基本命令二进制文件。
+目前，它主要用作关键程序(如/bin/sh）的标准位置，以及需要在单用户模式下可用的基本命令二进制文件。
 
-/sbin: /sbin，与/bin不同，用于mount /usr等分区之前所需的系统管理程序（普通用户通常不使用）,基本系统二进制文件(system bin),
+/sbin: /sbin，与/bin不同，用于mount /usr等分区之前所需的系统管理程序(普通用户通常不使用）,基本系统二进制文件(system bin),
 uperuser (root) privileges required.
 
 /usr/bin: 用于分发管理的普通用户程序。

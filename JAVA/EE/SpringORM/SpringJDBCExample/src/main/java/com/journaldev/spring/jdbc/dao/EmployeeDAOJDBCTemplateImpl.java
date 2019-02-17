@@ -32,11 +32,11 @@ import com.journaldev.spring.jdbc.model.Employee;
 //2. 没有与打开和关闭连接， statements or result set相关的代码。
 // 所有这些都是由Spring JdbcTemplate类内部处理的。
 
-//3. RowMapper匿名类实现 以便将ResultSet数据映射到queryForObject（）方法中的Employee bean对象。
+//3. RowMapper匿名类实现 以便将ResultSet数据映射到queryForObject(）方法中的Employee bean对象。
 
 // queryForList() method returns list of Map whereas Map contains the row 
 // data mapped with key as the column name and value from the database row matching the criteria.
-//4. queryForList（）方法返回Map列表，而Map包含使用key映射的行数据作为列名和匹配条件的数据库行中的值。
+//4. queryForList(）方法返回Map列表，而Map包含使用key映射的行数据作为列名和匹配条件的数据库行中的值。
 public class EmployeeDAOJDBCTemplateImpl implements EmployeeDAO {
 
 	private DataSource dataSource;

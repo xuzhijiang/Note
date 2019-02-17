@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /*
-1. HomeController被创建，定义一个home()方法，通过添加loginPage（）和login（）方法对它进行了一些扩展。
+1. HomeController被创建，定义一个home()方法，通过添加loginPage(）和login(）方法对它进行了一些扩展。
 */
 
 /**

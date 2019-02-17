@@ -18,7 +18,7 @@ print('\n>>>>>>>>>\n')
 dt = datetime(2018, 8, 17, 12, 20, 3, 400000)
 print(dt.timestamp())
 # Python的timestamp是一个浮点数,也就是unit is second
-# 某些编程语言（如Java和JavaScript）的timestamp使用整数表示毫秒数，也就是unit is millisecond
+# 某些编程语言(如Java和JavaScript）的timestamp使用整数表示毫秒数，也就是unit is millisecond
 # js: (new Date()).getTime()
 
 # timestamp转换为datetime

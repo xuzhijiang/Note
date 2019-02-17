@@ -22,7 +22,7 @@ public class ClientApplication {
 
 		// getBean(Class) method returns the Component object and
 		// uses the configuration for autowiring the objects.
-		// getBean（Class）方法返回Component组件对象，并使用该配置自动装配对象。
+		// getBean(Class）方法返回Component组件对象，并使用该配置自动装配对象。
 		MyApplication app = context.getBean(MyApplication.class);
 
 		app.processMessage("Hi xzj", "xzj@abc.com");

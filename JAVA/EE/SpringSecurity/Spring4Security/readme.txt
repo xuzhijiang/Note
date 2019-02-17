@@ -13,7 +13,7 @@
 * 学习曲线太多了
 * 不支持注释
 
-为了避免所有这些问题，Spring Team（Pivotal Team）将“Acegi Security”框架集成到Spring Framework中作为“Spring Security”模块。
+为了避免所有这些问题，Spring Team(Pivotal Team）将“Acegi Security”框架集成到Spring Framework中作为“Spring Security”模块。
 
 Spring 4 Framework具有以下模块，可为基于Spring的应用程序提供安全性：
 
@@ -45,13 +45,13 @@ Spring 3.x Security Framework提供以下功能：
 2. 支持BASIC，摘要和基于表单的身份验证(Supports BASIC,Digest and Form-Based Authentication.)
 3. 支持LDAP身份验证。
 4. 支持OpenID身份验证。
-5. 支持SSO（(Single Sign-On)单点登录）Implementation。
-6. 支持跨站请求伪造（CSRF-Cross-Site Request Forgery）Implementation。
+5. 支持SSO((Single Sign-On)单点登录）Implementation。
+6. 支持跨站请求伪造(CSRF-Cross-Site Request Forgery）Implementation。
 7. 通过HTTP Cookie支持“记住我”功能。
 8. 支持ACL的实现
 9. 支持“Channel Security通道安全”，这意味着在HTTP和HTTPS之间自动切换。
-10. 持I18N（国际化）。
-11. 支持JAAS（Java Authentication and Authorization Service-Java身份验证和授权服务）。
+10. 持I18N(国际化）。
+11. 支持JAAS(Java Authentication and Authorization Service-Java身份验证和授权服务）。
 12. 使用Spring WebFlow Framework支持流程授权(Flow Authorization)。
 13. 使用Spring Web Services支持WS-Security。
 14. 支持XML配置和注释。非常少或最小的XML配置。
@@ -69,7 +69,7 @@ Spring Security支持以下两个授权级别:
 1. 方法级别授权(Method Level Authorization)
 2. URL级别授权(URL Level Authorization)
 
-注意: Spring Security通过使用AOP（面向方面​​编程）来支持““Method Level Security- 方法级安全性”，这意味着通过Aspects。 Spring Security通过使用Servlet过滤器支持“URL Level Security- URL级别安全性”。
+注意: Spring Security通过使用AOP(面向方面​​编程）来支持““Method Level Security- 方法级安全性”，这意味着通过Aspects。 Spring Security通过使用Servlet过滤器支持“URL Level Security- URL级别安全性”。
 
 ### Spring 4安全优势
 
@@ -80,7 +80,7 @@ Spring 4安全框架提供以下优点：
 3. 声明性安全编程
 4. 易于扩展
 6. 易于维护
-6. 充分利用Spring DI（依赖注入）和AOP。
+6. 充分利用Spring DI(依赖注入）和AOP。
 7. 我们可以开发松散耦合的应用程序。
 
 ### Spring 4安全子模块

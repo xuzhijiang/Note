@@ -5,8 +5,8 @@ import java.util.logging.StreamHandler;
 
 /**
  *  我们可以向java logger中添加多个handlers，
- *  每当我们记录任何消息时，每个处理程序（handler）都会相应地处理它
- *  Java Logging API提供了两个默认处理程序（handler）。
+ *  每当我们记录任何消息时，每个处理程序(handler）都会相应地处理它
+ *  Java Logging API提供了两个默认处理程序(handler）。
  * 
  * ConsoleHandler： 此处理程序将所有日志消息写入控制台
  * FileHandler：此处理程序以XML格式将所有日志记录消息写入文件。

@@ -10,7 +10,7 @@ public class MySpringApp {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		//ctx.register(MyConfiguration.class);
 		ctx.register(MyConfiguration3.class);
-		// 还必须调用ctx.refresh（），否则当我们尝试从上下文中获
+		// 还必须调用ctx.refresh(），否则当我们尝试从上下文中获
 		// 取任何bean时，我们将得到以下错误:
 		// Exception in thread "main" java.lang.IllegalStateException:
 		// org.springframework.context.annotation.AnnotationConfigApplicationContext@f0f2775

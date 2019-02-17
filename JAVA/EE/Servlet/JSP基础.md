@@ -70,7 +70,7 @@ access: http://localhost:8080/implicitObjects.jsp
 指令属性名 说明
 import    定义一个或多个本页面中将被导入和使用的java类型。
 session   值为True，本页面加入会话管理；值为False则相反。
-buffer    以KB为单位，定义隐式对象out的缓冲大小。必须以KB后缀结尾。默认大小为8KB或更大（取决于JSP容器）。该值可以为none，这意味着没有缓冲，所有数据将直接写入PrintWriter。
+buffer    以KB为单位，定义隐式对象out的缓冲大小。必须以KB后缀结尾。默认大小为8KB或更大(取决于JSP容器）。该值可以为none，这意味着没有缓冲，所有数据将直接写入PrintWriter。
 autoFlush 默认值为True。若值为True，则当输出缓冲满时会自写入输出流。而值为False，则仅当调用隐式对象的flush方法时，才会写入输出流。因此，若缓冲溢出，则会抛出异常。
 isThreadSafe 定义该页面的线程安全级别
 info      返回调用容器生成的Servlet类的getServletInfo方法的结果

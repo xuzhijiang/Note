@@ -25,12 +25,12 @@ Spring Boot MVC是Spring技术家族中用于快速开发Web应用的一个框�
 
 Spring Boot MVC = Spring框架 + Servlet + JSP
 
-> 以上是Spring MVC的技术依赖关系（注：仅适用于Servlet技术栈）
+> 以上是Spring MVC的技术依赖关系(注：仅适用于Servlet技术栈）
 
 ### Spring Boot与Spring Boot MVC
 
 1. 早在Spring Boot之前， Spring MVC就己经存在。
-2. Spring Boot本质上不过是简化了原有Spring MVC应用的“启动（Boot）”和“配置（Config）”过程罢了，所以，“自动化”后的Spring MVC就被称为是“Spring Boot MVC”，不加Boot的，通常指传统的Spring MVC。
+2. Spring Boot本质上不过是简化了原有Spring MVC应用的“启动(Boot）”和“配置(Config）”过程罢了，所以，“自动化”后的Spring MVC就被称为是“Spring Boot MVC”，不加Boot的，通常指传统的Spring MVC。
 3. Spring Boot不是取代了早期的Spring MVC，而是对SpringFramework原有技术的改进和升级，与Spring MVC这种基于SpringFramework的上层应用框架不是一个层面上的东西。
 
 ### 了解一下Spring Boot MVC应用的分层架构图
@@ -39,11 +39,11 @@ Spring Boot MVC = Spring框架 + Servlet + JSP
 
 ### Spring MVC是如何响应HTTP请求的？
 
-要理解[Spring Boot MVC应用的分层架构图.png]，需要先掌握Java传统Web开发技术（Servlet），并且熟练掌握Spring Framework的基础知识
+要理解[Spring Boot MVC应用的分层架构图.png]，需要先掌握Java传统Web开发技术(Servlet），并且熟练掌握Spring Framework的基础知识
 
 ### 技术的当前进展
 
-1. 可以使用传统的Java Servlet实现Spring MVC的所有功能（适用于Spring Boot 2.0以前的版本）
+1. 可以使用传统的Java Servlet实现Spring MVC的所有功能(适用于Spring Boot 2.0以前的版本）
 2. 从Spring Boot 2.0开始， Spring Web开发技术进行了扩展和演化，现在同时支持传统的Servlet技术栈和新增的Reactive技术栈，现在两者都可以用于开发当前流行的“前后端分离”的Web应用，另外，后者更适合于开发微服务.
 
 ### 初识Spring Boot MVC
@@ -59,7 +59,7 @@ Spring Boot MVC = Spring框架 + Servlet + JSP
 5. 选择Web项目的可选功能模块(Template Engines)
 6. 选择Spring boot版本
 7. 开发Spring Web项目,Web依赖是必选的，如果要开发经典的MVC项目，视图引擎官方通常推荐选择Thymeleaf，如果要访问数据库，可以从SQL或NoSQL列表中选择相应
-的依赖（比如MySQL或MongoDB）。
+的依赖(比如MySQL或MongoDB）。
 8. 己选择的Web功能模块列在这里，必要时可以移除
 9. Finish之后， IntelliJ创建项目模板，并从网上下载Spring相关组件，第一次下载
 需要较长的时间，请耐心等待其完成。
@@ -104,7 +104,7 @@ access: localhost:8080
 Spring Boot项目主要有两种部署方式：
 
 1. 打包为war，然后部署到Tomcat这种外部的Servlet容器中。
-2. 构建一个“自包容”的jar包（称为Fat JAR），然后使用java -jar命令直接运行。 Fat JAR内嵌一个Tomcat容器，所以可以单独部署，独立运行。
+2. 构建一个“自包容”的jar包(称为Fat JAR），然后使用java -jar命令直接运行。 Fat JAR内嵌一个Tomcat容器，所以可以单独部署，独立运行。
 
 > 新项目推荐使用第2种方式。
 
@@ -126,7 +126,7 @@ access: localhost:8080/hello
 
 1. 在IntelliJ右部可以打开Maven面板，里面可以找到Maven的相应命令，比如package,鼠标双击直接运行之……
 2. 打包完成之后，在IntelliJ的Project视图中可以发现一个target文件夹，里面就有打包生成的jar文件。
-3. 部署到Tomcat:将Spring Boot Web项目部署到外部Servlet容器（比如Tomcat）中(war的形式)
+3. 部署到Tomcat:将Spring Boot Web项目部署到外部Servlet容器(比如Tomcat）中(war的形式)
 
 ### 小结
 
@@ -147,7 +147,7 @@ access: localhost:8080/hello
 
 1. 步骤一、修改打包方式打开pom.xml，将打包方式由jar改为war
 2. 步骤二、调整嵌入式Tomcat插件的编译方式,默认情况下， spring-boot-starter-web会启动一个嵌入式的tomcat，因为现在我们是要生成一个war包，跑在外部的tomcat上，
-所以，给项目添加一个tomcat依赖(spring-boot-starter-tomcat)，并将其scope设置为“provided（表明这些组件由外部容器提供）”从而覆盖掉默认设置。
+所以，给项目添加一个tomcat依赖(spring-boot-starter-tomcat)，并将其scope设置为“provided(表明这些组件由外部容器提供）”从而覆盖掉默认设置。
 3. 步骤三、修改启动类，并重写初始化方法(SpringMvcDemoApplication.java)
 4. 方法步骤四、使用Maven打包,打开IntelliJ的Maven面板，运行Maven的package命令……,复制文件,在IntelliJ项目的target文件夹下，可以找到war包，将其复制到tomcat的webapps文件夹下，为了方便，将文件名改为myweb.war启动Tomcat……访问localhost:8080(localhost:8080/myweb/index.html)
 5. 注意一下静态资源的路径问题。开发时使用的是localhost:8080，部署

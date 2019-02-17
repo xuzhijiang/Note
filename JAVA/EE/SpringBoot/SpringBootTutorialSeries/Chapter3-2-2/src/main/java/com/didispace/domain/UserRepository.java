@@ -16,8 +16,8 @@ import org.springframework.data.repository.query.Param;
  * 不再像我们以往编写了接口时候还需要自己编写接口实现类，直接减少了我们的文件清单
  *
  * 该接口继承自JpaRepository，通过查看JpaRepository接口的API文档，
- * 可以看到该接口本身已经实现了创建（save）、更新（save）、删除（delete）、
- * 查询（findAll、findOne）等基本操作的函数，因此对于这些基础操作的数据
+ * 可以看到该接口本身已经实现了创建(save）、更新(save）、删除(delete）、
+ * 查询(findAll、findOne）等基本操作的函数，因此对于这些基础操作的数据
  * 访问就不需要开发者再自己定义。
  *
  * 在我们实际开发中，JpaRepository接口定义的接口往往还不够或者性能不够优化，

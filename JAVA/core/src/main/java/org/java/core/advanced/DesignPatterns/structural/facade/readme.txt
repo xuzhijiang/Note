@@ -1,4 +1,4 @@
-Facade Design Pattern是结构设计模式之一（例如Adapter模式和Decorator模式）。
+Facade Design Pattern是结构设计模式之一(例如Adapter模式和Decorator模式）。
 Facade设计模式用于帮助client应用程序轻松与系统交互
 
 根据GoF,Facade的设计模式是:

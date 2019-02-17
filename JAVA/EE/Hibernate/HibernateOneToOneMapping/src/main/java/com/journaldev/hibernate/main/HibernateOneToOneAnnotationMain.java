@@ -69,12 +69,12 @@ public class HibernateOneToOneAnnotationMain {
 	private static Txn1 buildDemoTransaction() {
 		Txn1 txn = new Txn1();
 		txn.setDate(new Date());
-		txn.setTotal(100);
+		txn.setTotal(200);
 		
 		Customer1 cust = new Customer1();
 		cust.setAddress("San Jose, USA");
-		cust.setEmail("pankaj@yahoo.com");
-		cust.setName("Pankaj Kr");
+		cust.setEmail("xzj@yahoo.com");
+		cust.setName("xzj");
 		
 		txn.setCustomer(cust);
 		

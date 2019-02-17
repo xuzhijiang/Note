@@ -27,7 +27,7 @@ Spring团队在“http://start.spring.io/”上为Spring Boot Initilizr提供了
 
 ### Spring Boot Initilizr Web界面Maven示例
 
-请按照以下步骤为Maven Build工具和Spring STS Suite IDE（或任何IDE，如Eclipse，IntelliJ IDEA等）创建新的Spring Boot WebApplication：
+请按照以下步骤为Maven Build工具和Spring STS Suite IDE(或任何IDE，如Eclipse，IntelliJ IDEA等）创建新的Spring Boot WebApplication：
 
 1. 访问“http://start.spring.io/”上的Spring Boot Initilizr。
 2. 提供我们的项目所需的详细信息，然后单击“Generate Project”按钮
@@ -97,7 +97,7 @@ Data中勾选： JPA
 Database中勾选：H2    
 ```
 
-注意： - 这里与以前的Maven项目的区别仅在于将“类型”从“Maven项目”更改为“Gradle项目”。像这样我们可以选择Java版本，选择语言（Java，Groovy），必需的项目技术等，并且非常容易地创建新项目。
+注意： - 这里与以前的Maven项目的区别仅在于将“类型”从“Maven项目”更改为“Gradle项目”。像这样我们可以选择Java版本，选择语言(Java，Groovy），必需的项目技术等，并且非常容易地创建新项目。
 
 * 当我们单击“生成项目”按钮时，它会创建Gradle项目并将其作为“SpringMVCGradleProject.zip”文件下载到我们的本地文件系统中。
 * 将“SpringMVCGradleProject.zip”复制到我们的Spring STS Suite工作区并解压缩此zip文件
@@ -106,4 +106,4 @@ Database中勾选：H2
 
 这是关于使用Web界面的Spring Boot Initilizr。
 
-我们将讨论Java源代码，“SpringApplication”类的重要性及其“SpringApplication.run（）”方法，如何运行此应用程序等在我后面的帖子“Spring Boot Initilizr With IDEs or IDE Plugins”, “Spring Boot Initilizr With Spring Boot CLI” and “Spring Boot Initilizr With ThirdParty Tools”。
+我们将讨论Java源代码，“SpringApplication”类的重要性及其“SpringApplication.run(）”方法，如何运行此应用程序等在我后面的帖子“Spring Boot Initilizr With IDEs or IDE Plugins”, “Spring Boot Initilizr With Spring Boot CLI” and “Spring Boot Initilizr With ThirdParty Tools”。

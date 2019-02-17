@@ -6,7 +6,7 @@
 		Spring JDBC Maven依赖项
 		
 		我们需要以下依赖项 -  spring-core，spring-context，spring-jdbc和postgresql。
-		 如果您使用任何其他关系数据库（如MySQL），则添加相应的java驱动程序依赖项
+		 如果您使用任何其他关系数据库(如MySQL），则添加相应的java驱动程序依赖项
 	-->
 	
 	<modelVersion>4.0.0</modelVersion>

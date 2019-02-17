@@ -74,8 +74,8 @@ public class HibernateOneToOneMain {
 		
 		Customer cust = new Customer();
 		cust.setAddress("Bangalore, India");
-		cust.setEmail("pankaj@gmail.com");
-		cust.setName("Pankaj Kumar");
+		cust.setEmail("xzj@gmail.com");
+		cust.setName("xuzhijiang");
 		
 		txn.setCustomer(cust);
 		

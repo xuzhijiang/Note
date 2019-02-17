@@ -9,8 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-// @SpringBootApplication会通知Spring，启动一个组件扫描（Component Scan），查找所有使用相
-// 关注解的类（比如@Component、 @Configuration等），并将它们注册为可实例化的Bean。
+// @SpringBootApplication会通知Spring，启动一个组件扫描(Component Scan），查找所有使用相
+// 关注解的类(比如@Component、 @Configuration等），并将它们注册为可实例化的Bean。
 @SpringBootApplication
 public class DependencyInjectApplication {
 

@@ -45,7 +45,7 @@ public class DemoApplication {
 // 过去和现在等价
 ```
 
-Spring Boot的配置原理: 在一个Spring Boot应用中，可以编写多个配置类（使用
+Spring Boot的配置原理: 在一个Spring Boot应用中，可以编写多个配置类(使用
 @configuration标识），之后， Spring Boot会将其汇集起来，构建出一个完整
 的运行时环境。
 
@@ -88,7 +88,7 @@ xml配置，例如：
 
 左图展示了Spring Boot项目中如何从外部资源文件中读入数据，读取环境变量等相关技巧，基本上涵盖了日常开发中可能用到的各种场景。
 
-### 强类型的配置方式（自动创建配置对象）
+### 强类型的配置方式(自动创建配置对象）
 
 通过@ConfigurationProperties加载properties文件内的配置，通过prefix属性指定
 properties的配置的前缀，必要时，也可以通过locations指定properties文件的位置，例如：
@@ -138,7 +138,7 @@ public class ProdBean implements IProfileBean {
 
 ### 引入XML配置Bean
 
-尽管Spring Boot建议使用注解和扫描配置Bean，但是同样地，它并不拒绝使用XML配置Bean，因为有些框架（如Dubbo）是基于Spring的XML方式进行开发的。
+尽管Spring Boot建议使用注解和扫描配置Bean，但是同样地，它并不拒绝使用XML配置Bean，因为有些框架(如Dubbo）是基于Spring的XML方式进行开发的。
 
 这时，我们可以在Spring配置类中使用@ImportResource注解将放在外部XML配置文件中的Bean设置也一并导入，如下所示：
 

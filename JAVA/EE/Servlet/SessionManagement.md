@@ -7,7 +7,7 @@ HTTP协议和Web服务器是无状态的，这意味着对于Web服务器而言�
 
 但有时在Web应用程序中，我们应该知道客户端是谁并相应地处理请求。 例如，购物车应用程序应该知道谁正在发送添加项目的请求以及在哪个购物车中添加项目或者谁正在发送结账请求，以便它可以向正确的客户收取金额。
 
-由于HTTP和Web Server都是无状态的，因此维持会话的唯一方法是：在服务器和客户端之间的每个请求和响应中传递关于当前session（session ID）的唯一信息。
+由于HTTP和Web Server都是无状态的，因此维持会话的唯一方法是：在服务器和客户端之间的每个请求和响应中传递关于当前session(session ID）的唯一信息。
 
 我们可以通过以下方式在请求和响应中提供唯一标识符(unique identifier)：
 
@@ -32,25 +32,25 @@ Servlet API通过HttpSession接口提供Session management.
 我们可以使用以下方法从HttpServletRequest对象获取session。
 HttpSession允许我们将对象设置为可在将来的请求中检索的属性。
 
-HttpSession getSession（） - 此方法始终返回HttpSession对象。它返回随请求附加的会话对象，如果请求没有附加会话，则它创建一个新会话并返回它。
+HttpSession getSession(） - 此方法始终返回HttpSession对象。它返回随请求附加的会话对象，如果请求没有附加会话，则它创建一个新会话并返回它。
 
-HttpSession getSession（boolean flag） - 如果请求有session，则此方法返回HttpSession对象，否则返回null。
+HttpSession getSession(boolean flag） - 如果请求有session，则此方法返回HttpSession对象，否则返回null。
 
 HttpSession的一些重要方法是：
 
-    1. String getId（） - 返回包含分配给此会话的唯一标识符的字符串。
+    1. String getId(） - 返回包含分配给此会话的唯一标识符的字符串。
 
-    2. Object getAttribute（String name） - 返回在此会话中使用指定名称绑定的对象，如果名称下没有绑定任何对象，则返回null。使用Session属性的其他一些方法是getAttributeNames（），removeAttribute（String name）和setAttribute（String name，Object value）。
+    2. Object getAttribute(String name） - 返回在此会话中使用指定名称绑定的对象，如果名称下没有绑定任何对象，则返回null。使用Session属性的其他一些方法是getAttributeNames(），removeAttribute(String name）和setAttribute(String name，Object value）。
 
-    3. long getCreationTime（） - 返回创建此会话的时间，以格林威治标准时间1970年1月1日午夜以来的毫秒数为单位。我们可以使用getLastAccessedTime（）方法获取上次访问的时间。
+    3. long getCreationTime(） - 返回创建此会话的时间，以格林威治标准时间1970年1月1日午夜以来的毫秒数为单位。我们可以使用getLastAccessedTime(）方法获取上次访问的时间。
 
-    4. setMaxInactiveInterval（int interval） - 指定servlet容器使此会话失效之前的客户端请求之间的时间（以秒为单位）。我们可以从getMaxInactiveInterval（）方法获取会话超时值。
+    4. setMaxInactiveInterval(int interval） - 指定servlet容器使此会话失效之前的客户端请求之间的时间(以秒为单位）。我们可以从getMaxInactiveInterval(）方法获取会话超时值。
 
-    5. ServletContext getServletContext（） - 返回应用程序的ServletContext对象。
+    5. ServletContext getServletContext(） - 返回应用程序的ServletContext对象。
 
-    6. boolean isNew（） - 如果客户端还不知道会话或客户端选择不加入会话，则返回true。
+    6. boolean isNew(） - 如果客户端还不知道会话或客户端选择不加入会话，则返回true。
 
-    7. void invalidate（） - 使此会话无效，然后取消绑定绑定到它的任何对象。
+    7. void invalidate(） - 使此会话无效，然后取消绑定绑定到它的任何对象。
 
 Session Management in Java Servlet – URL Rewriting
 

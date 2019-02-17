@@ -14,7 +14,7 @@ import com.journaldev.spring.service.EmployeeService;
 
 4. 员工姓名打印为“xzj”，因为它是在post-init方法中初始化的。(参照MyEmployeeService)
 
-5. 当上下文被关闭时，bean按照它们被初始化的相反顺序被销毁，即以LIFO（后进先出）顺序。
+5. 当上下文被关闭时，bean按照它们被初始化的相反顺序被销毁，即以LIFO(后进先出）顺序。
 
 */
 

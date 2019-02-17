@@ -56,7 +56,7 @@ public class MyServiceController {
 
 
     // 分页功能的实现:
-    // Spring MVC提供了一个Page接口（归属于org.springframework.data.domain），
+    // Spring MVC提供了一个Page接口(归属于org.springframework.data.domain），
     // 只需要给其传入size， page和sort参数值，
     //其实方法得到的是一个PageRequest对象，其成员见下：
 
@@ -64,7 +64,7 @@ public class MyServiceController {
     //示例的分页参数：
     //1. 每页显示10条记录
     // 2. 显示第2页
-    // 3. 按照年龄降序显示（desc）
+    // 3. 按照年龄降序显示(desc）
 
     // 控制器方法就能得到其值。
     @GetMapping("/page")

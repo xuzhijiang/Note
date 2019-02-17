@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.*;
 import java.util.Date;
 
-// Java为数据校验定义了规范（JSR-303），主要体现为“一堆”的注解。
+// Java为数据校验定义了规范(JSR-303），主要体现为“一堆”的注解。
 
 // 下面展示了一些常用的注解，把这些注解附加在类的字段上，
 // 表明这些字段需要满足相应的约束条件

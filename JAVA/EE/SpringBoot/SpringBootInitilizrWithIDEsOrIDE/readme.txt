@@ -21,7 +21,7 @@ Spring Boot CLI提供了一个“spring init”命令来引导Spring Application
 
 #### “spring init” command
 
-“spring init”命令是Spring Boot CLI Component中易于使用的命令。它使用“https://start.spring.io”托管的“Spring Initilizr服务”（默认情况下，我们也可以指定目标URL。我们将在下一节讨论这个。）使用Spring Boot CLI组件来引导Spring或Spring Boot应用程序。
+“spring init”命令是Spring Boot CLI Component中易于使用的命令。它使用“https://start.spring.io”托管的“Spring Initilizr服务”(默认情况下，我们也可以指定目标URL。我们将在下一节讨论这个。）使用Spring Boot CLI组件来引导Spring或Spring Boot应用程序。
 
 #### “spring init” syntax
 
@@ -89,7 +89,7 @@ spring init -d=web,data-jpa,jms,ws --build=gradle -p=war SpringMVCGradleToolProj
 它为Gradle构建工具创建了一个解压缩的Spring Boot WebApplication，其中包含JPA，JMS和WS功能。
 
 	a. “-d”选项意味着我们可以用逗号分隔符列出所有必需的功能
-	b. “-build”选项指定必需的构建工具。它接受两个值：maven（默认）和gradle。
+	b. “-build”选项指定必需的构建工具。它接受两个值：maven(默认）和gradle。
 	c. “SpringMVCGradleToolProject”是在当前工作目录中创建的项目名称。
 	d. “-p”或“-packaging”选项指定包装类型。默认值为“jar”。
 
@@ -100,7 +100,7 @@ spring init -d=web,jdbc,ws,cloud-aws,h2 --build=maven --packaging=war SpringMVCM
 它为Maven构建工具创建了一个带有JDBC，AWS Cloud和WS功能的打包Spring Boot WebApplication。
 
 	a. “-d”选项意味着我们可以用逗号分隔的值列出所有必需的功能。
-	b. “-build”选项指定必需的构建工具。它接受两个值：maven（默认）和gradle。
+	b. “-build”选项指定必需的构建工具。它接受两个值：maven(默认）和gradle。
 	c. “SpringMVCMavenToolProject”是在当前工作目录中创建的项目名称。
 	d. “-p”或“-packaging”选项指定包装类型。默认值为“jar”。它接受“pom，jar，war，ear，rar，par”
 
@@ -117,7 +117,7 @@ spring init -d=web,jdbc,ws,cloud-aws,h2 --build=maven --java-version=1.7 --boot-
 	a. “-j”或“-java-version”选项用于指定Java版本，如1.7,1.8等。
 	b. “-b”或“-boot-version”选项用于指定Spring Boot Framework版本，如1.2.5.RELEASE，1.3.0.M1等
 	c. “-d”选项意味着我们可以用逗号分隔符列出所有必需的功能。
-	d. “-build”选项指定必需的构建工具。它接受两个值：maven（默认）和gradle。
+	d. “-build”选项指定必需的构建工具。它接受两个值：maven(默认）和gradle。
 	e. “SpringMVCMavenToolProject”是在当前工作目录中创建的项目名称。
 	f. “-p”或“-packaging”选项指定包装类型。默认值为“jar”。它接受“pom，jar，war，ear，rar，par”
 
@@ -128,7 +128,7 @@ spring init -d=web,jdbc,ws,cloud-aws,h2 --build=maven --java-version=1.7 --boot-
 
 注意：-
 
-我们可以提取使用“spring init”命令创建的zip文件，并将这些项目导入我们最喜欢的Spring IDE（例如： -  Spring STS Suite），并继续开发我们的项目相关需求。
+我们可以提取使用“spring init”命令创建的zip文件，并将这些项目导入我们最喜欢的Spring IDE(例如： -  Spring STS Suite），并继续开发我们的项目相关需求。
 
 以下部分列出了受支持的构建选项:
 

@@ -3,7 +3,7 @@
 JSP标准标签库(JavaServer Pages Standard Tag Library， JSTL)是一个定制标签库的集合，用来解决像遍历Map或集合、条件测试、 XML处理，
 甚至数据库访问和数据操作等常见的问题.
 
-JSTL目前的最新版本是1.2，这是由JSR-52专家组在JCP（www.jcp.org）上
+JSTL目前的最新版本是1.2，这是由JSR-52专家组在JCP(www.jcp.org）上
 定义的，在java.net网站上可以下载：http://jstl.java.net
 其中， “JSTL API”和“JSTL实现”这两个软件是必需下载的。
 

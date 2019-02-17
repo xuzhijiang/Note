@@ -23,7 +23,7 @@ org.springframework.orm.hibernate3.HibernateTransactionManager
 事务应该仅在所有JDBC语句成功执行时提交，否则应该回滚以避免数据不一致。
 
 如果您了解JDBC事务管理，您可能会认为我们可以通过为connection 设置auto-commit为false
-并根据所有语句的结果（提交或回滚事务）轻松完成。显然我们可以做到，但这会产生很多boiler-plate代码，仅用于transaction management。
+并根据所有语句的结果(提交或回滚事务）轻松完成。显然我们可以做到，但这会产生很多boiler-plate代码，仅用于transaction management。
 此外，相同的代码将出现在我们正在寻找事务管理的所有位置，从而导致紧密耦合和不可维护的代码。
 
 Spring声明式事务管理通过使用Aspect Oriented Programming来实现松散耦合并

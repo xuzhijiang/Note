@@ -23,8 +23,8 @@ public class MVCDemoController {
     public String index(HttpServletRequest request) {
         return "url:" + request.getRequestURL() + " can access";
     }
-    // @ResponseBody附加于控制器方法之上，通知Spring依据HTTP请求信息（即
-    //accept值）选择合适的转换器（converter）转换数据（比如转为Json）传给客
+    // @ResponseBody附加于控制器方法之上，通知Spring依据HTTP请求信息(即
+    //accept值）选择合适的转换器(converter）转换数据(比如转为Json）传给客
     //户端。
 
 
@@ -82,9 +82,9 @@ public class MVCDemoController {
     // 使用查询字串填充对象:
 
     // Spring MVC可以将查询字符值提取出来，自动创建一个数据对象并给其赋值。
-    // 这一特性称为“模型绑定（Model Bind） ”。
+    // 这一特性称为“模型绑定(Model Bind） ”。
 
-    // "模型绑定（Model Bind）”同样支持POST请求，
+    // "模型绑定(Model Bind）”同样支持POST请求，
     // 此时是从HTTP请求消息的body中提取数据填充对象。
 
     //使用查询字符串传送对象：/obj?name=jxl&id=100
@@ -97,7 +97,7 @@ public class MVCDemoController {
 
 
     //传递JSON
-    //在移动互联应用中，客户端（手机App， Web前端应用）通常都是采用Json格
+    //在移动互联应用中，客户端(手机App， Web前端应用）通常都是采用Json格
     //式向服务端提交请求， Spring MVC提供了相应的功能能把Json字符串直接转
     //换为Java对象。
 
@@ -112,7 +112,7 @@ public class MVCDemoController {
         return "未能从HTTP请求中提取信息创建DemoObject对象";
     }
     // 另一个类似的@RequestBody，附加于控制器方法参数之前，
-    // 通知Spring将客户端发来的数据（从HTTP请求的body中提取）转换为Java对象。
+    // 通知Spring将客户端发来的数据(从HTTP请求的body中提取）转换为Java对象。
     // 注意一下本例中@RequestBody这个注解不可少。
 
 
@@ -130,7 +130,7 @@ public class MVCDemoController {
     // 在默认配置下，如果控制器的方法return了一个对象， Spring MVC会将
     //其序列化为一个Json字符串再返回给客户端(@ResponseBody注解的功劳)。
 
-    //注意上述代码中的@ResponseBody注解不可省（因为此方法所在控制
+    //注意上述代码中的@ResponseBody注解不可省(因为此方法所在控制
     //器为@Controller，而不是@RestController），否则，字符串会
     //被当成Thymeleaf的视图文件名，导致一个异常对象被抛出。
 

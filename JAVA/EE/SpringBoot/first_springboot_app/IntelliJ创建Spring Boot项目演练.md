@@ -6,7 +6,7 @@
 
 >使用命令行: Spring Boot CLI
 
-CLI（command line interface）是一种非常常见的项目创建方式，有时，它被称为“脚手架”，在Web前端项目（比如Angular、 Vue和React）中大量应用。
+CLI(command line interface）是一种非常常见的项目创建方式，有时，它被称为“脚手架”，在Web前端项目(比如Angular、 Vue和React）中大量应用。
 
 不管是使用命令行还是IDE， 本质上都是通过一个名为Spring Initializr的Web应
 用来构建一个Spring Boot项目框架的。

@@ -14,7 +14,7 @@ Spring Interceptor用于拦截客户端请求并处理它们。
 
 Spring HandlerInterceptor根据我们想在哪里拦截HTTP请求声明三种方法：
 
-1. boolean preHandle（HttpServletRequest request，HttpServletResponse response，Object handler）:
+1. boolean preHandle(HttpServletRequest request，HttpServletResponse response，Object handler）:
 此方法用于在请求移交给处理程序方法(handler method)之前拦截请求。
 
 	a. 这个方法应该返回'true'让Spring知道通过另一个Spring拦截器处理请求，
@@ -27,7 +27,7 @@ Spring HandlerInterceptor根据我们想在哪里拦截HTTP请求声明三种方
 	Object handler是处理请求(handle the request)的选定处理程序对象(handler object )。
 	此方法也可以抛出异常，在这种情况下，Spring MVC异常处理应该很有用, 它会将错误页面作为响应发送。
 
-2. void postHandle（HttpServletRequest request，HttpServletResponse response，
+2. void postHandle(HttpServletRequest request，HttpServletResponse response，
 Object handler，ModelAndView modelAndView）：
 
 	a. 当HandlerAdapter已经调用the handler(处理程序)但DispatcherServlet
@@ -37,14 +37,14 @@ Object handler，ModelAndView modelAndView）：
 	b. 我们可以使用这个spring拦截器方法来确定处理程序方法处理客户端请求所花费的时间(the time taken
 	by handler method to process the client request)。
 	
-3. void afterCompletion（HttpServletRequest request，HttpServletResponse response，
+3. void afterCompletion(HttpServletRequest request，HttpServletResponse response，
 Object handler，Exception ex）：
 
 	a. 这是一个HandlerInterceptor回调方法，在执行处理程序(the handler is executed,
 	and view is rendered)并渲染视图时调用一次该方法。
 	
-如果配置了多个spring interceptors，则按配置顺序执行preHandle（）方法，
-而以相反顺序(in the reverse order)调用postHandle（）和afterCompletion（）方法。
+如果配置了多个spring interceptors，则按配置顺序执行preHandle(）方法，
+而以相反顺序(in the reverse order)调用postHandle(）和afterCompletion(）方法。
 
 让我们创建一个简单的Spring MVC应用程序，我们将配置一个Spring Interceptor来记录控制器处理程序方法的时序。
 

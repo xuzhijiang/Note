@@ -1,4 +1,4 @@
-Spring Boot是Pivotal Team（The Spring Team）的一个全新项目。它是在现有Spring Framework之上开发的框架。
+Spring Boot是Pivotal Team(The Spring Team）的一个全新项目。它是在现有Spring Framework之上开发的框架。
 
 ### Spring Boot教程
 
@@ -11,7 +11,7 @@ Spring Boot是一个来自“Spring Team”的框架，用于简化新Spring应�
 
 #### 什么不是Spring Boot？
 
-Spring Boot Framework并非由Spring Team从头开始实现，而不是在现有的Spring Framework（Spring IO Platform）之上实现。
+Spring Boot Framework并非由Spring Team从头开始实现，而不是在现有的Spring Framework(Spring IO Platform）之上实现。
 它不用于解决任何新问题。它用于解决类似Spring Framework的问题。
 
 #### 为什么选择Spring Boot？
@@ -30,7 +30,7 @@ Spring Boot Framework并非由Spring Team从头开始实现，而不是在现有
 * 将Spring Boot Application与Spring生态系统中的Spring JDBC，Spring ORM，Spring Data，Spring Security等集成在一起非常容易。
 * 它遵循“Opinionated Defaults Configuration”方法来减少开发人员的工作量
 * 它提供了嵌入式HTTP服务器，如Tomcat，Jetty等，可以非常轻松地开发和测试我们的Web应用程序。
-* 它提供了CLI（Command Line Interface - 命令行界面）工具，可以非常轻松快速地从命令提示符开发和测试Spring Boot（Java或Groovy）应用程序。
+* 它提供了CLI(Command Line Interface - 命令行界面）工具，可以非常轻松快速地从命令提示符开发和测试Spring Boot(Java或Groovy）应用程序。
 * 它提供了许多插件，可以使用Maven和Gradle等构建工具轻松地开发和测试Spring Boot应用程序
 * 它提供了许多插件，可以非常轻松地使用嵌入式和内存数据库。
 
@@ -39,7 +39,7 @@ In Simple Terminology, What Spring Boot means
 
 Spring Boot =  Spring Framework + Embedded HTTP Servers(Tomcat,Jetty) - XML <bean> Configuration or @Configuration
 
-这意味着Spring Boot只是现有的Spring Framework + 一些嵌入式HTTP服务器（Tomcat/Jetty等）- XML或Annotations配置。
+这意味着Spring Boot只是现有的Spring Framework + 一些嵌入式HTTP服务器(Tomcat/Jetty等）- XML或Annotations配置。
 
 这里减去意味着我们不需要编写任何XML配置和少量注释。
 
@@ -48,7 +48,7 @@ Spring Boot =  Spring Framework + Embedded HTTP Servers(Tomcat,Jetty) - XML <bea
 Spring Boot Framework的主要目标是减少开发，单元测试和集成测试时间，并且与现有的Spring框架相比，可以非常轻松地简化生产就绪Web的应用程序的开发，而现有的Spring框架确实需要更多时间:
 
 1. 完全避免XML配置
-2. 避免定义更多注释配置（它将一些现有的Spring Framework注释组合到一个简单的单个注释中）
+2. 避免定义更多注释配置(它将一些现有的Spring Framework注释组合到一个简单的单个注释中）
 3. 避免编写大量的import语句
 4. 提供一些默认值，以便在短时间内快速启动新项目。
 5. 提供意见发展方法(To provide Opinionated Development approach.)
@@ -60,7 +60,7 @@ Spring Boot Framework的主要目标是减少开发，单元测试和集成测�
 Spring Boot Framework有一个限制。
 将现有或传统的Spring Framework项目转换为Spring Boot应用程序是一个耗时的过程，但我们可以将各种项目转换为Spring Boot应用程序。使用Spring Boot创建全新/Greenfield项目非常容易。
 
-要启动Opinionated方法来创建Spring Boot应用程序，Spring Team（Pivotal Team）提供了以下三种方法:
+要启动Opinionated方法来创建Spring Boot应用程序，Spring Team(Pivotal Team）提供了以下三种方法:
 
 1. 使用Spring Boot CLI工具
 2. 使用Spring STS IDE
@@ -76,7 +76,7 @@ Spring Boot Framework有一个限制。
 我们可以使用Spring Boot CLI或Spring STS IDE或Spring Initializr Website来开发Spring Boot Groovy应用程序。
 但是，我们可以使用Spring STS IDE或Spring Initializr Website来开发Spring Boot Java应用程序。
 
-无论如何(Anyhow)，与Java几乎类似,Groovy也是一种JVM语言。我们可以将Groovy和Java结合到一个Project中。因为像Java文件一样，Groovy文件最终只能编译成*.class文件。 * .groovy和*.java文件都转换为*.class文件（相同的字节代码格式）：
+无论如何(Anyhow)，与Java几乎类似,Groovy也是一种JVM语言。我们可以将Groovy和Java结合到一个Project中。因为像Java文件一样，Groovy文件最终只能编译成*.class文件。 * .groovy和*.java文件都转换为*.class文件(相同的字节代码格式）：
 
 Groovy(*.groovy) -----> 
                     Compiler (javac or groovyc) -----> *.class files(Byte Code)

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// 请注意，我提供了doGet（）和doPost（）方法的实现，以便它可以处理GET和POST请求
+// 请注意，我提供了doGet(）和doPost(）方法的实现，以便它可以处理GET和POST请求
 // 
 @WebServlet("/AppExceptionHandler")
 public class AppExceptionHandler extends HttpServlet {

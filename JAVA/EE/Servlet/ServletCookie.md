@@ -35,22 +35,22 @@ Servlet API通过实现Serializable和Cloneable接口的javax.servlet.http.Cooki
 
 HttpServletRequest getCookies()方法是为了从request中获取Cookie数组，因为没有必要把Cookie添加到request中，没有方法可以设置或添加cookie到request。
 
-提供了HttpServletResponse addCookie（Cookie c）方法来在响应头中附加cookie，
+提供了HttpServletResponse addCookie(Cookie c）方法来在响应头中附加cookie，
 没有用于cookie的getter方法.
 
 Cookie类有一个带有name和value的构造函数，因为它们是cookie的必需参数，所有其他参数都是可选的。
 
 ### Some important methods of Cookie class are:
 
-1. getComment（） - 返回描述此cookie用途的注释，在客户端使用。请注意，当客户端在请求标头中发送cookie时，服务器不会收到此信息。我们可以使用setComment（）方法在服务器端设置cookie描述。
-2. getDomain（） - 返回cookie的域名。我们可以使用setDomain（）方法设置cookie的域名，
+1. getComment(） - 返回描述此cookie用途的注释，在客户端使用。请注意，当客户端在请求标头中发送cookie时，服务器不会收到此信息。我们可以使用setComment(）方法在服务器端设置cookie描述。
+2. getDomain(） - 返回cookie的域名。我们可以使用setDomain(）方法设置cookie的域名，
 如果设置了域名，则cookie将仅发送给该特定域请求。
-3. getMaxAge（） - 以秒为单位返回最大年龄。我们可以使用setMaxAge（）来设置cookie的到期时间。
-4. getName（） - 返回cookie的名称，可以在浏览器和服务器端使用。名称没有setter，我们只能通过构造函数设置一次名称。
-5. getPath（） - 返回浏览器返回此cookie的服务器上的路径。我们将看到它的示例，其中cookie将仅发送到特定资源。
-我们可以使用setPath（）来指示浏览器仅将cookie发送到特定资源。
-6. getSecure（） - 如果浏览器仅通过安全协议发送cookie，则返回true;如果浏览器可以使用任何协议发送cookie，
-则返回false。我们可以使用setSecure（）方法指示浏览器仅通过安全协议发送cookie。
-7. getValue（） - 以String的形式返回cookie的值。还有setValue（）方法来更改cookie的值。
-8. getVersion（） - 返回此cookie符合的协议版本。还有一个版本的setter方法。
-9. isHttpOnly（） - 检查此Cookie是否已标记为HttpOnly。还有一个setter方法，我们可以使用它来指示客户端仅将其用于HTTP。
+3. getMaxAge(） - 以秒为单位返回最大年龄。我们可以使用setMaxAge(）来设置cookie的到期时间。
+4. getName(） - 返回cookie的名称，可以在浏览器和服务器端使用。名称没有setter，我们只能通过构造函数设置一次名称。
+5. getPath(） - 返回浏览器返回此cookie的服务器上的路径。我们将看到它的示例，其中cookie将仅发送到特定资源。
+我们可以使用setPath(）来指示浏览器仅将cookie发送到特定资源。
+6. getSecure(） - 如果浏览器仅通过安全协议发送cookie，则返回true;如果浏览器可以使用任何协议发送cookie，
+则返回false。我们可以使用setSecure(）方法指示浏览器仅通过安全协议发送cookie。
+7. getValue(） - 以String的形式返回cookie的值。还有setValue(）方法来更改cookie的值。
+8. getVersion(） - 返回此cookie符合的协议版本。还有一个版本的setter方法。
+9. isHttpOnly(） - 检查此Cookie是否已标记为HttpOnly。还有一个setter方法，我们可以使用它来指示客户端仅将其用于HTTP。

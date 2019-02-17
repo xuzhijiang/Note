@@ -66,7 +66,7 @@ class ForkJoinMergeSort extends RecursiveAction {
         if (last - first < 10000) {
             sort(array, tmp, first, last);
         } else {
-            //2. 当排序项大于10000时，将数组分成两部分（由框架根据条件自动递归分解，直到项数少于10000为止）
+            //2. 当排序项大于10000时，将数组分成两部分(由框架根据条件自动递归分解，直到项数少于10000为止）
             int middle = (first + last) / 2;
             ForkJoinMergeSort t1 = new ForkJoinMergeSort(array, tmp, first, middle);
             ForkJoinMergeSort t2 = new ForkJoinMergeSort(array, tmp, middle + 1, last);

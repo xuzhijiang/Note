@@ -2,9 +2,9 @@
 
 ### 什么是Spring Boot CLI？
 
-Spring Boot CLI（命令行界面）是一个Spring Boot软件，用于从命令提示符运行和测试Spring Boot应用程序。当我们使用CLI运行Spring Boot应用程序时，它在内部使用Spring Boot Starter和Spring Boot AutoConfigurate组件来解析所有依赖项并执行应用程序。
+Spring Boot CLI(命令行界面）是一个Spring Boot软件，用于从命令提示符运行和测试Spring Boot应用程序。当我们使用CLI运行Spring Boot应用程序时，它在内部使用Spring Boot Starter和Spring Boot AutoConfigurate组件来解析所有依赖项并执行应用程序。
 
-它内部包含Groovy和Grape（JAR依赖管理器）以添加Spring Boot Defaults并自动解析所有依赖项。
+它内部包含Groovy和Grape(JAR依赖管理器）以添加Spring Boot Defaults并自动解析所有依赖项。
 
 我们将在Windows环境中讨论CLI安装，CLI Setup和CLI命令。它也与其他环境几乎相似。
 
@@ -12,7 +12,7 @@ Spring Boot CLI（命令行界面）是一个Spring Boot软件，用于从命令
 
 我们可以使用Windows Installer或Zip文件安装Spring Boot CLI软件。这两种方法都易于安装，并且将为我们提供相同的Spring Boot CLI软件。我们将使用使用Zip文件的简单方法。我们将使用Spring Boot最新版本：1.2.3.RELEASE
 
-我们可以在http://start.spring.io/下载Spring Boot CLI软件（它是一个Spring Initilizr Web Interface。我们将在后续帖子中详细讨论这个组件。）
+我们可以在http://start.spring.io/下载Spring Boot CLI软件(它是一个Spring Initilizr Web Interface。我们将在后续帖子中详细讨论这个组件。）
 
 请按照以下步骤在Windows环境中安装和设置Spring Boot CLI软件:
 
@@ -106,12 +106,12 @@ class HelloWorld {
 5. No build scripts to create our Application war file
 6. No need to build war file to deploy this application
 
-答安:由Spring Boot Core Components，Groovy Compiler（groovyc）和Groovy Grape（Groovy的JAR Dependency Manager）负责。
+答安:由Spring Boot Core Components，Groovy Compiler(groovyc）和Groovy Grape(Groovy的JAR Dependency Manager）负责。
 
-Spring Boot Components使用Groovy Compiler和Groovy Grape提供一些Defaults lime添加所需的导入，提供所需的配置，解决jar依赖，添加main（）方法等。作为Spring Boot Developer，我们不需要担心所有这些事情。 Spring Boot Framework将为我们处理所有这些事情。
+Spring Boot Components使用Groovy Compiler和Groovy Grape提供一些Defaults lime添加所需的导入，提供所需的配置，解决jar依赖，添加main(）方法等。作为Spring Boot Developer，我们不需要担心所有这些事情。 Spring Boot Framework将为我们处理所有这些事情。
 
 这就是Spring Boot Framework的魅力所在。
 
 通过这种方式，Spring Boot框架避免了大量的样板代码和Spring配置，缩短了开发时间并提高了生产率。
 
-这里我们没有讨论Spring Boot Annotations，Spring Boot API，Spring Boot应用程序中main（）方法的用法等等。我们将在使用Spring Boot IDE的帖子中回答所有这些问题。
+这里我们没有讨论Spring Boot Annotations，Spring Boot API，Spring Boot应用程序中main(）方法的用法等等。我们将在使用Spring Boot IDE的帖子中回答所有这些问题。

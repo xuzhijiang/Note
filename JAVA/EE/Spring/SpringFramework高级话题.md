@@ -14,7 +14,7 @@
 #### Spring 的应用程序事件
 
 1. 当一个Bean处理完一个任务之后，如果希望另外一个Bean知道并能做相应的处理，这时我们就需要让另外一个Bean监听当前Bean所发送的事件
-2. Spring的事件（ApplicationEvent）为Bean与Bean之间的消息通信提供了支持。
+2. Spring的事件(ApplicationEvent）为Bean与Bean之间的消息通信提供了支持。
 
 #### Spring Bean事件驱动编程步骤：
 
@@ -53,7 +53,7 @@ SpringAware的目的是为了让Bean获得Spring容器的服务。因为Applicat
 
 ### Spring异步调用
 
-1. Spring通过任务执行器（TaskExecutor）来实现多线程和并发编程。
+1. Spring通过任务执行器(TaskExecutor）来实现多线程和并发编程。
 2. 使用ThreadPoolTaskExecutor可实现一个基于线程池的TaskExecutor。
 3. 需要在配置类中通过@EnableAsync开启对异步任务的支持，并通过在实际执行的Bean的方法中使用@Async注解来声明其是一个异步任务.
 

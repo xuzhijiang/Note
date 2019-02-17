@@ -17,7 +17,7 @@ public class User {
     private int age;
     private String gender;
 
-    //使用@JsonView给字段加上标识，让其归属于特定的接口（即“组”）
+    //使用@JsonView给字段加上标识，让其归属于特定的接口(即“组”）
     @JsonView({UserSimpleView.class,UserDetailView.class})
     public int getId() {
         return id;

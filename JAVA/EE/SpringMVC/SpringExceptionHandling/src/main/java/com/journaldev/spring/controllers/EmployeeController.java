@@ -20,7 +20,7 @@ import com.journaldev.spring.model.Employee;
 /*
  
 	请注意，对于EmployeeNotFoundException处理程序，我返回ModelAndView，
-	因此http状态代码将被发送为OK（200）。 如果它将返回void，那么http状态代码将被发送为404.
+	因此http状态代码将被发送为OK(200）。 如果它将返回void，那么http状态代码将被发送为404.
 	我们将在我们的 global exception handler implementation中研究这种类型的实现。
 	
 	由于我只在控制器中处理EmployeeNotFoundException，
@@ -75,7 +75,7 @@ public class EmployeeController {
 
 //	我们的应用程序已经配置了所有JSON依赖项和jsonMessageConverter，我们需要实现异常处理程序方法。
 
-//	为简单起见，我将重写EmployeeController handleEmployeeNotFoundException（）方法以返回JSON响应。
+//	为简单起见，我将重写EmployeeController handleEmployeeNotFoundException(）方法以返回JSON响应。
 
 //	只需使用以下代码更新EmployeeController异常处理程序方法，然后再次部署应用程序。
 	

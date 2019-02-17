@@ -126,7 +126,7 @@ var add = new Function('a, b', 'return a + b');//我们通过new Function()
 //构造函数来创建一个函数，这时可以明显看出函数是对象：
 alert(add(1, 3));//4
 //在这段代码中，毫无疑问add()是一个对象，因为它是由构造函数创建的。这里并不推荐使用Function()
-//构造函数来创建函数（和eval()一样糟糕）
+//构造函数来创建函数(和eval()一样糟糕）
 
 alert(add.name);//anonymous
 

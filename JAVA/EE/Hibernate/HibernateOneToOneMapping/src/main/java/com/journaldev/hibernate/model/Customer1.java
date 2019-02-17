@@ -11,10 +11,14 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+// use JPA and Hibernate annotation
+// 请注意，大多数注释都来自Java Persistence API，因为Hibernate提供了它的实现。
+// 但是对于级联，我们需要使用Hibernate的注释:org.hibernate.annotations.Cascade
 @Entity
 @Table(name="CUSTOMER")
 public class Customer1 {
 
+	//请注意，我们需要使用@GenericGenerator，以便从txn使用id而不是生成它。
 	@Id
 	@Column(name="txn_id", unique=true, nullable=false)
 	@GeneratedValue(generator="gen")

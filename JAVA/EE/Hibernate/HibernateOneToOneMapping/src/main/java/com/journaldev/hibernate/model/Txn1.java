@@ -35,6 +35,7 @@ public class Txn1 {
 	public String toString(){
 		return id+", "+total+", "+customer.getName()+", "+customer.getEmail()+", "+customer.getAddress();
 	}
+
 	public long getId() {
 		return id;
 	}

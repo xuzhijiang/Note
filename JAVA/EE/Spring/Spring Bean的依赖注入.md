@@ -6,13 +6,13 @@
 
 一个对象通常需要“依赖”其他对象所提供的各种服务。在实际开发中，这通常是使用对象组合来实现的。
 
-要实现对象组合，就必须创建出所有用到的对象，然后依据它们之间的依赖关系将它们关联起来。比如A用到B，就要new出A和B两个对象，再让A对象关联上B对象（通常是让A对象的某个字段引用B对象）。
+要实现对象组合，就必须创建出所有用到的对象，然后依据它们之间的依赖关系将它们关联起来。比如A用到B，就要new出A和B两个对象，再让A对象关联上B对象(通常是让A对象的某个字段引用B对象）。
 
-依赖注入”指的是不让对象本身自己解决自己的依赖（即自己new出自己所需要的对象），而是让一个专门的外部对象（称为IoC容器）创建好相关对象，再将它们提供（即“注入”）给需要用到它的对象，比如， IoC容器发现A“依赖”于B，于是它在new A时，自动new一个B对象，并且设置A的相应字段引用这个B对象，这样一来， A对象自己就不需写代码去创建B对象了。
+依赖注入”指的是不让对象本身自己解决自己的依赖(即自己new出自己所需要的对象），而是让一个专门的外部对象(称为IoC容器）创建好相关对象，再将它们提供(即“注入”）给需要用到它的对象，比如， IoC容器发现A“依赖”于B，于是它在new A时，自动new一个B对象，并且设置A的相应字段引用这个B对象，这样一来， A对象自己就不需写代码去创建B对象了。
 
 ### 理解“IoC”与“DI”间的关系
 
-“控制反转（IoC： Inversion of Control）”和“依赖注入（DI：Dependency Injection）” ， 前者是特性（即：我只管用，便不负责创建和管理对象，这事由外部负责），后者是技术实现手段（即：IOC这个特性，具体应该怎样用Java实现呢？答案是用依赖注入实现. ）。
+“控制反转(IoC： Inversion of Control）”和“依赖注入(DI：Dependency Injection）” ， 前者是特性(即：我只管用，便不负责创建和管理对象，这事由外部负责），后者是技术实现手段(即：IOC这个特性，具体应该怎样用Java实现呢？答案是用依赖注入实现. ）。
 
 > 简单地说： 控制反转是通过依赖注入实现的
 
@@ -27,7 +27,7 @@ Spring中把每一个需要管理的对象称为Spring Bean(简称Bean),而Sprin
 
 #### Spring IoC容器图解
 
-容器是Spring框架的核心。 SpringIoC容器（即ApplicationContext对象） 负责创建Bean，并通过容器将功能类Bean注入到需要它的其他Bean中.
+容器是Spring框架的核心。 SpringIoC容器(即ApplicationContext对象） 负责创建Bean，并通过容器将功能类Bean注入到需要它的其他Bean中.
 
 外界通过IoC容器获取Bean实例的两种方式
 
@@ -52,7 +52,7 @@ ApplicationContext实现了N多的接口，并且派生出了若干个子类，�
 
 ### Spring容器的工作原理
 
-通过在Bean上附加一些注解（annotation,例如@Configuration，@ComponentScan），Spring Container就知道了哪些Bean可以用，以及它们之间的依赖关系是什么样的，从而可以实现Bean的装配.
+通过在Bean上附加一些注解(annotation,例如@Configuration，@ComponentScan），Spring Container就知道了哪些Bean可以用，以及它们之间的依赖关系是什么样的，从而可以实现Bean的装配.
 
 #### 使用ApplicationContext编程获取Bean对象
 
@@ -61,13 +61,13 @@ Application Context       <-------------------      外部对象
                           ------------------->      
                                 Bean
 
-> 当某外部对象需要某个Bean来辅助它完成特定的工作时，它就把Bean的名字告诉IoC容器（Application.getBean方法），然后IoC容器就把创建好的Bean“发回”给需求者。
+> 当某外部对象需要某个Bean来辅助它完成特定的工作时，它就把Bean的名字告诉IoC容器(Application.getBean方法），然后IoC容器就把创建好的Bean“发回”给需求者。
 
 #### 用于声明Bean的注解：
 
 * @Component组件，没有明确的角色，通常用于定义普通的没有特殊含义的Bean。
 * @Service在业务逻辑层(service层)使用,通常用于标识那些包容了“业务逻辑(business logic)”的Bean。
-* @Repository:表示带注释的类是“存储库(Repository)”,此注释用作@Component的特化，并且建议与DAO类一起使用(advisable to use with DAO classes.),在数据访问层（dao层）使用， 通常用于标识那些包容了数据存取（Data Access）代码的Bean
+* @Repository:表示带注释的类是“存储库(Repository)”,此注释用作@Component的特化，并且建议与DAO类一起使用(advisable to use with DAO classes.),在数据访问层(dao层）使用， 通常用于标识那些包容了数据存取(Data Access）代码的Bean
 * @Controller在展现层使用，它即Spring MVC中的控制器。
 
 > @Service和@Repository都派生自@Component,但没有添加任何的特性,@Controller也派生自@Component。
@@ -141,8 +141,8 @@ Spring的IoC容器才能识别它,即在@Configuration注解修饰的类中的�
 
 #### Bean的实例化
 
-@SpringBootApplication会通知Spring，启动一个组件扫描（Component Scan），查找所有使用相
-关注解的类（比如@Component、 @Configuration等），并将它们注册为可实例化的Bean。
+@SpringBootApplication会通知Spring，启动一个组件扫描(Component Scan），查找所有使用相
+关注解的类(比如@Component、 @Configuration等），并将它们注册为可实例化的Bean。
 
 #### 使用@Value初始化字段值
 
@@ -189,7 +189,7 @@ public class CustomerService {
 
 > 可以通过@Autowired的required属性为false(@Autowired(required = false))定义一个可选的注入
 
-#### 普通（无注解）的组合对象的注入
+#### 普通(无注解）的组合对象的注入
 
 #### @ComponentScan
 

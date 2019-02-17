@@ -13,7 +13,7 @@ ServletResponse隐藏了向浏览器发送响应的复杂过程。
 ### ServletResponse interface
 
 servlet使用ServletResponse接口向客户端发送响应。 
-Servlet容器创建ServletResponse对象并将其传递给servlet service（）方法，
+Servlet容器创建ServletResponse对象并将其传递给servlet service(）方法，
 然后使用response object为客户端生成HTML响应。
 
 ```java

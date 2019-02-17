@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Scope;
 
 // 让我们定义spring配置类，我们将定义从Spring容器中获取MyBean实例的方法。
 
-// 请注意，singleton是默认范围，因此我们可以从下面的bean定义中删除@Scope（value =“singleton”）。
+// 请注意，singleton是默认范围，因此我们可以从下面的bean定义中删除@Scope(value =“singleton”）。
 @Configuration
 public class MyConfiguration {
 	

@@ -66,7 +66,7 @@ true or false,都必须是小写的，大写会变为标识符
 2.var dog = new Object();
 ```
 
-### Null（这是一种类型）
+### Null(这是一种类型）
 
     类型说明:
     值： null(只有一个值)
@@ -125,7 +125,7 @@ new String('str') === 'str'; // false
 
 如果我们在使用Number、Boolean和String时，没有写new会发生什么情况？
 
-此时，Number()、Boolean和String()被当做普通函数，把任何类型的数据转换为number、boolean和string类型（注意不是其包装类型）：
+此时，Number()、Boolean和String()被当做普通函数，把任何类型的数据转换为number、boolean和string类型(注意不是其包装类型）：
 
 ```javascript
 var n = Number('123'); // 123，相当于parseInt()或parseFloat()
@@ -284,7 +284,7 @@ a = (b=2, c=3, 4==4);//a最后的值是true，也就是4==4的结果
 逗号运算符，之前所有的运算表达式都会执行，但整个语句的值是最后一个表达式的值
 
 数字型直接量和字符串直接量要看Number和String原型链上有多少构造方法就知道了
-所有的直接量用.（点号）去调用某一个方法的时候，js运行环境会将这个直接量转换成对应的对象类型，来调用对象类型的方法。
+所有的直接量用.(点号）去调用某一个方法的时候，js运行环境会将这个直接量转换成对应的对象类型，来调用对象类型的方法。
 
 if语句:系统会把括号中的result强制的转换成boolean值来判断, 由于 && 的功能：
 如果前面的表达式的隐式转换为boolean的结果是false，那么后面的都不会计算了，直接为false

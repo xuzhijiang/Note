@@ -14,7 +14,7 @@
 		hibernate-entitymanager依赖于hibernate-core，这就是为什么我们不必将hibernate-core明确地放在pom.xml中。
 		5. 我们还需要一个JDBC驱动程序作为 “Hibernate使用的” 数据库访问 依赖项。 
 		在这个例子中，我们使用了包含JDBC驱动程序的hsqldb，并且在本例中也使用了内存数据库。
-		 （如果要使用外部数据库，则必须将其更改为该db的JDBC驱动程序，
+		 (如果要使用外部数据库，则必须将其更改为该db的JDBC驱动程序，
 		 fe：PostgreSQL或mysql-connector-java maven依赖项。）
 	-->
 

@@ -1,8 +1,8 @@
 ### Tomcat
 
-在最新的Spring Boot项目中，Tomcat己经被嵌入到了Spring Boot项目中，无需单独安装，而Servlet（甚至包括JSP），都仍然在Spring Boot项目中可用。
+在最新的Spring Boot项目中，Tomcat己经被嵌入到了Spring Boot项目中，无需单独安装，而Servlet(甚至包括JSP），都仍然在Spring Boot项目中可用。
 
-Tomcat是Java平台著名的一个Servlet容器（也是一个
+Tomcat是Java平台著名的一个Servlet容器(也是一个
 Web Server）， 在实际开发中得到了广泛的应用。
 Tomcat、 Jetty是一个Servlet容器，但不是Java EE容器.
 

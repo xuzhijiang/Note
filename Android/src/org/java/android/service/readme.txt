@@ -1,8 +1,8 @@
 Service是一种应用程序的组件，可以在后台执行长时间运行的操作
-（can perform long-running operations in the backgound.）
+(can perform long-running operations in the backgound.）
 但不提供用户界面。另一个应用程序组件可以启动服务，即使用户切换到另一个应用程序，
 它也将继续在后台运行。此外，组件可以绑定到服务以与其交互，甚至可以执行进程间通信
-（IPC-inter-process communication）。
+(IPC-inter-process communication）。
 例如，服务可以从后台处理网络事务，播放音乐，执行文件I / O或与内容提供者交互,以及任何和
 UI没有关联的处理的时候会被使用.
 
@@ -12,15 +12,15 @@ Started A service is "started" when an application component
 启动的服务执行单个操作，并且不会将结果返回给调用者。例如，
 它可能通过网络下载或上载文件。操作完成后，服务应自行停止。
 
-当组件通过调用bindService（）绑定到Service，Service被“绑定”。
-绑定服务提供客户端 - 服务器接口，允许组件与Service交互，发送请求，获取结果，甚至跨进程通信（IPC）进程。
+当组件通过调用bindService(）绑定到Service，Service被“绑定”。
+绑定服务提供客户端 - 服务器接口，允许组件与Service交互，发送请求，获取结果，甚至跨进程通信(IPC）进程。
 只要绑定了另一个应用程序组件，绑定服务就会运行。多个组件可以绑定到服务，但是当所有组件解除绑定时，服务将被销毁。
 
 警告：A service runs in the main thread of its hosting process(它托管进程的主线程中) 
-- 该服务不会创建自己的线程，也不会在单独的进程中运行（除非您另行指定）。
+- 该服务不会创建自己的线程，也不会在单独的进程中运行(除非您另行指定）。
 
  这意味着，如果您的服务要进行任何CPU密集型工作或阻止操作(any CPU intensive work or blocking operations)
- （例如MP3播放或网络），您应该在服务中创建一个新线程来完成这项工作。
+ (例如MP3播放或网络），您应该在服务中创建一个新线程来完成这项工作。
 
 在Service中，By using a separate thread, you will reduce the risk of 
 Application Not Responding (ANR) errors.
@@ -65,8 +65,8 @@ Context.bindService，Context.unbindService，来控制它，
 startService:
 
 	 如果一个Service被startService方法多次启动，那么onCreate方法只会调用一次，
-	 onStart将会被调用多次（对应调用startService的次数），并且系统只会创建Service的一个实例
-	（因此你应该知道只需要一次stopService调用）。该Service将会一直在后台运行，
+	 onStart将会被调用多次(对应调用startService的次数），并且系统只会创建Service的一个实例
+	(因此你应该知道只需要一次stopService调用）。该Service将会一直在后台运行，
 	而不管对应程序的Activity是否在运行，直到被调用stopService，或自身的stopSelf方法。
 	当然如果系统资源不足，android系统也可能结束服务。
 	Note: 使用 startService 启动服务之后，一定要使用 stopService停止服务，不管你是否使用bindService； 
@@ -76,17 +76,17 @@ bindService:
 	 如果一个Service被某个Activity调用 Context.bindService方法绑定启动，
 	 不管调用 bindService调用几次，onCreate方法都只会调用一次，同时onStart方法始终不会被调用。
 	 当连接建立之后，Service将会一直运行，除非调用Context.unbindService断开连接  or 之前调用
-	bindService的Context不存在了（如Activity被finish的时候），
+	bindService的Context不存在了(如Activity被finish的时候），
 	系统将会自动停止Service，对应onDestroy将被调用。
 
 	同时使用 startService 与 bindService 要注意到，Service 的终止，需要unbindService与stopService同时调用，
 	才能终止 Service，不管 startService 与 bindService 的调用顺序，如果先调用 unbindService 
 	此时服务不会自动终止，再调用 stopService 之后服务才会停止，如果先调用 stopService 此时服务也不会终止，
-	而再调用 unbindService 或者 之前调用 bindService 的 Context 不存在了（如Activity 被 finish
+	而再调用 unbindService 或者 之前调用 bindService 的 Context 不存在了(如Activity 被 finish
 	 的时候）之后服务才会自动停止；
 
- 当一个Service被终止（1、调用stopService；
- 2、调用stopSelf；3、不再有绑定的连接（没有被启动））时，onDestroy方法将会被调用，
+ 当一个Service被终止(1、调用stopService；
+ 2、调用stopSelf；3、不再有绑定的连接(没有被启动））时，onDestroy方法将会被调用，
  在这里你应当做一些清除工作，如停止在Service中创建并运行的线程
  
  在 sdk 2.0 及其以后的版本中，对应的 onStart 已经被否决变为了 onStartCommand

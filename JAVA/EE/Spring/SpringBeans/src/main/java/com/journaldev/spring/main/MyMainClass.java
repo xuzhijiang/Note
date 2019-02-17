@@ -13,7 +13,7 @@ public class MyMainClass {
 		// 1. 我们初始化AnnotationConfigApplicationContext上下文(即Spring IoC容器)
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MyConfiguration.class);
 		
-		// 2. 然后使用getBean（）方法获取MyService的实例。
+		// 2. 然后使用getBean(）方法获取MyService的实例。
 		MyService service = ctx.getBean(MyService.class);
 		
 		// 如果您正在寻找基于XML的配置，只需创建Spring XML配置文件，

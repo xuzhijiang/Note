@@ -6,7 +6,7 @@ import com.journaldev.spring.jdbc.dao.CustomerDAO;
 import com.journaldev.spring.jdbc.model.Customer;
 
 // 如果您注意到CustomerManager实现，它只是使用CustomerDAO实现来创建customer，
-// 但通过使用@Transactional注释来注解createCustomer（）方法来提供声明式事务管理。 
+// 但通过使用@Transactional注释来注解createCustomer(）方法来提供声明式事务管理。 
 // 这就是我们在代码中需要做的所有事情，以获得Spring事务管理的好处。
 
 //@Transactional注释可以应用于methods和整个class。

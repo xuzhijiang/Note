@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
 
-    // 然后我们使用@Autowired和@Qualifier（“oracleDriver”）注释
+    // 然后我们使用@Autowired和@Qualifier(“oracleDriver”）注释
     // 来告诉spring框架将名为rrr的bean注入类属性dataBaseDriver。
     // 请注意，我们还没有创建这个spring bean(名为oracleDriver的bean)。
 

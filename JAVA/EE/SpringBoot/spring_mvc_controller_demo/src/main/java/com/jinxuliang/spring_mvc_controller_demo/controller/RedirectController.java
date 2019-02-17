@@ -33,7 +33,7 @@ public class RedirectController {
     }
 
 
-    //重定向的实现（使用redirect实现）
+    //重定向的实现(使用redirect实现）
 
     //从Session中提取数据，然后显示在视图中
     @RequestMapping("/showInfo")

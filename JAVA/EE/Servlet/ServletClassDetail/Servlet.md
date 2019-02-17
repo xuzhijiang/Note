@@ -26,10 +26,10 @@
 1. Servlet容器将Servlet类载入内存，并在Servlet实例上调用具体的方法。在
 一个应用程序中，每种Servlet类型只能有一个实例(Singleton Object).
 2. 用户请求使Servlet容器调用Servlet的Service方法，并传入一个
-ServletRequest实例（封装HTTP请求）和一个ServletResponse实例（封装
+ServletRequest实例(封装HTTP请求）和一个ServletResponse实例(封装
 HTTP响应）
 3. 对于每一个应用程序，Servlet容器还会创建一个ServletContext实例。这个
-对象中封装了上下文（应用程序）的环境详情
+对象中封装了上下文(应用程序）的环境详情
 
 ### Servlet API Hierarchy(Servlet API层次结构)
 
@@ -56,7 +56,7 @@ public interface Servlet {
 	
 	/**
 	此方法返回一个servlet配置对象，该对象包含此servlet的任何初始化参数和启动配置。
-	 我们可以使用这个方法来获取部署描述符（web.xml）中的servlet定义的init参数，
+	 我们可以使用这个方法来获取部署描述符(web.xml）中的servlet定义的init参数，
 	 或者通过Servlet 3中的注释来获取。稍后我们将研究ServletConfig接口。
 	*/
 	public ServletConfig getServletConfig();
@@ -69,7 +69,7 @@ public interface Servlet {
 	4. service()方法判断请求的类型，并把它转发给相应的方法进行处理。
 	5. 此方法负责处理客户端请求。 
 	6. 每当servlet容器收到任何请求时，它都会创建一个新线程并通过
-	将请求和响应作为参数传递来执行service（）方法。 
+	将请求和响应作为参数传递来执行service(）方法。 
 	7. Servlet通常在多线程环境中运行，
 	因此开发人员有责任使用synchronization保持共享资源的线程安全。
 	*/

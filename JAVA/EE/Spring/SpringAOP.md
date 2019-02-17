@@ -36,7 +36,7 @@ AOP Advice Type
 1. Before Advice(建议之前)：这些advices在执行join point method之前运行。
 我们可以使用@Before注释将advice type 标记为Before advice。
 
-2. After (finally)Advice(之后（最后）建议)：在join point方法完成执行后执行的advice，
+2. After (finally)Advice(之后(最后）建议)：在join point方法完成执行后执行的advice，
 无论是正常还是抛出异常。我们可以使用@After注解创建after advice。
 
 3. After Returning Advice(返回建议后)：有时我们只要在join point方法正常执行时才需要执行advice方法。
@@ -64,24 +64,24 @@ Spring Advice with Custom Annotation Pointcut:(具有自定义 annotation Pointc
 应用于他自己定义的getName()方法上，这就是我们应该尽可能缩小切入点表达范围的原因。
 
 另一种方法是创建自定义注解, 并注解我们希望应用advice的方法。 这是使用@Loggable annotation
-注解Employee setName（）方法的目的。也就是只应用于使用了@Loggable注解的setName() method.
+注解Employee setName(）方法的目的。也就是只应用于使用了@Loggable注解的setName() method.
 
 Spring Framework @Transactional annotation 是Spring 事务管理(Transaction Management)的一种很好的例子。
 
 ### Spring AOP Method Profiling(方法分析)
 
 此示例展示给你 ”如何配置Spring AOP method profiling“。 
-我们可以在任何服务（或其他）类中使用Spring AOP和任何方法，
+我们可以在任何服务(或其他）类中使用Spring AOP和任何方法，
 而无需在任何服务类中编写任何一行性能分析代码(profiling code)。 
-面向方面编程（AOP）允许我们将（通常是重复的和样板）分析代码与服务代码分开。
+面向方面编程(AOP）允许我们将(通常是重复的和样板）分析代码与服务代码分开。
 
 
-我们只在一个单独的类（SimpleProfiler.java）中编写我们的探查器代码(profiler code)一次，
+我们只在一个单独的类(SimpleProfiler.java）中编写我们的探查器代码(profiler code)一次，
 这就是全部，其余的只是spring.xml中的AOP配置.
 
 因此我们可以对以下内容 进行方法分析(profiler code):
 
-1. 分析任何（服务）类，profiling any (service) classes,
-2. 没有触及（服务）类的代码，without touching (service) classes’ code,
+1. 分析任何(服务）类，profiling any (service) classes,
+2. 没有触及(服务）类的代码，without touching (service) classes’ code,
 3. 通过Spring-AOP方法。through Spring-AOP approach.
 
