@@ -12,7 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.journaldev.spring.form.model.Customer;
 
-// 
+// 我们可以通过两种方式创建自定义验证器实现 -
+// 第一种是创建一个注释，以确认JSR-303规范并实现它的Validator类。
+// 第二种方法是实现org.springframework.validation.Validator接口，
+// 并使用@InitBinder注释将其设置为Controller类中的验证器。
+
+
+
+// 让我们在Spring Tool Suite中创建一个简单的Spring MVC项目，
+// 我们将使用它的实现工件hibernate-validator来使用JSR-303规范。
+// 我们将使用基于注释的表单验证，并基于JSR-303规范标准创建我们自己的自定义验证器。
+// 我们还将通过实现Validator接口创建自己的自定义验证器类，
+// 并在其中一个控制器处理程序方法中使用它。我们的最终项目如下图所示。
 @Controller
 public class CustomerController {
 

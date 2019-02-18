@@ -10,7 +10,7 @@
 	<!--
 		唯一需要注意的重点是employeeValidator bean，
 		我们将注入这个bean到控制器之一和messageSource bean中，以从资源包中读取本地化数据。 
-		其余部分是支持注释，查看解析器和提供包来扫描Controller类和其他组件。
+		其余部分是support annotations，view resolvers和providing package来扫描Controller类和其他组件。
 	-->
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->

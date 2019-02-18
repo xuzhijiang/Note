@@ -23,4 +23,3 @@ Spring MVC Framework默认支持JSR-303规范，我们只需要在Spring MVC应�
 	
 	我们还将通过实现Validator接口创建自己的自定义验证器类( custom validator)，
 	并在其中一个控制器处理程序方法中使用它。
-
