@@ -10,7 +10,7 @@
 <h3>
 	Customer Saved Successfully.
 </h3>
-
+<%--如果没有验证错误，则显示客户值的简单JSP页面，此页面作为响应返回。--%>
 <strong>Customer Name:${customer.name}</strong><br>
 <strong>Customer Email:${customer.email}</strong><br>
 <strong>Customer Age:${customer.age}</strong><br>

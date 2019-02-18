@@ -6,10 +6,9 @@ import org.springframework.validation.Validator;
 
 import com.journaldev.spring.form.model.Employee;
 
-// EmployeeFormValidator是特定于Spring Framework的验证器实现。
-// Spring Framework的supports()方法实现，以了解可以使用此验证的对象。
+// EmployeeFormValidator是特定于Spring Framework的验证器validator实现。
 
-//我们实现validate(）方法并在任何字段验证失败时添加错误。
+// 我们实现validate(）方法并在任何字段验证失败时添加错误。
 // Spring为基本验证提供了org.springframework.validation.ValidationUtils实用程序类用于基本的验证，
 // 例如null或empty。 一旦这个方法返回，spring框架就会将Errors对象绑定到我们
 // 在控制器处理程序方法中使用的BindingResult对象。

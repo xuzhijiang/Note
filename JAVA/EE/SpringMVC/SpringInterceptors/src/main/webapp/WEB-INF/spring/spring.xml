@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+				 xmlns:context="http://www.springframework.org/schema/context"
+				 xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!--
-					Spring MVC拦截器配置
-		我们必须将spring拦截器连接到the requests，我们可以使用mvc：interceptors element
-		来连接所有拦截器。 在通过mapping element包含处理请求的spring拦截器之前，
-		还可以提供URI模式来匹配。URI pattern to match 
-	-->
-
-	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+	<!-- DispatcherServlet Context: defines this servlet's request-processing
 		infrastructure -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -31,6 +24,12 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+	<!--
+    Spring MVC拦截器配置:我们必须将spring拦截器连接到the requests，
+    我们可以使用mvc:interceptors element来连接所有拦截器。
+    在通过mapping element包含处理请求的spring拦截器之前，
+    还可以提供URI模式来匹配。URI pattern to match
+-->
 	<!-- Configuring interceptors based on URI -->
 	<interceptors>
 		<interceptor>

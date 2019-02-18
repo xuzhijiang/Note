@@ -10,9 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-// Just deploy the application in servlet container and invoke the home controller
+//有时我们想拦截HTTP请求 并在 将其交给 "控制器处理程序方法之前" 进行一些处理。
+//这就是Spring MVC拦截器派上用场的地方。
 
-// The output confirms that the spring interceptor methods are executed in the order defined.
 // the output 确认"拦截器方法"按定义的顺序执行。
 
 /**

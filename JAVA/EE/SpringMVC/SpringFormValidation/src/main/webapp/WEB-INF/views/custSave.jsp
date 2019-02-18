@@ -5,6 +5,14 @@
 	prefix="springForm"%>
 <html>
 <head>
+	<%--由于我们使用的是Spring框架验证实现，
+	因此我们必须使用Spring Form tag来获取错误并设置表单bean和变量名称。--%>
+	<%--commandName =“customer”用于设置公开表单对象的模型属性的名称。
+	 它的默认值默认为“command”，因此我们应该将它设置为我们在控制器类中使用的模型属性名称。
+
+	springForm：errors用于呈现在渲染页面时发现的错误（如果有）。
+	 path属性用于定义 要"用于数据绑定的对象属性"。 其余代码是标准HTML，
+	 带有一些用于错误消息样式的CSS。--%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Customer Save Page</title>
 <style>
