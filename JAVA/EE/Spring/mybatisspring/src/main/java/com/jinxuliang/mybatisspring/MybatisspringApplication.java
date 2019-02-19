@@ -21,6 +21,3 @@ public class MybatisspringApplication {
 // 1. 定义Java方法与SQL命令的映射(Mapper）接口
 // 2. 启用Mapper扫描功能
 // 3. 将Mapper注入到需要访问数据库的地方。
-
-// 记住了上面的小结，也就对MyBatis是干什么的，怎么用有了一个总体的印象，
-// 余下的就是自己搜寻各种学习资源，阅读其官网的技术文档，了解其技术细节了。
