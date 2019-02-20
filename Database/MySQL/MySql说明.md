@@ -16,6 +16,7 @@
 3. show create database <database_name>;
 
 问题描述 :当向 MySQL 数据库插入一条带有中文的数据时，会出现乱码，即插入不成功或显示时是乱码。
+(Fu*k,一切都是Windows的GBK搞的鬼，用Navicat直接插入就可以.)
 
 可以先使用语句 show variables like 'character%';来查看当前数据库的相关编码集:
 可以看到 MySQL 有六处使用了字符集，分别为：client 、connection、database、results、server 、system。其中与服务器端相关：database、server、system；与客户端相关：connection、client、results 。
