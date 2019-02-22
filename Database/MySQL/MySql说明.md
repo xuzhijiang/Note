@@ -1,3 +1,17 @@
+MySQL Client的可执行程序是mysql，MySQL Server的可执行程序是mysqld。
+
+MySQL Client和MySQL Server的关系如下：
+
+┌──────────────┐  SQL   ┌──────────────┐
+│ MySQL Client │───────>│ MySQL Server │
+└──────────────┘  TCP   └──────────────┘
+
+>在MySQL Client中输入的SQL语句通过TCP连接发送到MySQL Server。
+
+也可以只安装MySQL Client，然后连接到远程MySQL Server。假设远程MySQL Server的IP地址是10.0.1.99，那么就使用-h指定IP或域名：
+
+`mysql -h 10.0.1.99 -u root -p`
+
 其他关系数据库有所不同的是，MySQL本身实际上只是一个SQL接口，它的内部还包含了多种数据引擎,常用的包括：
 
 * InnoDB：由Innobase Oy公司开发的一款支持事务的数据库引擎，2006年被Oracle收购；
@@ -33,3 +47,8 @@ default-character-set=utf8
 [mysqld] 
 character-set-server=utf8 
 这时只需要将下的默认编码 default-character-set=utf8 改为 default-character-set=gbk ，重新启动 MySQL 服务即可。
+
+根据“name+id”来去重，distinct同时作用在了name和id上:`select distinct name, id from A`
+
+根据name来去重，如果表中name有相同的，那么查询出的结果只返回一条记录:`select distinct name from A`
+
