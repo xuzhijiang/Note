@@ -52,3 +52,9 @@ character-set-server=utf8
 
 根据name来去重，如果表中name有相同的，那么查询出的结果只返回一条记录:`select distinct name from A`
 
+### 管理MySQL
+
+`SHOW DATABASES;`
+
+其中，information_schema、mysql、performance_schema和sys是系统库，不要去改动它们。
+
