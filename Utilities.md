@@ -33,3 +33,4 @@ how to find max value in a list site:http://stackoverflow.com
 3. 修改运行时head space: `Run -> Edit Configurations -> VM options,输入-Xmx1g`,此时heap sapce大小为1G
 4. 查看调用某一个方法的地方:ctrl+alt+h
 5. 追踪方法: ctrl + e
+6. ctrl+d:复制一行
