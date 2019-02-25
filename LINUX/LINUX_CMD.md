@@ -28,6 +28,7 @@ du -d 1 -h # show the size of the current directory
 sudo netstat -tlpn | grep 800 # Check that the chosen port is already in use.
 mkdir -p dirname # recursively create directory.
 sudo lsof -i TCP:80 #see what application is listening on port 80
+通过vmstat命令查看当前操作系统每秒的上下文切换次数:命令"vmstat 1 10"的含义是：每个1秒统计一次，统计10次后结束。其中cs那一列表示的就是上下文切换次数,cs是context switch的简写
 ```
 
 ### Shell脚本
