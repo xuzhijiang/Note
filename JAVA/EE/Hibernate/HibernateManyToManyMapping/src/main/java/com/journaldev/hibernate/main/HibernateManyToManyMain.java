@@ -11,6 +11,9 @@ import com.journaldev.hibernate.model.Cart;
 import com.journaldev.hibernate.model.Item;
 import com.journaldev.hibernate.util.HibernateUtil;
 
+/**
+ * 多对多在数据库中是通过中间的连接表来实现的.
+ */
 public class HibernateManyToManyMain {
 	
 	//Saving many-to-many where Cart is primary

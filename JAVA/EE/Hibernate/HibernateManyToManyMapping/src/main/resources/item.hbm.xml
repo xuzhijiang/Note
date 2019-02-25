@@ -14,6 +14,7 @@
 		<property name="price" type="double" column="item_price" />
 
 		<set name="carts" table="CART_ITEMS" fetch="select" cascade="all">
+			<!--和cart.hbm.xml同理-->
 			<key column="item_id" />
 			<many-to-many class="Cart" column="cart_id" />
 		</set>

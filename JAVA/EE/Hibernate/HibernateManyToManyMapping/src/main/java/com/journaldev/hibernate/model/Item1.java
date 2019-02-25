@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+// 这个模型类没有关系型映射
 @Entity
 @Table(name="ITEM")
 public class Item1 {

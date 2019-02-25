@@ -9,10 +9,13 @@
 			<generator class="identity" />
 		</id>
 		<property name="total" type="double" column="cart_total" />
-
+		<!--set of items is mapped to CART_ITEMS table-->
 		<set name="items" table="CART_ITEMS" fetch="select" cascade="all">
+			<!-- 由于Cart是主要对象，因此cart_id是key,-->
 			<key column="cart_id" />
+			<!--多对多映射使用Item类item_id列-->
 			<many-to-many class="Item" column="item_id" />
+			<!--即Cart表的cart_id通过CART_ITEMS表，映射到Item表的item_id-->
 		</set>
 	</class>
 

@@ -13,6 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+// 每个购物车可以有多个商品(item)
+// 每个商品也可以是多个购物车(cart)的一部分
+// 建立多对多的映射关系.查看Cart_Items表就明白了.
 @Entity
 @Table(name = "CART")
 public class Cart1 {
@@ -25,6 +28,8 @@ public class Cart1 {
 	@Column(name = "cart_total")
 	private double total;
 
+	// 最重要的部分是使用ManyToMany批注和JoinTable批注，
+	// 我们提供用于多对多映射的表名和列。
 	@ManyToMany(targetEntity = Item1.class, cascade = { CascadeType.ALL })
 	@JoinTable(name = "CART_ITEMS", 
 				joinColumns = { @JoinColumn(name = "cart_id") }, 
