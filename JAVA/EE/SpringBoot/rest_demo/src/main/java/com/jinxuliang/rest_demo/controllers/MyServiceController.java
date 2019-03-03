@@ -18,6 +18,17 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 public class MyServiceController {
 
+    @GetMapping("/")
+    @ResponseBody
+    String home() {
+        return "<h1>Hello World</h1>";
+    }
+
+    @GetMapping("/api")
+    String[] api() {
+        return "Spring Booot learn".split(" ");
+    }
+
     //返回一个JavaBean,将会被序列化为Json字符串
     @GetMapping(path="/hello")
     public MyClass hello(){
