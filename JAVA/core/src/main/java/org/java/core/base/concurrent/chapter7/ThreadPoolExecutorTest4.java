@@ -2,12 +2,9 @@ package org.java.core.base.concurrent.chapter7;
 
 import org.junit.Test;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
-public class ThreadPoolExecutorTest {
+public class ThreadPoolExecutorTest4 {
 
     //测试corePoolSize和MaximumPoolSize随着任务提交量的变化,以及keepAliveTime与TimeUnit
     @Test
@@ -15,12 +12,14 @@ public class ThreadPoolExecutorTest {
         int corePoolSize = 2;
         int maximumPoolSize = 5;
         int keepAliveTime = 5;
+        int taskCount = 9;
 
-        // 需要注意的是，在这个案例中，线程池达到corePoolSize之后，立刻继续增长，
-        // 这是因为我们使用的是SynchronousQueue的原因。这个队列的特点是，只要一有任务进来，
-        // 就立马要找一个空闲的线程来运行这个任务，如果没有空闲的线程，就会抛出异常。
-        BlockingQueue workQueue = new SynchronousQueue();
-        int taskCount = 5;
+        //无界队列的情况:
+        //
+        //如果构建 LinkedBlockingDeque的时候，没有指定大小，即使用了无界的任务队列
+        // 可以发现当前线程池的大小一直是corePoolSize：2，maxPoolSize失效了。
+        BlockingQueue workQueue = new LinkedBlockingDeque<>();
+
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize,
                 keepAliveTime, TimeUnit.SECONDS, workQueue);
         doTest(keepAliveTime, taskCount, threadPoolExecutor);

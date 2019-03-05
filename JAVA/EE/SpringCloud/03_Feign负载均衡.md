@@ -1,0 +1,7 @@
+# Feign负载均衡
+
+Feign是一个声明式WebService客户端，使用Feign能够让编写Web Service客户端变得更简单，它的使用方法就是定义一个接口，然后在上面添加注解。SpringCloud对Feign进行了封装，支持SpringMVC注解和HTTPMessageConverters，Feign可以与Eureka和Ribbon组合使用以支持负载均衡。简单讲，只需要创建一个接口，然后在上面使用注解即可。
+
+### 总结说明
+
+Feign集成了Ribbon，利用Ribbon维护了MicroServiceCloud-Dept的服务列表信息，并通过轮询的方式实现了客户端的复杂均衡，与Ribbon不同的是，通过Feign只需要定义服务绑定接口且以声明式法人方法，优雅而简单的实现服务调用。

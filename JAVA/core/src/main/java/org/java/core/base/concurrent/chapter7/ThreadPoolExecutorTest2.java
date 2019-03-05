@@ -7,7 +7,7 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class ThreadPoolExecutorTest {
+public class ThreadPoolExecutorTest2 {
 
     //测试corePoolSize和MaximumPoolSize随着任务提交量的变化,以及keepAliveTime与TimeUnit
     @Test
@@ -16,11 +16,17 @@ public class ThreadPoolExecutorTest {
         int maximumPoolSize = 5;
         int keepAliveTime = 5;
 
+        // 立即提交的情况下,也就是taskCount>maxPoolSize的情况
+        int taskCount = 6;//将taskCount改为6，超出maxPoolSize设置的5
+        // 再次运行单元测试，就会看到类似以下的异常：
+        //
+        //java.util.concurrent.RejectedExecutionException:
+
         // 需要注意的是，在这个案例中，线程池达到corePoolSize之后，立刻继续增长，
         // 这是因为我们使用的是SynchronousQueue的原因。这个队列的特点是，只要一有任务进来，
         // 就立马要找一个空闲的线程来运行这个任务，如果没有空闲的线程，就会抛出异常。
         BlockingQueue workQueue = new SynchronousQueue();
-        int taskCount = 5;
+
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize,
                 keepAliveTime, TimeUnit.SECONDS, workQueue);
         doTest(keepAliveTime, taskCount, threadPoolExecutor);
@@ -29,7 +35,7 @@ public class ThreadPoolExecutorTest {
     private void doTest(int keepAliveTime, int taskCount, ThreadPoolExecutor threadPoolExecutor)
      throws InterruptedException {
         // executor刚刚创建的时候，是不会初始化所有线程的。只有等到有任务进来的时候，才会创建线程对象。
-        threadPoolExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardOldestPolicy());
+        //threadPoolExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardOldestPolicy());//如果加上这一行，就不会报java.util.concurrent.RejectedExecutionException:
         System.out.println("-------threadPoolExecutor刚刚创建----------");
         printPoolSize(threadPoolExecutor);
 
