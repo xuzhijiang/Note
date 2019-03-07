@@ -54,3 +54,20 @@ Spring @Configuration注释允许我们使用annotations进行依赖注入。
 @PostConstruct: Spring bean对象构造完后调用.
 
 @PreDestroy: Spring bean对象销毁前调用
+
+@Value("${age}")获取配置文件中的属性值
+
+@RestController处理Http请求，返回JSON格式的数据.
+
+使用多个URL访问同一个的方法，可以将URL映射配置为一个集合:@RequestMapping(value = {"/hello","/hi"},method = RequestMethod.GET)
+
+1. @PathVariable获取URL中的数据
+2. @RequestParam获取请求参数的值
+3. @GetMapping组合注解
+
+@RequestParam注解也可以使用默认参数值，和要求是否必传:public String hello(@RequestParam(value = "id",required = false,defaultValue = "0") Integer id){},
+
+@Transactional标注在某个方法上表示这个方法是要进行事务管理,事务就是多条操作同时成功或者失败.
+
+
+
