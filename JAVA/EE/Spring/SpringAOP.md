@@ -85,3 +85,60 @@ Spring Framework @Transactional annotation 是Spring 事务管理(Transaction Ma
 2. 没有触及(服务）类的代码，without touching (service) classes’ code,
 3. 通过Spring-AOP方法。through Spring-AOP approach.
 
+## 示例
+
+```java
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+
+@Aspect
+@Component
+public class HttpAspect {
+    //使用log打印日志
+    private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
+
+    @Pointcut("execution(public * com.study.springbootdemo.controller.UserController.*(..))")
+    public void log(){}
+
+    @Before("log()")
+    public void doBefore(JoinPoint joinPoint){
+        //记录Http请求
+        ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        //记录URL
+        logger.info("url={}",request.getRequestURL());
+        //记录请求方法
+        logger.info("method={}",request.getMethod());
+        //记录请求ip
+        logger.info("ip={}",request.getRemoteAddr());
+        //记录请求类的类方法
+        logger.info("class_method={}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
+        //记录参数
+        logger.info("args={}",joinPoint.getArgs());
+    }
+
+    @After("log()")
+    public void doAfter(){
+        logger.info("2222222222222222");
+    }
+}
+```
+
+### 说明：
+
+1.  @Pointcut("execution(public * com.study.springbootdemo.controller.UserController.*(..))")是一个切入点，表示UserController类中的所有方法。
+2.  @Aspect注解表示这是一个该类是一个切面类
+3.  @Component注解表示将该类交于Spring容器来管理，
+4.  @Before("log()")注解表示UserController类中的方法被访问前执行的方法
+5.  @After("log()")注解表示UserController类中的方法被访问后要执行的方法
+
