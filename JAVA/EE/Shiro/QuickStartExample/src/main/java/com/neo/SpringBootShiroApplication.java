@@ -25,4 +25,5 @@ public class SpringBootShiroApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootShiroApplication.class, args);
 	}
+
 }

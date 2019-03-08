@@ -31,6 +31,7 @@ public class UserController {
     // 非浏览器访问，得到的是一个Json字符串
     @GetMapping("/{id}")
     public User findById(@PathVariable("id") int id){
+        // 抛出自定义异常,然后MyAdviceController会进行拦截异常
         throw new UserNotFoundException(id,"user not existed.");
     }
 

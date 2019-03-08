@@ -22,7 +22,7 @@ public class MyAdviceController {
 
     // 针对特定的异常进行处理
     // 异常处理，可以定义异常类型进行拦截处理
-    @ExceptionHandler(value = UserNotFoundException.class)
+    @ExceptionHandler(value = UserNotFoundException.class)//使用注解说明要捕获哪一个异常类,UserNotFoundException是我们抛出异常使用的类
     // 以JSON表达方式响应
     @ResponseBody
     // 定义为服务器错误状态码
@@ -30,7 +30,7 @@ public class MyAdviceController {
     public Map<String, Object> exception(HttpServletRequest request,
                                          UserNotFoundException ex) {
         Map<String, Object> msgMap = new HashMap<>();
-        // 获取异常信息
+        // 获取自定义异常的信息
         msgMap.put("code", ex.getId());
         // 可以在此添加任何需要发送给客户端的信息
         msgMap.put("message", ex.getMessage());

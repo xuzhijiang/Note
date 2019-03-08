@@ -1,6 +1,8 @@
 package com.jinxuliang.exceptiondemo.domain;
 
-//自定义异常
+//如果我们要抛出其他的信息就要自定义异常类
+
+// 异常信息多的情况下，可以使用枚举来管理异常信息
 public class UserNotFoundException
         extends RuntimeException {
 
