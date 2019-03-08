@@ -68,6 +68,3 @@ Spring @Configuration注释允许我们使用annotations进行依赖注入。
 @RequestParam注解也可以使用默认参数值，和要求是否必传:public String hello(@RequestParam(value = "id",required = false,defaultValue = "0") Integer id){},
 
 @Transactional标注在某个方法上表示这个方法是要进行事务管理,事务就是多条操作同时成功或者失败.
-
-
-

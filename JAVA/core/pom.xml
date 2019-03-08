@@ -35,6 +35,12 @@
 			<version>${oracle.version}</version>
 		</dependency> -->
 
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.1.22.Final</version>
+		</dependency>
+
 		<!-- javax.json -->
 		<dependency>
 			<groupId>javax.json</groupId>
@@ -71,9 +77,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
