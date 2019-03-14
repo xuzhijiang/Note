@@ -13,8 +13,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 
-// 首先要配置的是ShiroConfig类，Apache Shiro 核心通过 Filter 来实现，
-// 就好像SpringMvc 通过DispatchServlet 来主控制一样。
+// 首先要配置的是ShiroConfig类，
+
+// Apache Shiro 核心通过 Filter 来实现，就好像SpringMvc通过DispatchServlet 来主控制一样。
 
 // Filter是通过URL规则来进行过滤和权限校验，
 // 所以我们需要定义一系列关于URL的规则和访问权限。
@@ -46,9 +47,14 @@ user:配置记住我或认证通过可以访问
 @Configuration
 public class ShiroConfig {
 
+	/**
+	 * Shiro会自动找到ShiroFilterFactoryBean的实例。
+	 * @param securityManager
+	 * @return
+	 */
 	@Bean
 	public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
-		System.out.println("ShiroConfiguration.shirFilter() securityManager: " + securityManager);
+		System.out.println("shirFilter() use securityManager: " + securityManager);
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 
@@ -96,38 +102,41 @@ public class ShiroConfig {
 	@Bean
 	public MyShiroRealm myShiroRealm(){
 		System.out.println("create MyShiroRealm instance!!");
+		// 创建自定义的Realm
 		MyShiroRealm myShiroRealm = new MyShiroRealm();
 		myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
 		return myShiroRealm;
 	}
 
 
+	/**
+	 * 这个ShiroConfig类中使用的SecurityManager都是同一个，就是此方法创建的.
+	 * @return
+	 */
 	@Bean
 	public SecurityManager securityManager(){
-		System.out.println("create SecurityManager instance!!");
 		DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
+		System.out.println("第一步走这里 create SecurityManager instance: " + securityManager);
+		// 设置自定义的MyShiroRealm
 		securityManager.setRealm(myShiroRealm());
-		System.out.println("SecurityManager instance: " + securityManager);
 		return securityManager;
 	}
 
 	/**
-	 *  开启shiro aop注解支持.
-	 *  使用代理方式;所以需要开启代码支持;
+	 *  开启shiro aop注解支持.使用代理方式;所以需要开启代码支持;
 	 * @param securityManager
 	 * @return
 	 */
 	@Bean
 	public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
-		System.out.println("authorizationAttributeSourceAdvisor called!!! securityManager: " + securityManager);
+		System.out.println("authorizationAttributeSourceAdvisor use securityManager: " + securityManager);
 		AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
 		authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
 		return authorizationAttributeSourceAdvisor;
 	}
 
 	@Bean(name="simpleMappingExceptionResolver")
-	public SimpleMappingExceptionResolver
-	createSimpleMappingExceptionResolver() {
+	public SimpleMappingExceptionResolver createSimpleMappingExceptionResolver() {
 		SimpleMappingExceptionResolver r = new SimpleMappingExceptionResolver();
 		Properties mappings = new Properties();
 		mappings.setProperty("DatabaseException", "databaseError");//数据库异常处理
@@ -138,4 +147,5 @@ public class ShiroConfig {
 		//r.setWarnLogCategory("example.MvcLogger");     // No default
 		return r;
 	}
+
 }

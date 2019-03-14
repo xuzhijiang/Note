@@ -16,8 +16,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 上面这些操作时候触发MyShiroRealm.doGetAuthorizationInfo()这个方面，也就是权限校验的方法。
  *
  * 3、修改admin不同的权限进行测试
- *
- * shiro很强大，这仅仅是完成了登录认证和权限管理这两个功能
  */
 @SpringBootApplication
 public class SpringBootShiroApplication {

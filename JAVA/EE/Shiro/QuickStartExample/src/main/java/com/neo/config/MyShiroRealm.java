@@ -16,14 +16,7 @@ import org.apache.shiro.util.ByteSource;
 
 import javax.annotation.Resource;
 
-// 在Shiro中，最终是通过Realm来获取用户、角色及权限信息的。
-// 在Realm中会直接从我们的数据源中获取Shiro需要的验证信息。
 
-// Shiro的认证过程最终会交由Realm执行，
-// 这时会调用Realm的doGetAuthenticationInfo(token)方法。
-
-//1、如果验证通过，就将返回一个封装了用户信息的AuthenticationInfo实例。
-//2、验证失败则抛出AuthenticationException异常信息。
 public class MyShiroRealm extends AuthorizingRealm {
 
     @Resource
@@ -75,6 +68,12 @@ public class MyShiroRealm extends AuthorizingRealm {
         // 就说明访问/add这个链接必须要有“权限添加”这个权限和具有“100002”这个角色才可以访问。
     }
 
+
+
+    // Shiro的认证过程最终会交由Realm执行，这时会调用Realm的doGetAuthenticationInfo(token)方法。
+    // 在Realm中会直接从我们的数据源中获取Shiro需要的验证信息。
+    //1、如果验证通过，就将返回一个封装了用户信息的AuthenticationInfo实例。
+    //2、验证失败则抛出AuthenticationException异常信息。
     /**
      * 用来进行身份认证的，也就是验证用户输入的账号和密码是否正确
      * @param token
