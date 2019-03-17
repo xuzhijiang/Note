@@ -4,8 +4,6 @@ JMS代表Java消息服务(Java Message Service)。JMS API是一种Java API，它
 
 JMS API用于在不同系统之间创建，发送，接收和读取消息或交换消息。 一旦我们使用JMS API开发Java Messaging System，我们就可以在任何JMS Provider软件中部署相同的应用程序。
 
-Java Application ----> JMS API ------> JMS Provider(JBoss, WebLogic, RabbitMQ etc.) (Typical JMS Architecture)
-
 ### JMS的优势
 
 1. 松耦合：我们可以非常容易地开发松耦合应用程序。
@@ -249,8 +247,6 @@ JMSArchitecture.png显示了典型的消息系统/JMS系统体系结构：
 ##### 高级JMS架构
 
 典型的JMS应用程序具有以下高级体系结构:
-
-Java Application ---> JMS API ---> JMS Provider(JBoss, Weblogic,RabbitMQ etc.) (Typical JMS Architecture)
 
 1. JAVA Sender Application使用JMS API创建与JMS服务器的连接，创建JMS消息并将这些消息发送到目标。
 2. 同样，JAVA Receiver Application使用JMS API创建与JMS服务器的连接，接收JMS消息并向发送方发送ACK（确认）。

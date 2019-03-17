@@ -90,3 +90,11 @@ uperuser (root) privileges required.
 linux下paste code对齐命令:
 
 按v，然后上下键，然后按=
+
+### 配置应用的环境变量
+
+RabbitMQ Server的命令会被安装到/usr/local/sbin，并不会自动加到用户的环境变量中去，所以我们需要在.bash_profile或.profile文件中增加下面内容：
+
+>PATH=$PATH:/usr/local/sbin
+
+这样，我们就可以通过rabbitmq-server命令来启动RabbitMQ的服务端了。
