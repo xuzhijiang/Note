@@ -1,5 +1,77 @@
 # SpringBoot与缓存
 
+## 为什么引入缓存
+
+往往数据库查询操作会成为影响用户使用体验的瓶颈，此时使用缓存往往是解决这一问题非常好的手段之一.
+
+## 缓存注解
+
+1. @CacheConfig：用于配置该类中会用到的共用的缓存配置。在这里@CacheConfig(cacheNames = "users")：配置了该数据访问对象中返回的内容将存储于名为users的缓存对象中，我们也可以不使用该注解，直接通过@Cacheable自己配置缓存集的名字来定义。
+2. @Cacheable：配置了findByName函数的返回值将被加入缓存。同时在查询时，会先从缓存中获取，若不存在才再发起对数据库的访问。该注解主要有下面几个参数：
+
+    - value、cacheNames：两个等同的参数（cacheNames为Spring 4新增，作为value的别名），用于指定缓存存储的集合名,指定缓存组件的名字，CacheManager管理多个cache组件，对缓存的真正CRUD操作在Cache中，每一个缓存都有自己唯一的一个名字
+
+    - key：缓存对象存储在Map集合中的key值，非必需，缺省按照函数的所有参数组合作为key值，若自己配置需使用SpEL表达式，比如：@Cacheable(key = "#p0")：使用函数第一个参数作为缓存的key值,@Cacheable(cacheNames = "emp" , key = "#id"),缓存的名字是emp，key是方法中参数id的值.
+    
+    - condition：缓存对象的条件，非必需，也需使用SpEL表达式，只有满足表达式条件的内容才会被缓存，比如：@Cacheable(key = "#p0", condition = "#p0.length() < 3")，表示只有当第一个参数的长度小于3的时候才会被缓存，若做此配置上面的AAA用户就不会被缓存.
+    
+    - unless：否定缓存，当unless指定的条件为true,该方法的返回值就不会被缓存，可以获取结果进行判断.它不同于condition参数的地方在于它的判断时机，该条件是在函数被调用之后才做判断的，所以它可以通过对result进行判断。// 使用unless判断结果为null就不缓存
+    @Cacheable(cacheNames = "emp",condition = "#id > 0",unless = "#result == null ")
+    
+    - keyGenerator：用于指定key生成器，非必需。若需要指定一个自定义的key生成器，我们需要去实现org.springframework.cache.interceptor.KeyGenerator接口，并使用该参数来指定。需要注意的是：该参数与key是互斥的
+    
+    - cacheManager：指定缓存管理器，非必需。只有当有多个时才需要使用
+    
+    - cacheResolver：指定缓存解析器，非必需。需通过org.springframework.cache.interceptor.CacheResolver接口来实现自己的缓存解析器，并用该参数指定。
+
+>除了这里用到的两个注解之外，还有下面几个核心注解：
+
+3. @CachePut：配置于函数上，能够根据参数定义条件来进行缓存，它与@Cacheable不同的是，它每次都会调用函数，所以主要用于数据新增和修改操作上
+4. @CacheEvict：配置于函数上，通常用在删除方法上，用来从缓存中移除相应数据。除了同@Cacheable一样的参数之外，它还有下面两个参数：
+
+* allEntries：非必需，默认为false。当为true时，会移除所有数据
+* beforeInvocation：非必需，默认为false，会在调用方法之后移除数据。当为true时，会在调用方法之前移除数据。
+
+## 缓存配置
+
+在Spring Boot中用@EnableCaching注解自动化配置合适的缓存管理器CacheManager，Spring Boot根据下面的顺序去侦测缓存提供者：
+
+1. Generic
+2. JCache (JSR-107)
+3. EhCache 2.x
+4. Hazelcast
+5. Infinispan
+6. Redis
+7 .Guava
+8. Simple
+
+>除了按顺序侦测外，我们也可以通过配置属性spring.cache.type来强制指定。我们可以通过debug调试查看cacheManager对象的实例来判断当前使用了什么缓存。
+
+### 使用EhCache
+
+以常用的EhCache为例，看看如何配置来使用EhCache进行缓存管理。
+
+在Spring Boot中开启EhCache非常简单，只需要在工程中加入ehcache.xml配置文件并在pom.xml中增加ehcache依赖，框架只要发现该文件，就会创建EhCache的缓存管理器。
+
+```xml
+<dependency>
+    <groupId>net.sf.ehcache</groupId>
+    <artifactId>ehcache</artifactId>
+</dependency>
+```
+
+完成上面的配置之后，再通过debug模式运行单元测试，观察此时CacheManager已经是EhCacheManager实例，说明EhCache开启成功了。
+
+对于EhCache的配置文件也可以通过application.properties文件中使用spring.cache.ehcache.config属性来指定，比如：`spring.cache.ehcache.config=classpath:config/another-config.xml`
+
+## 有了Ehcache，为啥还要使用Redis缓存
+
+虽然EhCache已经能够适用很多应用场景，但是由于EhCache是进程内的缓存框架，在集群模式下时，各应用服务器之间的缓存都是独立的，因此在不同服务器的进程间会存在缓存不一致的情况.
+
+在一些要求高一致性（任何数据变化都能及时的被查询到）的系统和应用中，就不能再使用EhCache来解决了，这个时候使用集中式缓存是个不错的选择,所以就使用Redis进行数据缓存。
+
+>Spring Boot会在侦测到存在Redis的依赖并且Redis的配置是可用的情况下，使用RedisCacheManager初始化CacheManager。为此，我们可以单步运行我们的单元测试，可以观察到此时CacheManager的实例是org.springframework.data.redis.cache.RedisCacheManager
+
 ## JSR107
 
 Java Caching定义了5个核心接口，分别是CachingProvider, CacheManager, Cache, Entry和Expiry。

@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-    <!-- 引入spring boot预定义的parent -->
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.2.RELEASE</version>
-    </parent>
+	<!-- 引入spring boot预定义的parent -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.2.RELEASE</version>
+	</parent>
 
-    <!-- App相关信息 -->
 	<groupId>com.didispace</groupId>
-	<artifactId>Chapter4-4-1</artifactId>
+	<artifactId>Chapter4-4-2</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-	<name>Chapter4-4-1</name>
+	<name>Chapter4-4-2</name>
 
 	<properties>
 		<!-- 指定源码编码方式UTF-8 -->
@@ -45,8 +44,9 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- 引入Hsqldb作为数据库，因为是嵌入式数据库，所以不需要在application.yml中
-		 设置数据库连接信息,-->
+		<!-- 嵌入式数据库通常用于开发和测试环境，不推荐用于生产环境。
+		Spring Boot提供自动配置的嵌入式数据库有H2、HSQL、Derby，
+		你不需要提供任何连接配置就能使用。下面引入Hsqldb(HSQL)作为数据库 -->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
@@ -60,20 +60,24 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- spring boot cache依赖 -->
+		<!-- spring boot cache依赖, -->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-cache</artifactId>-->
+		<!--</dependency>-->
+
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-redis</artifactId>-->
+		<!--</dependency>-->
+
+		<!-- 引入Spring Cache Redis(Springboot redis把原来的cache和redis2个依赖合在一起了) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-cache</artifactId>
-		</dependency>
-
-		<!--Ehcache依赖-->
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache</artifactId>
-			<version>2.10.6</version>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>

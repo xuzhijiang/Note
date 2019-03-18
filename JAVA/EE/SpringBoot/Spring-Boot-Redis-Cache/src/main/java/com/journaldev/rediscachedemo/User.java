@@ -4,9 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 7156526077883281623L;
+public class User{
 
     @Id
     @SequenceGenerator(name = "SEQ_GEN", sequenceName = "SEQ_USER", allocationSize = 1)

@@ -15,4 +15,5 @@ public class HomeController {
         //模板文件位置/resources/templates/home/index.html
         return "/home/index";
     }
+
 }
