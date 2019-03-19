@@ -98,3 +98,7 @@ RabbitMQ Server的命令会被安装到/usr/local/sbin，并不会自动加到�
 >PATH=$PATH:/usr/local/sbin
 
 这样，我们就可以通过rabbitmq-server命令来启动RabbitMQ的服务端了。
+
+## shell脚本
+
+`while true;do top -t -m 5;sleep 1;done`: 每隔1s打印出来前5个占用cpu的信息
