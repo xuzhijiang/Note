@@ -1,11 +1,11 @@
 package org.java.core.base.generics;
 
 /**
- * Java·ºÐÍºÍ¼Ì³Ð:
+ * Javaæ³›åž‹å’Œç»§æ‰¿:
  * 
- * ÎÒÃÇÖªµÀ£¬Èç¹ûAÊÇBµÄ×ÓÀà£¬Java¼Ì³ÐÔÊÐíÎÒÃÇ½«AµÄÊµÀý¶ÔÏó ·ÖÅä¸øÁíÒ»¸öÀàÐÍÊÇBµÄ±äÁ¿.
+ * æˆ‘ä»¬çŸ¥é“ï¼Œå¦‚æžœAæ˜¯Bçš„å­ç±»ï¼ŒJavaç»§æ‰¿å…è®¸æˆ‘ä»¬å°†Açš„å®žä¾‹å¯¹è±¡ åˆ†é…ç»™å¦ä¸€ä¸ªç±»åž‹æ˜¯Bçš„å˜é‡.
  *
- * ÎÒÃÇ¿ÉÄÜÈÏÎªÈÎºÎ·ºÐÍÀàÐÍµÄA¶¼¿ÉÒÔ·ÖÅä¸ø·ºÐÍB£¬µ«ÊÂÊµ²¢·ÇÈç´Ë¡£
+ * æˆ‘ä»¬å¯èƒ½è®¤ä¸ºä»»ä½•æ³›åž‹ç±»åž‹çš„Aéƒ½å¯ä»¥åˆ†é…ç»™æ³›åž‹Bï¼Œä½†äº‹å®žå¹¶éžå¦‚æ­¤ã€‚
  * 
  * We are not allowed to assign MyClass<String> variable 
  * to MyClass<Object> variable because they are not related,

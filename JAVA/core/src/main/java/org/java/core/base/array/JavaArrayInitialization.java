@@ -38,10 +38,10 @@ public class JavaArrayInitialization {
 		int[][] arrI2 = {{1,2}, {1,2,3}};
 		
 		//If you notice above, the two dimensional array 
-		//arrI2 is not a symmetric matrix(·Ç¶Ô³Æ¾ØÕó). It¡¯s because a 
+		//arrI2 is not a symmetric matrix(éå¯¹ç§°çŸ©é˜µ). Itâ€™s because a 
 		//multidimensional array in java is actually an array of array. 
 		
-		//Invalid ways to initialize an array in java³õÊ¼»¯Êı×éµÄÎŞĞ§·½Ê½
+		//Invalid ways to initialize an array in javaåˆå§‹åŒ–æ•°ç»„çš„æ— æ•ˆæ–¹å¼
 		
 		//invalid because dimension is not provided
 		//int[] a = new int[];

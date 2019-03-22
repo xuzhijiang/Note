@@ -3,15 +3,15 @@ package org.java.core.base.generics;
 import java.util.List;
 
 /**
- * Java Generic Classes and Subtyping(×ÓÀàĞÍ)
+ * Java Generic Classes and Subtyping(å­ç±»å‹)
  * 
- *  ÎÒÃÇ¿É  ¶Ô·ºĞÍÀà»ò½Ó¿Ú½øĞĞ×ÓÀàĞÍ»¯  Í¨¹ıextends»òimplementingËü¡£
+ *  æˆ‘ä»¬å¯  å¯¹æ³›å‹ç±»æˆ–æ¥å£è¿›è¡Œå­ç±»å‹åŒ–  é€šè¿‡extendsæˆ–implementingå®ƒã€‚
  * 
  *  ArrayList<E> implements List<E> that extends Collection<E>,
- *  Òò´ËArrayList <String>ÊÇList <String>µÄ×ÓÀàĞÍ£¬
- * List <String>ÊÇCollection <String>µÄ×ÓÀàĞÍ¡£
+ *  å› æ­¤ArrayList <String>æ˜¯List <String>çš„å­ç±»å‹ï¼Œ
+ * List <String>æ˜¯Collection <String>çš„å­ç±»å‹ã€‚
  *
- * List <String>µÄ×ÓÀàĞÍ¿ÉÒÔÊÇMyList <String£¬Object>£¬MyList <String£¬Integer>µÈµÈ¡£
+ * List <String>çš„å­ç±»å‹å¯ä»¥æ˜¯MyList <Stringï¼ŒObject>ï¼ŒMyList <Stringï¼ŒInteger>ç­‰ç­‰ã€‚
  * @param <E>
  * @param <T>
  */

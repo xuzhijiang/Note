@@ -1,12 +1,12 @@
 package org.java.core.base.generics;
 
 /**
- * ע��isEqual����ǩ��չʾ������ڷ�����ʹ�÷��͵��﷨��
- * ҲҪע������ڳ�����ʹ�ô˷�����
+ * 注意isEqual方法签名展示了如何在方法中使用泛型的语法，
+ * 也要注意如何在程序中使用此方法，
  * 
- *  ���ǿ����ڵ�����Щ����ʱָ�����ͣ��������ǿ�������ͨ����һ���������ǡ� 
- *  Java�������㹻����������ȷ��Ҫʹ�õı������ͣ�������Ҳ���ǿ���ȷ��g1��g2�еķ��͵�����ΪString��
- *  ���˹��߳�Ϊ�����ƶϡ�
+ *  我们可以在调用这些方法时指定类型，或者我们可以像普通方法一样调用它们。 
+ *  Java编译器足够聪明，可以确定要使用的变量类型（本例中也就是可以确定g1和g2中的泛型的类型为String）
+ *  ，此工具称为类型推断。
  *
  */
 public class GenericsMethods {
@@ -35,7 +35,7 @@ public class GenericsMethods {
 	}
 	
 	/**
-	 * �����ж�һ��Ԫ���������ǰ���ָ����Ԫ��
+	 * 用于判断一个元素数组中是包含指定的元素
 	 */
 	public static <T> boolean contain(T[] elements, T element) {
 		for (T e : elements) {

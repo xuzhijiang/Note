@@ -20,7 +20,7 @@ public class EagerInitializedSingleton {
 	private static final EagerInitializedSingleton instance = new EagerInitializedSingleton();
 	
 	//private constructor to avoid client applications to use constructor.
-	private EagerInitializedSingleton() {}
+	private EagerInitializedSingleton() {}// 将构造器声明为私有的，只有singleton内部可以调用构造器
 	
 	public static EagerInitializedSingleton getInstance() {
 		return instance;

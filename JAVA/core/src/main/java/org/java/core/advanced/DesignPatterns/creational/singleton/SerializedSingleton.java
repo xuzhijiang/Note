@@ -13,9 +13,6 @@ import java.io.Serializable;
  */
 public class SerializedSingleton implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5192695839088380039L;
 	
 	private SerializedSingleton() {}

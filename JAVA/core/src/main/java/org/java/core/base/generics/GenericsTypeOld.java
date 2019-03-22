@@ -15,7 +15,7 @@ public class GenericsTypeOld {
     public static void main(String args[]){
 		GenericsTypeOld type = new GenericsTypeOld();
 		type.set("Pankaj"); 
-		String str = (String) type.get(); //type casting, error prone£¨Ò×ÓÚ£© and can cause ClassCastException
+		String str = (String) type.get(); //type casting, error proneÂ£Â¨Ì‰Ã—Ã“ÃšÂ£Â© and can cause ClassCastException
 	}
 }
 

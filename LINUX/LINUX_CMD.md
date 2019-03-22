@@ -102,3 +102,5 @@ RabbitMQ Server的命令会被安装到/usr/local/sbin，并不会自动加到�
 ## shell脚本
 
 `while true;do top -t -m 5;sleep 1;done`: 每隔1s打印出来前5个占用cpu的信息
+
+查看某一个进程的cpu使用率:`top -p pid`

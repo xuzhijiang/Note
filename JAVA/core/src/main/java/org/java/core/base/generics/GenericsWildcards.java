@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Java·ºĞÍÍ¨Åä·û
+ * Javaæ³›å‹é€šé…ç¬¦
  * 
- * Question mark (?) ÊÇ·ºĞÍÖĞµÄÍ¨Åä·û£¬±íÊ¾Î´ÖªÀàĞÍ¡£
+ * Question mark (?) æ˜¯æ³›å‹ä¸­çš„é€šé…ç¬¦ï¼Œè¡¨ç¤ºæœªçŸ¥ç±»å‹ã€‚
  * 
- *  Í¨Åä·û¿ÉÒÔÓÃ×÷²ÎÊı£¬×Ö¶Î»ò¾Ö²¿±äÁ¿µÄÀàĞÍ£¬ÓĞÊ±Ò²¿ÉÒÔÓÃ×÷·µ»ØÀàĞÍ¡£
+ *  é€šé…ç¬¦å¯ä»¥ç”¨ä½œå‚æ•°ï¼Œå­—æ®µæˆ–å±€éƒ¨å˜é‡çš„ç±»å‹ï¼Œæœ‰æ—¶ä¹Ÿå¯ä»¥ç”¨ä½œè¿”å›ç±»å‹ã€‚
  *  
- *   ÎÒÃÇÔÚµ÷ÓÃ·ºĞÍ·½·¨»òÊµÀı»¯·ºĞÍÀàÊ±²»ÄÜÊ¹ÓÃÍ¨Åä·û¡£ 
- *   ÔÚ½ÓÏÂÀ´µÄ²¿·ÖÖĞ£¬ÎÒÃÇ½«ÁË½âÉÏ±ß½çÍ¨Åä·û£¬ÏÂ±ß½çÍ¨Åä·ûºÍÍ¨Åä·û²¶»ñ¡£
- *   £¨upper bounded wildcards, lower bounded wildcards, and wildcard capture.£©
+ *   æˆ‘ä»¬åœ¨è°ƒç”¨æ³›å‹æ–¹æ³•æˆ–å®ä¾‹åŒ–æ³›å‹ç±»æ—¶ä¸èƒ½ä½¿ç”¨é€šé…ç¬¦ã€‚ 
+ *   åœ¨æ¥ä¸‹æ¥çš„éƒ¨åˆ†ä¸­ï¼Œæˆ‘ä»¬å°†äº†è§£ä¸Šè¾¹ç•Œé€šé…ç¬¦ï¼Œä¸‹è¾¹ç•Œé€šé…ç¬¦å’Œé€šé…ç¬¦æ•è·ã€‚
+ *   ï¼ˆupper bounded wildcards, lower bounded wildcards, and wildcard capture.ï¼‰
  * 
- * Java·ºĞÍÉÏÏŞÓĞ½çÍ¨Åä·ûupper bounded wildcards
- *  ÉÏÏŞÓĞ½çÍ¨Åä·ûÓÃÓÚ·Å¿í·½·¨ÖĞ±äÁ¿ÀàĞÍµÄÏŞÖÆ¡£
+ * Javaæ³›å‹ä¸Šé™æœ‰ç•Œé€šé…ç¬¦upper bounded wildcards
+ *  ä¸Šé™æœ‰ç•Œé€šé…ç¬¦ç”¨äºæ”¾å®½æ–¹æ³•ä¸­å˜é‡ç±»å‹çš„é™åˆ¶ã€‚
  * 
- *  Java·ºĞÍÎŞ½çÍ¨Åä·û Unbounded wildcards
- *   ÓĞÊ±ÎÒÃÇÏ£ÍûÎÒÃÇµÄ·ºĞÍ·½·¨ÊÊÓÃÓÚËùÓĞÀàĞÍ£¬ÔÚÕâÖÖÇé¿öÏÂ¿ÉÒÔÊ¹ÓÃÎŞ½çÍ¨Åä·û¡£ 
- *  List<?> ÓëÊ¹ÓÃList<£¿ extends Object>Ğ§¹ûÏàÍ¬
+ *  Javaæ³›å‹æ— ç•Œé€šé…ç¬¦ Unbounded wildcards
+ *   æœ‰æ—¶æˆ‘ä»¬å¸Œæœ›æˆ‘ä»¬çš„æ³›å‹æ–¹æ³•é€‚ç”¨äºæ‰€æœ‰ç±»å‹ï¼Œåœ¨è¿™ç§æƒ…å†µä¸‹å¯ä»¥ä½¿ç”¨æ— ç•Œé€šé…ç¬¦ã€‚ 
+ *  List<?> ä¸ä½¿ç”¨List<ï¼Ÿ extends Object>æ•ˆæœç›¸åŒ
  *  
- *  Java GenericsÏÂÏŞÍ¨Åä·û£¨lower bounded Wildcard£©
+ *  Java Genericsä¸‹é™é€šé…ç¬¦ï¼ˆlower bounded Wildcardï¼‰
  *  
  */
 public class GenericsWildcards {
@@ -36,14 +36,14 @@ public class GenericsWildcards {
 	}
 
 	/**
-	 * ²ÎÊıÊÇÒ»¸öÉÏÏŞÓĞ½çÍ¨Åä·û£¬ÕâÑù¾Í¿ÉÒÔ´«ÈëList<Integer> or List<Double>µÈµÈ.
+	 * å‚æ•°æ˜¯ä¸€ä¸ªä¸Šé™æœ‰ç•Œé€šé…ç¬¦ï¼Œè¿™æ ·å°±å¯ä»¥ä¼ å…¥List<Integer> or List<Double>ç­‰ç­‰.
 	 * 
-	 * ÎÒÃÇ¿ÉÒÔÊ¹ÓÃÉÏÏŞÀàNumberµÄËùÓĞ·½·¨
+	 * æˆ‘ä»¬å¯ä»¥ä½¿ç”¨ä¸Šé™ç±»Numberçš„æ‰€æœ‰æ–¹æ³•
 	 * @param list
 	 * @return
 	 */
 	public static double sum(List<? extends Number> list){
-		//²»ÔÊĞíÏòlistÖĞÌí¼Ó³ınullÖ®ÍâµÄÈÎºÎ¶ÔÏó,Èç¹ûÌí¼ÓµÄ»°£¬³ÌĞò½«ÔÚ±àÒëÊ±±¨´í.
+		//ä¸å…è®¸å‘listä¸­æ·»åŠ é™¤nullä¹‹å¤–çš„ä»»ä½•å¯¹è±¡,å¦‚æœæ·»åŠ çš„è¯ï¼Œç¨‹åºå°†åœ¨ç¼–è¯‘æ—¶æŠ¥é”™.
 		//list.add(10); //error
 		double sum = 0;
 		for(Number n : list){
@@ -52,7 +52,7 @@ public class GenericsWildcards {
 		return sum;
 	}
 	
-	//ÀàËÆÓÚÉÏÏŞÓĞ½çÍ¨Åä·û£¬ ÓëÉÏÏŞÁĞ±íÀàËÆ£¬ÎÒÃÇ²»ÔÊĞíÏòÁĞ±íÖĞÌí¼ÓÈÎºÎÄÚÈİ¡£
+	//ç±»ä¼¼äºä¸Šé™æœ‰ç•Œé€šé…ç¬¦ï¼Œ ä¸ä¸Šé™åˆ—è¡¨ç±»ä¼¼ï¼Œæˆ‘ä»¬ä¸å…è®¸å‘åˆ—è¡¨ä¸­æ·»åŠ ä»»ä½•å†…å®¹ã€‚
 	public static void printData(List<?> list){
 		for (Object obj : list) {
 			System.out.print(obj + "::");
@@ -61,12 +61,12 @@ public class GenericsWildcards {
 	
 	// Java Generics Lower bounded Wildcard
 	/**
-	 * ÎÒÃÇÊ¹ÓÃ·ºĞÍÍ¨Åä·û£¿ºÍsuper¹Ø¼ü×ÖÒÔ¼°ÏÂ½çÀàÈ¥ÊµÏÖJava·ºĞÍÏÂ½çÍ¨Åä·û
+	 * æˆ‘ä»¬ä½¿ç”¨æ³›å‹é€šé…ç¬¦ï¼Ÿå’Œsuperå…³é”®å­—ä»¥åŠä¸‹ç•Œç±»å»å®ç°Javaæ³›å‹ä¸‹ç•Œé€šé…ç¬¦
 	 *  We use generics wildcard (?) with super keyword 
 	 *  and lower bound class to achieve this.
 	 * 
-	 * ÔÚÕâÖÖÇé¿öÏÂ£¬ÎÒÃÇ¿ÉÒÔ½«ÏÂÏŞ»òÏÂÏŞÀàĞÍµÄ¸¸ÀàĞÍ×÷Îª²ÎÊı´«µİ£¬
-	 * java±àÒëÆ÷ÔÊĞí½«ÏÂ½ç¶ÔÏóÀàĞÍÌí¼Óµ½ÁĞ±íÖĞ¡£
+	 * åœ¨è¿™ç§æƒ…å†µä¸‹ï¼Œæˆ‘ä»¬å¯ä»¥å°†ä¸‹é™æˆ–ä¸‹é™ç±»å‹çš„çˆ¶ç±»å‹ä½œä¸ºå‚æ•°ä¼ é€’ï¼Œ
+	 * javaç¼–è¯‘å™¨å…è®¸å°†ä¸‹ç•Œå¯¹è±¡ç±»å‹æ·»åŠ åˆ°åˆ—è¡¨ä¸­ã€‚
 	 * @param list
 	 */
 	public static void addIntegers(List<? super Integer> list){

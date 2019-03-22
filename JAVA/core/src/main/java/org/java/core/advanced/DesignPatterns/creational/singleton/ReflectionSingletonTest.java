@@ -12,7 +12,9 @@ import java.lang.reflect.Constructor;
 public class ReflectionSingletonTest {
 	public static void main(String[] args) {
 		EagerInitializedSingleton instanceOne = EagerInitializedSingleton.getInstance();
+
 		EagerInitializedSingleton instanceTwo = null;
+
 		try {
 				Constructor[] constructors = EagerInitializedSingleton.class.getDeclaredConstructors();
 				for(Constructor constructor : constructors) {

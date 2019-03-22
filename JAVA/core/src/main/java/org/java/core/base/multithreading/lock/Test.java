@@ -1,9 +1,9 @@
 package org.java.core.base.multithreading.lock;
 
 /**
- * 如果一个线程进入foo（），它就会锁定Test对象(it has the lock on Test object),
- * 所以当它尝试执行bar（）方法时，该线程是被允许的去执行bar（）方法，
- * 因为它持有在Test对象上的锁,这里如同synchronized(this).
+ * 锟斤拷锟揭伙拷锟斤拷叱探锟斤拷锟絝oo锟斤拷锟斤拷锟斤拷锟斤拷锟酵伙拷锟斤拷锟斤拷EqualsOperatorTest锟斤拷锟斤拷(it has the lock on EqualsOperatorTest object),
+ * 锟斤拷锟皆碉拷锟斤拷锟斤拷锟斤拷执锟斤拷bar锟斤拷锟斤拷锟斤拷锟斤拷时锟斤拷锟斤拷锟竭筹拷锟角憋拷锟斤拷锟斤拷锟饺ブ达拷锟絙ar锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+ * 锟斤拷为锟斤拷锟斤拷锟斤拷锟斤拷EqualsOperatorTest锟斤拷锟斤拷锟较碉拷锟斤拷,锟斤拷锟斤拷锟斤拷同synchronized(this).
  * @author a
  *
  */

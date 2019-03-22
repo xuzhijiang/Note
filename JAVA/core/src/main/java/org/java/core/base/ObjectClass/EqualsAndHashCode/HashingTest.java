@@ -3,11 +3,11 @@ package org.java.core.base.ObjectClass.EqualsAndHashCode;
 import java.util.HashMap;
 import java.util.Map;
 
-// ÒòÎªObject hashCode£¨£©·½·¨ÓÃÓÚ²éÕÒ´æ´¢Í°(bucket)ÒÔ²éÕÒkey¡£
-// ÓÉÓÚÎÒÃÇÎŞ·¨·ÃÎÊHashMap¼ü²¢ÇÒÎÒÃÇÔÙ´Î´´½¨ÃÜÔ¿À´¼ìË÷Êı¾İ£¬
-// Òò´ËÄú»á×¢Òâµ½Á½¸ö¶ÔÏóµÄ¹şÏ£ÂëÖµ²»Í¬£¬Òò´ËÕÒ²»µ½Öµ¡£
+// å› ä¸ºObject hashCodeï¼ˆï¼‰æ–¹æ³•ç”¨äºæŸ¥æ‰¾å­˜å‚¨æ¡¶(bucket)ä»¥æŸ¥æ‰¾keyã€‚
+// ç”±äºæˆ‘ä»¬æ— æ³•è®¿é—®HashMapé”®å¹¶ä¸”æˆ‘ä»¬å†æ¬¡åˆ›å»ºå¯†é’¥æ¥æ£€ç´¢æ•°æ®ï¼Œ
+// å› æ­¤æ‚¨ä¼šæ³¨æ„åˆ°ä¸¤ä¸ªå¯¹è±¡çš„å“ˆå¸Œç å€¼ä¸åŒï¼Œå› æ­¤æ‰¾ä¸åˆ°å€¼ã€‚
 
-// ËùÒÔÎÒÃÇÊ¹ÓÃeclipseµÄ×Ô´ø¹¦ÄÜ×Ô¶¯Éú³Éequals£¨£©ºÍhashCode£¨£©
+// æ‰€ä»¥æˆ‘ä»¬ä½¿ç”¨eclipseçš„è‡ªå¸¦åŠŸèƒ½è‡ªåŠ¨ç”Ÿæˆequalsï¼ˆï¼‰å’ŒhashCodeï¼ˆï¼‰
 public class HashingTest {
 
 	public static void main(String[] args) {

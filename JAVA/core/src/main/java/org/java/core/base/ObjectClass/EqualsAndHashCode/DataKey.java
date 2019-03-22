@@ -17,8 +17,8 @@ public class DataKey {
 		return id;
 	}
 
-	// Çë×¢Òâ£¬equals£¨£©ºÍhashCode£¨£©·½·¨¶¼Ê¹ÓÃÏàÍ¬µÄ
-	// Object properties ×Ö¶Î½øĞĞ¼ÆËã£¬Òò´ËËüÃÇµÄºÏÔ¼ÈÔÈ»ÓĞĞ§(remains valid)¡£
+	// è¯·æ³¨æ„ï¼Œequalsï¼ˆï¼‰å’ŒhashCodeï¼ˆï¼‰æ–¹æ³•éƒ½ä½¿ç”¨ç›¸åŒçš„
+	// Object properties å­—æ®µè¿›è¡Œè®¡ç®—ï¼Œå› æ­¤å®ƒä»¬çš„åˆçº¦ä»ç„¶æœ‰æ•ˆ(remains valid)ã€‚
 	@Override
 	public int hashCode() {
 		final int prime = 31;
