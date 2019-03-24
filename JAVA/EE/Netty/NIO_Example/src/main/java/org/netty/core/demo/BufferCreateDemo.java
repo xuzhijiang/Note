@@ -26,9 +26,10 @@ public class BufferCreateDemo {
         ByteBuffer wrap = ByteBuffer.wrap(bytes);
 
         // 方式3：通过wrap根据一个已有的数组指定区间创建
-        // 带有 offset 和 length 作为参数的 wrap()函数版本则会构造一个按照您提供的 offset 和 length 参数值初始化位置和上界的缓冲区。这个函数并不像您可能认为的那样，创建了一个只占用了一个数组子集的缓冲区。这个缓冲区可以存取这个数组的全部范围； offset 和 length 参数只是设置了初始的状态。
-        //
-        // 最后一个函数， arrayOffset()，返回缓冲区数据在数组中存储的开始位置的偏移量（从数组头 0 开始计算）。如果您使用了带有三个参数的版本的 wrap()函数来创建一个缓冲区，对于这个缓冲区， arrayOffset()会一直返回 0，像我们之前讨论的那样。
+        // 带有 offset 和 length 作为参数的 wrap()函数会构造一个
+        // 按照您提供的 offset 和 length参数值初始化位置(position)和上界(limit)的缓冲区。
+        // 这个函数并不像您可能认为的那样，创建了一个只占用了一个数组子集的缓冲区。
+        // 这个缓冲区可以存取这个数组的全部范围； offset 和 length 参数只是设置了初始的状态。
         ByteBuffer wrapoffset = ByteBuffer.wrap(bytes,2,5);
 
         //打印出刚刚创建的缓冲区的相关信息
@@ -45,6 +46,9 @@ public class BufferCreateDemo {
                     +",hasArray="+buffer.hasArray()
                     +",isReadOnly="+buffer.isReadOnly()
                     +",arrayOffset="+buffer.arrayOffset());
+            // arrayOffset()，返回缓冲区数据在数组中存储的开始位置的偏移量（从数组头 0 开始计算）。
+            // 如果您使用了带有三个参数的版本的 wrap()函数来创建一个缓冲区，对于这个缓冲区，
+            // arrayOffset()会一直返回 0
         }
     }
 
