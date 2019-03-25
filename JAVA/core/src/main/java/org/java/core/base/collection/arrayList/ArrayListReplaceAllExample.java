@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.function.UnaryOperator;
 
 /**
- * ÔÚJava 8ÖĞÌí¼ÓÁËArrayList replaceAll·½·¨¡£
- * µ±ÄúÏëÒª¶ÔÁĞ±íµÄËùÓĞÔªËØÓ¦ÓÃÄ³Ğ©º¯ÊıÊ±£¬Ëü·Ç³£ÓĞÓÃ¡£
+ * åœ¨Java 8ä¸­æ·»åŠ äº†ArrayList replaceAllæ–¹æ³•ã€‚
+ * å½“æ‚¨æƒ³è¦å¯¹åˆ—è¡¨çš„æ‰€æœ‰å…ƒç´ åº”ç”¨æŸäº›å‡½æ•°æ—¶ï¼Œå®ƒéå¸¸æœ‰ç”¨ã€‚
  * @author a
  *
  */

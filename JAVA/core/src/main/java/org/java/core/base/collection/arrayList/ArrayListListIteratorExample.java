@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * ÎÒÃÇ¿ÉÒÔÊ¹ÓÃListIteratorÔÚÁ½¸ö·½ÏòÉÏ±éÀúÁÐ±í¡£ 
- * ËüÔÊÐíÎÒÃÇÉ¾³ýÒÔ¼°ÏòÁÐ±íÖÐÌí¼ÓÔªËØ¡£
- *  Äú»¹¿ÉÒÔÔÚListIteratorÖÐ»ñÈ¡µü´úÆ÷µ±Ç°Î»ÖÃ¡£ 
- *  ÓÃÓÚÏòºó±éÀúÁÐ±í²¢ÐÞ¸ÄÁÐ±íÊý¾Ý¡£
+ * æˆ‘ä»¬å¯ä»¥ä½¿ç”¨ListIteratoråœ¨ä¸¤ä¸ªæ–¹å‘ä¸ŠéåŽ†åˆ—è¡¨ã€‚ 
+ * å®ƒå…è®¸æˆ‘ä»¬åˆ é™¤ä»¥åŠå‘åˆ—è¡¨ä¸­æ·»åŠ å…ƒç´ ã€‚
+ *  æ‚¨è¿˜å¯ä»¥åœ¨ListIteratorä¸­èŽ·å–è¿­ä»£å™¨å½“å‰ä½ç½®ã€‚ 
+ *  ç”¨äºŽå‘åŽéåŽ†åˆ—è¡¨å¹¶ä¿®æ”¹åˆ—è¡¨æ•°æ®ã€‚
  * @author a
  *
  */

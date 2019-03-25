@@ -72,7 +72,7 @@ public class ArrayListExample {
 		letters.removeAll(list);
 		System.out.println(letters);
 		
-		//retainAll example 保留所有
+		//retainAll example 袘袃小褦蝎褭谐邪
 		list.clear();list.add("A");list.add("B");list.add("C");
 		letters.retainAll(list);
 		System.out.println("letters elements after retainAll operation: "+letters);

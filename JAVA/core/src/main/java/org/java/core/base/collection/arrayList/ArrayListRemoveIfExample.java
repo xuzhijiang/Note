@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * ÔÚJava 8ÖĞÌí¼ÓÁËArrayList removeIf·½·¨¡£
- * ´Ë·½·¨½«É¾³ıÁĞ±íÖĞÂú×ã¸ø¶¨Î½´ÊµÄËùÓĞÔªËØ¡£
+ * åœ¨Java 8ä¸­æ·»åŠ äº†ArrayList removeIfæ–¹æ³•ã€‚
+ * æ­¤æ–¹æ³•å°†åˆ é™¤åˆ—è¡¨ä¸­æ»¡è¶³ç»™å®šè°“è¯çš„æ‰€æœ‰å…ƒç´ ã€‚
  * @author a
  *
  */

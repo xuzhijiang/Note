@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * ÎÒÃÇ¿ÉÒÔÊ¹ÓÃArrayListÅÅĞò·½·¨À´ÅÅĞòËüµÄÔªËØ¡£
+ * æˆ‘ä»¬å¯ä»¥ä½¿ç”¨ArrayListæ’åºæ–¹æ³•æ¥æ’åºå®ƒçš„å…ƒç´ ã€‚
  */
 public class ArrayListSortingExample {
 

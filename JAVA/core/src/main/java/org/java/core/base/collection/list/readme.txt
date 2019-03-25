@@ -1,7 +1,4 @@
-Java CollectionsÊÇJavaÓïÑÔµÄºËĞÄ¿ò¼ÜÖ®Ò».,ÎÒÃÇ¼¸ºõÔÚÃ¿¸öÓ¦ÓÃ³ÌĞòÖĞ¶¼Ê¹ÓÃ¼¯ºÏ£¬
-±¾½Ì³Ì½«ÏêÏ¸½éÉÜJava¼¯ºÏ¿ò¼Ü¡£ ÏêÏ¸ÁË½â¼¯ºÏ¿ò¼Ü½Ó¿Ú£¬ÀàºÍËã·¨¡£
-
-ListµÄ½Ó¿Ú¼Ì³Ğ¹ØÏµ:
+Listçš„æ¥å£ç»§æ‰¿å…³ç³»:
 
 	public interface List<E> extends Collection<E>.
 
@@ -9,41 +6,29 @@ ListµÄ½Ó¿Ú¼Ì³Ğ¹ØÏµ:
 	
 	public interface Iterable<T>.
 
-Java Collections Framework consists of following parts:(Java¼¯ºÏ¿ò¼Ü°üº¬ÏÂÊö²¿·Ö)
-
-Interfaces: Java Collections Framework interfaces provides the abstract data 
-type to represent collection. java.util.Collection is the root interface of 
-Collections Framework. It is on the top of Collections framework hierarchy. 
-It contains some important methods such as size(), iterator(), add(), remove(), clear() 
-that every Collection class must implement. Some other important interfaces are 
-java.util.List, java.util.Set, java.util.Queue and java.util.Map. Map is the only 
-interface that doesn¡¯t inherits from Collection interface but it¡¯s part of Collections 
-framework. All the collections framework interfaces are present in java.util package.
-
-½Ó¿Ú: Java¼¯ºÏ¿ò¼ÜÌá¹©ÁË±íÊ¾¼¯ºÏµÄ³éÏóÊı¾İÀàĞÍ£¬java.util.CollectionÊÇ¼¯ºÏ¿ò¼ÜµÄ¸ù½Ó¿Ú£¬ËüÎ»ÓÚCollections¿ò¼Ü²ã´ÎµÄ
-¶¥²¿£¬Ëü°üº¬ÁËÒ»Ğ©Ïñsize(),iterator(),add(),remove(),clear()µÈÃ¿Ò»¸ö¼¯ºÏÀà±ØĞëÒªÊµÏÖµÄÖØÒª·½·¨¡£
-Ò»Ğ©ÆäËûµÄÖØÒª½Ó¿ÚÊÇjava.util.List, java.util.Set, java.util.Queue, java.util.Map, MapÊÇÎ¨Ò»µÄ²»´Ó
-Collection¼Ì³ĞµÄ½Ó¿Ú£¬µ«ÊÇËûÊÇCollections¿ò¼ÜµÄÒ»²¿·Ö£¬ËùÓĞµÄ¼¯ºÏ¿ò¼Ü½Ó¿Ú¶¼´æÔÚÓÚjava.util°üÖĞ¡£
-
-Implementation Classes: Collections in Java provides core implementation classes for 
-collections. We can use them to create different types of collections in java program. 
-Some important collection classes are ArrayList, LinkedList, HashMap, TreeMap, HashSet, 
-TreeSet.These classes solve most of our programming needs but if we need some special 
-collection class, we can extend them to create our custom collection class.
-
-ÊµÏÖÀà: Ò»Ğ©ÖØÒªµÄ¼¯ºÏÀàÊÇArrayList, LinkedList, HashMap, TreeMap, HashSet, TreeSet.
-ÕâĞ©Àà½â¾öÁËÎÒÃÇ´ó²¿·ÖµÄ±à³ÌĞèÒª£¬µ«ÊÇÈç¹ûÎÒÃÇĞèÒªÒ»Ğ©ÌØÊâ¼¯ºÏÀà£¬ÎÒÃÇ¿ÉÒÔÀ©Õ¹ËûÃÇÈ¥´´½¨ÎÒÃÇ×Ô¶¨ÒåµÄ¼¯ºÏÀà
-
-Java 1.5 came up with thread-safe collection classes that allowed to modify Collections 
+Java 1.5 came up with thread-safe collection classes that allowed to modify Collections
 while iterating over it, some of them are CopyOnWriteArrayList, ConcurrentHashMap, 
 CopyOnWriteArraySet. These classes are in java.util.concurrent package. All the collection 
 classes are present in java.util and java.util.concurrent package.
 
-Java1.5Ìá³öÁËÏß³Ì°²È«µÄ¼¯ºÏÀà£¬ÔÊĞíµ±µü´úËüµÄÊ±ºòĞŞ¸Ä¼¯ºÏ£¬ËûÃÇÖĞµÄÒ»Ğ©ÊÇCopyOnWriteArrayList, ConcurrentHashMap, 
-CopyOnWriteArraySet, ÕâĞ©ÀàÊÇÔÚjava.util.concurrent±£ÖØ£¬ËùÓĞµÄÕâĞ©¼¯ºÏÀà¶¼´æÔÚÓÚjava.utilºÍjava.util.concurrent°üÖĞ.
+Java1.5æå‡ºäº†çº¿ç¨‹å®‰å…¨çš„é›†åˆç±»ï¼Œå…è®¸å½“è¿­ä»£å®ƒçš„æ—¶å€™ä¿®æ”¹é›†åˆï¼Œä»–ä»¬ä¸­çš„ä¸€äº›æ˜¯CopyOnWriteArrayList, ConcurrentHashMap, 
+CopyOnWriteArraySet, è¿™äº›ç±»æ˜¯åœ¨java.util.concurrentä¿é‡ï¼Œæ‰€æœ‰çš„è¿™äº›é›†åˆç±»éƒ½å­˜åœ¨äºjava.utilå’Œjava.util.concurrentåŒ…ä¸­.
 
-Algorithms: Algorithms are useful methods to provide some common functionalities, 
-for example searching, sorting and shuffling.
+#### 1.ArrayList
+ç”±æ•°ç»„æ–¹å¼å®ç°æ•°æ®å­˜å‚¨ï¼Œå½“ç„¶æ•°ç»„çš„è®¿é—®é€Ÿåº¦æ¯”é“¾è¡¨å¿«ã€‚æºç å¦‚ä¸‹ï¼š
+```java
+public class ArrayList<E> extends AbstractList<E>
+    implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+{
+private static final long serialVersionUID = 8683452581122892189L;
 
-Ëã·¨£ºËã·¨ÊÇÌá¹©Ò»Ğ©³£ÓÃ¹¦ÄÜµÄÓĞÓÃ·½·¨£¬ÀıÈçËÑË÷£¬ÅÅĞòºÍ»ìÏ´¡£
-
+/**
+    * The array buffer into which the elements of the ArrayList are stored.
+    * The capacity of the ArrayList is the length of this array buffer.
+    */
+private transient Object[] elementData;
+```
+#### 2.LinkedList
+ç”±è¿æ¥å®ç°æ•°æ®çš„å­˜å‚¨ï¼Œéšæœºæ·»åŠ å’Œåˆ é™¤å…ƒç´ çš„çš„æ“ä½œçš„æ•ˆç‡è¦é«˜äºæ•°ç»„ï¼Œç®€å•è¯´å°±æ›´é€‚ç”¨äºé¢‘ç¹çš„æ’å…¥å’Œå®ç°æ“ä½œã€‚
+#### 3.Vector
+æ˜¯ä¸€ç§å¤è€çš„å®ç°ç±»ï¼Œåœ¨Vectorç±»ä¸­ï¼Œé‡Œé¢çš„æ–¹æ³•æ·»åŠ äº†synchronizedä¿®é¥°ï¼Œæ˜¯çº¿ç¨‹å®‰å…¨çš„ï¼Œä»–çš„æ€§èƒ½æ¯”ArrayListå·®ï¼Œç”¨çš„åœ°æ–¹æ¯”è¾ƒå°‘ï¼Œ

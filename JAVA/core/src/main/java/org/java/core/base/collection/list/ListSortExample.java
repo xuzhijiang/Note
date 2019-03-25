@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * 2ÖĞÅÅĞò·½Ê½£¬Ò»ÖÖÊÇÓÃ¼¯ºÏµÄsort£¬ÁíÒ»ÖÖÊÇ×Ô¶¨ÒåÅÅĞò¹æÔò
+ * 2ä¸­æ’åºæ–¹å¼ï¼Œä¸€ç§æ˜¯ç”¨é›†åˆçš„sortï¼Œå¦ä¸€ç§æ˜¯è‡ªå®šä¹‰æ’åºè§„åˆ™
  */
 public class ListSortExample {
 	public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class ListSortExample {
 		Random random = new Random();
 		for(int i=0;i<10;i++) ints.add(random.nextInt(1000));
 		
-		//natural sorting using Collections class	Ê¹ÓÃCollectionsÀà½øĞĞ×ÔÈ»ÅÅĞò
+		//natural sorting using Collections class	ä½¿ç”¨Collectionsç±»è¿›è¡Œè‡ªç„¶æ’åº
 		Collections.sort(ints);
 		System.out.println("Natural Sorting: " + ints);
 		

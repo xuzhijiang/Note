@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * µ±ÎÒÃÇ½«subList·½·¨ÓëÁĞ±íÒ»ÆğÊ¹ÓÃÊ±£¬Ëü·µ»ØÔ­Ê¼ÁĞ±íµÄÒ»²¿·ÖÊÓÍ¼¡£ 
+ * å½“æˆ‘ä»¬å°†subListæ–¹æ³•ä¸åˆ—è¡¨ä¸€èµ·ä½¿ç”¨æ—¶ï¼Œå®ƒè¿”å›åŸå§‹åˆ—è¡¨çš„ä¸€éƒ¨åˆ†è§†å›¾ã€‚ 
  * 
- * ´ËĞÂÁĞ±íÓÉÔ­Ê¼ÁĞ±íÖ§³Ö£¬Òò´ËÈÎºÎĞŞ¸ÄÒ²½«·´Ó³µ½originalÁĞ±í¡£
+ * æ­¤æ–°åˆ—è¡¨ç”±åŸå§‹åˆ—è¡¨æ”¯æŒï¼Œå› æ­¤ä»»ä½•ä¿®æ”¹ä¹Ÿå°†åæ˜ åˆ°originalåˆ—è¡¨ã€‚
  *  
  * @author a
  *
@@ -32,7 +32,7 @@ public class ArrayListSubListExample {
 		//Let's modify the list size and get ConcurrentModificationException
 		names.add("Deepak");
 		System.out.println(names +" , "+first2Names); //this line throws exception
-		//  ĞÂÁĞ±íÖĞµÄËùÓĞ·½·¨Ê×ÏÈ¼ì²éºó±¸ÁĞ±íµÄÊµ¼ÊmodCountÊÇ·ñµÈÓÚÆäÔ¤ÆÚÖµ£¬Èç¹û²»ÊÇ£¬ÔòÅ×³öConcurrentModificationException¡£
+		//  æ–°åˆ—è¡¨ä¸­çš„æ‰€æœ‰æ–¹æ³•é¦–å…ˆæ£€æŸ¥åå¤‡åˆ—è¡¨çš„å®é™…modCountæ˜¯å¦ç­‰äºå…¶é¢„æœŸå€¼ï¼Œå¦‚æœä¸æ˜¯ï¼Œåˆ™æŠ›å‡ºConcurrentModificationExceptionã€‚
 	}
 
 }

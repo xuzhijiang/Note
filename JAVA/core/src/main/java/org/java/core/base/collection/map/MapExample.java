@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-// ÎÒÃÇ½«Ê¹ÓÃMapÊµÏÖÀàHashMap×÷ÎªÊ¾Àı³ÌĞò¡£
+// æˆ‘ä»¬å°†ä½¿ç”¨Mapå®ç°ç±»HashMapä½œä¸ºç¤ºä¾‹ç¨‹åºã€‚
 public class MapExample {
 
 	public static void main(String[] args) {

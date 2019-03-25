@@ -1,56 +1,52 @@
 public interface Map<K,V>{}
 
-Java MapÊÇcollections frameworkµÄÒ»²¿·Ö¡£ 
-Java Map¶ÔÏóÓÃÓÚ´æ´¢¼üÖµÓ³Éä¡£ Java Map²»ÄÜ°üº¬ÖØ¸´¼ü£¬µ«ÔÊĞíÖØ¸´Öµ¡£
+Java Mapæ˜¯collections frameworkçš„ä¸€éƒ¨åˆ†ã€‚ 
+Java Mapå¯¹è±¡ç”¨äºå­˜å‚¨é”®å€¼æ˜ å°„ã€‚ Java Mapä¸èƒ½åŒ…å«é‡å¤é”®.
 
-JavaÖĞÁ÷ĞĞµÄMapÊµÏÖÀàÊÇHashMap£¬Hashtable£¬TreeMap£¬ConcurrentHashMapºÍLinkedHashMap¡£
-AbstractMapÀàÌá¹©ÁËMap½Ó¿ÚµÄ¹Ç¼ÜÊµÏÖ£¬´ó¶àÊıMap¾ßÌåÀàÀ©Õ¹ÁËAbstractMapÀà²¢ÊµÏÖÁËËùĞèµÄ·½·¨¡£
+Javaä¸­æµè¡Œçš„Mapå®ç°ç±»æ˜¯HashMapï¼ŒHashtableï¼ŒTreeMapï¼ŒConcurrentHashMapå’ŒLinkedHashMapã€‚
+AbstractMapç±»æä¾›äº†Mapæ¥å£çš„éª¨æ¶å®ç°ï¼Œå¤§å¤šæ•°Mapå…·ä½“ç±»æ‰©å±•äº†AbstractMapç±»å¹¶å®ç°äº†æ‰€éœ€çš„æ–¹æ³•ã€‚
 
-¹ØÓÚjavaÖĞMapµÄÒ»Ğ©ÖØÒª¹ÛµãÊÇ:
+Mapæä¾›äº†ä¸‰ä¸ªé›†åˆè§†å›¾: é”®é›†ï¼Œ é”®å€¼æ˜ å°„é›†å’Œ å€¼é›†åˆã€‚
 
-Map provides three collection views ¨C set of keys, set of key-value mappings and collection of values.
+Mapä¸ä¿è¯æ˜ å°„çš„é¡ºåºï¼Œä½†å®ƒå–å†³äºå®ç°ã€‚ä¾‹å¦‚ï¼ŒHashMapä¸ä¿è¯æ˜ å°„çš„é¡ºåºï¼Œ
+ä½†TreeMapå°±å¯ä»¥ä¿è¯.
 
-MapÌá¹©ÁËÈı¸ö¼¯ºÏÊÓÍ¼: ¼ü¼¯£¬ ¼üÖµÓ³Éä¼¯ºÍ Öµ¼¯ºÏ¡£
+Mapä½¿ç”¨hashCodeå’Œequalsæ–¹æ³•æ¥è·å–å’Œæ”¾ç½®æ“ä½œã€‚æ‰€ä»¥å¯å˜ç±»ä¸é€‚åˆMapé”®ã€‚
+å¦‚æœhashCodeæˆ–equalsçš„å€¼åœ¨putä¹‹åå‘ç”Ÿæ›´æ”¹ï¼Œåˆ™åœ¨getæ“ä½œä¸­å°†æ— æ³•è·å¾—æ­£ç¡®çš„å€¼ã€‚
+å› ä¸ºMapæ˜¯æ ¹æ®keyçš„hashCodeæ¥è®¡ç®—valueçš„ä½ç½®çš„ï¼Œå¦‚æœkeyçš„hashCodeæˆ–equalså€¼å˜åŒ–äº†ï¼Œ
+å°†è®¡ç®—é”™è¯¯çš„ä½ç½®.
 
-Map²»±£Ö¤Ó³ÉäµÄË³Ğò£¬µ«ËüÈ¡¾öÓÚÊµÏÖ¡£ÀıÈç£¬HashMap²»±£Ö¤Ó³ÉäµÄË³Ğò£¬
-µ«TreeMap¾Í¿ÉÒÔ±£Ö¤.
+ä¸€äº›é‡è¦çš„Mapæ–¹æ³•:
 
-MapÊ¹ÓÃhashCodeºÍequals·½·¨À´»ñÈ¡ºÍ·ÅÖÃ²Ù×÷¡£ËùÒÔ¿É±äÀà²»ÊÊºÏMap¼ü¡£
-Èç¹ûhashCode»òequalsµÄÖµÔÚputÖ®ºó·¢Éú¸ü¸Ä£¬ÔòÔÚget²Ù×÷ÖĞ½«ÎŞ·¨»ñµÃÕıÈ·µÄÖµ¡£
-ÒòÎªMapÊÇ¸ù¾İkeyµÄhashCodeÀ´¼ÆËãvalueµÄÎ»ÖÃµÄ£¬Èç¹ûkeyµÄhashCode»òequalsÖµ±ä»¯ÁË£¬
-½«¼ÆËã´íÎóµÄÎ»ÖÃ.
+	int sizeï¼ˆï¼‰ï¼šè¿”å›æ­¤Mapä¸­é”® - å€¼æ˜ å°„çš„æ•°é‡ã€‚
+	boolean isEmptyï¼ˆï¼‰ï¼šå¦‚æœæ²¡æœ‰æ˜ å°„ï¼Œåˆ™è¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
+	boolean containsValueï¼ˆObject valueï¼‰ï¼šå¦‚æœè‡³å°‘æœ‰ä¸€ä¸ªé”®æ˜ å°„åˆ°æŒ‡å®šå€¼ï¼Œåˆ™è¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
+	V getï¼ˆObject keyï¼‰ï¼šè¿”å›æ˜ å°„åˆ°ç»™å®šé”®çš„å€¼ï¼Œå¦‚æœæ²¡æœ‰æ‰¾åˆ°æ˜ å°„åˆ™è¿”å›nullã€‚
+	V putï¼ˆK keyï¼ŒV valueï¼‰ï¼šå°†é”®å€¼å¯¹çš„æ˜ å°„æ·»åŠ åˆ°åœ°å›¾ä¸­ã€‚å¦‚æœå·²å­˜åœ¨æ˜ å°„åˆ°æ­¤é”®çš„å€¼ï¼Œåˆ™æ›¿æ¢è¯¥å€¼ã€‚æ­¤æ–¹æ³•è¿”å›ä¸keyå…³è”çš„å…ˆå‰å€¼ï¼Œå¦‚æœæ²¡æœ‰keyçš„æ˜ å°„ï¼Œåˆ™è¿”å›nullã€‚
+	V removeï¼ˆObject keyï¼‰ï¼šä»æ­¤æ˜ å°„ä¸­åˆ é™¤é”®çš„æ˜ å°„ï¼ˆå¦‚æœå­˜åœ¨ï¼‰ã€‚è¿”å›æ­¤æ˜ å°„å…ˆå‰ä¸è¯¥é”®å…³è”çš„å€¼ï¼Œå¦‚æœæ˜ å°„ä¸åŒ…å«è¯¥é”®çš„æ˜ å°„ï¼Œåˆ™è¿”å›nullã€‚
+	void putAllï¼ˆMap <ï¼Ÿextends Kï¼Œï¼Ÿextends V> mï¼‰ï¼šå°†æŒ‡å®šæ˜ å°„ä¸­çš„æ‰€æœ‰æ˜ å°„å¤åˆ¶åˆ°æ­¤æ˜ å°„ã€‚
+	void clearï¼ˆï¼‰ï¼šä»Mapä¸­åˆ é™¤æ‰€æœ‰æ˜ å°„ã€‚
+	Set<K> keySetï¼ˆï¼‰ï¼šè¿”å›Mapä¸­æ‰€æœ‰é”®çš„Setè§†å›¾ã€‚æ­¤é”®é›†ç”±Mapæ”¯æŒï¼Œå› æ­¤å¯¹Mapçš„ä»»ä½•ä¿®æ”¹éƒ½å°†åæ˜ åˆ°é”®é›†ï¼Œåä¹‹äº¦ç„¶ã€‚
+	Collection <V> valuesï¼ˆï¼‰ï¼šè¿”å›Mapä¸­æ‰€æœ‰å€¼çš„é›†åˆè§†å›¾ã€‚æ­¤é›†åˆç”±Mapæ”¯æŒï¼Œå› æ­¤Mapä¸­çš„ä»»ä½•æ›´æ”¹éƒ½å°†åæ˜ åˆ°æ­¤å€¼é›†åˆï¼Œåä¹‹äº¦ç„¶ã€‚
+	Set<Map.Entry <Kï¼ŒV >> entrySetï¼ˆï¼‰ï¼šè¿”å›Mapä¸­æ˜ å°„çš„Setè§†å›¾ã€‚æ­¤Setç”±Mapæ”¯æŒï¼Œå› æ­¤Mapä¸­çš„ä»»ä½•ä¿®æ”¹éƒ½å°†åæ˜ åœ¨æ¡ç›®é›†ä¸­ï¼Œåä¹‹äº¦ç„¶ã€‚
 
-Ò»Ğ©ÖØÒªµÄMap·½·¨:
+ç›¸å…³ï¼šStringBufferä¸StringBuilder
 
-	int size£¨£©£º·µ»Ø´ËMapÖĞ¼ü - ÖµÓ³ÉäµÄÊıÁ¿¡£
-	boolean isEmpty£¨£©£ºÈç¹ûÃ»ÓĞÓ³Éä£¬Ôò·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
-	boolean containsValue£¨Object value£©£ºÈç¹ûÖÁÉÙÓĞÒ»¸ö¼üÓ³Éäµ½Ö¸¶¨Öµ£¬Ôò·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
-	V get£¨Object key£©£º·µ»ØÓ³Éäµ½¸ø¶¨¼üµÄÖµ£¬Èç¹ûÃ»ÓĞÕÒµ½Ó³ÉäÔò·µ»Ønull¡£
-	V put£¨K key£¬V value£©£º½«¼üÖµ¶ÔµÄÓ³ÉäÌí¼Óµ½µØÍ¼ÖĞ¡£Èç¹ûÒÑ´æÔÚÓ³Éäµ½´Ë¼üµÄÖµ£¬ÔòÌæ»»¸ÃÖµ¡£´Ë·½·¨·µ»ØÓëkey¹ØÁªµÄÏÈÇ°Öµ£¬Èç¹ûÃ»ÓĞkeyµÄÓ³Éä£¬Ôò·µ»Ønull¡£
-	V remove£¨Object key£©£º´Ó´ËÓ³ÉäÖĞÉ¾³ı¼üµÄÓ³Éä£¨Èç¹û´æÔÚ£©¡£·µ»Ø´ËÓ³ÉäÏÈÇ°Óë¸Ã¼ü¹ØÁªµÄÖµ£¬Èç¹ûÓ³Éä²»°üº¬¸Ã¼üµÄÓ³Éä£¬Ôò·µ»Ønull¡£
-	void putAll£¨Map <£¿extends K£¬£¿extends V> m£©£º½«Ö¸¶¨Ó³ÉäÖĞµÄËùÓĞÓ³Éä¸´ÖÆµ½´ËÓ³Éä¡£
-	void clear£¨£©£º´ÓMapÖĞÉ¾³ıËùÓĞÓ³Éä¡£
-	Set<K> keySet£¨£©£º·µ»ØMapÖĞËùÓĞ¼üµÄSetÊÓÍ¼¡£´Ë¼ü¼¯ÓÉMapÖ§³Ö£¬Òò´Ë¶ÔMapµÄÈÎºÎĞŞ¸Ä¶¼½«·´Ó³µ½¼ü¼¯£¬·´Ö®ÒàÈ»¡£
-	Collection <V> values£¨£©£º·µ»ØMapÖĞËùÓĞÖµµÄ¼¯ºÏÊÓÍ¼¡£´Ë¼¯ºÏÓÉMapÖ§³Ö£¬Òò´ËMapÖĞµÄÈÎºÎ¸ü¸Ä¶¼½«·´Ó³µ½´ËÖµ¼¯ºÏ£¬·´Ö®ÒàÈ»¡£
-	Set<Map.Entry <K£¬V >> entrySet£¨£©£º·µ»ØMapÖĞÓ³ÉäµÄSetÊÓÍ¼¡£´ËSetÓÉMapÖ§³Ö£¬Òò´ËMapÖĞµÄÈÎºÎĞŞ¸Ä¶¼½«·´Ó³ÔÚÌõÄ¿¼¯ÖĞ£¬·´Ö®ÒàÈ»¡£
+Java 8ä¸­å¼•å…¥çš„Java Mapä¸­çš„æ–¹æ³•å¾ˆå°‘: 
 
-Ïà¹Ø£ºStringBufferÓëStringBuilder
+default V getOrDefault(Object key, V defaultValue): ï¼šè¿”å›æŒ‡å®šé”®æ˜ å°„åˆ°çš„å€¼ï¼Œå¦‚æœæ­¤æ˜ å°„ä¸åŒ…å«é”®çš„æ˜ å°„ï¼Œåˆ™è¿”å›defaultValueã€‚
+default void forEachï¼ˆBiConsumer <ï¼Ÿsuper Kï¼Œï¼Ÿsuper V> actionï¼‰ï¼šå¯¹æ­¤æ˜ å°„ä¸­çš„æ¯ä¸ªæ¡ç›®æ‰§è¡Œç»™å®šæ“ä½œã€‚
+default void replaceAllï¼ˆBiFunction <ï¼Ÿsuper Kï¼Œï¼Ÿsuper Vï¼Œï¼Ÿextends V> functionï¼‰ï¼šå°†æ¯ä¸ªæ¡ç›®çš„å€¼æ›¿æ¢ä¸ºåœ¨è¯¥æ¡ç›®ä¸Šè°ƒç”¨ç»™å®šå‡½æ•°çš„ç»“æœã€‚
+default V putIfAbsentï¼ˆK keyï¼ŒV valueï¼‰ï¼šå¦‚æœæŒ‡å®šçš„é”®å°šæœªä¸å€¼å…³è”ï¼ˆæˆ–æ˜ å°„ä¸ºnullï¼‰ï¼Œåˆ™å°†å…¶ä¸ç»™å®šå€¼å…³è”å¹¶è¿”å›nullï¼Œå¦åˆ™è¿”å›å½“å‰å€¼ã€‚
+default boolean removeï¼ˆObject keyï¼ŒObject valueï¼‰ï¼šä»…å½“æŒ‡å®šé”®å½“å‰æ˜ å°„åˆ°æŒ‡å®šå€¼æ—¶æ‰åˆ é™¤è¯¥æ¡ç›®ã€‚
+default boolean replaceï¼ˆK keyï¼ŒV oldValueï¼ŒV newValueï¼‰ï¼šä»…å½“å‰æ˜ å°„åˆ°æŒ‡å®šå€¼æ—¶ï¼Œæ›¿æ¢æŒ‡å®šé”®çš„æ¡ç›®ã€‚
+default V replace(K key, V value): ä»…å½“æŒ‡å®šé”®å½“å‰æ˜ å°„åˆ°æŸä¸ªå€¼æ—¶ï¼Œæ‰æ›¿æ¢è¯¥é”®ã€‚
+default V computeIfAbsentï¼ˆK keyï¼ŒFunction <ï¼Ÿsuper Kï¼Œï¼Ÿextends V> mappingFunctionï¼‰ï¼šå¦‚æœæŒ‡å®šçš„é”®å°šæœªä¸å€¼ç›¸å…³è”ï¼ˆæˆ–æ˜ å°„ä¸ºnullï¼‰ï¼Œåˆ™å°è¯•ä½¿ç”¨ç»™å®šçš„æ˜ å°„å‡½æ•°è®¡ç®—å…¶å€¼é™¤éä¸ºnullï¼Œå¦åˆ™å°†å…¶è¾“å…¥æ­¤æ˜ å°„ã€‚
+default V computeIfPresentï¼ˆK keyï¼ŒBiFunction <ï¼Ÿsuper Kï¼Œï¼Ÿsuper Vï¼Œï¼Ÿextends V> remappingFunctionï¼‰ï¼šå¦‚æœæŒ‡å®šé”®çš„å€¼å­˜åœ¨ä¸”ä¸ºénullï¼Œåˆ™å°è¯•è®¡ç®—ç»™å®šé”®åŠå…¶å½“å‰é”®çš„æ–°æ˜ å°„æ˜ å°„å€¼ã€‚å¦‚æœå‡½æ•°è¿”å›nullï¼Œåˆ™åˆ é™¤æ˜ å°„ã€‚
+default V computeï¼ˆK keyï¼ŒBiFunction <ï¼Ÿsuper Kï¼Œï¼Ÿsuper Vï¼Œï¼Ÿextends V> remappingFunctionï¼‰ï¼šå°è¯•è®¡ç®—æŒ‡å®šé”®åŠå…¶å½“å‰æ˜ å°„å€¼çš„æ˜ å°„ï¼ˆå¦‚æœæ²¡æœ‰å½“å‰æ˜ å°„ï¼Œåˆ™ä¸ºnullï¼‰ã€‚
+default V merge(K key, V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction):å¦‚æœæŒ‡å®šçš„é”®å°šæœªä¸å€¼å…³è”æˆ–ä¸nullå…³è”ï¼Œåˆ™å°†å…¶ä¸ç»™å®šçš„éå…³è” - ç©ºå€¼ã€‚å¦åˆ™ï¼Œå°†ç›¸å…³å€¼æ›¿æ¢ä¸ºç»™å®šé‡æ˜ å°„å‡½æ•°çš„ç»“æœï¼Œæˆ–è€…å¦‚æœç»“æœä¸ºnullåˆ™åˆ é™¤ã€‚
 
-Java 8ÖĞÒıÈëµÄJava MapÖĞµÄ·½·¨ºÜÉÙ: 
+ç›¸å…³ï¼šJava BlockingQueueç¤ºä¾‹
 
-default V getOrDefault(Object key, V defaultValue): £º·µ»ØÖ¸¶¨¼üÓ³Éäµ½µÄÖµ£¬Èç¹û´ËÓ³Éä²»°üº¬¼üµÄÓ³Éä£¬Ôò·µ»ØdefaultValue¡£
-default void forEach£¨BiConsumer <£¿super K£¬£¿super V> action£©£º¶Ô´ËÓ³ÉäÖĞµÄÃ¿¸öÌõÄ¿Ö´ĞĞ¸ø¶¨²Ù×÷¡£
-default void replaceAll£¨BiFunction <£¿super K£¬£¿super V£¬£¿extends V> function£©£º½«Ã¿¸öÌõÄ¿µÄÖµÌæ»»ÎªÔÚ¸ÃÌõÄ¿ÉÏµ÷ÓÃ¸ø¶¨º¯ÊıµÄ½á¹û¡£
-default V putIfAbsent£¨K key£¬V value£©£ºÈç¹ûÖ¸¶¨µÄ¼üÉĞÎ´ÓëÖµ¹ØÁª£¨»òÓ³ÉäÎªnull£©£¬Ôò½«ÆäÓë¸ø¶¨Öµ¹ØÁª²¢·µ»Ønull£¬·ñÔò·µ»Øµ±Ç°Öµ¡£
-default boolean remove£¨Object key£¬Object value£©£º½öµ±Ö¸¶¨¼üµ±Ç°Ó³Éäµ½Ö¸¶¨ÖµÊ±²ÅÉ¾³ı¸ÃÌõÄ¿¡£
-default boolean replace£¨K key£¬V oldValue£¬V newValue£©£º½öµ±Ç°Ó³Éäµ½Ö¸¶¨ÖµÊ±£¬Ìæ»»Ö¸¶¨¼üµÄÌõÄ¿¡£
-default V replace(K key, V value): ½öµ±Ö¸¶¨¼üµ±Ç°Ó³Éäµ½Ä³¸öÖµÊ±£¬²ÅÌæ»»¸Ã¼ü¡£
-default V computeIfAbsent£¨K key£¬Function <£¿super K£¬£¿extends V> mappingFunction£©£ºÈç¹ûÖ¸¶¨µÄ¼üÉĞÎ´ÓëÖµÏà¹ØÁª£¨»òÓ³ÉäÎªnull£©£¬Ôò³¢ÊÔÊ¹ÓÃ¸ø¶¨µÄÓ³Éäº¯Êı¼ÆËãÆäÖµ³ı·ÇÎªnull£¬·ñÔò½«ÆäÊäÈë´ËÓ³Éä¡£
-default V computeIfPresent£¨K key£¬BiFunction <£¿super K£¬£¿super V£¬£¿extends V> remappingFunction£©£ºÈç¹ûÖ¸¶¨¼üµÄÖµ´æÔÚÇÒÎª·Çnull£¬Ôò³¢ÊÔ¼ÆËã¸ø¶¨¼ü¼°Æäµ±Ç°¼üµÄĞÂÓ³ÉäÓ³ÉäÖµ¡£Èç¹ûº¯Êı·µ»Ønull£¬ÔòÉ¾³ıÓ³Éä¡£
-default V compute£¨K key£¬BiFunction <£¿super K£¬£¿super V£¬£¿extends V> remappingFunction£©£º³¢ÊÔ¼ÆËãÖ¸¶¨¼ü¼°Æäµ±Ç°Ó³ÉäÖµµÄÓ³Éä£¨Èç¹ûÃ»ÓĞµ±Ç°Ó³Éä£¬ÔòÎªnull£©¡£
-default V merge(K key, V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction):Èç¹ûÖ¸¶¨µÄ¼üÉĞÎ´ÓëÖµ¹ØÁª»òÓënull¹ØÁª£¬Ôò½«ÆäÓë¸ø¶¨µÄ·Ç¹ØÁª - ¿ÕÖµ¡£·ñÔò£¬½«Ïà¹ØÖµÌæ»»Îª¸ø¶¨ÖØÓ³Éäº¯ÊıµÄ½á¹û£¬»òÕßÈç¹û½á¹ûÎªnullÔòÉ¾³ı¡£
-
-Ïà¹Ø£ºJava BlockingQueueÊ¾Àı
-
-Äú»á×¢Òâµ½Java 8 Map½Ó¿ÚÖĞÌí¼ÓµÄËùÓĞĞÂ·½·¨¶¼ÊÇ´øÓĞÊµÏÖµÄÄ¬ÈÏ·½·¨¡£
-ÕâÑù×öÊÇÎªÁËÈ·±£ÊµÏÖMap interfacµÄÈÎºÎÀà¶¼²»»á·¢Éú±àÒë´íÎó
+æ‚¨ä¼šæ³¨æ„åˆ°Java 8 Mapæ¥å£ä¸­æ·»åŠ çš„æ‰€æœ‰æ–°æ–¹æ³•éƒ½æ˜¯å¸¦æœ‰å®ç°çš„é»˜è®¤æ–¹æ³•ã€‚
+è¿™æ ·åšæ˜¯ä¸ºäº†ç¡®ä¿å®ç°Map interfacçš„ä»»ä½•ç±»éƒ½ä¸ä¼šå‘ç”Ÿç¼–è¯‘é”™è¯¯

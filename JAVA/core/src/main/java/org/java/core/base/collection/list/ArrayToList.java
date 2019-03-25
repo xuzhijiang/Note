@@ -9,13 +9,13 @@ public class ArrayToList {
 	public static void main(String[] args) {
 		String[] vowels = { "a", "e", "i", "o", "u" };
 
-		List<String> vowelsList = Arrays.asList(vowels);// ·µ»ØµÄÊÇÒ»¸öArrayList£¬¿ÉÒÔ²ÎÕÕÄÚ²¿ÊµÏÖ
-		// ListÊÇÒ»¸öinterface£¬²»¿ÉÒÔÊµÀı»¯Ò»¸öListÊµÀı.
+		List<String> vowelsList = Arrays.asList(vowels);// è¿”å›çš„æ˜¯ä¸€ä¸ªArrayListï¼Œå¯ä»¥å‚ç…§å†…éƒ¨å®ç°
+		// Listæ˜¯ä¸€ä¸ªinterfaceï¼Œä¸å¯ä»¥å®ä¾‹åŒ–ä¸€ä¸ªListå®ä¾‹.
 		System.out.println(vowelsList);
 
 		/**
 		 * List is backed by array, we can't do structural modification
-		 * ListÊÇÓÉÊı×éÖ§³ÖµÄ£¬ÎÒÃÇ²»ÄÜ×ö½á¹¹ĞŞ¸Ä Both of the below statements will throw
+		 * Listæ˜¯ç”±æ•°ç»„æ”¯æŒçš„ï¼Œæˆ‘ä»¬ä¸èƒ½åšç»“æ„ä¿®æ”¹ Both of the below statements will throw
 		 * java.lang.UnsupportedOperationException
 		 */
 		// vowelsList.remove("e");
@@ -23,7 +23,7 @@ public class ArrayToList {
 
 		// using for loop to copy elements from array to list, safe for modification of
 		// list
-		//×îºÃµÄ½«array±ä³ÉListµÄ·½·¨:
+		//æœ€å¥½çš„å°†arrayå˜æˆListçš„æ–¹æ³•:
 		List<String> myList = new ArrayList<String>();
 		for (String s : vowels) {
 			myList.add(s);

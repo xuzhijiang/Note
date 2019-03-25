@@ -5,12 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * IteratorÊÇJava Collections¿ò¼ÜÖĞµÄÒ»¸ö½Ó¿Ú¡£
+ * Iteratoræ˜¯Java Collectionsæ¡†æ¶ä¸­çš„ä¸€ä¸ªæ¥å£ã€‚
  * 
- * Èç¹ûÔÚµü´úÊ±¶ÔÁĞ±í½øĞĞÈÎºÎ½á¹¹ĞŞ¸Ä£¬Ôònext£¨£©²Ù×÷½«Å×
- * ³öConcurrentModificationException¡£
+ * å¦‚æœåœ¨è¿­ä»£æ—¶å¯¹åˆ—è¡¨è¿›è¡Œä»»ä½•ç»“æ„ä¿®æ”¹ï¼Œåˆ™nextï¼ˆï¼‰æ“ä½œå°†æŠ›
+ * å‡ºConcurrentModificationExceptionã€‚
  * 
- * ×¢Òâ£º iterator.remove()²»»á²úÉúÒì³£
+ * æ³¨æ„ï¼š iterator.remove()ä¸ä¼šäº§ç”Ÿå¼‚å¸¸
  * @author a
  *
  */

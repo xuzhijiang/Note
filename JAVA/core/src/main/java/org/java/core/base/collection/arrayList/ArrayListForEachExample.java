@@ -6,13 +6,13 @@ import java.util.function.Consumer;
 
 /**
  * Java ArrayList forEach method was added in Java 8. 
- * It¡¯s useful when you want to perform same action on 
+ * Itâ€™s useful when you want to perform same action on 
  * all the elements. The method argument Consumer is a 
  * functional interface, so we can use lambda expressions too. 
  * <p>
- * ÔÚJava 8ÖĞÌí¼ÓÁËJava ArrayList forEach·½·¨¡£µ±ÄúÏë¶ÔËùÓĞÔªËØÖ´ĞĞÏàÍ¬µÄ²Ù×÷Ê±£¬Ëü·Ç³£ÓĞÓÃ¡£
+ * åœ¨Java 8ä¸­æ·»åŠ äº†Java ArrayList forEachæ–¹æ³•ã€‚å½“æ‚¨æƒ³å¯¹æ‰€æœ‰å…ƒç´ æ‰§è¡Œç›¸åŒçš„æ“ä½œæ—¶ï¼Œå®ƒéå¸¸æœ‰ç”¨ã€‚
  * 
- *  ·½·¨²ÎÊıConsumerÊÇÒ»¸ö¹¦ÄÜ½Ó¿Ú£¬Òò´ËÎÒÃÇÒ²¿ÉÒÔÊ¹ÓÃlambda±í´ïÊ½
+ *  æ–¹æ³•å‚æ•°Consumeræ˜¯ä¸€ä¸ªåŠŸèƒ½æ¥å£ï¼Œå› æ­¤æˆ‘ä»¬ä¹Ÿå¯ä»¥ä½¿ç”¨lambdaè¡¨è¾¾å¼
  */
 public class ArrayListForEachExample {
 	
