@@ -4,7 +4,9 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 
 /**
- * 缓冲区存取
+ * 缓冲区存储数据的核心方法：
+ * 1. put()：存入数据到缓冲区。
+ * 2. get()：获取缓冲区数据。
  */
 public class BufferPut {
 
@@ -121,35 +123,34 @@ public class BufferPut {
         // 图compact01.png显示了一个已经读取了前2个元素，并且现在我们想要对其进行压缩的缓冲区,调用
         // buffer.compact();
         // 会导致缓冲区如图compact02.png所示
-        // 这里发生了几件事。您会看到数据元素 2-5 被复制到 0-3 位置。位置 4 和 5 不受影响，
+        // 会看到数据元素 2-5 被复制到 0-3 位置。位置 4 和 5 不受影响，
         // 但现在正在或已经超出了当前position，因此是“死的”。它们可以被之后的 put()调用重写。
-        // 还要注意的是，position已经被设为被复制的数据元素的数目(4)。也就是说，缓冲区现在被定位在缓冲区中最后一个“存活”元素后插入数据的位置。最后，limit属性被设置为capacity的值，因此缓冲区可以被再次填满。调用 compact()的作用是丢弃已经释放的数据，保留未释放的数据，并使缓冲区对重新填充容量准备就绪。
+        // 还要注意的是，position已经被设为被复制的数据元素的数目(4)。
+        // 也就是说，缓冲区现在被定位在缓冲区中最后一个“存活”元素后插入数据的位置。
+        // 最后，limit属性被设置为capacity的值，因此缓冲区可以被再次填满。
+        // 调用 compact()的作用是丢弃已经释放的数据，保留未释放的数据，并使缓冲区对重新填充容量准备就绪。
 
-        如果您想在压缩后读取数据，缓冲区会像之前所讨论的那样需要被翻转(flip)。无论您之后是否要向缓冲区中添加新的数据，这一点都是必要的。
+        // 压缩对于使缓冲区与您从端口中读入的数据（包）逻辑块流的同步来说也许是一种便利的方法
+        // (处理粘包、解包的问题)。
 
-        压缩对于使缓冲区与您从端口中读入的数据（包）逻辑块流的同步来说也许是一种便利的方法(处理粘包、解包的问题)。
+        // 复制缓冲区duplicate()函数
+        // 缓冲区的复制有分两种：
+        // 1、完全复制：调用duplicate()函数或者asReadOnlyBuffer()函数
+        // 2、部分复制：调用slice函数
 
-        复制缓冲区duplicate()函数
+        // duplicate()函数创建了一个与原始缓冲区相似的新缓冲区。两个缓冲区共享数据元素，
+        // 拥有同样的容量，但每个缓冲区拥有各自的位置，上界和标记属性。对一个缓冲区内的
+        // 数据元素所做的改变会反映在另外一个缓冲区上。这一副本缓冲区具有与原始缓冲区同样的数据视图。
+        // 如果原始的缓冲区为只读，或者为直接缓冲区，新的缓冲区将继承这些属性。
+//        CharBuffer buffer = CharBuffer.allocate (8);
+//        buffer.position (3).limit (6).mark( ).position (5);
+//        CharBuffer dupeBuffer = buffer.duplicate( );
+//        buffer.clear( );
+        // 此时缓冲区的逻辑试图如图duplicate.png:
 
-        缓冲区的复制有分两种：
-
-        1、完全复制：调用duplicate()函数或者asReadOnlyBuffer()函数
-
-        2、部分复制：调用slice函数
-
-        duplicate()函数创建了一个与原始缓冲区相似的新缓冲区。两个缓冲区共享数据元素，拥有同样的容量，但每个缓冲区拥有各自的位置，上界和标记属性。对一个缓冲区内的数据元素所做的改变会反映在另外一个缓冲区上。这一副本缓冲区具有与原始缓冲区同样的数据视图。如果原始的缓冲区为只读，或者为直接缓冲区，新的缓冲区将继承这些属性。
-
-        可以通过以下代码来复制一个缓冲区
-
-        CharBuffer buffer = CharBuffer.allocate (8);
-        buffer.position (3).limit (6).mark( ).position (5);
-        CharBuffer dupeBuffer = buffer.duplicate( );
-        buffer.clear( );
-        此时缓冲区的逻辑试图如下所示
-
-        Image.png
-
-        可以使用asReadOnlyBuffer()函数来生成一个只读的缓冲区视图 。 这与duplicate()相同，除了这个新的缓冲区不允许使用put()，并且其 isReadOnly()函数将 会 返 回 true 。对这一只读缓冲区put()函数的调用尝试会导致抛出ReadOnlyBufferException 异常。
+        // 可以使用asReadOnlyBuffer()函数来生成一个只读的缓冲区视图 。 这与duplicate()相同，
+        // 除了这个新的缓冲区不允许使用put()，并且其 isReadOnly()函数将 会 返 回 true 。
+        // 对这一只读缓冲区put()函数的调用尝试会导致抛出ReadOnlyBufferException 异常。
     }
 
     private static void print(Buffer... buffers) {

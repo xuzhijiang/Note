@@ -5,7 +5,6 @@ import java.nio.ByteBuffer;
 
 /**
  * 以 ByteBuffer 类为例,也就是字节缓冲.
- * 其它六种主要的缓冲区类也是适用的： IntBuffer， DoubleBuffer， ShortBuffer， LongBuffer， FloatBuffer，和 CharBuffer
  */
 public class BufferCreateDemo {
 
@@ -34,6 +33,10 @@ public class BufferCreateDemo {
 
         //打印出刚刚创建的缓冲区的相关信息
         print(allocate, wrap, wrapoffset);
+
+        test1();
+
+        testMark();
     }
 
     private static void print(Buffer... buffers) {
@@ -49,6 +52,57 @@ public class BufferCreateDemo {
             // arrayOffset()，返回缓冲区数据在数组中存储的开始位置的偏移量（从数组头 0 开始计算）。
             // 如果您使用了带有三个参数的版本的 wrap()函数来创建一个缓冲区，对于这个缓冲区，
             // arrayOffset()会一直返回 0
+        }
+    }
+
+    /**
+     * Buffer基本用法实现测试
+     */
+    private static void test1(){
+        String str = "Hello";
+        //分配一个指定大小的缓冲区
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        //利用put方法把str字符串存储到buffer缓冲区中
+        buffer.put(str.getBytes());
+        //切换到读数据模式
+        buffer.flip();
+        //利用get方法读数据(buffer.limit()就是buffer中元素的个数)
+        byte [] dst = new byte[buffer.limit()];
+        // 将buffer中的数据存放到dst中
+        buffer.get(dst);
+        //打印读到的数据
+        System.out.println(new String(dst,0,dst.length));
+        //rewind():可重复读数据
+        buffer.rewind();
+        //clear():清空缓冲区,但是缓冲区中的数据依然被存在，但是数据处于“被遗忘”状态
+        buffer.clear();
+    }
+
+    private static void testMark() {
+        String str = "abcde";
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        buffer.put(str.getBytes());
+        buffer.flip();
+        System.out.println("没有读数据====="+buffer.position());
+        //第一次读数据
+        byte[] dst = new byte[buffer.limit()];
+        buffer.get(dst,0,2);
+        System.out.println(new String(dst,0,2));
+        System.out.println("mark标记前的position====="+buffer.position());
+        //Mark标记,记录position的值2,
+        buffer.mark();
+        System.out.println("mark标记后============");
+        //第二次读数据
+        buffer.get(dst,2,2);
+        System.out.println(new String(dst,2,2));
+        System.out.println("第二次读取数据后====="+buffer.position());
+        //reset()方法后
+        buffer.reset();
+        System.out.println("reset方法后的position====="+buffer.position());
+        //判断缓冲区是否还有数据
+        if(buffer.hasRemaining()){
+            //输出还有数据的数量
+            System.out.println("remaining: " + buffer.remaining());
         }
     }
 
