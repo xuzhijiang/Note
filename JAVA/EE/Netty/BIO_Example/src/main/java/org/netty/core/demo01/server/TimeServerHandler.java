@@ -1,4 +1,4 @@
-package org.netty.core.server;
+package org.netty.core.demo01.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
