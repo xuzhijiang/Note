@@ -6,7 +6,7 @@ Merge Sort是一种递归算法.
 
 Tips: 一个数组元素个数是奇数的数组,例如，7个元素,
 那么选取的middle元素就正好是正中间的元素.正中间元素的index是:(low + high)/2=3,
-即：array[3]
+即：com.java.algorithm.array[3]
 
 {38, 27, 43, 3, 9, 82, 10}.
  0   1    2  3  4  5    6

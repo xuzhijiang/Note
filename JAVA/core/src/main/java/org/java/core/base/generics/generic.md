@@ -40,6 +40,12 @@ T – Type
 V – Value (Used in Map)
 S,U,V etc. – 2nd, 3rd, 4th types
 
+// T is meant to be a Type
+// E is meant to be an Element (List<E>: a list of Elements)
+// K is Key (in a Map<K,V>)
+// V is Value (as a return value or mapped value)
+// N - Number
+
 Java泛型方法
 有时我们不希望对整个类进行参数化，在这种情况下我们可以创建java泛型方法。
 由于构造函数是一种特殊的方法，我们也可以在构造函数中使用泛型类型。

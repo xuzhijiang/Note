@@ -1,16 +1,10 @@
-package array;
-
-// T is meant to be a Type
-// E is meant to be an Element (List<E>: a list of Elements)
-// K is Key (in a Map<K,V>)
-// V is Value (as a return value or mapped value)
-// N - Number
+package com.java.algorithm.array;
 
 public class Array<V> {
 
     private Object[] elements;
     private int size = 0;//当前数组拥有元素的数量
-    private int capacity;//数组的容量
+    private int capacity;//数组的容量，初始化数组后，容量就不可更改.
 
     /**
      *
@@ -90,11 +84,11 @@ public class Array<V> {
      * 显示所有元素
      */
     public void display(String prefix){
-        System.out.print(prefix);
-        for (int i = 0; i < elements.length; i++) {
-            System.out.print(elements[i]+"    ");
-        }
         System.out.println();
+        System.out.println(prefix);
+        for (int i = 0; i < elements.length; i++) {
+            System.out.println("第" + i + "个元素: " + elements[i]);
+        }
     }
 
     public static void main(String[] args) {
@@ -108,6 +102,7 @@ public class Array<V> {
         array.display("添加 4,6       ： ");
         array.remove(3);
         array.display("删除 3       ： ");
+        System.out.println();
         System.out.println("查找 4："+array.find(4) );
         System.out.println("查找 3："+array.find(3) );
     }

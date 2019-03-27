@@ -1,22 +1,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>com.java.algorithm</groupId>
-  <artifactId>journal</artifactId>
+  <artifactId>DataStructure-Algorithm</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>journal</name>
-  
-  <properties>
-  	
-  </properties>
+  <name>DataStructure-Algorithm</name>
+
+    <properties>
+        <!-- 指定源码编码方式UTF-8 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 指定源码/class为1.8 -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- 指定虚拟机为Java 1.8 -->
+        <java.version>1.8</java.version>
+    </properties>
   
   <dependencies>
+
 	<!-- Gson -->
 	<dependency>
 	    <groupId>com.google.code.gson</groupId>
 	    <artifactId>gson</artifactId>
 	    <version>2.8.5</version>
 	</dependency>
+
   </dependencies>
   
 </project>

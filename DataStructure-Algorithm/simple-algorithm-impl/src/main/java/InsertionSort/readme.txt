@@ -12,7 +12,7 @@
 
 用途：当元素数量很少时使用插入排序。
 当输入数组几乎排序时，只有少数元素在完整的大数组中放错位置时，它也很有用。
-It can also be useful when input array is almost sorted,
+It can also be useful when input com.java.algorithm.array is almost sorted,
 ----------------------------------------------------------------
 
 
@@ -23,7 +23,7 @@ It can also be useful when input array is almost sorted,
 
 i = 1, j 从 i -> 0 遍历:
 j = 1, j > 0,
-因为array[j] < array[j-1], 所以交换28和0
+因为array[j] < com.java.algorithm.array[j-1], 所以交换28和0
 (也就是后面的元素小于前面的元素,交换后，就可以保证前面的元素小于后面的元素了):
 
 {0, 28, 28, 27, 1, 0, 24, 6, 4, 4}
@@ -34,9 +34,9 @@ do j--, j = 0, 所以退出内层for循环.
 
 do i++, i = 2, j 从i -> 0遍历:
 j=2, j >0,
-因为array[j] = array[j-1],所以什么都不做.
+因为array[j] = com.java.algorithm.array[j-1],所以什么都不做.
 j--, j=1,
-因为array[j] > array[j-1],所以什么都不做。
+因为array[j] > com.java.algorithm.array[j-1],所以什么都不做。
 do j--, j=0, 所以退出内层for循环.
 
 {0, 28, 28, 27, 1, 0, 24, 6, 4, 4}
@@ -45,40 +45,40 @@ do j--, j=0, 所以退出内层for循环.
 
 do i++, i = 3, j从 i -> 0遍历:
 j=i=3, j>0,
-因为array[j] < array[j-1],即后一个元素小于前一个元素，所以交换28和27:
+因为array[j] < com.java.algorithm.array[j-1],即后一个元素小于前一个元素，所以交换28和27:
 
 {0, 28, 27, 28, 1, 0, 24, 6, 4, 4}
  0	 1   2  3   4  5   6  7  8  9
  
 j--,j=2,
-因为array[j] < array[j-1],即后一个元素小于前一个元素，所以交换28和27:
+因为array[j] < com.java.algorithm.array[j-1],即后一个元素小于前一个元素，所以交换28和27:
 
 {0, 27, 28, 28, 1, 0, 24, 6, 4, 4}
  0	 1   2  3   4  5   6  7  8  9
 
 j--,j=1,
-因为array[j]>array[j-1],所以do nothing.
+因为array[j]>com.java.algorithm.array[j-1],所以do nothing.
 do j--,j=0,所以退出内层for循环.
 
 do i++, i = 4, j从i -> 0遍历.
 j=i=4, j>0,
-因为array[j] < array[j-1],所以交换1和28:
+因为array[j] < com.java.algorithm.array[j-1],所以交换1和28:
 
 {0, 27, 28, 1, 28, 0, 24, 6, 4, 4}
  0	 1   2  3   4  5   6  7  8  9
 do j--,j=3,
-array[j]<array[j-1],交换1和28:
+com.java.algorithm.array[j]<com.java.algorithm.array[j-1],交换1和28:
 
 {0, 27, 1, 28, 28, 0, 24, 6, 4, 4}
  0	 1   2  3   4  5   6  7  8  9
 
 do j--,j=2,
-array[j]<array[j-1],交换1和27:
+com.java.algorithm.array[j]<com.java.algorithm.array[j-1],交换1和27:
 {0, 1, 27, 28, 28, 0, 24, 6, 4, 4}
  0	 1   2  3   4  5   6  7  8  9
 
 do j--,j=1,
-array[j]>array[j-1],所以do nothing.
+com.java.algorithm.array[j]>com.java.algorithm.array[j-1],所以do nothing.
 j--,j=0,所以退出内层for循环.
 
 依次类推

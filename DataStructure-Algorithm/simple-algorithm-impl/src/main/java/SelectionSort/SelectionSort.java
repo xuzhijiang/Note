@@ -8,7 +8,7 @@ public class SelectionSort {
 
 	public static void sort(int[] array) {
 		for (int i = 0; i < array.length; i++) {
-			// swap the array[i] with min(array[i+1:])
+			// swap the com.java.algorithm.array[i] with min(com.java.algorithm.array[i+1:])
 			int min = i;
 			for (int j = i + 1; j < array.length; j++) {
 				// for循环遍历完成后，找到了剩余元素中最小元素的索引

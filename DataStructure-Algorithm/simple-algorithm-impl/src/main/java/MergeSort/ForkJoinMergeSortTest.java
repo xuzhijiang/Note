@@ -35,7 +35,7 @@ public class ForkJoinMergeSortTest {
         }
 
         //单线程测试(用时：59349毫秒)
-        /*task.sort(array, tmp, 0, length-1);
+        /*task.sort(com.java.algorithm.array, tmp, 0, length-1);
 　　　　  System.out.println("UsedTime: " + (System.currentTimeMillis() - start));
         */
 
