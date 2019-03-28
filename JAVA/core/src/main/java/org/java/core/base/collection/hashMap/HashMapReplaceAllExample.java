@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 
-// HashMap replaceAll·½·¨¿ÉÓÃÓÚ½«Ã¿¸öÌõÄ¿µÄÖµÌæ»»ÎªÔÚ¸ÃÌõÄ¿ÉÏµ÷ÓÃ¸ø¶¨º¯ÊıµÄ½á¹û¡£ 
-// ÔÚJava 8ÖĞÌí¼ÓÁË´Ë·½·¨£¬ÎÒÃÇ¿ÉÒÔ½«lambda±í´ïÊ½ÓÃÓÚ´Ë·½·¨²ÎÊı¡£
+// HashMap replaceAllæ–¹æ³•å¯ç”¨äºå°†æ¯ä¸ªæ¡ç›®çš„å€¼æ›¿æ¢ä¸ºåœ¨è¯¥æ¡ç›®ä¸Šè°ƒç”¨ç»™å®šå‡½æ•°çš„ç»“æœã€‚ 
+// åœ¨Java 8ä¸­æ·»åŠ äº†æ­¤æ–¹æ³•ï¼Œæˆ‘ä»¬å¯ä»¥å°†lambdaè¡¨è¾¾å¼ç”¨äºæ­¤æ–¹æ³•å‚æ•°ã€‚
 public class HashMapReplaceAllExample {
 
 	public static void main(String[] args) {

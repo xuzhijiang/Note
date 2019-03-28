@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-// Java HashMap keySet·½·¨·µ»ØHashMapÖĞ¼üµÄSetÊÓÍ¼¡£ ´ËSetÊÓÍ¼ÓÉHashMapÖ§³Ö£¬
-// HashMapÖĞµÄÈÎºÎ¸ü¸Ä¶¼·´Ó³ÔÚSetÖĞ£¬·´Ö®ÒàÈ»¡£
+// Java HashMap keySetæ–¹æ³•è¿”å›HashMapä¸­é”®çš„Setè§†å›¾ã€‚ æ­¤Setè§†å›¾ç”±HashMapæ”¯æŒï¼Œ
+// HashMapä¸­çš„ä»»ä½•æ›´æ”¹éƒ½åæ˜ åœ¨Setä¸­ï¼Œåä¹‹äº¦ç„¶ã€‚
 public class HashMapKeySetExample {
 
 	public static void main(String[] args) {

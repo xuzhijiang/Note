@@ -4,8 +4,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-// Java HashMap values·½·¨·µ»ØMapÖĞÖµµÄCollectionÊÓÍ¼¡£ 
-// ´Ë¼¯ºÏÓÉHashMapÖ§³Ö£¬Òò´ËHashMapÖĞµÄÈÎºÎ¸ü¸Ä¶¼½«·´Ó³ÔÚÖµ¼¯ºÏÖĞ£¬
+// Java HashMap valuesæ–¹æ³•è¿”å›Mapä¸­å€¼çš„Collectionè§†å›¾ã€‚ 
+// æ­¤é›†åˆç”±HashMapæ”¯æŒï¼Œå› æ­¤HashMapä¸­çš„ä»»ä½•æ›´æ”¹éƒ½å°†åæ˜ åœ¨å€¼é›†åˆä¸­ï¼Œ
 public class HashMapValuesExample {
 
 	public static void main(String[] args) {

@@ -8,8 +8,8 @@ import java.util.Map.Entry;
 //then associates it with the given non-null value. Otherwise, 
 //replaces the associated value with the results of the given 
 //remapping function, or removes if the result is null.
-//Èç¹ûÖ¸¶¨µÄ¼ü²»´æÔÚ»òÓënull¹ØÁª£¬Ôò½«ÆäÓë¸ø¶¨µÄ·Ç¿ÕÖµÏà¹ØÁª¡£ ·ñÔò£¬
-//½«Ïà¹ØÖµÌæ»»Îª¸ø¶¨ÖØÓ³Éäº¯ÊıµÄ½á¹û£¬»òÕßÈç¹û½á¹ûÎªnullÔòÉ¾³ı¡£
+//å¦‚æœæŒ‡å®šçš„é”®ä¸å­˜åœ¨æˆ–ä¸nullå…³è”ï¼Œåˆ™å°†å…¶ä¸ç»™å®šçš„éç©ºå€¼ç›¸å…³è”ã€‚ å¦åˆ™ï¼Œ
+//å°†ç›¸å…³å€¼æ›¿æ¢ä¸ºç»™å®šé‡æ˜ å°„å‡½æ•°çš„ç»“æœï¼Œæˆ–è€…å¦‚æœç»“æœä¸ºnullåˆ™åˆ é™¤ã€‚
 public class HashMapMerge{
 
 	public static void main(String[] args) {

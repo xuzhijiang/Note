@@ -1,93 +1,93 @@
-Java HashMapÊÇjavaÖĞ×îÊÜ»¶Ó­µÄCollectionÀàÖ®Ò»¡£ 
-Java HashMapÊÇ»ùÓÚHash tableµÄÊµÏÖ¡£ JavaÖĞµÄHashMap extendsÁËAbstractMapÀà,
-AbstractMapÊµÏÖÁËMap interface.
+Java HashMapæ˜¯javaä¸­æœ€å—æ¬¢è¿çš„Collectionç±»ä¹‹ä¸€ã€‚ 
+Java HashMapæ˜¯åŸºäºHash tableçš„å®ç°ã€‚ Javaä¸­çš„HashMap extendsäº†AbstractMapç±»,
+AbstractMapå®ç°äº†Map interface.
 
-JavaÖĞHashMapµÄÒ»Ğ©ÖØÒª¹ÛµãÊÇ£º
+Javaä¸­HashMapçš„ä¸€äº›é‡è¦è§‚ç‚¹æ˜¯ï¼š
 
-Java HashMapÔÊĞínull¼üºÍnullÖµ¡£
-HashMap²»ÊÇÓĞĞò¼¯ºÏ¡£Äú¿ÉÒÔÍ¨¹ıkeys setµü´úHashMapÌõÄ¿(entries)£¬
-µ«²»±£Ö¤ËüÃÇ°´ÕÕËüÃÇÌí¼Óµ½HashMapµÄË³Ğò¡£
-HashMap¼¸ºõÓëHashtableÀàËÆ£¬Ö»ÊÇËü²»Í¬²½²¢ÔÊĞínull¼üºÍÖµ¡£
-HashMapÊ¹ÓÃËüµÄinner class Node<K,V>À´´æ´¢map entries.
+Java HashMapå…è®¸nullé”®å’Œnullå€¼ã€‚
+HashMapä¸æ˜¯æœ‰åºé›†åˆã€‚æ‚¨å¯ä»¥é€šè¿‡keys setè¿­ä»£HashMapæ¡ç›®(entries)ï¼Œ
+ä½†ä¸ä¿è¯å®ƒä»¬æŒ‰ç…§å®ƒä»¬æ·»åŠ åˆ°HashMapçš„é¡ºåºã€‚
+HashMapå‡ ä¹ä¸Hashtableç±»ä¼¼ï¼Œåªæ˜¯å®ƒä¸åŒæ­¥å¹¶å…è®¸nullé”®å’Œå€¼ã€‚
+HashMapä½¿ç”¨å®ƒçš„inner class Node<K,V>æ¥å­˜å‚¨map entries.
 
 HashMap stores entries into multiple singly linked lists, 
 called buckets or bins. Default number of bins 
-is 16 and it¡¯s always power of 2.
+is 16 and itâ€™s always power of 2.
 
-HashMap¶ÔgetºÍput²Ù×÷µÄ¼üÊ¹ÓÃhashCode£¨£©ºÍequals£¨£©·½·¨¡£
-ËùÒÔHashMap¹Ø¼ü¶ÔÏóÓ¦¸ÃÌá¹©ÕâĞ©·½·¨µÄÁ¼ºÃÊµÏÖ¡£Õâ¾ÍÊÇ²»¿É±äÀà¸üÊÊºÏ¼üµÄÔ­Òò£¬
-ÀıÈçStringºÍInterger¡£
+HashMapå¯¹getå’Œputæ“ä½œçš„é”®ä½¿ç”¨hashCodeï¼ˆï¼‰å’Œequalsï¼ˆï¼‰æ–¹æ³•ã€‚
+æ‰€ä»¥HashMapå…³é”®å¯¹è±¡åº”è¯¥æä¾›è¿™äº›æ–¹æ³•çš„è‰¯å¥½å®ç°ã€‚è¿™å°±æ˜¯ä¸å¯å˜ç±»æ›´é€‚åˆé”®çš„åŸå› ï¼Œ
+ä¾‹å¦‚Stringå’ŒIntergerã€‚
 
-Java HashMap²»ÊÇÏß³Ì°²È«µÄ£¬¶ÔÓÚ¶àÏß³Ì»·¾³£¬
-ÄúÓ¦¸ÃÊ¹ÓÃConcurrentHashMapÀà»òÊ¹ÓÃ
-Collections.synchronizedMap£¨£©·½·¨»ñÈ¡Í¬²½Ó³Éä¡£
+Java HashMapä¸æ˜¯çº¿ç¨‹å®‰å…¨çš„ï¼Œå¯¹äºå¤šçº¿ç¨‹ç¯å¢ƒï¼Œ
+æ‚¨åº”è¯¥ä½¿ç”¨ConcurrentHashMapç±»æˆ–ä½¿ç”¨
+Collections.synchronizedMapï¼ˆï¼‰æ–¹æ³•è·å–åŒæ­¥æ˜ å°„ã€‚
 
-Java HashMapÌá¹©ÁËËÄ¸ö¹¹Ôìº¯Êı£º
+Java HashMapæä¾›äº†å››ä¸ªæ„é€ å‡½æ•°ï¼š
 
-public HashMap£¨£©£º×î³£ÓÃµÄHashMap¹¹Ôìº¯Êı¡£ 
-´Ë¹¹Ôìº¯Êı½«´´½¨Ò»¸ö¿ÕµÄHashMap£¬ÆäÄ¬ÈÏ³õÊ¼ÈİÁ¿Îª16£¬¼ÓÔØÒò×ÓÎª0.75¡£
+public HashMapï¼ˆï¼‰ï¼šæœ€å¸¸ç”¨çš„HashMapæ„é€ å‡½æ•°ã€‚ 
+æ­¤æ„é€ å‡½æ•°å°†åˆ›å»ºä¸€ä¸ªç©ºçš„HashMapï¼Œå…¶é»˜è®¤åˆå§‹å®¹é‡ä¸º16ï¼ŒåŠ è½½å› å­ä¸º0.75ã€‚
 
-public HashMap£¨int initialCapacity£©£º´ËHashMap¹¹Ôìº¯ÊıÓÃÓÚÖ¸¶¨³õÊ¼ÈİÁ¿ºÍ0.75¼ÓÔØÒò×Ó¡£ 
-Èç¹ûÄúÖªµÀÒª´æ´¢ÔÚHashMapÖĞµÄÓ³ÉäÊı£¬Õâ¶ÔÓÚ±ÜÃâÖØĞÂÉ¢ÁĞ·Ç³£ÓĞÓÃ¡£
+public HashMapï¼ˆint initialCapacityï¼‰ï¼šæ­¤HashMapæ„é€ å‡½æ•°ç”¨äºæŒ‡å®šåˆå§‹å®¹é‡å’Œ0.75åŠ è½½å› å­ã€‚ 
+å¦‚æœæ‚¨çŸ¥é“è¦å­˜å‚¨åœ¨HashMapä¸­çš„æ˜ å°„æ•°ï¼Œè¿™å¯¹äºé¿å…é‡æ–°æ•£åˆ—éå¸¸æœ‰ç”¨ã€‚
 
-public HashMap£¨int initialCapacity£¬float loadFactor£©£ºÕâ¸öHashMap¹¹Ôìº¯Êı½«´´½¨Ò»¸ö¾ß
-ÓĞÖ¸¶¨³õÊ¼ÈİÁ¿ºÍ¼ÓÔØÒò×ÓµÄ¿ÕHashMap¡£ Èç¹ûÖªµÀÒªÔÚHashMapÖĞ´æ´¢µÄ×î´óÓ³ÉäÊı£¬Ôò¿ÉÒÔÊ¹ÓÃ´Ë·½·¨¡£ 
-ÔÚ³£¼ûÇé¿öÏÂ£¬ÄúÓ¦¸Ã±ÜÃâÕâÖÖÇé¿ö£¬ÒòÎª¸ºÔØÏµÊı0.75¿ÉÒÔÔÚ¿Õ¼äºÍÊ±¼ä³É±¾Ö®¼ä½øĞĞÁ¼ºÃµÄÈ¨ºâ¡£
+public HashMapï¼ˆint initialCapacityï¼Œfloat loadFactorï¼‰ï¼šè¿™ä¸ªHashMapæ„é€ å‡½æ•°å°†åˆ›å»ºä¸€ä¸ªå…·
+æœ‰æŒ‡å®šåˆå§‹å®¹é‡å’ŒåŠ è½½å› å­çš„ç©ºHashMapã€‚ å¦‚æœçŸ¥é“è¦åœ¨HashMapä¸­å­˜å‚¨çš„æœ€å¤§æ˜ å°„æ•°ï¼Œåˆ™å¯ä»¥ä½¿ç”¨æ­¤æ–¹æ³•ã€‚ 
+åœ¨å¸¸è§æƒ…å†µä¸‹ï¼Œæ‚¨åº”è¯¥é¿å…è¿™ç§æƒ…å†µï¼Œå› ä¸ºè´Ÿè½½ç³»æ•°0.75å¯ä»¥åœ¨ç©ºé—´å’Œæ—¶é—´æˆæœ¬ä¹‹é—´è¿›è¡Œè‰¯å¥½çš„æƒè¡¡ã€‚
 
-public HashMap£¨Map <£¿extends K£¬£¿extends V> m£©£º´´½¨Ò»¸öÓ³Éä£¬ÆäÓ³ÉäÓëÖ¸¶¨µÄÓ³ÉäÏàÍ¬£¬¼ÓÔØÒò×ÓÎª0.75
+public HashMapï¼ˆMap <ï¼Ÿextends Kï¼Œï¼Ÿextends V> mï¼‰ï¼šåˆ›å»ºä¸€ä¸ªæ˜ å°„ï¼Œå…¶æ˜ å°„ä¸æŒ‡å®šçš„æ˜ å°„ç›¸åŒï¼ŒåŠ è½½å› å­ä¸º0.75
 
-javaÖĞHashMapµÄÖØÒª·½·¨£º
+javaä¸­HashMapçš„é‡è¦æ–¹æ³•ï¼š
 
-public void clear£¨£©£ºÕâ¸öHashMap·½·¨½«É¾³ıËùÓĞÓ³Éä£¬HashMap½«±äÎª¿Õ¡£
-public boolean containsKey£¨Object key£©£ºÈç¹ûÃÜÔ¿´æÔÚ£¬Ôò´Ë·½·¨·µ»Ø'true'£¬·ñÔò·µ»Ø'false'¡£
-public boolean containsValue£¨Object value£©£ºÈç¹ûÖµ´æÔÚ£¬Ôò´ËHashMap·½·¨·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
-public Set <Map.Entry <K£¬V >> entrySet£¨£©£º´Ë·½·¨·µ»ØHashMapÓ³ÉäµÄSetÊÓÍ¼¡£´ËsetÓÉmapÖ§³Ö£¬Òò´Ë¶ÔmapµÄ¸ü¸Ä½«·´Ó³ÔÚsetÖĞ£¬·´Ö®ÒàÈ»¡£
-public V get£¨Object key£©£º·µ»ØÓ³Éäµ½Ö¸¶¨¼üµÄÖµ£¬Èç¹ûÃ»ÓĞ¼üµÄÓ³Éä£¬Ôò·µ»Ønull¡£
-public boolean isEmpty£¨£©£ºÈç¹û²»´æÔÚ¼üÖµÓ³Éä£¬Ôò·µ»ØtrueµÄÊµÓÃ³ÌĞò·½·¨¡£
-public Set <K> keySet£¨£©£º·µ»Ø´ËÓ³ÉäÖĞ°üº¬µÄ¼üµÄSetÊÓÍ¼¡£¸Ã¼¯ÓÉµØÍ¼Ö§³Ö£¬Òò´Ë¶ÔµØÍ¼µÄ¸ü¸Ä½«·´Ó³ÔÚ¼¯ÖĞ£¬·´Ö®ÒàÈ»¡£
-public V put£¨K key£¬V value£©£º½«Ö¸¶¨ÖµÓë´ËÓ³ÉäÖĞµÄÖ¸¶¨¼üÏà¹ØÁª¡£Èç¹ûÓ³ÉäÏÈÇ°°üº¬¼üµÄÓ³Éä£¬ÔòÌæ»»¾ÉÖµ¡£
-public void putAll£¨Map <£¿extends K£¬£¿extends V> m£©£º½«Ö¸¶¨µØÍ¼ÖĞµÄËùÓĞÓ³Éä¸´ÖÆµ½´ËµØÍ¼¡£ÕâĞ©Ó³Éä½«Ìæ»»´ËÓ³Éä¶Ôµ±Ç°Î»ÓÚÖ¸¶¨Ó³ÉäÖĞµÄÈÎºÎ¼üµÄÈÎºÎÓ³Éä¡£
-public V remove£¨Object key£©£º´Ó´ËÓ³ÉäÖĞÒÆ³ıÖ¸¶¨¼üµÄÓ³Éä£¨Èç¹û´æÔÚ£©¡£
-public int size£¨£©£º·µ»Ø´ËÓ³ÉäÖĞ¼ü - ÖµÓ³ÉäµÄÊıÁ¿¡£
-public Collection <V> values£¨£©£º·µ»Ø´ËÓ³ÉäÖĞ°üº¬µÄÖµµÄCollectionÊÓÍ¼¡£¸Ã¼¯ºÏÓÉµØÍ¼Ö§³Ö£¬Òò´Ë¶ÔµØÍ¼µÄ¸ü¸Ä½«·´Ó³ÔÚ¼¯ºÏÖĞ£¬·´Ö®ÒàÈ»¡£
+public void clearï¼ˆï¼‰ï¼šè¿™ä¸ªHashMapæ–¹æ³•å°†åˆ é™¤æ‰€æœ‰æ˜ å°„ï¼ŒHashMapå°†å˜ä¸ºç©ºã€‚
+public boolean containsKeyï¼ˆObject keyï¼‰ï¼šå¦‚æœå¯†é’¥å­˜åœ¨ï¼Œåˆ™æ­¤æ–¹æ³•è¿”å›'true'ï¼Œå¦åˆ™è¿”å›'false'ã€‚
+public boolean containsValueï¼ˆObject valueï¼‰ï¼šå¦‚æœå€¼å­˜åœ¨ï¼Œåˆ™æ­¤HashMapæ–¹æ³•è¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
+public Set <Map.Entry <Kï¼ŒV >> entrySetï¼ˆï¼‰ï¼šæ­¤æ–¹æ³•è¿”å›HashMapæ˜ å°„çš„Setè§†å›¾ã€‚æ­¤setç”±mapæ”¯æŒï¼Œå› æ­¤å¯¹mapçš„æ›´æ”¹å°†åæ˜ åœ¨setä¸­ï¼Œåä¹‹äº¦ç„¶ã€‚
+public V getï¼ˆObject keyï¼‰ï¼šè¿”å›æ˜ å°„åˆ°æŒ‡å®šé”®çš„å€¼ï¼Œå¦‚æœæ²¡æœ‰é”®çš„æ˜ å°„ï¼Œåˆ™è¿”å›nullã€‚
+public boolean isEmptyï¼ˆï¼‰ï¼šå¦‚æœä¸å­˜åœ¨é”®å€¼æ˜ å°„ï¼Œåˆ™è¿”å›trueçš„å®ç”¨ç¨‹åºæ–¹æ³•ã€‚
+public Set <K> keySetï¼ˆï¼‰ï¼šè¿”å›æ­¤æ˜ å°„ä¸­åŒ…å«çš„é”®çš„Setè§†å›¾ã€‚è¯¥é›†ç”±åœ°å›¾æ”¯æŒï¼Œå› æ­¤å¯¹åœ°å›¾çš„æ›´æ”¹å°†åæ˜ åœ¨é›†ä¸­ï¼Œåä¹‹äº¦ç„¶ã€‚
+public V putï¼ˆK keyï¼ŒV valueï¼‰ï¼šå°†æŒ‡å®šå€¼ä¸æ­¤æ˜ å°„ä¸­çš„æŒ‡å®šé”®ç›¸å…³è”ã€‚å¦‚æœæ˜ å°„å…ˆå‰åŒ…å«é”®çš„æ˜ å°„ï¼Œåˆ™æ›¿æ¢æ—§å€¼ã€‚
+public void putAllï¼ˆMap <ï¼Ÿextends Kï¼Œï¼Ÿextends V> mï¼‰ï¼šå°†æŒ‡å®šåœ°å›¾ä¸­çš„æ‰€æœ‰æ˜ å°„å¤åˆ¶åˆ°æ­¤åœ°å›¾ã€‚è¿™äº›æ˜ å°„å°†æ›¿æ¢æ­¤æ˜ å°„å¯¹å½“å‰ä½äºæŒ‡å®šæ˜ å°„ä¸­çš„ä»»ä½•é”®çš„ä»»ä½•æ˜ å°„ã€‚
+public V removeï¼ˆObject keyï¼‰ï¼šä»æ­¤æ˜ å°„ä¸­ç§»é™¤æŒ‡å®šé”®çš„æ˜ å°„ï¼ˆå¦‚æœå­˜åœ¨ï¼‰ã€‚
+public int sizeï¼ˆï¼‰ï¼šè¿”å›æ­¤æ˜ å°„ä¸­é”® - å€¼æ˜ å°„çš„æ•°é‡ã€‚
+public Collection <V> valuesï¼ˆï¼‰ï¼šè¿”å›æ­¤æ˜ å°„ä¸­åŒ…å«çš„å€¼çš„Collectionè§†å›¾ã€‚è¯¥é›†åˆç”±åœ°å›¾æ”¯æŒï¼Œå› æ­¤å¯¹åœ°å›¾çš„æ›´æ”¹å°†åæ˜ åœ¨é›†åˆä¸­ï¼Œåä¹‹äº¦ç„¶ã€‚
 
 
-There are many new methods in HashMap introduced in Java 8£º
+There are many new methods in HashMap introduced in Java 8ï¼š
 
-public V computeIfAbsent£¨K key£¬Function <£¿super K£¬£¿extends V> mappingFunction£©£ºÈç¹ûÖ¸¶¨µÄ¼üÉĞÎ´ÓëÖµ¹ØÁª£¨»òÓ³ÉäÎªnull£©£¬Ôò´Ë·½·¨³¢ÊÔÊ¹ÓÃ¸ø¶¨µÄÓ³Éä¼ÆËãÆäÖµº¯Êı²¢½«ÆäÊäÈëHashMap£¬³ı·ÇNull¡£
-public V computeIfPresent£¨K key£¬BiFunction <£¿super K£¬£¿super V£¬£¿extends V> remappingFunction£©£ºÈç¹ûÖ¸¶¨¼üµÄÖµ´æÔÚÇÒÎª·Çnull£¬Ôò³¢ÊÔ¼ÆËã¸ø¶¨¼ü¼°Æäµ±Ç°¼üµÄĞÂÓ³ÉäÓ³ÉäÖµ¡£
-public V compute£¨K key£¬BiFunction <£¿super K£¬£¿super V£¬£¿extends V> remappingFunction£©£º´ËHashMap·½·¨³¢ÊÔ¼ÆËãÖ¸¶¨¼ü¼°Æäµ±Ç°Ó³ÉäÖµµÄÓ³Éä¡£
-public void forEach£¨BiConsumer <£¿super K£¬£¿super V> action£©£º´Ë·½·¨Îª´ËÓ³ÉäÖĞµÄÃ¿¸öÌõÄ¿Ö´ĞĞ¸ø¶¨²Ù×÷¡£
-public V getOrDefault£¨Object key£¬V defaultValue£©£ºÓëgetÏàÍ¬£¬µ«Èç¹ûÎ´ÕÒµ½Ö¸¶¨¼üµÄÓ³Éä£¬Ôò·µ»ØdefaultValue¡£
-public V merge£¨K key£¬V value£¬BiFunction <£¿super V£¬£¿super V£¬£¿extends V> remappingFunction£©£ºÈç¹ûÖ¸¶¨µÄ¼üÉĞÎ´ÓëÖµ¹ØÁª»òÓënull¹ØÁª£¬Ôò½«ÆäÓë¸ø¶¨µÄnon¹ØÁª - ¿ÕÖµ¡£·ñÔò£¬½«Ïà¹ØÖµÌæ»»Îª¸ø¶¨ÖØÓ³Éäº¯ÊıµÄ½á¹û£¬»òÕßÈç¹û½á¹ûÎªnullÔòÉ¾³ı¡£
-public V putIfAbsent£¨K key£¬V value£©£ºÈç¹ûÖ¸¶¨µÄ¼üÉĞÎ´ÓëÖµÏà¹ØÁª£¨»òÓ³ÉäÎªnull£©£¬Ôò½«ÆäÓë¸ø¶¨ÖµÏà¹ØÁª²¢·µ»Ønull£¬·ñÔò·µ»Øµ±Ç°Öµ¡£
-public boolean remove£¨Object key£¬Object value£©£º½öµ±Ö¸¶¨¼üµ±Ç°Ó³Éäµ½Ö¸¶¨ÖµÊ±²ÅÉ¾³ı¸ÃÌõÄ¿¡£
-public boolean replace£¨K key£¬V oldValue£¬V newValue£©£º½öµ±Ç°Ó³Éäµ½Ö¸¶¨ÖµÊ±£¬Ìæ»»Ö¸¶¨¼üµÄÌõÄ¿¡£
-public V replace£¨K key£¬V value£©£º½öµ±Ö¸¶¨¼üµ±Ç°Ó³Éäµ½Ä³¸öÖµÊ±£¬²ÅÌæ»»¸Ã¼ü¡£
-public void replaceAll£¨BiFunction <£¿super K£¬£¿super V£¬£¿extends V> function£©£º½«Ã¿¸öÌõÄ¿µÄÖµÌæ»»ÎªÔÚ¸ÃÌõÄ¿ÉÏµ÷ÓÃ¸ø¶¨º¯ÊıµÄ½á¹û¡£
+public V computeIfAbsentï¼ˆK keyï¼ŒFunction <ï¼Ÿsuper Kï¼Œï¼Ÿextends V> mappingFunctionï¼‰ï¼šå¦‚æœæŒ‡å®šçš„é”®å°šæœªä¸å€¼å…³è”ï¼ˆæˆ–æ˜ å°„ä¸ºnullï¼‰ï¼Œåˆ™æ­¤æ–¹æ³•å°è¯•ä½¿ç”¨ç»™å®šçš„æ˜ å°„è®¡ç®—å…¶å€¼å‡½æ•°å¹¶å°†å…¶è¾“å…¥HashMapï¼Œé™¤éNullã€‚
+public V computeIfPresentï¼ˆK keyï¼ŒBiFunction <ï¼Ÿsuper Kï¼Œï¼Ÿsuper Vï¼Œï¼Ÿextends V> remappingFunctionï¼‰ï¼šå¦‚æœæŒ‡å®šé”®çš„å€¼å­˜åœ¨ä¸”ä¸ºénullï¼Œåˆ™å°è¯•è®¡ç®—ç»™å®šé”®åŠå…¶å½“å‰é”®çš„æ–°æ˜ å°„æ˜ å°„å€¼ã€‚
+public V computeï¼ˆK keyï¼ŒBiFunction <ï¼Ÿsuper Kï¼Œï¼Ÿsuper Vï¼Œï¼Ÿextends V> remappingFunctionï¼‰ï¼šæ­¤HashMapæ–¹æ³•å°è¯•è®¡ç®—æŒ‡å®šé”®åŠå…¶å½“å‰æ˜ å°„å€¼çš„æ˜ å°„ã€‚
+public void forEachï¼ˆBiConsumer <ï¼Ÿsuper Kï¼Œï¼Ÿsuper V> actionï¼‰ï¼šæ­¤æ–¹æ³•ä¸ºæ­¤æ˜ å°„ä¸­çš„æ¯ä¸ªæ¡ç›®æ‰§è¡Œç»™å®šæ“ä½œã€‚
+public V getOrDefaultï¼ˆObject keyï¼ŒV defaultValueï¼‰ï¼šä¸getç›¸åŒï¼Œä½†å¦‚æœæœªæ‰¾åˆ°æŒ‡å®šé”®çš„æ˜ å°„ï¼Œåˆ™è¿”å›defaultValueã€‚
+public V mergeï¼ˆK keyï¼ŒV valueï¼ŒBiFunction <ï¼Ÿsuper Vï¼Œï¼Ÿsuper Vï¼Œï¼Ÿextends V> remappingFunctionï¼‰ï¼šå¦‚æœæŒ‡å®šçš„é”®å°šæœªä¸å€¼å…³è”æˆ–ä¸nullå…³è”ï¼Œåˆ™å°†å…¶ä¸ç»™å®šçš„nonå…³è” - ç©ºå€¼ã€‚å¦åˆ™ï¼Œå°†ç›¸å…³å€¼æ›¿æ¢ä¸ºç»™å®šé‡æ˜ å°„å‡½æ•°çš„ç»“æœï¼Œæˆ–è€…å¦‚æœç»“æœä¸ºnullåˆ™åˆ é™¤ã€‚
+public V putIfAbsentï¼ˆK keyï¼ŒV valueï¼‰ï¼šå¦‚æœæŒ‡å®šçš„é”®å°šæœªä¸å€¼ç›¸å…³è”ï¼ˆæˆ–æ˜ å°„ä¸ºnullï¼‰ï¼Œåˆ™å°†å…¶ä¸ç»™å®šå€¼ç›¸å…³è”å¹¶è¿”å›nullï¼Œå¦åˆ™è¿”å›å½“å‰å€¼ã€‚
+public boolean removeï¼ˆObject keyï¼ŒObject valueï¼‰ï¼šä»…å½“æŒ‡å®šé”®å½“å‰æ˜ å°„åˆ°æŒ‡å®šå€¼æ—¶æ‰åˆ é™¤è¯¥æ¡ç›®ã€‚
+public boolean replaceï¼ˆK keyï¼ŒV oldValueï¼ŒV newValueï¼‰ï¼šä»…å½“å‰æ˜ å°„åˆ°æŒ‡å®šå€¼æ—¶ï¼Œæ›¿æ¢æŒ‡å®šé”®çš„æ¡ç›®ã€‚
+public V replaceï¼ˆK keyï¼ŒV valueï¼‰ï¼šä»…å½“æŒ‡å®šé”®å½“å‰æ˜ å°„åˆ°æŸä¸ªå€¼æ—¶ï¼Œæ‰æ›¿æ¢è¯¥é”®ã€‚
+public void replaceAllï¼ˆBiFunction <ï¼Ÿsuper Kï¼Œï¼Ÿsuper Vï¼Œï¼Ÿextends V> functionï¼‰ï¼šå°†æ¯ä¸ªæ¡ç›®çš„å€¼æ›¿æ¢ä¸ºåœ¨è¯¥æ¡ç›®ä¸Šè°ƒç”¨ç»™å®šå‡½æ•°çš„ç»“æœã€‚
 
 How HashMap works in java?
 
-javaÖĞµÄHashMapÊ¹ÓÃËüµÄinner class Node<K£¬V>À´´æ´¢Ó³Éämappings.
-HashMapÊ¹ÓÃÉ¢ÁĞËã·¨£¬²¢ÔÚkeyÉÏÊ¹ÓÃhashCode£¨£©ºÍequals£¨£©·½·¨½øĞĞgetºÍput²Ù×÷¡£
+javaä¸­çš„HashMapä½¿ç”¨å®ƒçš„inner class Node<Kï¼ŒV>æ¥å­˜å‚¨æ˜ å°„mappings.
+HashMapä½¿ç”¨æ•£åˆ—ç®—æ³•ï¼Œå¹¶åœ¨keyä¸Šä½¿ç”¨hashCodeï¼ˆï¼‰å’Œequalsï¼ˆï¼‰æ–¹æ³•è¿›è¡Œgetå’Œputæ“ä½œã€‚
 
-HashMapÊ¹ÓÃµ¥Á´±íÀ´´æ´¢ÔªËØ£¬ÕâĞ©ÔªËØ³ÆÎªbin»òbuckets¡£µ±ÎÒÃÇµ÷ÓÃput·½·¨Ê±£¬
-keyµÄhashCodeÓÃÓÚÈ·¶¨´æ´¢Ó³Éä(storing the mappings)µÄ´æ´¢Çø(buckets)¡£
+HashMapä½¿ç”¨å•é“¾è¡¨æ¥å­˜å‚¨å…ƒç´ ï¼Œè¿™äº›å…ƒç´ ç§°ä¸ºbinæˆ–bucketsã€‚å½“æˆ‘ä»¬è°ƒç”¨putæ–¹æ³•æ—¶ï¼Œ
+keyçš„hashCodeç”¨äºç¡®å®šå­˜å‚¨æ˜ å°„(storing the mappings)çš„å­˜å‚¨åŒº(buckets)ã€‚
 
-Ò»µ©Ê¶±ğ³öÍ°(buckets or ´æ´¢Çø)£¬hashCode¾ÍÓÃÓÚ¼ì²éÊÇ·ñÒÑ´æÔÚ¾ßÓĞÏàÍ¬hashCodeµÄkey¡£
-Èç¹û´æÔÚ¾ßÓĞÏàÍ¬hashCodeµÄÏÖÓĞkey£¬ÔòÔÚkeyÉÏÊ¹ÓÃequals£¨£©·½·¨¡£
-Èç¹ûequals·µ»Øtrue£¬Ôò¸²¸Çvalue£¬
-·ñÔò½«¶Ô´Ëµ¥Á´½ÓÁĞ±íÍ°(bucket)½øĞĞĞÂÓ³Éä¡£Èç¹ûÃ»ÓĞ¾ßÓĞÏàÍ¬hashCodeµÄkey£¬Ôò½«Ó³Éä²åÈëµ½Í°ÖĞ¡£
+ä¸€æ—¦è¯†åˆ«å‡ºæ¡¶(buckets or å­˜å‚¨åŒº)ï¼ŒhashCodeå°±ç”¨äºæ£€æŸ¥æ˜¯å¦å·²å­˜åœ¨å…·æœ‰ç›¸åŒhashCodeçš„keyã€‚
+å¦‚æœå­˜åœ¨å…·æœ‰ç›¸åŒhashCodeçš„ç°æœ‰keyï¼Œåˆ™åœ¨keyä¸Šä½¿ç”¨equalsï¼ˆï¼‰æ–¹æ³•ã€‚
+å¦‚æœequalsè¿”å›trueï¼Œåˆ™è¦†ç›–valueï¼Œ
+å¦åˆ™å°†å¯¹æ­¤å•é“¾æ¥åˆ—è¡¨æ¡¶(bucket)è¿›è¡Œæ–°æ˜ å°„ã€‚å¦‚æœæ²¡æœ‰å…·æœ‰ç›¸åŒhashCodeçš„keyï¼Œåˆ™å°†æ˜ å°„æ’å…¥åˆ°æ¡¶ä¸­ã€‚
 
-¶ÔÓÚHashMap get²Ù×÷£¬ÔÙ´ÎÊ¹ÓÃkeyµÄhashCodeÀ´È·¶¨Òª²éÕÒÖµµÄ´æ´¢Í°(´æ´¢Çø)(bucket)¡£
-Ê¶±ğ³ö´æ´¢Í°ºó£¬±éÀúÌõÄ¿ÒÔÊ¹ÓÃhashCodeºÍequals·½·¨ÕÒ³öEntry¡£Èç¹ûÕÒµ½Æ¥Åä£¬Ôò·µ»ØÖµ£¬·ñÔò·µ»Ønull¡£
+å¯¹äºHashMap getæ“ä½œï¼Œå†æ¬¡ä½¿ç”¨keyçš„hashCodeæ¥ç¡®å®šè¦æŸ¥æ‰¾å€¼çš„å­˜å‚¨æ¡¶(å­˜å‚¨åŒº)(bucket)ã€‚
+è¯†åˆ«å‡ºå­˜å‚¨æ¡¶åï¼Œéå†æ¡ç›®ä»¥ä½¿ç”¨hashCodeå’Œequalsæ–¹æ³•æ‰¾å‡ºEntryã€‚å¦‚æœæ‰¾åˆ°åŒ¹é…ï¼Œåˆ™è¿”å›å€¼ï¼Œå¦åˆ™è¿”å›nullã€‚
 
-»¹ÓĞ¸ü¶àµÄÊÂÇéÉæ¼°µ½ÖîÈçÉ¢ÁĞËã·¨ÒÔ»ñÈ¡ÃÜÔ¿£¬ÖØĞÂÓ³ÉäÓ³ÉäµÈµÈ¡£µ«ÊÇ¶ÔÓÚÎÒÃÇµÄ¹¤×÷£¬
-Ö»Ğè¼Ç×¡HashMap²Ù×÷ÔÚKeyÉÏ¹¤×÷£¬²¢ÇÒĞèÒªÁ¼ºÃµÄhashCodeÊµÏÖºÍequals·½·¨ÒÔ±ÜÃâ²»±ØÒªµÄĞĞÎª¡£
+è¿˜æœ‰æ›´å¤šçš„äº‹æƒ…æ¶‰åŠåˆ°è¯¸å¦‚æ•£åˆ—ç®—æ³•ä»¥è·å–å¯†é’¥ï¼Œé‡æ–°æ˜ å°„æ˜ å°„ç­‰ç­‰ã€‚ä½†æ˜¯å¯¹äºæˆ‘ä»¬çš„å·¥ä½œï¼Œ
+åªéœ€è®°ä½HashMapæ“ä½œåœ¨Keyä¸Šå·¥ä½œï¼Œå¹¶ä¸”éœ€è¦è‰¯å¥½çš„hashCodeå®ç°å’Œequalsæ–¹æ³•ä»¥é¿å…ä¸å¿…è¦çš„è¡Œä¸ºã€‚
 
-Ä¬ÈÏload factor 0.75Ìá¹©ÁË¿Õ¼äºÍÊ±¼ä¸´ÔÓ¶ÈÖ®¼äµÄÁ¼ºÃÕÛÖÔ¡£
-µ«Äú¿ÉÒÔ¸ù¾İĞèÒª½«ÆäÉèÖÃÎª²»Í¬µÄÖµ¡£Èç¹ûÄãÏë½ÚÊ¡¿Õ¼ä£¬ÄÇÃ´Äã¿ÉÒÔ½«ËüµÄÖµÔö¼Óµ½0.80»ò0.90£¬
-µ«ÊÇ»ñÈ¡/·ÅÖÃ²Ù×÷½«»¨·Ñ¸ü¶àÊ±¼ä¡£
+é»˜è®¤load factor 0.75æä¾›äº†ç©ºé—´å’Œæ—¶é—´å¤æ‚åº¦ä¹‹é—´çš„è‰¯å¥½æŠ˜è¡·ã€‚
+ä½†æ‚¨å¯ä»¥æ ¹æ®éœ€è¦å°†å…¶è®¾ç½®ä¸ºä¸åŒçš„å€¼ã€‚å¦‚æœä½ æƒ³èŠ‚çœç©ºé—´ï¼Œé‚£ä¹ˆä½ å¯ä»¥å°†å®ƒçš„å€¼å¢åŠ åˆ°0.80æˆ–0.90ï¼Œ
+ä½†æ˜¯è·å–/æ”¾ç½®æ“ä½œå°†èŠ±è´¹æ›´å¤šæ—¶é—´ã€‚
 
 Load Factor is used to figure out when HashMap will be rehashed and bucket size will be increased. 
 Default value of bucket or capacity is 16 and load factor is 0.75. 
