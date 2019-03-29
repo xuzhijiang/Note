@@ -36,6 +36,12 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         table = new Entry[defaultLength];
     }
 
+    /**
+     * 由于hash算法可能会导致相同的索引中包含了不同的entry对象，
+     * 我们需要通过对比key值的方式来找到我们真正要的那个entry对象
+     * @param k
+     * @return
+     */
     @Override
     public V get(K k) {
         //获取此key对应的entry对象所存放的索引index
@@ -55,12 +61,24 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public V put(K k, V v) {
-        //判断size是否达到扩容的标准
+        // 判断size是否达到扩容的标准
+        // HashMap的扩容机制是：当map的大小大于默认长度*默认负载因子,则需要扩容.
+        System.out.println("size: " + size);
+        System.out.println("defaultLength * defaultLoader: " + defaultLength * defaultLoader);
         if (size >= defaultLength * defaultLoader) {
+            System.out.println("expand---------" + table.length);
             expand();
         }
-        //根据key和哈希算法算出数组下标
+
+        // 哈希算法又被称为散列的过程，那么什么是散列呢？散列(分散的列开)即把数据均匀的存放到数组中的各个位置，
+        // 从而尽量避免出现多个数据存放在一块区间内.
+        // 在HashMap中，哈希算法主要是用于根据key的值算出存放数组的index值
+        // 优秀的哈希算法应该具备以下两点：保证散列值非常均匀,保证冲突极少出现
+
+        // ，我们需要通过哈希算法得到数组的下标，然后把一个包含键值对以及next指针的entry对象存到该位置中
         int index = getKey(k);
+        System.out.println("-------index: " + index);
+        System.out.println("table capacity: " + table.length);
         Entry<K, V> entry = table[index];
         //判断entry是否为空
         if (entry == null) {
@@ -84,18 +102,34 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
     /**
      * 自定义哈希算法
-     * 根据key的哈希值得到一个index索引，即存放到数组中的下标
+     *
+     * 哈希函数有很多种，在这里以除留取余法（取模）为例，首先定义一个数组的长度，假设为16。
+     * 那么此时的索引index为index = key.hashCode() % m，m的取值规则是比数组长度小的最大质数。
+     * 在这个情况下m为13。由于这种算法会导致这样的情况出现，即不同的key经过哈希运算之后得到了一样的index，
+     * 如key为2和15的index值都为2，那么此时就需要我们处理冲突了。
+     *
+     * 处理冲突:
+     *
+     * 1. 线性探测法: 当冲突产生时，查找下一个索引是否被占用，如果没有，则把数据存到该索引上。
+     *
+     * 2. 链表形式: 由于在HashMap中，单个数据是以entry的形式存储的，而entry中包含了key，value和next指针。
+     * 那么当冲突产生时，我们就把原先存放到这个位置的数据取出来，然后在这个位置存放新的数据，并且把新数据的next指针设为原数据，
+     * 也就是说链表头位置的数据永远是最新的数据。
      * @param k
      * @return
      */
     private int getKey(K k) {
         int m = defaultLength;
+        System.out.println("mmm: " + m);
         int index = k.hashCode() % m;
+        // 最后返回的时候用了一个三元运算符，是为了要确保index的值必须是一个正数
         return index >= 0 ? index : -index;
     }
 
     /**
-     * 数组的扩容
+     * 数组的扩容,HashMap的扩容机制是：当map的大小大于默认长度*默认负载因子，那么数组的长度会翻倍，
+     * 数组中的数据会重新散列然后再存放。那么在原先的put方法中，需要先判断是否达到扩容的标准再执行下面的代码。
+     * 如果达到扩容的标准则需要调用扩容方法
      */
     private void expand() {
         //创建一个大小是原来两倍的entry数组
@@ -106,11 +140,13 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
     /**
      * 重新散列的过程
-     * @param newTable
+     * @param newTable 新的数组
      */
     private void rehash(Entry<K, V>[] newTable) {
+        System.out.println("call rehash: " + table.length + "----" + newTable.length);
         //创建一个list用于装载HashMap中所有的entry对象
         List<Entry<K, V>> list = new ArrayList<Entry<K, V>>();
+
         //遍历整个数组
         for (int i = 0; i < table.length; i++) {
             //如果数组中的某个位置没有数据，则跳过
@@ -119,20 +155,24 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
             }
             //通过递归的方式将所有的entry对象装载到list中
             findEntryByNext(table[i], list);
-            if (list.size() > 0) {
-                //把size重置
-                size = 0;
-                //把默认长度设置为原来的两倍
-                defaultLength = 2 * defaultLength;
-                table = newTable;
-                for (Entry<K, V> entry : list) {
-                    if (entry.next != null) {
-                        //把所有entry的next指针置空
-                        entry.next = null;
-                    }
-                    //对新table进行散列
-                    put(entry.getKey(), entry.getValue());
+        }
+
+        if (list.size() > 0) {
+            // 把size重置
+            size = 0;
+            // 把默认长度设置为原来的两倍
+            defaultLength = 2 * defaultLength;
+            System.out.println("talbe111: " + table.length);
+            System.out.println("newTable22: " + newTable.length);
+            table = newTable;
+            System.out.println("talbe333: " + table.length);
+            for (Entry<K, V> entry : list) {
+                if (entry.next != null) {
+                    // 把所有entry的next指针置空
+                    entry.next = null;
                 }
+                // 对新table进行散列,也就是重新put,对应的size也会从0开始变化.所以上面将size置为了0
+                put(entry.getKey(), entry.getValue());
             }
         }
     }

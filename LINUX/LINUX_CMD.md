@@ -29,6 +29,16 @@ sudo netstat -tlpn | grep 800 # Check that the chosen port is already in use.
 mkdir -p dirname # recursively create directory.
 sudo lsof -i TCP:80 #see what application is listening on port 80
 通过vmstat命令查看当前操作系统每秒的上下文切换次数:命令"vmstat 1 10"的含义是：每个1秒统计一次，统计10次后结束。其中cs那一列表示的就是上下文切换次数,cs是context switch的简写
+
+# 查看Linux内核版本命令
+cat /proc/version
+uname -a
+lsb_release -a
+cat /etc/issue
+cat /etc/redhat-release(这种方法只适合Redhat系的Linux)
+# centos安装wget
+yum -y install wget
+
 ```
 
 ### Shell脚本
@@ -104,3 +114,4 @@ RabbitMQ Server的命令会被安装到/usr/local/sbin，并不会自动加到�
 `while true;do top -t -m 5;sleep 1;done`: 每隔1s打印出来前5个占用cpu的信息
 
 查看某一个进程的cpu使用率:`top -p pid`
+
