@@ -9,6 +9,7 @@ public class CurrentConditionsDisplay implements Observer,DisplayElement {
     private float humidity;// 湿度
     private float pressure; // 气压
     private Subject weatherData;
+
     public CurrentConditionsDisplay(Subject weatherData) {
         this.weatherData = weatherData;
         weatherData.registerObserver(this);

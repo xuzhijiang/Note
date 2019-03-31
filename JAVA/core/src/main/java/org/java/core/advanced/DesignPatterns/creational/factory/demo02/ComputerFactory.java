@@ -1,9 +1,9 @@
-package org.java.core.advanced.DesignPatterns.creational.factory;
+package org.java.core.advanced.DesignPatterns.creational.factory.demo02;
 
 /**
- *  ÎÒÃÇ¿ÉÒÔ½«FactoryÀàÉè¼ÆÎªSingleton£¬»òÕßÎÒÃÇ¿ÉÒÔ½«·µ»Ø×ÓÀàµÄ·½·¨×÷ÎªstaticµÄ¡£
+ *  æˆ‘ä»¬å¯ä»¥å°†Factoryç±»è®¾è®¡ä¸ºSingletonï¼Œæˆ–è€…æˆ‘ä»¬å¯ä»¥å°†è¿”å›å­ç±»çš„æ–¹æ³•ä½œä¸ºstaticçš„ã€‚
  *  
- * Çë×¢Òâ£¬»ùÓÚÊäÈë²ÎÊı£¬½«´´½¨²¢·µ»Ø²»Í¬µÄ×ÓÀà¡£ getComputerÊÇ¹¤³§·½·¨¡£
+ * è¯·æ³¨æ„ï¼ŒåŸºäºè¾“å…¥å‚æ•°ï¼Œå°†åˆ›å»ºå¹¶è¿”å›ä¸åŒçš„å­ç±»ã€‚ getComputeræ˜¯å·¥å‚æ–¹æ³•ã€‚
  *
  */
 public class ComputerFactory {

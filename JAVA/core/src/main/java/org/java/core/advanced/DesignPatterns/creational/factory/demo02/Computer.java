@@ -1,7 +1,7 @@
-package org.java.core.advanced.DesignPatterns.creational.factory;
+package org.java.core.advanced.DesignPatterns.creational.factory.demo02;
 
 /**
- * ¹¤³§Éè¼ÆÄ£Ê½ÖĞµÄsuper class¿ÉÒÔÊÇ½Ó¿Ú£¬³éÏóÀà»òÆÕÍ¨µÄjavaÀà¡£
+ * å·¥å‚è®¾è®¡æ¨¡å¼ä¸­çš„super classå¯ä»¥æ˜¯æ¥å£ï¼ŒæŠ½è±¡ç±»æˆ–æ™®é€šçš„javaç±»ã€‚
  *
  */
 public abstract class Computer {

@@ -115,3 +115,81 @@ RabbitMQ Server的命令会被安装到/usr/local/sbin，并不会自动加到�
 
 查看某一个进程的cpu使用率:`top -p pid`
 
+### RedHat命令
+
+```shell
+# 查找文件
+find ./ -name config*
+
+# 建立链接
+
+ln
+# 检查磁盘分区:
+fdisk -l
+
+# 检查硬盘使用情况
+df -T -h
+
+# 挂载软硬光区
+mount -t /dev/fdxhdax/mnt/目录名
+
+# 解除挂载
+umount /mnt/目录名
+
+# 解除所有挂载(此命令慎用)
+umount -a
+
+# 终止单一进程
+kill 进程ID号
+
+# 查看内存的使用情况
+free
+
+# 查看cpu的使用情况
+top
+
+# 查看环境变量值
+env
+
+# 关机
+shutdown -h now
+halt
+
+# 查看已安装软件包
+rpm -qa
+
+:w file 将修改另外保存到file中，不退出vi
+
+安装软件： 				yum install xxx.rmp
+删除软件：				yum remove xxx.rmp
+升级软件：				yum update/upgrade
+显示软件包依赖关系：	    yum deplist
+
+#列出和java相关的所有包的列表(不是本机安装的): 
+yum search java | grep 'java-'
+
+# 安装包括javac,jre在内的java相关包
+yum install java-1.7.0-openjdk*
+
+安装						
+rpm -ivh somesoft.rpm
+
+卸载 						
+rpm -e somefost.rpm
+
+查询						
+rpm -q somefost.rpm
+
+查询安装后位置：			
+rpm -ql somefost.rpm
+
+# 修改域名和ip的映射
+vi /etc/hosts
+
+# java.net.InetAddress获取的主机名称是从
+/etc/sysconfig/network中读取,然后会连接这个主机名称对应的域名(/etc/hosts)
+
+#如果需要永久修改hostname可通过如下命令
+vi /etc/sysconfig/network
+修改其中的HOSTNAME项，不过此种方法需要重启后生效。
+```

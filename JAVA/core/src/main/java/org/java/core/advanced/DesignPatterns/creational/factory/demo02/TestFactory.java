@@ -1,4 +1,4 @@
-package org.java.core.advanced.DesignPatterns.creational.factory;
+package org.java.core.advanced.DesignPatterns.creational.factory.demo02;
 
 public class TestFactory {
 

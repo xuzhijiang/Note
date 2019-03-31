@@ -3,7 +3,7 @@ package org.java.core.advanced.DesignPatterns.behavioral.observer;
 /**
  * 天气预报布告板：显示当前的天气状况
  */
-public class ForecastDisplay implements Observer,DisplayElement{
+public class ForecastDisplay implements Observer, DisplayElement{
     private float currentPressure = 29.92f;  //当前的气压
     private float lastPressure; // 最后的气压
     private WeatherData weatherData;
