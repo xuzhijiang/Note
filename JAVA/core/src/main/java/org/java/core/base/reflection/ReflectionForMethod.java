@@ -14,12 +14,12 @@ public class ReflectionForMethod {
 		//we need to pass the method name and parameter types of the method. 
 		//If the method is not found in the class, reflection API looks 
 		//for the method in superclass.
-		//ÎÒÃÇ¿ÉÒÔÓÃgetMethod()µÃµ½ÀàµÄpublic·½·¨.
+		//æˆ‘ä»¬å¯ä»¥ç”¨getMethod()å¾—åˆ°ç±»çš„publicæ–¹æ³•.
 		
 		//In below example, I am getting put() method of HashMap 
 		//using reflection. The example also shows how to get the 
 		//parameter types, method modifiers and return type of a method.
-		//ÎÒÓÃ·´ÉäµÃµ½HashMapµÄput·½·¨£¬Õâ¸öÀı×ÓÒ²Õ¹Ê¾ÁËÔõÃ´È¥µÃµ½Õâ¸ö·½·¨µÄ²ÎÊı ÀàĞÍ£¬·½·¨ĞŞÊÎ·ûÒÔ¼°·µ»ØÀàĞÍ
+		//æˆ‘ç”¨åå°„å¾—åˆ°HashMapçš„putæ–¹æ³•ï¼Œè¿™ä¸ªä¾‹å­ä¹Ÿå±•ç¤ºäº†æ€ä¹ˆå»å¾—åˆ°è¿™ä¸ªæ–¹æ³•çš„å‚æ•° ç±»å‹ï¼Œæ–¹æ³•ä¿®é¥°ç¬¦ä»¥åŠè¿”å›ç±»å‹
 		
 		// Get Public Method
 		try {
@@ -39,9 +39,9 @@ public class ReflectionForMethod {
 		//Invoking Public Method
 		//We can use invoke() method of Method object to invoke a 
 		//method, in below example code I am invoking put method on HashMap using reflection.
-		//ÎÒÃÇ¿ÉÒÔÓÃMethod¶ÔÏóµÄinvoke()·½·¨È¥µ÷ÓÃ·½·¨
+		//æˆ‘ä»¬å¯ä»¥ç”¨Methodå¯¹è±¡çš„invoke()æ–¹æ³•å»è°ƒç”¨æ–¹æ³•
 		//If the method is static, we can pass NULL as object argument.
-		//Èç¹û·½·¨ÊÇ¾²Ì¬µÄ£¬ÎÒÃÇ¿ÉÒÔ´«µİnull×÷Îª¶ÔÏóÀàĞÍ
+		//å¦‚æœæ–¹æ³•æ˜¯é™æ€çš„ï¼Œæˆ‘ä»¬å¯ä»¥ä¼ é€’nullä½œä¸ºå¯¹è±¡ç±»å‹
 		try {
 			Method method = Class.forName("java.util.HashMap").getMethod("put", Object.class, Object.class);
 			Map<String, String> hm = new HashMap<>();
@@ -55,7 +55,7 @@ public class ReflectionForMethod {
 		//We can use getDeclaredMethod() to get the private method and 
 		//then turn off the access check to invoke it, below example shows
 		//how we can invoke method3() of BaseClass that is static and have no parameters.
-		//ÓÃgetDeclardMethod()µÃµ½Ë½ÓĞ·½·¨£¬È»ºó¹Ø±Õ·ÃÎÊ¼ì²é£¬È»ºóµ÷ÓÃËü
+		//ç”¨getDeclardMethod()å¾—åˆ°ç§æœ‰æ–¹æ³•ï¼Œç„¶åå…³é—­è®¿é—®æ£€æŸ¥ï¼Œç„¶åè°ƒç”¨å®ƒ
 		
 		try {
 			Method method = Class.forName("org.java.core.base.reflection.BaseClass").getDeclaredMethod("method3", null);

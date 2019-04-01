@@ -3,13 +3,14 @@ package com.java.algorithm.linkedlist;
 import com.java.algorithm.iterator.MyIterable;
 import com.java.algorithm.iterator.MyIterator;
 
+import java.util.Iterator;
+
 /**
  * 单端链表
  * 维护第一个节点(firstNode)的引用，作为整个链表的入口.
  * @param <T> 每个Node中存放的data的类型Type
  */
 public class SingleLinkList<T> implements MyIterable<T> {
-
     // 链表中第一个节点
     protected Node<T> firstNode;
 
@@ -145,6 +146,8 @@ public class SingleLinkList<T> implements MyIterable<T> {
 //        testRemoveFisrt();
 
         testIterator();
+
+        testIterator2();
     }
 
     private static void testRemove() {
@@ -201,9 +204,11 @@ public class SingleLinkList<T> implements MyIterable<T> {
         System.out.println("链表中元素：");
         linkList.display();
         System.out.println("\n开始迭代：");
-        // 特别的，由于我们的迭代器实现了Java的标准接口，所以我们可以使用java的增强for循环来进行迭代，
-        // 如果没有实现这些接口，是无法使用增强for循环的
-        //使用增强for循环进行迭代
+
+        // 特别的，由于我们的迭代器实现了Java的标准接口(java.lang.Iterable)，
+        // 所以我们可以使用java的增强for循环来进行迭代，
+
+        // 如果没有实现这些接口，而是实现了我们自己定义的MyIterable，是无法使用增强for循环的
 //        for (Integer data : linkList) {
 //            System.out.println(data);
 //        }
@@ -219,10 +224,20 @@ public class SingleLinkList<T> implements MyIterable<T> {
     }
 
     /**
+     * 通过标准的jdk中的Iterator接口实现的迭代器
+     * @return
+     */
+//    @Override
+//    public Iterator iterator(){
+//        return new NodeIterator<T>(firstNode);
+//    }
+
+    /**
      * 在SingleLinkList中定义一个内部类NodeIterator，实现Iterator接口
      * @param <T>
      */
-    private class NodeIterator<T> implements MyIterator<T> {
+    private class NodeIterator<T> implements MyIterator<T> {//自定义的Iterator接口实现
+    //private class NodeIterator<T> implements Iterator<T> {
 
         private Node node;
 

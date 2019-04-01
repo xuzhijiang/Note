@@ -34,7 +34,7 @@ public class TestBlockingNIOClient3 {
 //            buf.clear();
 //        }
 
-        // 使用sChannel.shutdownOutput();方法。
+        // 使用sChannel.shutdownOutput();方法,
         sChannel.shutdownOutput();
         //接收服务端返回的信息
         int len = 0;

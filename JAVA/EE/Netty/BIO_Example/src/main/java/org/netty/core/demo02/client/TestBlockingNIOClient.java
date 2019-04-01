@@ -16,17 +16,28 @@ public class TestBlockingNIOClient {
 
     //客户端
     public static void client() {
-        SocketChannel sChannel = null;
+        SocketChannel socketChannel = null;
         //FileChannel inChannel = null;
         try {
-            sChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1", 9898));
+            socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1", 9898));
+
+            // 创建SocketChannel也可以使用下面的方法,但是这种方法下面要绑定，如果这个端口已经被其他程序
+            // 绑定了，就会出现异常.所以我们这里不用
+            // socketChannel = SocketChannel.open();
             //inChannel = FileChannel.open(Paths.get("1.jpg"), StandardOpenOption.READ);
+
+            // 把SocketChannel绑定到某一个SocketAddress
+            //socketChannel.bind(new InetSocketAddress("127.0.0.1", 9898));
 
             //分配指定大小的缓冲区
             ByteBuffer buf = ByteBuffer.allocate(1024);
+
+            // 向缓冲区写入数据
             buf.put("get current time".getBytes());
             buf.flip();
-            sChannel.write(buf);
+
+            // 把缓冲区的数据通过通道传输
+            socketChannel.write(buf);
             buf.clear();
             //读取本地文件，并发送到服务端
 //            while (inChannel.read(buf) != -1) {
@@ -45,9 +56,9 @@ public class TestBlockingNIOClient {
 //                    e.printStackTrace();
 //                }
 //            }
-            if (sChannel != null) {
+            if (socketChannel != null) {
                 try {
-                    sChannel.close();
+                    socketChannel.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
