@@ -8,8 +8,13 @@ public class UnsafeDemo {
     private int i = 0;
 
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
-        // 实例化sun.misc.Unsafe: Unsafe类提供了一个静态方法getUnsafe()来获取Unsafe的实例，
+        // 实例化sun.misc.Unsafe:
+
+        // Unsafe类提供了一个静态方法getUnsafe()来获取Unsafe的实例，
         // 但是如果你尝试调用Unsafe.getUnsafe()，会得到一个SecutiryException。这个类只有被JDK信任的类实例化。
+        // Unsafe unsafe = Unsafe.getUnsafe();
+        // System.out.println(unsafe);
+
         // 但是这总会是有变通的解决办法的，一个简单的方式就是使用反射进行实例化：
 
         //获取Unsafe实例
@@ -18,7 +23,8 @@ public class UnsafeDemo {
         Unsafe unsafe = (Unsafe) f.get(null);
 
         //获取字段i在内存中偏移量
-        long offset = unsafe.objectFieldOffset(UnsafeDemo.class.getDeclaredField("i"));
+        Field i_field = UnsafeDemo.class.getDeclaredField("i");
+        long offset = unsafe.objectFieldOffset(i_field);
 
         //创建对象实例，设置字段的值
         UnsafeDemo unsafeDemo = new UnsafeDemo();
