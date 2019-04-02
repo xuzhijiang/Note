@@ -10,16 +10,17 @@ import java.nio.channels.Pipe;
  */
 public class TestPipe {
 
-
     public void testPipe() throws IOException {
         //获取管道
         Pipe pipe = Pipe.open();
+
         //将缓冲区中的数据写入管道
         ByteBuffer buf = ByteBuffer.allocate(1024);
         Pipe.SinkChannel sinkChannel = pipe.sink();
         buf.put("通过管道发送数据".getBytes());
         buf.flip();
         sinkChannel.write(buf);
+
         //在一个线程中共用一个pipe读取数据，可以开两个线程
         Pipe.SourceChannel sourceChannel = pipe.source();
         buf.flip();

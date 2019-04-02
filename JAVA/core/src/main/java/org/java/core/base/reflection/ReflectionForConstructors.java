@@ -29,15 +29,15 @@ public class ReflectionForConstructors {
 			e.printStackTrace();
 		}
 		
-		//Instantiate Object using Constructor(ÓÃ¹¹ÔìÆ÷È¥³õÊ¼»¯¶ÔÏóµÄ)
+		//Instantiate Object using Constructor(ç”¨æ„é€ å™¨å»åˆå§‹åŒ–å¯¹è±¡çš„)
 		
 		//We can use newInstance() method on the constructor object 
-		//to instantiate a new instance of the class.(ÎÒÃÇÓÃ¹¹ÔìÆ÷¶ÔÏóµÄnewInstance·½·¨È¥³õÊ¼»¯Ò»¸öÀàµÄĞÂÊµÀı)
+		//to instantiate a new instance of the class.(æˆ‘ä»¬ç”¨æ„é€ å™¨å¯¹è±¡çš„newInstanceæ–¹æ³•å»åˆå§‹åŒ–ä¸€ä¸ªç±»çš„æ–°å®ä¾‹)
 		
-		//Since we use reflection when we don¡¯t have the classes information at compile time, 
-		//we can assign it to Object and then further use reflection to access it¡¯s 
-		//fields and invoke it¡¯s methods.
-		//ÒòÎªÎÒÃÇÓÃÁË·´Éä£¬ÎÒÃÇÔÚ±àÒëÊ±Ã»ÓĞ¹ØÓÚÀàµÄĞÅÏ¢,
+		//Since we use reflection when we donâ€™t have the classes information at compile time, 
+		//we can assign it to Object and then further use reflection to access itâ€™s 
+		//fields and invoke itâ€™s methods.
+		//å› ä¸ºæˆ‘ä»¬ç”¨äº†åå°„ï¼Œæˆ‘ä»¬åœ¨ç¼–è¯‘æ—¶æ²¡æœ‰å…³äºç±»çš„ä¿¡æ¯,
 		
 		try {
 			Constructor<?> constructor = Class.forName("org.java.core.base.reflection.ConcreteClass").getConstructor(int.class);

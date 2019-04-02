@@ -25,4 +25,5 @@ public abstract class ByteBuffer {
 //    public abstract ByteBuffer put (int index, byte b);//从绝对位置上put
 
     // 下面我们通过详细的案例说明，如何创建缓冲区，以及对缓存区进行操作：BufferCreateDemo
+
 }

@@ -39,7 +39,9 @@ public class MyLockSupport {
         try {
             parkBlockerOffset = unsafe.objectFieldOffset
                     (java.lang.Thread.class.getDeclaredField("parkBlocker"));
-        } catch (Exception ex) { throw new Error(ex); }
+        } catch (Exception ex) {
+            throw new Error(ex);
+        }
     }
 
     private static void setBlocker(Thread t, Object arg) {

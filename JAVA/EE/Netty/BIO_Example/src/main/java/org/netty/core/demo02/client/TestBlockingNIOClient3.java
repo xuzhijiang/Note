@@ -8,9 +8,6 @@ import java.nio.channels.SocketChannel;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-/**
- * 一种是使用客户端使用shutdownOutPut
- */
 public class TestBlockingNIOClient3 {
 
     public static void main(String[] args) throws IOException {

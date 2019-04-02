@@ -3,17 +3,17 @@ package org.java.core.base.reflection;
 import java.lang.reflect.Field;
 
 /**
- * ×÷ÓÃÓòÔ½Ğ¡Ô½ºÃ
+ * ä½œç”¨åŸŸè¶Šå°è¶Šå¥½
  */
 public class ReflectionForField {
 	public static void main(String[] args) {
 		//Get Public Field
 		//In last section, we saw how to get the list of all the 
 		//public fields of a class. Reflection API also provides 
-		//method to get specific public field (µÃµ½Ö¸¶¨µÄ¹«¹²µÄfield)of a class through getField() 
+		//method to get specific public field (å¾—åˆ°æŒ‡å®šçš„å…¬å…±çš„field)of a class through getField() 
 		//method. This method look for the field in the specified class 
 		//reference and then in the super interfaces and then in the super classes.
-		//(´Ë·½·¨ÔÚÖ¸¶¨µÄÀàÒıÓÃÖĞ²éÕÒ×Ö¶Î£¬È»ºóÔÚ³¬¼¶½Ó¿ÚÖĞ²éÕÒ£¬È»ºóÔÚ³¬ÀàÖĞ²éÕÒ¡£)
+		//(æ­¤æ–¹æ³•åœ¨æŒ‡å®šçš„ç±»å¼•ç”¨ä¸­æŸ¥æ‰¾å­—æ®µï¼Œç„¶ååœ¨è¶…çº§æ¥å£ä¸­æŸ¥æ‰¾ï¼Œç„¶ååœ¨è¶…ç±»ä¸­æŸ¥æ‰¾ã€‚)
 		try {
 			Field field = Class.forName("org.java.core.base.reflection.ConcreteClass").getField("interfaceInt");
 			System.out.println(field.getName());
@@ -49,7 +49,7 @@ public class ReflectionForField {
 
 		//Get/Set Public Field Value
 		//We can get and set the value of a field in an Object using reflection.
-		//ÎÒÃÇ¿ÉÒÔÓÃ·´ÉägetºÍset¶ÔÏóÖĞµÄ×Ö¶ÎµÄÖµ
+		//æˆ‘ä»¬å¯ä»¥ç”¨åå°„getå’Œsetå¯¹è±¡ä¸­çš„å­—æ®µçš„å€¼
 		try{
 			Field field = Class.forName("org.java.core.base.reflection.ConcreteClass").getField("publicInt");
 			ConcreteClass obj = new ConcreteClass(5);
@@ -72,9 +72,9 @@ public class ReflectionForField {
 
 
 		//Get/Set Private Field Value
-		//We know that private fields and methods can¡¯t be accessible outside 
+		//We know that private fields and methods canâ€™t be accessible outside 
 		//of the class but using reflection we can get/set the private field 
-		//value by turning off the java access check for field modifiers.(Í¨¹ı¹Ø±Õ×Ö¶ÎĞŞÊÎ·ûµÄjava·ÃÎÊ¼ì²é)
+		//value by turning off the java access check for field modifiers.(é€šè¿‡å…³é—­å­—æ®µä¿®é¥°ç¬¦çš„javaè®¿é—®æ£€æŸ¥)
 
 		try {
 			Field privateField = Class.forName("org.java.core.base.reflection.ConcreteClass").getDeclaredField("privateString");

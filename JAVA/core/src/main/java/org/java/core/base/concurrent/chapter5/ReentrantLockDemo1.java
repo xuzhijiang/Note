@@ -3,9 +3,13 @@ package org.java.core.base.concurrent.chapter5;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * Lock接口的独占性演示
+ */
 public class ReentrantLockDemo1 {
 
     public static void main(String[] args) {
+
         Lock lock = new ReentrantLock();
 
         new Thread("Thread A") {
@@ -33,7 +37,7 @@ public class ReentrantLockDemo1 {
             }
         }.start();
         // 从输出结果中可以看到，A获取到锁，先执行，
-        // 而必须等到A执行完成之后，B才能执行。因此Lock对象的实际上是一个独占锁。
+        // 而必须等到A执行完成之后，B才能执行。因此Lock对象(ReentrantLock)实际上是一个独占锁。
     }
 
 

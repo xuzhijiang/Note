@@ -2,6 +2,7 @@ package org.java.core.base.concurrent.chapter5;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+// Lock接口的可重入性演示
 public class ReentrantLockDemo2 {
 
     public static void main(String[] args){
@@ -19,7 +20,7 @@ public class ReentrantLockDemo2 {
         lock.unlock();//holdCount-1
         System.out.println(lock.getHoldCount());
         // 通过输出，我们可以看到，一个线程(本案例就是主线程)的确可以多次持有同一个锁。
-        // 每当调用lock方法时，次数+1，每当调用unlock方法时，次数-1。我们看到出现了2，
+        // 每当调用lock方法时，次数+1，每当调用unlock方法时，次数-1。所以中间打印出了2，
         // 这事实上就体现了所谓的可重入。需要注意的是：当getHoldCount()不为0的时候，
         // 表示锁当前正在被某个线程使用，只有当其为0的时候，其他线程才有机会获取这个锁。
     }

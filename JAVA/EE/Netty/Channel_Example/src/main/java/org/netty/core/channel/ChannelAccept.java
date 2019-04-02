@@ -6,16 +6,17 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
 /**
- * 这段程序的作用是，在1234端口上接受client的请求，一旦接收到client的请求，
+ * 在1234端口上接受client的请求，一旦接收到client的请求，
  * 会给其回复固定的字符串响应"Hello I must be going."
  *
  * 控制台打印出多次:Waiting for connections,说明程序的确运行在非阻塞模式下，
  * 因为否则就会想ServerSocket.accpet方法那样，一直阻塞下去。
  *
- * 通过命令行执行: telnet localhost 1234
- * 可以看到得到一个响应之后，连接立马关闭
+ * 通过命令行执行: telnet localhost 1234,
+ * 可以看到client得到响应之后，client立马关闭连接,server还在运行.
  */
 public class ChannelAccept {
+
     public static final String GREETING = "Hello I must be going.\r\n";
 
     public static void main(String[] argv) throws Exception {
@@ -28,13 +29,16 @@ public class ChannelAccept {
         ServerSocketChannel ssc = ServerSocketChannel.open();
         // 获取这个ServerSocketChannel对等的Socket，然后把这个获取到的Socket绑定到端口1234
         ssc.socket().bind(new InetSocketAddress(port));
+
         // 默认情况下，一个通道创建，总是阻塞的，我们可以通过调用configureBlocking(boolean)方法即可
         // 传递参数值为true 则设为阻塞模式，参数值为 false 值设为非阻塞模式.
         ssc.configureBlocking(false);
 
         while (true) {
+
             System.out.println("Waiting for connections");
             SocketChannel sc = ssc.accept();
+
             if (sc == null) {
                 // no connections, snooze a while
                 System.out.println("no connections, snooze a while!!");
@@ -62,6 +66,7 @@ public class ChannelAccept {
                 sc.write(buffer);
                 sc.close();
             }
+
         }
     }
 }

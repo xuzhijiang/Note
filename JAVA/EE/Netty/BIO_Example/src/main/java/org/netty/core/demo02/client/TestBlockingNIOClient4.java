@@ -16,7 +16,6 @@ public class TestBlockingNIOClient4 {
         client();
     }
 
-    //客户端
     public static void client() throws IOException{
         //获取通道
         SocketChannel sChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1",9898));
@@ -24,11 +23,14 @@ public class TestBlockingNIOClient4 {
         sChannel.configureBlocking(false);
         //分配指定大小的缓冲区
         ByteBuffer buf = ByteBuffer.allocate(1024);
+        System.out.println("准备发送数据: ");
         //发送数据给服务端
         Scanner scan = new Scanner(System.in);
+        System.out.println("scan.hasNext(): " + scan.hasNext());
         while(scan.hasNext()){
             String string = scan.next();
-            buf.put((new Date().toString()+"\n"+string).getBytes());
+            System.out.println("发送: " + string);
+            buf.put(string.getBytes());
             buf.flip();
             sChannel.write(buf);
             buf.clear();

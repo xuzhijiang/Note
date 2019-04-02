@@ -18,19 +18,6 @@ public class TimeServer {
 
     // TimeServer中维护了两个队列，idleQueue 和workingQueue
 
-    //  工作步骤如下所示：
-    //  1、在main线程中，当接受到一个新的连接时，我们将相应的SocketChannel放入idleQueue。
-    //  2、在static静态代码块中，我们创建了一个Thread。其作用是不断的循环idleQueue和workingQueue。
-
-    //首先循环idleQueue，迭代出其中的SocketChannel，然后封装成一个TimeServerHandleTask对象，
-    // 提交到线程池中处理这个SocketChannel的请求，同时我们会将SocketChannel中移除，放到workingQueue中。
-    // 需要注意的是，这个SocketChannel可能只是与服务端建立了连接，但是没有发送请求，又或者是发送了一次或者多次请求。
-    // 发送一次"GET CURRENT TIME”，就相当于一次请求。
-
-
-    //接着是迭代workingQueue，通过future.isDone()判断当前请求是否处理完成，
-    // 如果处理完成，将其从workingQueue中移除，重新加入idleQueue中。
-
     private BlockingQueue<SocketChannel> idleQueue =new LinkedBlockingQueue<SocketChannel>();
 
     private  BlockingQueue<Future<SocketChannel>> workingQueue=new LinkedBlockingQueue<Future<SocketChannel>>();
@@ -38,11 +25,20 @@ public class TimeServer {
     private ExecutorService executor = Executors.newSingleThreadExecutor();
 
     {
+        //  工作步骤如下所示：
+        //  1、在main线程中，当接受到一个新的连接时，我们将相应的SocketChannel放入idleQueue。
+        //  2、在static静态代码块中，我们创建了一个Thread。其作用是不断的循环idleQueue和workingQueue。
+
         new Thread(){
             @Override
             public void run() {
                 try {
                     while (true) {
+    // 首先循环idleQueue，迭代出其中的SocketChannel，然后封装成一个TimeServerHandleTask对象，
+    // 提交到线程池中处理这个SocketChannel的请求，同时我们会将SocketChannel从idleQueue中移除，放到workingQueue中。
+    // 需要注意的是，这个SocketChannel可能只是与服务端建立了连接，但是没有发送请求，又或者是发送了一次或者多次请求。
+    // 发送一次"GET CURRENT TIME”，就相当于一次请求。
+
                         //task1：迭代当前idleQueue中的SocketChannel，
                         // 提交到线程池中执行任务，并将其移到workingQueue中
                         for (int i = 0; i < idleQueue.size(); i++) {
@@ -56,6 +52,8 @@ public class TimeServer {
                             }
                         }
 
+                        //接着是迭代workingQueue，通过future.isDone()判断当前请求是否处理完成，
+                        // 如果处理完成，将其从workingQueue中移除，重新加入idleQueue中。
                         //task2：迭代当前workingQueue中的SocketChannel，如果任务执行完成，将其移到idleQueue中
                         for (int i = 0; i < workingQueue.size(); i++) {
                             Future<SocketChannel> future = workingQueue.poll();

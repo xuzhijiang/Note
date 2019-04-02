@@ -7,6 +7,7 @@ public class MutexMain {
     public static void main(String[] args){
         Mutex mutex = new MutexImpl();
         for(int i=0;i<5;i++){
+            // 注意:这些线程共用了一个mutex
             new MutexThread("线程"+i, mutex).start();
             // 根据打印,可以看到我们的独占锁的确是起作用了，任意一时刻只有一个线程在运行
 
@@ -26,17 +27,14 @@ public class MutexMain {
 
         @Override
         public void run() {
-            System.out.println(Thread.currentThread().getName() + "启动...");
             mutex.lock();
-            System.out.println(Thread.currentThread().getName() + "获取锁成功..");
             try {
                 System.out.println(Thread.currentThread().getName() + "开始执行，当前时间: " + new Date().toLocaleString());
-                Thread.currentThread().sleep(1000);//假设线程执行需要1秒
+                Thread.currentThread().sleep(3000);//假设线程执行需要1秒
                 System.out.println(Thread.currentThread().getName() + "结束执行，当前时间: " + new Date().toLocaleString());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
-                System.out.println(Thread.currentThread().getName()+"释放锁..");
                 mutex.release();
             }
         }
