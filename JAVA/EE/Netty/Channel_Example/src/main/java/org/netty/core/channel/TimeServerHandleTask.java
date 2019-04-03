@@ -22,9 +22,9 @@ public class TimeServerHandleTask implements Runnable {
         try {
             ByteBuffer requestBuffer = ByteBuffer.allocate("GET CURRENT TIME".length());
 
-            //尝试读取数据，因为是非阻塞，所以如果没有数据会立即返回。
+            // 尝试读取数据，因为是非阻塞，所以如果没有数据会立即返回。
             int bytesRead = socketChannel.read(requestBuffer);
-            //如果没有读取到数据，说明当前SocketChannel并没有发送请求，不需要处理
+            // 如果没有读取到数据，说明当前SocketChannel只是建立了连接看,并没有发送请求，不需要处理
             if (bytesRead <= 0) {
                 return;
             }
@@ -32,6 +32,7 @@ public class TimeServerHandleTask implements Runnable {
             while (requestBuffer.hasRemaining()) {
                 socketChannel.read(requestBuffer);
             }
+
             // requestBuffer.array()返回字节数组.并使用 字节数组构造字符串
             String requestStr = new String(requestBuffer.array());
             if (!"GET CURRENT TIME".equals(requestStr)) {
@@ -50,5 +51,6 @@ public class TimeServerHandleTask implements Runnable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
     }
 }

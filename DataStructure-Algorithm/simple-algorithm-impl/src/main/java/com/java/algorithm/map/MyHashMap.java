@@ -3,16 +3,32 @@ package com.java.algorithm.map;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 模仿JDK的HashMap，自定义自己的HashMap
+ */
 public class MyHashMap<K, V> implements MyMap<K, V> {
 
-    // 默认数组大小，初始大小为16
-    private static int defaultLength = 16;
+    // 初始化桶大小，HashMap底层是数组，这个是数组默认的大小
+    static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
+
+    /**  桶的最大值 */
+    static final int MAXIMUM_CAPACITY = 1 << 30;
 
     // 默认负载因子，为0.75
-    private static double defaultLoader = 0.75;
+    static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
     // Entry数组
     private Entry<K, V>[] table = null;
+
+    /** 桶大小。可以在初始化的时候显示指定 */
+    int threshold;
+
+    /** 负载因子，可以在初始化的时候显示指定 */
+    // 用来控制数组存放数据的疏密程度，loadFactor太大(loadFactor越趋紧与1越大)导致查找元素效率低，链表的长度就越长。
+    // 太小导致数组的利用率低，存放的数据会很分散
+    // 所以，建议当我们知道HashMap的使用大小时，应该在初始化的时候指定大小，减少扩容带来的性能消耗。
+    // loadFactor的默认值为0.75f是官方给出的一个比较好的临界值。
+    final float loadFactor;
 
     // HashMap中item的数量
     private int size = 0;
@@ -21,19 +37,19 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
      * 使用默认值初始化
      */
     public MyHashMap() {
-        this(defaultLength, defaultLoader);
+        this(DEFAULT_INITIAL_CAPACITY, DEFAULT_LOAD_FACTOR);
     }
 
     /**
      * 自定义默认长度和负载因子
      *
      * @param length
-     * @param loader
+     * @param loaderFactor
      */
-    public MyHashMap(int length, double loader) {
-        defaultLength = length;
-        defaultLoader = loader;
-        table = new Entry[defaultLength];
+    public MyHashMap(int length, float loaderFactor) {
+        threshold = length;
+        loadFactor = loaderFactor;
+        table = new Entry[length];
     }
 
     /**
@@ -64,8 +80,8 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         // 判断size是否达到扩容的标准
         // HashMap的扩容机制是：当map的大小大于默认长度*默认负载因子,则需要扩容.
         System.out.println("size: " + size);
-        System.out.println("defaultLength * defaultLoader: " + defaultLength * defaultLoader);
-        if (size >= defaultLength * defaultLoader) {
+        System.out.println("threshold * loadFactor: " + threshold * loadFactor);
+        if (size >= threshold * loadFactor) {
             System.out.println("expand---------" + table.length);
             expand();
         }
@@ -119,7 +135,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
      * @return
      */
     private int getKey(K k) {
-        int m = defaultLength;
+        int m = threshold;
         System.out.println("mmm: " + m);
         int index = k.hashCode() % m;
         // 最后返回的时候用了一个三元运算符，是为了要确保index的值必须是一个正数
@@ -127,13 +143,15 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     }
 
     /**
+     * 扩容就涉及到数据的复制，rehash等，就消耗性能
+     *
      * 数组的扩容,HashMap的扩容机制是：当map的大小大于默认长度*默认负载因子，那么数组的长度会翻倍，
      * 数组中的数据会重新散列然后再存放。那么在原先的put方法中，需要先判断是否达到扩容的标准再执行下面的代码。
      * 如果达到扩容的标准则需要调用扩容方法
      */
     private void expand() {
         //创建一个大小是原来两倍的entry数组
-        Entry<K, V>[] newTable = new Entry[2 * defaultLength];
+        Entry<K, V>[] newTable = new Entry[(threshold << 1)];
         //重新散列
         rehash(newTable);
     }
@@ -161,7 +179,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
             // 把size重置
             size = 0;
             // 把默认长度设置为原来的两倍
-            defaultLength = 2 * defaultLength;
+            threshold = threshold << 1;
             System.out.println("talbe111: " + table.length);
             System.out.println("newTable22: " + newTable.length);
             table = newTable;

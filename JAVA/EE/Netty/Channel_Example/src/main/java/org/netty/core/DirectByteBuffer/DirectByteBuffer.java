@@ -28,13 +28,14 @@ class DirectByteBuffer extends MappedByteBuffer  implements DirectBuffer
         } else {
             address = base;
         }
-         //另外，在构造方法的最后，通过 Cleaner.create方法注册了一个钩子函数，用于清除直接内存的引用。
-         // 我们可以看到在DirectByteBuffer的最后一行中，传入的这两个参数分别是this，
-         // 和一个Deallocator(实现了Runnable接口)，其中this表示就是当前DirectByteBuffer实例，
-         // 也就是当前DirectByteBuffer被回收的时候，回调Deallocator的run方法
-         //Deallocator就是用于清除DirectByteBuffer引用的直接内存，代码如Deallocator所示
-        cleaner = Cleaner.create(this, new Deallocator(base, size, cap));//注册钩子函数，释放直接内存
-        att = null;
+
+     //另外，在构造方法的最后，通过 Cleaner.create方法注册了一个钩子函数，用于清除直接内存的引用。
+     // 我们可以看到在DirectByteBuffer的最后一行中，传入的这两个参数分别是this，
+     // 和一个Deallocator(实现了Runnable接口)，其中this表示就是当前DirectByteBuffer实例，
+     // 也就是当前DirectByteBuffer被GC回收的时候，回调Deallocator的run方法
+     //Deallocator就是用于清除DirectByteBuffer引用的直接内存
+    cleaner = Cleaner.create(this, new Deallocator(base, size, cap));//注册钩子函数，释放直接内存
+    att = null;
 
     }
       ....

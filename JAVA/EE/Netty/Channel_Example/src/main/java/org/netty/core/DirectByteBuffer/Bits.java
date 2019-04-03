@@ -4,6 +4,7 @@ package org.netty.core.DirectByteBuffer;
 public class Bits {
 
     static void reserveMemory(long size, int cap) {
+
         //如果直接有足够多的直接内存可以用，直接增加直接内存引用的计数
         synchronized (Bits.class) {
             if (!memoryLimitSet && VM.isBooted()) {
