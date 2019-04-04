@@ -1,12 +1,14 @@
-package com.java.algorithm;
+package com.java.algorithm.atomic;
 
-import java.util.function.IntUnaryOperator;
-import java.util.function.IntBinaryOperator;
 import sun.misc.Unsafe;
 
 /**
  * 为了解决多线程访问Integer变量导致结果不正确所设计的一个基于多线程
  * 并且支持原子操作的Integer类
+ *
+ * 缺点：虽然AtomicInteger中的cas操作可以实现非阻塞的原子操作，但是会产生ABA问题
+ *
+ * 性能对比: 未完
  * @since 1.5
  */
 public class MyAtomicInteger extends Number implements java.io.Serializable {
@@ -19,7 +21,7 @@ public class MyAtomicInteger extends Number implements java.io.Serializable {
     // Unsafe类可以执行以下几种操作：
     // 1. 分配内存，释放内存：在方法allocateMemory，reallocateMemory，freeMemory中，有点类似c中的malloc，free方法
     // 2. 可以定位对象的属性在内存中的位置，可以修改对象的属性值。使用objectFieldOffset方法
-    // 3. CAS操作(CompareAndSwap，比较并交换，是一个原子操作)
+    // 3. CAS操作(CompareAndSwap方法是原子的，比较并交换,可用来实现高性能的、无锁的数据结构,CAS原语可以用来实现无锁的数据结构)
 
     // Unsafe中的int类型的CAS操作方法：
     // public final native boolean compareAndSwapInt(Object o, long offset, int expected, int x);
@@ -59,43 +61,15 @@ public class MyAtomicInteger extends Number implements java.io.Serializable {
     }
 
     /**
-     * Eventually sets to the given value.
-     *
-     * @param newValue the new value
-     * @since 1.6
-     */
-    public final void lazySet(int newValue) {
-        unsafe.putOrderedInt(this, valueOffset, newValue);
-    }
-
-    /**
      * Atomically sets to the given value and returns the old value.
-     *
-     * @param newValue the new value
-     * @return the previous value
+     * 自动的设置给定的值，然后返回旧的值
      */
     public final int getAndSet(int newValue) {
         return unsafe.getAndSetInt(this, valueOffset, newValue);
     }
 
-
+    // CAS
     public final boolean compareAndSet(int expect, int update) {
-        return unsafe.compareAndSwapInt(this, valueOffset, expect, update);
-    }
-
-    /**
-     * Atomically sets the value to the given updated value
-     * if the current value {@code ==} the expected value.
-     *
-     * <p><a href="package-summary.html#weakCompareAndSet">May fail
-     * spuriously and does not provide ordering guarantees</a>, so is
-     * only rarely an appropriate alternative to {@code compareAndSet}.
-     *
-     * @param expect the expected value
-     * @param update the new value
-     * @return {@code true} if successful
-     */
-    public final boolean weakCompareAndSet(int expect, int update) {
         return unsafe.compareAndSwapInt(this, valueOffset, expect, update);
     }
 
@@ -108,9 +82,7 @@ public class MyAtomicInteger extends Number implements java.io.Serializable {
     }
 
     /**
-     * Atomically decrements by one the current value.
-     *
-     * @return the previous value
+     * 以原子方式将当前值减少1。
      */
     public final int getAndDecrement() {
         return unsafe.getAndAddInt(this, valueOffset, -1);
@@ -118,9 +90,7 @@ public class MyAtomicInteger extends Number implements java.io.Serializable {
 
     /**
      * Atomically adds the given value to the current value.
-     *
-     * @param delta the value to add
-     * @return the previous value
+     * 以原子方式将当前值增加delta
      */
     public final int getAndAdd(int delta) {
         return unsafe.getAndAddInt(this, valueOffset, delta);
@@ -128,8 +98,8 @@ public class MyAtomicInteger extends Number implements java.io.Serializable {
 
     /**
      * Atomically increments by one the current value.
-     *
-     * @return the updated value
+     * 自动的把当前的值+1,然后返回
+     * @return the updated value 返回更新的值
      */
     public final int incrementAndGet() {
         return unsafe.getAndAddInt(this, valueOffset, 1) + 1;
@@ -137,7 +107,6 @@ public class MyAtomicInteger extends Number implements java.io.Serializable {
 
     /**
      * Atomically decrements by one the current value.
-     *
      * @return the updated value
      */
     public final int decrementAndGet() {
@@ -154,63 +123,17 @@ public class MyAtomicInteger extends Number implements java.io.Serializable {
         return unsafe.getAndAddInt(this, valueOffset, delta) + delta;
     }
 
-    /**
-     * Atomically updates the current value with the results of
-     * applying the given function, returning the previous value. The
-     * function should be side-effect-free, since it may be re-applied
-     * when attempted updates fail due to contention among threads.
-     *
-     * @param updateFunction a side-effect-free function
-     * @return the previous value
-     * @since 1.8
-     */
-    public final int getAndUpdate(IntUnaryOperator updateFunction) {
-        int prev, next;
-        do {
-            prev = get();
-            next = updateFunction.applyAsInt(prev);
-        } while (!compareAndSet(prev, next));
-        return prev;
-    }
-
-    /**
-     * Atomically updates the current value with the results of
-     * applying the given function, returning the updated value. The
-     * function should be side-effect-free, since it may be re-applied
-     * when attempted updates fail due to contention among threads.
-     *
-     * @param updateFunction a side-effect-free function
-     * @return the updated value
-     * @since 1.8
-     */
-    public final int updateAndGet(IntUnaryOperator updateFunction) {
-        int prev, next;
-        do {
-            prev = get();
-            next = updateFunction.applyAsInt(prev);
-        } while (!compareAndSet(prev, next));
-        return next;
-    }
-
-    public final int getAndAccumulate(int x,
-                                      IntBinaryOperator accumulatorFunction) {
-        int prev, next;
-        do {
-            prev = get();
-            next = accumulatorFunction.applyAsInt(prev, x);
-        } while (!compareAndSet(prev, next));
-        return prev;
-    }
-
-    public final int accumulateAndGet(int x,
-                                      IntBinaryOperator accumulatorFunction) {
-        int prev, next;
-        do {
-            prev = get();
-            next = accumulatorFunction.applyAsInt(prev, x);
-        } while (!compareAndSet(prev, next));
-        return next;
-    }
+    // 以前jdk的实现:
+    // 先得到当前的值value，然后再把当前的值加delta，加完之后使用cas原子操作让当前值加一处理正确
+    // 当然cas原子操作不一定是成功的，所以做了一个死循环，当cas操作成功的时候返回数据。这里由于使用了cas原子操作，所以不会出现多线程处理错误的问题。比如线程A得到current为1，线程B也得到current为1；线程A的next值为2，进行cas操作并且成功的时候，将value修改成了2；这个时候线程B也得到next值为2，当进行cas操作的时候由于expected值已经是2，而不是1了；所以cas操作会失败，下一次循环的时候得到的current就变成了2；也就不会出现多线程处理问题了：
+//    public final int addAndGet(int delta) {
+//        for (;;) {
+//            int current = get();
+//            int next = current + delta;
+//            if (compareAndSet(current, next))
+//                return next;
+//        }
+//    }
 
     public String toString() {
         return Integer.toString(get());

@@ -1,9 +1,9 @@
 public interface Map<K,V>{}
 
-Java Map是collections framework的一部分。 
-Java Map对象用于存储键值映射。 Java Map不能包含重复键.
+Java Map是集合框架的一部分。 
+Java Map对象用于存储键值映射。 Map不能包含重复键.
 
-Java中流行的Map实现类是HashMap，Hashtable，TreeMap，ConcurrentHashMap和LinkedHashMap。
+5种实现Map接口并且经常使用的Map集合为:HashMap，Hashtable，TreeMap，ConcurrentHashMap和LinkedHashMap。
 AbstractMap类提供了Map接口的骨架实现，大多数Map具体类扩展了AbstractMap类并实现了所需的方法。
 
 Map提供了三个集合视图: 键集， 键值映射集和 值集合。

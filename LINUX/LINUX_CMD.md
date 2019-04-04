@@ -193,3 +193,10 @@ vi /etc/hosts
 vi /etc/sysconfig/network
 修改其中的HOSTNAME项，不过此种方法需要重启后生效。
 ```
+
+### Vi命令
+
+```shell
+:set nonu(取消行号显示)
+:set nu(设置行号)
+```
