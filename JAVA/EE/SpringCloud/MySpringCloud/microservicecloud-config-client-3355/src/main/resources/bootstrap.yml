@@ -1,17 +1,14 @@
+# 创建bootstrap.yml配置，来指定获取配置文件的config-server-git位置
+
 spring:
   cloud:
     config:
-      name: microservicecloud-config-client # 需要从github上读取资源名称，注意这里的name是没有yml后缀名的,但是对应的github上是有的
-      profile: test # 本次访问的配置项
+      name: cloud-config # name是没有yml后缀名的,但是对应的github上是有的,对应git仓库中的application部分
+      profile: test # 对应git仓库中profile
       label: master
       uri: http://config-3344.com:3344 # 本次微服务启动后先去找3344号服务，通过SpringCloudConfig获取Github的服务地址
 
 # application.yml是用户级的资源配置文件，bootstrap.yml是系统级，优先级更高，保证不会被本地配置文件所覆盖
+# 会从bootstrap.yml中读取到要从git上获取的yml配置文件的信息，从而覆盖本地的application.yml的配置
 
-# bootstrap.yml中的profile值是什么，决定从github上读取什么
-
-# 访问http://client-config.com:8201/config得到是github上的microservicecloud-config-client.yml
-# 文件中dev相关的配置信息
-
-#访问http://client-config.com:8202/config得到是github上的microservicecloud-config-client.yml文件
-  #中test相关的配置信息
+# 以上的配置会获取到git上的cloud-config.yml中的profile为test的信息，然后覆盖了本地的application.yml

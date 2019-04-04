@@ -16,6 +16,7 @@ public class ConfigClientRest {
     @Value("${server.port}")
     private String port;
 
+    // access: http://localhost:8202/config
     @RequestMapping("/config")
     public String getConfig(){
         String str = "applicationName: " + applicationName + "\t eurekaServers: " + eurekaServers + "\t port: " + port;
