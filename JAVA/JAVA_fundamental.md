@@ -31,3 +31,31 @@ Java技术栈
 
 JDBC基础
 熟练编写单元测试.
+
+疯狂的Java算法——插入排序，归并排序以及并行归并排序:
+https://www.cnblogs.com/zuoxiaolong/p/alg2.html
+
+spring-boot-pay: https://gitee.com/52itstyle/spring-boot-pay/tree/master
+
+基于spring 4.x 开发的redis集群中间件应用:redis-cache、redis-cluster-cache、session共享、消息队列等:https://github.com/timebusker?tab=overview&from=2019-02-01&to=2019-02-18
+
+https://www.journaldev.com/java-tutorial-java-ee-tutorials
+
+基于Spring-boot和bootstrap搭建的商城系统: https://github.com/vito16/shop
+
+Spring Boot 学习资源:https://github.com/ityouknow/awesome-spring-boot
+
+
+Spring Boot 教程、技术栈示例代码，快速简单上手教程:https://github.com/ityouknow/spring-boot-examples
+
+spring boot 实践学习案例，是 spring boot 初学者及核心技术巩固的最佳实践:https://gitee.com/jeff1993/springboot-learning-example
+
+关于Java Design Pattern (设计模式) 学习积累的例子，是初学者及设计模式巩固的最佳实践。:https://github.com/JeffLi1993/java-designpattern-learning
+
+Halo 可能是最好的 Java 博客系统: https://github.com/halo-dev/halo
+
+购买域名:https://www.namecheap.com/
+
+RabbitMQ基础概念详细介绍:https://www.cnblogs.com/diegodu/p/4971586.html
+
+redis实现分布式锁:https://www.jishuwen.com/d/2Btj
