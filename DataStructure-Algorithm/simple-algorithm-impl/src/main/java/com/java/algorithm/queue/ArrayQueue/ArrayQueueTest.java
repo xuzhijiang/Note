@@ -1,4 +1,4 @@
-package com.java.algorithm.queue;
+package com.java.algorithm.queue.ArrayQueue;
 
 /**
  * 本测试演示上述分析插入字母案例，因为A-P共有16个字母。而16个字母插满之后，还有3个空余位置，说明队列大小为19

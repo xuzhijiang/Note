@@ -1,4 +1,6 @@
-package com.java.algorithm.queue;
+package com.java.algorithm.queue.BlockingQueue.ArrayBlockingQueue;
+
+import com.java.algorithm.queue.BlockingQueue.MyBlockingQueue;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -7,7 +9,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E>{
+/**
+ * ArrayBlockingQueue的原理就是使用一个可重入锁和
+ * 这个锁生成的两个条件对象(Condition)进行并发控制
+ *
+ * ArrayBlockingQueue是一个带有长度的阻塞队列，
+ * 初始化的时候必须要指定队列长度，且指定长度之后不允许进行修改。
+ * @param <E>
+ */
+public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E> {
 
     // 存储队列元素的数组，是个循环数组
     final Object[] items;
@@ -106,10 +116,19 @@ public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E>{
      * 这个插入方法是所有公用插入方法的核心插入逻辑
      */
     private void insert(E x) {
+        // 元素添加到数组里
         items[putIndex] = x;
-        putIndex = inc(putIndex); //因为可能循环，所以不能直接putIndex++
+        //因为可能循环(数组索引到达最后的位置)，所以不能直接putIndex++,类似于循环队列.
+        // 放数据索引+1，当索引满了变成0
+        putIndex = inc(putIndex);
+        // 元素个数+1
         ++count;
-        notEmpty.signal(); //有这个条件说明这个类在调用的时候一定要持有锁，否则这个notEmpty就没有用。插入之后要通知一下可能在put时候进入阻塞状态的线程
+
+        // 使用条件对象notEmpty通知，比如使用take方法的时候队列里没有数据，被阻塞。
+        // 这个时候队列insert了一条数据，需要调用signal进行通知
+        // 有这个条件说明这个类在调用的时候一定要持有锁，否则这个notEmpty就没有用。
+        // 插入之后要通知一下可能在put时候进入阻塞状态的线程
+        notEmpty.signal();
     }
 
     /**
@@ -117,10 +136,16 @@ public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E>{
      */
     private E extract() {
         final Object[] items = this.items;
+        // 得到取索引位置上的元素
         E x = MyArrayBlockingQueue.<E>cast(items[takeIndex]);
+        // 对应取索引上的数据清空
         items[takeIndex] = null;
+        // 取数据索引+1，当索引满了变成0
         takeIndex = inc(takeIndex);
+        // 元素个数-1
         --count;
+        // 使用条件对象notFull通知，比如使用put方法放数据的时候队列已满，被阻塞。
+        // 这个时候消费了一条数据，队列没满了，就需要调用signal进行通知
         notFull.signal();
         return x;
     }
@@ -131,13 +156,15 @@ public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E>{
     void removeAt(int i) {
         final Object[] items = this.items;
         //如果要移除的元素恰好就是下一个出队的元素
+        // 如果要删除数据的索引是取索引位置，直接删除取索引位置上的数据，然后取索引+1即可
         if (i == takeIndex) {
             items[takeIndex] = null;
             takeIndex = inc(takeIndex);
-        } else {
+        } else {// 如果要删除数据的索引不是取索引位置，移动元素元素，更新取索引和放索引的值
             for (; ; ) {
                 int nexti = inc(i);
-                if (nexti != putIndex) {//讲i元素后面的元素全部前移一个位置(这里不用System.arraycopy的原因大家自己脑补)
+                if (nexti != putIndex) {//将i元素后面的元素全部前移一个位置
+                    // (这里不用System.arraycopy的原因大家自己脑补)
                     items[i] = items[nexti];
                     i = nexti;
                 } else { //如果要移除的元素是putIndex的前一个元素(说明移除不会造成元素移动)
@@ -168,16 +195,16 @@ public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E>{
     public boolean offer(E e) {
         checkNotNull(e);//不能插入空元素
         final ReentrantLock lock = this.lock;
-        lock.lock();
-        try {//如果队列满的话直接放回false
+        lock.lock();// 加锁，保证调用offer方法的时候只有1个线程
+        try {
             if (count == items.length)
-                return false;
+                return false;//如果队列满的话直接返回false，添加失败.
             else {
-                insert(e);
-                return true;
+                insert(e);// 数组没满的话调用insert方法
+                return true;// 返回true，添加成功
             }
         } finally {
-            lock.unlock();
+            lock.unlock();// 释放锁，让其他线程可以调用offer方法
         }
     }
 
@@ -190,15 +217,19 @@ public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E>{
      * put在队列满的情况下会直接阻塞，但是可以中断其阻塞
      */
     public void put(E e) throws InterruptedException {
+        // 不允许元素为空
         checkNotNull(e);
         final ReentrantLock lock = this.lock;
-        lock.lockInterruptibly();//可以响应中断(所以一旦put阻塞后可以调用interrupt来中断)
+        // 加锁，保证调用put方法的时候只有1个线程
+        // 可以响应中断(所以一旦put阻塞后可以调用interrupt来中断)
+        lock.lockInterruptibly();
         try {
+            // 如果队列满了，阻塞当前线程，并加入到条件对象notFull的等待队列里
             while (count == items.length)
-                notFull.await(); //阻塞！！！
+                notFull.await(); // 线程阻塞并被挂起，同时释放锁
             insert(e);
         } finally {
-            lock.unlock();
+            lock.unlock();// 释放锁，让其他线程可以调用put方法
         }
     }
 
@@ -230,11 +261,12 @@ public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E>{
      */
     public E poll() {
         final ReentrantLock lock = this.lock;
-        lock.lock();
+        lock.lock();//加锁，保证调用poll方法的时候只有1个线程
         try {
+            // 如果队列里没元素了，返回null，否则调用extract方法
             return (count == 0) ? null : extract();
         } finally {
-            lock.unlock();
+            lock.unlock();// 释放锁，让其他线程可以调用poll方法
         }
     }
 
@@ -248,12 +280,14 @@ public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E>{
      */
     public E take() throws InterruptedException {
         final ReentrantLock lock = this.lock;
-        lock.lockInterruptibly();
+        lock.lockInterruptibly();// 加锁，保证调用take方法的时候只有1个线程
         try {
+            // 如果队列空，阻塞当前线程，并加入到条件对象notEmpty的等待队列里
             while (count == 0)
-                notEmpty.await();
+                notEmpty.await();// 线程阻塞并被挂起，同时释放锁
             return extract();
         } finally {
+            // 释放锁，让其他线程可以调用take方法
             lock.unlock();
         }
     }
@@ -376,6 +410,11 @@ public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E>{
         }
     }
 
+    /**
+     * 此接口从Collection继承而来
+     * @param o
+     * @return
+     */
     public boolean remove(Object o) {
         if (o == null) return false;
         final Object[] items = this.items;

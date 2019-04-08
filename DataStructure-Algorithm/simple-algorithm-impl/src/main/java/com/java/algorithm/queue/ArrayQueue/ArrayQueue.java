@@ -1,4 +1,4 @@
-package com.java.algorithm.queue;
+package com.java.algorithm.queue.ArrayQueue;
 
 import java.util.Arrays;
 
