@@ -8,8 +8,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.ElementType;
 
 /**
- * ´Ë×¢½âMethodInfoÓĞ4ÖÖÀàĞÍµÄÔª×¢½â
- * @Target ±íÊ¾MethodInfoÕâ¸ö×¢½âÊÊÓÃµÄ³ÌĞòÔªËØµÄÖÖÀàÊÇ: method(·½·¨).
+ * æ­¤æ³¨è§£MethodInfoæœ‰4ç§ç±»å‹çš„å…ƒæ³¨è§£
+ * @Target è¡¨ç¤ºMethodInfoè¿™ä¸ªæ³¨è§£é€‚ç”¨çš„ç¨‹åºå…ƒç´ çš„ç§ç±»æ˜¯: method(æ–¹æ³•).
  * 
  * 
  */
@@ -18,11 +18,11 @@ import java.lang.annotation.ElementType;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MethodInfo {
-	// author×Ö¶ÎÊÇStringÀàĞÍ£¬Ä¬ÈÏÖµxzj
+	// authorå­—æ®µæ˜¯Stringç±»å‹ï¼Œé»˜è®¤å€¼xzj
 	String author() default "xzj";
 	String date();
-	// revision×Ö¶ÎÊÇintÀàĞÍ£¬Ä¬ÈÏÖµÊÇ1
+	// revisionå­—æ®µæ˜¯intç±»å‹ï¼Œé»˜è®¤å€¼æ˜¯1
 	int revision() default 2;
-	// comments×Ö¶ÎÊÇStringÀàĞÍ£¬Ã»ÓĞÄ¬ÈÏÖµ,ËùÒÔ´Ë×Ö¶ÎÔÚÊ¹ÓÃµÄÊ±ºò²»¿ÉÈ±Ê§
+	// commentså­—æ®µæ˜¯Stringç±»å‹ï¼Œæ²¡æœ‰é»˜è®¤å€¼,æ‰€ä»¥æ­¤å­—æ®µåœ¨ä½¿ç”¨çš„æ—¶å€™ä¸å¯ç¼ºå¤±
 	String comments();
 }

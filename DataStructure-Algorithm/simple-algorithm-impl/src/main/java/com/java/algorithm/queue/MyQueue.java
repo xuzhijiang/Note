@@ -8,6 +8,7 @@ public interface MyQueue<E> extends Collection<E> {
 
     boolean offer(E e);
 
+    // Queue接口的方法，删除queue的头元素
     E remove();
 
     E poll();

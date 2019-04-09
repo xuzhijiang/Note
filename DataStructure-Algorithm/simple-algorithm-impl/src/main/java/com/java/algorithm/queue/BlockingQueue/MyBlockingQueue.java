@@ -48,8 +48,6 @@ public interface MyBlockingQueue<E> extends MyQueue<E> {
     // 从Queue继承而来
     E poll(long timeout, TimeUnit unit) throws InterruptedException;
 
-    int remainingCapacity();
-
     // 基于对象找到对应的元素，并删除。删除成功返回true，否则返回false
     // 从Collection接口继承而来
     boolean remove(Object o);

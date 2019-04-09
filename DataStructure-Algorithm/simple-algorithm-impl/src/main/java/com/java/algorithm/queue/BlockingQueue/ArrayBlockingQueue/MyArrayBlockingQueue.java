@@ -15,6 +15,8 @@ import java.util.concurrent.locks.ReentrantLock;
  *
  * ArrayBlockingQueue是一个带有长度的阻塞队列，
  * 初始化的时候必须要指定队列长度，且指定长度之后不允许进行修改。
+ *
+ * ArrayBlockingQueue只有1个锁，添加数据和删除数据的时候只能有1个被执行，不允许并行执行
  * @param <E>
  */
 public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E> {
@@ -210,7 +212,7 @@ public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E> {
 
     @Override
     public E remove() {
-        return null;
+        throw new UnsupportedOperationException("此方法未实现");
     }
 
     /**

@@ -12,6 +12,6 @@ public class BaseClass {
 	}
 	//The reason is that BaseClass doSomething(Object str) 
 	//method is not anymore overridden by ChildClass. Hence 
-	//it¡¯s invoking BaseClass implementation. ChildClass is 
+	//itÂ¡Â¯s invoking BaseClass implementation. ChildClass is 
 	//overloading the doSomething() method in this case.
 }

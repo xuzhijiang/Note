@@ -2,20 +2,38 @@ package org.java.core.base.annotations;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+
 import org.java.core.base.annotations.MethodInfo;
 
 /**
  * We will use Reflection to parse java annotations from a class. Please note
- * that Annotation Retention Policy should be RUNTIME otherwise it¡¯s information
+ * that Annotation Retention Policy should be RUNTIME otherwise itâ€™s information
  * will not be available at runtime and we wont be able to fetch any data from
  * it. 
  * 
- * ÎÒÃÇ½«Ê¹ÓÃReflectionÀ´½âÎöÀàÖĞµÄjava×¢½â¡£ Çë×¢Òâ£¬×¢½â±£Áô²ßÂÔÓ¦¸ÃÊÇRUNTIME£¬
- * ·ñÔòËüµÄĞÅÏ¢½«ÎŞ·¨ÔÚÔËĞĞÊ±»ñµÃ£¬ÎÒÃÇ½«ÎŞ·¨´ÓÖĞ»ñÈ¡ÈÎºÎÊı¾İ¡£
+ * æˆ‘ä»¬å°†ä½¿ç”¨Reflectionæ¥è§£æç±»ä¸­çš„javaæ³¨è§£ã€‚ è¯·æ³¨æ„ï¼Œæ³¨è§£ä¿ç•™ç­–ç•¥åº”è¯¥æ˜¯RUNTIMEï¼Œ
+ * å¦åˆ™å®ƒçš„ä¿¡æ¯å°†æ— æ³•åœ¨è¿è¡Œæ—¶è·å¾—ï¼Œæˆ‘ä»¬å°†æ— æ³•ä»ä¸­è·å–ä»»ä½•æ•°æ®ã€‚
  */
 public class AnnotationParsing {
 
 	public static void main(String[] args) {
+		//testMethodInfo();
+
+		//testMyRuntimeAnnoClass();
+	}
+
+	private static void testMyRuntimeAnnoClass() {
+		// å¾—åˆ°ä¸€ä¸ªç±»çš„æ‰€æœ‰æ³¨è§£
+		Annotation[] annotations = SimpleObj.class.getAnnotations();
+		System.out.println("SimpleObj annotations: " + Arrays.toString(annotations));
+		// å¾—åˆ°ä¸€ä¸ªç±»çš„æŸä¸€ä¸ªæ³¨è§£ä¿¡æ¯
+		MyRuntimeAnnoClass runtimeAnnoClass = SimpleObj.class.getAnnotation(MyRuntimeAnnoClass.class);
+		System.out.println("MyRuntimeAnnoClass name: " + runtimeAnnoClass.name());
+		System.out.println("MyRuntimeAnnoClass level: " + runtimeAnnoClass.level());
+	}
+
+	private static void testMethodInfo() {
 		try {
 			for (Method method : AnnotationParsing.class.getClassLoader()
 					.loadClass(("org.java.core.base.annotations.AnnotationExample")).getMethods()) {

@@ -1,24 +1,24 @@
 package org.java.core.base.annotations.Override;
 
 /**
- * Java×¢½âÔÚ1.5±»ÒıÈë£¬Java @Override×¢½â ÊÇJavaÄ¬ÈÏ×¢½âÖ®Ò»£¬
- * µ±ÎÒÃÇÎªÒ»¸ö·½·¨Ê¹ÓÃÕâ¸ö×¢½âµÄÊ±ºò£¬Ëû¸æËß±àÒëÆ÷ÎÒÃÇÔÚ³¢ÊÔ¸²¸Ç¸¸ÀàµÄ·½·¨.
+ * Javaæ³¨è§£åœ¨1.5è¢«å¼•å…¥ï¼ŒJava @Overrideæ³¨è§£ æ˜¯Javaé»˜è®¤æ³¨è§£ä¹‹ä¸€ï¼Œ
+ * å½“æˆ‘ä»¬ä¸ºä¸€ä¸ªæ–¹æ³•ä½¿ç”¨è¿™ä¸ªæ³¨è§£çš„æ—¶å€™ï¼Œä»–å‘Šè¯‰ç¼–è¯‘å™¨æˆ‘ä»¬åœ¨å°è¯•è¦†ç›–çˆ¶ç±»çš„æ–¹æ³•.
  * Java @Override annotation benefits
- * It¡¯s clear that using java @Override annotation will make
+ * Itâ€™s clear that using java @Override annotation will make
  * sure any superclass changes in method signature will result in
  * a warning and you will have to do necessary changes to make sure 
- * the classes work as expected.¸¸ÀàÉÏ·½·¨µÄ ¸Ä±ä¿ÉÄÜ»áÒıÆğ×ÓÀàµÄ¾¯¸æ.
+ * the classes work as expected.çˆ¶ç±»ä¸Šæ–¹æ³•çš„ æ”¹å˜å¯èƒ½ä¼šå¼•èµ·å­ç±»çš„è­¦å‘Š.
  * <p><br>
- * It¡¯s better to resolve potential issues at compile time than 
+ * Itâ€™s better to resolve potential issues at compile time than 
  * runtime. So always use java @Override annotation whenever you 
  * are trying to override a superclass 
- * method.(ÔÚ±àÒëÊ±½âÎöÇ±ÔÚµÄÎÊÌâ±ÈÔËĞĞÊ±¸üºÃ£¬Òò´ËÔÚÖØĞ´¸¸Àà·½·¨µÄÊ±ºòÓ¦¸ÃÊ¹ÓÃ@Override)
+ * method.(åœ¨ç¼–è¯‘æ—¶è§£ææ½œåœ¨çš„é—®é¢˜æ¯”è¿è¡Œæ—¶æ›´å¥½ï¼Œå› æ­¤åœ¨é‡å†™çˆ¶ç±»æ–¹æ³•çš„æ—¶å€™åº”è¯¥ä½¿ç”¨@Override)
  */
 public class OverrideTest {
 	public static void main(String[] args) {
-		//Here bc is of type BaseClass,µ«ÊÇÔÚÔËĞĞÊ±ËûÊÇ
-		//ChildClassµÄ¶ÔÏó£¬Òò´Ëµ±ÎÒÃÇµ÷ÓÃdoSomething(String str)·½·¨
-		//µÄÊ±ºò£¬ËüÑ°ÕÒÔÚChildClassÖĞµÄ·½·¨
+		//Here bc is of type BaseClass,ä½†æ˜¯åœ¨è¿è¡Œæ—¶ä»–æ˜¯
+		//ChildClassçš„å¯¹è±¡ï¼Œå› æ­¤å½“æˆ‘ä»¬è°ƒç”¨doSomething(String str)æ–¹æ³•
+		//çš„æ—¶å€™ï¼Œå®ƒå¯»æ‰¾åœ¨ChildClassä¸­çš„æ–¹æ³•
 		BaseClass bc = new ChildClass();
 		bc.doSomething("override");
 	}
