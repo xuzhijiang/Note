@@ -5,7 +5,10 @@ import java.io.*;
 public class VersionCheckTest {
     public static void main(String[] args){
         //version();
-        merge();
+
+         //merge();
+
+
     }
 
     private static void merge() {

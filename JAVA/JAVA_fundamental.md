@@ -32,6 +32,8 @@ Java技术栈
 JDBC基础
 熟练编写单元测试.
 
+JUC： java.util.concurrent
+
 疯狂的Java算法——插入排序，归并排序以及并行归并排序:
 https://www.cnblogs.com/zuoxiaolong/p/alg2.html
 
@@ -56,6 +58,6 @@ Halo 可能是最好的 Java 博客系统: https://github.com/halo-dev/halo
 
 购买域名:https://www.namecheap.com/
 
-RabbitMQ基础概念详细介绍:https://www.cnblogs.com/diegodu/p/4971586.html
-
 redis实现分布式锁:https://www.jishuwen.com/d/2Btj
+
+来源: http://www.akathink.com

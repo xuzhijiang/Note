@@ -2,6 +2,7 @@ package org.java.core.base.concurrent.chapter5;
 
 import java.util.concurrent.CountDownLatch;
 
+// 计数器
 public class CountDownLatchTest {
 
     /**

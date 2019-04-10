@@ -8,21 +8,21 @@ package org.java.core.base.concurrent.WaiterNotifier;
  * this method will wake up only one of them. The choice
  * of the thread to wake depends on the OS implementation 
  * of thread management
- * notify·½·¨Ö»»½ĞÑÒ»¸öµÈ´ı¸Ã¶ÔÏóµÄÏß³Ì£¬¸ÃÏß³Ì¿ªÊ¼Ö´ĞĞ¡£ 
- * Òò´Ë£¬Èç¹ûÓĞ¶à¸öÏß³ÌÔÚµÈ´ı¶ÔÏó£¬Ôò´Ë·½·¨½«½ö»½ĞÑÆäÖĞÒ»¸ö¡£ Òª»½ĞÑµÄÏß³ÌµÄÑ¡Ôñ
- * È¡¾öÓÚOSÏß³Ì¹ÜÀíµÄÊµÏÖ¡£
+ * notifyæ–¹æ³•åªå”¤é†’ä¸€ä¸ªç­‰å¾…è¯¥å¯¹è±¡çš„çº¿ç¨‹ï¼Œè¯¥çº¿ç¨‹å¼€å§‹æ‰§è¡Œã€‚ 
+ * å› æ­¤ï¼Œå¦‚æœæœ‰å¤šä¸ªçº¿ç¨‹åœ¨ç­‰å¾…å¯¹è±¡ï¼Œåˆ™æ­¤æ–¹æ³•å°†ä»…å”¤é†’å…¶ä¸­ä¸€ä¸ªã€‚ è¦å”¤é†’çš„çº¿ç¨‹çš„é€‰æ‹©
+ * å–å†³äºOSçº¿ç¨‹ç®¡ç†çš„å®ç°ã€‚
  * <strong>notifyAll</strong>
  * notifyAll method wakes up all the threads waiting on the object,
  * although which one will process first depends on the OS implementation.
- * notifyAll·½·¨»½ĞÑµÈ´ı¸Ã¶ÔÏóµÄËùÓĞÏß³Ì£¬¾¡¹ÜÄÄ¸öÏß³Ì½«Ê×ÏÈ±»»½ĞÑÈ¡¾öÓÚOSÊµÏÖ¡£
+ * notifyAllæ–¹æ³•å”¤é†’ç­‰å¾…è¯¥å¯¹è±¡çš„æ‰€æœ‰çº¿ç¨‹ï¼Œå°½ç®¡å“ªä¸ªçº¿ç¨‹å°†é¦–å…ˆè¢«å”¤é†’å–å†³äºOSå®ç°ã€‚
  * <p>
  * A class that will process on Message object and then
  * invoke notify method to wake up threads waiting for 
  * Message object. Notice that synchronized block is used 
  * to own the monitor of Message object.
- * ½«ÔÚMessage¶ÔÏóÉÏ´¦ÀíÈ»ºóµ÷ÓÃnotify·½·¨ÒÔ»½ĞÑµÈ´ıMessage¶ÔÏóµÄÏß³ÌµÄÀà¡£
- * Çë×¢Òâ£¬synchronized¿éÓÃÓÚÊ¹µ±Ç°Ïß³ÌÓµÓĞMessage¶ÔÏóµÄ¼àÊÓÆ÷¡£Èç¹û²»ÓÃ
- * synchronized block£¬½«»áÅ×Òì³£: 
+ * å°†åœ¨Messageå¯¹è±¡ä¸Šå¤„ç†ç„¶åè°ƒç”¨notifyæ–¹æ³•ä»¥å”¤é†’ç­‰å¾…Messageå¯¹è±¡çš„çº¿ç¨‹çš„ç±»ã€‚
+ * è¯·æ³¨æ„ï¼Œsynchronizedå—ç”¨äºä½¿å½“å‰çº¿ç¨‹æ‹¥æœ‰Messageå¯¹è±¡çš„ç›‘è§†å™¨ã€‚å¦‚æœä¸ç”¨
+ * synchronized blockï¼Œå°†ä¼šæŠ›å¼‚å¸¸: 
  * {@link java.lang.IllegalMonitorStateException} - 
  * if the current thread is not the owner of this object's monitor.
  */
@@ -42,8 +42,8 @@ public class Notifier implements Runnable{
             Thread.sleep(1000);
             synchronized (msg) {
                 msg.setMsg(name+" Notifier work done");
-                //ÓĞÁ½¸öÏß³ÌÔÚMessage¶ÔÏóÉÏµÈ´ı£¬¶ønotify£¨£©
-                //·½·¨Ö»»½ĞÑÆäÖĞÒ»¸ö£¬ÁíÒ»¸öÏß³ÌÈÔÔÚµÈ´ı»ñµÃÍ¨Öª¡£
+                //æœ‰ä¸¤ä¸ªçº¿ç¨‹åœ¨Messageå¯¹è±¡ä¸Šç­‰å¾…ï¼Œè€Œnotifyï¼ˆï¼‰
+                //æ–¹æ³•åªå”¤é†’å…¶ä¸­ä¸€ä¸ªï¼Œå¦ä¸€ä¸ªçº¿ç¨‹ä»åœ¨ç­‰å¾…è·å¾—é€šçŸ¥ã€‚
 //              msg.notify();
                 
                 msg.notifyAll();

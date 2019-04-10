@@ -57,42 +57,68 @@ public @interface WebServlet {
 >There are four types of meta annotations这里有4中类型的元注解,
 元注解是用来定义注解的注解.
 
-1. @Documented – indicates that elements using this annotation
-should be documented by javadoc and similar tools.
-表示使用此批注的元素应由javadoc和类似工具记录。
+### @Documented
 
-This type should be used to annotate the declarations of types whose 
-annotations affect the use of annotated elements by their clients. 
-此类型应用于注解类型的声明，其注解会影响其客户端对带注解元素的使用
+表示使用此注解的元素,可以被javadoc此类工具文档化,也就是可以由javadoc和类似工具
+来生成源码文档.如果使用Documented注解一个类型声明,则其注释将成为带注解元素的公共API的一部分。
+此元注解应用于注解类型的声明。
 
-If a type declaration is annotated with Documented, 如果使用Documented注解一个类型声明
-,its annotations become part of the public API of the annotated elements.
-则其注释将成为带注解元素的公共API的一部分。
+### @Target
 
-B. @Target – indicates the kinds of program element to which an annotation 
-type is applicable. 表示注释类型适用的程序元素的种类. 
+>@Target: 表示此注解修饰对象范围:Some possible values are TYPE(类，接口，枚举), FIELD，METHOD, 
+PARAMETER，CONSTRUCTOR(构造器), LOCAL_VARIABLE，ANNOTATION_TYPE(用于注解类型,也就是它本身是元注解)，PACKAGE，TYPE_PARAMETER，TYPE_USE。
+If Target meta-annotation is not present, then annotation can be used on any program element.
+如果Target元注解不存在，可以在任何程序上使用注解
 
-Some possible values are TYPE, METHOD, CONSTRUCTOR,FIELD etc. 
-If Target meta-annotation is not present, 
-then annotation can be used on any program element.
-如果目标元注解不存在，可以在任何程序上使用注解
+### @Inherited
 
-C. @Inherited – indicates that an annotation type is automatically
-inherited.表示自动继承注释类型。
+>示自动继承注解类型。如果注解类型声明中存在Inherited元注释，
+并且用户在类声明上查询注解类型，并且类声明没有此类型的注释，
+则将自动查询类的超类以获取注释类型。这个过程将会重复，直到此类型的注解被找到，
+或者达到类层次结构(对象)的顶部.This process will be repeated until an annotation for this type is found, 
+or the top of the class hierarchy (Object) is reached.也就是如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。
 
-If user queries the annotation type on a class 
-declaration,and the class declaration has no annotation for this type,
- then the class’s superclass will automatically be 
-queried for the annotation type.
- 如果注释类型声明中存在Inherited元注释，并且用户在类声明上查询注释类型，
- 并且类声明没有此类型的注释，则将自动查询类的超类以获取注释类型。
+#### Inherited的继承性
 
-This process will be repeated until an annotation for this type is found, 
-这个过程将会重复，直到此类型的注解被找到
-or the top of the class hierarchy (Object) is reached.
-达到类层次结构(对象)的顶部.
+>@Inherited只是可控制对类名上注解是否可以被继承。不能控制方法上的注解是否可以被继承。
+并且`类不从它所实现的接口继承annotation(接口的类以及接口的方法的注解都不可以被继承，无论
+这个接口使用的注解是否使用了@Inherited元注解)`
 
-4. @Retention – indicates how long annotations with the 
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>编写自定义注解时未写@Inherited的运行结果</th>
+            <th>编写自定义注解时写了@Inherited的运行结果</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>子类的类上能否继承到父类的类上的注解？</td>
+            <td>否</td>
+            <td>能</td>
+        </tr>
+        <tr>
+            <td>子类方法，实现了父类上的抽象方法，这个方法能否继承到注解？</td>
+            <td>否</td>
+            <td>否</td>
+        </tr>
+        <tr>
+            <td>子类方法，继承了父类上的方法，这个方法能否继承到注解？</td>
+            <td>能</td>
+            <td>能</td>
+        </tr>
+        <tr>
+            <td>子类方法，覆盖了父类上的方法，这个方法能否继承到注解？</td>
+            <td>否</td>
+            <td>否</td>
+        </tr>    
+    </tbody>
+</table>
+
+### @Retention 
+
+>indicates how long annotations with the 
 annotated type are to be retained(表示带注解类型的注解被保留多长时间). It takes RetentionPolicy 
 argument whose Possible values are SOURCE, CLASS and RUNTIME.
 (它需要RetentionPolicy参数，其可能值为SOURCE，CLASS和RUNTIME)

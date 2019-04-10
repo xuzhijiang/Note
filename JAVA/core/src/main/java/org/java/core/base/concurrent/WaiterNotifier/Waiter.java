@@ -6,16 +6,16 @@ package org.java.core.base.concurrent.WaiterNotifier;
  * or notifyAll method on the object to wake up the current 
  * thread. Other two variances puts the current thread in wait 
  * for specific amount of time before they wake up.
- * wait·½·¨ÓĞ3ÖĞ±äÌå,Ò»¸ö·½·¨ÊÇÎŞÏŞÆÚµØµÈ´ıÈÎºÎÆäËûÏß³Ìµ÷ÓÃ´Ë¶ÔÏóÉÏµÄ
- * notify»ònotifyAll·½·¨À´»½ĞÑµ±Ç°Ïß³Ì, ÆäËûÁ½¸ö±äÌåÊÇÊ¹µ±Ç°Ïß³ÌÔÚ
- * »½ĞÑÖ®Ç°µÈ´ıÌØ¶¨µÄÊ±¼ä¡£
+ * waitæ–¹æ³•æœ‰3ä¸­å˜ä½“,ä¸€ä¸ªæ–¹æ³•æ˜¯æ— é™æœŸåœ°ç­‰å¾…ä»»ä½•å…¶ä»–çº¿ç¨‹è°ƒç”¨æ­¤å¯¹è±¡ä¸Šçš„
+ * notifyæˆ–notifyAllæ–¹æ³•æ¥å”¤é†’å½“å‰çº¿ç¨‹, å…¶ä»–ä¸¤ä¸ªå˜ä½“æ˜¯ä½¿å½“å‰çº¿ç¨‹åœ¨
+ * å”¤é†’ä¹‹å‰ç­‰å¾…ç‰¹å®šçš„æ—¶é—´ã€‚
  * <p>
  * A class that will wait for other threads to invoke 
- * notify methods to complete it¡¯s processing. Notice 
+ * notify methods to complete itâ€™s processing. Notice 
  * that Waiter thread is owning monitor on Message object 
  * using synchronized block.
- * ½«µÈ´ıÆäËûÏß³Ìµ÷ÓÃnotifyÒÔÍê³ÉÆä´¦ÀíµÄÀà¡£ Çë×¢Òâ£¬
- * WaiterÏß³ÌÊ¹ÓÃsynchronized¿éÔÚMessage¶ÔÏóÉÏÓµÓĞ¼àÊÓÆ÷¡£
+ * å°†ç­‰å¾…å…¶ä»–çº¿ç¨‹è°ƒç”¨notifyä»¥å®Œæˆå…¶å¤„ç†çš„ç±»ã€‚ è¯·æ³¨æ„ï¼Œ
+ * Waiterçº¿ç¨‹ä½¿ç”¨synchronizedå—åœ¨Messageå¯¹è±¡ä¸Šæ‹¥æœ‰ç›‘è§†å™¨ã€‚
  */
 public class Waiter implements Runnable{
     private Message msg;

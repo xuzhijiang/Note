@@ -1,4 +1,4 @@
-package org.java.core.base.reflection;
+package org.java.core.base.reflection.part1;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -58,7 +58,7 @@ public class ReflectionForMethod {
 		//用getDeclardMethod()得到私有方法，然后关闭访问检查，然后调用它
 		
 		try {
-			Method method = Class.forName("org.java.core.base.reflection.BaseClass").getDeclaredMethod("method3", null);
+			Method method = Class.forName("org.java.core.base.reflection.part1.BaseClass").getDeclaredMethod("method3", null);
 			method.setAccessible(true);
 			method.invoke(null, null);
 		}catch(Exception e) {

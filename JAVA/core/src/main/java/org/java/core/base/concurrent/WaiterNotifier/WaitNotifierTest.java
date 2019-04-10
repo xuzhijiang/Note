@@ -5,8 +5,8 @@ package org.java.core.base.concurrent.WaiterNotifier;
  * problem where consumer threads are waiting for the 
  * objects in Queue and producer threads put object in queue 
  * and notify the waiting threads.
- * ÕâĞ©·½·¨¿ÉÓÃÓÚÊµÏÖÉú²úÕßÏû·ÑÕßÎÊÌâ£¬ÆäÖĞÏû·ÑÕßÏß³ÌÕıÔÚµÈ´ı¶ÓÁĞÖĞµÄ¶ÔÏó£¬
- * Éú²úÕßÏß³Ì½«¶ÔÏó·ÅÈë¶ÓÁĞ²¢Í¨ÖªµÈ´ıµÄÏß³Ì¡£
+ * è¿™äº›æ–¹æ³•å¯ç”¨äºå®ç°ç”Ÿäº§è€…æ¶ˆè´¹è€…é—®é¢˜ï¼Œå…¶ä¸­æ¶ˆè´¹è€…çº¿ç¨‹æ­£åœ¨ç­‰å¾…é˜Ÿåˆ—ä¸­çš„å¯¹è±¡ï¼Œ
+ * ç”Ÿäº§è€…çº¿ç¨‹å°†å¯¹è±¡æ”¾å…¥é˜Ÿåˆ—å¹¶é€šçŸ¥ç­‰å¾…çš„çº¿ç¨‹ã€‚
  */
 public class WaitNotifierTest {
 	public static void main(String[] args) {

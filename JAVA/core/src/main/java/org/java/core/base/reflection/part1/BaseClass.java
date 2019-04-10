@@ -1,4 +1,4 @@
-package org.java.core.base.reflection;
+package org.java.core.base.reflection.part1;
 
 public class BaseClass {
 	public int baseInt;

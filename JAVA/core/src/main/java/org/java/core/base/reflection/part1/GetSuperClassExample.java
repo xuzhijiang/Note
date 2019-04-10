@@ -1,9 +1,9 @@
-package org.java.core.base.reflection;
+package org.java.core.base.reflection.part1;
 
 public class GetSuperClassExample {
 	public static void main(String[] args){
 		try {
-			Class<?> superClass = Class.forName("org.java.core.base.reflection.ConcreteClass").getSuperclass();
+			Class<?> superClass = Class.forName("org.java.core.base.reflection.part1.ConcreteClass").getSuperclass();
 			System.out.println(superClass);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

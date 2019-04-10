@@ -1,4 +1,4 @@
-package org.java.core.base.reflection;
+package org.java.core.base.reflection.part1;
 
 import java.lang.reflect.Field;
 
@@ -15,7 +15,7 @@ public class ReflectionForField {
 		//reference and then in the super interfaces and then in the super classes.
 		//(此方法在指定的类引用中查找字段，然后在超级接口中查找，然后在超类中查找。)
 		try {
-			Field field = Class.forName("org.java.core.base.reflection.ConcreteClass").getField("interfaceInt");
+			Field field = Class.forName("org.java.core.base.reflection.part1.ConcreteClass").getField("interfaceInt");
 			System.out.println(field.getName());
 			//Above call will return the field from BaseInterface 
 			//that is implemented by ConcreteClass. If there is no field
@@ -28,7 +28,7 @@ public class ReflectionForField {
 		//We can use getDeclaringClass() of field object to get the class declaring the field.
 
 		try {
-			Field field = Class.forName("org.java.core.base.reflection.ConcreteClass").getField("interfaceInt");
+			Field field = Class.forName("org.java.core.base.reflection.part1.ConcreteClass").getField("interfaceInt");
 			Class<?> fieldClass = field.getDeclaringClass();
 			System.out.println(fieldClass.getCanonicalName());
 		} catch (NoSuchFieldException | SecurityException | ClassNotFoundException e) {
@@ -40,7 +40,7 @@ public class ReflectionForField {
 		//declared field type, if field is primitive type, it returns the wrapper class object.
 
 		try{
-			Field field = Class.forName("org.java.core.base.reflection.ConcreteClass").getField("publicInt");
+			Field field = Class.forName("org.java.core.base.reflection.part1.ConcreteClass").getField("publicInt");
 			Class<?> fieldType = field.getType();
 			System.out.println(fieldType.getCanonicalName()); //prints int
 		}catch(Exception e){
@@ -51,7 +51,7 @@ public class ReflectionForField {
 		//We can get and set the value of a field in an Object using reflection.
 		//我们可以用反射get和set对象中的字段的值
 		try{
-			Field field = Class.forName("org.java.core.base.reflection.ConcreteClass").getField("publicInt");
+			Field field = Class.forName("org.java.core.base.reflection.part1.ConcreteClass").getField("publicInt");
 			ConcreteClass obj = new ConcreteClass(5);
 			System.out.println(field.get(obj)); //prints 5
 			field.setInt(obj, 10); //setting field value to 10 in object
@@ -77,7 +77,7 @@ public class ReflectionForField {
 		//value by turning off the java access check for field modifiers.(通过关闭字段修饰符的java访问检查)
 
 		try {
-			Field privateField = Class.forName("org.java.core.base.reflection.ConcreteClass").getDeclaredField("privateString");
+			Field privateField = Class.forName("org.java.core.base.reflection.part1.ConcreteClass").getDeclaredField("privateString");
 			//turning off access check with below method call
 			privateField.setAccessible(true);
 			ConcreteClass objTest = new ConcreteClass(1);

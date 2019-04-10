@@ -1,9 +1,14 @@
 package org.java.core.base.annotations;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-
+import jdk.internal.org.objectweb.asm.ClassReader;
+import jdk.internal.org.objectweb.asm.tree.AnnotationNode;
+import jdk.internal.org.objectweb.asm.tree.ClassNode;
 import org.java.core.base.annotations.MethodInfo;
 
 /**
@@ -17,10 +22,38 @@ import org.java.core.base.annotations.MethodInfo;
  */
 public class AnnotationParsing {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		//testMethodInfo();
 
 		//testMyRuntimeAnnoClass();
+
+		testASM();
+	}
+
+	private static void testASM() throws IOException {
+		ClassNode classNode = new ClassNode();
+
+		ClassReader cr = new ClassReader(new FileInputStream("classes\\org\\java\\core\\base\\annotations\\AnnotationObject.class"));
+
+		cr.accept(classNode, 0);
+
+		System.out.println("Class Name: " + classNode.name);
+		System.out.println("Source File: " + classNode.sourceFile);
+
+		System.out.println("invisible: ");
+		AnnotationNode anNode = null;
+		for (Object annotation : classNode.invisibleAnnotations) {
+			anNode = (AnnotationNode) annotation;
+			System.out.println("Annotation Descriptor : " + anNode.desc);
+			System.out.println("Annotation attribute pairs : " + anNode.values);
+		}
+
+		System.out.println("visible: ");
+		for (Object annotation : classNode.visibleAnnotations) {
+			anNode = (AnnotationNode) annotation;
+			System.out.println("Annotation Descriptor : " + anNode.desc);
+			System.out.println("Annotation attribute pairs : " + anNode.values);
+		}
 	}
 
 	private static void testMyRuntimeAnnoClass() {

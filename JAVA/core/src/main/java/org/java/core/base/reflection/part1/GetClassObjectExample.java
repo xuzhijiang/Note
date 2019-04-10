@@ -1,4 +1,4 @@
-package org.java.core.base.reflection;
+package org.java.core.base.reflection.part1;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -10,8 +10,8 @@ import java.lang.reflect.TypeVariable;
 import java.util.Arrays;
 
 /**
- * Java·´ÉäÌá¹©ÁËÈ¥¼àÊÓºÍÐÞ¸ÄÓ¦ÓÃÔËÐÐÊ±ÐÐÎªµÄÄÜÁ¦£¬ÓÃ·´Éä£¬ÎÒÃÇ¿ÉÒÔ¼à¿ØÒ»¸öÀà£¬½Ó¿Ú£¬Ã¶¾Ù£¬ÔÚÔËÐÐÊ±µÃµ½ËûÃÇµÄ½á¹¹£¬
- * ·½·¨£¬×Ö¶ÎÐÅÏ¢¼´Ê¹ÀàÔÚ±àÒëÊ±ÊÇ²»¿ÉÒÔ·ÃÎÊµÄ£¬ÎÒÃÇ¿ÉÒÔÓÃ·´ÉäÊµÀý»¯Ò»¸ö¶ÔÏó£¬µ÷ÓÃËûµÄ·½·¨£¬¸Ä±äËûµÄ×Ö¶ÎÖµ,Ò²¾ÍÊÇ·´ÉäÊÇ×÷ÓÃÓÚÔËÐÐÊ±.
+ * Javaï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½È¥ï¿½ï¿½ï¿½Óºï¿½ï¿½Þ¸ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½Ô¼ï¿½ï¿½Ò»ï¿½ï¿½ï¿½à£¬ï¿½Ó¿Ú£ï¿½Ã¶ï¿½Ù£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ãµï¿½ï¿½ï¿½ï¿½ÇµÄ½á¹¹ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Ú±ï¿½ï¿½ï¿½Ê±ï¿½Ç²ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ÊµÄ£ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ó£¬µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½Öµ,Ò²ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±.
  * <p><br>
  * getCanonicalName() returns the canonical name of the underlying class. Notice
  * that java.lang.Class uses Generics, it helps frameworks in making sure that
@@ -26,7 +26,7 @@ public class GetClassObjectExample {
 		// class.
 
 		// through static variable class.
-		Class<?> concreteClass = ConcreteClass.class;// ?ºÅ±íÊ¾ClassÀàµÄÈÎºÎÒ»¸öÊµÀý£¬Ò²¼´ÈÎºÎÒ»¸öÀàÃû
+		Class<?> concreteClass = ConcreteClass.class;// ?ï¿½Å±ï¿½Ê¾Classï¿½ï¿½ï¿½ï¿½Îºï¿½Ò»ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½Îºï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		// using getClass() method of object
 		concreteClass = new ConcreteClass(5).getClass();
@@ -37,7 +37,7 @@ public class GetClassObjectExample {
 			// Spring dependency injection, Tomcat web container
 			// Eclipse auto completion of method names, hibernate, Struts2 etc.
 			// because ConcreteClass is not available at compile time
-			concreteClass = Class.forName("org.java.core.base.reflection.ConcreteClass");
+			concreteClass = Class.forName("org.java.core.base.reflection.part1.ConcreteClass");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -80,11 +80,11 @@ public class GetClassObjectExample {
 		System.out.println(twoDStringArray.getCanonicalName());
 
 		// getting all of the classes, interfaces, and enums
-		// that are explicitly declared(ÏÔÊ¾ÉùÃ÷) in ConcreteClass
-		//Note: The returned array doesn¡¯t include classes declared in inherited classes and interfaces.
+		// that are explicitly declared(ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½) in ConcreteClass
+		//Note: The returned array doesnï¿½ï¿½t include classes declared in inherited classes and interfaces.
 		Class<?>[] explicitClasses;
 		try {
-			explicitClasses = Class.forName("org.java.core.base.reflection.ConcreteClass").getDeclaredClasses();
+			explicitClasses = Class.forName("org.java.core.base.reflection.part1.ConcreteClass").getDeclaredClasses();
 			// prints [class
 			// com.journaldev.reflection.ConcreteClass$ConcreteClassDefaultClass,
 			// class
@@ -125,7 +125,7 @@ public class GetClassObjectExample {
 		
 		//Getting Package Name
 		try {
-			System.out.println(Class.forName("org.java.core.base.reflection.BaseInterface").getPackage().getName());
+			System.out.println(Class.forName("org.java.core.base.reflection.part1.BaseInterface").getPackage().getName());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -133,7 +133,7 @@ public class GetClassObjectExample {
 		//Getting Class Modifiers
 		System.out.println(Modifier.toString(concreteClass.getModifiers()));
 		try {
-			System.out.println(Modifier.toString(Class.forName("org.java.core.base.reflection.BaseInterface").getModifiers()));
+			System.out.println(Modifier.toString(Class.forName("org.java.core.base.reflection.part1.BaseInterface").getModifiers()));
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -164,7 +164,7 @@ public class GetClassObjectExample {
 		
 		//Get All Public Methods
 		//getMethods() method returns the array of public methods 
-		//of the Class including public methods of it¡¯s superclasses
+		//of the Class including public methods of itï¿½ï¿½s superclasses
 		//and super interfaces.
 		Method[] publicMethods = concreteClass.getMethods();
 		System.out.println(Arrays.toString(publicMethods));
@@ -178,7 +178,7 @@ public class GetClassObjectExample {
 		
 		//Get All Public Fields
 		//getFields() method returns the array of public fields 
-		//of the class including public fields of it¡¯s super classes and super interfaces.
+		//of the class including public fields of itï¿½ï¿½s super classes and super interfaces.
 		System.out.println("------------");
 		Field[] publicFields = concreteClass.getFields();
 		System.out.println(Arrays.toString(publicFields));
@@ -187,7 +187,7 @@ public class GetClassObjectExample {
 		//getAnnotations() method returns all the annotations for 
 		//the element, we can use it with class, fields and methods also. 
 		//Note that only annotations available with reflection are with retention 
-		//policy of RUNTIME, ÎÒÃÇÒ²¿ÉÒÔ½«ËüÓëÀà£¬×Ö¶ÎºÍ·½·¨Ò»ÆðÊ¹ÓÃ¡£ Çë×¢Òâ£¬Ö»ÓÐ´ø·´ÉäµÄ×¢ÊÍ²ÅÄÜÊ¹ÓÃRUNTIMEµÄ±£Áô²ßÂÔ£¬
+		//policy of RUNTIME, ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à£¬ï¿½Ö¶ÎºÍ·ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê¹ï¿½Ã¡ï¿½ ï¿½ï¿½×¢ï¿½â£¬Ö»ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½Í²ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½RUNTIMEï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½
 		System.out.println("------------");
 		Annotation[] annotations = concreteClass.getAnnotations();
 		System.out.println(Arrays.toString(annotations));

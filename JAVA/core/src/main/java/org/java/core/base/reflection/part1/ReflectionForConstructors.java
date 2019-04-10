@@ -1,4 +1,4 @@
-package org.java.core.base.reflection;
+package org.java.core.base.reflection.part1;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -20,7 +20,7 @@ public class ReflectionForConstructors {
 		//no-argument constructor of HashMap. It also shows how to get the array 
 		//of parameter types for the constructor.
 		try {
-			Constructor<?> constructor = Class.forName("org.java.core.base.reflection.ConcreteClass").getConstructor(int.class);
+			Constructor<?> constructor = Class.forName("org.java.core.base.reflection.part1.ConcreteClass").getConstructor(int.class);
 			System.out.println(Arrays.toString(constructor.getParameterTypes()));
 
 			Constructor<?> hashMapConstructor = Class.forName("java.util.HashMap").getConstructor(null);
@@ -40,7 +40,7 @@ public class ReflectionForConstructors {
 		//因为我们用了反射，我们在编译时没有关于类的信息,
 		
 		try {
-			Constructor<?> constructor = Class.forName("org.java.core.base.reflection.ConcreteClass").getConstructor(int.class);
+			Constructor<?> constructor = Class.forName("org.java.core.base.reflection.part1.ConcreteClass").getConstructor(int.class);
 			//getting constructor parameters
 			System.out.println(Arrays.toString(constructor.getParameterTypes())); // prints "[int]"
 			Object myObj = constructor.newInstance(10);
