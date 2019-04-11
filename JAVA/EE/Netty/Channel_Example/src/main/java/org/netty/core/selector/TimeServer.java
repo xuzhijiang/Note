@@ -16,10 +16,7 @@ import java.util.concurrent.TimeUnit;
 // Nio综合案例:基于Selector+Channel+线程池的Timeserver
 
 /**
- * 这段代码的实现中：
- *
  * 1. 把Channel的就绪选择放在了主线程(Acceptor线程)中来处理(等待数据准备阶段)
- *
  * 2. 而真正的读取请求并返回响应放在了线程池中提交一个任务来执行(处理数据阶段)
  *
  *  真正意义上实现了一个线程服务于多个client

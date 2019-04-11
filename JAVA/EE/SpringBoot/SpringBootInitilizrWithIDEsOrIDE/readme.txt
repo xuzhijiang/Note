@@ -1,14 +1,3 @@
-Spring Boot Initilizr用于快速启动新的Spring Boot Maven/Gradle项目。它生成初始项目结构并构建脚本以减少开发时间。
-
-Spring Boot Initilizr有以下几种形式：
-
-1. Spring Boot Initilizr With Web Interface
-2. Spring Boot Initilizr With IDEs/IDE Plugins
-3. Spring Boot Initilizr With Spring Boot CLI
-4. Spring Boot Initilizr With ThirdParty Tools
-
-现在我们将讨论如何使用“Spring Boot Initilizr with Spring Boot CLI”选项来引导Spring应用程序
-
 ### Spring Boot Initilizr With Spring Boot CLI
 
 Spring Boot CLI提供了一个“spring init”命令来引导Spring Applications。

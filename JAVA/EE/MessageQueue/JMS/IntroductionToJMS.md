@@ -44,19 +44,6 @@ JMS API用于在不同系统之间创建，发送，接收和读取消息或交�
 
 * Destinations也是由JMS客户端用于指定其"发送的消息的目标"及其"接收的消息源"的JMS对象。( There are two types of Destinations:)目的地有两种类型：队列和主题(Queue and Topic)。
 
-### Most popular JMS Providers
-
-S.NO.	JMS PROVIDER SOFTWARE	ORGANIZATION
-1.		WebSphere MQ			IBM
-2.		Weblogic Messaging		Oracle Corporation
-3.		Active MQ				Apache Foundation
-4.		Rabbit MQ	Rabbit Technologies(acquired by Spring Source)
-5.		HornetQ					JBoss
-6.		Sonic MQ				Progress Software
-7.		TIBCO EMS				TIBCO
-8.		Open MQ					Oracle Corporation
-9.		SonicMQ					Aurea Software
-
 ### JMS消息传递模型(Messaging Models)
 
 >JMS API支持两种消息传递模型(编程模型),以支持异构系统之间的异步消息传递。
@@ -279,3 +266,10 @@ Send Message -> Close Message  (High-Level JMS Sender API Architecture)
 Create ConnectionFactory -> Create JMS Session -> Receive JMS Message ->
 Process Message -> Close Message  (High-Level JMS Receiver API Architecture)
 
+### JMS和AMQP之间的区别
+
+1. JMS API仅适用于Java平台，但AMQP支持许多技术。
+2. JMS API支持两种消息传递模型：P2P（点对点）模型和PUB / SUB（发布者/订阅者）模型。
+3. 消息结构:JMS消息分为3个部分：Header, Properties, and Body.
+AMQP消息分为4个部分：Header, Properties, Body, and Footer.
+4. 消息类型:JMS API支持5种类型的消息作为Body部分的一部分，但AMQP仅支持一种类型的消息 - 二进制（字节）消息(Binary (bytes) message.)
