@@ -24,6 +24,12 @@ service ngnix status #查看nginx服务的状态
 ### Unix常用命令
 
 ```shell
+# 查看当前用户
+who i am
+
+# 查看java的位置
+whereis java
+
 du -d 1 -h # show the size of the current directory
 sudo netstat -tlpn | grep 800 # Check that the chosen port is already in use.
 mkdir -p dirname # recursively create directory.

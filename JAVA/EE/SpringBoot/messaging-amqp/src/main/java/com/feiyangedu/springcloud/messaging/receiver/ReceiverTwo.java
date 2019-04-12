@@ -15,6 +15,7 @@ public class ReceiverTwo {
 
     @RabbitHandler
     public void process(String message){
-        log.debug("receive message: " + message);
+        System.out.println("receiveTwo msg: " + message);
     }
+
 }

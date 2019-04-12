@@ -133,4 +133,40 @@ argument whose Possible values are SOURCE, CLASS and RUNTIME.
 这个方法过时以及替代这个方法去使用的相关信息
 3. @SuppressWarnings,这个只是告诉编译器忽略某些警告，
 
-注解的继承性?
+## 注解自身的继承性(注意区别与之前的@Inherited)
+
+之前讨论的@Inherited的继承是指`类或接口`使用了注解A，注解A使用了@Inherited，那么`类或者接口`的`子类或者接口的实现类`是否能够继承注解A，但是这里讨论的继承指的是注解A，能够继承注解B。这里以Spring的注解举例.
+
+```java
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Controller
+@ResponseBody
+public @interface RestController {
+    String value() default "";
+}
+
+@Target({ElementType.TYPE, ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface ResponseBody {
+}
+
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Component
+public @interface Controller {
+    String value() default "";
+}
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface Component {
+    String value() default "";
+}
+
+// 注解RestController相当于继承了注解@Controller和@ResponseBody的特征.
+```

@@ -20,8 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * AMQP:高级消息队列协议，也是一个消息代理的规范，兼容JMS
- * ,RabbitMQ是AMQP的实现,天然具有跨平台，跨语言的特性。
+ * AMQP: 高级消息队列协议，是一个消息代理的规范，兼容JMS
+ *
+ * RabbitMQ是AMQP的实现,天然具有跨平台，跨语言的特性
  */
 @SpringBootApplication
 @RestController
@@ -30,8 +31,9 @@ public class MessagingApplication {
 	final Log log = LogFactory.getLog(getClass());
 	final AtomicLong counter = new AtomicLong(0L);
 
-	public final static String QUEUE_NAME = "notify";
-	final static String EXCHANGE = "exchange";
+	public final static String ROUTING_KEY = "!1@234z";
+	public final static String QUEUE_NAME = "myQueue";
+	public final static String EXCHANGE = "MyExchange";
 
 	/**
 	 * 通过注入AmqpTemplate接口的实例来实现消息的发送(其类似于消息生产者Sender),
@@ -41,7 +43,6 @@ public class MessagingApplication {
 	AmqpTemplate amqpTemplate;
 
 	/**
-	 * 用来配置队列、交换器、路由等高级信息
 	 * @return
 	 */
 	@Bean
@@ -51,7 +52,7 @@ public class MessagingApplication {
 	}
 
 	/**
-	 * 用来配置队列、交换器、路由等高级信息
+	 * 创建一个 topic 类型的交换器
 	 * @return
 	 */
 	@Bean
@@ -60,9 +61,15 @@ public class MessagingApplication {
 		return new TopicExchange(EXCHANGE, false, true);
 	}
 
+	/**
+	 * 使用路由键（routingKey）把队列（Queue）绑定到交换器（Exchange）
+	 * @param queue
+	 * @param exchange
+	 * @return
+	 */
 	@Bean
 	Binding binding(Queue queue, TopicExchange exchange) {
-		return BindingBuilder.bind(queue).to(exchange).with(QUEUE_NAME);
+		return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
 	}
 
 	@RabbitListener(queues = QUEUE_NAME)// 通过@RabbitListener注解定义对notify队列的监听
@@ -83,8 +90,13 @@ public class MessagingApplication {
 		if (message.isEmpty()) {
 			message = "Message<" + UUID.randomUUID().toString() + ">";
 		}
-		// 在该生产者，我们会将message发送到名为notify的队列中。
-		amqpTemplate.convertAndSend(EXCHANGE, QUEUE_NAME, message);
+		// 在该生产者，我们会将message发送到名为QUEUE_NAME的队列中。
+		/***
+		 * @param exchange the name of the exchange
+		 * @param routingKey the routing key
+		 * @param message a message to send
+		 */
+		amqpTemplate.convertAndSend(EXCHANGE, ROUTING_KEY, message);
 		return "Message sent ok!";
 	}
 
