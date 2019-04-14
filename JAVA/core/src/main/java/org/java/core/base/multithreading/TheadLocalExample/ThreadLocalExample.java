@@ -6,18 +6,18 @@ import java.util.Random;
 public class ThreadLocalExample implements Runnable {
 
 	// SimpleDateFormat is not thread-safe, so give one to each thread
+	// ä½¿get()æ–¹æ³•è¿”å›å€¼ä¸ç”¨åšå¼ºåˆ¶ç±»å‹è½¬æ¢ï¼Œå¯ä»¥åˆ›å»ºä¸€ä¸ªæ³›å‹åŒ–çš„ThreadLocalå¯¹è±¡
 	private static final ThreadLocal<SimpleDateFormat> formatter = new ThreadLocal<SimpleDateFormat>() {
 		@Override
 		protected SimpleDateFormat initialValue() {
-			return new SimpleDateFormat("yyyyMMdd HHmm");
+			return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		}
 	};
 
-	// ¸üĞÂ£ºThreadLocalÀàÔÚJava 8ÖĞÊ¹ÓÃĞÂ·½·¨withInitial£¨£©½øĞĞÀ©Õ¹£¬
-	// ¸Ã·½·¨½«Supplier¹¦ÄÜ½Ó¿Ú×÷Îª²ÎÊı¡£ Òò´ËÎÒÃÇ¿ÉÒÔÊ¹ÓÃlambda±í´ïÊ½ÇáËÉ´´½¨ThreadLocalÊµÀı
-	private static final ThreadLocal<SimpleDateFormat> formatter2 = ThreadLocal.<SimpleDateFormat> withInitial(() -> {
-		return new SimpleDateFormat("yyyyMMdd HHmm");
-	});
+	// æ›´æ–°ï¼šThreadLocalç±»åœ¨Java 8ä¸­ä½¿ç”¨æ–°æ–¹æ³•withInitialï¼ˆï¼‰è¿›è¡Œæ‰©å±•ï¼Œ
+	// è¯¥æ–¹æ³•å°†SupplieråŠŸèƒ½æ¥å£ä½œä¸ºå‚æ•°ã€‚ å› æ­¤æˆ‘ä»¬å¯ä»¥ä½¿ç”¨lambdaè¡¨è¾¾å¼è½»æ¾åˆ›å»ºThreadLocalå®ä¾‹
+	private static final ThreadLocal<SimpleDateFormat> formatter2 =
+			ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyyMMdd HHmm"));
 
 	public static void main(String[] args) throws InterruptedException {
 		ThreadLocalExample obj = new ThreadLocalExample();
@@ -26,23 +26,22 @@ public class ThreadLocalExample implements Runnable {
 			Thread.sleep(new Random().nextInt(1000));
 			t.start();
 		}
-		// Thread-0ÒÑ¾­¸Ä±äÁËformatterµÄÖµ£¬µ«ÊÇthread-2»ñµÃµÄÖµÓë³õÊ¼»¯ÖµÏàÍ¬¡£
+		// Thread-0å·²ç»æ”¹å˜äº†formatterçš„å€¼ï¼Œä½†æ˜¯thread-2è·å¾—çš„å€¼ä¸åˆå§‹åŒ–å€¼ç›¸åŒã€‚
 	}
 
 	@Override
 	public void run() {
-		System.out.println("Thread Name= " + Thread.currentThread().getName() + " default Formatter = "
-				+ formatter.get().toPattern());
+		System.out.println("Thread Name= " + Thread.currentThread().getName() +
+				" default Formatter = " + formatter.get().toPattern());
 		try {
 			Thread.sleep(new Random().nextInt(1000));
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		// formatter pattern is changed here by thread, but it won't reflect to
-		// other threads
-		formatter.set(new SimpleDateFormat());
+		// formatter pattern is changed here by thread, but it won't reflect to other threads
+		formatter.set(new SimpleDateFormat("yyyyMMDD HHmmss"));
 
-		System.out.println(
-				"Thread Name= " + Thread.currentThread().getName() + " formatter = " + formatter.get().toPattern());
+		System.out.println("Thread Name= " + Thread.currentThread().getName() +
+				" formatter = " + formatter.get().toPattern());
 	}
 }
