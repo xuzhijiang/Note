@@ -2,37 +2,34 @@ server:
   port: 8002
 
 mybatis:
-  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
-  type-aliases-package: com.luo.springcloud.entities        # 所有Entity别名类所在包
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.luo.springcloud.entities
   mapper-locations:
-  - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件
+  - classpath:mybatis/mapper/**/*.xml
 
 spring:
   application:
     # 三个微服务提供者连接不同的数据库,注意的是三个微服务提供者的微服务名字保持一样
-    name: microservicecloud-dept #微服务的服务名称，有了这个名称，服务消费者就可以根据服务名称调用服务接口，而不再关心地址和端口号
+    name: my-microservicecloud-dept-8001
   datasource:
-    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
-    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
     url: jdbc:mysql://localhost:3306/cloudDB02              # 数据库名称
     username: root
     password: password
     dbcp2:
-      min-idle: 5                                           # 数据库连接池的最小维持连接数
-      initial-size: 5                                       # 初始化连接数
-      max-total: 5                                          # 最大连接数
-      max-wait-millis: 200                                  # 等待连接获取的最大超时时间
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
 
-#将microservicecloud-provider-dept-8001微服务注册到microservicecloud-eureka-7001中
 eureka:
-  client: #将客户端注册进eureka服务列表内
+  client:
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
-      # defaultZone的地址对应Eureka Server服务注册中心的application.yml中的defaultZone路径
-      # dept微服务会同时注册到7001,7002,7003服务注册中心
   instance:
-    instance-id: microservicecloud-dept8002 # 修改在Eureka中注册的微服务的Status的名称显示(主机名称和服务名称修改)
-    prefer-ip-address: true   # 访问路径可以显示IP地址
+    instance-id: my-microservicecloud-dept8001-instance-id
+    prefer-ip-address: true
 
 info:
   app.name: luokangyuan-microservicecloud

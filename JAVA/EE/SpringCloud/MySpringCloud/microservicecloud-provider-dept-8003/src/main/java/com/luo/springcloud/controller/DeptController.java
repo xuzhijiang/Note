@@ -25,10 +25,6 @@ public class DeptController {
         return service.get(id);
     }
 
-    /**
-     * http://localhost:8001/dept/list以JSON的方式返回数据
-     * @return
-     */
     @RequestMapping(value = "dept/list", method = RequestMethod.GET)
     public List<Dept> list(){
         return service.list();
@@ -39,11 +35,15 @@ public class DeptController {
 
     @RequestMapping(value = "/dept/discovery", method = RequestMethod.GET)
     public Object discovery(){
-        // 对于注册到Eureka里面的微服务，可以通过服务发现来获取该服务的信息
-        List<String> list = client.getServices();//得到Eureka中所有的微服务
-        System.out.println("************" + list);
+        List<String> list = client.getServices();
+        System.out.println("8003************ size: " + list.size());
+        System.out.println("8003************ list: " + list.toString());
 
-        List<ServiceInstance> srvList = client.getInstances("MICROSERVICECLOUD-DEPT");
+
+        List<ServiceInstance> srvList = client.getInstances("my-microservicecloud-dept-8001");
+        System.out.println("8003************ svrList size: " + srvList.size());
+        System.out.println("8003************ svrList" + srvList);
+        System.out.println("8003************ ***");
         for(ServiceInstance element : srvList){
             System.out.println(element.getServiceId() + "\t" + element.getHost()
         + "\t" + element.getPort() + "\t" + element.getUri());

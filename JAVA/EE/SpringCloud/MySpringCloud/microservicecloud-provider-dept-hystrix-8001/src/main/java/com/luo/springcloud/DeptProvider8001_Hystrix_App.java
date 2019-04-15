@@ -7,7 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
- * ### 测试熔断机制
+ * 测试熔断机制
  *
  * 启动三个Eureka集群，启动服务主启动类DeptProvider8001_Hystrix_App，
  * 客户端启动microservicecloud-consumer-dept-80，页面访问http://localhost/consumer/dept/get/112

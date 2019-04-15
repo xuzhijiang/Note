@@ -18,3 +18,10 @@ Ribbon默认提供的是轮询的负载均衡算法，完整了还有如下
 | RetryRule                 | 先按照RoundRobinRule策略获取服务，如果获取服务失败会在指定时间内重试 |
 | BestAvailableRule         | 会先过滤掉由于多次访问故障二处于断路器跳闸状态的服务，然后选择一个并发量最小的服务 |
 | ZoneAvoidanceRule         | 默认规则，复合判断server所在的区域的性能和server的可用性选择服务器  |
+
+```properties
+<!-- 我们也可以在application.properties配置文件中加入： -->
+<!-- ###### Ribbon -->
+ribbon.ReadTimeout=60000
+<!-- 这个是设置负载均衡的超时时间的。 -->
+```

@@ -1,8 +1,3 @@
-Spring MVC框架广泛用于java Web应用程序。
-
-与Struts Framework一样，Spring MVC也基于Java EE Servlet和JSP技术，
-并实现了Model-View-Controller设计模式(MVC)。
-
 @RequestMapping与类classes和方法methods一起使用，
 将客户端请求重定向到特定的处理程序方法(handler method)。 
 请注意，处理程序(handler method)方法返回String，这应该是要用作响应的
@@ -17,3 +12,18 @@ Spring MVC框架广泛用于java Web应用程序。
 <context:component-scan base-package="com.journaldev.spring" />：提供了一个包，Spring将在这包中查找带注释的组件并将它们自动注册为Spring bean。
 
 
+### 自定义的一些Conveter，Interceptor
+
+如果想配置springmvc的HandlerInterceptorAdapter或者HttpMessageConverter。 只需要定义自己的interceptor或者converter，然后加上Component注解。这样SpringBoot会自动处理这些类，不用自己在配置文件里指定对应的内容。 这个也是相当方便的。
+
+```java
+@Component
+public class AuthInterceptor extends HandlerInterceptorAdapter {
+    ...
+}
+
+@Component
+public class MyConverter implements HttpMessageConverter<MyObj> { 
+    ...
+}
+```

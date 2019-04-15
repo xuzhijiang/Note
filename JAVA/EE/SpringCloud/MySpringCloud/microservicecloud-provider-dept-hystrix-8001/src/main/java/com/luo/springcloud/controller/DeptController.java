@@ -44,6 +44,7 @@ public class DeptController {
 				.setDname("该ID："+id+"没有对应的信息，null--@HystrixCommand")
 				.setDb_source("no this database in Mysql");
 	}
+
 	@RequestMapping(value="dept/list",method=RequestMethod.GET)
 	public List<Dept> list(){
 		return service.list();

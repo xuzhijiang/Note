@@ -8,10 +8,10 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// 就像我们有Struts2拦截器一样，我们可以通过实现
-// org.springframework.web.servlet.HandlerInterceptor接口
-//或覆盖抽象类org.springframework.web.servlet.handler.HandlerInterceptorAdapter
-//来创建我们自己的Spring拦截器，它提供了HandlerInterceptor接口的基本实现。
+// 像Struts2拦截器一样，可以通过
+// 实现org.springframework.web.servlet.HandlerInterceptor接口
+//或实现抽象类org.springframework.web.servlet.handler.HandlerInterceptorAdapter
+//来创建Spring拦截器，它提供了HandlerInterceptor接口的基本实现。
 
 // 如果配置了多个spring interceptors，则按配置顺序执行preHandle(）方法，
 // 而以相反顺序(in the reverse order)调用postHandle(）和afterCompletion(）方法。

@@ -26,10 +26,12 @@ public class Utils {
 
 //		startFixedTimeToDoSomethingTimer(FIXED_HOUR, FIXED_MINUTE, FIXED_SECOND);
 
-		fileLoad();
+//		fileLoad();
 
 //        String ip = resolveIp("www.baidu.com");
 //        System.out.println("ip of baidu: " + ip);
+
+
     }
 
     /**

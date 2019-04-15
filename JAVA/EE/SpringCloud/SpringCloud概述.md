@@ -1,7 +1,7 @@
 ## SpringBoot和SpringCloud
 
 - SpringBoot专注于快速方便的开发单个个体微服务
-- SpringCloud是关注全局的微服务协调整理治理框架，它将SpringBoot开发的单体微服务整合并管理，为各个微服务之间提供配置管理，服务发现，路由，分布式会话等集成服务
+- SpringCloud将SpringBoot开发的单体微服务整合并管理，为各个微服务之间提供配置管理，其中主要有：服务发现（Eureka），断路器（Hystrix），智能路有（Zuul），客户端负载均衡（Ribbon）等.
 - SpringBoot可以离开SpringCloud独立的开发项目，但是SpringCloud离不开SpringBoot，属于依赖关系
 - SpringBoot专注于快速，方便的开发单个微服务个体，SpringCloud关注全局的服务治理框架
 

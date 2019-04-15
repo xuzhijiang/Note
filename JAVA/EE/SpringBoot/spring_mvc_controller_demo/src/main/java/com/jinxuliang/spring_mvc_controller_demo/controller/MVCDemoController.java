@@ -1,6 +1,9 @@
 package com.jinxuliang.spring_mvc_controller_demo.controller;
 
+import com.jinxuliang.spring_mvc_controller_demo.TestCustomStarter.SimpleService;
+import com.jinxuliang.spring_mvc_controller_demo.annotation.ContentService;
 import com.jinxuliang.spring_mvc_controller_demo.domain.DemoObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
@@ -143,7 +146,27 @@ public class MVCDemoController {
     }
 
 
+    @Autowired
+    private ContentService contentService;
 
+    @ResponseBody
+    @GetMapping("/doSth")
+    String contentService(){
+        contentService.doSomething();
+        return "do sth";
+    }
+
+    @Autowired
+    private SimpleService simpleService;
+
+    @ResponseBody
+    @GetMapping("/customStarter")
+    String testCustomStarter(){
+        simpleService.work(2);
+        simpleService.core(3);
+        simpleService.test(4);
+        return "custom start test ok";
+    }
 
 }
 

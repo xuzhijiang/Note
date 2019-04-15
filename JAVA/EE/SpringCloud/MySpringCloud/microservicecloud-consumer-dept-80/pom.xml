@@ -14,11 +14,13 @@
     <description>部门微服务消费者</description>
 
     <dependencies>
+
         <dependency><!-- 自己定义的api -->
             <groupId>com.luo.springcloud</groupId>
             <artifactId>microservicecloud-api</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <!--由于Ribbon是客户端的负载均衡工具，
         所以我们需要修改的是客户端项目microservicecloud-consumer-dept-80-->
         <!-- Ribbon相关 -->
@@ -26,23 +28,29 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
+
+        <!-- 使用Ribbon来实现负载均衡 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-ribbon</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <!-- 修改后立即生效，热部署 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>springloaded</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>

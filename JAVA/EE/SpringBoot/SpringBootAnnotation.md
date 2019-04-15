@@ -68,3 +68,23 @@ Spring @Configuration注释允许我们使用annotations进行依赖注入。
 @RequestParam注解也可以使用默认参数值，和要求是否必传:public String hello(@RequestParam(value = "id",required = false,defaultValue = "0") Integer id){},
 
 @Transactional标注在某个方法上表示这个方法是要进行事务管理,事务就是多条操作同时成功或者失败.
+
+使用SpringBootApplication注解相当于使用了3个注解，分别是@ComponentScan，@Configuration，@EnableAutoConfiguration。
+
+比如你的项目的包路径是 com.spring.core，对应的controller和repository包是 com.spring.core.controller和com.spring.core.repository。 那么这个SpringApplication的包路径必须为com.spring.core。 因为SpringBootApplication注解内部是使用ComponentScan注解，这个注解会扫描SpringApplication包所在的路径下的各个bean。
+
+启动指定类的ConfigurationProperties功能:@EnableConfigurationProperties({HttpEncodingProperties.class})
+
+@ConditionalOnClass({CharacterEncodingFilter.class})
+//判断当前项目中有没有CharacterEncodingFilter这个类
+
+@ConditionalOnWebApplication(//Spring底层有@conditiona注解，根据不同的条件，如果满足指定的条件才会让配置类中的配置就会生效，判断当前应用是否为web应用。
+    type = Type.SERVLET
+)
+@ConditionalOnClass({CharacterEncodingFilter.class})
+//判断当前项目中有没有CharacterEncodingFilter这个类
+@ConditionalOnProperty(//判断配置文件中是否存在某个配置spring.http.encoding
+    prefix = "spring.http.encoding",
+    value = {"enabled"},
+    matchIfMissing = true
+)

@@ -7,11 +7,13 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 /**
- * 测试Ribbon
+ * 测试Ribbon:
  *
- * 启动7001,7002,7003三个服务注册中心，再启动8001服务提供者，再启动80客户端，
- * 使用http://localhost/consumer/dept/list，在DeptController_Consumer使用的
- * 是http://MICROSERVICECLOUD-DEPT服务名称来调用服务的接口，
+ * 1. 启动7001,7002,7003三个服务注册中心，再启动8001服务提供者，再启动80客户端
+ *
+ * 2. 使用http://localhost/consumer/dept/list，
+ * 在controller中使用的是http://MICROSERVICECLOUD-DEPT服务名称来调用服务的接口，
+ *
  * 相比之前的http://localhost:8001，Ribbon和Eureka整合后，
  * Consumer可以直接通过服务名称来调用服务，而不再关心地址和端口号。
  */
