@@ -2,10 +2,7 @@ package org.java.core.base;
 
 import java.io.File;
 import java.io.InputStream;
-import java.net.InetAddress;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -31,7 +28,14 @@ public class Utils {
 //        String ip = resolveIp("www.baidu.com");
 //        System.out.println("ip of baidu: " + ip);
 
+        getMacAddr();
+    }
 
+    /**
+     * 如果获取本机mac地址
+     */
+    private static void getMacAddr() {
+        //NetworkInterface
     }
 
     /**

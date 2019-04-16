@@ -8,15 +8,18 @@
     </parent>
     <artifactId>microservicecloud-zuul-gateway-9527</artifactId>
     <dependencies>
+
         <!-- zuul路由网关 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zuul</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
+
         <!-- actuator监控 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

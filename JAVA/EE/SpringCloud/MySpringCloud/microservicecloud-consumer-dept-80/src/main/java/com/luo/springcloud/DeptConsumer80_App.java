@@ -10,8 +10,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
  * 测试Ribbon:
  *
  * 1. 启动7001,7002,7003三个服务注册中心，再启动8001服务提供者，再启动80客户端
- *
- * 2. 使用http://localhost/consumer/dept/list，
+ * 2. access: http://localhost/consumer/dept/list，
  * 在controller中使用的是http://MICROSERVICECLOUD-DEPT服务名称来调用服务的接口，
  *
  * 相比之前的http://localhost:8001，Ribbon和Eureka整合后，

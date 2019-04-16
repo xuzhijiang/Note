@@ -7,9 +7,12 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * 测试Feign
+ * 测试Feign:
  *
- * 启动3个Eureka集群，启动三个部门微服务提供者，启动Feign，访问http://localhost/consumer/dept/list即可
+ * 1. 启动3个Eureka集群
+ * 2. 启动三个部门微服务提供者
+ * 3. 启动Feign
+ * 4. 访问http://localhost/consumer/dept/list即可
  *
  * 注意microservicecloud-consumer-dept-feign是在microservicecloud-consumer-dept-80基础上得来的,
  * 也是充当consumer的角色

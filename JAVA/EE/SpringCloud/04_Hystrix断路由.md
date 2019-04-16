@@ -13,3 +13,9 @@ Hystrix是一个用于处理分布式系统的**延迟**和**容错**的开源�
 ## 服务监控Hystrix Dashboard
 
 Hystrix还提供了准实时的调用监控Hystrix Dashboard，Hystx会持续的记录所有通过Hystrix发起的请求的执行信息，并以统计报表的图形的形式展示给用户，包括每秒执行多少次请求多少成功多少失败等，对监控内容转换为可视化界面。
+
+我们也可以在application.properties配置文件中加入：
+```properties
+## hystrix
+hystrix.commond.default.execution.isolation.thread.timeoutInMilliseconds=60000
+```

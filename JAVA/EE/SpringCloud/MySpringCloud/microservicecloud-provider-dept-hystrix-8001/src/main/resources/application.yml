@@ -9,7 +9,7 @@ mybatis:
     
 spring:
    application:
-    name: microservicecloud-dept 
+    name: my-microservicecloud-dept-8001
    datasource:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
@@ -28,12 +28,12 @@ eureka:
       #defaultZone: http://localhost:7001/eureka
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/      
   instance:
-    instance-id: microservicecloud-dept8001-hystrix #自定义服务名称信息
+    instance-id: my-microservicecloud-dept8001-hystrix-id #自定义服务名称信息
     prefer-ip-address: true     #访问路径可以显示IP地址 
     
-info:
-  app.name: luokangyuan-microservicecloud
-  company.name: www.luokangyuan.com
-  build.artifactId: $project.artifactId$
-  build.version: $project.version$
+info: 
+  app.name: my-microservicecloud-Hystrix-8001
+  company.name: www.xuzhijiang.com
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
  

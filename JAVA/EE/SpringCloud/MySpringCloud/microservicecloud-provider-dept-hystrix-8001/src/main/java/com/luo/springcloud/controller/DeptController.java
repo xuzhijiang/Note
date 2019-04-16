@@ -15,7 +15,6 @@ import com.luo.springcloud.entities.Dept;
 import com.luo.springcloud.service.DeptService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-
 @RestController
 public class DeptController {
 	@Autowired
@@ -50,17 +49,23 @@ public class DeptController {
 		return service.list();
 	}
 	
-	@RequestMapping(value = "/dept/discovery", method = RequestMethod.GET)
-	public Object discovery(){
-		List<String> list = client.getServices();//得到Eureka中所有的微服务
-		System.out.println("**********" + list);
+    @RequestMapping(value = "/dept/discovery", method = RequestMethod.GET)
+    public Object discovery(){
+        // 对于注册到Eureka里面的微服务，可以通过服务发现(DiscoveryClient)来获取该服务的信息
+        List<String> list = client.getServices();//得到在Eureka中注册的所有的微服务
+        System.out.println("8001************ size: " + list.size());
+        System.out.println("8001************ list: " + list.toString());
 
-		List<ServiceInstance> srvList = client.getInstances("MICROSERVICECLOUD-DEPT");
-		for (ServiceInstance element : srvList) {
-			System.out.println(element.getServiceId() + "\t" + element.getHost() + "\t" + element.getPort() + "\t"
-					+ element.getUri());
-		}
-		return this.client;
-	}
+        // DiscoveryClient.getInstances(serviceId);// serviceId为yml中的spring.application.name
+        List<ServiceInstance> srvList = client.getInstances("my-microservicecloud-dept-8001");
+        System.out.println("8001************ svrList size: " + srvList.size());
+        System.out.println("8001************ svrList" + srvList);
+        System.out.println("8001************ ***");
+        for(ServiceInstance element : srvList){
+            System.out.println(element.getServiceId() + "\t" + element.getHost()
+        + "\t" + element.getPort() + "\t" + element.getUri());
+        }
+        return client;
+    }
 
 }

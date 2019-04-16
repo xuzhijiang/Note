@@ -15,15 +15,15 @@ eureka:
  
  
 zuul: 
-  #ignored-services: microservicecloud-dept #忽略真实地址，只让虚拟地址访问
-  prefix: /luo #访问地址前缀
-  ignored-services: "*" #忽略真实地址，只让虚拟地址访问
+  #ignored-services: my-microservicecloud-dept-8001 # 忽略真实地址，只让虚拟地址访问
+  prefix: /openPrefix # 用户访问地址的时候必须添加上前缀
+  ignored-services: "*" # 忽略真实地址，只让虚拟地址访问
   routes: 
-    mydept.serviceId: microservicecloud-dept #真实地址
-    mydept.path: /mydept/**   #虚拟地址
+    mydept.serviceId: my-microservicecloud-dept-8001 # 真实地址
+    mydept.path: /mydept/**   # 虚拟地址
  
 info:
-  app.name: luo-microcloud
-  company.name: www.luo.com
-  build.artifactId: $project.artifactId$
-  build.version: $project.version$
+  app.name: xzj-microcloud-zuul-gateway-9527
+  company.name: www.xzj.com
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
