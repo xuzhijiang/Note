@@ -4,6 +4,7 @@ public class WaitNotifyTest {
 
     public static void main(String[] args) {
         Factory factory = new Factory();
+
         new Thread(new Producer(factory, 5)).start();
         new Thread(new Producer(factory, 5)).start();
         new Thread(new Producer(factory, 20)).start();

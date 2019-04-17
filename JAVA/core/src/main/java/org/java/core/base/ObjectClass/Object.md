@@ -167,7 +167,7 @@ factory.notifyAll();
 
 之后，线程T会被等待集中被移除，并且重新进行线程调度。然后，该线程以常规方式与其他线程竞争，以获得在该对象上同步的权利；一旦获得对该对象的控制权，该对象上的所有其同步声明都将被恢复到以前的状态，这就是调用wait方法时的情况。然后，线程T从wait方法的调用中返回。所以，从wait方法返回时，该对象和线程T的同步状态与调用wait方法时的情况完全相同。
 
-在没有被通知、中断或超时的情况下，线程还可以唤醒一个所谓的虚假唤醒 (spurious wakeup)。虽然这种情况在实践中很少发生，但是应用程序必须通过以下方式防止其发生，即对应该导致该线程被提醒的条件进行测试，如果不满足该条件，则继续等待。换句话说，等待应总是发生在循环中，如下面的示例：
+在没有被通知、中断或超时的情况下，线程还可能会发生一个所谓的虚假唤醒 (spurious wakeup)。虽然这种情况在实践中很少发生，但是应用程序必须通过以下方式防止其发生，即对应该导致该线程被提醒的条件进行测试，如果不满足该条件，则继续等待。换句话说，等待应总是发生在循环中，如下面的示例：
 
 ```java
 synchronized (obj) {
@@ -177,16 +177,15 @@ synchronized (obj) {
 }
 ```
 
-如果当前线程在等待之前或在等待时被任何线程中断，则会抛出InterruptedException异常。在按上述形式恢复此对象的锁定状态时才会抛出此异常。
+如果当前线程在等待之前或在等待时被任何线程中断，则会抛出InterruptedException异常。
 
 ## wait(long timeout, int nanos) throws InterruptedException方法
 
 跟wait(long timeout)方法类似，多了一个nanos参数，这个参数表示额外时间（以毫微秒为单位，范围是 0-999999）。 所以超时的时间还需要加上nanos毫秒。
 ,需要注意的是`wait(0, 0)`和`wait(0)`效果是一样的，即一直等待。`wait() throws InterruptedException方法`跟之前的2个wait方法一样，只不过该方法一直等待，没有超时时间这个概念。
 
-以下这段代码直接调用wait方法会发生IllegalMonitorStateException异常，这是因为调用wait方法需要当前线程是对象监视器的所有者：org/java/core/base/ObjectClass/WaitNotifyTest.java
-
 ```java
+// 以下这段代码直接调用wait方法会发生IllegalMonitorStateException异常，这是因为调用wait方法需要当前线程是对象监视器的所有者：org/java/core/base/ObjectClass/WaitNotifyTest.java
 Factory factory = new Factory();
 factory.wait();
 ```
