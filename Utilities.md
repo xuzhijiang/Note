@@ -16,7 +16,7 @@
     F12: go to definition
     Ctrl + shift + f: find in files
     ctrl+n: create new file
-    ctrl+M:find matching bracket
+    ctrl+M: find matching bracket
     sources →  ctrl + o(查找某一个文件), ctrl+shift+o(查找函数)
     esc调出console
     console.dir(function name);
@@ -34,3 +34,7 @@ how to find max value in a list site:http://stackoverflow.com
 4. 查看调用某一个方法的地方:ctrl+alt+h
 5. 追踪方法: ctrl + e
 6. ctrl+d:复制一行
+7. 列出一个类的所有方法: ctrl + F12
+8. 类似于eclipse中ctrl+k：ctrl+F3
+9. ctrl+alt+b: 定位到变量定义的地方
+10. 显示一个类的继承信息:ctrl+h
