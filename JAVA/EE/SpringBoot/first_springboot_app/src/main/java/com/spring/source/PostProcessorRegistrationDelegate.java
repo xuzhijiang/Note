@@ -1,4 +1,4 @@
-package com.jinuxliang.first_springboot_app.source;
+package com.spring.source;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -185,6 +185,7 @@ final class PostProcessorRegistrationDelegate {
         beanFactory.clearMetadataCache();
     }
 
+
     public static void registerBeanPostProcessors(
             ConfigurableListableBeanFactory beanFactory, AbstractApplicationContext applicationContext) {
 
@@ -269,7 +270,7 @@ final class PostProcessorRegistrationDelegate {
      * Invoke the given BeanDefinitionRegistryPostProcessor beans.
      */
     private static void invokeBeanDefinitionRegistryPostProcessors(
-            Collection<? extends org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor> postProcessors, BeanDefinitionRegistry registry) {
+            Collection<? extends BeanDefinitionRegistryPostProcessor> postProcessors, BeanDefinitionRegistry registry) {
 
         for (BeanDefinitionRegistryPostProcessor postProcessor : postProcessors) {
             // 这里的registry就是之前定义的beanFactory,(DefaultListableBeanFactory的实现类)

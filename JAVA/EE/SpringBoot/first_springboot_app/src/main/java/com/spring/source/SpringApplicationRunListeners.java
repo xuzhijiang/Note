@@ -1,4 +1,4 @@
-package com.jinuxliang.first_springboot_app.source;
+package com.spring.source;
 
 import org.apache.commons.logging.Log;
 import org.springframework.boot.SpringApplicationRunListener;

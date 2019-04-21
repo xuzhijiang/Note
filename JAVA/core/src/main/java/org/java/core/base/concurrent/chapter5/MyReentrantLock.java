@@ -134,7 +134,9 @@ public class MyReentrantLock implements Serializable {
 
         abstract void lock();
 
-        // 非公平锁
+        // 非公平锁的加锁源码
+        // 公平锁和非公平锁如果在当前线程不是拥有锁的线程时，就不能添加锁，
+        // 所以他们添加的都是独享锁，这个和读写锁(ReentrantReadWriteLock)是不同的.
         final boolean nonfairTryAcquire(int acquires) {
             // 为什么是可以重入的?
 
@@ -247,6 +249,14 @@ public class MyReentrantLock implements Serializable {
 
         /**
          * 公平锁
+         *
+         * 互斥锁ReentrantLock中公平锁的加锁源码
+         *
+         * 我们发现在ReentrantLock虽然有公平锁和非公平锁两种，但是它们添加的都是独享锁。
+         * 根据源码所示，当某一个线程调用lock方法获取锁时，如果同步资源没有被其他线程锁住，
+         * 那么当前线程在使用CAS更新state成功后就会成功抢占该资源。
+         * 而如果公共资源被占用且不是被当前线程占用，那么就会加锁失败。
+         * 所以可以确定ReentrantLock无论读操作还是写操作，添加的锁都是都是独享锁。
          */
         protected final boolean tryAcquire(int acquires) {
             final Thread current = Thread.currentThread();

@@ -1,4 +1,4 @@
-package com.jinuxliang.first_springboot_app.source;
+package com.spring.source;
 
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanNameGenerator;

@@ -1,4 +1,4 @@
-package com.jinuxliang.first_springboot_app.source;
+package com.spring.source;
 
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 
@@ -11,14 +11,12 @@ class ConfigurationClassBeanDefinitionReader {
      * Read {@code configurationModel}, registering bean definitions
      * with the registry based on its contents.
      */
-    /*
-    public void loadBeanDefinitions(Set<ConfigurationClass> configurationModel) {
-        org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.TrackedConditionEvaluator trackedConditionEvaluator = new org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.TrackedConditionEvaluator();
-        for (ConfigurationClass configClass : configurationModel) {
-            loadBeanDefinitionsForConfigurationClass(configClass, trackedConditionEvaluator);
-        }
-    }
-    */
+//    public void loadBeanDefinitions(Set<ConfigurationClass> configurationModel) {
+//        org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.TrackedConditionEvaluator trackedConditionEvaluator = new org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.TrackedConditionEvaluator();
+//        for (ConfigurationClass configClass : configurationModel) {
+//            loadBeanDefinitionsForConfigurationClass(configClass, trackedConditionEvaluator);
+//        }
+//    }
 
     /*
     private void loadBeanDefinitionsForConfigurationClass(
