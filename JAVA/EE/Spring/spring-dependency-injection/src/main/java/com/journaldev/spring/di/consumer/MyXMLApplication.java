@@ -11,6 +11,7 @@ import com.journaldev.spring.di.services.MessageService;
 // 没有注解和接线配置的注释将在XML配置文件中提供。
 public class MyXMLApplication {
 
+	//没有初始化，spring会自动将配置的属性值赋给这个变量
 	private MessageService service;
 
 	//constructor-based dependency injection

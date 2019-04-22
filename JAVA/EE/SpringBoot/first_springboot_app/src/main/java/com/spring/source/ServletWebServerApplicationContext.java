@@ -34,6 +34,9 @@ import org.springframework.web.context.support.ServletContextAwareProcessor;
 import org.springframework.web.context.support.ServletContextResource;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 /**
+ * ServletWebServerApplicationContext有2个子类，XmlServletWebServerApplicationContext
+ * 和AnnotationConfigServletWebServerApplicationContext。一个是基于注释，一个是基于Xml.
+ *
  * web程序对应的Spring容器是AnnotationConfigServletWebServerApplicationContext，
  * 继承自ServletWebServerApplicationContext。在ServletWebServerApplicationContext的
  * onRefresh方法中会去创建内置Servlet容器：

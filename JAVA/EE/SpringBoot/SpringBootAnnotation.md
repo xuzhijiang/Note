@@ -69,7 +69,11 @@ Spring @Configuration注释允许我们使用annotations进行依赖注入。
 
 @Transactional标注在某个方法上表示这个方法是要进行事务管理,事务就是多条操作同时成功或者失败.
 
-使用SpringBootApplication注解相当于使用了3个注解，分别是@ComponentScan，@Configuration，@EnableAutoConfiguration。
+使用SpringBootApplication注解相当于使用了3个注解，`@SpringBootApplication = @Configuration + @EnableAutoConfiguration + @ComponentScan`
+
+a. 由于@Configuration注释，它会扫描@Bean方法来创建beans
+    b. 由于@ComponentScan注释，它执行组件扫描(组件表示使用@Component，@Service，@Repository，@Controller等注释的Bean）。
+    c. 由于@EnableAutoConfiguration注释，它会触发Spring Boot Auto-Configuration
 
 比如你的项目的包路径是 com.spring.core，对应的controller和repository包是 com.spring.core.controller和com.spring.core.repository。 那么这个SpringApplication的包路径必须为com.spring.core。 因为SpringBootApplication注解内部是使用ComponentScan注解，这个注解会扫描SpringApplication包所在的路径下的各个bean。
 

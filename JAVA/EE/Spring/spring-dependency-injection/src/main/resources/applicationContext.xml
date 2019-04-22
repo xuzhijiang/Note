@@ -3,7 +3,6 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
-    <!-- 文件名可以是任何内容 -->
 
     <!-- 配置XML文件放在源码目录中，因此它将在构建后位于classes目录中。 -->
 
@@ -20,8 +19,13 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         </bean>
     -->
 
+    <!-- 配置使用哪个实现类对MessageService接口进行实例化 -->
+    <!-- 配置MessageService接口实现类TwitterService，定义名称twitter -->
     <bean id="twitter" class="com.journaldev.spring.di.services.TwitterService"></bean>
+
     <bean id="MyXMLApp" class="com.journaldev.spring.di.consumer.MyXMLApplication">
+        <!--property中的name对应的就是MyXMLApplication中的属性service-->
         <property name="service" ref="twitter"></property>
     </bean>
+
 </beans>

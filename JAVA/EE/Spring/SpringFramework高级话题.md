@@ -11,7 +11,7 @@
 
 ### Spring ApplicationEvent
 
-#### Spring 的应用程序事件
+#### Spring的应用程序事件
 
 1. 当一个Bean处理完一个任务之后，如果希望另外一个Bean知道并能做相应的处理，这时我们就需要让另外一个Bean监听当前Bean所发送的事件
 2. Spring的事件(ApplicationEvent）为Bean与Bean之间的消息通信提供了支持。
