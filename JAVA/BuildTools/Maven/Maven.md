@@ -47,3 +47,30 @@ mvn test (compile and run unit tests)
 mvn package (compile, run unit tests, and build the distributable package)
 mvn install (all of the above, and install distributable package into local repository.Install is very useful if you need to build other packages which depend on changes to this package)
 mvn deploy (all of the above, and install package into remote (aka public) repository for sharing with other developers)
+
+### Maven配置文件Scope解释
+
+>scope有compile、test、runtime、provided、system，其中默认的值是compile
+
+1. Compile:缺省值，适用于所有阶段(编译，测试，运行)，会随着项目一起发布，是一个比较强的依赖。打包的时候需要包含进去。
+2. Test: 表示依赖项目仅仅参与测试相关的工作，只在测试时使用，用于编译和运行测试代码。不会随项目发布。比较典型的如junit,junit只有在执行单元测试时候需要，当我们进行真正项目发布的时候junit是不需要进行编译和发布的。
+3. runtime: 被依赖项目无需参与项目的编译，适用运行和测试阶段。与compile相比，跳过编译而已，举例说明一下：在代码中调用了一个接口一个方法，这个接口并没有对应的实现。这段代码在编译期间并不会报错，但是在代码运行的时候会出现问题。jdbc驱动可以使用runtime的scope，因为只有在真正运行的时候才会调用到驱动的代码。
+4. provided: 打包的时候不打包进去,别的设施(例如web容器)会提供。该依赖参与编译，测试，运行等周期。相当于compile，但是在打包阶段做了exclude的动作
+
+```xml
+<!-- tomcat会提供这个servlet-api.jar 包，所以当我们项目发布的时候这个包是不需要打到包里的 -->
+<dependency>  
+ <groupId>javax.servlet</groupId>  
+  <artifactId>servlet-api</artifactId>  
+    <version>2.5</version>  
+    <scope>provided</scope>  
+</dependency>  
+<dependency>  
+    <groupId>javax.servlet.jsp</groupId>  
+    <artifactId>jsp-api</artifactId>  
+    <version>2.1</version>  
+    <scope>provided</scope>  
+</dependency>  
+```
+
+5. 从参与度(编译，测试，运行)来说，也provided相同，不过被依赖项不会从maven仓库抓，而是从本地文件系统拿，一定需要配合systemPath属性使用。

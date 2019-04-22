@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:annotation-config/>
+
+    <context:property-placeholder location="classpath*:jdbc.properties"/>
+
+    <!-- 配置RoutingDataSource，其管理了ds1和ds2 -->
+    <bean id="routingDataSource" class="com.journaldev.spring.jdbc.routing.RoutingDataSource">
+        <property name="targetDataSources">
+            <map>
+                <!--entry的key，将在稍后将看到的@Routing注解中使用到-->
+                <entry key="ds1">
+                    <!--配置ds1，访问数据库db1-->
+                    <bean class="org.apache.ibatis.datasource.pooled.PooledDataSource">
+                        <property name="username" value="${ds1.username}"/>
+                        <property name="password" value="${ds1.password}"/>
+                        <property name="url" value="${ds1.url}"/>
+                        <property name="driver" value="${ds1.driver}"/>
+                    </bean>
+                </entry>
+                <entry key="ds2">
+                    <!--配置ds2，访问数据库db2-->
+                    <bean class="org.apache.ibatis.datasource.pooled.PooledDataSource">
+                        <property name="url" value="${ds2.url"/>
+                        <property name="username" value="${ds2.username}"/>
+                        <property name="password" value="${ds2.password"/>
+                        <property name="driver" value="${ds2.driver"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+
+        <property name="packageDataSourceKeyMap">
+            <map>
+                <entry key="org.springframework.samples.routing.mapper.db2" value="ds2"/>
+            </map>
+        </property>
+        <!--配置默认数据源，在RoutingDataSource无法确定使用哪个数据源时，将会使用默认的数据源-->
+        <property name="defaultTargetDataSource" value="ds1"/>
+    </bean>
+</beans>
