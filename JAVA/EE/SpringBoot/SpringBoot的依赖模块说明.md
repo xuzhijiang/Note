@@ -1,3 +1,13 @@
+```xml
+<parent>
+    <!-- spring-boot-starter-parent是一种特殊的starter，其是所有其他的 starter的父类，其提供了很多maven的默认配置，并且包含了一个 dependency-managemen部分，意味着我们在子项目中添加maven依赖时，可以省略 version标签。而其他的 starter提供了事实上的依赖。例如要搭建一个 web应用，需要我们提供：spring-boot-starter-web -->
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.0.2.RELEASE</version>
+</parent>
+```
+
+starter的作用主要是简化 Maven项目pom.xml文件的配置.
 spring-boot-starter：核心模块，包括自动配置支持、日志和YAML
 spring-boot-starter-test：测试模块，包括JUnit、Hamcrest、Mockito
 
@@ -24,6 +34,8 @@ spring-boot-starter-test：测试模块，包括JUnit、Hamcrest、Mockito
 	<artifactId>spring-boot-starter-web</artifactId>
 </dependency>
 ```
+
+>这表明我们要使用 Spring搭建一个web 应用，SpringBoot就 ”武断” 的帮我们添加了“它认为的 ”一个web 应用所需要的依赖。正是这样的 ”武断” ，让我们减少了很多 pom.xml配置的麻烦。而且自动整合了 SpringMvc和Spring 。而且看到这些依赖中居然还包括 tomcat，说明我们的应用甚至不用再部署了，因为 tomcat直接就内嵌在我们的应用中了.
 
 application.properties主要用来配置数据库连接、日志相关配置等
 

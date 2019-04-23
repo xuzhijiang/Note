@@ -154,8 +154,10 @@ free
 # 查看cpu的使用情况
 top
 
-# 查看环境变量值
+# 查看所有的环境变量值
 env
+
+# 对比windows下查看GRADLE_HOME: echo %GRADLE_HOME%
 
 # 关机
 shutdown -h now

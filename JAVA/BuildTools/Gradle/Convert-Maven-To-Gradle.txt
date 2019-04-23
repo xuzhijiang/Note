@@ -1,8 +1,4 @@
-﻿以下是将maven转换为gradle应用程序的步骤：
-
-1. 将这个spring mvc maven项目导入Eclipse IDE
-2. 删除pom.xml(要注意备份一下)
-3. 创建空的build.gradle文件
+﻿3. 创建空的build.gradle文件
 4. 现在开始从pom.xml中将每个组件转换为build.gradle文件。
 5. 由于它是一个Spring MVC Web应用程序，我们需要创建WAR文件。
 所以请apply war plugin,并定义war属性，还提供war文件名及其版本。

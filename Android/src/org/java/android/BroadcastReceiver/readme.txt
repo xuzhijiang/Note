@@ -1,1 +1,0 @@
-在BroadcastReceiver中不可以bindService()，只能startService()

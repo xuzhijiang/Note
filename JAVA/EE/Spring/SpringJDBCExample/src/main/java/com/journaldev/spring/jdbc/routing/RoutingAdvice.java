@@ -66,6 +66,7 @@ public class RoutingAdvice implements MethodInterceptor {
                     }
                 }
             }
+
         }
 
         if(targetDataSource != null){

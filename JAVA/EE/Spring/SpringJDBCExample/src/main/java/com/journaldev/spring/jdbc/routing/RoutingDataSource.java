@@ -23,15 +23,15 @@ import java.util.logging.Logger;
 public class RoutingDataSource extends AbstractAutoProxyCreator
         implements InitializingBean, DataSource, PointcutAdvisor {
 
+    private Map<String, DataSource> targetDataSources;
+
     private Map<String, String> packageDataSourceKeyMap = new ConcurrentHashMap<String, String>();
+
+    private Object defaultTargetDataSource;
 
     private RoutingPointcut pointcut = new RoutingPointcut(packageDataSourceKeyMap);
 
     private Advice advice = new RoutingAdvice(packageDataSourceKeyMap);
-
-    private Map<String, DataSource> targetDataSources;
-
-    private Object defaultTargetDataSource;
 
     private DataSource resolvedDefaultTargetDataSource;
 
@@ -208,4 +208,5 @@ public class RoutingDataSource extends AbstractAutoProxyCreator
         assert packageDataSourceKeyMap != null;
         this.packageDataSourceKeyMap.putAll(packageDataSourceKeyMap);
     }
+
 }

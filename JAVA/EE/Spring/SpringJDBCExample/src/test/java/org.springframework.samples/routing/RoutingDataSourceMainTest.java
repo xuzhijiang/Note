@@ -105,8 +105,12 @@ public class RoutingDataSourceMainTest {
     @Test(expected = ArithmeticException.class)
     public void testOnlyTransactional() {
         User user = new User();
-        user.setName("wangxiaoxiao");
-        multiDBService.testOnlyTransactional(user);
+        user.setName("xzj");
+
+        UserAccount userAccount = new UserAccount();
+        userAccount.setAccount("6214979792");
+
+        multiDBService.testOnlyTransactional(user, userAccount);
     }
 
     /**

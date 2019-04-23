@@ -65,3 +65,15 @@ Spring Boot App启动之后，访问localhost:8080，默认会显示一个Error�
 Spring Web开发技术
 
 如果使用IntelliJ导入Maven项目出现找不到相关Jar，则File -> Settings -> Maven -> Update, 而且IntelliJ还要启动auto import自动导入功能.
+
+### 部署和测试这个应用程序
+
+1. 拷贝我们的war文件“SpringMVCExample-1.0.0-BUILD-SNAPSHOT.war” 
+到${TOMCAT8_HOME}/webapps/文件夹下
+
+2. 执行D:\apache-tomcat-8.0.24\bin>startup.bat这个脚本，打开Tomcat服务器
+
+3. 测试我们的应用程序，用http://localhost:8080/SpringMVCExample-1.0.0-BUILD-SNAPSHOT/
+访问主页.用localhost:8080/SpringMVCExample-1.0.0-BUILD-SNAPSHOT/login/访问登录页,
+提供Username，然后点击"Login"按钮，然后观察会展示的下一个页面.
+

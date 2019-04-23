@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:routing-datasource-context.xml")
 public class AopTest {
+
     @Autowired
     UserInsertMapper userInsertMapper;
 

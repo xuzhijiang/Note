@@ -64,26 +64,26 @@ Context.bindService，Context.unbindService，来控制它，
 
 startService:
 
-	 如果一个Service被startService方法多次启动，那么onCreate方法只会调用一次，
-	 onStart将会被调用多次(对应调用startService的次数），并且系统只会创建Service的一个实例
-	(因此你应该知道只需要一次stopService调用）。该Service将会一直在后台运行，
-	而不管对应程序的Activity是否在运行，直到被调用stopService，或自身的stopSelf方法。
-	当然如果系统资源不足，android系统也可能结束服务。
-	Note: 使用 startService 启动服务之后，一定要使用 stopService停止服务，不管你是否使用bindService； 
+     如果一个Service被startService方法多次启动，那么onCreate方法只会调用一次，
+     onStart将会被调用多次(对应调用startService的次数），并且系统只会创建Service的一个实例
+    (因此你应该知道只需要一次stopService调用）。该Service将会一直在后台运行，
+    而不管对应程序的Activity是否在运行，直到被调用stopService，或自身的stopSelf方法。
+    当然如果系统资源不足，android系统也可能结束服务。
+    Note: 使用 startService 启动服务之后，一定要使用 stopService停止服务，不管你是否使用bindService； 
 
 bindService:
 
-	 如果一个Service被某个Activity调用 Context.bindService方法绑定启动，
-	 不管调用 bindService调用几次，onCreate方法都只会调用一次，同时onStart方法始终不会被调用。
-	 当连接建立之后，Service将会一直运行，除非调用Context.unbindService断开连接  or 之前调用
-	bindService的Context不存在了(如Activity被finish的时候），
-	系统将会自动停止Service，对应onDestroy将被调用。
+     如果一个Service被某个Activity调用 Context.bindService方法绑定启动，
+     不管调用 bindService调用几次，onCreate方法都只会调用一次，同时onStart方法始终不会被调用。
+     当连接建立之后，Service将会一直运行，除非调用Context.unbindService断开连接  or 之前调用
+    bindService的Context不存在了(如Activity被finish的时候），
+    系统将会自动停止Service，对应onDestroy将被调用。
 
-	同时使用 startService 与 bindService 要注意到，Service 的终止，需要unbindService与stopService同时调用，
-	才能终止 Service，不管 startService 与 bindService 的调用顺序，如果先调用 unbindService 
-	此时服务不会自动终止，再调用 stopService 之后服务才会停止，如果先调用 stopService 此时服务也不会终止，
-	而再调用 unbindService 或者 之前调用 bindService 的 Context 不存在了(如Activity 被 finish
-	 的时候）之后服务才会自动停止；
+    同时使用 startService 与 bindService 要注意到，Service 的终止，需要unbindService与stopService同时调用，
+    才能终止 Service，不管 startService 与 bindService 的调用顺序，如果先调用 unbindService 
+    此时服务不会自动终止，再调用 stopService 之后服务才会停止，如果先调用 stopService 此时服务也不会终止，
+    而再调用 unbindService 或者 之前调用 bindService 的 Context 不存在了(如Activity 被 finish
+     的时候）之后服务才会自动停止；
 
  当一个Service被终止(1、调用stopService；
  2、调用stopSelf；3、不再有绑定的连接(没有被启动））时，onDestroy方法将会被调用，
@@ -92,3 +92,5 @@ bindService:
  在 sdk 2.0 及其以后的版本中，对应的 onStart 已经被否决变为了 onStartCommand
  
  无法再子线程中处理UI相关更新操作，要使用handler在main thread做更新ui的操作.
+
+ 在BroadcastReceiver中不可以bindService()，只能startService()

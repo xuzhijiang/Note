@@ -38,4 +38,4 @@ org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration
 
 1. 如果自动化配置类需要在程序启动的时候就加载，可以在META-INF/spring.factories文件中定义。如果本次加载还需要其他一些lib的话，可以使用ConditionalOnClass注解协助
 2. 如果自动化配置类要在使用自定义注解后才加载，可以使用自定义注解+@Import注解或@ImportSelector注解完成
-
+3. SpringBoot官方starter名字都是以:spring-boot-starter-开头的，例如spring-boot-starter-web,spring-boot-starter-actuator.
