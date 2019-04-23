@@ -1,0 +1,48 @@
+// 表示使用com.android.application插件
+apply plugin: 'com.android.application'
+
+// 配置所有android构建过程需要的参数
+android {
+    // 用于编译的SDK版本
+    compileSdkVersion 28
+
+    // 编译项目的工具版本,就是SDK目录下build-tools下工具的版本
+    // 注意区分SDK下platforms目录，这下面存放的是是某个sdk版本的
+    // 皮肤，res资源文件(如果编译遇到某种style not found就是缺少这个目录)，
+    // 字体等
+     buildToolsVersion "28.0.3"
+
+    // 项目默认配置
+    defaultConfig {
+        // 应用程序包名
+        applicationId "com.android.core"
+        // 最低支持Android版本
+        minSdkVersion 19
+        // 目标版本
+        targetSdkVersion 26
+        // 版本号
+        versionCode 1
+        // 版本名称
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    // 构建类型。默认两个：release和debug
+    buildTypes {
+        release {
+            // 设置是否使用混淆
+            minifyEnabled false
+            // 混淆文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+// 用于配置引用的依赖
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
