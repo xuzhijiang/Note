@@ -1,4 +1,4 @@
-package com.didispace.aspect;
+package com.springboot.core.aspect;
 
 import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 /**
- * 实现Web层的日志切面,实现AOP的切面主要有以下几个要素：
+ *  实现Web层的日志切面,实现AOP的切面主要有以下几个要素：
  *
  * 1. 使用@Aspect注解将一个java类定义为切面类
  * 2. 使用@Pointcut定义一个切入点，可以是一个规则表达式，
@@ -32,14 +32,10 @@ import java.util.Arrays;
 @Component
 public class WebLogAspect {
 
-    // 下面的例子:通过@Pointcut定义的切入点为com.didispace.web包下的所有函数
-    // （对web层所有请求处理做切入点）
-    // 然后通过@Before实现，对请求内容的日志记录
-    // 最后通过@AfterReturning记录请求返回的对象。
     private Logger logger = Logger.getLogger(getClass());
 
     /**
-     * 优化：AOP切面中的同步问题
+     * 优化解决AOP切面中的同步问题:
      *
      * 在WebLogAspect切面中，分别通过doBefore和doAfterReturning两个独立函数实现
      * 了切点头部和切点返回后执行的内容，若我们想统计请求的处理时间，
@@ -47,16 +43,15 @@ public class WebLogAspect {
      * 计算得到请求处理的消耗时间。
      *
      * 那么我们是否可以在WebLogAspect切面中定义一个成员变量来
-     * 给doBefore和doAfterReturning一起访问呢？是否会有同步问题呢？
-     *
-     * 的确，直接在这里定义基本类型会有同步问题，所以我们可以引入ThreadLocal对象，像下面这样进行记录：
+     * 给doBefore和doAfterReturning一起访问呢？是否会有同步问题呢？的确，直接在这里定义基本类型会有同步问题，所以我们可以引入ThreadLocal对象，像下面这样进行记录：
      */
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 
-    @Pointcut("execution(public * com.didispace.web..*.*(..))")
+    // 通过@Pointcut定义的切入点为com.springboot.core包下的所有函数
+    @Pointcut("execution(public * com.springboot.core..*.*(..))")
     public void webLog(){}
 
-    @Before("webLog()")
+    @Before("webLog()") //通过@Before实现，对请求内容的日志记录
     public void doBefore(JoinPoint joinPoint) throws Throwable {
         startTime.set(System.currentTimeMillis());
 
@@ -73,6 +68,7 @@ public class WebLogAspect {
 
     }
 
+    // 通过@AfterReturning记录请求返回的对象。
     @AfterReturning(returning = "ret", pointcut = "webLog()")
     public void doAfterReturning(Object ret) throws Throwable {
         // 处理完请求，返回内容

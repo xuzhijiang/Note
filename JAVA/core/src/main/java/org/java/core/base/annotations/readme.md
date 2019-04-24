@@ -80,8 +80,8 @@ or the top of the class hierarchy (Object) is reached.也就是如果一个使�
 
 #### Inherited的继承性
 
->@Inherited只是可控制对类名上注解是否可以被继承。不能控制方法上的注解是否可以被继承。
-并且`类不从它所实现的接口继承annotation(接口的类以及接口的方法的注解都不可以被继承，无论
+>@Inherited只能控制对类名上注解是否可以被继承。不能控制方法上的注解是否可以被继承。
+并且`类不从它所实现的接口继承接口的annotation(接口的注解以及接口中的方法的注解都不可以被继承，无论
 这个接口使用的注解是否使用了@Inherited元注解)`
 
 <table>

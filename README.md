@@ -20,8 +20,6 @@ SSH: Struts2 + Spring + Hibernate
 
 SSM: SprintMVC + Spring + Mybatis
 
-要选Spring Cloud全家桶必学
-
 https://www.zhihu.com/lives/889495940065538048
 https://www.zhihu.com/lives/961612944417701888
 http://jinxuliang.com/course2/CoursePortal/Details/5a9268a9a664d72f041e0a6a
