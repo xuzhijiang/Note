@@ -3,11 +3,6 @@
 Spring Boot最大的特色之一就是它“自动化”了很多工作，这些配置工作原先是必须通过XML手工完成的。
 没有冗余代码生成和XML配置的要求
 
-### Spring发展的一串足迹
-
-Xml配置(Spring 1.x) ->  注解配置(Spring 2.x + JDK 1.5) -> Java配置(Spring 4.X +
-Spring Boot)
-
 ### Spring Boot的配置原理
 
 ```java

@@ -11,6 +11,7 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.feiyangedu.springcloud.mail.MailApplication;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 /**
  * Queue for sending mail.
@@ -59,6 +61,19 @@ public class MailController {
 		String message = mapper.writeValueAsString(mail);
 		amqpTemplate.convertAndSend(MailApplication.EXCHANGE, MailApplication.QUEUE_NAME, message);
 		return "<h3>Pending send.</h3>";
+	}
+
+	@GetMapping("/sendTo")
+	@ResponseBody
+	public String sendMethodTwo() {
+		SimpleMailMessage message = new SimpleMailMessage();
+		// 注意这里配置的From要和application.yml中的spring.mail.username要一致
+		message.setFrom("2233835996@qq.com");
+		message.setTo("2233835996@qq.com");
+		message.setSubject("测试邮件（邮件主题）");//邮件主题.
+		message.setText("这是邮件内容");//邮件内容.
+		mailSender.send(message);
+		return "send message successfully!!";
 	}
 
 	@RabbitListener(queues = MailApplication.QUEUE_NAME)

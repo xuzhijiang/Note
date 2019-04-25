@@ -15,9 +15,3 @@ public class MybatisspringApplication {
 	}
 
 }
-
-// 本讲介绍了MyBatis的基础编程模式，其实是很简单的，也就几步：
-
-// 1. 定义Java方法与SQL命令的映射(Mapper）接口
-// 2. 启用Mapper扫描功能
-// 3. 将Mapper注入到需要访问数据库的地方。

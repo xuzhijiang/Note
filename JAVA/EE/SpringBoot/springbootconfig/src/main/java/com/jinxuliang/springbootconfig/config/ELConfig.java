@@ -27,18 +27,15 @@ public class ELConfig {
     //注入表达式结果
     @Value("#{T(java.lang.Math).random() *100}")
     double randomNumber;
-
-    //注入文件资源
-    @Value("classpath:test.txt")
-    private Resource testFile;
-
-    //注入自定义properties文件中的值
-    @Value("${book.name}")
-    private String bookName;
-
     //注入环境变量(会自动地从test.properties中提取数据）
     @Autowired
     Environment environment;
+    //注入文件资源
+    @Value("classpath:test.txt")
+    private Resource testFile;
+    //注入自定义properties文件中的值
+    @Value("${book.name}")
+    private String bookName;
 
     public void printFields() throws IOException {
         System.out.println(normal);

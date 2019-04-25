@@ -12,7 +12,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * Spring Boot Application using Spring Mail.
+ * static/img下列出常见的几个邮件服务器的相关信息。因为我们是发送邮件，只需要关注smtp协议即可。
+ *
+ * 163邮箱的收取邮件支持POP/IMAP两种协议，发送邮件采用SMTP协议，收件和发件均使用SSL协议来进行加密传输，
+ * 采用SSL协议需要单独对帐户进行设置。采用SSL协议和非SSL协议时端口号有所区别
  */
 @SpringBootApplication
 public class MailApplication {

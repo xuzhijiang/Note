@@ -95,18 +95,51 @@ access: localhost:8080
 
 之所以出现上述的出错页面，是因为一个“空”的Spring Boot项目不知道如何响应的HTTP请求，所以显示了一个默认的出错页面。下面向项目中添加控制器以生成响应……
 
-### MVC架构下各组成元素之间的合作关系
-
-典型的MVC文件组织方式: 控制器 + 视图 -> 合成浏览器页面显示
 
 ### 如何部署Spring Boot Web项目？
 
 Spring Boot项目主要有两种部署方式：
 
 1. 打包为war，然后部署到Tomcat这种外部的Servlet容器中。
-2. 构建一个“自包容”的jar包(称为Fat JAR），然后使用java -jar命令直接运行。 Fat JAR内嵌一个Tomcat容器，所以可以单独部署，独立运行。
+2. 在使用了 SpringBoot之后，我们可以将应用打包为一个可以运行的 jar包，同样可以运行这个应用，因为 tomcat已经内嵌在我们的程序中了，因此我们并不需要将 hello应用打成war 包，然后再部署，SpringBoot构建了一个“自包容”的jar包(称为Fat JAR），然后使用java -jar命令直接运行。 Fat JAR内嵌一个Tomcat容器，所以可以单独部署，独立运行。通常我们将一个可以运行的 jar包称之为fat jar 。因为这样的 jar包内部通常包含了自己运行时的所有依赖，也就是一个大的 jar中内部包含了自己运行时所有依赖的 jar(jar包中还有jar 包)，体积比较大，所以比较 fat。
+3. 要注意的是， Java并没有提供一种标准的方式来加载“嵌套 jar”。而SpringBoot 提供了一个插件，可以帮助我们将应用打包成一个可以运行的 jar。
 
-> 新项目推荐使用第2种方式。
+在pom.xml文件中加入：
+```xml
+<build>
+    <!-- 将应用打包成一个可以运行的 jar -->
+    <plugins>
+        <plugin>
+           <groupId> org.springframework.boot </groupId>
+           <artifactId> spring-boot-maven-plugin </artifactId>
+        </plugin>
+    </plugins>
+</build>
+```
+
+>这段配置可以帮助我们将SpringBoot应用打包成一个可运行的jar。其中， springbootstudy-0.0.1-SNAPSHOT.jar是我们打包好的，内部包含了其他依赖的，可以直接运行的jar，而springbootstudy-0.0.1-SNAPSHOT.jar.original 则是原始的打包后的jar。
+
+进入target生成文件夹所在目录，我们可以看看这两个文件的区别：
+第一个可以直接运行的springbootstudy-0.0.1-SNAPSHOT.jar的大小为13M 左右，而第二个只有 6KB。通过`jar tvf springbootstudy-0.0.1-SNAPSHOT.jar` 命令，我们可以看到这个jar中的内容，当然更直观的方式，你可以选择直接右击解压这个 jar文件，就会发现这个 jar的 lib目录下，实际上存放了所有依赖的 jar。而 springbootstudy-0.0.1-SNAPSHOT.jar.original 则是没有包含这些依赖的 jar的原始包。
+
+我们可以通过命令`java -jar springbootstudy-0.0.1-SNAPSHOT.jar`来直接运行这个jar.
+
+>注意：，如果你的项目不是没有设置 parent项目为 spring-boot-starter-parent，那么spring-boot-maven-plugin的配置就要显示的指定执行阶段，如下所示:
+
+```xml
+<plugin>
+    <groupId> org.springframework.boot </groupId>
+    <artifactId> spring-boot-maven-plugin </artifactId>
+    <!--如果父项目不是spring-boot-starter-parent，需要显示指定execution-->
+    <executions>
+        <execution>
+            <goals>
+                <goal>repackage</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
 
 #### 使用命令行打包
 
@@ -157,3 +190,33 @@ access: localhost:8080/hello
 
 1. 本讲以一个典型的Spring Boot MVC项目为例，介绍了如何在IntelliJ中将项目打包为war，然后部署到外部Tomcat的基本过程。
 2. 在这个过程中，注意一下静态资源的路径问题，它可能会带来不小的麻烦。
+
+@RequestMapping与类classes和方法methods一起使用，
+将客户端请求重定向到特定的处理程序方法(handler method)。 
+请注意，处理程序(handler method)方法返回String，这应该是要用作响应的
+视图页面的名称(the name of view page)。
+
+@Validated注释标记一个model类，对模型类进行数据验证。
+
+文件上传是任何Web应用程序中非常常见的任务。 我们可以使用Servlet和Struts2实现文件上传。 我们将学习Spring文件上传，特别是单个和多个文件的Spring MVC文件上传。
+
+<annotation-driven />标签启用了Controller编程模型，没有它Spring不会将HomeController识别为客户端请求的处理程序。
+
+<context:component-scan base-package="com.journaldev.spring" />：提供了一个包，Spring将在这包中查找带注释的组件并将它们自动注册为Spring bean。
+
+
+### 自定义的一些Conveter，Interceptor
+
+如果想配置springmvc的HandlerInterceptorAdapter或者HttpMessageConverter。 只需要定义自己的interceptor或者converter，然后加上Component注解。这样SpringBoot会自动处理这些类，不用自己在配置文件里指定对应的内容。 这个也是相当方便的。
+
+```java
+@Component
+public class AuthInterceptor extends HandlerInterceptorAdapter {
+    ...
+}
+
+@Component
+public class MyConverter implements HttpMessageConverter<MyObj> { 
+    ...
+}
+```

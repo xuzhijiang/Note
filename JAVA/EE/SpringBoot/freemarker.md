@@ -1,3 +1,5 @@
+pringBoot官方不建议在Springboot项目中使用JSP这样的技术，取而代之的是freemarker、velocity这样的模板引擎。
+
 使用freemarker的时候，加入以下依赖：
 
 ```xml

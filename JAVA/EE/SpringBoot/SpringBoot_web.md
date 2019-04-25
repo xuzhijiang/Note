@@ -142,7 +142,9 @@ MavenRepository网站去搜索其Maven依赖声明。
 </script>
 ```
 
-## 1.SpringBoot静态资源映射规则
+## SpringBoot静态资源映射规则
+
+>在默认的情况下，SpringBoot会加载classpath下的/static、/public、/resources 、 /META-INF/resources目录下的静态资源供用户进行访问，个人感觉 static可能更具有说明力。我们可以在项目的src/main/resources目录下建立static文件夹.注意在我们访问的URL中并不会包含"static"这个单词， static是所有静态资源的根目录，就相当于常规J2EE开发下的 webapp目录一样，因此 url是不需要包含的。
 
 ~~~java
 public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -188,3 +190,36 @@ webjars:以jar包的方式引入资源，网页搜索webjars,选择maven的方�
 "classpath:/public/"
 "/":当前项目的根路径
 ~~~
+
+## Spring boot配置Servelt、Filter、Listener
+
+>实例:spring_boot_web
+
+在SpringBoot中，不光将Spring的配置文件省略了，连web容器的web.xml文件都省略了，而之前，我们通常都是将Servelt、Filter、Listener等配置在web.xml中配置的，而SpringBoot提供了更加简化的配置.
+
+Spring Boot集成了servlet容器，当我们在pom文件中增加spring- boot-starter-web的maven依赖时，不做任何web相关的配置便能提供web服务，这还得归功于spring boot自动配置的功能（因为加了EnableAutoConfiguration的注解），帮我们创建了一堆默认的配置，以前在web.xml中配置，现在都可以通过spring bean的方式进行配置，由spring来进行生命周期的管理.
+
+>SpringBoot提供了2种方式配置Servlet、Listener、Filter。一种是基于RegistrationBean，另一种是基于注解。
+
+### 基于RegistrationBean的配置
+
+>spring boot提供了ServletRegistrationBean，FilterRegistrationBean，ServletListenerRegistrationBean这3个东西来进行配置Servlet、Filter、Listener,见:配置类WebConfig.java
+
+### 基于注解的配置
+
+>在对应的Servlet，Filter，Listener打上对应的注解@WebServlet，@WebFilter，@WebListener,在启动类加上注解@ServletComponentScan即可
+
+## SpringBoot热加载
+
+spring-boot-devtools是一个自动应用代码更改到最新的App上面去，使应用可以自动重启的模块
+.原理是在发现代码有更改之后，重新启动应用，但是比速度比手动停止后再启动还要更快，更快的深层原理是使用了两个ClassLoader，一个Classloader加载那些不会改变的类（第三方Jar包），另一个ClassLoader加载会更改的类，称为restart ClassLoader,这样在有代码更改的时候，原来的restart ClassLoader 被丢弃，重新创建一个restart ClassLoader，由于需要加载的类相比较少，所以实现了较快的重启时间（5秒以内）。
+
+默认情况下，修改了/META-INF/maven, /META-INF/resources ,/resources ,/static ,/public或者/templates目录下的内容不会引起应用的重新启动。意思是，java代码，pom文件，application.properties(yml)文件的修改都会引起重新启动。
+
+通过以下方式，我们可以指定只有哪些目录下的内容修改不会引起重启：
+
+`spring.devtools.restart.exclude=static/**,public/**`
+
+以上配置说明只有static目录和public目录下的内容修改后不会引起重启。
+
+>由于默认的配置已经比较合理，所以有一种可能的情况是，我们希望在默认的配置下，添加其他我们想要的目录，在这个目录下修改内容时也不重新启动，此时可以将spring.devtools.restart.exclude改为spring.devtools.restart.additional-exclude即可。

@@ -1,5 +1,69 @@
 # 一、Spring Boot学习笔记-配置文件
 
+SpringBoot的默认情况下会加载classpath下两个默认的配置文件：application.properties和application.yml。通常情况下，我们只要选择其中一种即可。
+
+默认情况下，SpringBoot按照如下优先顺序加载application.properties或者application.yml文件中的配置，并注入Environment对象中。
+
+1. 用户当前所在目录下的/config子目录
+2. 用户当前所在目录
+3. classpath根路径下的/config目录
+4. classpath根路径
+
+>也就是说1的优先级最高，4的优先级最低。如果出现配置项重复，优先级高的会覆盖优先级低的配置项。
+
+Springboot提供大量的默认配置,一部分是Spring自身的默认配置，另一部分是与springboot整合的第三方框架的默认配置。`我们可以在两种类型(yml or properties)的配置文件中覆盖其默认配置，也可以自定义我们自己的配置项`
+
+>这里有很明显的springboot对于内嵌web容器的两个默认配置项：
+
+1. 默认的监听端口:8080,
+2. 应用的contextPath为"/"。
+
+>如我们想要覆盖默认的配置，可以按照如下方式进行：
+
+例如application.properties文件：
+
+```
+#Tomcat configuration
+server.port=80
+server.contextPath=/springboot
+ 
+#Custom configuration
+name=xuzhijiang
+```
+
+对于这个文件中的配置项，我们在程序中可以直接使用@Value注解进行引用：
+
+```java
+//要注意的是，@Value注解是在Bean实例化之后再进行注入的，也就是说,当我们在构造方法中使用这个属性的值时，起还是为null。等到实例化之后，这个属性就会被设置
+@RestController
+@EnableAutoConfiguration
+public class Application {
+    @Value("${name}")
+    private String name;
+ 
+    @RequestMapping("/")
+    public String hello() {
+        return "Hello ,"+name;
+    }
+ 
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+对于上述的application.properties，对应的application.yml为
+
+```yml
+server:
+     contextPath: /springboot
+     port: 80
+name: xzj
+```
+
+>值得注意的是，不论我们使用的是哪一种方式，我们都可以通过属性的全路径来注入参数。
+也就是说，之前案例中的@Value(${name})在两种配置文件的情况下，都是可以正常使用的。
+
 ## yaml语法
 
 基本语法：k:(空格)v ：表示一对键值对，注意的是空格不能省略，以缩进(空格)来控制层级关系，左对齐的一列数据就是同一个层级的。注意的是属性和值也是大小写敏感的
@@ -251,7 +315,52 @@ debug: true
 
 在yaml文件中配置应用以debug模式来启动，在控制台就会打印那些自动配置类已经生效了。其中Negative matches就是没有生效的配置类。Positive matches就是生效的自动配置。
 
+```properties
+jpa:
+  hibernate:
+    ddl-auto: create  
+    # create表示每次都会自动删除原先存在的表，就是说如果表中存在数据，运
+    # 行程序数据就不存在了。也可以是 update：会创建表，如果表中有数据，不会删除表
+    # ，其中表名就是实体类的名字，表字段就是实体类的对应字段.
+  show-sql: true
+```
+
+springboot项目中yaml中可以定义多个profile，也可以指定激活的profile：
+
+```yml
+spring:
+  profiles.active: dev
+
+---
+spring:
+  profiles: dev
+myconfig:
+  config1: dev-enviroment
+
+---
+spring:
+  profiles: test
+myconfig:
+  config1: test-enviroment
+
+---
+spring:
+  profiles: prod
+myconfig:
+  config1: prod-envioment
+```
 
 
+也可以在运行的执行指定profile：
 
+`java -Dspring.profiles.active="prod" -jar yourjar.jar`
 
+还可以使用Profile注解，MyConfig只会在prod这个profile下才会生效，其他profile不会生效
+
+```java
+@Profile("prod")
+@Component
+public class MyConfig {
+    ....
+}
+```
