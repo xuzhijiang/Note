@@ -25,6 +25,7 @@
 
 max site:http://python.org
 how to find max value in a list site:http://stackoverflow.com
+查看网站的目录： `site:http://www.apple.com/`
 
 ### IntelliJ IDEA usage
 
