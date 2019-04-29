@@ -2,9 +2,9 @@ package org.java.core.base.collection.queue;
 
 import java.util.*;
 
-// ¶ÓÁĞpeek£¨£©²Ù×÷
-// peek£¨£©²Ù×÷ÓÃÓÚ´Ó¶ÓÁĞµÄÍ·²¿¼ìË÷ÔªËØ£¬¶ø²»É¾³ıËü¡£ 
-// Èç¹ûËü³É¹¦Ö´ĞĞ¼ì²é²Ù×÷£¬Ôò·µ»Ø¶ÓÁĞµÄheadÔªËØ¡£ ·ñÔò·µ»ØnullÖµ¡£
+// é˜Ÿåˆ—peekï¼ˆï¼‰æ“ä½œ
+// peekï¼ˆï¼‰æ“ä½œç”¨äºä»é˜Ÿåˆ—çš„å¤´éƒ¨æ£€ç´¢å…ƒç´ ï¼Œè€Œä¸åˆ é™¤å®ƒã€‚ 
+// å¦‚æœå®ƒæˆåŠŸæ‰§è¡Œæ£€æŸ¥æ“ä½œï¼Œåˆ™è¿”å›é˜Ÿåˆ—çš„headå…ƒç´ ã€‚ å¦åˆ™è¿”å›nullå€¼ã€‚
 public class QueuePeekOperation {
    public static void main(String[] args) {
 		
@@ -15,6 +15,6 @@ public class QueuePeekOperation {
 	System.out.println(queue);
 	queue.clear();
 	System.out.println(queue.peek());
-	// Èç¹ûÎÒÃÇ³¢ÊÔÔÚ¿ÕQueueÉÏµ÷ÓÃpeek£¨£©·½·¨£¬Ëü½«·µ»ØnullÖµ£¬µ«²»»áÅ×³öÒì³£
+	// å¦‚æœæˆ‘ä»¬å°è¯•åœ¨ç©ºQueueä¸Šè°ƒç”¨peekï¼ˆï¼‰æ–¹æ³•ï¼Œå®ƒå°†è¿”å›nullå€¼ï¼Œä½†ä¸ä¼šæŠ›å‡ºå¼‚å¸¸
    }
 }

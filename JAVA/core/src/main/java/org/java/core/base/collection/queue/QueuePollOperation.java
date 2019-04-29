@@ -2,9 +2,9 @@ package org.java.core.base.collection.queue;
 
 import java.util.*;
 
-// Queue poll() operation(ÂÖÑ¯£¬Í¶Æ±)
+// Queue poll() operation(è½®è¯¢ï¼ŒæŠ•ç¥¨)
 
-// poll£¨£©²Ù×÷ÓÃÓÚ´Ó¶ÓÁĞÍ·²¿É¾³ıÔªËØ¡£ Èç¹ûËü³É¹¦Ö´ĞĞÉ¾³ı²Ù×÷£¬Ôò·µ»Ø¶ÓÁĞµÄheadÔªËØ¡£ ·ñÔò·µ»Ø¡°null¡±Öµ¡£
+// pollï¼ˆï¼‰æ“ä½œç”¨äºä»é˜Ÿåˆ—å¤´éƒ¨åˆ é™¤å…ƒç´ ã€‚ å¦‚æœå®ƒæˆåŠŸæ‰§è¡Œåˆ é™¤æ“ä½œï¼Œåˆ™è¿”å›é˜Ÿåˆ—çš„headå…ƒç´ ã€‚ å¦åˆ™è¿”å›â€œnullâ€å€¼ã€‚
 // 
 public class QueuePollOperation 
 {
@@ -17,6 +17,6 @@ public class QueuePollOperation
 	System.out.println(queue.poll());
 	System.out.println(queue.poll());		
 	System.out.println(queue.poll());		
-	// ÓÉÓÚÎÒÃÇµÄ¶ÓÁĞÖ»ÓĞÁ½¸öÔªËØ£¬µ±ÎÒÃÇ³¢ÊÔµÚÈı´Îµ÷ÓÃpoll£¨£©·½·¨Ê±£¬Ëü·µ»ØnullÖµ£¬
+	// ç”±äºæˆ‘ä»¬çš„é˜Ÿåˆ—åªæœ‰ä¸¤ä¸ªå…ƒç´ ï¼Œå½“æˆ‘ä»¬å°è¯•ç¬¬ä¸‰æ¬¡è°ƒç”¨pollï¼ˆï¼‰æ–¹æ³•æ—¶ï¼Œå®ƒè¿”å›nullå€¼ï¼Œ
    }
 }

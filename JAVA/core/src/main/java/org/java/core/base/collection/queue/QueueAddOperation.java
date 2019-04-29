@@ -3,22 +3,22 @@ package org.java.core.base.collection.queue;
 import java.util.concurrent.*;
 
 // Java Queue Insert Operations
-// Queue Insert²Ù×÷³É¹¦Ö´ĞĞ£¬Ôò·µ»Ø¡°true¡±Öµ¡£
+// Queue Insertæ“ä½œæˆåŠŸæ‰§è¡Œï¼Œåˆ™è¿”å›â€œtrueâ€å€¼ã€‚
 
-// QueueÖ§³ÖÁ½ÖÖĞÎÊ½µÄ²åÈë²Ù×÷£º
-// Queue.add£¨E£©£ºÈç¹û²Ù×÷Ê§°Ü£¬ÔòÅ×³öÒì³£¡£
-// Queue.offer£¨E£©£ºÈç¹û²Ù×÷Ê§°Ü£¬Ôò·µ»ØÌØÊâÖµ¡£
+// Queueæ”¯æŒä¸¤ç§å½¢å¼çš„æ’å…¥æ“ä½œï¼š
+// Queue.addï¼ˆEï¼‰ï¼šå¦‚æœæ“ä½œå¤±è´¥ï¼Œåˆ™æŠ›å‡ºå¼‚å¸¸ã€‚
+// Queue.offerï¼ˆEï¼‰ï¼šå¦‚æœæ“ä½œå¤±è´¥ï¼Œåˆ™è¿”å›ç‰¹æ®Šå€¼ã€‚
 
-// ×¢Òâ£º - ÕâÀïÌØÊâÖµ¿ÉÄÜÊÇ¡°¼Ù¡±»ò¡°¿Õ¡±
+// æ³¨æ„ï¼š - è¿™é‡Œç‰¹æ®Šå€¼å¯èƒ½æ˜¯â€œå‡â€æˆ–â€œç©ºâ€
 // NOTE: Here special value may be either false or null
 
 // Queue add() operation
-// add£¨£©²Ù×÷ÓÃÓÚ½«ĞÂÔªËØ²åÈë¶ÓÁĞ¡£ Èç¹ûËü³É¹¦Ö´ĞĞ²åÈë²Ù×÷£¬Ôò·µ»Ø¡°true¡±Öµ¡£ 
-// ·ñÔòÅ×³öjava.lang.IllegalStateException¡£
+// addï¼ˆï¼‰æ“ä½œç”¨äºå°†æ–°å…ƒç´ æ’å…¥é˜Ÿåˆ—ã€‚ å¦‚æœå®ƒæˆåŠŸæ‰§è¡Œæ’å…¥æ“ä½œï¼Œåˆ™è¿”å›â€œtrueâ€å€¼ã€‚ 
+// å¦åˆ™æŠ›å‡ºjava.lang.IllegalStateExceptionã€‚
 public class QueueAddOperation {
    public static void main(String[] args) {
 	
-	// ÓÉÓÚÎÒÃÇµÄ¶ÓÁĞ½öÏŞÓÚÁ½¸öÔªËØ£¬µ±ÎÒÃÇ³¢ÊÔÊ¹ÓÃBlockingQueue.add£¨£©Ìí¼ÓµÚÈı¸öÔªËØÊ±£¬Ëü»áÅ×³öÒì³£
+	// ç”±äºæˆ‘ä»¬çš„é˜Ÿåˆ—ä»…é™äºä¸¤ä¸ªå…ƒç´ ï¼Œå½“æˆ‘ä»¬å°è¯•ä½¿ç”¨BlockingQueue.addï¼ˆï¼‰æ·»åŠ ç¬¬ä¸‰ä¸ªå…ƒç´ æ—¶ï¼Œå®ƒä¼šæŠ›å‡ºå¼‚å¸¸
 	BlockingQueue<String> queue = new ArrayBlockingQueue<>(2);
 
 	System.out.println(queue.add("one"));

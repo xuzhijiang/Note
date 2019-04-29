@@ -2,23 +2,23 @@ package org.java.core.base.collection.queue;
 
 import java.util.*;
 
-// Java Queue Examine OperationsJava¶ÓÁĞ¼ì²é²Ù×÷
+// Java Queue Examine OperationsJavaé˜Ÿåˆ—æ£€æŸ¥æ“ä½œ
 
-//  Èç¹û´Ë²Ù×÷³É¹¦Ö´ĞĞ£¬Ôò·µ»Ø¶ÓÁĞµÄheadÔªËØ¶ø²»É¾³ıËü¡£ 
-//ÖÚËùÖÜÖª£¬QueueÖ§³ÖÁ½ÖÖĞÎÊ½µÄ¼ì²é²Ù×÷£º
+//  å¦‚æœæ­¤æ“ä½œæˆåŠŸæ‰§è¡Œï¼Œåˆ™è¿”å›é˜Ÿåˆ—çš„headå…ƒç´ è€Œä¸åˆ é™¤å®ƒã€‚ 
+//ä¼—æ‰€å‘¨çŸ¥ï¼ŒQueueæ”¯æŒä¸¤ç§å½¢å¼çš„æ£€æŸ¥æ“ä½œï¼š
 
-//Queue.element£¨£©£º
-//Èç¹û²Ù×÷Ê§°Ü£¬ÔòÅ×³öÒì³£¡£
+//Queue.elementï¼ˆï¼‰ï¼š
+//å¦‚æœæ“ä½œå¤±è´¥ï¼Œåˆ™æŠ›å‡ºå¼‚å¸¸ã€‚
 //
-//Queue.peek£¨£©£º
-//Èç¹û²Ù×÷Ê§°Ü£¬Ôò·µ»ØÌØÊâÖµ¡£
+//Queue.peekï¼ˆï¼‰ï¼š
+//å¦‚æœæ“ä½œå¤±è´¥ï¼Œåˆ™è¿”å›ç‰¹æ®Šå€¼ã€‚
 //
-//×¢Òâ£º - ÕâÀïÌØÊâÖµ¿ÉÄÜÊÇ¡°¼Ù¡±»ò¡°¿Õ¡±
+//æ³¨æ„ï¼š - è¿™é‡Œç‰¹æ®Šå€¼å¯èƒ½æ˜¯â€œå‡â€æˆ–â€œç©ºâ€
 // Note: Here special value may be either "false" or "null"
 
 //Queue element() operation
-//element£¨£©²Ù×÷ÓÃÓÚ´Ó¶ÓÁĞÍ·²¿¼ìË÷ÔªËØ£¬¶ø²»É¾³ıËü¡£ Èç¹ûËü³É¹¦Ö´ĞĞ¼ì²é²Ù×÷£¬
-//Ôò·µ»Ø¶ÓÁĞµÄheadÔªËØ¡£ ·ñÔòÅ×³öjava.util.NoSuchElementException¡£
+//elementï¼ˆï¼‰æ“ä½œç”¨äºä»é˜Ÿåˆ—å¤´éƒ¨æ£€ç´¢å…ƒç´ ï¼Œè€Œä¸åˆ é™¤å®ƒã€‚ å¦‚æœå®ƒæˆåŠŸæ‰§è¡Œæ£€æŸ¥æ“ä½œï¼Œ
+//åˆ™è¿”å›é˜Ÿåˆ—çš„headå…ƒç´ ã€‚ å¦åˆ™æŠ›å‡ºjava.util.NoSuchElementExceptionã€‚
 
 
 public class QueueElementOperation {
@@ -31,6 +31,6 @@ public class QueueElementOperation {
 	System.out.println(queue);
 	queue.clear();
 	System.out.println(queue.element());
-	// Èç¹ûÎÒÃÇ³¢ÊÔÔÚ¿ÕQueueÉÏµ÷ÓÃelement£¨£©·½·¨£¬Ëü»áÅ×³öÒì³£
+	// å¦‚æœæˆ‘ä»¬å°è¯•åœ¨ç©ºQueueä¸Šè°ƒç”¨elementï¼ˆï¼‰æ–¹æ³•ï¼Œå®ƒä¼šæŠ›å‡ºå¼‚å¸¸
    }
 }

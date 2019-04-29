@@ -3,10 +3,10 @@ package org.java.core.base.collection.queue;
 import java.util.concurrent.*;
 
 // Queue offer() operation
-// offer£¨£©²Ù×÷ÓÃÓÚ½«ĞÂÔªËØ²åÈë¶ÓÁĞ¡£ Èç¹ûËü³É¹¦Ö´ĞĞ²åÈë²Ù×÷£¬Ôò·µ»Ø¡°true¡±Öµ¡£ ·ñÔò·µ»Ø¡°false¡±Öµ¡£
+// offerï¼ˆï¼‰æ“ä½œç”¨äºå°†æ–°å…ƒç´ æ’å…¥é˜Ÿåˆ—ã€‚ å¦‚æœå®ƒæˆåŠŸæ‰§è¡Œæ’å…¥æ“ä½œï¼Œåˆ™è¿”å›â€œtrueâ€å€¼ã€‚ å¦åˆ™è¿”å›â€œfalseâ€å€¼ã€‚
 public class QueueOfferOperation {
 	public static void main(String[] args) {
-		// ÓÉÓÚÎÒÃÇµÄ¶ÓÁĞ½öÏŞÓÚÁ½¸öÔªËØ£¬µ±ÎÒÃÇ³¢ÊÔÊ¹ÓÃBlockingQueue.offer£¨£©²Ù×÷Ìí¼ÓµÚÈı¸öÔªËØÊ±£¬Ëü·µ»Ø¡°false¡±Öµ
+		// ç”±äºæˆ‘ä»¬çš„é˜Ÿåˆ—ä»…é™äºä¸¤ä¸ªå…ƒç´ ï¼Œå½“æˆ‘ä»¬å°è¯•ä½¿ç”¨BlockingQueue.offerï¼ˆï¼‰æ“ä½œæ·»åŠ ç¬¬ä¸‰ä¸ªå…ƒç´ æ—¶ï¼Œå®ƒè¿”å›â€œfalseâ€å€¼
 		BlockingQueue<String> queue = new ArrayBlockingQueue<>(2);
 
 		System.out.println(queue.offer("one"));

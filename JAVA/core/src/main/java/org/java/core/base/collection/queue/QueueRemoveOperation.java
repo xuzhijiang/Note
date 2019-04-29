@@ -3,24 +3,24 @@ package org.java.core.base.collection.queue;
 import java.util.*;
 
 // Java Queue Delete Operations
-// Èç¹û³É¹¦Ö´ĞĞ£¬Delete²Ù×÷½«·µ»Ø¶ÓÁĞµÄheadÔªËØ
+// å¦‚æœæˆåŠŸæ‰§è¡Œï¼ŒDeleteæ“ä½œå°†è¿”å›é˜Ÿåˆ—çš„headå…ƒç´ 
 
-// ÎÒÃÇÖªµÀ£¬QueueÖ§³ÖÁ½ÖÖĞÎÊ½µÄÉ¾³ı²Ù×÷£º
+// æˆ‘ä»¬çŸ¥é“ï¼ŒQueueæ”¯æŒä¸¤ç§å½¢å¼çš„åˆ é™¤æ“ä½œï¼š
 
-// Queue.remove£¨£©£ºÈç¹û²Ù×÷Ê§°Ü£¬ÔòÅ×³öÒì³£¡£
-// Queue.poll£¨£©£ºÈç¹û²Ù×÷Ê§°Ü£¬Ôò·µ»ØÌØÊâÖµ¡£
+// Queue.removeï¼ˆï¼‰ï¼šå¦‚æœæ“ä½œå¤±è´¥ï¼Œåˆ™æŠ›å‡ºå¼‚å¸¸ã€‚
+// Queue.pollï¼ˆï¼‰ï¼šå¦‚æœæ“ä½œå¤±è´¥ï¼Œåˆ™è¿”å›ç‰¹æ®Šå€¼ã€‚
 
-// ×¢Òâ£º - ÕâÀïÌØÊâÖµ¿ÉÄÜÊÇ¡°¼Ù¡±»ò¡°¿Õ¡±
-// NOTE:- Here special value may be either ¡°false¡± or ¡°null¡±
+// æ³¨æ„ï¼š - è¿™é‡Œç‰¹æ®Šå€¼å¯èƒ½æ˜¯â€œå‡â€æˆ–â€œç©ºâ€
+// NOTE:- Here special value may be either â€œfalseâ€ or â€œnullâ€
 
 // Queue remove() operation
-// remove£¨£©²Ù×÷ÓÃÓÚ´Ó¶ÓÁĞÍ·²¿É¾³ıÔªËØ¡£ Èç¹ûËü³É¹¦Ö´ĞĞÉ¾³ı²Ù×÷£¬Ôò·µ»Ø¶ÓÁĞµÄheadÔªËØ¡£ 
-// ·ñÔòÅ×³öjava.util.NoSuchElementException¡£
+// removeï¼ˆï¼‰æ“ä½œç”¨äºä»é˜Ÿåˆ—å¤´éƒ¨åˆ é™¤å…ƒç´ ã€‚ å¦‚æœå®ƒæˆåŠŸæ‰§è¡Œåˆ é™¤æ“ä½œï¼Œåˆ™è¿”å›é˜Ÿåˆ—çš„headå…ƒç´ ã€‚ 
+// å¦åˆ™æŠ›å‡ºjava.util.NoSuchElementExceptionã€‚
 public class QueueRemoveOperation 
 {
    public static void main(String[] args) 
    {		
-	// ÓÉÓÚÎÒÃÇµÄ¶ÓÁĞÖ»ÓĞÁ½¸öÔªËØ£¬µ±ÎÒÃÇ³¢ÊÔµÚÈı´Îµ÷ÓÃremove£¨£©·½·¨Ê±£¬Ëü»áÅ×³öÒì³£
+	// ç”±äºæˆ‘ä»¬çš„é˜Ÿåˆ—åªæœ‰ä¸¤ä¸ªå…ƒç´ ï¼Œå½“æˆ‘ä»¬å°è¯•ç¬¬ä¸‰æ¬¡è°ƒç”¨removeï¼ˆï¼‰æ–¹æ³•æ—¶ï¼Œå®ƒä¼šæŠ›å‡ºå¼‚å¸¸
 	Queue<String> queue = new LinkedList<>();
 	queue.offer("one");
 	queue.offer("two");		
@@ -31,6 +31,6 @@ public class QueueRemoveOperation
    }
 }
 
-// ×¢Òâ£º-
-// Queue.remove£¨element£©ÓÃÓÚ´Ó¶ÓÁĞÖĞÉ¾³ıÖ¸¶¨µÄÔªËØ¡£ Èç¹ûËü³É¹¦Ö´ĞĞÉ¾³ı²Ù×÷£¬
-// Ôò·µ»Ø¡°true¡±Öµ¡£ ·ñÔò·µ»Ø¡°false¡±Öµ¡£
+// æ³¨æ„ï¼š-
+// Queue.removeï¼ˆelementï¼‰ç”¨äºä»é˜Ÿåˆ—ä¸­åˆ é™¤æŒ‡å®šçš„å…ƒç´ ã€‚ å¦‚æœå®ƒæˆåŠŸæ‰§è¡Œåˆ é™¤æ“ä½œï¼Œ
+// åˆ™è¿”å›â€œtrueâ€å€¼ã€‚ å¦åˆ™è¿”å›â€œfalseâ€å€¼ã€‚
