@@ -1,20 +1,31 @@
-## linux系统下bin的差异
+## LINUX
 
-sbin: The 's' in sbin means 'system'. Therefore, system binaries reside in sbin directories.
+### linux系统下bin的差异
 
-/bin: /bin和/sbin,用于在mounted较大的分区例如/usr等分区之前需要的在小的分区上使用的二进制命令，
+1. sbin: The 's' in sbin means 'system'. Therefore, system binaries reside in sbin directories.
+2. /bin: /bin和/sbin,用于在mounted较大的分区例如/usr等分区之前需要的在小的分区上使用的二进制命令，
 目前，它主要用作关键程序(如/bin/sh）的标准位置，以及需要在单用户模式下可用的基本命令二进制文件.
+3. /usr/bin: 普通用户程序.(由包`管理器`管理的二进制程序)
+4. /usr/sbin: /usr/sbin与/usr/bin具有相同的关系，和/sbin与/bin一样。
+5. /usr/local/bin(安装需要的权限:superuser (root) privileges required.): 用于不由`包管理器`管理的普通用户程序，例如，本地编译的包(例如使用make编译，并且使用make install安装到/usr/local/bin下的redis本地包的本地编译包)。 您不应将它们安装到/usr/bin中，因为将来在`包管理器`管理升级它所管理的软件包的时候，可能会在没有警告的情况下修改或删除它们。
+6. /usr/local/sbin/
 
-/sbin: /sbin，与/bin不同，用于mount /usr等分区之前所需的系统管理程序(普通用户通常不使用）,基本系统二进制文件(system bin),
+>/sbin: /sbin，与/bin不同，用于mount /usr等分区之前所需的系统管理程序(普通用户通常不使用）,基本系统二进制文件(system bin),
 superuser (root) privileges required(要求超级用户权限).
 
-/usr/bin: 普通用户程序.(由包`管理器`管理的二进制程序)
+### linux系统下/etc/profile.d和/etc/profile的关系
 
-/usr/sbin: /usr/sbin与/usr/bin具有相同的关系，和/sbin与/bin一样。
+以配置java环境变量为例(这里只是按照jdk的一种方式而已，还有很多种方式，例如可以直接通过系统的yum包管理器去安装，或者通过rpm软件包管理器自动安装,我们这里是手动从oracle官网上下载rpm软件包，然后手动配置jdk的path),在/etc/profile.d/创建java.sh，然后输入:
 
-/usr/local/bin(安装需要的权限:superuser (root) privileges required.): 用于不由`包管理器`管理的普通用户程序，例如，本地编译的包(例如使用make编译，并且使用make install安装到/usr/local/bin下的redis本地包的本地编译包)。 您不应将它们安装到/usr/bin中，因为将来在`包管理器`管理升级它所管理的软件包的时候，可能会在没有警告的情况下修改或删除它们。
+```shell
+export JAVA_HOME=/usr/java/jdk-8u101-linux-x64
+export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin
+```
 
-## RedHat命令
+>因为在/etc/profile中会遍历/etc/profile.d下的sh，然后自动source.
+
+### RedHat命令
 
 ```shell
 # 查看Linux内核版本命令
@@ -31,8 +42,16 @@ cat /etc/redhat-release(这种方法只适合Redhat系的Linux)
 # centos安装wget, -y: answer yes for all questions.
 yum -y install wget
 
-# 查找文件
-find ./ -name config*
+# 查找文件,注意有的linux版本后面的关键字如果是模糊匹配，需要加引号，有的不用
+# 所以我们统一使用引号包裹关键字.
+find ./ -name "config*"
+find . -name "*.xml"
+
+# 递归查找所有包含hello的xml文件
+find . -name "*.xml" | xargs grep "hello"
+
+# 查找当前目录中的"文件名"包含所有sh文件.
+ls -l | grep 'sh'
 
 # 建立链接
 ln
@@ -52,8 +71,8 @@ umount /mnt/目录名
 # 解除所有挂载(此命令慎用)
 umount -a
 
-# 终止单一进程
-kill 进程ID号
+# 终止进程
+kill -9 进程ID号
 
 # 查看内存的使用情况
 free
@@ -70,8 +89,8 @@ env
 shutdown -h now
 halt
 
-# 查看已安装软件包
-rpm -qa
+# 查看已安装软件包,并且过滤java(前提是java是通过rpm安装的)
+rpm -qa | grep java
 
 # 安装软件
 yum install xxx.rmp
@@ -91,14 +110,14 @@ yum search java | grep 'java-'
 # 安装包括javac,jre在内的java相关包
 yum install java-1.7.0-openjdk*
 
-通过rpm安装						
+# 通过rpm安装						
 rpm -ivh somesoft.rpm
 
-卸载 						
+# 卸载 						
 rpm -e somefost.rpm
 
-查询						
-rpm -q somefost.rpm
+# 查询安装信息	
+rpm -qi somefost.rpm
 
 查询安装后位置：			
 rpm -ql somefost.rpm
@@ -111,10 +130,27 @@ vi /etc/hosts
 
 #如果需要永久修改hostname可通过如下命令
 vi /etc/sysconfig/network
-修改其中的HOSTNAME项，不过此种方法需要重启后生效。
+修改其中的HOSTNAME项，不过此种方法需要重启后生效.
+
+# 查看某一个进程的cpu使用率
+top -p pid
+
+# 检查一个redis是否运行
+ps -ef | grep redis
+
+# 查看文件，包括隐藏文件
+ls -alh
+
+# 删除文件 包括其子文件
+# -r表示向下递归，不管有多少目录一律删除
+# -f表示强制删除，不做任何提示。
+rm -rf file
+
+# 切换用户
+su -username
 ```
 
-## Ubuntu常用命令
+### Ubuntu常用命令
 
 ```shell
 apt-get install nginx
@@ -144,38 +180,16 @@ lsof -i TCP:80 #see what application is listening on port 80
 `ln -s /opt/foo /usr/bin/bar`
 ```
 
-### 配置应用的环境变量
-
-RabbitMQ Server的命令会被安装到/usr/local/sbin，并不会自动加到用户的环境变量中去，所以我们需要在.bash_profile或.profile文件中增加下面内容：`PATH=$PATH:/usr/local/sbin`
-
-这样，我们就可以通过rabbitmq-server命令来启动RabbitMQ的服务端了。
-
->Java环境变量配置
+### shell脚本
 
 ```shell
-mv <jdk_directory> /usr/java/
-
-cd /etc/profile.d
-
-touch Java.sh
-
-vim Java.sh
-
-# add the content below:
-
-export JAVA_HOME=/usr/java/<jdk_directory>
-export PATH=$JAVA_HOME/bin:$PATH
+# 每隔1s打印出来前5个占用cpu的信息
+while true;do top -t -m 5;sleep 1;done
 ```
 
-## shell脚本
+[shell script guide](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
 
-`while true;do top -t -m 5;sleep 1;done`: 每隔1s打印出来前5个占用cpu的信息
-
-查看某一个进程的cpu使用率:`top -p pid`
-
-![shell script guide](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
-
-shell中针对一个script.sh脚本，使用. script.sh, bash script.sh, source script.sh效果都是一致的
+shell中针对一个script.sh脚本，使用`. script.sh`, `bash script.sh`, `source script.sh`效果都是一致的
 
 ### Vi命令
 
@@ -193,7 +207,7 @@ shell中针对一个script.sh脚本，使用. script.sh, bash script.sh, source 
 # 按v，然后上下键，然后按=
 ```
 
-### 安装Nginx后
+### 安装Nginx
 
 1. 所有的配置文件都在 /etc/nginx下；
 2. 启动程序文件在 /usr/sbin/nginx下；
@@ -201,6 +215,11 @@ shell中针对一个script.sh脚本，使用. script.sh, bash script.sh, source 
 4. 并且在/etc/init.d下创建了启动脚本nginx。
 
 ```shell
+# linux默认是不能访问8080端口的，所以要手动打开
+
+# 打开后，重启防火墙
+service iptables restart
+
 sudo /etc/init.d/nginx start    # 启动
 sudo /etc/init.d/nginx stop     # 停止
 sudo /etc/init.d/nginx restart  # 重启
@@ -219,3 +238,4 @@ service ngnix status #查看nginx服务的状态
 3. -t : 不显示时间戳.
 4. -s 0 : 抓取数据包时默认抓取长度为68字节。加上-s 0 后可以抓到完整的数据包.
 5. -w ./target.cap : 保存的文件名.
+

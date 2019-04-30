@@ -58,3 +58,17 @@ character-set-server=utf8
 
 其中，information_schema、mysql、performance_schema和sys是系统库，不要去改动它们。
 
+```sql
+-- 为root账户设置密码
+mysqladmin -u root password 'root'
+
+-- 设置远程使用
+-- root是用户名，%代表任意主机,'123456'指定的登录密码（这个和本地的root密码可以设置不同的，互不影响.
+grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;
+-- 重载系统权限
+flush privileges;
+exit;
+
+-- 验证使用,注意-proot，密码就是root,-ppassword, 密码就是password
+mysql -u root -proot
+```
