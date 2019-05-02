@@ -7,7 +7,7 @@
 	<name>Spring Annotations</name>
 
 	<properties>
-		<spring.framework>4.3.0.RELEASE</spring.framework>
+		<spring.framework>4.3.1.RELEASE</spring.framework>
 	</properties>
 
 	<dependencies>
