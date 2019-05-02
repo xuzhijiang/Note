@@ -16,7 +16,7 @@
 		我们还需要通过Jackson API支持Spring JSON的jackson-mapper-asl。
 	-->
 	<properties>
-		<spring.framework>4.3.1.RELEASE</spring.framework>
+		<spring.framework>4.3.17.RELEASE</spring.framework>
 		<spring.web>3.0.2.RELEASE</spring.web>
 		<serializer.version>2.8.1</serializer.version>
 	</properties>
