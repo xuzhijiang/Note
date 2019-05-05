@@ -2,42 +2,44 @@ package com.java.algorithm.sort.BubbleSort;
 
 import java.util.Arrays;
 
+// 比较是相邻的两个元素比较，交换也发生在这两个元素之间,所以是稳定的排序，也就是相同元素，相对位置不会发生变化.
+
+// 以降序为例:这个算法名字由来是因为越大的元素会经由交换慢慢“浮”到数列的末端
+
+// 冒泡排序就是把大元素往后调(或小元素)，如果有2个相等的元素，前后顺序是不会变化的，
+// 因为相同元素，我们肯定不会无聊的去交换位置。所以冒泡排序是一种稳定排序算法
+// (所谓稳定排序意思就是相同元素的前后相对位置不变).以[8, 5, 8, 4, 10]为例,第一个8永远相对于第二个8靠前.
 public class BubbleSort {
 
     public static void main(String[] args){
         int[] arr = new int[]{2, 1, 7, 9, 28, 23, 17, 100, 203};
-        System.out.println("排序之前: " + Arrays.toString(arr));
-        sort(arr, true);
-        System.out.println("由小到大结果: " + Arrays.toString(arr));
+        System.out.println("排序前: " + Arrays.toString(arr));
         sort(arr, false);
-        System.out.println("由大到小结果: " + Arrays.toString(arr));
+        System.out.println("升序排序: " + Arrays.toString(arr));
+        sort(arr, true);
+        System.out.println("将序排序: " + Arrays.toString(arr));
     }
 
-    /**
-     *
-     * @param arr 是否是升序(由小到大)
-     * @param asc
-     */
-    private static void sort(int[] arr, boolean asc){
-        for(int i=0;i<arr.length;i++){//一共要排(arr.length - 1)轮
-            for(int j=i+1;j<arr.length;j++){
-                if(asc){//由小到大排列
-                    if(arr[i] > arr[j]){//如果是大在前，小在后，所以要交换成小在前，大在后
-                        swap(arr, i, j);//第一轮排序完后的结果是，最小的在0的位置
+    public static void sort(int[] arr, boolean asc){
+        for(int i=0;i<arr.length;i++){
+            for(int j=0;j<arr.length-1-i;j++){
+                if(asc){
+                    if(arr[j] > arr[j+1]){
+                        swap(arr, j, j+1);
                     }
-                }else{//由大到小
-                    if(arr[i] < arr[j]){
-                        swap(arr, i, j);
+                }else{
+                    if(arr[j] < arr[j+1]){//如果前一个小于后一个，把前一个小的元素放到后面
+                        swap(arr, j, j+1);
                     }
                 }
             }
         }
     }
 
-    private static void swap(int[] arr, int i, int j){
-        int tmp = arr[i];
+    public static void swap(int[] arr, int i, int j){
+        int temp = arr[i];
         arr[i] = arr[j];
-        arr[j] = tmp;
+        arr[j] = temp;
     }
 
 }

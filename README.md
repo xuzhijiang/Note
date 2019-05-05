@@ -66,7 +66,7 @@ redis实现分布式锁:https://www.jishuwen.com/d/2Btj
 
 ![红黑树](https://www.coursera.org/lecture/algorithms-part1/red-black-bsts-GZe13)
 
-![数据结构](http://www.xuetangx.com/)
+![数据结构和算法](http://www.xuetangx.com/courses/course-v1:TsinghuaX+30240184_2X+sp/about)
 
 
 引用: http://objcoding.com
