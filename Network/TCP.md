@@ -1,5 +1,4 @@
-
-## 1 三次握手(建立连接)
+## 三次握手(建立连接)
 
 ```
 SYN: synchronization(同步)
@@ -16,7 +15,7 @@ client      <----  SYN=1，seq=server_isn,ack=client_isn+1      server
 3. 最后，客户端再发送一个ACK。当服务端受到这个ACK的时候，就完成了三路握手，并进入了连接创建状态。此时包序号seq被设定为收到的确认号A+1，而ack则为 B+1。
 client  SYN=0，seq=client_isn+1,ack=client_isn+1    ---->          server
 
-## 2 四次挥手(断开连接)
+## 四次挥手(断开连接)
 
 _注意: 中断连接端可以是client，也可以是server. 下面仅以客户端断开连接举例, 反之亦然._
 

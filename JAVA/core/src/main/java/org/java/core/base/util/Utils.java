@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Random;
 
 public class Utils {
 
@@ -28,7 +29,17 @@ public class Utils {
 //        String ip = resolveIp("www.baidu.com");
 //        System.out.println("ip of baidu: " + ip);
 
-        System.out.println(getMacAddr());
+//        System.out.println(getMacAddr());
+
+        testRandom();
+    }
+
+    static void testRandom() {
+        // 使用单个种子创建新的随机数生成器,
+        // 种子是伪随机数生成器的内部状态的初始值，它由方法{@link #next}维护。
+        Random random = new Random(1);
+        // 返回下一个伪随机数
+        System.out.println("随机获得一个int: " + random.nextInt());
     }
 
     /**

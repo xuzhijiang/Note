@@ -56,7 +56,7 @@ public class CountingSort {
      * @param k 数组中元素必须在[0,k)区间上
      * @return 指示排序后元素原序号的数组
      */
-    static int[] countingSortReturnOrder(int[] A, int k) {
+    public static int[] countingSortReturnOrder(int[] A, int k) {
         //辅助数组
         int[] C = new int[k];
         int[] O = new int[A.length];

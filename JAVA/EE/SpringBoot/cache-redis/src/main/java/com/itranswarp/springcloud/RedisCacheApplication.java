@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Spring Boot Application using Spring Cache.
+ * 官方建议是使用Jedis，J 代表的就是Java，来操作redis.
+ * pom.xml中的spring-boot-starter-data-redis最终引用的就是jedis.
+ * 即:
+ * <groupId>redis.clients</groupId>
+ * <artifactId>jedis</artifactId>
  */
 @SpringBootApplication
 @RestController

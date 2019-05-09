@@ -82,6 +82,7 @@ top
 
 # 查看所有的环境变量值
 env
+printenv
 
 # 对比windows下查看GRADLE_HOME: echo %GRADLE_HOME%
 
@@ -216,6 +217,7 @@ shell中针对一个script.sh脚本，使用`. script.sh`, `bash script.sh`, `so
 
 ```shell
 # linux默认是不能访问8080端口的，所以要手动打开
+# 如何打开某个指定端口
 
 # 打开后，重启防火墙
 service iptables restart
@@ -227,6 +229,9 @@ sudo service nginx start
 sudo service nginx stop
 sudo service nginx restart
 service ngnix status #查看nginx服务的状态
+
+# 关闭防火墙
+service iptables stop
 ```
 
 ### tcpdump
