@@ -7,7 +7,7 @@ import java.util.List;
  * 
  *  我们可  对泛型类或接口进行子类型化  通过extends或implementing它。
  * 
- *  ArrayList<E> implements List<E> that extends Collection<E>,
+ *  ArrayListSource<E> implements List<E> that extends Collection<E>,
  *  因此ArrayList <String>是List <String>的子类型，
  * List <String>是Collection <String>的子类型。
  *

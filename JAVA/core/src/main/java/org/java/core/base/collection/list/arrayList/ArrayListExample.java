@@ -43,7 +43,7 @@ public class ArrayListExample {
 		System.out.println("Letters list contains E ? "+letters.contains("E"));
 		System.out.println("Letters list contains Z ? "+letters.contains("Z"));
 		
-		//ensureCapacity example, it's ArrayList method, so object should be defined like below.
+		//ensureCapacity example, it's ArrayListSource method, so object should be defined like below.
 		ArrayList<String> tempList = new ArrayList<>();
 		tempList.ensureCapacity(1000);
 		
@@ -78,7 +78,7 @@ public class ArrayListExample {
 		System.out.println("letters elements after retainAll operation: "+letters);
 		
 		//size example
-		System.out.println("letters ArrayList size = "+letters.size());
+		System.out.println("letters ArrayListSource size = "+letters.size());
 		
 		//set example
 		letters.set(2, "D");

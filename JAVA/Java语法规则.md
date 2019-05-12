@@ -396,3 +396,10 @@ Timer 是内部是单一线程，而 ScheduledThreadPoolExecutor 内部是个线
 素数/质数
 
 斐波那契数列
+
+// 继承的这些接口是干啥的.
+public class ArrayList<E> extends AbstractList<E>
+    implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+{}
+
+相关：StringBuffer与StringBuilder

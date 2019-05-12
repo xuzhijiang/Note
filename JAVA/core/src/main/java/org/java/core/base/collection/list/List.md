@@ -1,6 +1,6 @@
-### List：有序的可重复的Collection
+## List
 
-使用此接口能够精确的控制每一个元素插入的位置，可以通过索引来访问List中的元素。
+List接口是`有序的可重复的`集合，可以通过索引来访问List中的元素,list内部维护了一个动态数组，当数组满了，再次插入数据到list当中的时候，list会自动扩容。使用List接口能够精确的控制每一个元素插入的位置。
 
 * ArrayList采用数组实现，数组的访问速度要比链表快，所以ArrayList更适合查询操作，
 * LinkedList采用链表实现，插入和删除的效率要高于数组，
@@ -22,20 +22,6 @@ classes are present in java.util and java.util.concurrent package.
 Java1.5提出了线程安全的集合类，允许当迭代它的时候修改集合，他们中的一些是CopyOnWriteArrayList, ConcurrentHashMap, 
 CopyOnWriteArraySet, 这些类是在java.util.concurrent保重，所有的这些集合类都存在于java.util和java.util.concurrent包中.
 
-#### 1.ArrayList
-由数组方式实现数据存储，当然数组的访问速度比链表快。源码如下：
-```java
-public class ArrayList<E> extends AbstractList<E>
-    implements List<E>, RandomAccess, Cloneable, java.io.Serializable
-{
-private static final long serialVersionUID = 8683452581122892189L;
-
-/**
-    * The array buffer into which the elements of the ArrayList are stored.
-    * The capacity of the ArrayList is the length of this array buffer.
-    */
-private transient Object[] elementData;
-```
 ### LinkedList
 
 由连接实现数据的存储，随机添加和删除元素的的操作的效率要高于数组，简单说就更适用于频繁的插入和实现操作。
