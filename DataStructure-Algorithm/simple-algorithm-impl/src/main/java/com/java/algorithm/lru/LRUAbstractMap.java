@@ -128,6 +128,75 @@ public class LRUAbstractMap extends java.util.AbstractMap {
         return null ;
     }
 
+    @Override
+    public Object get(Object key) {
+        int hash = hash(key);
+        int index = hash % arraySize;
+        Node currentNode = (Node) arrays[index];
+
+        if (currentNode == null) {
+            return null;
+        }
+
+        if (currentNode.next == null) {
+            // 更新访问时间
+            currentNode.setUpdateTime(System.currentTimeMillis());
+
+            // 没有冲撞
+            return currentNode;
+        }
+
+        Node nNode = currentNode;
+        while (nNode.next != null) {
+
+            if (nNode.key == key) {
+                // 更新访问时间
+                nNode.setUpdateTime(System.currentTimeMillis());
+                return nNode;
+            }
+
+            nNode = nNode.next;
+        }
+
+        return super.get(key);
+    }
+
+    @Override
+    public Object remove(Object key) {
+        int hash = hash(key);
+        int index = hash % arraySize;
+        Node currentNode = (Node) arrays[index];
+
+        if (currentNode == null) {
+            return null;
+        }
+
+        if (currentNode.key == key) {
+            sizeDown();
+            arrays[index] = null;
+
+            // 移除队列
+            QUEUE.poll();
+            return currentNode;
+        }
+
+        Node nNode = currentNode ;
+        while (nNode.next != null){
+            if (nNode.key == key){
+                sizeDown();
+                //在链表中找到了 把上一个节点的 next 指向当前节点的下一个节点
+                nNode.pre.next = nNode.next ;
+                nNode = null ;
+                //移除队列
+                QUEUE.poll();
+                return nNode;
+            }
+            nNode = nNode.next ;
+        }
+
+        return super.remove(key);
+    }
+
     /**
      * 增加size
      */
