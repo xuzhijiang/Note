@@ -36,6 +36,14 @@ wiki上就是这么定义哈希表的：
 Java中的HashMap采用的冲突解决方法是使用单独链表法，如下图所示：
 https://raw.githubusercontent.com/fangjian0423/blogimages/master/images/hashmap01.png
 
+    
+  有2个重要的特性影响着HashMap的性能，分别是capacity(容量)和load factor(加载因子)。
+  <p>
+  其中capacity表示哈希表bucket的数量，HashMap的默认值是16。load factor加载因子表示
+  当一个map的实际大小达到了bucket的这个比例之后，和ArrayList一样，
+  将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，
+  并将原来的对象放入新的bucket数组中。这个过程也叫做再哈希。默认的load factor为0.75 。
+  
 ### 特点
 
 Java Map对象用于存储键值映射。 Map不能包含重复键.

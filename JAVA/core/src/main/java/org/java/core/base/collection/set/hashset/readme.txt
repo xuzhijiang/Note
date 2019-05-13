@@ -1,10 +1,14 @@
-Java HashSet是Set接口最流行的实现。 java.util.HashSet由HashMap支持。 
+Set是一个没有包括重复数据的集合，跟List一样，他们都继承自Collection
+
+Java中的Set接口最主要的实现类就是HashSet和LinkedHashSet。
+
+Java HashSet是Set接口最流行的实现。 java.util.HashSet由HashMap支持。
 HashSet extends AbstractSet类并实现了Set，Cloneable和Serializable接口。
 
 public class HashSet<E> extends AbstractSet<E>
 implements Set<E>, Cloneable, java.io.Serializable{}
 
-Java中HashSet的一些重要观点是：
+Java中HashSet的一些重要观点是:
 
 HashSet不允许重复条目。
 HashSet允许null作为值。

@@ -10,7 +10,10 @@ import java.util.Set;
 public class MapExample {
 
 	public static void main(String[] args) {
+		// test01();
+	}
 
+	static void test01() {
 		Map<String, String> data = new HashMap<>();
 
 		data.put("A", "A"); // put example
@@ -51,7 +54,5 @@ public class MapExample {
 
 		data.clear();
 		System.out.println("data map is empty =" + data.isEmpty());
-
 	}
-
 }

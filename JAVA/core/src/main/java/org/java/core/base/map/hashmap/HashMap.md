@@ -4,7 +4,7 @@
 根据hash算法来计算entry(key-value)的存储位置.一个key-value对，就是一个Entry,所有的Entry是用Set存放，不可重复.
 HashMap中key用Set来存放，key不允许重复，value是用Collection存放，可重复.
 
-* 允许使用null值和null键,非同步
+* HashMap中的key和value都可以为null，且它的方法都没有synchronized。 其他方法的实现大部分跟HashTable一致
 * 不保证映射的顺序,HashMap不是有序集合。您可以通过keys set迭代HashMap条目(entries)，
 但不保证它们按照它们添加到HashMap的顺序。
 * HashMap几乎与Hashtable类似，只是它不同步并允许null键和值。
