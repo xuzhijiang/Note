@@ -16,3 +16,6 @@ JDK中的适配器设计模式示例:
 java.util.Arrays#asList()
 java.io.InputStreamReader(InputStream) (returns a Reader)
 java.io.OutputStreamWriter(OutputStream) (returns a Writer)
+
+-----------------------------------------------
+

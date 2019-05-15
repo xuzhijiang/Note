@@ -2,6 +2,16 @@ package com.java.datastructure.heap;
 
 import java.util.Arrays;
 
+/**
+* 当不加限定时，堆通常指的就是二叉堆,
+二叉堆是一种特殊的堆，是一棵完全二叉树或者是近似完全二叉树.
+
+同时二叉堆还满足堆的特性：父节点的键值总是保持固定的有序关系于
+任何一个子节点的键值，且每个节点的左子树和右子树都是一个二叉堆。
+
+当父节点的键值总是大于或等于任何一个子节点的键值时为最大堆。 
+当父节点的键值总是小于或等于任何一个子节点的键值时为最小堆。
+*/
 public class Heap {
 
     public static void main(String[] args) {
@@ -33,7 +43,7 @@ public class Heap {
     public static Heap buildMaxHeap(int[] arr) {
         Heap heap = new Heap(arr);
         // i的起始值为数组的中间元素
-        for (int i = heap.size / 2 - 1; i >= 0; i--) {
+        for (int i = heap.size / 2 - 1; i >= 0; i--) {// 最后一个非叶子节点开始调整
             heap.maxHeapify(i);
         }
         return heap;
@@ -58,9 +68,10 @@ public class Heap {
         if (rightChildIndex < size && arr[rightChildIndex] > arr[largest]) {
             largest = rightChildIndex;
         }
+         // 左右子节点的值存在比父节点的值更大
         if (largest != currentNodeIndex) {
-            swap(arr, currentNodeIndex, largest);
-            maxHeapify(largest);
+            swap(arr, currentNodeIndex, largest);// 交换值
+            maxHeapify(largest);// 递归调整
         }
     }
 

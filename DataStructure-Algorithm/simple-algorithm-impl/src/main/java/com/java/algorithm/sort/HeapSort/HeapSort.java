@@ -14,8 +14,10 @@ public class HeapSort {
     }
 
     static void sort(int[] arr) {
+        // 构造成最大堆
         Heap heap = Heap.buildMaxHeap(arr);
         for (int i = heap.arr.length - 1; i >= 1; i--) {
+            // 先交换堆顶元素和无序区最后一个元素
             swap(heap.arr, i, 0);
             heap.size--;
             heap.maxHeapify(0);
