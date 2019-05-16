@@ -1,18 +1,5 @@
 ## LINUX
 
-### linux系统下bin的差异
-
-1. sbin: The 's' in sbin means 'system'. Therefore, system binaries reside in sbin directories.
-2. /bin: /bin和/sbin,用于在mounted较大的分区例如/usr等分区之前需要的在小的分区上使用的二进制命令，
-目前，它主要用作关键程序(如/bin/sh）的标准位置，以及需要在单用户模式下可用的基本命令二进制文件.
-3. /usr/bin: 普通用户程序.(由包`管理器`管理的二进制程序)
-4. /usr/sbin: /usr/sbin与/usr/bin具有相同的关系，和/sbin与/bin一样。
-5. /usr/local/bin(安装需要的权限:superuser (root) privileges required.): 用于不由`包管理器`管理的普通用户程序，例如，本地编译的包(例如使用make编译，并且使用make install安装到/usr/local/bin下的redis本地包的本地编译包)。 您不应将它们安装到/usr/bin中，因为将来在`包管理器`管理升级它所管理的软件包的时候，可能会在没有警告的情况下修改或删除它们。
-6. /usr/local/sbin/
-
->/sbin: /sbin，与/bin不同，用于mount /usr等分区之前所需的系统管理程序(普通用户通常不使用）,基本系统二进制文件(system bin),
-superuser (root) privileges required(要求超级用户权限).
-
 ### linux系统下/etc/profile.d和/etc/profile的关系
 
 以配置java环境变量为例(这里只是按照jdk的一种方式而已，还有很多种方式，例如可以直接通过系统的yum包管理器去安装，或者通过rpm软件包管理器自动安装,我们这里是手动从oracle官网上下载rpm软件包，然后手动配置jdk的path),在/etc/profile.d/创建java.sh，然后输入:
@@ -28,6 +15,8 @@ export PATH=$PATH:$JAVA_HOME/bin
 ### RedHat命令
 
 ```shell
+# yum 主要功能是更方便的添加/删除/更新RPM 包，自动解决包的倚赖性问题，便于管理大量系统的更新问题。
+
 # 查看Linux内核版本命令
 cat /proc/version
 
@@ -37,7 +26,8 @@ lsb_release -a
 
 cat /etc/issue
 
-cat /etc/redhat-release(这种方法只适合Redhat系的Linux)
+# 这种方法只适合Redhat系的Linux(可以看到Centos的版本是哪个)
+cat /etc/redhat-release
 
 # centos安装wget, -y: answer yes for all questions.
 yum -y install wget
@@ -56,10 +46,7 @@ ls -l | grep 'sh'
 # 建立链接
 ln
 
-# 检查磁盘分区:
-fdisk -l
-
-# 检查硬盘使用情况
+# 查看硬盘的大小以及使用情况
 df -T -h
 
 # 挂载软硬光区
@@ -75,10 +62,7 @@ umount -a
 kill -9 进程ID号
 
 # 查看内存的使用情况
-free
-
-# 查看cpu的使用情况
-top
+free -h
 
 # 查看所有的环境变量值
 env
@@ -105,7 +89,7 @@ yum update/upgrade
 # 显示软件包依赖关系
 yum deplist
 
-#列出和java相关的所有包的列表(不是本机安装的): 
+# 列出和java相关的所有包(这些包不是本机安装的，而是网络上的): 
 yum search java | grep 'java-'
 
 # 安装包括javac,jre在内的java相关包
@@ -133,12 +117,6 @@ vi /etc/hosts
 vi /etc/sysconfig/network
 修改其中的HOSTNAME项，不过此种方法需要重启后生效.
 
-# 查看某一个进程的cpu使用率
-top -p pid
-
-# 检查一个redis是否运行
-ps -ef | grep redis
-
 # 查看文件，包括隐藏文件
 ls -alh
 
@@ -160,79 +138,24 @@ apt-get install nginx
 ### Unix常用命令
 
 ```shell
-# 查看当前用户
-who i am
-
 # 查看java的位置
 whereis java
-
-du -d 1 -h # show the size of the current directory
 
 netstat -tlpn | grep 800 # Check that the chosen port is already in use.
 
 mkdir -p dirname # recursively create directory.
 
-lsof -i TCP:80 #see what application is listening on port 80
-
-通过vmstat命令查看当前操作系统每秒的上下文切换次数:命令"vmstat 1 10"的含义是：每个1秒统计一次，统计10次后结束。其中cs那一列表示的就是上下文切换次数,cs是context switch的简写
+# 通过vmstat命令查看当前操作系统每秒的上下文切换次数:命令"vmstat 1 10"的含义是：每个1秒统计一次，统计10次后结束。其中cs那一列表示的就是上下文切换次数,cs是context switch的简写
 
 # 创建符号链接,create a symlink at /usr/bin/bar which references the original file /opt/foo
-
-`ln -s /opt/foo /usr/bin/bar`
+ln -s /opt/foo /usr/bin/bar
 ```
 
 ### shell脚本
 
-```shell
-# 每隔1s打印出来前5个占用cpu的信息
-while true;do top -t -m 5;sleep 1;done
-```
-
 [shell script guide](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
 
 shell中针对一个script.sh脚本，使用`. script.sh`, `bash script.sh`, `source script.sh`效果都是一致的
-
-### Vi命令
-
-```shell
-# 取消行号显示
-:set nonu
-
-# 设置行号
-:set nu
-
-# 将修改另外保存到file中，不退出vi
-:w file
-
-# linux下paste code对齐命令:
-# 按v，然后上下键，然后按=
-```
-
-### 安装Nginx
-
-1. 所有的配置文件都在 /etc/nginx下；
-2. 启动程序文件在 /usr/sbin/nginx下；
-3. 日志文件在 /var/log/nginx/下，分别是access.log和error.log；
-4. 并且在/etc/init.d下创建了启动脚本nginx。
-
-```shell
-# linux默认是不能访问8080端口的，所以要手动打开
-# 如何打开某个指定端口
-
-# 打开后，重启防火墙
-service iptables restart
-
-sudo /etc/init.d/nginx start    # 启动
-sudo /etc/init.d/nginx stop     # 停止
-sudo /etc/init.d/nginx restart  # 重启
-sudo service nginx start
-sudo service nginx stop
-sudo service nginx restart
-service ngnix status #查看nginx服务的状态
-
-# 关闭防火墙
-service iptables stop
-```
 
 ### tcpdump
 
@@ -243,4 +166,3 @@ service iptables stop
 3. -t : 不显示时间戳.
 4. -s 0 : 抓取数据包时默认抓取长度为68字节。加上-s 0 后可以抓到完整的数据包.
 5. -w ./target.cap : 保存的文件名.
-
