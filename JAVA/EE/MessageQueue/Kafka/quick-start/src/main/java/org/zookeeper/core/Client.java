@@ -3,13 +3,11 @@ package org.zookeeper.core;
 import org.rmi.core.service.HelloService;
 
 // 调用服务
-//
+
 // 通过调用 ServiceConsumer 的 lookup() 方法来查找 RMI 远程服务对象。
 // 我们使用一个“死循环”来模拟每隔 3 秒钟调用一次远程方法。
-
-
 /**
- * 使用方法根据以下步骤验证 RMI 服务的高可用性：
+ *  使用方法根据以下步骤验证 RMI 服务的高可用性：
  *
  * 	1. 运行两个 Server 程序，一定要确保 port 是不同的。
  *
@@ -27,10 +25,14 @@ public class Client {
         ServiceConsumer consumer = new ServiceConsumer();
 
         while (true ) {
+            /**
+             * 通过调用 ServiceConsumer 的 lookup() 方法来查找 RMI 远程服务对象。
+             * 我们使用一个“死循环”来模拟每隔 3 秒钟调用一次远程方法。
+             */
             HelloService helloService = consumer .lookup();
             String result = helloService .sayHello("Jack");
-            System. out.println(result );
-            Thread. sleep(3000);
+            System.out.println(result );
+            Thread.sleep(3000);
         }
     }
 }

@@ -19,7 +19,7 @@ lsof -i
 lsof -i tcp
 
 # 列出谁在使用某个端口
-lsof -i :3306
+lsof -i:3306
 
 # 列出某个用户的所有活跃的网络端口
 lsof -a -u test -i

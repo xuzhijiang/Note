@@ -16,11 +16,13 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ThreadLocalRandom;
 
 // 服务消费者
-//
+
 // 服务消费者需要在创建的时候连接 ZooKeeper，同时监听 /registry 节点的 NodeChildrenChanged 事件，
-// 也就是说，一旦该节点的子节点有变化，就需要重新获取最新的子节点。这里提到的子节点，就是存放服务提供者发布的 RMI 地址。
-//
-// 需要强调的是，这些子节点都是临时性的，当服务提供者与 ZooKeeper 服务注册表的 Session 中断后，该临时性节会被自动删除。
+// 也就是说，一旦该节点的子节点有变化，就需要重新获取最新的子节点。这里提到的子节点，
+// 就是存放服务提供者发布的 RMI 地址。
+
+// 需要强调的是，这些子节点都是临时性的，当服务提供者与 ZooKeeper 服务注册表的 Session 中断后，
+// 该临时性节会被自动删除。
 public class ServiceConsumer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceConsumer. class);
@@ -49,7 +51,7 @@ public class ServiceConsumer {
                 url = urlList .get(0); // 若 urlList 中只有一个元素，则直接获取该元素
                 LOGGER.debug("using only url: {}" , url );
             } else {
-                url = urlList.get(ThreadLocalRandom.current().nextInt( size)); // 若 urlList 中存在多个元素，则随机获取一个元素
+                url = urlList.get(ThreadLocalRandom.current().nextInt(size)); // 若 urlList 中存在多个元素，则随机获取一个元素
                 LOGGER.debug("using random url: {}" , url );
             }
             service = lookupService( url); // 从 JNDI 中查找 RMI 服务

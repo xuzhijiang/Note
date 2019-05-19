@@ -58,8 +58,15 @@ umount /mnt/目录名
 # 解除所有挂载(此命令慎用)
 umount -a
 
-# 终止进程
+# 列出所有信号名称：
+kill -l
+
+# 终止进程,只有第9种信号(SIGKILL-强制终止)
+# 才可以无条件终止进程，其他信号进程都有权利忽略
 kill -9 进程ID号
+
+# 先用ps查找进程，然后用kill杀掉：
+# ps -ef | grep vim
 
 # 查看内存的使用情况
 free -h
@@ -142,6 +149,9 @@ apt-get install nginx
 whereis java
 
 netstat -tlpn | grep 800 # Check that the chosen port is already in use.
+
+# 查看端口的监听状态
+netstat -tulnp
 
 mkdir -p dirname # recursively create directory.
 

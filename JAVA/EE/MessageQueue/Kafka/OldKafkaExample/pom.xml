@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.kafka.core</groupId>
+    <artifactId>Old-Kafka-Example</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <!-- 指定源码编码方式UTF-8 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 指定源码/class为1.8 -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- 指定虚拟机为Java 1.8 -->
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- 所谓Old API指的是在0.9版本之前的Kafka提供的Java 客户端API。
+        说实话，看了java版的api之后，你才会感觉到之前的基于scala写的API是有多么的不好用。
+        强烈建议，kafka都升级到0.9及以后版本！
+
+        因为kafka是使用scala开发的，artifactId中包含的"2.11"指的就是Scala的版本-->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.11</artifactId>
+            <version>0.9.0.0</version>
+        </dependency>
+
+    </dependencies>
+</project>
