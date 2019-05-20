@@ -1,55 +1,81 @@
-## Git
+## git常用命令
 
-添加远程仓库别名: `git remote add origin ~/git-server`
+```shell
+# 工作目录    ->     暂存区      ->      本地仓库      ->      远程仓库
 
-仅从暂存区删除: `git rm --cached filename`
+# 撤销暂存区的内容(从暂存区撤销到工作区),即由绿色变成红色字体
+git reset HEAD <文件>
 
-从暂存区和workdir删除: `git rm -f filename`
+# 丢弃工作区的改动(颜色由红色变成没有文件被改动)
+git checkout -- <文件>
 
-git commit -a -m "full commit"
+# 把工作区修改提交到暂存区
+git add <文件>
 
-`git log --pretty=oneline`
+# 将指针移动到commit-id(HEAD指向commit-id),将commit-id之后的修改
+# 只保留在工作目录(只有红色字体)
+git reset --mixed <commit-id>
 
-`git log --oneline`
+# 将指针移动到commit-id(HEAD指向commit-id).
+# 保留commit-id之后的修改到暂存区(只有绿色字体)
+git reset --soft <commit-id>
 
-master分支的内容会覆盖缓存区和工作区的相应文件，工作区和缓存区未提交的内容会丢失，慎重！(一般不要用): `git checkout HEAD -- <filename>`
+# 将指针移动到commit-id(HEAD指向commit-id).
+# commit-id之后的修改都会被遗弃(使用的时候要注意)
+git reset --hard <commit-id>
 
-查看某文件的修改记录: 
+# git stash可以保存目前的工作目录和暂存区返回到干净的工作空间
+git stash save "push to stash area"
 
-`git log -p <file>`
-    
-`git log <file>`
+# stash(藏，窝) 相当于一个栈，查看这个栈里面保存的内容
+git stash list
 
-### 分支操作
+# 把某一个点的内容还原到工作目录和暂存区
+git stash apply stash@{0}
+
+# 删除stash栈中的某一个点
+# 由于已经恢复了工作状态，可以把之前记录的对应的stash状态删除掉
+git stash drop stash@{0}
+
+# stash pop = stash apply + stash drop(捷径)
+# 把某一个点的内容还原到工作目录和暂存区并且把这个点从stash栈中删除
+git stash pop stash@{0}
+
+# 查看某文件的修改记录
+git log -p <file>
 
 创建一个分支: `git branch <branchName>`
 
 删除: `git branch -D <branchName>`
 
-显示左右的分支信息: `git branch -v`
+显示分支信息: git branch -v
 
-git checkout -b <branchname>
+创建一个新分支并且切换到此分支: git checkout -b <branchname>
 
 git checkout <reference>(commit id)
 
 git checkout -b issue-26
 
-
-
-git clean -df(还原)
-
-
-git cat-file -p HEAD 显示某一个具体对象的信息
+删除新添加的文件和文件夹: git clean -df
 
 git fetch 获取远程仓库的提交历史
 
-每次修改的文件列表: `git whatchanged`
+查看修改的文件: git whatchanged
 
 git whatchanged fileName
 
 git show commitid --stat
 
 git show commit-id filename
+
+仅从暂存区删除: `git rm --cached filename`
+
+从暂存区和工作目录删除: `git rm -f filename`
+
+`git log --pretty=oneline`
+
+`git log --oneline`
+```
 
 ### merge
 
@@ -104,45 +130,3 @@ git rebase是重演，而不是复制,这样提交历史就变的线性了，就
 不需要把feature上的所有的提交在master上重演,可以自己挑选需要重演的那个节点到master分支上: `git rebase --onto master 5751363`
 
 千万不要在公有分支上使用rebase，master分支就是一个例子.
-
-```shell
-# 工作目录    ->     暂存区      ->      本地仓库      ->      远程仓库
-
-# 撤销暂存区的内容(从暂存区撤销到工作区),即由绿色变成红色字体
-git reset HEAD <文件>
-
-# 丢弃工作区的改动(颜色由红色变成没有文件被改动)
-git checkout -- <文件>
-
-# 把工作区修改提交到暂存区
-git add <文件>
-
-# 将指针移动到commit-id(HEAD指向commit-id),将commit-id之后的修改
-# 只保留在工作目录(只有红色字体)
-git reset --mixed <commit-id>
-
-# 将指针移动到commit-id(HEAD指向commit-id).
-# 保留commit-id之后的修改到暂存区(只有绿色字体)
-git reset --soft <commit-id>
-
-# 将指针移动到commit-id(HEAD指向commit-id).
-# commit-id之后的修改都会被遗弃(使用的时候要注意)
-git reset --hard <commit-id>
-
-# git stash可以保存目前的工作目录和暂存区返回到干净的工作空间
-git stash save "push to stash area"
-
-# stash(藏，窝) 相当于一个栈，查看这个栈里面保存的内容
-git stash list
-
-# 把某一个点的内容还原到工作目录和暂存区
-git stash apply stash@{0}
-
-# 删除stash栈中的某一个点
-# 由于已经恢复了工作状态，可以把之前记录的对应的stash状态删除掉
-git stash drop stash@{0}
-
-# stash pop = stash apply + stash drop(捷径)
-# 把某一个点的内容还原到工作目录和暂存区并且把这个点从stash栈中删除
-git stash pop stash@{0}
-```

@@ -153,6 +153,9 @@ netstat -tlpn | grep 800 # Check that the chosen port is already in use.
 # 查看端口的监听状态
 netstat -tulnp
 
+# 通过netstat命令观察tcp的socket连接信息
+netstat -an | grep 220.181.57.216
+
 mkdir -p dirname # recursively create directory.
 
 # 通过vmstat命令查看当前操作系统每秒的上下文切换次数:命令"vmstat 1 10"的含义是：每个1秒统计一次，统计10次后结束。其中cs那一列表示的就是上下文切换次数,cs是context switch的简写
@@ -176,3 +179,16 @@ shell中针对一个script.sh脚本，使用`. script.sh`, `bash script.sh`, `so
 3. -t : 不显示时间戳.
 4. -s 0 : 抓取数据包时默认抓取长度为68字节。加上-s 0 后可以抓到完整的数据包.
 5. -w ./target.cap : 保存的文件名.
+
+### df
+
+```shell
+xuzhijiang@T2:/$ df -T -h
+文件系统        类型                            把文件系统挂载在哪个目录下
+Filesystem     Type      Size  Used Avail Use% Mounted on
+udev           devtmpfs   47G     0   47G   0% /dev
+/dev/sda3      ext4       22T  2.4T   19T  12% /
+tmpfs          tmpfs      47G     0   47G   0% /sys/fs/cgroup
+/dev/sda1      ext4      454M  139M  288M  33% /boot
+# 把/dev/sda3这块硬盘挂载到/下，也就是/下的内容都存放在/dev/sda3这块硬盘上.
+```
