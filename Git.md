@@ -75,6 +75,23 @@ git show commit-id filename
 `git log --pretty=oneline`
 
 `git log --oneline`
+
+# 配置用户名(--global: Setting your email address for every repository on your computer)
+git config --global user.name "John Doe"
+
+# 配置邮箱
+git config --global user.email johndoe@example.com
+
+# 查看用户名(without --global: for a single repository)
+git config user.name
+
+# 查看邮箱
+git config --global user.email
+
+# You can view all of your settings and 
+# where they are coming from using:
+# 查看git的配置(email,username等,以及在哪里配置)
+git config --list --show-origin
 ```
 
 ### merge

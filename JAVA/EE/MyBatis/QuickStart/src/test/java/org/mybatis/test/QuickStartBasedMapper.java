@@ -15,6 +15,16 @@ import java.io.InputStream;
 import java.util.List;
 
 // 基于Mapper接口的测试代码
+
+//可以通过以下方式获得UserMapper接口的动态代理对象
+//
+//SqlSession session = sqlSessionFactory.openSession();
+//try {
+//UserMapper mapper = session.getMapper(UserMapper.class);
+//User user= mapper.selectById(1);
+//} finally {
+//session.close();
+//}
 public class QuickStartBasedMapper {
 
     public static SqlSessionFactory sqlSessionFactory;
