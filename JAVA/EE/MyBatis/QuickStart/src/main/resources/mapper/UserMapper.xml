@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    <!--
-        mapper元素:
-
+    <!-- mapper元素说明:
         xml映射文件的根元素。namespace属性表示命名空间，不同的xml映射文件namespace必须不同。
         原因在于mybatis使用namespace.id的方式来唯一定位一个sql，id指的是<mapper>元素中内部包含对的
         insert、select、update、delete子元素中的id属性。
@@ -43,34 +41,32 @@
 
         不过我们还看到了，delete和select元素也配置了parameterType属性，
         这是因为在删除和查询的时候，我们也是需要指定条件的。
-        这两个元素指定parameterType类型都是int，对应java的包装数据类型Integer。-->
+        这两个元素(select和delete)指定parameterType类型都是int，对应java的包装数据类型Integer。-->
     <insert id="insert" parameterType="org.mybatis.core.model.User">
              INSERT INTO user(id,name,age) VALUES (#{id},#{name},#{age})
     </insert>
 
     <!--
         我们可以将<insert>、<select>中parameterType、resultType属性值直接指定为User，
-        即mybatis-config.xml中的typeAlias
+        即使用mybatis-config.xml中的typeAlias别名.
     -->
-
-    <select id="selectById" parameterType="int"
-            resultType="org.mybatis.core.model.User">
+    <select id="selectById" parameterType="int" resultType="User">
              SELECT id,name,age FROM user where id= #{id}
-       </select>
-    <!--
-        反向映射通过resultType或者resultMap属性指定，这两个属性只能出现在<select>元素中。
-        在UserMapper.xml配置中，只出现了resultType，resultMap我们将在之后讲解。
+    </select>
+
+    <!-- 反向映射通过resultType或者resultMap属性指定，这两个属性只能出现在<select>元素中。
+       在UserMapper.xml配置中，只出现了resultType，resultMap我们将在之后讲解。
 
        这里<select>元素配置的resultType属性值也是org.mybatis.core.model.User，
-       表示将数据库结果封装到这个类中。
+       表示将数据库结果封装到这个User类中。
 
-       resultType这种反向映射关系是基于数据库表字段与User类属性是完全对应的。
+       resultType这种反向映射关系是“基于数据库表字段”与“User类属性”是完全对应的。
        例如对于数据库id、name、age字段，会自动调用User类的、setId、setName、setAge方法进行设置。
        如果表字段与实体属性不能一一对应的话，如数据库表字段为username，
        但是java类中定义的属性为name，则无法进行映射。-->
     <select id="selectAll" resultType="org.mybatis.core.model.User">
              SELECT id,name,age FROM user;
-       </select>
+    </select>
 
     <select id="select" parameterType="hashmap" resultType="User">
       SELECT id,name,age FROM user

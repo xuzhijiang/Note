@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-
+// 基于Mapper接口的测试代码
 public class QuickStartBasedMapper {
 
     public static SqlSessionFactory sqlSessionFactory;

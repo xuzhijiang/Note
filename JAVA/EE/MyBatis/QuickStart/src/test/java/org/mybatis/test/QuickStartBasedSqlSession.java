@@ -14,21 +14,20 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-// 理解了SqlSession的用法之后，我们开始测试代码的编写。有两种使用方式：
+// 有两种使用方式：
 
-// 直接操作SqlSession的相关方法：这种方式是最基础的使用方式，但是对于理解mybatis的工作原理，
-// 却是最重要的，其他使用方式建立在这个基础上。
+// 1. 直接操作SqlSession的相关方法：这种方式是最基础的使用方式，但是对于理解mybatis的工作原理，
+// 却是最重要的，其他使用方式建立在这个基础上。(在实际开发中，直接使用SqlSession的情况越来越少，除非是老项目)
 
-// 通过Mapper接口。这是目前主流的使用方式。
+// 2. 通过Mapper接口。这是目前主流的使用方式。
 
-// 对于直接使用SqlSession可以帮助我们理解mybatis的内部工作原理，
-// 但是在实际开发中，直接使用SqlSession的情况越来越少，除非是老项目，
-// 或者老司机已经习惯了这种用法。
+// 测试代码基于junit框架编写
 public class QuickStartBasedSqlSession {
 
-    // 测试代码基于junit框架编写
     public static SqlSessionFactory sqlSessionFactory;
+
     public static String namespace = "org.mybatis.core.mapper.UserMapper";
+
     public SqlSession sqlSession;
 
     //通过SqlSessionFactoryBuilder构造SqlSessionFactory实例
@@ -69,6 +68,9 @@ public class QuickStartBasedSqlSession {
         assert user != null;
         System.out.println("id:" + user.getId() + ",name:" + user.getName() + ",age:" + user.getAge());
     }
+
+    // 注意:testSelectList和testSelectMap调用的都是UserMapper.xml文件中，
+    // id值为"selectAll"这个<select>元素中的sql。
 
     // 测试查询多条记录，并将结果封装到一个List中，调用sqlSession的selectList方法
     @Test

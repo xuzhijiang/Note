@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- cofiguration元素：全局配置文件的根元素，作为mybatis对配置进行解析的入口,注意这里面的标签是有顺序的-->
 <configuration>
-
     <!--
-        MyBatis的全局配置文件可以配置的属性如下
-
+        classpath下的MyBatis全局配置文件可以配置的属性如下:
         - properties 属性
         - settings 设置
         - typeAliases 类型别名
@@ -19,9 +18,6 @@
         - databaseIdProvider 数据库厂商标识
         - mappers 映射器
     -->
-
-    <!-- cofiguration元素：全局配置文件的根元素，作为mybatis对配置进行解析的入口,注意这里面的标签是有顺序的-->
-
 
     <settings>
         <!--logger公共前缀，value值随意，不过记得加上一个"."-->
@@ -49,7 +45,6 @@
     </typeAliases>
 
     <environments default="development">
-
         <!--environments元素：
             表示环境配置。在实际开发中，我们通常有多个环境，例如开发环境(development)、
             测试环境(test)、生产环境(production)等，不同的环境的配置都是不同的。
@@ -58,10 +53,8 @@
         -->
 
         <environment id="development">
-            <!--
-            environment元素：表示具体的某个环境，以id属性作为标识。
-            每个environment元素内部都必须要配置2个子元素：transactionManager和dataSource。
-            -->
+            <!-- environment元素：表示具体的某个环境，以id属性作为标识。
+                 每个environment元素内部都必须要配置2个子元素：transactionManager和dataSource。-->
 
             <!--transactionManager:事务管理器，属性type取值有2个，JDBC|MANAGED。
             其中：JDBC表示任何对数据库的修改操作，mybatis都会自动开启事务。
@@ -71,11 +64,12 @@
 
             <!--dataSource：表示数据源配置。这个更好理解，因为不同的环境中，
             我们访问的数据库url、username、password都是不同的，因此在每个environment元素下面都有
-            一个dataSource配置。属性type表示使用的数据源类型，取值有三个：UNPOOLED|POOLED|JNDI，
+            一个dataSource配置。
+
+            属性type表示使用的数据源类型，取值有三个：UNPOOLED|POOLED|JNDI，
             这里指定POOLED，表示使用mybatis自带的PooledDataSource。
             而dataSource内部通过property元素配置的属性，都是PooledDataSource支持的。
-            注意不同的数据源实现，可以配置的property是不同的。
-        -->
+            注意不同的数据源实现，可以配置的property是不同的。-->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver" />
                 <property name="url" value="jdbc:mysql://localhost:3306/mydb"/>
@@ -86,17 +80,13 @@
         </environment>
     </environments>
 
-    <mappers>
-        <mapper resource="mapper/UserMapper.xml"/>
-    </mappers>
-
     <!--mappers元素：
-
-       表示映射文件列表，前面提到通常我们针对数据库中每张表，都会建立一个映射文件。
+       表示映射文件列表，通常我们针对每张表，都会建立一个映射文件。
        而在mappers元素中，就通过mapper元素，列出了所有配置文件的路径。
+
        例如mapper元素可以通过以下属性指定映射文件的路径：
 
-       resource属性：表示映射文件位于classpath下。例如上面的配置中就表示在classpath的mappers目录下，
+       resource属性：表示映射文件位于classpath下。例如下面的配置表示在classpath的mappers目录下，
        有一个UserMapper.xml映射文件
 
        url属性：使用完全限定资源定位符指定映射文件路径，如file:///var/mappers/AuthorMapper.xml
@@ -108,5 +98,7 @@
 
        最常见的方式还是通过resource属性来指定。
     -->
-
+    <mappers>
+        <mapper resource="mapper/UserMapper.xml"/>
+    </mappers>
 </configuration>
