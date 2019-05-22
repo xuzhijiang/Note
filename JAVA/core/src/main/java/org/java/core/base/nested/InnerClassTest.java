@@ -8,7 +8,7 @@ public class InnerClassTest {
 	public static void main(String[] args) {
 		OuterClass outer = new OuterClass(1, 2, 3, 4);
 		
-		//static nested classes example
+		//static nested classes JdbcQuickStartExample
 		StaticNestedClass staticNestedClass = new StaticNestedClass();
 		StaticNestedClass staticNestedClass1 = new StaticNestedClass();
 		OuterClass.StaticNestedClass staticNestedClass2 = new OuterClass.StaticNestedClass();//另一种创建方式
@@ -22,7 +22,7 @@ public class InnerClassTest {
 		System.out.println(staticNestedClass.d);
 		System.out.println(staticNestedClass1.d);
 		
-		//inner class example
+		//inner class JdbcQuickStartExample
 		
 		//wrong demo of creating instance of InnerClass
 		//InnerClass innerClass = new InnerClass();

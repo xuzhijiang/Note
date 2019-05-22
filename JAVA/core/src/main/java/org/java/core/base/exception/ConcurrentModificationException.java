@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * µ±Ê±ÓÃJava¼¯ºÏÀàµÄÊ±ºò£¬java.util.ConcurrentModificationExceptionÊÇ·Ç³£
- * ³£¼ûµÄÒì³£, Java CollectionÀàÊÇ¿ìËÙÊ§°ÜµÄ£¬ÄÇ¸öÒâÎ¶×ÅÈç¹ûÔÚÄ³¸öÏß³ÌÊ¹ÓÃµü´úÆ÷±éÀúËüÊ±
- * ¶ÔËü×öĞŞ¸Ä£¬Ôòiterator.next()½«Å×³öConcurrentModificationExceptionÒì³££¬
+ * å½“æ—¶ç”¨Javaé›†åˆç±»çš„æ—¶å€™ï¼Œjava.util.ConcurrentModificationExceptionæ˜¯éå¸¸
+ * å¸¸è§çš„å¼‚å¸¸, Java Collectionç±»æ˜¯å¿«é€Ÿå¤±è´¥çš„ï¼Œé‚£ä¸ªæ„å‘³ç€å¦‚æœåœ¨æŸä¸ªçº¿ç¨‹ä½¿ç”¨è¿­ä»£å™¨éå†å®ƒæ—¶
+ * å¯¹å®ƒåšä¿®æ”¹ï¼Œåˆ™iterator.next()å°†æŠ›å‡ºConcurrentModificationExceptionå¼‚å¸¸ï¼Œ
  * 
  */
 public class ConcurrentModificationException {
@@ -45,9 +45,9 @@ public class ConcurrentModificationException {
 			String key = it1.next();
 			System.out.println("Map Value:" + myMap.get(key));
 			if (key.equals("2")) {
-				//²»»áÅ×Òì³£
+				//ä¸ä¼šæŠ›å¼‚å¸¸
 				myMap.put("1", "4");
-				// myMap.put("4", "4");//Èç¹û²»×¢ÊÍµô£¬»áÅ×Òì³£
+				// myMap.put("4", "4");//å¦‚æœä¸æ³¨é‡Šæ‰ï¼Œä¼šæŠ›å¼‚å¸¸
 			}
 		}
 	}

@@ -3,7 +3,7 @@ package org.java.core.base.map.hashmap;
 import java.util.HashMap;
 import java.util.Map;
 
-//A simple example for HashMap putIfAbsent method introduced in Java 8.
+//A simple JdbcQuickStartExample for HashMap putIfAbsent method introduced in Java 8.
 public class HashMapPutIfAbsentExample {
 
 	public static void main(String[] args) {

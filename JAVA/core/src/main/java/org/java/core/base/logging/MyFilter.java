@@ -12,7 +12,7 @@ public class MyFilter implements Filter{
 	@Override
 	public boolean isLoggable(LogRecord record) {
 		// don't log CONFIG logs in file
-		// 如果级别为Level.CONFIG,那么就不发布
+		// 濡傛灉绾у埆涓篖evel.CONFIG,閭ｄ箞灏变笉鍙戝竷
 		if (record.getLevel() == Level.CONFIG) return false;
 		return true;
 	}

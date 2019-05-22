@@ -4,17 +4,17 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * ÎªÁËÊ¹ÄúµÄÓ¦ÓÃ³ÌĞòÖ§³Ö²»Í¬µÄÓïÑÔ»·¾³£¬ÎÒÃÇĞèÒª´´½¨ÌØ¶¨ÓÚÓïÑÔ»·¾³µÄÊôĞÔÎÄ¼ş¡£
- * ,ÎÄ¼şÃû×ñÑ­°üÃû³ÆµÄÄ£Ê½£¬°üÀ¨ÓïÑÔ´úÂëºÍ¹ú¼Ò/µØÇø´úÂë£¬
- * ÀıÈçApplicationMessages_en_US.properties¡£
- * Ò»µ©ÌØ¶¨ÓïÑÔ»·¾³µÄÊôĞÔÎÄ¼ş×¼±¸¾ÍĞ÷£¬ÄúĞèÒª×öµÄ¾ÍÊÇÊ¹ÓÃÕıÈ·µÄLocale³õÊ¼»¯×ÊÔ´°ü¡£
- *  JavaÌá¹©ÁËÁ½¸öÓÃÓÚ´ËÄ¿µÄµÄjava.util.ResourceBundleºÍjava.util.LocaleÀà¡£
- *   ResourceBundle¶ÁÈ¡ÌØ¶¨ÓÚÓïÑÔ»·¾³µÄÊôĞÔÎÄ¼ş£¬Äú¿ÉÒÔ»ñÈ¡ÈÎºÎ¼üµÄÌØ¶¨ÓÚÓïÑÔ»·¾³µÄÖµ¡£
- *   Õâ¶ÔÓÚÊ¹ÄúµÄWebÓ¦ÓÃ³ÌĞòÎÄ±¾ÌØ¶¨ÓÚÇøÓòÉèÖÃ·Ç³£ÓĞÓÃ£¬Äú¿ÉÒÔ´ÓHTTPÇëÇó»ñÈ¡ÇøÓòÉèÖÃĞÅÏ¢²¢Éú
- *   ³É°üº¬¸ÃÇøÓòÉèÖÃ×ÊÔ´°üÎÄ¼şµÄ¶¯Ì¬Ò³Ãæ¡£
+ * ä¸ºäº†ä½¿æ‚¨çš„åº”ç”¨ç¨‹åºæ”¯æŒä¸åŒçš„è¯­è¨€ç¯å¢ƒï¼Œæˆ‘ä»¬éœ€è¦åˆ›å»ºç‰¹å®šäºè¯­è¨€ç¯å¢ƒçš„å±æ€§æ–‡ä»¶ã€‚
+ * ,æ–‡ä»¶åéµå¾ªåŒ…åç§°çš„æ¨¡å¼ï¼ŒåŒ…æ‹¬è¯­è¨€ä»£ç å’Œå›½å®¶/åœ°åŒºä»£ç ï¼Œ
+ * ä¾‹å¦‚ApplicationMessages_en_US.propertiesã€‚
+ * ä¸€æ—¦ç‰¹å®šè¯­è¨€ç¯å¢ƒçš„å±æ€§æ–‡ä»¶å‡†å¤‡å°±ç»ªï¼Œæ‚¨éœ€è¦åšçš„å°±æ˜¯ä½¿ç”¨æ­£ç¡®çš„Localeåˆå§‹åŒ–èµ„æºåŒ…ã€‚
+ *  Javaæä¾›äº†ä¸¤ä¸ªç”¨äºæ­¤ç›®çš„çš„java.util.ResourceBundleå’Œjava.util.Localeç±»ã€‚
+ *   ResourceBundleè¯»å–ç‰¹å®šäºè¯­è¨€ç¯å¢ƒçš„å±æ€§æ–‡ä»¶ï¼Œæ‚¨å¯ä»¥è·å–ä»»ä½•é”®çš„ç‰¹å®šäºè¯­è¨€ç¯å¢ƒçš„å€¼ã€‚
+ *   è¿™å¯¹äºä½¿æ‚¨çš„Webåº”ç”¨ç¨‹åºæ–‡æœ¬ç‰¹å®šäºåŒºåŸŸè®¾ç½®éå¸¸æœ‰ç”¨ï¼Œæ‚¨å¯ä»¥ä»HTTPè¯·æ±‚è·å–åŒºåŸŸè®¾ç½®ä¿¡æ¯å¹¶ç”Ÿ
+ *   æˆåŒ…å«è¯¥åŒºåŸŸè®¾ç½®èµ„æºåŒ…æ–‡ä»¶çš„åŠ¨æ€é¡µé¢ã€‚
  * there are some locales already defined but 
  * we can always create new locale by passing language code 
- * and country code to it¡¯s constructor.
+ * and country code to itâ€™s constructor.
  */
 public class JavaInternationalizationExample {
 	public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class JavaInternationalizationExample {
 			// Get resource bundle when Locale needs to be created
 			ResourceBundle bundleSWE = ResourceBundle.getBundle("ApplicationMessages", new Locale("sv", "SE"));
 
-			// Note: ÅäÖÃÎÄ¼şÒª·Åµ½srcÏÂÃæ£¬²»Òª·Åµ½ºÍµ±Ç°javaÎÄ¼şÍ¬¼¶Ä¿Â¼
+			// Note: é…ç½®æ–‡ä»¶è¦æ”¾åˆ°srcä¸‹é¢ï¼Œä¸è¦æ”¾åˆ°å’Œå½“å‰javaæ–‡ä»¶åŒçº§ç›®å½•
 			
 			// lets print some messages
 			printMessages(bundle);

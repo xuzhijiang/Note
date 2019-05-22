@@ -1,59 +1,59 @@
-Java HeapÓÉString PoolºÍ·ÇString PoolµÄ²¿·Ö×é³É£¬¼ûÍ¼:https://cdn.journaldev.com/wp-content/uploads/2012/11/String-Pool-Java1.png
+Java Heapç”±String Poolå’ŒéString Poolçš„éƒ¨åˆ†ç»„æˆï¼Œè§å›¾:https://cdn.journaldev.com/wp-content/uploads/2012/11/String-Pool-Java1.png
 
 A. Why String is immutable and final?
 
 0. Why String is immutable in java is one of the popular interview question,
 We know that String is immutable and final in java and java runtime maintains 
 a String pool that makes it a special class.
-ÎªÊ²Ã´ÔÚJavaÖĞStringÊÇ²»¿É±äµÄ£¿StringÔÚjavaÖĞÊÇfinalµÄ£¬²»¿É±äµÄ£¬JavaÔËĞĞÊ±Î¬»¤ÁËÒ»¸öString Pool
-Ê¹String³ÉÎªÒ»¸öÌØÊâµÄÀà.
+ä¸ºä»€ä¹ˆåœ¨Javaä¸­Stringæ˜¯ä¸å¯å˜çš„ï¼ŸStringåœ¨javaä¸­æ˜¯finalçš„ï¼Œä¸å¯å˜çš„ï¼ŒJavaè¿è¡Œæ—¶ç»´æŠ¤äº†ä¸€ä¸ªString Pool
+ä½¿Stringæˆä¸ºä¸€ä¸ªç‰¹æ®Šçš„ç±».
 
-Let¡¯s look at some benefits of String immutability, 
+Letâ€™s look at some benefits of String immutability, 
 that will help in understanding why String is immutable in java.
 
-1. String pool is possible (×Ö·û´®³ØÊÇ¿ÉÄÜµÄ)only because String is immutable in java(ÒòÎªStringÔÚjavaÖĞÊÇ²»¿É±äµÄ), 
-this way Java Runtime saves a lot of java heap space(¶Ñ¿Õ¼ä) because different 
+1. String pool is possible (å­—ç¬¦ä¸²æ± æ˜¯å¯èƒ½çš„)only because String is immutable in java(å› ä¸ºStringåœ¨javaä¸­æ˜¯ä¸å¯å˜çš„), 
+this way Java Runtime saves a lot of java heap space(å †ç©ºé—´) because different 
 String variables can refer to same String variable in the pool. If String
 would not have been immutable, then String interning would not have been 
-possible(Èç¹ûString²»ÊÇ²»¿É±äµÄ£¬ÄÇÃ´String interning¾Í²»¿ÉÄÜ) because
+possible(å¦‚æœStringä¸æ˜¯ä¸å¯å˜çš„ï¼Œé‚£ä¹ˆString interningå°±ä¸å¯èƒ½) because
 if any variable would have changed the value, it would 
 have been reflected to other variables also.
 
 2. If String is not immutable then it would cause severe security 
 threat to the application. For example, database username, password 
 are passed as String to get database connection and in socket programming
- host and port details passed as String. Since String is immutable it¡¯s 
- value can¡¯t be changed otherwise any hacker could change the referenced 
+ host and port details passed as String. Since String is immutable itâ€™s 
+ value canâ€™t be changed otherwise any hacker could change the referenced 
  value to cause security issues in the application.
-2.Èç¹û×Ö·û´®²»ÊÇ²»¿É±äµÄ£¬½«Ôì³ÉÑÏÖØµÄÍşĞ²µ½Ó¦ÓÃµÄ°²È«£¬ÀıÈç£¬
-Êı¾İ¿âÓÃ»§ÃûÃÜÂë×÷ÎªString´«µİÒÔ»ñÈ¡Êı¾İ¿âÁ¬½Ó,ÒÔ¼°ÔÚÌ×½Ó×Ö±à³ÌÖĞ£¬Ö÷»úºÍ¶Ë¿ÚºÅÏêÏ¸ĞÅÏ¢ÊÇ×÷Îª×Ö·û´®´«µİµÄ¡£
-ÒòÎª×Ö·û´®ÊÇ²»¿É±äµÄ£¬ËùÒÔËûµÄÖµÊÇ²»¿ÉÒÔ±»¸Ä±äµÄ£¬·ñÔòÈÎºÎºÚ¿Í¾Í¿ÉÒÔÍ¨¹ı¸Ä±ä±»ÒıÓÃµÄÖµ£¬Ôì³ÉÔÚÓ¦ÓÃÖĞµÄ°²È«ÎÊÌâ.
+2.å¦‚æœå­—ç¬¦ä¸²ä¸æ˜¯ä¸å¯å˜çš„ï¼Œå°†é€ æˆä¸¥é‡çš„å¨èƒåˆ°åº”ç”¨çš„å®‰å…¨ï¼Œä¾‹å¦‚ï¼Œ
+æ•°æ®åº“ç”¨æˆ·åå¯†ç ä½œä¸ºStringä¼ é€’ä»¥è·å–æ•°æ®åº“è¿æ¥,ä»¥åŠåœ¨å¥—æ¥å­—ç¼–ç¨‹ä¸­ï¼Œä¸»æœºå’Œç«¯å£å·è¯¦ç»†ä¿¡æ¯æ˜¯ä½œä¸ºå­—ç¬¦ä¸²ä¼ é€’çš„ã€‚
+å› ä¸ºå­—ç¬¦ä¸²æ˜¯ä¸å¯å˜çš„ï¼Œæ‰€ä»¥ä»–çš„å€¼æ˜¯ä¸å¯ä»¥è¢«æ”¹å˜çš„ï¼Œå¦åˆ™ä»»ä½•é»‘å®¢å°±å¯ä»¥é€šè¿‡æ”¹å˜è¢«å¼•ç”¨çš„å€¼ï¼Œé€ æˆåœ¨åº”ç”¨ä¸­çš„å®‰å…¨é—®é¢˜.
 
 3.Since String is immutable, it is safe for multithreading and a 
 single String instance can be shared across different threads. 
 This avoid the usage of synchronization for thread safety, 
 Strings are implicitly thread safe.
-ÒòÎª×Ö·û´®ÊÇ²»¿É±äµÄ£¬¶ÔÓÚ¶àÏß³ÌÊÇ°²È«µÄ£¬Ò»¸öµ¥¸öµÄ×Ö·û´®ÊµÀı¿ÉÒÔ¿ç²»Í¬µÄÏß³Ì·ÃÎÊ¡£
-Õâ¸ö¾Í±ÜÃâÁËÎªÁËÏß³Ì°²È«Ê¹ÓÃÍ¬²½£¬×Ö·û´®ÊÇÒşÊ½Ïß³Ì°²È«µÄ¡£
+å› ä¸ºå­—ç¬¦ä¸²æ˜¯ä¸å¯å˜çš„ï¼Œå¯¹äºå¤šçº¿ç¨‹æ˜¯å®‰å…¨çš„ï¼Œä¸€ä¸ªå•ä¸ªçš„å­—ç¬¦ä¸²å®ä¾‹å¯ä»¥è·¨ä¸åŒçš„çº¿ç¨‹è®¿é—®ã€‚
+è¿™ä¸ªå°±é¿å…äº†ä¸ºäº†çº¿ç¨‹å®‰å…¨ä½¿ç”¨åŒæ­¥ï¼Œå­—ç¬¦ä¸²æ˜¯éšå¼çº¿ç¨‹å®‰å…¨çš„ã€‚
 
 4. Strings are used in java classloader and immutability provides security 
 that correct class is getting loaded by Classloader. For example, think 
 of an instance where you are trying to load java.sql.Connection class 
 but the referenced value is changed to myhacked.Connection class that 
 can do unwanted things to your database.
-×Ö·û´®ÔÚJavaÀà¼ÓÔØÆ÷ÖĞÊ¹ÓÃ£¬²»¿É±äĞÔÌá¹©ÁËÕıÈ·µÄÀà¿ÉÒÔÕıÈ·±»¼ÓÔØµÄ°²È«±£ÕÏ¡£ÀıÈçÏëÒ»ÏÂÄãÕıÔÚ³¢ÊÔ
-È¥¼ÓÔØjava.sql.ConnectionÀàµÄÊµÀı£¬µ«ÊÇÒıÓÃµÄÖµ±»¸Ä³Émyhacked.ConnectionÀà£¬¿ÉÒÔ
-¶ÔÊı¾İ¿âÖ´ĞĞ²»Ïë×öµÄÊÂÇé.
+å­—ç¬¦ä¸²åœ¨Javaç±»åŠ è½½å™¨ä¸­ä½¿ç”¨ï¼Œä¸å¯å˜æ€§æä¾›äº†æ­£ç¡®çš„ç±»å¯ä»¥æ­£ç¡®è¢«åŠ è½½çš„å®‰å…¨ä¿éšœã€‚ä¾‹å¦‚æƒ³ä¸€ä¸‹ä½ æ­£åœ¨å°è¯•
+å»åŠ è½½java.sql.Connectionç±»çš„å®ä¾‹ï¼Œä½†æ˜¯å¼•ç”¨çš„å€¼è¢«æ”¹æˆmyhacked.Connectionç±»ï¼Œå¯ä»¥
+å¯¹æ•°æ®åº“æ‰§è¡Œä¸æƒ³åšçš„äº‹æƒ….
 
 5. ince String is immutable, its hashcode is cached at the time of creation 
-and it doesn¡¯t need to be calculated again. This makes it a great 
-candidate for key in a Map and it¡¯s processing is fast than other 
+and it doesnâ€™t need to be calculated again. This makes it a great 
+candidate for key in a Map and itâ€™s processing is fast than other 
 HashMap key objects. This is why String is mostly used Object as HashMap keys.
-ÒòÎªStringÊÇ²»¿É±äµÄ£¬ËüµÄhashcodeÊÇÔÚ´´½¨µÄÊ±ºò±»»º´æ£¬Ëü²»ĞèÒªÔÙ´Î±»¼ÆËã£¬String×÷ÎªHashMapµÄkey£¬´¦ÀíËÙ¶È±ÈÆäËûobjects×÷ÎªkeyËÙ¶È
-Òª¿ìºÜ¶à£¬Õâ¾ÍÊÇÎªÊ²Ã´ºÜ¶àÊ±ºò½«Ëü×÷ÎªHashMapµÄkey¡£
+å› ä¸ºStringæ˜¯ä¸å¯å˜çš„ï¼Œå®ƒçš„hashcodeæ˜¯åœ¨åˆ›å»ºçš„æ—¶å€™è¢«ç¼“å­˜ï¼Œå®ƒä¸éœ€è¦å†æ¬¡è¢«è®¡ç®—ï¼ŒStringä½œä¸ºHashMapçš„keyï¼Œå¤„ç†é€Ÿåº¦æ¯”å…¶ä»–objectsä½œä¸ºkeyé€Ÿåº¦
+è¦å¿«å¾ˆå¤šï¼Œè¿™å°±æ˜¯ä¸ºä»€ä¹ˆå¾ˆå¤šæ—¶å€™å°†å®ƒä½œä¸ºHashMapçš„keyã€‚
 
 Above are some of the reasons I could think of that 
-shows benefits of String immutability. It¡¯s a great feature 
+shows benefits of String immutability. Itâ€™s a great feature 
 of Java String class and makes it special.
 
 B. What is Java String Pool?(https://www.journaldev.com/797/what-is-java-string-pool)
@@ -62,51 +62,51 @@ As the name suggests, String Pool in java is a pool of Strings
 stored in Java Heap Memory. We know that String is special class
 in java and we can create String object using new operator as well as 
 providing values in double quotes.
-ÈçÍ¬Ãû×ÖËùÕ¹Ê¾µÄ£¬String PoolÔÚJavaÖĞÊÇ´æ´¢ÔÚJava¶ÑÄÚ´æÖĞ×Ö·û´®³Ø,ÎÒÃÇÖªµÀStringÔÚJavaÖĞ
-ÊÇÌØÊâµÄÀà£¬ÎÒÃÇ¿ÉÒÔÓÃnew²Ù×÷·û´´½¨×Ö·û´®£¬Ò²¿ÉÒÔÓÃË«ÒıºÅ´´½¨String
+å¦‚åŒåå­—æ‰€å±•ç¤ºçš„ï¼ŒString Poolåœ¨Javaä¸­æ˜¯å­˜å‚¨åœ¨Javaå †å†…å­˜ä¸­å­—ç¬¦ä¸²æ± ,æˆ‘ä»¬çŸ¥é“Stringåœ¨Javaä¸­
+æ˜¯ç‰¹æ®Šçš„ç±»ï¼Œæˆ‘ä»¬å¯ä»¥ç”¨newæ“ä½œç¬¦åˆ›å»ºå­—ç¬¦ä¸²ï¼Œä¹Ÿå¯ä»¥ç”¨åŒå¼•å·åˆ›å»ºString
 
 Here is a diagram which clearly explains how String Pool is maintained 
 in java heap space and what happens when we use different ways to create Strings.
 
-String Pool is possible only because String is immutable in Java ×Ö·û³ØÊÇ¿ÉÄÜµÄÖ»ÒòÎªString
-ÔÚjavaÖĞÊÇ²»¿É±äµÄ.
+String Pool is possible only because String is immutable in Java å­—ç¬¦æ± æ˜¯å¯èƒ½çš„åªå› ä¸ºString
+åœ¨javaä¸­æ˜¯ä¸å¯å˜çš„.
 
 String pool helps in saving a lot of space for Java Runtime 
-although it takes more time to create the String.(×Ö·û³ØÔÚJavaÔËĞĞÊ±°ïÖú½ÚÊ¡
-ÁË²»ÉÙ¿Õ¼ä£¬¾¡¹ÜĞèÒª»¨·Ñ¸ü¶àµÄÊ±¼äÈ¥´´½¨×Ö·û´®)
+although it takes more time to create the String.(å­—ç¬¦æ± åœ¨Javaè¿è¡Œæ—¶å¸®åŠ©èŠ‚çœ
+äº†ä¸å°‘ç©ºé—´ï¼Œå°½ç®¡éœ€è¦èŠ±è´¹æ›´å¤šçš„æ—¶é—´å»åˆ›å»ºå­—ç¬¦ä¸²)
 
 When we use double quotes to create a String, it first looks for String with same value 
 in the String pool, if found it just returns the reference else 
 it creates a new String in the pool and then returns the reference.
-ÎÒÃÇÓÃË«ÒıºÅ´´½¨×Ö·û´®µÄÊ±ºò£¬Ê×ÏÈ»áÔÚ×Ö·û³ØÖĞÑ°ÕÒÓĞ×ÅÏàÍ¬ÖµµÄ×Ö·û£¬ÕÒµ½¾Í·µ»ØÕâ¸ö×Ö·ûµÄÒıÓÃ£¬·ñÔò¾ÍÔÚ
-×Ö·û³ØÖĞ´´½¨ĞÂµÄ×Ö·û³Ø£¬È»ºó·µ»ØÕâ¸ö×Ö·û³ØµÄÒıÓÃ.
+æˆ‘ä»¬ç”¨åŒå¼•å·åˆ›å»ºå­—ç¬¦ä¸²çš„æ—¶å€™ï¼Œé¦–å…ˆä¼šåœ¨å­—ç¬¦æ± ä¸­å¯»æ‰¾æœ‰ç€ç›¸åŒå€¼çš„å­—ç¬¦ï¼Œæ‰¾åˆ°å°±è¿”å›è¿™ä¸ªå­—ç¬¦çš„å¼•ç”¨ï¼Œå¦åˆ™å°±åœ¨
+å­—ç¬¦æ± ä¸­åˆ›å»ºæ–°çš„å­—ç¬¦æ± ï¼Œç„¶åè¿”å›è¿™ä¸ªå­—ç¬¦æ± çš„å¼•ç”¨.
 
 However using new operator, we force String class to create a new 
 String object in heap space. We can use intern() method to put it 
 into the pool or refer to other String object from string pool having same value.
-È»¶øÓÃnew²Ù×÷·û£¬ÎÒÃÇÇ¿ÖÆÔÚ¶ÑÄÚ´æÖĞ´´½¨ĞÂµÄString¶ÔÏó£¬ÎÒÃÇ¿ÉÒÔÓÃintern·½·¨°ÑËû·Åµ½poolÖĞ£¬»òÕß
-ÒıÓÃÀ´×ÔString pool³ØÖĞÓĞÏàÍ¬ÖµµÄÆäËû×Ö·û¶ÔÏó
+ç„¶è€Œç”¨newæ“ä½œç¬¦ï¼Œæˆ‘ä»¬å¼ºåˆ¶åœ¨å †å†…å­˜ä¸­åˆ›å»ºæ–°çš„Stringå¯¹è±¡ï¼Œæˆ‘ä»¬å¯ä»¥ç”¨internæ–¹æ³•æŠŠä»–æ”¾åˆ°poolä¸­ï¼Œæˆ–è€…
+å¼•ç”¨æ¥è‡ªString poolæ± ä¸­æœ‰ç›¸åŒå€¼çš„å…¶ä»–å­—ç¬¦å¯¹è±¡
 
 Sometimes in java interview, you will be asked question around String pool. 
 For example, how many string is getting created in below statement?
 String str = new String("Cat");
 
 In above statement, either 1 or 2 string will be created. If there is 
-already a string literal ¡°Cat¡± in the pool, then only one string ¡°str¡± 
-will be created in the heap. If there is no string literal ¡°Cat¡± in the pool, 
+already a string literal â€œCatâ€ in the pool, then only one string â€œstrâ€ 
+will be created in the heap. If there is no string literal â€œCatâ€ in the pool, 
 then it will be first created in the pool and then in the heap space, so total 
 2 string objects will be created.
-ÔÚÉÏÃæµÄÓï¾äÖĞ£¬1¸ö»òÕß2¸ö½«»á±»´´½¨£¬Èç¹ûÔÚpoolÖĞÒÑ¾­ÓĞÒ»¸öCat£¬ÄÇÃ´Ö»ÓĞÒ»¸öCat»áÔÚheapÖĞ´´½¨
-£¬Èç¹ûpoolÖĞÃ»ÓĞCat,ÄÇÃ´»áÏÖÔÚPoolÖĞ´´½¨Cat£¬È»ºóÔÙheapÖĞ´´½¨heap, str½«ÒıÓÃheapÖĞµÄCat.
+åœ¨ä¸Šé¢çš„è¯­å¥ä¸­ï¼Œ1ä¸ªæˆ–è€…2ä¸ªå°†ä¼šè¢«åˆ›å»ºï¼Œå¦‚æœåœ¨poolä¸­å·²ç»æœ‰ä¸€ä¸ªCatï¼Œé‚£ä¹ˆåªæœ‰ä¸€ä¸ªCatä¼šåœ¨heapä¸­åˆ›å»º
+ï¼Œå¦‚æœpoolä¸­æ²¡æœ‰Cat,é‚£ä¹ˆä¼šç°åœ¨Poolä¸­åˆ›å»ºCatï¼Œç„¶åå†heapä¸­åˆ›å»ºheap, strå°†å¼•ç”¨heapä¸­çš„Cat.
 
-Detailed explanation is ¨C(Ï¸½Ú½âÊÍ)
-String pool is also part of heap.(String PoolÊÇheapµÄÒ»²¿·Ö)
+Detailed explanation is â€“(ç»†èŠ‚è§£é‡Š)
+String pool is also part of heap.(String Poolæ˜¯heapçš„ä¸€éƒ¨åˆ†)
 So the string will always be created in heap. 
 But string may be or may not be created in pool.
 
-String str = new String(¡°Cat¡±);
+String str = new String(â€œCatâ€);
 
-So in above sentence, if ¡°Cat¡± is present in string pool, 
+So in above sentence, if â€œCatâ€ is present in string pool, 
 it will only be created in heap and will not be created in String pool.
 
 But if it is not present in String pool it will be created 
@@ -114,18 +114,18 @@ in string pool as well as heap space (or we can say space apart from String pool
 
 Java String subSequence
 
-ÎªÊ²Ã´StringÊµÏÖsubSequence·½·¨?
+ä¸ºä»€ä¹ˆStringå®ç°subSequenceæ–¹æ³•?
 Java 1.4 introduced CharSequence interface and String implements this 
 interface, this is the only reason for the implementation of subSequence
  method in String class. Internally it invokes the String substring method.
-JavaÔÚ1.4ÒıÈëÁËCharSequence½Ó¿Ú£¬StringÊµÏÖÁËÕâ¸ö½Ó¿Ú£¬Õâ¸öÊÇÎ¨Ò»µÄÔ­ÒòÔÚStringÖĞÊµÏÖÕâ¸ö·½·¨
-´Ë·½·¨ÄÚ²¿µ÷ÓÃÁËsubstring·½·¨.
+Javaåœ¨1.4å¼•å…¥äº†CharSequenceæ¥å£ï¼ŒStringå®ç°äº†è¿™ä¸ªæ¥å£ï¼Œè¿™ä¸ªæ˜¯å”¯ä¸€çš„åŸå› åœ¨Stringä¸­å®ç°è¿™ä¸ªæ–¹æ³•
+æ­¤æ–¹æ³•å†…éƒ¨è°ƒç”¨äº†substringæ–¹æ³•.
 
 An invocation of this method of the form str.subSequence(begin, end) 
 behaves in exactly the same way as the invocation of str.substring(begin, end).
-str.subSequence(begin, end) Óë str.substring(begin, end)Ğ§¹ûÒ»Ä£Ò»Ñù
-½áÂÛ£º
+str.subSequence(begin, end) ä¸ str.substring(begin, end)æ•ˆæœä¸€æ¨¡ä¸€æ ·
+ç»“è®ºï¼š
 
 There is no benefit in using subSequence method, ideally you should
  always use String substring method.
- Ê¹ÓÃsubSequence·½·¨Ã»ÓĞÒæ´¦£¬ÀíÏëÇé¿öÏÂÓ¦¸Ã×ÜÊÇÊ¹ÓÃsubstring·½·¨.
+ ä½¿ç”¨subSequenceæ–¹æ³•æ²¡æœ‰ç›Šå¤„ï¼Œç†æƒ³æƒ…å†µä¸‹åº”è¯¥æ€»æ˜¯ä½¿ç”¨substringæ–¹æ³•.

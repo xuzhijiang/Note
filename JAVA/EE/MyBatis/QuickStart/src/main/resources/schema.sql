@@ -2,11 +2,11 @@ CREATE DATABASE IF NOT EXISTS mydb CHARACTER SET utf8;
 
 USE mydb;
 
-DROP TABLE user IF EXISTS;
+DROP TABLE IF EXISTS user;
 
 CREATE TABLE user(
-`id` int,
-`name` varchar(255) not NULL,
+`id` int NOT NULL AUTO_INCREMENT,
+`name` VARCHAR(255) NOT NULL,
 `age` int,
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

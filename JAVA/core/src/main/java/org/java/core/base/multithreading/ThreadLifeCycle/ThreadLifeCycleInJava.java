@@ -20,7 +20,7 @@ package org.java.core.base.multithreading.ThreadLifeCycle;
  * <p>Blocked/Waiting</p>
  * A thread can be waiting for other thread to finish using 
  * thread join or it can be waiting for some resources to 
- * available. For example producer consumer problem or waiter 
+ * available. For JdbcQuickStartExample producer consumer problem or waiter
  * notifier implementation or IO resources, then it’s state is 
  * changed to Waiting. Once the thread wait state is over, it’s 
  * state is changed to Runnable and it’s moved back to runnable thread pool.

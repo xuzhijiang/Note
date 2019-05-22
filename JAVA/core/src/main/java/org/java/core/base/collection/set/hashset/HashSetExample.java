@@ -12,25 +12,25 @@ public class HashSetExample {
 
 		Set<String> fruits = new HashSet<>();
 		
-		//add example
+		//add JdbcQuickStartExample
 		fruits.add("Apple");
 		fruits.add("Banana");
 		
-		//isEmpty example
+		//isEmpty JdbcQuickStartExample
 		System.out.println("fruits set is empty = "+fruits.isEmpty());
 
-		//contains example
+		//contains JdbcQuickStartExample
 		System.out.println("fruits contains Apple = "+fruits.contains("Apple"));
 		System.out.println("fruits contains Mango = "+fruits.contains("Mango"));
 		
-		//remove example
+		//remove JdbcQuickStartExample
 		System.out.println("Apple removed from fruits set = "+fruits.remove("Apple"));
 		System.out.println("Mango removed from fruits set = "+fruits.remove("Mango"));
 		
-		//size example
+		//size JdbcQuickStartExample
 		System.out.println("fruits set size = "+fruits.size());
 		
-		//addAll example
+		//addAll JdbcQuickStartExample
 		List<String> list = new ArrayList<>(); 
 		list.add("Apple"); list.add("Apple"); 
 		list.add("Banana"); list.add("Mango");
@@ -40,20 +40,20 @@ public class HashSetExample {
 		fruits.addAll(list);
 		System.out.println("fruits set after addAll = "+fruits);
 
-		//iterator example
+		//iterator JdbcQuickStartExample
 		Iterator<String> iterator = fruits.iterator();
 		while(iterator.hasNext()){
 			System.out.println("Consuming fruit "+iterator.next());
 		}
 		
-		//removeAll example
+		//removeAll JdbcQuickStartExample
 		fruits.add("Orange");
 		System.out.println("fruits set before removeAll = "+fruits);
 		System.out.println("list = "+list);
 		fruits.removeAll(list);
 		System.out.println("fruits set after removeAll = "+fruits);
 		
-		//clear example
+		//clear JdbcQuickStartExample
 		fruits.clear();
 		System.out.println("fruits set is empty = "+fruits.isEmpty());
 

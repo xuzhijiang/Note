@@ -1,27 +1,22 @@
 package org.java.core.base.GettingStarted;
 
 /**
- * ÎŞÂÛÄãÓĞÒ»¸ö¶Ô²»Í¬ÊäÈëStringĞĞÎª²»Í¬µÄ¼òµ¥·½·¨£¬
- * »¹ÊÇÒ»¸öServlet¿ØÖÆÆ÷ÀàÀ´¼ì²é´«ÈëµÄ¶¯×÷²¢ÏàÓ¦µØ´¦ÀíËü.
- * 
- *  ÔÚJava 7Ö®Ç°£¬ÊµÏÖ»ùÓÚ×Ö·û´®µÄÌõ¼şÁ÷µÄÎ¨Ò»·½·¨ÊÇÊ¹ÓÃif-elseÌõ¼ş¡£ 
- *  µ«ÊÇJava 7¸Ä½øÁËswitch caseÒÔÖ§³ÖString¡£
+ *  Java 7æ”¹è¿›äº†switch caseä»¥æ”¯æŒStringã€‚
  *  
- *  1. Java switch caseÍ¨¹ıÉ¾³ı¶à¸öif-else-ifÁ´½ÓÌõ¼ş£¬Ê¹´úÂë¸ü¾ß¿É¶ÁĞÔ¡£
- *  2. Java switch case StringÇø·Ö´óĞ¡Ğ´
+ *  2. Java switch case StringåŒºåˆ†å¤§å°å†™
  *  3. Java Switch case uses String.equals() method to compare 
  *  the passed value with case values, so make sure to add a 
  *  NULL check to avoid NullPointerException.
- *  Java switch caseÓÃStringµÄequals·½·¨±È½Ï´«ÈëµÄÖµºÍcaseµÄÖµ£¬ÒÔÈ·±£
- *  Ôö¼ÓÁËÒ»¸öÊÇ·ñÎªnullµÄÅĞ¶ÏÒÔ±ÜÃâ¿ÕÖ¸ÕëÒì³£
+ *  Java switch caseç”¨Stringçš„equalsæ–¹æ³•æ¯”è¾ƒä¼ å…¥çš„å€¼å’Œcaseçš„å€¼ï¼Œä»¥ç¡®ä¿
+ *  å¢åŠ äº†ä¸€ä¸ªæ˜¯å¦ä¸ºnullçš„åˆ¤æ–­ä»¥é¿å…ç©ºæŒ‡é’ˆå¼‚å¸¸
  *  4. According to Java 7 documentation for Strings in Switch, 
  *  java compiler generates more efficient byte code for String 
  *  in Switch statement than chained if-else-if statements.
- *  ¸ù¾İJava7µÄ¶ÔÓÚÔÚSwitchÖĞµÄStringÖĞµÄÎÄµµ£¬java±àÒëÆ÷Éú³É¸ü¼ÓÓĞĞ§µÄ×Ö½ÚÂë¶ÔÓÚ
- *  StirngÔÚswitchÖĞµÄ±ÈÆğÁ´Ê½µÄif-else-ifÓï¾ä.
- *  5. È·±£Ö»ÓĞÔÚÖªµÀËü½«ÓëJava 7Ò»ÆğÊ¹ÓÃÊ±²ÅÊ¹ÓÃjava switch case String£¬
- *  ·ñÔòËü½«Å×³öException¡£
- *  6. ÎÒÃÇ¿ÉÒÔÊ¹ÓÃjavaÈıÔªÔËËã·û¶ø²»ÊÇswitchÀ´±àĞ´¸üĞ¡µÄ´úÂë¡£
+ *  æ ¹æ®Java7çš„å¯¹äºåœ¨Switchä¸­çš„Stringä¸­çš„æ–‡æ¡£ï¼Œjavaç¼–è¯‘å™¨ç”Ÿæˆæ›´åŠ æœ‰æ•ˆçš„å­—èŠ‚ç å¯¹äº
+ *  Stirngåœ¨switchä¸­çš„æ¯”èµ·é“¾å¼çš„if-else-ifè¯­å¥.
+ *  5. ç¡®ä¿åªæœ‰åœ¨çŸ¥é“å®ƒå°†ä¸Java 7ä¸€èµ·ä½¿ç”¨æ—¶æ‰ä½¿ç”¨java switch case Stringï¼Œ
+ *  å¦åˆ™å®ƒå°†æŠ›å‡ºExceptionã€‚
+ *  6. æˆ‘ä»¬å¯ä»¥ä½¿ç”¨javaä¸‰å…ƒè¿ç®—ç¬¦è€Œä¸æ˜¯switchæ¥ç¼–å†™æ›´å°çš„ä»£ç ã€‚
  */
 public class SwitchStringExample {
 

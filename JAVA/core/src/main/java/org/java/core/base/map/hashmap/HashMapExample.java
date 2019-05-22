@@ -12,13 +12,13 @@ public class HashMapExample {
 
 		Map<String, String> map = new HashMap<>();
 
-		map.put("1", "1"); // put example
+		map.put("1", "1"); // put JdbcQuickStartExample
 		map.put("2", "2");
 		map.put("3", "3");
 		map.put("4", null); // null value
 		map.put(null, "100"); // null key
 
-		String value = map.get("3"); // get example
+		String value = map.get("3"); // get JdbcQuickStartExample
 		System.out.println("Key = 3, Value = " + value);
 
 		value = map.getOrDefault("5", "Default Value");

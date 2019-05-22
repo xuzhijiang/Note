@@ -3,7 +3,7 @@ package org.java.core.base.immutableClass;
 import java.util.HashMap;
 import java.util.Iterator;
 
-// ½øÒ»²½ÔÄ¶Á£ºÈç¹û²»¿É±äÀà¾ßÓĞĞí¶àÊôĞÔ£¬²¢ÇÒÆäÖĞÒ»Ğ©ÊÇ¿ÉÑ¡µÄ£¬ÎÒÃÇ¿ÉÒÔÊ¹ÓÃ¹¹½¨Æ÷Ä£Ê½À´´´½¨²»¿É±äÀà¡£
+// è¿›ä¸€æ­¥é˜…è¯»ï¼šå¦‚æœä¸å¯å˜ç±»å…·æœ‰è®¸å¤šå±æ€§ï¼Œå¹¶ä¸”å…¶ä¸­ä¸€äº›æ˜¯å¯é€‰çš„ï¼Œæˆ‘ä»¬å¯ä»¥ä½¿ç”¨æ„å»ºå™¨æ¨¡å¼æ¥åˆ›å»ºä¸å¯å˜ç±»ã€‚
 public final class FinalClassExample {
 
 	private final int id;
@@ -25,7 +25,7 @@ public final class FinalClassExample {
 	 */
 	public HashMap<String, String> getTestMap() {
 //		return testMap;
-		return (HashMap<String, String>) testMap.clone();// HashMapµÄDeepCopy
+		return (HashMap<String, String>) testMap.clone();// HashMapçš„DeepCopy
 	}
 
 	/**

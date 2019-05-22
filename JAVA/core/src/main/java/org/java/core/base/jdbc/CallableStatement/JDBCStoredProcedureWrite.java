@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-// Let¡¯s see how we can use CallableStatement to execute 
+// LetÂ¡Â¯s see how we can use CallableStatement to execute 
 // insertEmployee stored procedure to insert employee data.
 public class JDBCStoredProcedureWrite {
 

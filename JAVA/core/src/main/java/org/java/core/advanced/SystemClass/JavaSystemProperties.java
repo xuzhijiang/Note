@@ -18,7 +18,7 @@ public class JavaSystemProperties {
 		//Get Specific Property
 		System.out.println(System.getProperty("user.country"));
 
-		//Clear property example
+		//Clear property JdbcQuickStartExample
 		System.clearProperty("user.country");
 		System.out.println(System.getProperty("user.country")); //print null
 		

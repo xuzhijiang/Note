@@ -13,10 +13,10 @@ public class LoggingExample {
 	static Logger logger = Logger.getLogger(LoggingExample.class.getName());
 	
 	public static void main(String[] args){
-		// java.util.logging.LogManagerÊÇ¶ÁÈ¡ÈÕÖ¾¼ÇÂ¼ÅäÖÃ
-		// ´´½¨ºÍÎ¬»¤loggerÊµÀıµÄÀà
-		//ÎÒÃÇ¿ÉÒÔÊ¹ÓÃ´ËÀàÀ´ÉèÖÃÎÒÃÇ×Ô¼ºµÄÓ¦ÓÃ³ÌĞòÌØ¶¨ÅäÖÃ¡£
-		// Èç¹ûÎÒÃÇ²»Ö¸¶¨ÈÎºÎÅäÖÃ£¬Ôò´ÓJRE Home lib / logging.propertiesÎÄ¼şÖĞ¶ÁÈ¡¡£
+		// java.util.logging.LogManageræ˜¯è¯»å–æ—¥å¿—è®°å½•é…ç½®
+		// åˆ›å»ºå’Œç»´æŠ¤loggerå®ä¾‹çš„ç±»
+		//æˆ‘ä»¬å¯ä»¥ä½¿ç”¨æ­¤ç±»æ¥è®¾ç½®æˆ‘ä»¬è‡ªå·±çš„åº”ç”¨ç¨‹åºç‰¹å®šé…ç½®ã€‚
+		// å¦‚æœæˆ‘ä»¬ä¸æŒ‡å®šä»»ä½•é…ç½®ï¼Œåˆ™ä»JRE Home lib / logging.propertiesæ–‡ä»¶ä¸­è¯»å–ã€‚
 		
 		try {
 			LogManager.getLogManager().readConfiguration(new FileInputStream("mylogging.properties"));
@@ -30,8 +30,8 @@ public class LoggingExample {
 		
 		try {
             //FileHandler file name with max size and number of log files limit
-			// 2000: Ğ´ÈëÈÎºÎÒ»¸öÎÄ¼şµÄ×î´ó×Ö½ÚÊıÎª2000
-			// Ê¹ÓÃµÄÎÄ¼şµÄ¸öÊıÎª5¸ö
+			// 2000: å†™å…¥ä»»ä½•ä¸€ä¸ªæ–‡ä»¶çš„æœ€å¤§å­—èŠ‚æ•°ä¸º2000
+			// ä½¿ç”¨çš„æ–‡ä»¶çš„ä¸ªæ•°ä¸º5ä¸ª
             Handler fileHandler = new FileHandler("C:\\Users\\a\\Desktop\\test\\logger.log", 2000, 5);
             fileHandler.setFormatter(new MyFormatter());
             //setting custom filter for FileHandler
@@ -40,9 +40,9 @@ public class LoggingExample {
             
             for(int i=0; i<1000; i++){
                 //logging messages
-                logger.log(Level.INFO, "Msg"+i);//×¢ÒâÇø·Ö¿ØÖÆÌ¨ÈÕÖ¾ºÍÎÄ¼şÈÕÖ¾²»Í¬¸ñÊ½
+                logger.log(Level.INFO, "Msg"+i);//æ³¨æ„åŒºåˆ†æ§åˆ¶å°æ—¥å¿—å’Œæ–‡ä»¶æ—¥å¿—ä¸åŒæ ¼å¼
             }
-            logger.log(Level.CONFIG, "Config data");//²»»á±»´òÓ¡
+            logger.log(Level.CONFIG, "Config data");//ä¸ä¼šè¢«æ‰“å°
         } catch (SecurityException | IOException e) {
             e.printStackTrace();
         }

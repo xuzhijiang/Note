@@ -2,12 +2,12 @@ package org.java.core.base.collection.set;
 
 import java.util.*;
 
-// 下面是一个简单的示例，说明如何将Java Set转换为Stream并根据我们的要求执行某些操作。
+// 锟斤拷锟斤拷锟斤拷一锟斤拷锟津单碉拷示锟斤拷锟斤拷说锟斤拷锟斤拷谓锟絁ava Set转锟斤拷为Stream锟斤拷锟斤拷锟斤拷锟斤拷锟角碉拷要锟斤拷执锟斤拷某些锟斤拷锟斤拷锟斤拷
 public class SetToStream {
 
    public static void main(String[] args) {
 	Set<String> vowelsSet = new HashSet<>();
-	// add example
+	// add JdbcQuickStartExample
 	vowelsSet.add("a");
 	vowelsSet.add("e");
 	vowelsSet.add("i");

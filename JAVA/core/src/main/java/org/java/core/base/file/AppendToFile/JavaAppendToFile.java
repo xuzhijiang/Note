@@ -9,19 +9,19 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 
 /**
- * 今天我们将研究如何在java中附加到文件。 Java附加到文件是一种常见的Java IO操作。
- *  例如，每当我们将某些内容打印到服务器日志时，它都会附加到现有文件中。
+ * 锟斤拷锟斤拷锟斤拷锟角斤拷锟叫撅拷锟斤拷锟斤拷锟絡ava锟叫革拷锟接碉拷锟侥硷拷锟斤拷 Java锟斤拷锟接碉拷锟侥硷拷锟斤拷一锟街筹拷锟斤拷锟斤拷Java IO锟斤拷锟斤拷锟斤拷
+ *  锟斤拷锟界，每锟斤拷锟斤拷锟角斤拷某些锟斤拷锟捷达拷印锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷志时锟斤拷锟斤拷锟斤拷锟结附锟接碉拷锟斤拷锟斤拷锟侥硷拷锟叫★拷
  * 
- * Java使用FileWriter附加到文件
- * Java使用BufferedWriter将内容附加到现有文件
- * 使用PrintWriter将文本附加到java中的文件
- * 使用FileOutputStream追加到java中的文件
+ * Java使锟斤拷FileWriter锟斤拷锟接碉拷锟侥硷拷
+ * Java使锟斤拷BufferedWriter锟斤拷锟斤拷锟捷革拷锟接碉拷锟斤拷锟斤拷锟侥硷拷
+ * 使锟斤拷PrintWriter锟斤拷锟侥憋拷锟斤拷锟接碉拷java锟叫碉拷锟侥硷拷
+ * 使锟斤拷FileOutputStream追锟接碉拷java锟叫碉拷锟侥硷拷
  * 
- * 如果您正在处理文本数据并且写入操作的数量较少，
- * 请使用FileWriter并使用其构造函数，并将append标记值设置为true。 
- * 如果写入操作的数量很大，则应使用BufferedWriter。
+ * 锟斤拷锟斤拷锟斤拷锟斤拷诖锟斤拷锟斤拷谋锟斤拷锟斤拷莶锟斤拷锟叫达拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟劫ｏ拷
+ * 锟斤拷使锟斤拷FileWriter锟斤拷使锟斤拷锟戒构锟届函锟斤拷锟斤拷锟斤拷锟斤拷append锟斤拷锟街碉拷锟斤拷锟轿猼rue锟斤拷 
+ * 锟斤拷锟叫达拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟杰达拷锟斤拷应使锟斤拷BufferedWriter锟斤拷
  * 
- * 要将二进制或原始流数据附加到现有文件，您应该使用FileOutputStream。
+ * 要锟斤拷锟斤拷锟斤拷锟狡伙拷原始锟斤拷锟斤拷锟捷革拷锟接碉拷锟斤拷锟斤拷锟侥硷拷锟斤拷锟斤拷应锟斤拷使锟斤拷FileOutputStream锟斤拷
  * 
  * 
  *
@@ -31,7 +31,7 @@ public class JavaAppendToFile {
 	static String fileName = "C:\\Users\\a\\Desktop\\test\\append.txt";
 
 	/**
-	 * Java append to file example
+	 * Java append to file JdbcQuickStartExample
 	 * 
 	 * @param args
 	 */

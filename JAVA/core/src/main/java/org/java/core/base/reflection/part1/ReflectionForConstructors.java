@@ -15,7 +15,7 @@ public class ReflectionForConstructors {
 
 		//Get Public Constructor
 		//We can use getConstructor() method on the class representation of 
-		//object to get specific public constructor. Below example shows how 
+		//object to get specific public constructor. Below JdbcQuickStartExample shows how
 		//to get the constructor of ConcreteClass defined above and the 
 		//no-argument constructor of HashMap. It also shows how to get the array 
 		//of parameter types for the constructor.

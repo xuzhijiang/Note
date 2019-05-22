@@ -21,11 +21,11 @@ public class CloningTest {
 		// Check whether the emp and clonedEmp attributes are same or different
 		System.out.println("emp and clonedEmp == test: " + (emp == clonedEmp));
 		// emp and clonedEmp == test: false
-		// Òò´ËempºÍclonedEmpÊÇÁ½¸ö²»Í¬µÄ¶ÔÏó£¬¶ø²»ÊÇÖ¸Í¬Ò»¸ö¶ÔÏó¡£ Õâ·ûºÏjava¿ËÂ¡¶ÔÏóµÄÒªÇó¡£
+		// å› æ­¤empå’ŒclonedEmpæ˜¯ä¸¤ä¸ªä¸åŒçš„å¯¹è±¡ï¼Œè€Œä¸æ˜¯æŒ‡åŒä¸€ä¸ªå¯¹è±¡ã€‚ è¿™ç¬¦åˆjavaå…‹éš†å¯¹è±¡çš„è¦æ±‚ã€‚
 		
 		System.out.println("emp and clonedEmp HashMap == test: " + (emp.getProps() == clonedEmp.getProps()));
 		// emp and clonedEmp HashMap == test: true
-		// Òò´ËempºÍclonedEmp¶ÔÏó±äÁ¿¶¼ÒıÓÃÍ¬Ò»¸ö¶ÔÏó¡£ Õâ´øÀ´ÁË¿ËÂ¡µÄÑÏÖØÎÊÌâ£¬½ÓÏÂÀ´ÎÒÃÇ½«¿´µ½¡£
+		// å› æ­¤empå’ŒclonedEmpå¯¹è±¡å˜é‡éƒ½å¼•ç”¨åŒä¸€ä¸ªå¯¹è±¡ã€‚ è¿™å¸¦æ¥äº†å…‹éš†çš„ä¸¥é‡é—®é¢˜ï¼Œæ¥ä¸‹æ¥æˆ‘ä»¬å°†çœ‹åˆ°ã€‚
 		
 		// Lets see the effect of using default cloning
 		
@@ -37,8 +37,8 @@ public class CloningTest {
 		// change emp name
 		emp.setName("new");
 		System.out.println("clonedEmp name:" + clonedEmp.getName());
-		// We changed the emp name but clonedEmp name didn¡¯t changed. 
-		// It¡¯s because String is immutable. So when we are 
+		// We changed the emp name but clonedEmp name didnâ€™t changed. 
+		// Itâ€™s because String is immutable. So when we are 
 		// setting emp name, a new string is created and emp 
 		// name reference is changed in this.name = name;
 		

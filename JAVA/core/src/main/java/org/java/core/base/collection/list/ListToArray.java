@@ -8,7 +8,7 @@ public class ListToArray {
 	public static void main(String[] args) {
 		List<String> letters = new ArrayList<String>();
 		
-		//add example
+		//add JdbcQuickStartExample
 		letters.add("A");
 		letters.add("B");
 		letters.add("C");

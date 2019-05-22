@@ -6,9 +6,9 @@ public class ByteArrayToString {
 	public static void main(String[] args) {
 		byte[] byteArray = {'P', 'A', 'N', 'K', 'A', 'J'};
 		//Did you noticed that I am providing char while creating the byte array. 
-		//It works because of autoboxing and char ¡®P¡¯ is being converted to 80 in byte array.
-//		ÒòÎª×Ô¶¯×°ÏäºÍchar'P'ÔÚ×Ö½ÚÊı×éÖĞ±»×ª»»Îª80¡£
-		//That¡¯s why the output is same for both the byte array to string conversion.
+		//It works because of autoboxing and char â€˜Pâ€™ is being converted to 80 in byte array.
+//		å› ä¸ºè‡ªåŠ¨è£…ç®±å’Œchar'P'åœ¨å­—èŠ‚æ•°ç»„ä¸­è¢«è½¬æ¢ä¸º80ã€‚
+		//Thatâ€™s why the output is same for both the byte array to string conversion.
 		byte[] byteArray1 = { 80, 65, 78, 75, 65, 74 };
 		
 		String str = new String(byteArray);
@@ -17,7 +17,7 @@ public class ByteArrayToString {
 		System.out.println(str);
 		System.out.println(str2);
 		
-//		String»¹ÓĞ¹¹Ôìº¯Êı£¬ÎÒÃÇ¿ÉÒÔÔÚÆäÖĞÌá¹©×Ö½ÚÊı×éºÍCharset×÷Îª²ÎÊı
+//		Stringè¿˜æœ‰æ„é€ å‡½æ•°ï¼Œæˆ‘ä»¬å¯ä»¥åœ¨å…¶ä¸­æä¾›å­—èŠ‚æ•°ç»„å’ŒCharsetä½œä¸ºå‚æ•°
 //		The charset to be used to decode the bytes
 		str = new String(byteArray, StandardCharsets.UTF_8);
 		System.out.println(str);

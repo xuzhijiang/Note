@@ -47,7 +47,7 @@ public class JavaTreeMapNavigationExamples {
 		System.out.println("Last Entry is "+entry);
 		System.out.println("Updated Map: "+map);
 		
-		//submap example
+		//submap JdbcQuickStartExample
 		Map<Integer, String> subMap = map.subMap(2, true, 6, true);
 		System.out.println("Submap: "+subMap);
 		

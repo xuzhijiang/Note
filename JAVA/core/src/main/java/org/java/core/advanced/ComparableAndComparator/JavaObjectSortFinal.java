@@ -10,7 +10,6 @@ public class JavaObjectSortFinal {
     * @param args
     */
    public static void main(String[] args) {
-
        //sorting custom object array
 	   FinalEmployee[] empArr = new FinalEmployee[4];
        empArr[0] = new FinalEmployee(10, "Mikey", 25, 10000);

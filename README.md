@@ -14,8 +14,6 @@ springcloud: https://github.com/michaelliao/springcloud
 Spring、SpringMVC、MyBatis、Spring Boot:https://github.com/lenve/JavaEETest
 Spring blog: https://github.com/Raysmond/SpringBlog
 
-DAO: Data access object
-
 SSH: Struts2 + Spring + Hibernate
 
 SSM: SprintMVC + Spring + Mybatis

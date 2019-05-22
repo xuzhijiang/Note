@@ -22,7 +22,7 @@ public class ArrayListSortingExample {
 		ints.sort(c);
 		System.out.println("Sorted in Increasing Order: "+ints);
 		
-		//lambda example, sort in reverse order
+		//lambda JdbcQuickStartExample, sort in reverse order
 		ints.sort((o1,o2) -> {return (o2-o1);});
 		System.out.println("Sorted in Decreasing Order: "+ints);
 		

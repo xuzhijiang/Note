@@ -1,24 +1,24 @@
 package org.java.core.base.multithreading.ThreadSafety;
 
 /**
- * JavaÖĞµÄÏß³Ì°²È«ÊÇÒ»¸ö·Ç³£ÖØÒªµÄÖ÷Ìâ¡£JavaÌá¹©¶àÏß³Ì»·¾³Ö§³Ö,ÎÒÃÇÖªµÀ
- * ¶à¸öÏß³ÌÓÃÓÚ¶ÁÈ¡ĞŞ¸Ä¹²Ïí¶ÔÏóµÄÊı¾İÊ±¿ÉÄÜµ¼ÖÂÊı¾İ²»Ò»ÖÂ¡£
- * Êı¾İ²»Ò»ÖÂµÄÔ­ÒòÊÇÒòÎª¸üĞÂÈÎºÎ×Ö¶ÎÖµ²»ÊÇÔ­×Ó¹ı³Ì£¬ËüĞèÒªÈı¸ö²½Öè£º
- * Ê×ÏÈ¶ÁÈ¡µ±Ç°Öµ£¬µÚ¶ş¸ö×ö±ØÒªµÄ²Ù×÷ÒÔ»ñÈ¡¸üĞÂµÄÖµ£¬µÚÈı¸ö½«¸üĞÂµÄÖµ·ÖÅä¸ø×Ö¶ÎÒıÓÃ¡£
- * <p>Ïß³Ì°²È«ÔÚJavaÖĞÊÇÊ¹ÎÒÃÇµÄ³ÌĞòÔÚ¶àÏß³Ì»·¾³ÖĞ°²È«Ê¹ÓÃµÄ¹ı³Ì,ÓĞÒÔÏÂ¼¸ÖÖ·½Ê½:
+ * Javaï¿½Ğµï¿½ï¿½ß³Ì°ï¿½È«ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½â¡£Javaï¿½á¹©ï¿½ï¿½ï¿½ß³Ì»ï¿½ï¿½ï¿½Ö§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Öªï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½È¡ï¿½Ş¸Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Üµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ²ï¿½Ò»ï¿½Â¡ï¿½
+ * ï¿½ï¿½ï¿½İ²ï¿½Ò»ï¿½Âµï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½Ö¶ï¿½Öµï¿½ï¿½ï¿½ï¿½Ô­ï¿½Ó¹ï¿½ï¿½Ì£ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è£º
+ * ï¿½ï¿½ï¿½È¶ï¿½È¡ï¿½ï¿½Ç°Öµï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ä²ï¿½ï¿½ï¿½ï¿½Ô»ï¿½È¡ï¿½ï¿½ï¿½Âµï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½Ã¡ï¿½
+ * <p>ï¿½ß³Ì°ï¿½È«ï¿½ï¿½Javaï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ÇµÄ³ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ß³Ì»ï¿½ï¿½ï¿½ï¿½Ğ°ï¿½È«Ê¹ï¿½ÃµÄ¹ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ö·ï¿½Ê½:
  * <p>Synchronization is the easiest and most widely used 
  * tool for thread safety in java.
- * SynchronizationÊÇ×îÈİÒ×ÒÔ¼°×î¹ã·ºÊ¹ÓÃµÄÓÃÓÚÏß³Ì°²È«µÄ¹¤¾ßÔÚjavaÖĞ
+ * Synchronizationï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ã·ºÊ¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì°ï¿½È«ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½javaï¿½ï¿½
  * <p>Use of Atomic Wrapper classes from java.util.concurrent.atomic package. 
- * For example AtomicInteger,ÓÃÔ­×Ó°ü¹üÀà,ÔÚjava.util.concurrent.atomic°üÖĞ.
+ * For JdbcQuickStartExample AtomicInteger,ï¿½ï¿½Ô­ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½java.util.concurrent.atomicï¿½ï¿½ï¿½ï¿½.
  * <p>Use of locks from {@link java.util.concurrent.locks} package.
- * Ê¹ÓÃËø
+ * Ê¹ï¿½ï¿½ï¿½ï¿½
  * <p>Using thread safe collection classes, check this post for usage 
  * of {@link java.util.concurrent.ConcurrentHashMap} for thread safety.
- * Ê¹ÓÃÏß³Ì°²È«µÄ¼¯ºÏÀà£¬
- * <p>Using volatile(Ò×±äµÄ) keyword with variables to make every thread read 
+ * Ê¹ï¿½ï¿½ï¿½ß³Ì°ï¿½È«ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½à£¬
+ * <p>Using volatile(ï¿½×±ï¿½ï¿½) keyword with variables to make every thread read 
  * the data from memory, not read from thread cache.
- * Ê¹ÓÃ´øÓĞvolatile¹Ø¼ü×ÖµÄ±äÁ¿£¬Ê¹Ã¿¸öÏß³Ì´ÓÄÚ´æÖĞ¶ÁÈ¡data£¬¶ø²»ÊÇ´ÓÏß³Ì»º´æÖĞ¶ÁÈ¡.
+ * Ê¹ï¿½Ã´ï¿½ï¿½ï¿½volatileï¿½Ø¼ï¿½ï¿½ÖµÄ±ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹Ã¿ï¿½ï¿½ï¿½ß³Ì´ï¿½ï¿½Ú´ï¿½ï¿½Ğ¶ï¿½È¡dataï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ï¿½ß³Ì»ï¿½ï¿½ï¿½ï¿½Ğ¶ï¿½È¡.
  */
 public class ThreadSafetyExample {
 	public static void main(String[] args) {
@@ -51,7 +51,7 @@ class SafetyProcessingThread implements Runnable {
 			processSomething(i);
 			//Using sychronized block to read, increment and update count value synchronously.
 			synchronized(mutex) {
-				count++;//²»ÊÇÒ»¸öatomic operation
+				count++;//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½atomic operation
 			}
 		}
 		System.out.println("Thread ends - " + Thread.currentThread().getName() + " - count - " + count);

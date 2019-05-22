@@ -46,12 +46,12 @@ public class JDBCBatchExceptions2 {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-			// ÕýÈçÄúËù¿´µ½µÄ£¬Èç¹û³öÏÖÈÎºÎSQLÒì³££¬ÎÒ½«»Ø¹öÊÂÎñ¡£ Èç¹ûÅú´¦Àí³É¹¦£¬ÎÒÏÔÊ½Ìá½»ÊÂÎñ¡£
-			// Õâ¾ÍÊÇJDBCÅúÁ¿²åÈë¸üÐÂÊ¾ÀýµÄËùÓÐÄÚÈÝ£¬ÇëÈ·±£ÊÔÑéÄúµÄÊý¾ÝÒÔ»ñµÃÅúÁ¿²éÑ¯µÄÅúÁ¿´óÐ¡µÄ×î¼ÑÖµ¡£
+			// æ­£å¦‚æ‚¨æ‰€çœ‹åˆ°çš„ï¼Œå¦‚æžœå‡ºçŽ°ä»»ä½•SQLå¼‚å¸¸ï¼Œæˆ‘å°†å›žæ»šäº‹åŠ¡ã€‚ å¦‚æžœæ‰¹å¤„ç†æˆåŠŸï¼Œæˆ‘æ˜¾å¼æäº¤äº‹åŠ¡ã€‚
+			// è¿™å°±æ˜¯JDBCæ‰¹é‡æ’å…¥æ›´æ–°ç¤ºä¾‹çš„æ‰€æœ‰å†…å®¹ï¼Œè¯·ç¡®ä¿è¯•éªŒæ‚¨çš„æ•°æ®ä»¥èŽ·å¾—æ‰¹é‡æŸ¥è¯¢çš„æ‰¹é‡å¤§å°çš„æœ€ä½³å€¼ã€‚
 
-			// jdbcÅú´¦ÀíµÄÒ»¸öÏÞÖÆÊÇÎÒÃÇ²»ÄÜÔÚÅú´¦ÀíÖÐÖ´ÐÐ²»Í¬ÀàÐÍµÄ²éÑ¯¡£
+			// jdbcæ‰¹å¤„ç†çš„ä¸€ä¸ªé™åˆ¶æ˜¯æˆ‘ä»¬ä¸èƒ½åœ¨æ‰¹å¤„ç†ä¸­æ‰§è¡Œä¸åŒç±»åž‹çš„æŸ¥è¯¢ã€‚
 			// One of the limitation of jdbc batch processing 
-			// is that we can¡¯t execute different type of queries in the batch.
+			// is that we canâ€™t execute different type of queries in the batch.
 		} finally {
 			try {
 				ps.close();

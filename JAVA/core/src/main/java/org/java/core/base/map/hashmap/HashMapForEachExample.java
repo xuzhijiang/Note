@@ -17,8 +17,8 @@ public class HashMapForEachExample {
 		BiConsumer<String, String> action = new MyBiConsumer();
 		map.forEach(action);
 		
-		//lambda expression example
-		System.out.println("\nHashMap forEach lambda example\n");
+		//lambda expression JdbcQuickStartExample
+		System.out.println("\nHashMap forEach lambda JdbcQuickStartExample\n");
 		map.forEach((k,v) -> {System.out.println("Key = "+k+", Value = "+v);});
 	}
 

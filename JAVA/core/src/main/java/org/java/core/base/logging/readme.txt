@@ -1,11 +1,11 @@
-Java Logging APIÊÇÔÚJava 1.4ÖĞÒıÈëµÄ
+Java Logging APIæ˜¯åœ¨Java 1.4ä¸­å¼•å…¥çš„
 
-ÎÒÃÇ½«Ñ§Ï°Java LoggerµÄ»ù±¾¹¦ÄÜ¡£ÎÒÃÇ»¹½«ÑĞ¾¿²»Í¬ÈÕÖ¾¼ÇÂ¼¼¶±ğµÄJava LoggerÊ¾Àı,
+æˆ‘ä»¬å°†å­¦ä¹ Java Loggerçš„åŸºæœ¬åŠŸèƒ½ã€‚æˆ‘ä»¬è¿˜å°†ç ”ç©¶ä¸åŒæ—¥å¿—è®°å½•çº§åˆ«çš„Java Loggerç¤ºä¾‹,
 Logging Handlers, Formatters, Filters, Log Manager and logging configurations.
 
 java.util.logging.Level defines the different levels of java logging. 
 There are seven levels of logging in java.
-Ò»¹²7ÖĞJavaÈÕÖ¾¼¶±ğ:
+ä¸€å…±7ä¸­Javaæ—¥å¿—çº§åˆ«:
 
 SEVERE (highest)
 WARNING
@@ -17,8 +17,8 @@ FINEST
 
 There are two other logging levels, OFF that will turn off all logging 
 and ALL that will log all the messages.
-»¹ÓĞÁíÍâÁ½¸öÈÕÖ¾¼ÇÂ¼¼¶±ğ£¬OFF½«¹Ø±ÕËùÓĞÈÕÖ¾¼ÇÂ¼ºÍALL½«¼ÇÂ¼ËùÓĞÏûÏ¢¡£
+è¿˜æœ‰å¦å¤–ä¸¤ä¸ªæ—¥å¿—è®°å½•çº§åˆ«ï¼ŒOFFå°†å…³é—­æ‰€æœ‰æ—¥å¿—è®°å½•å’ŒALLå°†è®°å½•æ‰€æœ‰æ¶ˆæ¯ã€‚
 
-½«ÎªËùÓĞµÈÓÚ»ò´óÓÚ¼ÇÂ¼Æ÷¼¶±ğµÄ¼¶±ğÉú³ÉÈÕÖ¾¡£
- ÀıÈç£¬Èç¹û½«¼ÇÂ¼Æ÷¼¶±ğÉèÖÃÎªINFO£¬Ôò½«ÎªINFO£¬WARNINGºÍSEVEREÈÕÖ¾¼ÇÂ¼ÏûÏ¢Éú³ÉÈÕÖ¾¡£
+å°†ä¸ºæ‰€æœ‰ç­‰äºæˆ–å¤§äºè®°å½•å™¨çº§åˆ«çš„çº§åˆ«ç”Ÿæˆæ—¥å¿—ã€‚
+ ä¾‹å¦‚ï¼Œå¦‚æœå°†è®°å½•å™¨çº§åˆ«è®¾ç½®ä¸ºINFOï¼Œåˆ™å°†ä¸ºINFOï¼ŒWARNINGå’ŒSEVEREæ—¥å¿—è®°å½•æ¶ˆæ¯ç”Ÿæˆæ—¥å¿—ã€‚
  

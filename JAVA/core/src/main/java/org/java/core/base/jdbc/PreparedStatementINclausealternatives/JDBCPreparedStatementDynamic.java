@@ -46,7 +46,7 @@ public class JDBCPreparedStatementDynamic {
 		}
 	}
 
-	// ´Ë·½·¨Éæ¼°±àĞ´Âß¼­ÒÔ¸ù¾İIN×Ó¾äÖĞÔªËØµÄ´óĞ¡¶¯Ì¬´´½¨PreparedStatement²éÑ¯¡£
+	// æ­¤æ–¹æ³•æ¶‰åŠç¼–å†™é€»è¾‘ä»¥æ ¹æ®INå­å¥ä¸­å…ƒç´ çš„å¤§å°åŠ¨æ€åˆ›å»ºPreparedStatementæŸ¥è¯¢ã€‚
 	private static String createQuery(int length) {
 		String query = "select empid, name from Employee where empid in (";
 		StringBuilder queryBuilder = new StringBuilder(query);
@@ -56,7 +56,7 @@ public class JDBCPreparedStatementDynamic {
 			}else {
 				queryBuilder.append(" ?");
 			}
-			// Èç¹ûÊÇ×îºóÒ»¸ö£¬Ôò²»Æ´½Ó,
+			// å¦‚æœæ˜¯æœ€åä¸€ä¸ªï¼Œåˆ™ä¸æ‹¼æ¥,
 			if(i != length -1) queryBuilder.append(",");
 		}
 		queryBuilder.append(")");

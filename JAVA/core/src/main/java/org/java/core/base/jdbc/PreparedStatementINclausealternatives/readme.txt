@@ -1,4 +1,4 @@
-JDBC API provides two ways to communicate with database ¨C 
+JDBC API provides two ways to communicate with database â€“ 
 Statement and PreparedStatement. Statement is easy to use 
 but it can lead to SQL injection, that is very common way of 
 hacking any application. This article clearly shows how SQL 
@@ -9,9 +9,9 @@ This article goes further in explaining some of the major
 benefits we get from using PreparedStatement over Statement 
 such as caching, object oriented programming and elegant looking code.
 
-ÓÉÓÚJDBC APIÖ»ÔÊĞíÒ»¸ö¡°£¿¡±²ÎÊıÊ¹ÓÃÒ»¸öÎÄ×Ö,Òò´ËPreparedStatement²»ÊÊÓÃÓÚIN×Ó¾ä(clause)²éÑ¯(queries)¡£
+ç”±äºJDBC APIåªå…è®¸ä¸€ä¸ªâ€œï¼Ÿâ€å‚æ•°ä½¿ç”¨ä¸€ä¸ªæ–‡å­—,å› æ­¤PreparedStatementä¸é€‚ç”¨äºINå­å¥(clause)æŸ¥è¯¢(queries)ã€‚
 
-Òò´Ë£¬Èç¹ûÎÒÃÇĞèÒªÊ¹ÓÃIN×Ó¾äÖ´ĞĞÊı¾İ¿â²éÑ¯£¬ÎÒÃÇĞèÒªÑ°ÕÒÒ»Ğ©Ìæ´ú·½·¨¡£ ±¾ÎÄµÄÄ¿µÄÊÇ·ÖÎö²»Í¬µÄ·½·¨£¬Äú¿ÉÒÔÑ¡ÔñÊÊºÏÄúÒªÇóµÄ·½·¨¡£
+å› æ­¤ï¼Œå¦‚æœæˆ‘ä»¬éœ€è¦ä½¿ç”¨INå­å¥æ‰§è¡Œæ•°æ®åº“æŸ¥è¯¢ï¼Œæˆ‘ä»¬éœ€è¦å¯»æ‰¾ä¸€äº›æ›¿ä»£æ–¹æ³•ã€‚ æœ¬æ–‡çš„ç›®çš„æ˜¯åˆ†æä¸åŒçš„æ–¹æ³•ï¼Œæ‚¨å¯ä»¥é€‰æ‹©é€‚åˆæ‚¨è¦æ±‚çš„æ–¹æ³•ã€‚
 
 Execute Single Queries
 Using Stored Procedure
@@ -32,30 +32,30 @@ We can write a stored procedure and send the input data to the stored procedure.
   stored procedure is out of scope of this tutorial, I will not 
   demonstrate how to use it.
   
-Ê¹ÓÃ´æ´¢¹ı³Ì
-ÎÒÃÇ¿ÉÒÔ±àĞ´´æ´¢¹ı³Ì²¢½«ÊäÈëÊı¾İ·¢ËÍµ½´æ´¢¹ı³Ì¡£
- È»ºóÎÒÃÇ¿ÉÒÔÔÚ´æ´¢¹ı³ÌÖĞÖğ¸öÖ´ĞĞ²éÑ¯²¢»ñµÃ½á¹û¡£ ÕâÖÖ·½·¨Ìá¹©ÁË×î¿ìµÄĞÔÄÜ£¬
- µ«ÎÒÃÇ¶¼ÖªµÀ´æ´¢¹ı³ÌÊÇÌØ¶¨ÓÚÊı¾İ¿âµÄ¡£ Òò´Ë£¬Èç¹ûÎÒÃÇµÄÓ¦ÓÃ³ÌĞò´¦Àí¶àÖÖÀàĞÍµÄÊı¾İ¿â
- £¨ÈçOracle£¬MySQL£©£¬ÄÇÃ´Ëü½«±äµÃÄÑÒÔÎ¬»¤¡£ ÎÒÃÇÓ¦¸ÃÖ»ÔÚÎÒÃÇ´¦Àíµ¥Ò»ÀàĞÍµÄÊı¾İ¿âÊ±²ÅÊ¹ÓÃÕâÖÖ·½·¨£¬
- ²¢ÇÒÃ»ÓĞ¼Æ»®¸ü¸ÄÊı¾İ¿â·şÎñÆ÷¡£ ÓÉÓÚ±àĞ´´æ´¢¹ı³Ì³¬³öÁË±¾½Ì³ÌµÄ·¶Î§£¬Òò´ËÎÒ²»»áÑİÊ¾ÈçºÎÊ¹ÓÃËü¡£
+ä½¿ç”¨å­˜å‚¨è¿‡ç¨‹
+æˆ‘ä»¬å¯ä»¥ç¼–å†™å­˜å‚¨è¿‡ç¨‹å¹¶å°†è¾“å…¥æ•°æ®å‘é€åˆ°å­˜å‚¨è¿‡ç¨‹ã€‚
+ ç„¶åæˆ‘ä»¬å¯ä»¥åœ¨å­˜å‚¨è¿‡ç¨‹ä¸­é€ä¸ªæ‰§è¡ŒæŸ¥è¯¢å¹¶è·å¾—ç»“æœã€‚ è¿™ç§æ–¹æ³•æä¾›äº†æœ€å¿«çš„æ€§èƒ½ï¼Œ
+ ä½†æˆ‘ä»¬éƒ½çŸ¥é“å­˜å‚¨è¿‡ç¨‹æ˜¯ç‰¹å®šäºæ•°æ®åº“çš„ã€‚ å› æ­¤ï¼Œå¦‚æœæˆ‘ä»¬çš„åº”ç”¨ç¨‹åºå¤„ç†å¤šç§ç±»å‹çš„æ•°æ®åº“
+ ï¼ˆå¦‚Oracleï¼ŒMySQLï¼‰ï¼Œé‚£ä¹ˆå®ƒå°†å˜å¾—éš¾ä»¥ç»´æŠ¤ã€‚ æˆ‘ä»¬åº”è¯¥åªåœ¨æˆ‘ä»¬å¤„ç†å•ä¸€ç±»å‹çš„æ•°æ®åº“æ—¶æ‰ä½¿ç”¨è¿™ç§æ–¹æ³•ï¼Œ
+ å¹¶ä¸”æ²¡æœ‰è®¡åˆ’æ›´æ”¹æ•°æ®åº“æœåŠ¡å™¨ã€‚ ç”±äºç¼–å†™å­˜å‚¨è¿‡ç¨‹è¶…å‡ºäº†æœ¬æ•™ç¨‹çš„èŒƒå›´ï¼Œå› æ­¤æˆ‘ä¸ä¼šæ¼”ç¤ºå¦‚ä½•ä½¿ç”¨å®ƒã€‚
  
  
  Notice that the query is created dynamically and it will run perfectly. 
  There will be only one database call and the performance will be good.
-  However if the size of user input varies a lot, we won¡¯t get the 
+  However if the size of user input varies a lot, we wonâ€™t get the 
   PreparedStatement benefit of caching and reusing the execution plan. 
   If you are not worried about PreparedStatement caching and there are
    not many queries with IN clause, then it seems to be the way to go.
    
  
-Çë×¢Òâ£¬²éÑ¯ÊÇ¶¯Ì¬±»´´½¨µÄ£¬Ëü½«ÍêÃÀÔËĞĞ¡£ Ö»ÓĞÒ»¸öÊı¾İ¿âµ÷ÓÃ£¬ĞÔÄÜ»áºÜºÃ¡£ 
-µ«ÊÇ£¬Èç¹ûÓÃ»§ÊäÈëµÄ´óĞ¡±ä»¯ºÜ´ó£¬ÎÒÃÇ½«ÎŞ·¨»ñµÃPreparedStatementµÄ»º´æºÍÖØÓÃÖ´ĞĞ¼Æ»®µÄºÃ´¦¡£
- Èç¹ûÄã²»µ£ĞÄPreparedStatement»º´æ£¬²¢ÇÒÃ»ÓĞºÜ¶à´øÓĞIN×Ó¾äµÄ²éÑ¯£¬ÄÇÃ´ËüËÆºõÊÇÒª×ßµÄÂ·(ÕâÖÖÇé¿öÏÂ´Ë·½Ê½ÊÇ¿ÉĞĞµÄ)¡£
+è¯·æ³¨æ„ï¼ŒæŸ¥è¯¢æ˜¯åŠ¨æ€è¢«åˆ›å»ºçš„ï¼Œå®ƒå°†å®Œç¾è¿è¡Œã€‚ åªæœ‰ä¸€ä¸ªæ•°æ®åº“è°ƒç”¨ï¼Œæ€§èƒ½ä¼šå¾ˆå¥½ã€‚ 
+ä½†æ˜¯ï¼Œå¦‚æœç”¨æˆ·è¾“å…¥çš„å¤§å°å˜åŒ–å¾ˆå¤§ï¼Œæˆ‘ä»¬å°†æ— æ³•è·å¾—PreparedStatementçš„ç¼“å­˜å’Œé‡ç”¨æ‰§è¡Œè®¡åˆ’çš„å¥½å¤„ã€‚
+ å¦‚æœä½ ä¸æ‹…å¿ƒPreparedStatementç¼“å­˜ï¼Œå¹¶ä¸”æ²¡æœ‰å¾ˆå¤šå¸¦æœ‰INå­å¥çš„æŸ¥è¯¢ï¼Œé‚£ä¹ˆå®ƒä¼¼ä¹æ˜¯è¦èµ°çš„è·¯(è¿™ç§æƒ…å†µä¸‹æ­¤æ–¹å¼æ˜¯å¯è¡Œçš„)ã€‚
  
  If you really want to utilize the PreparedStatement caching feature, then another 
  approach is to use NULL in PreparedStatement parameters.
  
- Èç¹ûÄúÈ·ÊµÏëÒªÊ¹ÓÃPreparedStatement»º´æ¹¦ÄÜ£¬ÄÇÃ´ÁíÒ»ÖÖ·½·¨ÊÇÔÚPreparedStatement²ÎÊıÖĞÊ¹ÓÃNULL¡£
+ å¦‚æœæ‚¨ç¡®å®æƒ³è¦ä½¿ç”¨PreparedStatementç¼“å­˜åŠŸèƒ½ï¼Œé‚£ä¹ˆå¦ä¸€ç§æ–¹æ³•æ˜¯åœ¨PreparedStatementå‚æ•°ä¸­ä½¿ç”¨NULLã€‚
 
 
-Õâ¾ÍÊÇÎÒÃÇÔÚ²éÑ¯ÖĞÊ¹ÓÃPreparedStatement for IN×Ó¾äµÄ²»Í¬Ñ¡Ïî¡£ Äú¿ÉÒÔ¸ù¾İÏîÄ¿ÒªÇóÊ¹ÓÃÆäÖĞÈÎºÎÒ»¸ö¡£
+è¿™å°±æ˜¯æˆ‘ä»¬åœ¨æŸ¥è¯¢ä¸­ä½¿ç”¨PreparedStatement for INå­å¥çš„ä¸åŒé€‰é¡¹ã€‚ æ‚¨å¯ä»¥æ ¹æ®é¡¹ç›®è¦æ±‚ä½¿ç”¨å…¶ä¸­ä»»ä½•ä¸€ä¸ªã€‚

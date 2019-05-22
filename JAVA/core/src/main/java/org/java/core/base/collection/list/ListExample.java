@@ -9,7 +9,7 @@ public class ListExample {
 	public static void main(String[] args) {
 		List<String> vowels = new ArrayList<String>();
 		
-		//add example
+		//add JdbcQuickStartExample
 		vowels.add("A");
 		vowels.add("I");
 		
@@ -24,14 +24,14 @@ public class ListExample {
 		vowels.addAll(list);
 		System.out.println(vowels);
 		
-		//clear example to empty the list
+		//clear JdbcQuickStartExample to empty the list
 		list.clear();
 		
-		//size example
+		//size JdbcQuickStartExample
 		System.out.println("letters list size = "+vowels.size());
 		System.out.println(vowels);
 		
-		//set example
+		//set JdbcQuickStartExample
 		vowels.set(2, "E");
 		System.out.println(vowels);
 		

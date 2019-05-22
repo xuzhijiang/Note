@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * If our Employee class won¡¯t implement Cloneable interface, below program will
+ * If our Employee class wonâ€™t implement Cloneable interface, below program will
  * throw java.lang.CloneNotSupportedException runtime exception.
  */
 public class Employee implements Cloneable {
@@ -20,12 +20,12 @@ public class Employee implements Cloneable {
 		
 	}
 	
-	// ÎÒÃÇ»¹¿ÉÒÔ¶¨Òå¸´ÖÆ¹¹Ôìº¯Êı²¢»ñÈ¡¶ÔÏóµÄ¸±±¾£¬¶ø²»ÒÀÀµÓÚ¿ËÂ¡¡£
+	// æˆ‘ä»¬è¿˜å¯ä»¥å®šä¹‰å¤åˆ¶æ„é€ å‡½æ•°å¹¶è·å–å¯¹è±¡çš„å‰¯æœ¬ï¼Œè€Œä¸ä¾èµ–äºå…‹éš†ã€‚
 	// Whenever we need a copy of employee object, we can get 
 	// it using Employee clonedEmp = new Employee(emp);
 	
-	// µ«ÊÇ£¬Èç¹ûÄúµÄÀàÓĞºÜ¶à±äÁ¿£¬ÄÇÃ´±àĞ´¸´ÖÆ¹¹Ôìº¯Êı¿ÉÄÜÊÇÒ»Ïî·±ËöµÄ¹¤×÷£¬
-	// ´ó¶àÊıÊÇÔ­Ê¼µÄºÍ²»¿É±äµÄ¡£
+	// ä½†æ˜¯ï¼Œå¦‚æœæ‚¨çš„ç±»æœ‰å¾ˆå¤šå˜é‡ï¼Œé‚£ä¹ˆç¼–å†™å¤åˆ¶æ„é€ å‡½æ•°å¯èƒ½æ˜¯ä¸€é¡¹ç¹ççš„å·¥ä½œï¼Œ
+	// å¤§å¤šæ•°æ˜¯åŸå§‹çš„å’Œä¸å¯å˜çš„ã€‚
 	
 	public Employee(Employee emp) {
 		
@@ -75,7 +75,7 @@ public class Employee implements Cloneable {
 	}*/
 
 	// Deep Copy:
-	// Õâ¾ÍÊÇÎÒÃÇÏëÒªµÄ£¬¿ËÂ¡Ó¦¸Ã·µ»ØÒ»¸öÍêÈ«ÍÑÀëÔ­Ê¼¶ÔÏóµÄĞÂ¶ÔÏó¡£
+	// è¿™å°±æ˜¯æˆ‘ä»¬æƒ³è¦çš„ï¼Œå…‹éš†åº”è¯¥è¿”å›ä¸€ä¸ªå®Œå…¨è„±ç¦»åŸå§‹å¯¹è±¡çš„æ–°å¯¹è±¡ã€‚
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 

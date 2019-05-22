@@ -31,23 +31,23 @@ public class FinalEmployee implements Comparable<FinalEmployee>{
         this.age = age;
         this.salary = salary;
     }
-    
+
     @Override
-    //this is required to print the user friendly information about the Employee
     public String toString() {
-        return "[id=" + this.id + ", name=" + this.name + ", age=" + this.age + ", salary=" +
-                this.salary + "]";
+        return "FinalEmployee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", salary=" + salary +
+                '}';
     }
-	    
+
     @Override
     public int compareTo(FinalEmployee emp) {
-        //let's sort the employee based on id in ascending order
-        //returns a negative integer, zero, or a positive integer as this employee id
-        //is less than, equal to, or greater than the specified object.
         return (this.id - emp.id);
     }
     
-    // 以匿名类的方式实现Comparator接口
+    // 浠ュ尶鍚嶇被鐨勬柟寮忓疄鐜癈omparator鎺ュ彛
 
     /**
      * Comparator to sort employees list or array in order of Salary

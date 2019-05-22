@@ -6,10 +6,10 @@ import java.util.GregorianCalendar;
 
 public class ReadWriteToConsole {
 	public static void main(String[] args) {
-		//Java System Class提供了一种方法来获取与正在运行的JVM关联的唯一Console对象。
+		//Java System Class锟结供锟斤拷一锟街凤拷锟斤拷锟斤拷锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟叫碉拷JVM锟斤拷锟斤拷锟斤拷唯一Console锟斤拷锟斤拷
 		Console console = System.console();
 
-		//If no console is associated with the current JVM, for example 
+		//If no console is associated with the current JVM, for JdbcQuickStartExample
 		//running through Eclipse or running as background program, then it returns null.
 		if(console != null){
 		    Calendar c = new GregorianCalendar();

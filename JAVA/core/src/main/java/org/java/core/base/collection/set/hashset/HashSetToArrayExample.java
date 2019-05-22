@@ -17,7 +17,7 @@ public class HashSetToArrayExample {
 		}
 		System.out.println("ints set = "+ints);
 		
-		// set to array example
+		// set to array JdbcQuickStartExample
 		Integer[] intArray = new Integer[ints.size()];
 		intArray = ints.toArray(intArray);
 		System.out.println("intArray = "+Arrays.toString(intArray));
@@ -25,7 +25,7 @@ public class HashSetToArrayExample {
 		System.out.println("intArray = "+Arrays.toString(intArray));
 		
 		
-		//array to set example
+		//array to set JdbcQuickStartExample
 		ints = new HashSet<>(Arrays.asList(intArray));
 		System.out.println("ints from array = "+ints);
 		ints.remove(0);ints.remove(1);

@@ -14,7 +14,7 @@ public class DBConnection {
 		FileInputStream fis = null;
 		Connection con = null;
 		try {
-			fis = new FileInputStream("db.properties");
+			fis = new FileInputStream("db-resource.properties");
 			props.load(fis);
 
 			// load the Driver Class

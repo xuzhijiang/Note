@@ -6,8 +6,8 @@ public class SystemSecurityManager {
 	//applications, System class provide useful methods to get SecurityManager 
 	//for the currently running JVM and to set the SecurityManager for the application.
 	
-	//SecurityManagerÀàÓÃÓÚÊµÏÖÓ¦ÓÃ³ÌĞòµÄ°²È«²ßÂÔ£¬SystemÀàÌá¹©ÓĞÓÃµÄ·½·¨À´»ñÈ¡µ±
-	//Ç°ÔËĞĞµÄJVMµÄSecurityManager²¢ÎªÓ¦ÓÃ³ÌĞòÉèÖÃSecurityManager¡£
+	//SecurityManagerç±»ç”¨äºå®ç°åº”ç”¨ç¨‹åºçš„å®‰å…¨ç­–ç•¥ï¼ŒSystemç±»æä¾›æœ‰ç”¨çš„æ–¹æ³•æ¥è·å–å½“
+	//å‰è¿è¡Œçš„JVMçš„SecurityManagerå¹¶ä¸ºåº”ç”¨ç¨‹åºè®¾ç½®SecurityManagerã€‚
 	
 	public static void main(String[] args) {
 		SecurityManager secManager = System.getSecurityManager();

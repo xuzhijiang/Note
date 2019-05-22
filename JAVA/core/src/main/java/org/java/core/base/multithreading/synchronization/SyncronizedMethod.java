@@ -3,7 +3,7 @@ package org.java.core.base.multithreading.synchronization;
 import java.util.Arrays;
 
 /**
- * Î´·­ÒëÍê³É,Çë¿´102.Thread Safety in Java ¨C Synchronization
+ * Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ë¿´102.Thread Safety in Java ï¿½C Synchronization
  * <strong>Java synchronized</strong>
  * <p><br>
  * Synchronization is the tool using which we can achieve 
@@ -13,52 +13,52 @@ import java.util.Arrays;
  * internally it uses locks on Object or Class to make sure
  * only one thread is executing the synchronized code.
  * <p>
- * Í¬²½ÊÇÎÒÃÇÊµÏÖÏß³Ì°²È«µÄ¹¤¾ß,ÔÚÄÚ²¿ËüÊ¹ÓÃObject»òClassÉÏËøÀ´È·±£Ö»ÓÐÒ»¸öÏß³ÌÕýÔÚÖ´ÐÐÍ¬²½´úÂë¡£<br><p>
- * Java synchronization works on locking and unlocking of resource(JavaµÄÍ¬²½ÊÊÓÃÓÚËø¶¨ºÍ½âËø×ÊÔ´), 
+ * Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ß³Ì°ï¿½È«ï¿½Ä¹ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Objectï¿½ï¿½Classï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ë¡£<br><p>
+ * Java synchronization works on locking and unlocking of resource(Javaï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´), 
  * before any thread enters into synchronized code, it has to acquire
  * lock on the Object and when code execution ends, it unlocks the resource
  * that can be locked by other threads. In the mean time other threads are 
- * in wait state to lock the synchronized resource.(Í¬Ê±£¬ÆäËûÏß³Ì´¦ÓÚµÈ´ý×´Ì¬ÒÔËø¶¨Í¬²½×ÊÔ´)
+ * in wait state to lock the synchronized resource.(Í¬Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì´ï¿½ï¿½ÚµÈ´ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½Ô´)
  * <p><br>
  * We can use synchronized keyword in two ways, one is to make a complete 
  * method synchronized and other way is to create synchronized block.
  * <p><br>
  * When a method is synchronized, it locks the Object, 
  * if method is static it locks the Class,
- * so it¡¯s always best practice to use synchronized block (Ê¹ÓÃÍ¬²½¿éÊÇ×ÜÊÇ×î¼ÑÊµ¼ù)to 
- * lock the only sections of method that needs synchronization.(Ëø¶¨ÐèÒªÍ¬²½·½·¨µÄÎ¨Ò»²¿·Ö)
+ * so itï¿½ï¿½s always best practice to use synchronized block (Ê¹ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½)to 
+ * lock the only sections of method that needs synchronization.(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÍ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¨Ò»ï¿½ï¿½ï¿½ï¿½)
  * <p><br>
  * While creating synchronized block, we need to provide the resource on which lock will be acquired,
  * it can be XYZ.class or any Object field of the class.
  * <p><br>
  * synchronized(this) will lock the Object before entering into the synchronized block.
  * <p>
- * You should use the lowest level of locking, for example
+ * You should use the lowest level of locking, for JdbcQuickStartExample
  * if there are multiple synchronized block in a class and one 
  * of them is locking the Object, then other synchronized blocks
  * will also be not available for execution by other threads. 
- * When we lock an Object, it acquires lock on all the fields of the Object.(µ±ÎÒÃÇËø¶¨Ò»¸öObjectÊ±£¬Ëü»á»ñÈ¡ObjectµÄËùÓÐ×Ö¶ÎµÄËø¶¨)
+ * When we lock an Object, it acquires lock on all the fields of the Object.(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ObjectÊ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Objectï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶Îµï¿½ï¿½ï¿½ï¿½ï¿½)
  * <p>
- * Java Synchronization provides data integrity on the cost of performance,(JavaÍ¬²½Ìá¹©ÁËÐÔÄÜ³É±¾·½ÃæµÄÊý¾ÝÍêÕûÐÔ)
- * so it should be used only when it¡¯s absolutely necessary.
+ * Java Synchronization provides data integrity on the cost of performance,(JavaÍ¬ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½ï¿½ï¿½Ü³É±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+ * so it should be used only when itï¿½ï¿½s absolutely necessary.
  * <p>
  * Java Synchronization works only in the same JVM, so if you need 
  * to lock some resource in multiple JVM environment, it will not work 
- * and you might have to look after some global locking mechanism(Äã¿ÉÄÜÐèÒªÕÕ¹ËÒ»Ð©È«¾ÖËø¶¨»úÖÆ).
+ * and you might have to look after some global locking mechanism(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Õ¹ï¿½Ò»Ð©È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½).
  * Java Synchronization could result in deadlocks, check this post about deadlock in java and how to avoid them.
  * <p>
  * Java synchronized keyword cannot be used for constructors and variables.
  * <p>
  * It is preferable to create a dummy private Object to use for synchronized 
- * block(´´½¨ÐéÄâË½ÓÐ¶ÔÏóÓÃÓÚÍ¬²½¿éÊÇÓÅÑ¡µÄ), so that it¡¯s reference can¡¯t be changed by any other code.
- * For example if you have a setter method for Object on which you 
- * are synchronizing, it¡¯s reference can be changed by some other 
+ * block(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½), so that itï¿½ï¿½s reference canï¿½ï¿½t be changed by any other code.
+ * For JdbcQuickStartExample if you have a setter method for Object on which you
+ * are synchronizing, itï¿½ï¿½s reference can be changed by some other 
  * code leads to parallel execution of the synchronized block.
  * <p>
- * We should not use any object that is maintained in a constant pool,(ÎÒÃÇ²»Ó¦Ê¹ÓÃÔÚ³£Á¿³ØÖÐÎ¬»¤µÄÈÎºÎ¶ÔÏó)
- * for example String should not be used for synchronization because 
- * if any other code is also locking on same String(ÒòÎªÈç¹ûÆäËûµÄÈÎºÎ´úÂëÒ²Ëø¶¨ÔÚÏàÍ¬µÄ×Ö·û´®ÉÏ), it will try 
- * to acquire lock on the same reference object from String pool (Ëü½«»áÔÚ×Ö·û³ØÖÐ»ñµÃÏàÍ¬ÒýÓÃ¶ÔÏóµÄËø)
+ * We should not use any object that is maintained in a constant pool,(ï¿½ï¿½ï¿½Ç²ï¿½Ó¦Ê¹ï¿½ï¿½ï¿½Ú³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ï¿½ï¿½ï¿½ï¿½ÎºÎ¶ï¿½ï¿½ï¿½)
+ * for JdbcQuickStartExample String should not be used for synchronization because
+ * if any other code is also locking on same String(ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎºÎ´ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½), it will try 
+ * to acquire lock on the same reference object from String pool (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
  * and even though both the codes are unrelated, they will lock each other.
  */
 public class SyncronizedMethod {

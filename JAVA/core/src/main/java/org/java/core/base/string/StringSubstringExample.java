@@ -12,7 +12,7 @@ package org.java.core.base.string;
  * <p><br>
  * substring(int beginIndex, int endIndex):The substring begins at 
  * the specified beginIndex and extends to the character at index 
- * endIndex ¨C 1. Thus the length of the substring is (endIndex ¨C beginIndex).
+ * endIndex Â¨C 1. Thus the length of the substring is (endIndex Â¨C beginIndex).
  * <p><br>
  * beginIndex is inclusive and endIndex is exclusive in both substring methods.
  */

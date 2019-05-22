@@ -1,8 +1,8 @@
 JDBC Batch insert and update examples in MySQL and Oracle databases. 
 
- ÓĞÊ±ÎÒÃÇĞèÒªÎªÊı¾İ¿âÔËĞĞÀàËÆµÄÅúÁ¿²éÑ¯£¬ÀıÈç½«Êı¾İ´ÓCSVÎÄ¼ş¼ÓÔØµ½¹ØÏµÊı¾İ¿â±í¡£ 
- ÎÒÃÇÖªµÀÎÒÃÇ¿ÉÒÔÑ¡ÔñÊ¹ÓÃStatement»òPreparedStatementÀ´Ö´ĞĞ²éÑ¯¡£
-  ³ı´ËÖ®Íâ£¬JDBC»¹Ìá¹©ÁËÅú´¦Àí¹¦ÄÜ£¬Í¨¹ı¸Ã¹¦ÄÜ£¬ÎÒÃÇ¿ÉÒÔÒ»´ÎĞÔÎªÊı¾İ¿âÖ´ĞĞ´óÁ¿²éÑ¯¡£
+ æœ‰æ—¶æˆ‘ä»¬éœ€è¦ä¸ºæ•°æ®åº“è¿è¡Œç±»ä¼¼çš„æ‰¹é‡æŸ¥è¯¢ï¼Œä¾‹å¦‚å°†æ•°æ®ä»CSVæ–‡ä»¶åŠ è½½åˆ°å…³ç³»æ•°æ®åº“è¡¨ã€‚ 
+ æˆ‘ä»¬çŸ¥é“æˆ‘ä»¬å¯ä»¥é€‰æ‹©ä½¿ç”¨Statementæˆ–PreparedStatementæ¥æ‰§è¡ŒæŸ¥è¯¢ã€‚
+  é™¤æ­¤ä¹‹å¤–ï¼ŒJDBCè¿˜æä¾›äº†æ‰¹å¤„ç†åŠŸèƒ½ï¼Œé€šè¿‡è¯¥åŠŸèƒ½ï¼Œæˆ‘ä»¬å¯ä»¥ä¸€æ¬¡æ€§ä¸ºæ•°æ®åº“æ‰§è¡Œå¤§é‡æŸ¥è¯¢ã€‚
   
 JDBC batch statements are processed through Statement and PreparedStatement 
 addBatch() and executeBatch() methods.
@@ -11,15 +11,15 @@ addBatch() and executeBatch() methods.
 MYSQL DB	STATEMENT	PREPAREDSTATEMENT	STATEMENT BATCH	PREPAREDSTATEMENT BATCH
 Time Taken (ms)	8256	8130	7129	7019
 
-µ±ÎÒ²é¿´ÏìÓ¦Ê±¼äÊ±£¬ÎÒ²»È·¶¨ËüÊÇ·ñÕıÈ·£¬ÒòÎªÎÒÏ£ÍûÍ¨¹ıÅú´¦ÀíÄÜ¹»¸ÄÉÆÏìÓ¦Ê±¼ä¡£ ËùÒÔÎÒÔÚÍøÉÏ¿´ÁËÒ»Ğ©½âÊÍ£¬
+å½“æˆ‘æŸ¥çœ‹å“åº”æ—¶é—´æ—¶ï¼Œæˆ‘ä¸ç¡®å®šå®ƒæ˜¯å¦æ­£ç¡®ï¼Œå› ä¸ºæˆ‘å¸Œæœ›é€šè¿‡æ‰¹å¤„ç†èƒ½å¤Ÿæ”¹å–„å“åº”æ—¶é—´ã€‚ æ‰€ä»¥æˆ‘åœ¨ç½‘ä¸Šçœ‹äº†ä¸€äº›è§£é‡Šï¼Œ
  and found out that by default MySQL batch processing works in 
  similar way like running without batch. 
- ·¢ÏÖÄ¬ÈÏMySQLÅú´¦ÀíµÄ¹¤×÷·½Ê½ÓëÃ»ÓĞÅú´¦ÀíµÄÇé¿öÀàËÆ¡£ ÎªÁË»ñµÃMySQLÖĞÅú´¦ÀíµÄÊµ¼ÊºÃ´¦£¬
- ÎÒÃÇĞèÒªÔÚ´´½¨Êı¾İ¿âÁ¬½ÓÊ±½«rewriteBatchedStatements´«µİÎªTRUE:
+ å‘ç°é»˜è®¤MySQLæ‰¹å¤„ç†çš„å·¥ä½œæ–¹å¼ä¸æ²¡æœ‰æ‰¹å¤„ç†çš„æƒ…å†µç±»ä¼¼ã€‚ ä¸ºäº†è·å¾—MySQLä¸­æ‰¹å¤„ç†çš„å®é™…å¥½å¤„ï¼Œ
+ æˆ‘ä»¬éœ€è¦åœ¨åˆ›å»ºæ•°æ®åº“è¿æ¥æ—¶å°†rewriteBatchedStatementsä¼ é€’ä¸ºTRUE:
  
 #DB_URL=jdbc:mysql://localhost:3306/UserDB?rewriteBatchedStatements=true
 
-½«rewriteBatchedStatementsÉèÖÃÎªtrue£¬ÏÂ±íÌá¹©ÁËÏàÍ¬³ÌĞòµÄÏìÓ¦Ê±¼ä¡£
+å°†rewriteBatchedStatementsè®¾ç½®ä¸ºtrueï¼Œä¸‹è¡¨æä¾›äº†ç›¸åŒç¨‹åºçš„å“åº”æ—¶é—´ã€‚
 
 
 MYSQL DB	STATEMENT	PREPAREDSTATEMENT	STATEMENT BATCH	PREPAREDSTATEMENT BATCH
@@ -28,10 +28,10 @@ Time Taken (ms)	5676	5570	3716	394
 As you can see that PreparedStatement Batch Processing is very fast 
 when rewriteBatchedStatements is true. So if you have a lot of 
  processing involved, you should use this feature for faster processing.
- ÕıÈçÄúËù¿´µ½µÄ£¬µ±rewriteBatchedStatementsÎªtrueÊ±£¬PreparedStatement Batch Processing·Ç³£¿ì¡£
-  Òò´Ë£¬Èç¹ûÉæ¼°´óÁ¿Åú´¦Àí£¬ÔòÓ¦Ê¹ÓÃ´Ë¹¦ÄÜÒÔ¼Ó¿ì´¦ÀíËÙ¶È¡£
+ æ­£å¦‚æ‚¨æ‰€çœ‹åˆ°çš„ï¼Œå½“rewriteBatchedStatementsä¸ºtrueæ—¶ï¼ŒPreparedStatement Batch Processingéå¸¸å¿«ã€‚
+  å› æ­¤ï¼Œå¦‚æœæ¶‰åŠå¤§é‡æ‰¹å¤„ç†ï¼Œåˆ™åº”ä½¿ç”¨æ­¤åŠŸèƒ½ä»¥åŠ å¿«å¤„ç†é€Ÿåº¦ã€‚
 
-µ±ÎÒÖ´ĞĞOracleÊı¾İ¿âµÄÉÏÊö³ÌĞòÊ±£¬½á¹ûÓëMySQL´¦Àí½á¹ûÒ»ÖÂ£¬PreparedStatement Batch´¦Àí±ÈÈÎºÎÆäËû·½·¨¿ìµÃ¶à¡£
+å½“æˆ‘æ‰§è¡ŒOracleæ•°æ®åº“çš„ä¸Šè¿°ç¨‹åºæ—¶ï¼Œç»“æœä¸MySQLå¤„ç†ç»“æœä¸€è‡´ï¼ŒPreparedStatement Batchå¤„ç†æ¯”ä»»ä½•å…¶ä»–æ–¹æ³•å¿«å¾—å¤šã€‚
 
 
 

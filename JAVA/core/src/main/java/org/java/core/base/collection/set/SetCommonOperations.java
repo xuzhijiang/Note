@@ -2,14 +2,14 @@ package org.java.core.base.collection.set;
 
 import java.util.*;
 
-// ÔÚJava SetÉÏÖ´ÐÐµÄ×î³£¼û²Ù×÷ÊÇadd£¬addAll£¬clear£¬sizeµÈ¡£
+// ï¿½ï¿½Java Setï¿½ï¿½Ö´ï¿½Ðµï¿½ï¿½î³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½addï¿½ï¿½addAllï¿½ï¿½clearï¿½ï¿½sizeï¿½È¡ï¿½
 public class SetCommonOperations 
 {
    public static void main(String args[]) 
    {
 	Set<String> vowels= new HashSet<>();
 		
-	//add example
+	//add JdbcQuickStartExample
 	vowels.add("A");
 	vowels.add("E");
 	vowels.add("I");
@@ -25,10 +25,10 @@ public class SetCommonOperations
 	vowels.addAll(set);
 	System.out.println(vowels);
 	
-	//clear example to empty the set
+	//clear JdbcQuickStartExample to empty the set
 	set.clear();
 		
-	//size example
+	//size JdbcQuickStartExample
 	System.out.println("letters set size = " + vowels.size());
 		
 	vowels.clear();

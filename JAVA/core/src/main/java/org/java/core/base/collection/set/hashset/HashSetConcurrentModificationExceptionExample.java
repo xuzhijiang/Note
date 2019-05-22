@@ -18,7 +18,7 @@ public class HashSetConcurrentModificationExceptionExample {
 	public static void main(String[] args) {
 		Set<String> fruits = new HashSet<>();
 		
-		//add example
+		//add JdbcQuickStartExample
 		fruits.add("Apple");
 		fruits.add("Banana");
 		fruits.add("Orange");

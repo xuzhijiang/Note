@@ -4,8 +4,8 @@ import java.io.Closeable;
 import java.io.IOException;
 
 /**
- * This Enum example shows all the things we can do with Enum types
- * 这个Enum示例展示了我们用Enum类型可以做的所有的事情
+ * This Enum JdbcQuickStartExample shows all the things we can do with Enum types
+ * 锟斤拷锟紼num示锟斤拷展示锟斤拷锟斤拷锟斤拷锟斤拷Enum锟斤拷锟酵匡拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫碉拷锟斤拷锟斤拷
  */
 public enum ThreadStatesEnum implements Closeable {
 	START(1) {

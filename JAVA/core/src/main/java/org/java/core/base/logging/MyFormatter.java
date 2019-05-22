@@ -5,16 +5,16 @@ import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
 /**
- * ¸ñÊ½»¯³ÌĞòÓÃÓÚ¸ñÊ½»¯ÈÕÖ¾ÏûÏ¢¡£ java logging APIÖĞÓĞÁ½¸ö¿ÉÓÃµÄ¸ñÊ½»¯³ÌĞò
+ * æ ¼å¼åŒ–ç¨‹åºç”¨äºæ ¼å¼åŒ–æ—¥å¿—æ¶ˆæ¯ã€‚ java logging APIä¸­æœ‰ä¸¤ä¸ªå¯ç”¨çš„æ ¼å¼åŒ–ç¨‹åº
  * 
- * SimpleFormatter£º´Ë¸ñÊ½»¯³ÌĞòÉú³É°üº¬»ù±¾ĞÅÏ¢µÄÎÄ±¾ÏûÏ¢¡£ 
- * ConsoleHandlerÊ¹ÓÃ´ËformatterÀà½«ÈÕÖ¾ÏûÏ¢´òÓ¡µ½¿ØÖÆÌ¨¡£
+ * SimpleFormatterï¼šæ­¤æ ¼å¼åŒ–ç¨‹åºç”ŸæˆåŒ…å«åŸºæœ¬ä¿¡æ¯çš„æ–‡æœ¬æ¶ˆæ¯ã€‚ 
+ * ConsoleHandlerä½¿ç”¨æ­¤formatterç±»å°†æ—¥å¿—æ¶ˆæ¯æ‰“å°åˆ°æ§åˆ¶å°ã€‚
  * 
- * XMLFormatter£º´Ë¸ñÊ½»¯³ÌĞòÎªÈÕÖ¾Éú³ÉXMLÏûÏ¢£¬
- * FileHandlerÊ¹ÓÃXMLFormatter×÷ÎªÄ¬ÈÏ¸ñÊ½»¯³ÌĞò¡£
+ * XMLFormatterï¼šæ­¤æ ¼å¼åŒ–ç¨‹åºä¸ºæ—¥å¿—ç”ŸæˆXMLæ¶ˆæ¯ï¼Œ
+ * FileHandlerä½¿ç”¨XMLFormatterä½œä¸ºé»˜è®¤æ ¼å¼åŒ–ç¨‹åºã€‚
  * 
- * ÎÒÃÇ¿ÉÒÔÍ¨¹ıÀ©Õ¹java.util.logging.FormatterÀàÀ´´´½¨ÎÒÃÇ×Ô¼ºµÄ×Ô¶¨ÒåFormatterÀà£¬
- * ²¢½«Æä¸½¼Óµ½ÈÎºÎ´¦Àí³ÌĞò(handler)
+ * æˆ‘ä»¬å¯ä»¥é€šè¿‡æ‰©å±•java.util.logging.Formatterç±»æ¥åˆ›å»ºæˆ‘ä»¬è‡ªå·±çš„è‡ªå®šä¹‰Formatterç±»ï¼Œ
+ * å¹¶å°†å…¶é™„åŠ åˆ°ä»»ä½•å¤„ç†ç¨‹åº(handler)
  *
  */
 public class MyFormatter extends Formatter{

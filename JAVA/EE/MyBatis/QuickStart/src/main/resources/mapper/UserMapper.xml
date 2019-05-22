@@ -46,6 +46,26 @@
              INSERT INTO user(id,name,age) VALUES (#{id},#{name},#{age})
     </insert>
 
+    <insert id="insertByAutoIncrKey" parameterType="org.mybatis.core.model.User"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user(name, age) VALUES (#{name}, #{age})
+    </insert>
+
+    <insert id="batchInsert" parameterType="java.util.List"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (id, name, age) VALUES
+        <foreach collection="list" item="user" index="index" separator="," >
+            (#{user.id}, #{user.name}, #{user.age})
+        </foreach>
+    </insert>
+
+    <insert id="insertSelectKey" parameterType="User">
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            SELECT last_insert_id();
+        </selectKey>
+        INSERT INTO user ( name, age) VALUES ( #{name}, #{age})
+    </insert>
+
     <!--
         我们可以将<insert>、<select>中parameterType、resultType属性值直接指定为User，
         即使用mybatis-config.xml中的typeAlias别名.

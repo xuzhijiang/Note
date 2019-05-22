@@ -3,12 +3,12 @@ package org.java.core.advanced.SystemClass;
 public class SystemMiscellaneous {
 	
 //	System class provides some other methods for miscellaneous tasks. 
-	//For example, to run Garbage Collector, load external libraries, map the 
+	//For JdbcQuickStartExample, to run Garbage Collector, load external libraries, map the
 	//library name to OS specific String, run the finalize method for any
 	//object waiting for finalization and to terminate the JVM.
 	
-//	System类为其他任务提供了一些其他方法。 例如，要运行垃圾收集器，加载外部库，
-//	将库名称映射到特定于操作系统的字符串，对等待完成的任何对象运行finalize方法并终止JVM。
+//	System锟斤拷为锟斤拷锟斤拷锟斤拷锟斤拷锟结供锟斤拷一些锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷 锟斤拷锟界，要锟斤拷锟斤拷锟斤拷锟斤拷锟秸硷拷锟斤拷锟斤拷锟斤拷锟斤拷锟解部锟解，
+//	锟斤拷锟斤拷锟斤拷锟斤拷映锟戒到锟截讹拷锟节诧拷锟斤拷系统锟斤拷锟街凤拷锟斤拷锟斤拷锟皆等达拷锟斤拷傻锟斤拷魏味锟斤拷锟斤拷锟斤拷锟絝inalize锟斤拷锟斤拷锟斤拷锟斤拷止JVM锟斤拷
 	public static void main(String[] args) {
 		//run the garbage collector
 		System.gc();

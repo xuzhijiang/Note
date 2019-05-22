@@ -11,8 +11,8 @@ public class JavaSystemArrayCopy {
 		//Java System class provides a native method for 
 		//copying data from one array to another. This is a native 
 		//implementation and supposed to be faster than other ways to copy array data.
-		//Java SystemÀàÌá¹©ÁËÒ»ÖÖ½«Êı¾İ´ÓÒ»¸öÊı×é¸´ÖÆµ½ÁíÒ»¸öÊı×éµÄnative method,ÕâÊÇÒ»ÖÖnativeÊµÏÖ£¬
-		//±ÈÆäËû·½·¨¸ü¿ì
+		//Java Systemç±»æä¾›äº†ä¸€ç§å°†æ•°æ®ä»ä¸€ä¸ªæ•°ç»„å¤åˆ¶åˆ°å¦ä¸€ä¸ªæ•°ç»„çš„native method,è¿™æ˜¯ä¸€ç§nativeå®ç°ï¼Œ
+		//æ¯”å…¶ä»–æ–¹æ³•æ›´å¿«
 		
 		//copying first two elements from array1 to array2 starting from index 2 of array2
 		System.arraycopy(arr1, 0, arr2, 2, 2);

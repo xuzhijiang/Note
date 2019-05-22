@@ -111,7 +111,7 @@ public enum State {
      * <p>A thread in the waiting state is waiting for another thread to
      * perform a particular action.
      *
-     * For example, a thread that has called <tt>Object.wait()</tt>
+     *JdbcQuickStartExample
      * on an object is waiting for another thread to call
      * <tt>Object.notify()</tt> or <tt>Object.notifyAll()</tt> on
      * that object. A thread that has called <tt>Thread.join()</tt>

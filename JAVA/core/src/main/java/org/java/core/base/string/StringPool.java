@@ -1,7 +1,7 @@
 package org.java.core.base.string;
 
 /**
- * Java String Pool example
+ * Java String Pool JdbcQuickStartExample
  *
  */
 public class StringPool {

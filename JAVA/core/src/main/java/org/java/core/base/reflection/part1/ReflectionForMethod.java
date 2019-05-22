@@ -16,8 +16,8 @@ public class ReflectionForMethod {
 		//for the method in superclass.
 		//我们可以用getMethod()得到类的public方法.
 		
-		//In below example, I am getting put() method of HashMap 
-		//using reflection. The example also shows how to get the 
+		//In below JdbcQuickStartExample, I am getting put() method of HashMap
+		//using reflection. The JdbcQuickStartExample also shows how to get the
 		//parameter types, method modifiers and return type of a method.
 		//我用反射得到HashMap的put方法，这个例子也展示了怎么去得到这个方法的参数 类型，方法修饰符以及返回类型
 		
@@ -38,7 +38,7 @@ public class ReflectionForMethod {
 
 		//Invoking Public Method
 		//We can use invoke() method of Method object to invoke a 
-		//method, in below example code I am invoking put method on HashMap using reflection.
+		//method, in below JdbcQuickStartExample code I am invoking put method on HashMap using reflection.
 		//我们可以用Method对象的invoke()方法去调用方法
 		//If the method is static, we can pass NULL as object argument.
 		//如果方法是静态的，我们可以传递null作为对象类型
@@ -53,7 +53,7 @@ public class ReflectionForMethod {
 		
 		//Invoking Private Methods
 		//We can use getDeclaredMethod() to get the private method and 
-		//then turn off the access check to invoke it, below example shows
+		//then turn off the access check to invoke it, below JdbcQuickStartExample shows
 		//how we can invoke method3() of BaseClass that is static and have no parameters.
 		//用getDeclardMethod()得到私有方法，然后关闭访问检查，然后调用它
 		

@@ -23,6 +23,16 @@ public class NewEmployee implements Comparable<NewEmployee> {
         return salary;
     }
 
+    @Override
+    public String toString() {
+        return "NewEmployee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", salary=" + salary +
+                '}';
+    }
+
     public NewEmployee(int id, String name, int age, int salary) {
         this.id = id;
         this.name = name;
@@ -32,17 +42,9 @@ public class NewEmployee implements Comparable<NewEmployee> {
 
     @Override
     public int compareTo(NewEmployee emp) {
-        //let's sort the employee based on id in ascending order
-        //returns a negative integer, zero, or a positive integer as this employee id
-        //is less than, equal to, or greater than the specified object.
+        // 基于id升序排序
+        // 返回负数，0，正数，代表小于，等于，大于emp对象
         return (this.id - emp.id);
-    }
-
-    @Override
-    //this is required to print the user friendly information about the Employee
-    public String toString() {
-        return "[id=" + this.id + ", name=" + this.name + ", age=" + this.age + ", salary=" +
-                this.salary + "]";
     }
 
 }

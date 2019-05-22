@@ -2,12 +2,12 @@ package org.java.core.base.collection.set;
 
 import java.util.*;
 
-// Ê¹ÓÃSet.toArray£¨£©·½·¨½«Ò»×é×Ö·û´®×ª»»Îª×Ö·û´®Êý×é
+// Ê¹ï¿½ï¿½Set.toArrayï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 public class SetToArray {
    public static void main(String[] args) {
 	Set<String> vowelsSet = new HashSet<>();
 
-	// add example
+	// add JdbcQuickStartExample
 	vowelsSet.add("a");
 	vowelsSet.add("e");
 	vowelsSet.add("i");

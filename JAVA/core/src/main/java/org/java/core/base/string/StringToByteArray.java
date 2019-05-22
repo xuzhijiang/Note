@@ -9,7 +9,7 @@ public class StringToByteArray {
 	public static void main(String[] args) {
 		String str = "xzj";
 		byte[] byteArr = str.getBytes();//using the platform's default charset
-		//getBytes·½·¨½«string±àÂëÎªÒ»¸öbytesĞòÁĞ(Ò²¾ÍÊÇÒ»¸ö×Ö½ÚÊı×é),ÓÃµÄÊÇÆ½Ì¨Ä¬ÈÏµÄ×Ö·û¼¯±àÂë
+		//getBytesæ–¹æ³•å°†stringç¼–ç ä¸ºä¸€ä¸ªbytesåºåˆ—(ä¹Ÿå°±æ˜¯ä¸€ä¸ªå­—èŠ‚æ•°ç»„),ç”¨çš„æ˜¯å¹³å°é»˜è®¤çš„å­—ç¬¦é›†ç¼–ç 
 		//print the byte[] elements
 		System.out.println("String to byte array: " + Arrays.toString(byteArr));
 		
@@ -23,10 +23,10 @@ public class StringToByteArray {
 		//catch UnsupportedEncodingException exception or throw it. Better 
 		//approach is to use StandardCharsets class introduced in Java 1.7 as shown below.
 		
-		byte[] byteArr2 = str.getBytes(StandardCharsets.UTF_8);//ÓÃ¸ø¶¨µÄ×Ö·û¼¯
+		byte[] byteArr2 = str.getBytes(StandardCharsets.UTF_8);//ç”¨ç»™å®šçš„å­—ç¬¦é›†
 		System.out.println(Arrays.toString(byteArr2));
 		
-		String ss = "P";//µÃµ½Ä³Ò»¸öcharµÄbyteÖµ
+		String ss = "P";//å¾—åˆ°æŸä¸€ä¸ªcharçš„byteå€¼
 		System.out.print(Arrays.toString(ss.getBytes()));
 	}
 }

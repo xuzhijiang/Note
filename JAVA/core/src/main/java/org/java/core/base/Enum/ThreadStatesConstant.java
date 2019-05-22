@@ -11,21 +11,21 @@ public class ThreadStatesConstant {
 		benefitsOfEnumOverConstants();
 	}
 
-	//If we look at the below example, we have two risks with 
+	//If we look at the below JdbcQuickStartExample, we have two risks with
 	//using constants that are solved by enum.
 
 	//1. We can pass any int constant to the simpleConstantsExample 
 	//method but we can pass only fixed values to simpleEnumExample, 
-	//so it provides type safety.(´«µİÀàĞÍ°²È«)
-	// ÎÒÃÇ¿ÉÒÔ½«ÈÎºÎint³£Á¿´«µİ¸øsimpleConstantsExample·½·¨£¬
-	// µ«ÊÇÎÒÃÇÖ»ÄÜ½«¹Ì¶¨Öµ´«µİ¸øsimpleEnumExample£¬Òò´ËËüÌá¹©ÁËÀàĞÍ°²È«ĞÔ¡£
+	//so it provides type safety.(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½È«)
+	// ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½Ô½ï¿½ï¿½Îºï¿½intï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¸ï¿½simpleConstantsExampleï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½Ü½ï¿½ï¿½Ì¶ï¿½Öµï¿½ï¿½ï¿½İ¸ï¿½simpleEnumExampleï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½È«ï¿½Ô¡ï¿½
 	
 	//2. We can change the int constants value in ThreadStatesConstant 
 	//class but the below program will not throw any exception. 
 	//Our program might not work as expected but if we change the enum constants, 
 	//we will get compile time error that removes any possibility of runtime issues.
-	// ÎÒÃÇ¿ÉÒÔÔÚThreadStatesConstantÀàÖĞ¸ü¸Äint³£Á¿Öµ£¬µ«ÉÏÃæµÄ³ÌĞò²»»áÅ×³öÈÎºÎÒì³£¡£ 
-	// ÎÒÃÇµÄ³ÌĞò¿ÉÄÜÎŞ·¨°´Ô¤ÆÚ¹¤×÷£¬µ«Èç¹ûÎÒÃÇ¸ü¸ÄÃ¶¾Ù³£Á¿£¬ÎÒÃÇ½«µÃµ½±àÒëÊ±´íÎó£¬Ïû³ıÔËĞĞÊ±ÎÊÌâµÄÈÎºÎ¿ÉÄÜĞÔ¡£
+	// ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ThreadStatesConstantï¿½ï¿½ï¿½Ğ¸ï¿½ï¿½ï¿½intï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ò²»»ï¿½ï¿½×³ï¿½ï¿½Îºï¿½ï¿½ì³£ï¿½ï¿½ 
+	// ï¿½ï¿½ï¿½ÇµÄ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ş·ï¿½ï¿½ï¿½Ô¤ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½Ã¶ï¿½Ù³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎºÎ¿ï¿½ï¿½ï¿½ï¿½Ô¡ï¿½
 	
 	private static void benefitsOfEnumOverConstants() {
 		// Enum values are fixed
@@ -41,8 +41,8 @@ public class ThreadStatesConstant {
 		simpleConstantsExample(4);
 		//we can pass any int constant
 		simpleConstantsExample(5);
-		// ÎÒÃÇ¿ÉÒÔÔÚThreadStatesConstantÀàÖĞ¸ü¸Äint³£Á¿Öµ£¬µ«ÉÏÃæµÄ³ÌĞò²»»áÅ×³öÈÎºÎÒì³£¡£ 
-		// ÎÒÃÇµÄ³ÌĞò¿ÉÄÜÎŞ·¨°´Ô¤ÆÚ¹¤×÷£¬µ«Èç¹ûÎÒÃÇ¸ü¸ÄÃ¶¾Ù³£Á¿£¬ÎÒÃÇ½«µÃµ½±àÒëÊ±´íÎó£¬Ïû³ıÔËĞĞÊ±ÎÊÌâµÄÈÎºÎ¿ÉÄÜĞÔ¡£
+		// ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ThreadStatesConstantï¿½ï¿½ï¿½Ğ¸ï¿½ï¿½ï¿½intï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ò²»»ï¿½ï¿½×³ï¿½ï¿½Îºï¿½ï¿½ì³£ï¿½ï¿½ 
+		// ï¿½ï¿½ï¿½ÇµÄ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ş·ï¿½ï¿½ï¿½Ô¤ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½Ã¶ï¿½Ù³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎºÎ¿ï¿½ï¿½ï¿½ï¿½Ô¡ï¿½
 	}
 
 	private static void simpleEnumExample(ThreadStates th) {

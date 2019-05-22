@@ -11,7 +11,7 @@ public class PriorityQueueExample {
 
 	public static void main(String[] args) {
 		
-		//natural ordering example of priority queue
+		//natural ordering JdbcQuickStartExample of priority queue
 		Queue<Integer> integerPriorityQueue = new PriorityQueue<>(7);
 		Random rand = new Random();
 		for(int i=0;i<7;i++){
@@ -24,7 +24,7 @@ public class PriorityQueueExample {
 			System.out.println("Processing Integer:"+in);
 		}
 		
-		//PriorityQueue example with Comparator
+		//PriorityQueue JdbcQuickStartExample with Comparator
 		Queue<Customer> customerPriorityQueue = new PriorityQueue<>(7, idComparator);
 		addDataToQueue(customerPriorityQueue);
 		

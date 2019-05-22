@@ -18,8 +18,8 @@ public class JDBCPreparedStatementNULL {
 			return;
 		}
 		
-		// ��ע�⣬����ĳ���ʹ����ͬ��PreparedStatement��ѯ��ִ��IN�Ӿ���䣬������ò�ѯ�����ִ�мƻ��ĺô��� 
-		// Ϊ��������������������������ڲ�ѯ�еĲ�����С����ֻ�Ƿ��أ������ǿ������ɵؽ�����չΪ����ִ���������������������롣
+		// 请注意，上面的程序使用相同的PreparedStatement查询来执行IN子句语句，并将获得查询缓存和执行计划的好处。 
+		// 为简单起见，如果输入参数的数量大于查询中的参数大小，我只是返回，但我们可以轻松地将其扩展为批量执行以允许任意数量的输入。
 		
 		Connection con = DBConnection.getConnection();
 		PreparedStatement ps = null;

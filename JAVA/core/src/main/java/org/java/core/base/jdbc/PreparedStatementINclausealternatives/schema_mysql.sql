@@ -1,7 +1,3 @@
-/* 1. mysql -u root ¨Cp */
-/* 2. mysql> source D:\java\Note\JAVA\fundamental\src\org\java\core\base\jdbc\PreparedStatementINclausealternatives\schema_mysql.sql */
-/* ÓÃ--×¢ÊÍ±¨´í */
-
 drop database if exists UserDB;
 
 create database if not exists UserDB CHARACTER SET utf8mb4;

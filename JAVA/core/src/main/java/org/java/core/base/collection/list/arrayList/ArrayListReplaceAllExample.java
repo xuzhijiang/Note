@@ -21,7 +21,7 @@ public class ArrayListReplaceAllExample {
 		ints.replaceAll(operator);
 		System.out.println(ints);
 		
-		//lambda expression example, multiply by 5
+		//lambda expression JdbcQuickStartExample, multiply by 5
 		ints.replaceAll(x -> {return x*5;});
 		System.out.println(ints);
 	}

@@ -7,13 +7,13 @@ import java.io.PrintStream;
 
 public class FileIOOpration {
 	public static void main(String[] args) {
-//		System class contains three fields ¨C in, out and err. 
+//		System class contains three fields ï¿½C in, out and err. 
 //		They are used to read data from InputStream and to write data to OutputStream.
 
 //		System class provide methods to set different types of 
 //		InputStream and OutputStream to be used for logging purposes.
 
-//		For example, we can set FileOutputStream to out and err fields 
+//		For JdbcQuickStartExample, we can set FileOutputStream to out and err fields
 //		so that console output is written to file.
 		
 		

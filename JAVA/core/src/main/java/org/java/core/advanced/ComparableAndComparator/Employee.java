@@ -15,6 +15,16 @@ public class Employee {
         return name;
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", salary=" + salary +
+                '}';
+    }
+
     public int getAge() {
         return age;
     }
@@ -28,13 +38,6 @@ public class Employee {
         this.name = name;
         this.age = age;
         this.salary = salary;
-    }
-
-    @Override
-    //this is overriden to print the user friendly information about the Employee
-    public String toString() {
-        return "[id=" + this.id + ", name=" + this.name + ", age=" + this.age + ", salary=" +
-                this.salary + "]";
     }
 
 }

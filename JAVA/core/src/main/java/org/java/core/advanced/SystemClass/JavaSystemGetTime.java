@@ -10,7 +10,7 @@ public class JavaSystemGetTime {
 		System.out.println("Current time in millis="+currentTimeMillis);
 		System.out.println(date);
 		
-		long nanoTime = System.nanoTime();//ÄÉÃë
+		long nanoTime = System.nanoTime();//Î”Î™Î“Î»
 		System.out.println("Current nano time: "+nanoTime);
 	}
 }

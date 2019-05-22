@@ -17,7 +17,7 @@ public class DBConnection {
 		InputStream is;
 		try {
 			
-			is = new FileInputStream("db.properties");
+			is = new FileInputStream("db-resource.properties");
 			properties.load(is);
 			
 			// load the Driver Class

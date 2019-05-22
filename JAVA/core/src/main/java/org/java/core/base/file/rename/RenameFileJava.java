@@ -4,12 +4,12 @@ import java.io.File;
 
 /**
  * We can use File.renameTo(File dest) method for java rename file and java move file operations.
- * Èç¹ûÖØÃüÃû³É¹¦£¬renameTo·µ»Øtrue£¬else it returns false.
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½renameToï¿½ï¿½ï¿½ï¿½trueï¿½ï¿½else it returns false.
  * 
  */
 public class RenameFileJava {
 	/**
-	 * Rename File or Move File in Java example
+	 * Rename File or Move File in Java JdbcQuickStartExample
 	 * @param args
 	 */
 	public static void main(String[] args) {

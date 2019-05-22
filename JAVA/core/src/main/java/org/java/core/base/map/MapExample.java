@@ -16,13 +16,13 @@ public class MapExample {
 	static void test01() {
 		Map<String, String> data = new HashMap<>();
 
-		data.put("A", "A"); // put example
+		data.put("A", "A"); // put JdbcQuickStartExample
 		data.put("B", "B");
 		data.put("C", "C");
 		data.put("D", null); // null value
 		data.put(null, "Z"); // null key
 
-		String value = data.get("C"); // get example
+		String value = data.get("C"); // get JdbcQuickStartExample
 		System.out.println("Key = C, Value = " + value);
 
 		value = data.getOrDefault("E", "Default Value");

@@ -19,6 +19,6 @@ EXCEPTION
   ROLLBACK;
 END;
 
-/* If insert statement works fine, it¡¯s returning TRUE and incase 
-of any exception it¡¯s returning FALSE.
+/* If insert statement works fine, itÂ¡Â¯s returning TRUE and incase 
+of any exception itÂ¡Â¯s returning FALSE.
 */

@@ -26,6 +26,8 @@ import java.util.List;
 public interface UserMapper {
 
     public int insert(User user);
+    public int insertByAutoIncrKey(User user);
+    public int batchInsert(List users);
     public List<User> select(HashMap<String, Object> map);
     public List<User> selectChoose(HashMap<String, Object> map);
     public User selectById(int id);

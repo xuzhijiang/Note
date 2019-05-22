@@ -26,7 +26,7 @@ public class StringToCharJava {
 		System.out.println(charArr.length);
 		System.out.println("String converted to char array: " + Arrays.toString(charArr));
 		
-		//char at specific indexÄ³¸ö¾ßÌåµÄË÷Òı
+		//char at specific indexæŸä¸ªå…·ä½“çš„ç´¢å¼•
 		char c = str.charAt(2);
 		System.out.println(c);
 		

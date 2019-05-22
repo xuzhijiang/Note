@@ -1,7 +1,7 @@
 package org.java.core.advanced.gc;
 
 /**
- * 堆溢出的理解
+ * 鍫嗘孩鍑虹殑鐞嗚В
  *  input: // -Xss128K
  */
 public class StackDeep {

@@ -31,4 +31,4 @@ CREATE TABLE EMPLOYEE(
 `COUNTRY` VARCHAR(10) DEFAULT NULL,
 PRIMARY KEY (`EMPID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/* ×¢ÒâMysqlµÄ×Ö¶ÎÃû×Ö²»ÄÜÓÃ""À¨ÆðÀ´£¬Mysql²»Ê¶±ð£¬ÒªÓÃ``À¨ÆðÀ´*/
+/* æ³¨æ„Mysqlçš„å­—æ®µåå­—ä¸èƒ½ç”¨""æ‹¬èµ·æ¥ï¼ŒMysqlä¸è¯†åˆ«ï¼Œè¦ç”¨``æ‹¬èµ·æ¥*/

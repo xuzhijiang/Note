@@ -1,7 +1,7 @@
 package org.java.core.advanced.gc;
 
 /**
- *  ¥Ú”°GC–≈œ¢
+ *  print GC info
  *  input: -XX:+PrintGC
  */
 public class LocalVarGC {

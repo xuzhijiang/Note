@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 /**
  * 
- * ´Ë·½·¨ÓëÊ¹ÓÃStatementÀàËÆ£¬µ«PreparedStatementÌá¹©ÁËĞÔÄÜÓÅÊÆ²¢±ÜÃâÁËSQL×¢Èë¹¥»÷¡£
+ * æ­¤æ–¹æ³•ä¸ä½¿ç”¨Statementç±»ä¼¼ï¼Œä½†PreparedStatementæä¾›äº†æ€§èƒ½ä¼˜åŠ¿å¹¶é¿å…äº†SQLæ³¨å…¥æ”»å‡»ã€‚
  *
  */
 public class JDBCPreparedStatement {
