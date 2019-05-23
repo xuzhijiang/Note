@@ -134,6 +134,10 @@ rm -rf file
 
 # 切换用户
 su -username
+
+# 安装gcc
+yum install gcc
+gcc --version
 ```
 
 ### Ubuntu常用命令
@@ -191,4 +195,7 @@ udev           devtmpfs   47G     0   47G   0% /dev
 tmpfs          tmpfs      47G     0   47G   0% /sys/fs/cgroup
 /dev/sda1      ext4      454M  139M  288M  33% /boot
 # 把/dev/sda3这块硬盘挂载到/下，也就是/下的内容都存放在/dev/sda3这块硬盘上.
+
+# 查看某一个文件夹的大小
+df -T -h /boot/
 ```
