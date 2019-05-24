@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 1、保留mybatis的核心配置文件 -->
+
+    <!--我们将绝大部分关于mybatis的配置依然保留在mybatis的核心配置文件mybatis-config文件中-->
+
+    <!--在mybatis-config.xml文件中我们并没有通过<environment>的子元素<dataSource>、<transactionManager>来配置数据源和事务管理器。
+    即使配置了，也会被SqlSessionFactoryBean忽略。我们需要显式的为SqlSessionFactoryBean的dataSource属性引用一个数据源配置，如果不指定，在其初始化时就会抛出异常。见applicationContext.xml中的配置-->
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+    </settings>
+
+    <typeAliases>
+        <package name="org.mybatis.spring"/>
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="mybatis/mappers/UserMapper.xml"/>
+    </mappers>
+
+</configuration>

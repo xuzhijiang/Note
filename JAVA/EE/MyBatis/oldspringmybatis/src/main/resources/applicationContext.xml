@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 引入约束 -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--整合二：SqlSessionFactoryBean-->
+    <!-- a. 在单独使用mybatis时，我们通过SqlSessionFactoryBuilder 来创建SqlSessionFactory。
+         b. 当mybatis与spring进行整合时，我们使用mybatis-spring提供的SqlSessionFactoryBean 来替代，
+    c. SqlSessionFactoryBean实现了 Spring 的 FactoryBean 接口，用于创建 SqlSessionFactory 对象实例。-->
+
+    <!-- SqlSessionFactoryBean的配置有2种风格：保留mybatis的核心配置文件, 不保留mybatis的核心配置文件-->
+    <!-- SqlSessionFactoryBean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--数据源配置-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--通过configLocation属性指定mybatis核心配置文件mybatis-config.xml路径-->
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+    </bean>
+
+
+    <!--数据源使用阿里巴巴的druid,com.alibaba.druid.pool.DruidDataSource实现了标准的
+    javax.sql.DataSource接口,此接口是用于获取数据库连接java.sql.Connection的-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="root"/>
+        <property name="password" value="password"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/mydb"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <!--其他配置-->
+    </bean>
+
+
+    <!--在mybatis与spring整合后, 通常我们不会再直接使用SqlSessionFactory。
+    mybatis-spring提供了其他更加易于操作的辅助类，如SqlSessionTemplate、SqlSessionDaoSupport，
+    当然还有其他更加高级的使用方式，如：MapperFactoryBean，MapperScannerConfigurer。
+    -->
+    <!-- 整合三：使用SqlSessionTemplate -->
+    <!-- SqlSessionTemplate 是 mybatis-spring的核心，其实现了SqlSession接口。
+    在使用了SqlSessionTemplate之后，我们不再需要通过SqlSessionFactory.openSession()方法来创建SqlSession实例；
+    使用完成之后，也不要调用SqlSession.close()方法进行关闭。
+    另外，对于事务，SqlSessionTemplate 将会保证使用的 SqlSession 是和当前 Spring 的事务相关的。
+
+    SqlSessionTemplate依赖于SqlSessionFactory，其配置方式如下所示： -->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+    <!--之后我们可以在org.mybatis.spring.dao.UserDao类中直接进行注入。
+    SqlSessionTemplate 是线程安全的, 可以被多个 DAO 所共享使用-->
+    <!--SqlSessionTemplate本质上是一个代理-->
+
+
+    <!--整合四：继承SqlSessionDaoSupport-->
+    <!--SqlSessionDaoSupport 需要一个 sqlSessionFactory 或 sqlSessionTemplate 属性来设置 。
+    如果两者都被设置了 , 那么SqlSessionFactory是被忽略的。
+    由于我们的UserDao类继承了SqlSessionDaoSupport，所以你可以在UserDao类中进行设置：-->
+    <bean id="userDao" class="org.mybatis.spring.dao.UserDao">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <!-- 或者配置sqlSessionTemplate-->
+        <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+    </bean>
+    <!--事实上，如果你提供的是一个SqlSessionFactory，SqlSessionDaoSupport内部也会使用其来构造
+    一个SqlSessionTemplate实例。
+    -->
+
+
+    <!--整合五：MapperFactoryBean
+
+         无论是使用SqlSessionTemplate，还是继承SqlSessionDaoSupport，
+        我们都需要手工编写DAO类的代码。熟悉mybatis同学知道，SqlSession有一个getMapper()方法，
+        可以让我们通过映射器接口的方式来使用mybatis。-->
+    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <!--上述方式，已经是mybatis与spring进行时理想的方式了。但是如果你的业务很复杂，
+        有许多的XxxMapper接口要配置，针对每个接口都配置一个MapperFactoryBean，
+        会使得我们的配置文件很臃肿。关于这一点，mybatis团队提供了MapperScannerConfigurer来帮助你解决这个问题。 -->
+        <property name="mapperInterface" value="org.mybatis.spring.mapper.UserMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <!--整合八：事务
+    上述所有的配置，还没有涉及到mybatis与spring进行整合另一个核心要点，即事务。
+    整合后，我们需要将事务委派给spring来管理。
+
+   spring使用PlatformTransactionManager接口来表示一个事务管理器。其有2个重要的实现类：
+    1. DataSourceTransactionManager：用于支持本地事务，简单理解，你可以认为就是操作单个数据库的事务，
+    其内部也是通过操作java.sql.Connection来开启、提交(commit)和回滚(rollback)事务。
+
+    2. JtaTransactionManager：用于支持分布式事务，其实现了JTA规范，使用XA协议进行两阶段提交。
+    在本文中，我们主要介绍的是DataSourceTransactionManager，绝大部分情况下， 我们使用的都是这个事务管理器。
+    其配置方式如下： -->
+    <!--spring 事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--默认事务超时时间-->
+        <property name="defaultTimeout" value="30000"/>
+        <!--数据源-->
+        <property name="dataSource" ref="dataSource" />
+        <!--提交失败的话，也进行回滚-->
+        <property name="rollbackOnCommitFailure" value="true"/>
+    </bean>
+
+    <!--关于事务管理器使用方式有2种：声明式事务管理、编程式事务管理-->
+
+    <!--声明式事务管理-->
+    <!--1、基于注解-->
+    <!--基于注解的形式的声明式事务管理器，是最为简单的，也是建议使用的方式。-->
+    <!--首先，你需要配置事务管理是基于注解驱动的，如下： -->
+    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+    <!--之后，在业务bean的方法上添加@Transactional注解，此时这个方法就自动具备了事务的功能，如果出现异常，会自动回滚，没有出现异常则自动交。-->
+    <!--
+    @Transactional
+public void transfer(final String out,final String in,final Double money) {
+            accountMapper.outMoney(out, money);
+            int i=1/0;
+            accountMapper.inMoney(in, money);
+    }
+    -->
+
+
+    <!--2、基于切面-->
+    <!--  如果你有很多方法，都需要有事务管理，你觉得每个方法都添加@Transactional注解比较麻烦，此时你可以使用以下配置取代<tx:annotation-driven>元素。 -->
+    <!-- 1.配置事务通知：（事务的增强） -->
+    <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+        <!--<tx:attributes>-->
+            <!--<tx:method name="transfer"/>-->
+        <!--</tx:attributes>-->
+    <!--</tx:advice>-->
+
+    <!--&lt;!&ndash; 2.配置切面 &ndash;&gt;-->
+    <!--<aop:config>-->
+        <!--&lt;!&ndash; 配置切入点 &ndash;&gt;-->
+        <!--<aop:pointcut id="tx_pointcut" expression="execution(*com.tianshouzhi.mybatis.AccountService+.*(..))"/>-->
+        <!--&lt;!&ndash; 配置切面 &ndash;&gt;-->
+        <!--<aop:advisor pointcut-ref="tx_pointcut" advice-ref="txAdvice" />-->
+    <!--</aop:config>-->
+    <!--事实上，基于切面的配置，太麻烦了，即使对于一些老鸟，长时间没有编写过类似的配置，可能也无法立即正确的进行配置，没有@Transactional注解来的直观。
+    -->
+
+</beans>
