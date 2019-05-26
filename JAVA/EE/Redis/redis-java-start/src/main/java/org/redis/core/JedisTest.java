@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import redis.clients.jedis.*;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

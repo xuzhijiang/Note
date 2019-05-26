@@ -35,7 +35,7 @@ Create a symbolic link using the ln command.使用`ln`命令创建一个符号�
 * clientPort：用于侦听客户端连接的端口。
 * maxClientCnxns：限制最大客户端连接数
 
-在zookeeper/conf下创建zoo.cfg(注意名字不能错了)，添加以下内容:
+在zookeeper/conf下创建zoo.cfg(注意名字不能错了,因为zookeeper默认就是使用这个配置文件)，添加以下内容:
 
 ```shell
 # tickTime为2000毫秒是被建议的心跳之间的间隔。 较短的间隔可能导致系统开销，但收益有限(system overhead with limited benefits)。 
@@ -56,6 +56,10 @@ maxClientCnxns=60
 使用zkServer.sh命令启动ZooKeeper：
 
 >bin/zkServer.sh start
+
+查看当前 zookeeper 状态:
+
+>zkServer.sh status
 
 使用以下命令连接到本地ZooKeeper服务器：
 
