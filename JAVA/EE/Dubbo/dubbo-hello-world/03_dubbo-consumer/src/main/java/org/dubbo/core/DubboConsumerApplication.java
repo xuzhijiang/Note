@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 // 测试: http://localhost:9099/hello
+
+// dubbo-consumer："消费服务"的"服务消费方"所在的模块
 @SpringBootApplication
 @EnableDubboConfiguration
 public class DubboConsumerApplication {

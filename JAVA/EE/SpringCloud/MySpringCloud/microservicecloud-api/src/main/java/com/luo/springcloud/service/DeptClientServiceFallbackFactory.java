@@ -9,8 +9,6 @@ import com.luo.springcloud.entities.Dept;
 import feign.hystrix.FallbackFactory;
 
 /**
- * 注意：不要忘记新类上添加@Component注解
- *
  * 服务降级
  *
  * 服务降级处理是在客户端完成的，与服务端没有关系，在前面的服务熔断中，
@@ -24,11 +22,12 @@ import feign.hystrix.FallbackFactory;
  * 此时是正常返回的.
  * 故意关停microservicecloud-provider-dept-8001，客户端自己调用提示
  */
-@Component
+@Component // 不要忘记新类上添加@Component注解
 public class DeptClientServiceFallbackFactory implements FallbackFactory<DeptClientService>{
 
     @Override
     public DeptClientService create(Throwable arg0) {
+
         return new DeptClientService() {
 
             @Override
@@ -48,6 +47,7 @@ public class DeptClientServiceFallbackFactory implements FallbackFactory<DeptCli
                 return false;
             }
         };
+
     }
 
 }

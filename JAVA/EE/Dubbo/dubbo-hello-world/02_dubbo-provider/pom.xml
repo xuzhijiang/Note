@@ -38,7 +38,7 @@
 
         <dependency>
             <groupId>org.dubbo.core</groupId>
-            <artifactId>hello-world</artifactId>
+            <artifactId>dubbo-hello-world-api</artifactId>
             <version>1.0.1</version>
         </dependency>
 
