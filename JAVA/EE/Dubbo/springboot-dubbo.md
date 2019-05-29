@@ -57,3 +57,37 @@ RPC（Remote Procedure Call）—远程过程调用，它是一种通过网络�
 2. **服务调用链路生成**——服务之间互相是如何调用的
 3. **服务访问压力以及时长统计**——当前系统的压力主要在哪里，如何来扩容和优化
 4. **服务降级**——某个服务挂掉之后调用备用服务
+
+## Dubbo Admin 管理控制台
+
+管理控制台包含：路由规则，动态配置，服务降级，访问控制，权重调整，负载均衡，等管理功能。
+
+GitHub：https://github.com/apache/dubbo-admin
+
+### Frontend Build Setup
+
+```shell
+# install dependencies
+# 配置淘宝镜像加速
+npm install --registry=https://registry.npm.taobao.org
+
+# serve with hot reload at localhost:8081
+# 用热加载在localhost:8081进行服务
+npm run dev
+
+# build for production with minification
+# 为缩小生产而建造
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+```
+
+### 生产环境配置
+
+1. 下载代码: git clone https://github.com/apache/dubbo-admin.git
+2. 在 dubbo-admin-server/src/main/resources/application.properties中指定zookeeper注册中心地址
+3. 构建: `mvn clean package`
+4. 启动: `mvn --projects dubbo-admin-server spring-boot:run` or `cd dubbo-admin-distribution/target; java -jar dubbo-admin-0.1.jar`
+5. 访问 http://localhost:8080
+
