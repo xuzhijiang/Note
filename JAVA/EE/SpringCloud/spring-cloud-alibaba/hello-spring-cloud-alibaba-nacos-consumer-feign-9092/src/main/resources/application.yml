@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: nacos-consumer-feign
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    # 添加 Sentinel控制
+    sentinel:
+      transport:
+        # 注：由于 8719 端口已被 sentinel-dashboard 占用，故这里修改端口号为 8720；不修改也能注册，会自动帮你在端口号上 + 1；
+        port: 8720 # 本应用使用的端口，用来和sentinel控制台交互
+        dashboard: localhost:8080 # Sentinel控制台应用的ip和端口
+
+server:
+  port: 9092
+
+# Sentinel 适配了 Feign 组件。但默认是关闭的。需要在配置文件中配置打开它，在配置文件增加以下代码：
+feign:
+  sentinel:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

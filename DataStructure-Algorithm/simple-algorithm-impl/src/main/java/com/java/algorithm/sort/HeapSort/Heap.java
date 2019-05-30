@@ -1,4 +1,4 @@
-package com.java.datastructure.heap;
+package com.java.algorithm.sort.HeapSort;
 
 import java.util.Arrays;
 

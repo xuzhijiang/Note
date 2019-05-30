@@ -1,7 +1,5 @@
 package com.java.algorithm.sort.HeapSort;
 
-import com.java.datastructure.heap.Heap;
-
 import java.util.Arrays;
 
 public class HeapSort {

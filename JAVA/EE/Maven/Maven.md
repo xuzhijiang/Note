@@ -1,30 +1,14 @@
-maven是构建和依赖管理工具
+官方中央服务器地址(central server):https://repo.maven.apache.org/maven2/
 
-中央服务器地址(central server):https://repo.maven.apache.org/maven2/
-
-一个jar包的maven如何配置：https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5
-
-查找jar包的顺序:
+## 查找依赖的顺序:
 
 1. find jar: local repo(本地仓库)
 2. private service repo(Enterprise企业私有仓库)
 3. central repo(中央仓库)
 
-![maven central repo all plugins(maven中央仓库的所有插件地址:)](https://repo.maven.apache.org/maven2/org/apache/maven/plugins/)
-
-![find pom.xml dependency jar format](http://mvnrepository.com/)
-
-MAVEN的元素:
-1. <groupId>
-2. <artifactId>
-3. <version>
-
-
 1. 查看maven版本: mvn -version
-
 2. mvn package(创建JAR/WAR/EAR---要将我们的应用程序部署到任何Web或应用程序服务器,
 我们需要使用以下maven命令创建应用程序JAR/WAR/EAR文件)
-
 3. mvn test(要在不创建应用程序JAR/WAR/EAR文件的情况下仅运行JUnit测试)
 4. mvn clean(总是建议在编译和构建我们的应用程序代码之前清理所有内容--删除构建目录)
 5. mvn –help
@@ -74,3 +58,35 @@ mvn deploy (all of the above, and install package into remote (aka public) repos
 ```
 
 5. 从参与度(编译，测试，运行)来说，也provided相同，不过被依赖项不会从maven仓库抓，而是从本地文件系统拿，一定需要配合systemPath属性使用。
+
+## maven替换中央仓库- 阿里云
+
+### 第一种: 修改local repo仓库地址
+
+```shell
+# 修改maven根目录下的conf文件夹中的setting.xml文件
+# 修改maven配置文件($M2_HOME/conf/settings.xml)
+cd  $M2_HOME/conf/
+sudo vim settings.xml
+
+# 或者在.m2下面添加一个settings.xml文件
+```
+
+### 第二种: 修改某一个项目的仓库地址
+
+```xml
+# pom.xml文件里添加
+<repositories>  
+        <repository>  
+            <id>alimaven</id>  
+            <name>aliyun maven</name>  
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>  
+            <releases>  
+                <enabled>true</enabled>  
+            </releases>  
+            <snapshots>  
+                <enabled>false</enabled>  
+            </snapshots>  
+        </repository>  
+</repositories>  
+```
