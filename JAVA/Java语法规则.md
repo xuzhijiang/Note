@@ -130,3 +130,22 @@ CREATE TABLE `Users` (
   `password` varchar(20) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+
+Default Value of Data Types in Java :
+Data Type    Default Value (for fields)
+float           0.0f
+double          0.0d
+char            'u0000'
+String (or any object)   null
+
+0.78 默认是Double类型的，如果要指定它为Float类型的，就要加上f
+Object o = 0.78; System.out.println(o instanceof Double);    // true
+Object o = 0.7; System.out.println(o instanceof Float);    // false
+注意instanceof后面的类型必须是对象类型，不能为primitive原始类型，否则编译不过去.
+
+对于消息系统，个人的建议：
+
+轻量级 选择 RabbitMQ
+重量级 选择 Kafka
+如果没有历史原因，不要再选择 ActiveMQ

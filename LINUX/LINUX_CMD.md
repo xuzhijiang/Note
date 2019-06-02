@@ -17,6 +17,9 @@ export PATH=$PATH:$JAVA_HOME/bin
 ```shell
 # yum 主要功能是更方便的添加/删除/更新RPM 包，自动解决包的倚赖性问题，便于管理大量系统的更新问题。
 
+# 查看linxu系统的版本
+cat /etc/os-release
+
 # 查看Linux内核版本命令
 cat /proc/version
 
@@ -173,6 +176,8 @@ ln -s /opt/foo /usr/bin/bar
 [shell script guide](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
 
 shell中针对一个script.sh脚本，使用`. script.sh`, `bash script.sh`, `source script.sh`效果都是一致的
+
+`while true; do echo hello world; sleep 1; done`
 
 ### tcpdump
 
