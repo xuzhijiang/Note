@@ -19,8 +19,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Spring Boot Application using Spring Data Jdbc.
- * 
- * @author Michael Liao
  */
 @EnableSwagger2
 @SpringBootApplication
@@ -71,6 +69,7 @@ public class DataMultiDataSourceApplication {
 
 	/**
 	 * Create second JdbcTemplate from second DataSource.
+	 * 用第二个数据源创建第二个JdbcTemplate
 	 */
 	@Bean(name = "secondJdbcTemplate")//第二个数据源的JdbcTemplate
 	public JdbcTemplate secondJdbcTemplate(@Autowired @Qualifier("secondDatasource") DataSource dataSource) {
