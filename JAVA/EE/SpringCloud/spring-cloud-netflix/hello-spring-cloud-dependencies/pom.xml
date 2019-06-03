@@ -11,6 +11,9 @@
         <module>../hello-spring-cloud-service-admin-8763</module>
         <module>../hello-spring-cloud-web-admin-ribbon-8764</module>
         <module>../hello-spring-cloud-web-admin-feign-8765</module>
+        <module>../hello-spring-cloud-zuul-8769</module>
+        <module>../hello-spring-cloud-config-8888</module>
+        <module>../hello-spring-cloud-config-client-8889</module>
     </modules>
 
     <!--

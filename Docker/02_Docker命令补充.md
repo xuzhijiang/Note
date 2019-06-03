@@ -55,6 +55,15 @@ tutum/centos-6.4                                DEPRECATED. Use tutum/centos:6.4
 ```shell
 # 查看 Docker 版本
 docker version
+
+# --rm：容器终止运行后，自动删除容器文件
+# --name wordpress：容器的名字叫做wordpress。
+# --volume "$PWD/":/var/www/html：将当前目录（$PWD）映射到容器的/var/www/html（Apache 对外访问的默认目录）。因此，当前目录的任何修改，都会反映到容器里面，进而被外部访问到。
+
+# -t 可以和终端交互，进入交互式终端.
+# -d：容器启动后，在后台运行。
+# --env MYSQL_ROOT_PASSWORD=123456：向容器进程传入一个环境变量MYSQL_ROOT_PASSWORD，该变量会被用作 MySQL 的根密码。
+
 # 从 Docker 文件构建 Docker 映像
 docker build -t image-name docker-file-location
 # 运行 Docker 映像

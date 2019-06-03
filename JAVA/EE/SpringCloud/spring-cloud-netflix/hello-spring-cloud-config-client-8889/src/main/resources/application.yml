@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: hello-spring-cloud-config-client
+  cloud:
+    config:
+      uri: http://localhost:8888
+      name: config-client
+      label: master
+      profile: dev
+
+server:
+  port: 8889
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+# 相关配置说明，如下：
+
+#spring.cloud.config.uri：配置服务中心的网址
+#spring.cloud.config.name：配置文件名称的前缀
+#spring.cloud.config.label：配置仓库的分支
+#spring.cloud.config.profile：配置文件的环境标识
+  #dev：表示开发环境
+  #test：表示测试环境
+  #prod：表示生产环境
+
+#注意事项：
+#
+#配置服务器端的默认端口为 8888，如果修改了默认端口，则客户端项目(client)就不能在 application.yml 或 application.properties 中配置 spring.cloud.config.uri，必须在 bootstrap.yml 或是 bootstrap.properties 中配置，原因是 bootstrap 开头的配置文件会被优先加载和配置，切记

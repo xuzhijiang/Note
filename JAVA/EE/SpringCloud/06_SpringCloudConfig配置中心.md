@@ -1,3 +1,7 @@
+## 分布式配置中心
+
+在分布式系统中，由于服务数量巨多，为了方便服务配置文件统一管理，实时更新，所以需要分布式配置中心组件。在 Spring Cloud 中，有分布式配置中心组件 Spring Cloud Config ，它支持配置服务放在配置服务的内存中（即本地），也支持放在远程 Git 仓库中。在 Spring Cloud Config 组件中，分两个角色，一是 Config Server，二是 Config Client。
+
 ## SpringCloudConfig作用以及特点
 
 1.  分布面临的问题是配置问题，每一个项目都有一个yml文件，不好运维管理，所有需要一套集中式的配置管理设施，SpringCloud提供了ConfigServer来解决这个问题。`SpringCloud Config是为微服务架构中的微服务提供集中化的外部配置支持。SpringCloud Config分为客户端和服务端，服务端也称分布式配置中心，它是一个独立的微服务应用，`用来连接配置服务器并为客户端提供获取配置信息，加密和解密信息等访问接口，客户端是通过配置中心获取配置信息.
