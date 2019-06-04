@@ -100,3 +100,5 @@ a. 由于@Configuration注释，它会扫描@Bean方法来创建beans
 
 1)其中@EnableAutoConfiguration 注解的作用是让 SpringBoot来“猜测” 如何配置 Spring。猜测的依据很简单，就是根据依赖的jar包。因为在我们的依赖中，包含了 Tomcat和SpringMvc ，因此SpringBoot的自动配置机制就会认为这是一个web应用。
 因此在main方法run后，就启动 tomcat，让用户通过url来访问。
+
+org.springframework.context.annotation.Primary注解(@Primary):声明默认的，首要的bean(在没有具体指明名字的时候使用).
