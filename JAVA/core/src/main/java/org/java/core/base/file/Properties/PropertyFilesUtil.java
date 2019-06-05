@@ -10,25 +10,25 @@ import java.util.Properties;
 import java.util.Set;
 
 /**
- * Java�����ļ����ڴ洢��ֵ�����á� java.util.Properties�����ڴ���java�е������ļ���
+ * Java属性文件用于存储键值对配置。 java.util.Properties类用于处理java中的属性文件。
  * 
- * ��java�У������ļ������Ǿ��м�ֵ�Ե���ͨ�����ļ���Ҳ������XML�ļ���
+ * 在java中，属性文件可以是具有键值对的普通属性文件，也可以是XML文件。
  * 
- * �����java�����ļ�ʾ���У����ǽ�����չʾ��������ָ�ʽ��д�����ļ���
- * Ȼ������������ļ��ж�ȡ���ԡ�
+ * 在这个java属性文件示例中，我们将向您展示如何以两种格式编写属性文件，
+ * 然后从两个配置文件中读取属性。
  * 
- * ���ǻ�������չʾ��δ���·�����������ļ��Լ���δ������ļ��ж�ȡ���м���
+ * 我们还将向您展示如何从类路径加载属性文件以及如何从属性文件中读取所有键。
  * 
- * ע�������ļ��е�ע�ͣ��������ɵģ���Ϊ�����ڱ�д�ļ�ʱҲ������ע�͡�
- * ������ǽ�ע����Ϊnull���ݣ��������ļ��н�������ע�͡�
+ * 注意属性文件中的注释，它是生成的，因为我们在编写文件时也传递了注释。
+ * 如果我们将注释作为null传递，则属性文件中将不会有注释。
  * 
- * ������ֻ�ṩ�ļ���ʱ����������Ŀ��Ŀ¼�в����ļ������ļ��洢�����ļ���λ�á�
- * ���ǵ����ǳ��Դ���·�����������ļ�ʱ�������׳�NullPointerException��
- * ��Ϊ�����Դ���·�������ļ�������·������Ŀ��srcĿ¼��
+ * 当我们只提供文件名时，它会在项目根目录中查找文件，该文件存储属性文件的位置。
+ * 但是当我们尝试从类路径加载属性文件时，它会抛出NullPointerException，
+ * 因为它尝试从类路径加载文件，该类路径是项目的src目录。
  * 
- * ������ʹ����ͬ��Properties����������������ļ�ʱ��
- * ����Ӧ��ʹ��clear������������������ݡ�������Ǵ������Զ�����û�д洢ֵ���κμ���
- * �򷵻�null��
+ * 当我们使用相同的Properties对象加载其他属性文件时，
+ * 我们应该使用clear（）方法清除它的内容。如果我们传递属性对象中没有存储值的任何键，
+ * 则返回null。
  */
 public class PropertyFilesUtil {
 	
@@ -55,7 +55,7 @@ public class PropertyFilesUtil {
 	 */
 	private static void readPropertyFileFromClasspath(String propertyFileName) throws IOException {
 		Properties prop = new Properties();
-		// ����·������Ŀ��srcĿ¼��
+		// 该类路径是项目的src目录。
 		InputStream input = PropertyFilesUtil.class.getClassLoader().getResourceAsStream(propertyFileName);
 		prop.load(input);
 		System.out.println(propertyFileName + " loaded from Classpath::db.host= " + prop.getProperty("db.host"));

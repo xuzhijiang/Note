@@ -8,11 +8,11 @@ import java.util.Scanner;
 
 /**
  * 
- * Èç¹ûÄú²é¿´ScannerÀà¹¹Ôìº¯Êý£¬Äú»á×¢Òâµ½Ëü½ÓÊÜFile»òInputStream×÷ÎªÊäÈë¡£ 
- * Ëü»¹°üº¬ÊµÓÃ³ÌÐò·½·¨hasNextLine£¨£©ºÍnextLine£¨£©£¬
- * ÎÒÃÇ¿ÉÒÔÊ¹ÓÃËüÀ´½öÊ¹ÓÃÉ¨Ãè³ÌÐò½âÎöCSVÎÄ¼þ¡£
+ * å¦‚æžœæ‚¨æŸ¥çœ‹Scannerç±»æž„é€ å‡½æ•°ï¼Œæ‚¨ä¼šæ³¨æ„åˆ°å®ƒæŽ¥å—Fileæˆ–InputStreamä½œä¸ºè¾“å…¥ã€‚ 
+ * å®ƒè¿˜åŒ…å«å®žç”¨ç¨‹åºæ–¹æ³•hasNextLineï¼ˆï¼‰å’ŒnextLineï¼ˆï¼‰ï¼Œ
+ * æˆ‘ä»¬å¯ä»¥ä½¿ç”¨å®ƒæ¥ä»…ä½¿ç”¨æ‰«æç¨‹åºè§£æžCSVæ–‡ä»¶ã€‚
  * 
- * Èç¹ûÄúÖ»ÐèÒª½âÎöÒ»¸ö¼òµ¥µÄCSVÎÄ¼þ£¬É¨ÃèÒÇÀà¾ÍÊÇÒ»¸ö²»´íµÄÑ¡Ôñ¡£
+ * å¦‚æžœæ‚¨åªéœ€è¦è§£æžä¸€ä¸ªç®€å•çš„CSVæ–‡ä»¶ï¼Œæ‰«æä»ªç±»å°±æ˜¯ä¸€ä¸ªä¸é”™çš„é€‰æ‹©ã€‚
  */
 public class CSVScannerExample {
 	

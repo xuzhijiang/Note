@@ -1,7 +1,7 @@
 package org.java.core.base.file.ReadCSVFile;
 
 /**
- * ÎÒÃÇÓĞÒ»¸öjava bean£¬ËüÓ³Éäµ½CSVÎÄ¼şÖĞµÄ²»Í¬ÁĞ¡£
+ * æˆ‘ä»¬æœ‰ä¸€ä¸ªjava beanï¼Œå®ƒæ˜ å°„åˆ°CSVæ–‡ä»¶ä¸­çš„ä¸åŒåˆ—ã€‚
  *
  */
 public class Employee {

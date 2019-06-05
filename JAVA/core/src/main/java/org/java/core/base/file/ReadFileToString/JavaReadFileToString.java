@@ -10,11 +10,11 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
- * ¶ÁÈ¡ÎÄ¼şÖĞµÄ×Ö·û£¬È»ºó·µ»Ø£¬È»ºó´òÓ¡
+ * è¯»å–æ–‡ä»¶ä¸­çš„å­—ç¬¦ï¼Œç„¶åè¿”å›ï¼Œç„¶åæ‰“å°
  * 
- * Äú¿ÉÒÔÊ¹ÓÃÏÂÊöÈÎºÎ·½·¨½«ÎÄ¼şÄÚÈİ¶ÁÈ¡µ½javaÖĞµÄ×Ö·û´®¡£
- *  µ«ÊÇ£¬Èç¹ûÎÄ¼ş´óĞ¡ºÜ´ó£¬Ôò²»½¨ÒéÊ¹ÓÃ£¬ÒòÎªÄú¿ÉÄÜ»áÓöµ½ÄÚ´æ²»×ã´íÎó¡£
- *  ÒòÎªÒÔÏÂ·½·¨¶¼ÊÇ°Ñ¶Áµ½µÄ×Ö·û´®·Åµ½ÄÚ´æÖĞµÄ£¬Ò²¾ÍÊÇStringBuilerÖĞ£¬ËùÒÔ´óĞ¡ÊÜÏŞÖÆ.
+ * æ‚¨å¯ä»¥ä½¿ç”¨ä¸‹è¿°ä»»ä½•æ–¹æ³•å°†æ–‡ä»¶å†…å®¹è¯»å–åˆ°javaä¸­çš„å­—ç¬¦ä¸²ã€‚
+ *  ä½†æ˜¯ï¼Œå¦‚æœæ–‡ä»¶å¤§å°å¾ˆå¤§ï¼Œåˆ™ä¸å»ºè®®ä½¿ç”¨ï¼Œå› ä¸ºæ‚¨å¯èƒ½ä¼šé‡åˆ°å†…å­˜ä¸è¶³é”™è¯¯ã€‚
+ *  å› ä¸ºä»¥ä¸‹æ–¹æ³•éƒ½æ˜¯æŠŠè¯»åˆ°çš„å­—ç¬¦ä¸²æ”¾åˆ°å†…å­˜ä¸­çš„ï¼Œä¹Ÿå°±æ˜¯StringBuilerä¸­ï¼Œæ‰€ä»¥å¤§å°å—é™åˆ¶.
  */
 public class JavaReadFileToString {
 	
@@ -76,8 +76,8 @@ public class JavaReadFileToString {
 	}
 
 	/**
-	 * ÎÒÃÇ¿ÉÒÔÊ¹ÓÃFileInputStreamºÍ×Ö½ÚÊı×é½«ÎÄ¼ş¶ÁÈ¡µ½String¡£ 
-	 * ÄúÓ¦¸ÃÊ¹ÓÃ´Ë·½·¨À´¶ÁÈ¡·Ç»ùÓÚ×Ö·ûµÄÎÄ¼ş£¬ÈçÍ¼Ïñ£¬ÊÓÆµµÈ¡£
+	 * æˆ‘ä»¬å¯ä»¥ä½¿ç”¨FileInputStreamå’Œå­—èŠ‚æ•°ç»„å°†æ–‡ä»¶è¯»å–åˆ°Stringã€‚ 
+	 * æ‚¨åº”è¯¥ä½¿ç”¨æ­¤æ–¹æ³•æ¥è¯»å–éåŸºäºå­—ç¬¦çš„æ–‡ä»¶ï¼Œå¦‚å›¾åƒï¼Œè§†é¢‘ç­‰ã€‚
 	 * @param fileName
 	 * @return
 	 */
@@ -115,8 +115,8 @@ public class JavaReadFileToString {
 			reader = new BufferedReader(new FileReader(fileName));
 			String line = null;
 			String ls = System.getProperty("line.separator");
-			// ×¢ÒâÖ»ÊÇ¶ÁÈ¡Ò»ĞĞ, not including any line-termination characters
-			// ËùÒÔĞèÒªÊÖ¶¯Ìí¼Óline separator
+			// æ³¨æ„åªæ˜¯è¯»å–ä¸€è¡Œ, not including any line-termination characters
+			// æ‰€ä»¥éœ€è¦æ‰‹åŠ¨æ·»åŠ line separator
 			while ((line = reader.readLine()) != null) {
 				stringBuilder.append(line);
 				stringBuilder.append(ls);

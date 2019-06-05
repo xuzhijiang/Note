@@ -5,7 +5,7 @@ import java.io.File;
 /**
  * Below is a simple program showing how to delete a non empty 
  * directory. This will work if your directory contains files only.
- * Èç¹ûÎÄ¼ş¼ĞÀïÃæÖ»°üº¬ÁËÎÄ¼ş
+ * å¦‚æœæ–‡ä»¶å¤¹é‡Œé¢åªåŒ…å«äº†æ–‡ä»¶
  */
 public class JavaDeleteDirectory {
 	

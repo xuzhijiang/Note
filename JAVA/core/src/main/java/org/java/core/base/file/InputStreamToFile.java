@@ -7,9 +7,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * ¿ÉÒÔÊ¹ÓÃJavaÖĞµÄReader»òStream¶ÁÈ¡ÎÄ¼ş¡£ Reader×îÊÊºÏÓÃÓÚÎÄ±¾Êı¾İ£¬
- * µ«ÒªÊ¹ÓÃ¶ş½øÖÆÊı¾İ£¬ÄúÓ¦¸ÃÊ¹ÓÃStream¡£ FileInputStreamÓÃÓÚ´ò¿ªÁ÷ÒÔ´ÓÎÄ¼şÖĞ¶ÁÈ¡Êı¾İ¡£
- * ÕâÀïÎÒÃÇ½«°ÑInputStream×ª»»ÎªjavaÖĞµÄÎÄ¼ş£¬ÎÒÃÇ½«Ê¹ÓÃOutputStreamÀ´±àĞ´ĞÂÎÄ¼ş¡£
+ * å¯ä»¥ä½¿ç”¨Javaä¸­çš„Readeræˆ–Streamè¯»å–æ–‡ä»¶ã€‚ Readeræœ€é€‚åˆç”¨äºæ–‡æœ¬æ•°æ®ï¼Œ
+ * ä½†è¦ä½¿ç”¨äºŒè¿›åˆ¶æ•°æ®ï¼Œæ‚¨åº”è¯¥ä½¿ç”¨Streamã€‚ FileInputStreamç”¨äºæ‰“å¼€æµä»¥ä»æ–‡ä»¶ä¸­è¯»å–æ•°æ®ã€‚
+ * è¿™é‡Œæˆ‘ä»¬å°†æŠŠInputStreamè½¬æ¢ä¸ºjavaä¸­çš„æ–‡ä»¶ï¼Œæˆ‘ä»¬å°†ä½¿ç”¨OutputStreamæ¥ç¼–å†™æ–°æ–‡ä»¶ã€‚
  */
 public class InputStreamToFile {
 

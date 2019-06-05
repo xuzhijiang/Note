@@ -8,9 +8,9 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
 /**
- * ½ñÌìÎÒÃÇ½«Ñ§Ï°ÈçºÎ´ÓjavaÏÂÔØURLÖĞµÄÎÄ¼ş¡£ ÎÒÃÇ¿ÉÒÔÊ¹ÓÃjava.net.URL openStream£¨£©·½·¨
- * ´ÓURLÏÂÔØÎÄ¼ş¡£ ÎÒÃÇ¿ÉÒÔÊ¹ÓÃJava NIO Channels
- * »òJava IO InputStream´ÓURL´ò¿ªÁ÷,È»ºó¶ÁÈ¡Êı¾İ£¬È»ºó½«Æä±£´æµ½ÎÄ¼şÖĞ¡£
+ * ä»Šå¤©æˆ‘ä»¬å°†å­¦ä¹ å¦‚ä½•ä»javaä¸‹è½½URLä¸­çš„æ–‡ä»¶ã€‚ æˆ‘ä»¬å¯ä»¥ä½¿ç”¨java.net.URL openStreamï¼ˆï¼‰æ–¹æ³•
+ * ä»URLä¸‹è½½æ–‡ä»¶ã€‚ æˆ‘ä»¬å¯ä»¥ä½¿ç”¨Java NIO Channels
+ * æˆ–Java IO InputStreamä»URLæ‰“å¼€æµ,ç„¶åè¯»å–æ•°æ®ï¼Œç„¶åå°†å…¶ä¿å­˜åˆ°æ–‡ä»¶ä¸­ã€‚
  * 
  */
 public class JavaDownloadFileFromURL {
@@ -29,9 +29,9 @@ public class JavaDownloadFileFromURL {
 
     private static void downloadUsingStream(String urlStr, String file) throws IOException{
         URL url = new URL(urlStr);
-        // Ê¹ÓÃURL.openStream·½·¨À´´´½¨ÊäÈëÁ÷(InputStream)
+        // ä½¿ç”¨URL.openStreamæ–¹æ³•æ¥åˆ›å»ºè¾“å…¥æµ(InputStream)
         BufferedInputStream bis = new BufferedInputStream(url.openStream());
-        // È»ºóÎÒÃÇÊ¹ÓÃÎÄ¼şÊä³öÁ÷(FileOutputStream)´ÓÊäÈëÁ÷ÖĞ¶ÁÈ¡Êı¾İ²¢Ğ´ÈëÎÄ¼ş¡£
+        // ç„¶åæˆ‘ä»¬ä½¿ç”¨æ–‡ä»¶è¾“å‡ºæµ(FileOutputStream)ä»è¾“å…¥æµä¸­è¯»å–æ•°æ®å¹¶å†™å…¥æ–‡ä»¶ã€‚
         FileOutputStream fis = new FileOutputStream(file);
         byte[] buffer = new byte[1024];
         int count=0;
@@ -45,7 +45,7 @@ public class JavaDownloadFileFromURL {
 
     private static void downloadUsingNIO(String urlStr, String file) throws IOException {
         URL url = new URL(urlStr);
-        // ´ÓURL´ò¿ªµÄÁ÷Êı¾İ´´½¨×Ö½ÚÍ¨µÀ¡£ È»ºóÊ¹ÓÃÎÄ¼şÊä³öÁ÷½«ÆäĞ´ÈëÎÄ¼ş¡£
+        // ä»URLæ‰“å¼€çš„æµæ•°æ®åˆ›å»ºå­—èŠ‚é€šé“ã€‚ ç„¶åä½¿ç”¨æ–‡ä»¶è¾“å‡ºæµå°†å…¶å†™å…¥æ–‡ä»¶ã€‚
         ReadableByteChannel rbc = Channels.newChannel(url.openStream());
         FileOutputStream fos = new FileOutputStream(file);
         fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);

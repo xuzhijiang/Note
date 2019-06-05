@@ -31,14 +31,14 @@ public class CreateNewFile {
 		
 		try {
 			//For relative path, it throws IOException because tmp directory is not present in project root folder.
-			//¶ÔÓÚÏà¶ÔÂ·¾¶£¬½«»áÅ×³öIOException£¬ÒòÎªtmpÎÄ¼ş¼Ğ²»´æÔÚÓÚÏîÄ¿¸ùÄ¿Â¼ÎÄ¼ş¼ĞÖĞ.
+			//å¯¹äºç›¸å¯¹è·¯å¾„ï¼Œå°†ä¼šæŠ›å‡ºIOExceptionï¼Œå› ä¸ºtmpæ–‡ä»¶å¤¹ä¸å­˜åœ¨äºé¡¹ç›®æ ¹ç›®å½•æ–‡ä»¶å¤¹ä¸­.
 			
-			//So it¡¯s clear that createNewFile() just tries to create the file and any directory 
+			//So itâ€™s clear that createNewFile() just tries to create the file and any directory 
 			//either absolute or relative should be present already, else it throws IOException.
-			//Òò´ËºÜÃ÷ÏÔ£¬createNewFile()Ö»³¢ÊÔÈ¥´´½¨ÎÄ¼ş£¬ÈÎºÎÏà¶ÔÄ¿Â¼»òÕß¾ø¶ÔÄ¿Â¼¶¼Ó¦¸ÃÒÑ¾­´æÔÚ£¬Èç¹û²»´æÔÚ£¬¾Í»áÅ×Òì³£.
+			//å› æ­¤å¾ˆæ˜æ˜¾ï¼ŒcreateNewFile()åªå°è¯•å»åˆ›å»ºæ–‡ä»¶ï¼Œä»»ä½•ç›¸å¯¹ç›®å½•æˆ–è€…ç»å¯¹ç›®å½•éƒ½åº”è¯¥å·²ç»å­˜åœ¨ï¼Œå¦‚æœä¸å­˜åœ¨ï¼Œå°±ä¼šæŠ›å¼‚å¸¸.
 //			So I created tmp directory in project root and executed the program again
 			
-			//relative path,ÔÚIDEÖĞÊÇÏà¶ÔÓÚÏîÄ¿¸ùÄ¿Â¼µÄ£¬ÔÚÃüÁîĞĞÖ´ĞĞclassÎÄ¼şÊÇÏà¶ÔÓÚÃüÁîĞĞµ±Ç°Ä¿Â¼µÄ
+			//relative path,åœ¨IDEä¸­æ˜¯ç›¸å¯¹äºé¡¹ç›®æ ¹ç›®å½•çš„ï¼Œåœ¨å‘½ä»¤è¡Œæ‰§è¡Œclassæ–‡ä»¶æ˜¯ç›¸å¯¹äºå‘½ä»¤è¡Œå½“å‰ç›®å½•çš„
 			String relativePath = "tmp" + fileSeparator + "file.txt";
 			file = new File(relativePath);
 			if(file.createNewFile()){
@@ -48,7 +48,7 @@ public class CreateNewFile {
 			e.printStackTrace();
 		}
 		
-		//Èç¹ûÒª´´½¨ĞÂÎÄ¼ş²¢Í¬Ê±ÏòÆäÖĞĞ´ÈëÒ»Ğ©Êı¾İ£¬¿ÉÒÔÊ¹ÓÃFileOutputStreamĞ´Èë·½·¨¡£
+		//å¦‚æœè¦åˆ›å»ºæ–°æ–‡ä»¶å¹¶åŒæ—¶å‘å…¶ä¸­å†™å…¥ä¸€äº›æ•°æ®ï¼Œå¯ä»¥ä½¿ç”¨FileOutputStreamå†™å…¥æ–¹æ³•ã€‚
 		String fileData = "Xu Zhijiang";
 		FileOutputStream fos = new FileOutputStream("name1.txt");
 		fos.write(fileData.getBytes());
@@ -56,7 +56,7 @@ public class CreateNewFile {
 		fos.close();
 		
 		//We can use Java NIO Files class to create a new file and write some data into it. 
-		//This is a good option because we don¡¯t have to worry about closing IO resources.
+		//This is a good option because we donâ€™t have to worry about closing IO resources.
 		fileData = "Xu Zhijiang";
 		Files.write(Paths.get("name2.txt"), fileData.getBytes());
 	}
@@ -65,7 +65,7 @@ public class CreateNewFile {
 	//fileSeparator: \
 	//File C:\Users\a\Desktop\file.txt already exists
 	//file.txt File Created in Project root directory
-	//java.io.IOException: ÏµÍ³ÕÒ²»µ½Ö¸¶¨µÄÂ·¾¶¡£
+	//java.io.IOException: ç³»ç»Ÿæ‰¾ä¸åˆ°æŒ‡å®šçš„è·¯å¾„ã€‚
 	//        at java.io.WinNTFileSystem.createFileExclusively(Native Method)
 	//        at java.io.File.createNewFile(Unknown Source)
 	//        at org.java.core.base.file.create.CreateNewFile.main(CreateNewFile.java:41)

@@ -23,8 +23,8 @@ public class FileNameFilter {
 		if(!file.exists()){
 			System.out.println(dir + " Directory doesn't exist");
 		}
-//		File[] listFiles = file.listFiles(new MyFileNameFilter(ext));//ÒòÎªfindFilesÊÇ¾²Ì¬·½·¨
-		//ËùÒÔ±ØĞë°ÑÄÚ²¿ÀàÒ²¶¨ÒåÎª¾²Ì¬Àà
+//		File[] listFiles = file.listFiles(new MyFileNameFilter(ext));//å› ä¸ºfindFilesæ˜¯é™æ€æ–¹æ³•
+		//æ‰€ä»¥å¿…é¡»æŠŠå†…éƒ¨ç±»ä¹Ÿå®šä¹‰ä¸ºé™æ€ç±»
 		File[] listFiles = file.listFiles(new MyFileNameFilter(ext));
 		
 		//Since FileNameFilter is a functional interface, we can 

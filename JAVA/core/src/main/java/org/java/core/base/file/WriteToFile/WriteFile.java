@@ -10,11 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- * JavaÌá¹©ÁËºÜ¶àÖÖ·½Ê½ÍùÎÄ¼şÀïÃæĞ´ÄÚÈİ£¬ÎÒÃÇ¿ÉÒÔÊ¹ÓÃFileWriter,
- * BufferedWriter, Java7µÄFilesÒÔ¼°FileOutputStream
+ * Javaæä¾›äº†å¾ˆå¤šç§æ–¹å¼å¾€æ–‡ä»¶é‡Œé¢å†™å†…å®¹ï¼Œæˆ‘ä»¬å¯ä»¥ä½¿ç”¨FileWriter,
+ * BufferedWriter, Java7çš„Filesä»¥åŠFileOutputStream
  * 
- * ÕâĞ©ÊÇÔÚjavaÖĞ±àĞ´ÎÄ¼şµÄ±ê×¼·½·¨£¬ÄúÓ¦¸Ã¸ù¾İÏîÄ¿ÒªÇóÑ¡ÔñÆäÖĞÈÎºÎÒ»¸ö¡£ 
- * Õâ¾ÍÊÇjavaĞ´ÈëÎÄ¼şÊ¾ÀıµÄÈ«²¿ÄÚÈİ¡£
+ * è¿™äº›æ˜¯åœ¨javaä¸­ç¼–å†™æ–‡ä»¶çš„æ ‡å‡†æ–¹æ³•ï¼Œæ‚¨åº”è¯¥æ ¹æ®é¡¹ç›®è¦æ±‚é€‰æ‹©å…¶ä¸­ä»»ä½•ä¸€ä¸ªã€‚ 
+ * è¿™å°±æ˜¯javaå†™å…¥æ–‡ä»¶ç¤ºä¾‹çš„å…¨éƒ¨å†…å®¹ã€‚
  */
 public class WriteFile {
 

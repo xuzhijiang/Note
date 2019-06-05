@@ -7,14 +7,14 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 /**
- * GZIP����Unixϵͳ��ѹ���ļ������ܻ�ӭ�Ĺ���֮һ�� 
- * ���ǿ���ѹ��GZIP��ʽ�ĵ����ļ����������ǲ���ʹ��
- * GZIP��ѹ���ʹ浵Ŀ¼��ZIP�ļ�������
+ * GZIP是在Unix系统中压缩文件的最受欢迎的工具之一。 
+ * 我们可以压缩GZIP格式的单个文件，但是我们不能使用
+ * GZIP来压缩和存档目录像ZIP文件这样。
  * 
- * ����һ���򵥵�java GZIPʾ��������ʾ������ν��ļ�ѹ��ΪGZIP��ʽ��
- * Ȼ���ѹ��GZIP�ļ��Դ������ļ���
+ * 这是一个简单的java GZIP示例程序，显示我们如何将文件压缩为GZIP格式，
+ * 然后解压缩GZIP文件以创建新文件。
  * 
- * �ڽ�ѹ��GZIP�ļ�ʱ�����������GZIP��ʽ������׳������쳣��
+ * 在解压缩GZIP文件时，如果它不是GZIP格式，则会抛出以下异常。
  */
 public class GZIPExample {
 

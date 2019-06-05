@@ -9,8 +9,8 @@ import java.util.List;
 
 /**
  * using Files class
- * Files 7是在Java 7中引入的，如果你想加载所有文件内容到内存，就可以使用,
- * 只有在处理小文件并且需要内存加载文件的所有内容时才能使用，其他场景不适用.
+ * Files 7鏄湪Java 7涓紩鍏ョ殑锛屽鏋滀綘鎯冲姞杞芥墍鏈夋枃浠跺唴瀹瑰埌鍐呭瓨锛屽氨鍙互浣跨敤,
+ * 鍙湁鍦ㄥ鐞嗗皬鏂囦欢骞朵笖闇�瑕佸唴瀛樺姞杞芥枃浠剁殑鎵�鏈夊唴瀹规椂鎵嶈兘浣跨敤锛屽叾浠栧満鏅笉閫傜敤.
  */
 public class NioReadFileExample {
 	

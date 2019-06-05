@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- *  FileReader²»Ö§³Ö±àÂë²¢Ê¹ÓÃÏµÍ³Ä¬ÈÏ±àÂë£¬Òò´ËÔÚjavaÖĞ¶ÁÈ¡ÎÄ±¾ÎÄ¼şµÄĞ§ÂÊ²»¸ß¡£
- *  ¿ÉÄÜÂÒÂë,
+ *  FileReaderä¸æ”¯æŒç¼–ç å¹¶ä½¿ç”¨ç³»ç»Ÿé»˜è®¤ç¼–ç ï¼Œå› æ­¤åœ¨javaä¸­è¯»å–æ–‡æœ¬æ–‡ä»¶çš„æ•ˆç‡ä¸é«˜ã€‚
+ *  å¯èƒ½ä¹±ç ,
  * @author a
  *
  */
@@ -19,7 +19,7 @@ public class FileReaderExample {
 		File file = new File(fileName);
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
-		String line = null;//·½·¨ÄÚ²¿Ê¹ÓÃÖ®Ç°Ò»¶¨Òª³õÊ¼»¯£¬·ñÔò²»ÄÜÊ¹ÓÃ£¬±àÒëÆ÷»á±¨´í£¬Ä¬ÈÏÖµÒ²²»ÊÇnull.
+		String line = null;//æ–¹æ³•å†…éƒ¨ä½¿ç”¨ä¹‹å‰ä¸€å®šè¦åˆå§‹åŒ–ï¼Œå¦åˆ™ä¸èƒ½ä½¿ç”¨ï¼Œç¼–è¯‘å™¨ä¼šæŠ¥é”™ï¼Œé»˜è®¤å€¼ä¹Ÿä¸æ˜¯null.
 		while((line = br.readLine()) != null){
 		    //process the line
 		    System.out.println(line);

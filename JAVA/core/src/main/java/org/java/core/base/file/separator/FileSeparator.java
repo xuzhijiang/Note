@@ -3,7 +3,7 @@ package org.java.core.base.file.separator;
 import java.io.File;
 
 /**
- * Ϊ��ʹ���ǵĳ���ƽ̨����������Ӧ��ʼ��ʹ����Щ�ָ����������ļ�·�����ȡ�κ�ϵͳ��������PATH��CLASSPATH��
+ * 为了使我们的程序平台独立，我们应该始终使用这些分隔符来创建文件路径或读取任何系统变量，如PATH，CLASSPATH。
  *
  */
 public class FileSeparator {

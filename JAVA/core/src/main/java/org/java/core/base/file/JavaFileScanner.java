@@ -7,14 +7,14 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
- * Java ScannerÀà¿ÉÓÃÓÚÊ¹ÓÃÈÎºÎÕıÔò±í´ïÊ½·Ö¸ô·û½«ÊäÈë·Ö½â£¬²¢ÇÒËüÒ²ÊÊÓÃÓÚ½âÎöÎÄ¼ş¡£
+ * Java Scannerç±»å¯ç”¨äºä½¿ç”¨ä»»ä½•æ­£åˆ™è¡¨è¾¾å¼åˆ†éš”ç¬¦å°†è¾“å…¥åˆ†è§£ï¼Œå¹¶ä¸”å®ƒä¹Ÿé€‚ç”¨äºè§£ææ–‡ä»¶ã€‚
  * 
- * ScannerÀ©Õ¹ÁËStringµÄsplit()µÄ¹¦ÄÜ£¬¿ÉÒÔ½«·Ö½âµÄ¿é×ª³Éint£¬float£¬String£¬
- * longºÍÆäËû°ü×°Àà
+ * Scanneræ‰©å±•äº†Stringçš„split()çš„åŠŸèƒ½ï¼Œå¯ä»¥å°†åˆ†è§£çš„å—è½¬æˆintï¼Œfloatï¼ŒStringï¼Œ
+ * longå’Œå…¶ä»–åŒ…è£…ç±»
  *
- * ÎÒÊ¹ÓÃScannerÖğĞĞ¶ÁÈ¡ÎÄ¼ş£¬½âÎöCSVÎÄ¼ş
+ * æˆ‘ä½¿ç”¨Scanneré€è¡Œè¯»å–æ–‡ä»¶ï¼Œè§£æCSVæ–‡ä»¶
  * 
- * ĞèÒª½«ÊäÈë½âÎöÎªÌØ¶¨Êı¾İÀàĞÍ±ê¼ÇÊ±£¬ÇëÊ¹ÓÃjava ScannerÀà¡£
+ * éœ€è¦å°†è¾“å…¥è§£æä¸ºç‰¹å®šæ•°æ®ç±»å‹æ ‡è®°æ—¶ï¼Œè¯·ä½¿ç”¨java Scannerç±»ã€‚
  * Use java Scanner classes when you need to parse the input into specific datatype tokens.
  */
 public class JavaFileScanner {
@@ -31,7 +31,7 @@ public class JavaFileScanner {
         Path path = Paths.get(fileName);
         Scanner scanner = new Scanner(path, StandardCharsets.UTF_8.toString());
         
-        //read file line by line,ÓÃĞĞ·Ö¸ô·û×÷Îª·Ö¸î·û
+        //read file line by line,ç”¨è¡Œåˆ†éš”ç¬¦ä½œä¸ºåˆ†å‰²ç¬¦
         scanner.useDelimiter(System.getProperty("line.separator"));
         System.out.print("System line separator: " + System.getProperty("line.separator"));
         while(scanner.hasNext()){
@@ -46,7 +46,7 @@ public class JavaFileScanner {
          * Mike,25,Male
          */
         scanner = new Scanner(Paths.get(csvFile));
-        // ĞĞ·Ö¸ô·û
+        // è¡Œåˆ†éš”ç¬¦
         scanner.useDelimiter(System.getProperty("line.separator"));
         while(scanner.hasNext()){
             //parse line to get Emp Object
@@ -63,7 +63,7 @@ public class JavaFileScanner {
     
     private static Employee parseCSVLine(String line) {
          Scanner scanner = new Scanner(line);
-         // ÓÃÕıÔò±í´ïÊ½´´½¨·Ö¸ô·û
+         // ç”¨æ­£åˆ™è¡¨è¾¾å¼åˆ›å»ºåˆ†éš”ç¬¦
          scanner.useDelimiter("\\s*,\\s*");
          String name = scanner.next();
          int age = scanner.nextInt();

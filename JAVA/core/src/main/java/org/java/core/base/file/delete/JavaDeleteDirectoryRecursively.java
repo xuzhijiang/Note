@@ -11,7 +11,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 /**
  * Earlier we had to write recursion based code to delete a directory with
  * nested directories. But with Java 7, we can do this using Files class.
- * Ö®Ç°ÎÒÃÇ²»µÃ²»±àĞ´»ùÓÚµİ¹éµÄ´úÂëÀ´É¾³ı´øÓĞÇ¶Ì×Ä¿Â¼µÄÄ¿Â¼¡£ µ«ÊÇÊ¹ÓÃJava 7£¬ÎÒÃÇ¿ÉÒÔÊ¹ÓÃFilesÀàÀ´Íê³É¡£
+ * ä¹‹å‰æˆ‘ä»¬ä¸å¾—ä¸ç¼–å†™åŸºäºé€’å½’çš„ä»£ç æ¥åˆ é™¤å¸¦æœ‰åµŒå¥—ç›®å½•çš„ç›®å½•ã€‚ ä½†æ˜¯ä½¿ç”¨Java 7ï¼Œæˆ‘ä»¬å¯ä»¥ä½¿ç”¨Filesç±»æ¥å®Œæˆã€‚
  *
  */
 public class JavaDeleteDirectoryRecursively {

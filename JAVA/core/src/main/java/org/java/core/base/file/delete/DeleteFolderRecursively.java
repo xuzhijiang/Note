@@ -6,9 +6,9 @@ import java.io.File;
  * This utility class can be used to delete 
  * folders recursively in java
  * <p><br>
- * ÔÚÕâÀï£¬ÎÒÃÇ½«Ñ§Ï°ÈçºÎÒÔµİ¹é·½Ê½É¾³ıjavaÖĞµÄ·Ç¿ÕÄ¿Â¼/ÎÄ¼ş¼Ğ¡£ java.io.File delete£¨£©
- * ·½·¨É¾³ıÁËÒ»¸öÎÄ¼ş»òÒ»¸ö¿ÕÄ¿Â¼£¬µ«Èç¹ûÄ¿Â¼²»Îª¿Õ£¬Ôò²»É¾³ıËü²¢·µ»Øfalse¡£
- * ÎÒÃÇ½«µİ¹éµØÊ¹ÓÃdelete£¨£©º¯ÊıÀ´É¾³ıjava³ÌĞòÖĞµÄÄ¿Â¼/ÎÄ¼ş¼Ğ¡£
+ * åœ¨è¿™é‡Œï¼Œæˆ‘ä»¬å°†å­¦ä¹ å¦‚ä½•ä»¥é€’å½’æ–¹å¼åˆ é™¤javaä¸­çš„éç©ºç›®å½•/æ–‡ä»¶å¤¹ã€‚ java.io.File deleteï¼ˆï¼‰
+ * æ–¹æ³•åˆ é™¤äº†ä¸€ä¸ªæ–‡ä»¶æˆ–ä¸€ä¸ªç©ºç›®å½•ï¼Œä½†å¦‚æœç›®å½•ä¸ä¸ºç©ºï¼Œåˆ™ä¸åˆ é™¤å®ƒå¹¶è¿”å›falseã€‚
+ * æˆ‘ä»¬å°†é€’å½’åœ°ä½¿ç”¨deleteï¼ˆï¼‰å‡½æ•°æ¥åˆ é™¤javaç¨‹åºä¸­çš„ç›®å½•/æ–‡ä»¶å¤¹ã€‚
  */
 public class DeleteFolderRecursively {
     public static void main(String[] args) {

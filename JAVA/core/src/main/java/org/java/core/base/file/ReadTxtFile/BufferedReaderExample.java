@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Èç¹ûÄãÏëÖğĞĞ¶ÁÈ¡ÎÄ¼ş²¢¶ÔËüÃÇ½øĞĞ´¦Àí£¬ÄÇÃ´BufferedReaderÊÇºÜºÃµÄ¡£ ËüÊÊÓÃÓÚ´¦Àí´óÎÄ¼ş£¬Ò²Ö§³Ö±àÂë¡£
+ * å¦‚æœä½ æƒ³é€è¡Œè¯»å–æ–‡ä»¶å¹¶å¯¹å®ƒä»¬è¿›è¡Œå¤„ç†ï¼Œé‚£ä¹ˆBufferedReaderæ˜¯å¾ˆå¥½çš„ã€‚ å®ƒé€‚ç”¨äºå¤„ç†å¤§æ–‡ä»¶ï¼Œä¹Ÿæ”¯æŒç¼–ç ã€‚
  * 
- * BufferedReaderÊÇÍ¬²½µÄ£¬Òò´Ë¿ÉÒÔ°²È«µØ´Ó¶à¸öÏß³ÌÍê³É¶ÔBufferedReader
- * µÄ¶ÁÈ¡²Ù×÷¡£ BufferedReaderµÄÄ¬ÈÏ»º³åÇø´óĞ¡Îª8KB¡£
+ * BufferedReaderæ˜¯åŒæ­¥çš„ï¼Œå› æ­¤å¯ä»¥å®‰å…¨åœ°ä»å¤šä¸ªçº¿ç¨‹å®Œæˆå¯¹BufferedReader
+ * çš„è¯»å–æ“ä½œã€‚ BufferedReaderçš„é»˜è®¤ç¼“å†²åŒºå¤§å°ä¸º8KBã€‚
  */
 public class BufferedReaderExample {
 	

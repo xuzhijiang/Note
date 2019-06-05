@@ -6,17 +6,22 @@ import java.util.Comparator;
 /**
  * 优先队列跟普通的队列不一样，普通队列是一种遵循FIFO规则的队列，
  * 拿数据的时候按照加入队列的顺序拿取。 而优先队列每次拿数据的时候都会拿出优先级最高的数据。
+ * (按优先级顺序出入队)
  *
- * 优先队列内部维护着一个堆，每次取数据的时候都从堆顶拿数据，这就是优先队列的原理。
+ * 优先队列内部维护着一个堆，每次取数据的时候都从堆顶拿数据(堆顶的优先级最高)，这就是优先队列的原理。
  *
  * jdk的优先队列使用PriorityQueue这个类，使用者可以自己定义优先级规则。
  *
- * 总结
+ *
+ * 总结:
+ *
  * jdk内置的优先队列PriorityQueue内部使用一个堆维护数据，
  * 每当有数据add进来或者poll出去的时候会对堆做从下往上的调整和从上往下的调整
  *
- * PriorityQueue不是一个线程安全的类，如果要在多线程环境下使用，
- * 可以使用PriorityBlockingQueue这个优先阻塞队列
+ * PriorityQueue不是一个线程安全的类(属于无界队列,当然我们可以指定初始大小，然后插入过程中会自动扩容)，
+ * 如果要在多线程环境下使用，可以使用PriorityBlockingQueue这个优先阻塞队列
+ *
+ * @since 1.5
  */
 public class MyPriorityQueue<E> {
 
@@ -24,7 +29,10 @@ public class MyPriorityQueue<E> {
 
     private int size = 0; // 元素个数
 
-    private final Comparator<? super E> comparator; // 比较器，如果是null，使用元素自身的比较器
+    /**
+     * 比较器，如果是null，使用元素自身的比较器
+     */
+    private final Comparator<? super E> comparator;
 
     transient int modCount = 0; // non-private to simplify nested class access
 

@@ -5,28 +5,28 @@ import java.io.RandomAccessFile;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Java RandomAccessFile�ṩ�˶�ȡ��д���ļ����ݵĹ��ߡ� 
- * RandomAccessFileʹ���ļ���Ϊ�洢���ļ�ϵͳ�еĴ��ֽ����飬
- * �Լ������ƶ��ļ�ָ��λ�õ��αꡣ
+ * Java RandomAccessFile提供了读取和写入文件数据的工具。 
+ * RandomAccessFile使用文件作为存储在文件系统中的大字节数组，
+ * 以及用于移动文件指针位置的游标。
  * 
  * 
- * RandomAccessFile����Java IO��һ���֡� ��java�д���RandomAccessFileʵ��ʱ��
- * ������Ҫ�ṩ���ļ���ģʽ�� ���磬Ҫ��ֻ��ģʽ���ļ������Ǳ���ʹ�á�r����
- * ���ڶ�д���������Ǳ���ʹ�á�rw����
+ * RandomAccessFile类是Java IO的一部分。 在java中创建RandomAccessFile实例时，
+ * 我们需要提供打开文件的模式。 例如，要打开只读模式的文件，我们必须使用“r”，
+ * 对于读写操作，我们必须使用“rw”。
  * 
- * ʹ���ļ�ָ�룬���ǿ������κ�λ�ô���������ļ��ж�ȡ��д�����ݡ� 
- * Ҫ��ȡ��ǰ�ļ�ָ�룬���Ե���getFilePointer��������
- * ,�����ļ�ָ�����������Ե���seek��int i��������
+ * 使用文件指针，我们可以在任何位置从随机访问文件中读取或写入数据。 
+ * 要获取当前文件指针，可以调用getFilePointer（）方法
+ * ,设置文件指针索引，可以调用seek（int i）方法。
  * 
- * ����������Ѿ��������ݵ��κ�������д�����ݣ�������������
+ * 如果我们在已经存在数据的任何索引处写入数据，它将覆盖它。
  * 
- * ���ǿ���ʹ��java�е�RandomAccessFile���ļ��ж�ȡ�ֽ����顣
+ * 我们可以使用java中的RandomAccessFile从文件中读取字节数组。
  * 
- * ����RandomAccessFile���ļ���Ϊ�ֽ����飬���д�������Ը������ݣ�
- * Ҳ���Ը��ӵ��ļ��� ��һ�ж�ȡ�����ļ�ָ���λ�á� ���ָ���ƶ������ļ���
- * ��Ȼ�����д������������ļ���д���������ݡ� ��ˣ���ʹ��д�����ʱӦ��ע����һ�㡣
+ * 由于RandomAccessFile将文件视为字节数组，因此写操作可以覆盖数据，
+ * 也可以附加到文件。 这一切都取决于文件指针的位置。 如果指针移动超出文件长
+ * 度然后调用写操作，则会在文件中写入垃圾数据。 因此，在使用写入操作时应该注意这一点。
  * 
- * ��������Ҫ��ֻ��ȷ���ļ�ָ��λ���ļ���ĩβ�Ը��ӵ��ļ� 
+ * 我们所需要的只是确保文件指针位于文件的末尾以附加到文件 
  */
 public class RandomAccessFileExample {
 	
@@ -64,7 +64,7 @@ public class RandomAccessFileExample {
 
 	private static byte[] readCharsFromFile(String filePath, int seek, int chars) throws IOException {
 		RandomAccessFile file = new RandomAccessFile(filePath, "r");
-		// �ƶ���indexΪseek��λ��Ȼ������λ�ÿ�ʼ��ȡ����ȡchars���ַ���byte array��
+		// 移动到index为seek的位置然后从这个位置开始读取，读取chars个字符到byte array中
 		file.seek(seek);
 		byte[] bytes = new byte[chars];
 		file.read(bytes);

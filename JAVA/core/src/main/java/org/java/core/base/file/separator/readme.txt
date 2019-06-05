@@ -1,14 +1,14 @@
-java.io.File Àà°üº¬ÁË4ÖÖ¾²Ì¬·Ö¸ô·û±äÁ¿£¬
+java.io.File ç±»åŒ…å«äº†4ç§é™æ€åˆ†éš”ç¬¦å˜é‡ï¼Œ
 
 1. File.separator: Platform dependent default name-separator character as String. 
-For windows, it¡¯s ¡®\¡¯ and for unix it¡¯s ¡®/¡¯.
+For windows, itâ€™s â€˜\â€™ and for unix itâ€™s â€˜/â€™.
 
-2. File.separatorChar: Same as separator but it¡¯s char.
+2. File.separatorChar: Same as separator but itâ€™s char.
 
 3. File.pathSeparator: Platform dependent variable for path-separator. 
 For example PATH or CLASSPATH variable list of paths separated 
-by ¡®:¡¯ in Unix systems and ¡®;¡¯ in Windows system.
-ÀıÈç£¬ÔÚUnixÏµÍ³ÖĞÓÉ'£º'·Ö¸ôµÄÂ·¾¶µÄPATH»òCLASSPATH±äÁ¿ÁĞ±íºÍWindowsÏµÍ³ÖĞµÄ';'¡£
+by â€˜:â€™ in Unix systems and â€˜;â€™ in Windows system.
+ä¾‹å¦‚ï¼Œåœ¨Unixç³»ç»Ÿä¸­ç”±'ï¼š'åˆ†éš”çš„è·¯å¾„çš„PATHæˆ–CLASSPATHå˜é‡åˆ—è¡¨å’ŒWindowsç³»ç»Ÿä¸­çš„';'ã€‚
 
-4. File.pathSeparatorChar: Same as pathSeparator but it¡¯s char.
-ÓëpathSeparatorÏàÍ¬£¬µ«ËüÊÇchar¡£
+4. File.pathSeparatorChar: Same as pathSeparator but itâ€™s char.
+ä¸pathSeparatorç›¸åŒï¼Œä½†å®ƒæ˜¯charã€‚

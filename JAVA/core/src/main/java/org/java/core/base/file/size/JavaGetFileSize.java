@@ -3,7 +3,7 @@ package org.java.core.base.file.size;
 import java.io.File;
 
 /**
- * ������ļ���ʾĿ¼���򷵻�ֵδָ���� ��ˣ��ڵ��ô˷����Ի�ȡjava�е��ļ���С֮ǰ����ȷ���ļ����ڲ���������Ŀ¼��
+ * 如果此文件表示目录，则返回值未指定。 因此，在调用此方法以获取java中的文件大小之前，请确保文件存在并且它不是目录。
  */
 public class JavaGetFileSize {
 	

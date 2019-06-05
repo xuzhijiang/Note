@@ -1,4 +1,4 @@
-ÓĞ3ÖĞÁ÷ĞĞµÄ·½Ê½ÔÙJavaÖĞ´´½¨ÎÄ¼ş:
+æœ‰3ä¸­æµè¡Œçš„æ–¹å¼å†Javaä¸­åˆ›å»ºæ–‡ä»¶:
 
 1. File.createNewFile()
 
@@ -6,18 +6,18 @@ When we initialize File object, we provide the file name and then we can call
 createNewFile() method to create new file in Java.
 
 File createNewFile() method returns true if new file is created and false if '
-file already exists. This method also throws java.io.IOException when it¡¯s not 
+file already exists. This method also throws java.io.IOException when itâ€™s not 
 able to create the file. The files created is empty and of zero bytes.
 
 When we create the File object by passing file name, it can be with absolute path, 
 or we can only provide the file name or we can provide relative path.
-µ±ÎÒÃÇ´´½¨ÎÄ¼ş¶ÔÏó¸øËü´«Èëfile nameµÄÊ±ºò£¬Ëü¿ÉÒÔÊÇ¾ø¶ÔÂ·¾¶£¬»òÕßÎÒÃÇ¿ÉÒÔÖ»Ìá¹©ÎÄ¼şÃû£¬»òÕßÎÒÃÇ¿ÉÒÔÌá¹©Ïà¶ÔÂ·¾¶.
+å½“æˆ‘ä»¬åˆ›å»ºæ–‡ä»¶å¯¹è±¡ç»™å®ƒä¼ å…¥file nameçš„æ—¶å€™ï¼Œå®ƒå¯ä»¥æ˜¯ç»å¯¹è·¯å¾„ï¼Œæˆ–è€…æˆ‘ä»¬å¯ä»¥åªæä¾›æ–‡ä»¶åï¼Œæˆ–è€…æˆ‘ä»¬å¯ä»¥æä¾›ç›¸å¯¹è·¯å¾„.
 
 For non-absolute path, File object tries to locate files in the project root directory. 
 If we run the program from command line, for non-absolute path, File object tries to locate 
 files from the current directory.
-¶ÔÓÚ·Ç¾ø¶ÔÂ·¾¶£¬ÎÄ¼ş¶ÔÏó³¢ÊÔÔÚÏîÄ¿µÄ¸ùÄ¿Â¼ÖĞÈ·¶¨ÎÄ¼şµÄÎ»ÖÃ£¬Èç¹ûÎÒÃÇ´Ó ÃüÁîĞĞÔËĞĞ³ÌĞò£¬¶ÔÓÚ·Ç¾ø¶ÔÂ·¾¶£¬ÎÄ¼ş¶ÔÏó»á½«µ±Ç°Ä¿Â¼À´È·¶¨ÎÄ¼şµÄÎ»ÖÃ
+å¯¹äºéç»å¯¹è·¯å¾„ï¼Œæ–‡ä»¶å¯¹è±¡å°è¯•åœ¨é¡¹ç›®çš„æ ¹ç›®å½•ä¸­ç¡®å®šæ–‡ä»¶çš„ä½ç½®ï¼Œå¦‚æœæˆ‘ä»¬ä» å‘½ä»¤è¡Œè¿è¡Œç¨‹åºï¼Œå¯¹äºéç»å¯¹è·¯å¾„ï¼Œæ–‡ä»¶å¯¹è±¡ä¼šå°†å½“å‰ç›®å½•æ¥ç¡®å®šæ–‡ä»¶çš„ä½ç½®
 
 While creating the file path, we should use System property file.separator to make our program platform independent.
-µ±´´½¨ÎÄ¼şµÄÊ±ºò£¬ÎÒÃÇÓ¦¸ÃÊ¹ÓÃÏµÍ³µÄÎÄ¼ş·Ö¸ô·û£¬ÒÔ±ã¶ÀÁ¢ÓÚÆ½Ì¨ÔËĞĞÎÒÃÇµÄ³ÌĞò¡£
+å½“åˆ›å»ºæ–‡ä»¶çš„æ—¶å€™ï¼Œæˆ‘ä»¬åº”è¯¥ä½¿ç”¨ç³»ç»Ÿçš„æ–‡ä»¶åˆ†éš”ç¬¦ï¼Œä»¥ä¾¿ç‹¬ç«‹äºå¹³å°è¿è¡Œæˆ‘ä»¬çš„ç¨‹åºã€‚
 

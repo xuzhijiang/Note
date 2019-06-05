@@ -4,29 +4,29 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * java.io.FileÀà¿ÉÓÃÓÚÔÚjavaÖĞ´´½¨ÁÙÊ±ÎÄ¼ş¡£ 
- * ÓĞÊ±ÎÒÃÇĞèÒª´´½¨¹©Ó¦ÓÃ³ÌĞòÊ¹ÓÃµÄÁÙÊ±ÎÄ¼ş¡£
+ * java.io.Fileç±»å¯ç”¨äºåœ¨javaä¸­åˆ›å»ºä¸´æ—¶æ–‡ä»¶ã€‚ 
+ * æœ‰æ—¶æˆ‘ä»¬éœ€è¦åˆ›å»ºä¾›åº”ç”¨ç¨‹åºä½¿ç”¨çš„ä¸´æ—¶æ–‡ä»¶ã€‚
  * 
- * FileÀàÖĞÓĞÁ½ÖÖ·½·¨¿ÉÓÃÓÚÔÚjavaÖĞ´´½¨ÁÙÊ±ÎÄ¼ş:
+ * Fileç±»ä¸­æœ‰ä¸¤ç§æ–¹æ³•å¯ç”¨äºåœ¨javaä¸­åˆ›å»ºä¸´æ—¶æ–‡ä»¶:
  * 
- * createTempFile£¨String prefix£¬String suffix£¬File directory£©£º
- * ´Ë·½·¨ÔÚdirectory²ÎÊıÖĞ´´½¨¾ßÓĞ¸ø¶¨ºó×ººÍÇ°×ºµÄÁÙÊ±ÎÄ¼ş¡£
- * ¸ÃÄ¿Â¼Ó¦¸ÃÒÑ¾­´æÔÚ²¢ÇÒÓ¦¸ÃÊÇÒ»¸öÄ¿Â¼£¬·ñÔò»áÒı·¢Òì³£¡£
+ * createTempFileï¼ˆString prefixï¼ŒString suffixï¼ŒFile directoryï¼‰ï¼š
+ * æ­¤æ–¹æ³•åœ¨directoryå‚æ•°ä¸­åˆ›å»ºå…·æœ‰ç»™å®šåç¼€å’Œå‰ç¼€çš„ä¸´æ—¶æ–‡ä»¶ã€‚
+ * è¯¥ç›®å½•åº”è¯¥å·²ç»å­˜åœ¨å¹¶ä¸”åº”è¯¥æ˜¯ä¸€ä¸ªç›®å½•ï¼Œå¦åˆ™ä¼šå¼•å‘å¼‚å¸¸ã€‚
  * 
- * ÎÄ¼şÃûÊ¹ÓÃËæ»ú³¤µÄÊı×Ö´´½¨£¬
- * Òò´ËÎÄ¼şÃû±äÎªprefix + random_long_no + suffix¡£
+ * æ–‡ä»¶åä½¿ç”¨éšæœºé•¿çš„æ•°å­—åˆ›å»ºï¼Œ
+ * å› æ­¤æ–‡ä»¶åå˜ä¸ºprefix + random_long_no + suffixã€‚
  * 
- * ÕâÑù×öÊÇÎªÁËÊ¹Ó¦ÓÃ³ÌĞò°²È«£¬ÒòÎªÎŞ·¨²Â²âÎÄ¼şÃû.
+ * è¿™æ ·åšæ˜¯ä¸ºäº†ä½¿åº”ç”¨ç¨‹åºå®‰å…¨ï¼Œå› ä¸ºæ— æ³•çŒœæµ‹æ–‡ä»¶å.
  * 
- * Ç°×ºStringÓ¦ÖÁÉÙÎªÈı¸ö×Ö·û³¤¡£ Èç¹ûºó×ºÎªnull£¬ÔòÊ¹ÓÃ¡°.tmp¡±ºó×º¡£
+ * å‰ç¼€Stringåº”è‡³å°‘ä¸ºä¸‰ä¸ªå­—ç¬¦é•¿ã€‚ å¦‚æœåç¼€ä¸ºnullï¼Œåˆ™ä½¿ç”¨â€œ.tmpâ€åç¼€ã€‚
  * 
- * createTempFile£¨String prefix£¬String suffix£©£ºÔÚ²Ù×÷ÏµÍ³ÁÙÊ±Ä¿Â¼ÖĞ´´½¨ÁÙÊ±ÎÄ¼şµÄ¼ò±ã·½·¨¡£
+ * createTempFileï¼ˆString prefixï¼ŒString suffixï¼‰ï¼šåœ¨æ“ä½œç³»ç»Ÿä¸´æ—¶ç›®å½•ä¸­åˆ›å»ºä¸´æ—¶æ–‡ä»¶çš„ç®€ä¾¿æ–¹æ³•ã€‚
  */
 public class JavaTempFile {
 
 	public static void main(String[] args) {
 		try {
-			File tmpFile = File.createTempFile("data", null);//ÔÚÏµÍ³µÄÁÙÊ±ÎÄ¼şÄ¿Â¼ÏÂ´´½¨ÁÙÊ±ÎÄ¼ş
+			File tmpFile = File.createTempFile("data", null);//åœ¨ç³»ç»Ÿçš„ä¸´æ—¶æ–‡ä»¶ç›®å½•ä¸‹åˆ›å»ºä¸´æ—¶æ–‡ä»¶
 			File newFile = File.createTempFile("text", ".temp", new File("C:\\Users\\a\\Desktop\\test"));
 			System.out.println(tmpFile.getCanonicalPath());
 			System.out.println(newFile.getCanonicalPath());

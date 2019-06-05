@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Ñ¡ÔñÊ¹ÓÃScanner»òBufferedReader»òFilesÀ´¶ÁÈ¡ÎÄ¼şÈ¡¾öÓÚÄúµÄÏîÄ¿ÒªÇó¡£ 
- * ÀıÈç£¬ if you are just logging the file£¬Ôò¿ÉÒÔÊ¹ÓÃFilesºÍBufferedReader¡£
- *  Èç¹ûÒª²éÕÒ»ùÓÚ·Ö¸ô·ûµÄÎÄ¼ş£¬ÔòÓ¦Ê¹ÓÃScannerÀà¡£
+ * é€‰æ‹©ä½¿ç”¨Scanneræˆ–BufferedReaderæˆ–Filesæ¥è¯»å–æ–‡ä»¶å–å†³äºæ‚¨çš„é¡¹ç›®è¦æ±‚ã€‚ 
+ * ä¾‹å¦‚ï¼Œ if you are just logging the fileï¼Œåˆ™å¯ä»¥ä½¿ç”¨Fileså’ŒBufferedReaderã€‚
+ *  å¦‚æœè¦æŸ¥æ‰¾åŸºäºåˆ†éš”ç¬¦çš„æ–‡ä»¶ï¼Œåˆ™åº”ä½¿ç”¨Scannerç±»ã€‚
  * @author a
  *
  */

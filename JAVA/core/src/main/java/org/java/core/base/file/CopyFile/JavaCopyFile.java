@@ -10,19 +10,18 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 
 /**
- * Java¿½±´ÎÄ¼þÊÇÒ»ÖÖ·Ç³£³£¼ûµÄ²Ù×÷¡£ µ«ÊÇjava.io.FileÀàÃ»ÓÐÈÎºÎ¿ì½Ý·½·¨
- * ¿ÉÒÔ½«ÎÄ¼þ´ÓÔ´¸´ÖÆµ½Ä¿±ê¡£ ÔÚÕâÀï£¬ÎÒÃÇ½«ÁË½â¿ÉÒÔÔÚjavaÖÐ¸´ÖÆÎÄ¼þµÄËÄÖÖ²»Í¬·½·¨¡£
+ *  åœ¨è¿™é‡Œï¼Œæˆ‘ä»¬å°†äº†è§£å¯ä»¥åœ¨javaä¸­å¤åˆ¶æ–‡ä»¶çš„å››ç§ä¸åŒæ–¹æ³•ã€‚
  * 
- * ÏÖÔÚÒªÕÒ³öÄÄ¸öÊÇ×î¿ìµÄ·½·¨£¬ÎÒ±àÐ´ÁËÒ»¸ö²âÊÔÀà£¬²¢Öð¸öÖ´ÐÐÉÏÃæµÄ·½·¨£¬
- * ÓÃÓÚ1 GBµÄ¸´ÖÆÎÄ¼þ¡£ÔÚÃ¿´Îµ÷ÓÃÖÐ£¬ÎÒÊ¹ÓÃ²»Í¬µÄÎÄ¼þÀ´±ÜÃâÒòÎª»º´æ¶ø¶ÔÒÔºóµÄ·½·¨´øÀ´ÈÎºÎºÃ´¦¡£
+ * çŽ°åœ¨è¦æ‰¾å‡ºå“ªä¸ªæ˜¯æœ€å¿«çš„æ–¹æ³•ï¼Œæˆ‘ç¼–å†™äº†ä¸€ä¸ªæµ‹è¯•ç±»ï¼Œå¹¶é€ä¸ªæ‰§è¡Œä¸Šé¢çš„æ–¹æ³•ï¼Œ
+ * ç”¨äºŽ1 GBçš„å¤åˆ¶æ–‡ä»¶ã€‚åœ¨æ¯æ¬¡è°ƒç”¨ä¸­ï¼Œæˆ‘ä½¿ç”¨ä¸åŒçš„æ–‡ä»¶æ¥é¿å…å› ä¸ºç¼“å­˜è€Œå¯¹ä»¥åŽçš„æ–¹æ³•å¸¦æ¥ä»»ä½•å¥½å¤„ã€‚
  * 
- * Çë×¢ÒâÎÒÔÚÉÏÃæµÄ´úÂëÖÐ×¢ÊÍ£¬ÒÔÈ·±£Ã¿´ÎÖ»ÓÐÒ»¸ö·½·¨ÓÃÓÚjavaÎÄ¼þ¸´ÖÆ²Ù×÷¡£
+ * è¯·æ³¨æ„æˆ‘åœ¨ä¸Šé¢çš„ä»£ç ä¸­æ³¨é‡Šï¼Œä»¥ç¡®ä¿æ¯æ¬¡åªæœ‰ä¸€ä¸ªæ–¹æ³•ç”¨äºŽjavaæ–‡ä»¶å¤åˆ¶æ“ä½œã€‚
  * 
- * ´ÓÊä³öÖÐ¿ÉÒÔÇå³þµØ¿´³ö£¬Stream CopyÊÇÔÚJavaÖÐ¸´ÖÆFileµÄ×î¼Ñ·½Ê½¡£
- *  µ«ÕâÊÇÒ»¸ö·Ç³£»ù±¾µÄ²âÊÔ£¬Èç¹ûÄãÕýÔÚ¿ªÕ¹Ò»¸öÐÔÄÜÃÜ¼¯ÐÍÏîÄ¿£¬
- *  ÄÇÃ´ÄãÓ¦¸Ã³¢ÊÔ²»Í¬µÄjava¿½±´ÎÄ¼þ·½·¨£¬²¢¼ÇÏÂÊ±¼ä£¬ÕÒ³öÄãÏîÄ¿µÄ×î¼Ñ·½·¨¡£
+ * ä»Žè¾“å‡ºä¸­å¯ä»¥æ¸…æ¥šåœ°çœ‹å‡ºï¼ŒStream Copyæ˜¯åœ¨Javaä¸­å¤åˆ¶Fileçš„æœ€ä½³æ–¹å¼ã€‚
+ *  ä½†è¿™æ˜¯ä¸€ä¸ªéžå¸¸åŸºæœ¬çš„æµ‹è¯•ï¼Œå¦‚æžœä½ æ­£åœ¨å¼€å±•ä¸€ä¸ªæ€§èƒ½å¯†é›†åž‹é¡¹ç›®ï¼Œ
+ *  é‚£ä¹ˆä½ åº”è¯¥å°è¯•ä¸åŒçš„javaæ‹·è´æ–‡ä»¶æ–¹æ³•ï¼Œå¹¶è®°ä¸‹æ—¶é—´ï¼Œæ‰¾å‡ºä½ é¡¹ç›®çš„æœ€ä½³æ–¹æ³•ã€‚
  *  
- * Äú»¹Ó¦¸Ã¸ù¾ÝÎÄ¼þµÄÆ½¾ù´óÐ¡À´±È¶Ô²»Í¬µÄµÄjava¸´ÖÆÎÄ¼þ·½Ê½¡£
+ * æ‚¨è¿˜åº”è¯¥æ ¹æ®æ–‡ä»¶çš„å¹³å‡å¤§å°æ¥æ¯”å¯¹ä¸åŒçš„çš„javaå¤åˆ¶æ–‡ä»¶æ–¹å¼ã€‚
  * 
  * Time taken by Stream  =     6401036996 nanoTime
  * Time taken by Channel  =     553044816 nanoTime
@@ -58,9 +57,9 @@ public class JavaCopyFile {
     }
     
     /**
-     * ÕâÊÇjavaÖÐ³£¹æµÄÎÄ¼þ¸´ÖÆ·½Ê½£¬ÕâÀïÎÒÃÇ´´½¨Á½¸öÎÄ¼þ£¬Ô´ºÍÄ¿±ê¡£
-     * È»ºóÎÒÃÇ´ÓÔ´´´½¨InputStream²¢Ê¹ÓÃOutputStream½«ÆäÐ´Èë
-     * Ä¿±êÎÄ¼þÒÔ½øÐÐjava¸´ÖÆÎÄ¼þ²Ù×÷¡£
+     * è¿™æ˜¯javaä¸­å¸¸è§„çš„æ–‡ä»¶å¤åˆ¶æ–¹å¼ï¼Œè¿™é‡Œæˆ‘ä»¬åˆ›å»ºä¸¤ä¸ªæ–‡ä»¶ï¼Œæºå’Œç›®æ ‡ã€‚
+     * ç„¶åŽæˆ‘ä»¬ä»Žæºåˆ›å»ºInputStreamå¹¶ä½¿ç”¨OutputStreamå°†å…¶å†™å…¥
+     * ç›®æ ‡æ–‡ä»¶ä»¥è¿›è¡Œjavaå¤åˆ¶æ–‡ä»¶æ“ä½œã€‚
      * @param source
      * @param dest
      * @throws IOException
@@ -83,11 +82,11 @@ public class JavaCopyFile {
 	}
     
     /**
-     * Java Copy File ¨C java.nio.channels.FileChannel
+     * Java Copy File â€“ java.nio.channels.FileChannel
      * 
-     * Java NIOÀàÔÚJava 1.4ÖÐÒýÈë£¬FileChannel¿ÉÓÃÓÚÔÚjavaÖÐ¸´ÖÆÎÄ¼þ¡£ 
-     * ¸ù¾ÝtransferFrom£¨£©·½·¨javadoc£¬ÕâÖÖ¸´ÖÆÎÄ¼þµÄ·½Ê½Ó¦¸Ã±ÈÊ¹ÓÃStreams
-     *  for java copyÎÄ¼þ¸ü¿ì¡£
+     * Java NIOç±»åœ¨Java 1.4ä¸­å¼•å…¥ï¼ŒFileChannelå¯ç”¨äºŽåœ¨javaä¸­å¤åˆ¶æ–‡ä»¶ã€‚ 
+     * æ ¹æ®transferFromï¼ˆï¼‰æ–¹æ³•javadocï¼Œè¿™ç§å¤åˆ¶æ–‡ä»¶çš„æ–¹å¼åº”è¯¥æ¯”ä½¿ç”¨Streams
+     *  for java copyæ–‡ä»¶æ›´å¿«ã€‚
      * @param source
      * @param dest
      * @throws IOException
@@ -109,8 +108,8 @@ public class JavaCopyFile {
 	
 
 	/**
-	 * Èç¹ûÄúÕýÔÚÊ¹ÓÃJava 7»ò¸ü¸ß°æ±¾£¬Ôò¿ÉÒÔÊ¹ÓÃFilesÀàcopy£¨£©
-	 * ·½·¨ÔÚjavaÖÐ¸´ÖÆÎÄ¼þ¡£ËüÊ¹ÓÃÎÄ¼þÏµÍ³Ìá¹©³ÌÐòÀ´¸´ÖÆÎÄ¼þ¡£
+	 * å¦‚æžœæ‚¨æ­£åœ¨ä½¿ç”¨Java 7æˆ–æ›´é«˜ç‰ˆæœ¬ï¼Œåˆ™å¯ä»¥ä½¿ç”¨Filesç±»copyï¼ˆï¼‰
+	 * æ–¹æ³•åœ¨javaä¸­å¤åˆ¶æ–‡ä»¶ã€‚å®ƒä½¿ç”¨æ–‡ä»¶ç³»ç»Ÿæä¾›ç¨‹åºæ¥å¤åˆ¶æ–‡ä»¶ã€‚
 	 * 
 	 * @param source
 	 * @param dest
