@@ -149,3 +149,5 @@ Object o = 0.7; System.out.println(o instanceof Float);    // false
 轻量级 选择 RabbitMQ
 重量级 选择 Kafka
 如果没有历史原因，不要再选择 ActiveMQ
+
+系统吞吐量(tian)
