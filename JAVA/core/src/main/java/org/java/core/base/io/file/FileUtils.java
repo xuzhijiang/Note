@@ -463,6 +463,40 @@ public class FileUtils {
         }
     }
 
+    @Test
+    public void changeFilePermission() {
+        File file = new File("d:" + File.separator + "source.txt");
+
+        // 判断当前应用用户是否有权限
+        System.out.println("File is readable? "+file.canRead());
+        System.out.println("File is writable? "+file.canWrite());
+        System.out.println("File is executable? "+file.canExecute());
+
+        // 只为当前应用的用户改变文件权限
+        System.out.println(file.setReadable(false));
+        System.out.println(file.setWritable(false));
+        System.out.println(file.setExecutable(false));
+
+        // 也为其他用户改变文件权限
+        System.out.println(file.setReadable(true, false));
+        System.out.println(file.setWritable(true, false));
+        System.out.println(file.setExecutable(true, true));
+    }
+
+    @Test
+    public void createTmpFile() throws IOException {
+        // 在临时文件目录下创建临时文件
+        File tmpFile = File.createTempFile("data", null);
+        File specificPathTmpFile = File.createTempFile("text", ".tmp", new File("d:"));
+
+        System.out.println(tmpFile.getCanonicalPath());
+        System.out.println(specificPathTmpFile.getCanonicalPath());
+
+        // 当应用退出的时候删除.
+        tmpFile.deleteOnExit();
+        specificPathTmpFile.deleteOnExit();
+    }
+
     /**
      * 通过文件后缀名来过滤文件的文件名过滤器
      */

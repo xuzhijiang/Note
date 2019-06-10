@@ -47,7 +47,7 @@ public class ShallowCopyInJava {
 		//Changing the subject1 of s2
 		s2.course.subject1 = "Biology";
 		
-		//This change will be reflected in original student s1
+		//This changeStr will be reflected in original student s1
 		System.out.println("s1 course: " + s1.course.subject1);
 		
 		System.out.println("s2 course: " + s1.course.subject1);

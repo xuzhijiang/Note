@@ -21,3 +21,10 @@
 | 消息总线   | 无             | Spring Cloud Bus             |
 | 数据流    | 无             | Spring Cloud Stream          |
 | 批量任务   | 无             | Spring Cloud Task            |
+
+第一套微服务架构解决方案: Spring Boot + Spring Cloud Netflix (采用基于Netflix eureka-尤里卡的服务注册与发现)
+
+第二套微服务架构解决方案: Spring Boot + Dubbo + Zookeeper(Dubbo的服务治理是采用基于Zookeeper的服务注册与发现)
+
+分布式设计的一切来源是: 网络是不可靠的.一切设计的根源.
+

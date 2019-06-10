@@ -20,9 +20,9 @@ public class ThreadStatesConstant {
 	// ���ǿ��Խ��κ�int�������ݸ�simpleConstantsExample������
 	// ��������ֻ�ܽ��̶�ֵ���ݸ�simpleEnumExample��������ṩ�����Ͱ�ȫ�ԡ�
 	
-	//2. We can change the int constants value in ThreadStatesConstant 
+	//2. We can changeStr the int constants value in ThreadStatesConstant
 	//class but the below program will not throw any exception. 
-	//Our program might not work as expected but if we change the enum constants, 
+	//Our program might not work as expected but if we changeStr the enum constants,
 	//we will get compile time error that removes any possibility of runtime issues.
 	// ���ǿ�����ThreadStatesConstant���и���int����ֵ��������ĳ��򲻻��׳��κ��쳣�� 
 	// ���ǵĳ�������޷���Ԥ�ڹ�������������Ǹ���ö�ٳ��������ǽ��õ�����ʱ������������ʱ������κο����ԡ�

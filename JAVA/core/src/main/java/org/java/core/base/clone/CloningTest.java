@@ -29,12 +29,12 @@ public class CloningTest {
 		
 		// Lets see the effect of using default cloning
 		
-		// change emp props
+		// changeStr emp props
 		emp.getProps().put("title", "CEO");
 		emp.getProps().put("city", "New York");
 		System.out.println("clonedEmp props:" + clonedEmp.getProps());
 
-		// change emp name
+		// changeStr emp name
 		emp.setName("new");
 		System.out.println("clonedEmp name:" + clonedEmp.getName());
 		// We changed the emp name but clonedEmp name didn’t changed. 

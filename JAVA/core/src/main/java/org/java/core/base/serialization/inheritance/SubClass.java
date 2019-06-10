@@ -8,29 +8,29 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
- * Sometimes we need to extend a class that doesn¡¯t implement 
+ * Sometimes we need to extend a class that doesnï¿½ï¿½t implement 
  * Serializable interface. If we rely on the automatic serialization 
  * behavior and the superclass has some state, then they will not 
  * be converted to stream and hence not retrieved later on.
  * <p><br>
- * ÓĞĞ©Ê±ºòÎÒÃÇĞèÒªÈ¥À©Õ¹Ò»¸öÀà£¬Õâ¸öÀàÃ»ÓĞÊµÏÖSerializable½Ó¿Ú(a third-party class that we can¡¯t change.) 
- * Èç¹ûÎÒÃÇÒÀÀµ×Ô¶¯ĞòÁĞ»¯ĞĞÎª(Ö¸µÄÊÇÒªĞòÁĞ»¯Ò»¸öÀà±ØĞëÊµÏÖSerializable½Ó¿Ú,µ«ÊÇµÚÈı·½ÀàÃ»ÓĞÊµÏÖ)£¬²¢ÇÒÕâ¸ö³¬ÀàÓĞÒ»Ğ©×´Ì¬,
- * ÄÇÃ´Õâ¸öËûÃÇ¾Í²»ÄÜ¹»±»×ª»¯³ÉÎªÁ÷£¬Òò´ËÔÚÖ®ºó¾Í²»¿ÉÒÔ±»¼ìË÷µ½.
+ * ï¿½ï¿½Ğ©Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÈ¥ï¿½ï¿½Õ¹Ò»ï¿½ï¿½ï¿½à£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Êµï¿½ï¿½Serializableï¿½Ó¿ï¿½(a third-party class that we canï¿½ï¿½t changeStr.)
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½Îª(Ö¸ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ğ»ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½Serializableï¿½Ó¿ï¿½,ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Êµï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ğ©×´Ì¬,
+ * ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾Í²ï¿½ï¿½Ü¹ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Í²ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
  * <p><br>
  * This is one place, where readObject() and writeObject() 
  * methods really help. By providing their implementation, 
  * we can save the super class state to the stream and then 
  * retrieve it later on. 
  * <p><br>
- * Õâ¸ö¾ÍÊÇreadObject()ºÍwriteObject()·½·¨ÕæÕıÓĞ°ïÖúµÄµØ·½£¬Í¨¹ıÌá¹©ËûÃÇµÄÊµÏÖ£¬ÎÒÃÇ¿ÉÒÔ
- * °Ñ¸¸ÀàµÄ ×´Ì¬±£´æµ½Á÷ÖĞ£¬È»ºóÔÚÖ®ºó¼ìË÷Ëü.
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½readObject()ï¿½ï¿½writeObject()ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ°ï¿½ï¿½ï¿½ï¿½ÄµØ·ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½Çµï¿½Êµï¿½Ö£ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½
+ * ï¿½Ñ¸ï¿½ï¿½ï¿½ï¿½ ×´Ì¬ï¿½ï¿½ï¿½æµ½ï¿½ï¿½ï¿½Ğ£ï¿½È»ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
  * <p><br>
  * So in this way, we can serialize super class state even 
- * though it¡¯s not implementing Serializable interface. 
+ * though itï¿½ï¿½s not implementing Serializable interface. 
  * This strategy comes handy when the super class is a third-party 
- * class that we can¡¯t change.
- * Òò´Ë£¬Í¨¹ıÕâÖÖ·½Ê½£¬ÎÒÃÇ¿ÉÒÔĞòÁĞ»¯³¬Àà×´Ì¬£¬¼´Ê¹ËüÃ»ÓĞÊµÏÖSerializable½Ó¿Ú¡£ 
- * µ±³¬¼¶ÀàÊÇÎÒÃÇÎŞ·¨¸Ä±äµÄµÚÈı·½ÀàÊ±£¬ÕâÖÖ²ßÂÔºÜ·½±ã¡£
+ * class that we canï¿½ï¿½t changeStr.
+ * ï¿½ï¿½Ë£ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Ã»ï¿½ï¿½Êµï¿½ï¿½Serializableï¿½Ó¿Ú¡ï¿½ 
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ş·ï¿½ï¿½Ä±ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ÔºÜ·ï¿½ï¿½ã¡£
  */
 public class SubClass extends SuperClass implements Serializable, ObjectInputValidation{
 
@@ -54,7 +54,7 @@ public class SubClass extends SuperClass implements Serializable, ObjectInputVal
 		return "SubClass{id=" + getId() + ",value=" + getValue() + ",name=" + name + "}";
 	}
 	
-	//×¢ÒâĞ´ºÍ¶ÁµÄË³ĞòÓ¦¸ÃÒ»ÖÂ£¬ÎÒÃÇ¿ÉÒÔ¼ÓÒ»Ğ©¶ÁĞ´µÄÂß¼­£¬ÒÔÈ·±£Êı¾İ°²È«
+	//×¢ï¿½ï¿½Ğ´ï¿½Í¶ï¿½ï¿½ï¿½Ë³ï¿½ï¿½Ó¦ï¿½ï¿½Ò»ï¿½Â£ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½Ô¼ï¿½Ò»Ğ©ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½İ°ï¿½È«
 	private void readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException{
 		ois.defaultReadObject();
 		//notice the order of read and write should be same
@@ -69,7 +69,7 @@ public class SubClass extends SuperClass implements Serializable, ObjectInputVal
 		oos.writeObject(getValue());
 	}
 
-	//¼ÓÕâ¸ö½Ó¿ÚÊÇÎªÁËÊı¾İÑéÖ¤£¬ÒÔÈ·±£Êı¾İÍêÕûĞÔ²»ÊÜµ½ÉËº¦.
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½ï¿½Üµï¿½ï¿½Ëºï¿½.
 	@Override
 	public void validateObject() throws InvalidObjectException {
 		//validate the object here

@@ -25,7 +25,7 @@ public class ConcurrentListExample {
             if(str.equals("2"))list.remove("5");
             if(str.equals("3"))list.add("3 found");
             //below code don't throw ConcurrentModificationException
-            //because it doesn't change modCount variable of list
+            //because it doesn't changeStr modCount variable of list
             if(str.equals("4")) list.set(1, "4");
         }
     }

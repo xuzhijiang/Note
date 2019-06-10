@@ -3,28 +3,28 @@ package org.java.core.base.serialization;
 import java.io.IOException;
 
 /**
- * Now uncomment the ¡°password¡± variable and it¡¯s getter-setter 
+ * Now uncomment the ï¿½ï¿½passwordï¿½ï¿½ variable and itï¿½ï¿½s getter-setter 
  * methods from Employee class and run it. You will get below exception;
  * <p>
  * The reason is clear that serialVersionUID of the 
  * previous class and new class are different. Actually 
- * if the class doesn¡¯t define serialVersionUID, it¡¯s 
+ * if the class doesnï¿½ï¿½t define serialVersionUID, itï¿½ï¿½s 
  * getting calculated automatically and assigned to the 
  * class. Java uses class variables, methods, class name, 
  * package etc to generate this unique long number. If you 
  * are working with any IDE, you will automatically get a 
- * warning that ¡°The serializable class Employee does not 
- * declare a static final serialVersionUID field of type long¡±.
- * Ô­ÒòºÜÇå³ş£¬Ö®Ç°µÄÀàµÄ serialVersionUIDºÍĞÂµÄÀàµÄÊÇ²»Í¬µÄ£¬Êµ¼ÊÉÏÈç¹ûÀàÃ»ÓĞ¶¨ÒåÕâ¸öid£¬
- * »á×Ô¶¯¼ÆËãÒ»¸öid£¬È»ºó·ÖÅä¸øËü£¬JavaÓÃÀà±äÁ¿£¬·½·¨£¬ÀàÃû£¬°üÃûµÈÉú³ÉÕâ¸öid.(¼ÙÈç¸øÀàÔö¼ÓÒ»¸ö×Ö¶Îºó£¬ÒòÎª
- * serialVersionUIDÎÒÃÇÃ»ÓĞÈÃ³ÌĞòÉú³É£¬ËùÒÔ³ÌĞò»á×Ô¶¯¼ÆËãÉú³ÉÒ»¸ö£¬µ±Ôö¼ÓÒ»¸ö×Ö¶Îºó£¬2¸öÀàµÄid¿Ï¶¨²»Ò»Ñù£¬ËùÒÔ·´ĞòÁĞ»¯
- * Éú³ÉµÄÀàºÍÔ­À´µÄ¾Í²»¼æÈİ)
+ * warning that ï¿½ï¿½The serializable class Employee does not 
+ * declare a static final serialVersionUID field of type longï¿½ï¿½.
+ * Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ serialVersionUIDï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½Ç²ï¿½Í¬ï¿½Ä£ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½
+ * ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½idï¿½ï¿½È»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Javaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id.(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö¶Îºï¿½ï¿½ï¿½Îª
+ * serialVersionUIDï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½ï¿½ï¿½ï¿½Ô³ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö¶Îºï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½idï¿½Ï¶ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½
+ * ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½Ä¾Í²ï¿½ï¿½ï¿½ï¿½ï¿½)
  * <p>
- * Ôö¼ÓÉÏserialVersionUIDºó£¬Now uncomment the password field from 
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½serialVersionUIDï¿½ï¿½Now uncomment the password field from 
  * Employee class and run the DeserializationTest program
  * and you will see that the object stream is deserialized successfully 
- * because the change in Employee class is compatible with serialization process.
- * ÒòÎªEmployeeÀàºÍĞòÁĞ»¯¹ı³ÌÊÇ¼æÈİµÄ£¬
+ * because the changeStr in Employee class is compatible with serialization process.
+ * ï¿½ï¿½ÎªEmployeeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¼ï¿½ï¿½İµÄ£ï¿½
  */
 public class DeserializationTest {
 	public static void main(String[] args) {

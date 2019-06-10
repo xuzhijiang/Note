@@ -1,9 +1,9 @@
 package org.java.core.base.multithreading.synchronization;
 
 /**
- * Notice that lock Object is public and by changing it¡¯s reference, we can
+ * Notice that lock Object is public and by changing itï¿½ï¿½s reference, we can
  * execute synchronized block parallel in multiple threads. Similar case is true
- * if you have private Object but have setter method to change it¡¯s reference.
+ * if you have private Object but have setter method to changeStr itï¿½ï¿½s reference.
  */
 public class HackerCodeExample2 {
 
@@ -43,7 +43,7 @@ class HackerRunnable2 implements Runnable {
 	@Override
 	public void run() {
 		//untrusted code
-		//change the lock object reference
+		//changeStr the lock object reference
 		obj.lock = new Object();
 		synchronized(obj.lock) {
 			while(true) {

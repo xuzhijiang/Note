@@ -88,14 +88,14 @@ public final class FinalClassExample {
 		System.out.println("ce name:" + ce.getName());
 		System.out.println("ce testMap:" + ce.getTestMap());
 
-		// change the local variable values
+		// changeStr the local variable values
 		i = 20;
 		s = "modified";
 		h1.put("3", "third");
 		// print the values again
-		System.out.println("ce id after local variable change:" + ce.getId());
-		System.out.println("ce name after local variable change:" + ce.getName());
-		System.out.println("ce testMap after local variable change:" + ce.getTestMap());
+		System.out.println("ce id after local variable changeStr:" + ce.getId());
+		System.out.println("ce name after local variable changeStr:" + ce.getName());
+		System.out.println("ce testMap after local variable changeStr:" + ce.getTestMap());
 
 		HashMap<String, String> hmTest = ce.getTestMap();
 		hmTest.put("4", "new");

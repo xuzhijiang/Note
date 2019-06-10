@@ -108,7 +108,7 @@ class HashMapProcessor implements Runnable{
         strArr[i] = strArr[i] +":"+name;
     }
 
-//    Here is how we can change addThreadName() method to make our program thread safe.
+//    Here is how we can changeStr addThreadName() method to make our program thread safe.
 
 //    private Object lock = new Object();
 //    private void addThreadName(int i, String name) {

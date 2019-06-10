@@ -20,7 +20,7 @@ public class DeepCopyInJava {
 		// Changing the role1 of p2
 		p2.role.role1 = "Power forward";
 
-		// This change will not be reflected in original Player p1
+		// This changeStr will not be reflected in original Player p1
 		System.out.println("p1 role:" + p1.role.role1);
 		System.out.println("p2 role:" + p2.role.role1);
 	}
