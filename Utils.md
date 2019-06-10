@@ -1,4 +1,4 @@
-### sublime快捷键
+## sublime快捷键
 
 ```shell
 (ctrl+shift+p ssp，把语法设置为python)
