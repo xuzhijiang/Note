@@ -7,13 +7,13 @@ import java.io.ObjectOutput;
 
 /**
  * If you notice the java serialization process, 
- * it¡¯s done automatically(Ëû»á×Ô¶¯Íê³É). Sometimes we want to 
- * obscure the object data to maintain it¡¯s integrity. 
+ * itâ€™s done automatically(ä»–ä¼šè‡ªåŠ¨å®Œæˆ). Sometimes we want to 
+ * obscure the object data to maintain itâ€™s integrity. 
  * We can do this by implementing java.io.Externalizable 
  * interface and provide implementation of writeExternal() 
  * and readExternal() methods to be used in serialization process.
- *  ÓĞÊ±ÎÒÃÇÏëÒş²Ø¶ÔÏóÊı¾İÒÔ±£³ÖÆäÍêÕûĞÔ¡£ ÎÒÃÇ¿ÉÒÔÍ¨¹ıÊµÏÖjava.io.Externalizable½Ó¿ÚÀ´ÊµÏÖÕâÒ»µã£¬
- *  ²¢Ìá¹©writeExternal£¨£©ºÍreadExternal£¨£©·½·¨µÄÊµÏÖ£¬ÒÔ±ãÔÚĞòÁĞ»¯¹ı³ÌÖĞÊ¹ÓÃ¡£
+ *  æœ‰æ—¶æˆ‘ä»¬æƒ³éšè—å¯¹è±¡æ•°æ®ä»¥ä¿æŒå…¶å®Œæ•´æ€§ã€‚ æˆ‘ä»¬å¯ä»¥é€šè¿‡å®ç°java.io.Externalizableæ¥å£æ¥å®ç°è¿™ä¸€ç‚¹ï¼Œ
+ *  å¹¶æä¾›writeExternalï¼ˆï¼‰å’ŒreadExternalï¼ˆï¼‰æ–¹æ³•çš„å®ç°ï¼Œä»¥ä¾¿åœ¨åºåˆ—åŒ–è¿‡ç¨‹ä¸­ä½¿ç”¨ã€‚
  * <p>
  * 
  */
@@ -59,12 +59,12 @@ public class Person implements Externalizable{
 	//In this way, we can maintain data integrity of some sorts. 
 	//We can throw exception if after reading the stream data, 
 	//the integrity checks fail. 
-	//Çë×¢Òâ£¬ÎÒ°ÑËü×ª»»³ÉÁ÷Ö®Ç°¸Ä±äÁË×Ö¶ÎµÄÖµ£¬¶ÁÈ¡µÄÊ±ºòÓÖ·´×ªÁË¸ü¸Ä£¬Í¨¹ıÕâÖÖ·½Ê½
-	//ÎÒÃÇ¿ÉÒÔ±£³ÖÄ³Ğ©Êı¾İµÄÍêÕûĞÔ£¬
+	//è¯·æ³¨æ„ï¼Œæˆ‘æŠŠå®ƒè½¬æ¢æˆæµä¹‹å‰æ”¹å˜äº†å­—æ®µçš„å€¼ï¼Œè¯»å–çš„æ—¶å€™åˆåè½¬äº†æ›´æ”¹ï¼Œé€šè¿‡è¿™ç§æ–¹å¼
+	//æˆ‘ä»¬å¯ä»¥ä¿æŒæŸäº›æ•°æ®çš„å®Œæ•´æ€§ï¼Œ
 	//So which one is better to be used for serialization in java. 
-	//Actually it¡¯s better to use Serializable interface and by 
+	//Actually itâ€™s better to use Serializable interface and by 
 	//the time we reach at the end of article, you will know why.
-	//ÄÇÃ´ÄÄÒ»¸ö¸üÊÊºÏÓÃÓÚjavaÖĞµÄĞòÁĞ»¯¡£ Êµ¼ÊÉÏ×îºÃÊ¹ÓÃSerializable½Ó¿Ú£¬µ±ÎÒÃÇµ½ÎÄÕÂÄ©Î²Ê±£¬Äã»áÖªµÀÔ­Òò
+	//é‚£ä¹ˆå“ªä¸€ä¸ªæ›´é€‚åˆç”¨äºjavaä¸­çš„åºåˆ—åŒ–ã€‚ å®é™…ä¸Šæœ€å¥½ä½¿ç”¨Serializableæ¥å£ï¼Œå½“æˆ‘ä»¬åˆ°æ–‡ç« æœ«å°¾æ—¶ï¼Œä½ ä¼šçŸ¥é“åŸå› 
 	@Override
 	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 		id = in.readInt();

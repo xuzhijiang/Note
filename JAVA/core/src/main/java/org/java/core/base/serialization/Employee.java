@@ -3,16 +3,16 @@ package org.java.core.base.serialization;
 import java.io.Serializable;
 
 /**
- * ×¢Òâµ½ÕâÊÇÒ»¸ö¼òµ¥µÄJava bean,ÓĞÒ»Ğ©ÊôĞÔºÍgetter setter·½·¨£¬
- * Èç¹ûÄãÏëÒªÒ»¸ö¶ÔÏóÊôĞÔ²»±»ĞòÁĞ»¯³ÉÁ÷£¬Äã¿ÉÒÔÊ¹ÓÃtransient¹Ø¼ü×Ö£¬(transient: ÔİÊ±µÄ)
- * ÏñÎÒÔÚsalary±äÁ¿ÉÏ×öµÄ¡£
- * Notice that getter/setter·½·¨²»ÊÇ±ØĞëµÄ£¬ÎŞ²Î¹¹ÔìÆ÷Ò²²»ÊÇ±ØĞëµÄ£¬
+ * æ³¨æ„åˆ°è¿™æ˜¯ä¸€ä¸ªç®€å•çš„Java bean,æœ‰ä¸€äº›å±æ€§å’Œgetter setteræ–¹æ³•ï¼Œ
+ * å¦‚æœä½ æƒ³è¦ä¸€ä¸ªå¯¹è±¡å±æ€§ä¸è¢«åºåˆ—åŒ–æˆæµï¼Œä½ å¯ä»¥ä½¿ç”¨transientå…³é”®å­—ï¼Œ(transient: æš‚æ—¶çš„)
+ * åƒæˆ‘åœ¨salaryå˜é‡ä¸Šåšçš„ã€‚
+ * Notice that getter/setteræ–¹æ³•ä¸æ˜¯å¿…é¡»çš„ï¼Œæ— å‚æ„é€ å™¨ä¹Ÿä¸æ˜¯å¿…é¡»çš„ï¼Œ
  */
 public class Employee implements Serializable{
 
 
-	//¿ÉÒÔÊ¹ÓÃserialverÃüÁî£¬ÔÚ¿ØÖÆÌ¨Éú³É: serialver -classpath . com.journaldev.serialization.Employee
-	//×¢ÒâºóÃæµÄÂ·¾¶ÊÇbinÏÂÉú³ÉµÄ×Ö½ÚÂëÎÄ¼ş.µ±È»Ò²¿ÉÒÔÊ¹ÓÃIDE×Ô¶¯Éú³É.
+	//å¯ä»¥ä½¿ç”¨serialverå‘½ä»¤ï¼Œåœ¨æ§åˆ¶å°ç”Ÿæˆ: serialver -classpath . com.journaldev.serialization.Employee
+	//æ³¨æ„åé¢çš„è·¯å¾„æ˜¯binä¸‹ç”Ÿæˆçš„å­—èŠ‚ç æ–‡ä»¶.å½“ç„¶ä¹Ÿå¯ä»¥ä½¿ç”¨IDEè‡ªåŠ¨ç”Ÿæˆ.
 	private static final long serialVersionUID = 6115687027597651376L;
 	
 	private static final boolean FLAG = true;

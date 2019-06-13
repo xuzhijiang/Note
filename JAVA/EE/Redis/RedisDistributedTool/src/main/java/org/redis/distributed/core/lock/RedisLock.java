@@ -10,6 +10,8 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 
+import java.util.Collections;
+
 /**
  * 分布式锁
  */
@@ -19,7 +21,7 @@ public class RedisLock {
 
     private static final String LOCK_MSG = "OK";
 
-    private static final Long UNLOCK_MSG = 1L;
+    private static final Integer UNLOCK_MSG = 1;
 
     private static final String SET_IF_NOT_EXIST = "NX";
 
@@ -68,10 +70,10 @@ public class RedisLock {
     }
 
     /**
-     * Non-Blocking lock
+     * Non-Blocking lock(非阻塞的锁,也就是无论上锁成功或者失败都立即返回,不阻塞线程)
      * @param key lock business type(锁的业务类型)
      * @param request value
-     * @return return true if lock successfully, or false lock failure
+     * @return 返回true表示上锁成功，false表示上锁失败.
      */
     public boolean tryLock(String key, String request) {
         Object connection = getConnection();
@@ -85,7 +87,7 @@ public class RedisLock {
             result = jedisCluster.set(lockPrefix + key, request, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, 10 * TIME);
         }
 
-        if (LOCK_MSG.equals(request)) {
+        if (LOCK_MSG.equals(result)) {
             return true;
         } else {
             return false;
@@ -93,7 +95,7 @@ public class RedisLock {
     }
 
     /**
-     * blocking lock
+     * blocking lock阻塞的锁
      *
      * @param key
      * @param request
@@ -105,7 +107,7 @@ public class RedisLock {
            if (connection instanceof Jedis) {
                Jedis jedis = (Jedis) connection;
                result = jedis.set(lockPrefix + key, request, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, 10 * TIME);
-               if (LOCK_MSG.equals(result)) {
+               if (LOCK_MSG.equals(result)) { // 上锁成功才去关闭jedis
                    jedis.close();
                }
            } else if (connection instanceof JedisCluster) {
@@ -113,16 +115,17 @@ public class RedisLock {
                result = jedisCluster.set(lockPrefix + key, request, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, 10 * TIME);
            }
 
+           // 上锁成功后跳出for循环
            if (LOCK_MSG.equals(result)) {
                break;
            }
-
+           // 上锁不成功就休眠一段时间
            Thread.sleep(sleepTime);
        }
     }
 
     /**
-     * blocking lock, 自定义阻塞的时间
+     * blocking lock, 自定义阻塞的时间,超过阻塞时间后，就返回
      *
      * @param key
      * @param request
@@ -143,11 +146,9 @@ public class RedisLock {
                 JedisCluster jedisCluster = (JedisCluster) connection;
                 result = jedisCluster.set(lockPrefix + key, request, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, 10 * TIME);
             }
-
             if (LOCK_MSG.equals(result)) {
                 return true;
             }
-
             blockTime -= sleepTime;
 
             Thread.sleep(sleepTime);
@@ -155,8 +156,58 @@ public class RedisLock {
         return false;
     }
 
+    /**
+     * Non-blocking lock
+     * @param key   lock business type
+     * @param request
+     * @param expireTime 自定义键的生存时间
+     * @return true lock successfully, or false lock fail
+     */
     public boolean tryLock(String key, String request, int expireTime) {
+        Object connection = getConnection();
+        String result = null;
+        if (connection instanceof Jedis) {
+            Jedis jedis = (Jedis) connection;
+            result = jedis.set(lockPrefix + key, request, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, expireTime);
+            jedis.close();
+        } else if (connection instanceof JedisCluster) {
+            JedisCluster jedisCluster = (JedisCluster) connection;
+            result = jedisCluster.set(lockPrefix + key, request, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, expireTime);
+        }
 
+        if (LOCK_MSG.equals(result)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 解锁
+     * @param key
+     * @param request request must be the same as lock request
+     * @return
+     */
+    public boolean unlock(String key, String request) {
+        Object connection = getConnection();
+        Object result = null;
+
+        if (connection instanceof Jedis) {
+            Jedis jedis = (Jedis) connection;
+            result = jedis.eval(script, Collections.singletonList(lockPrefix + key), Collections.singletonList(request));
+            jedis.close();
+        } else if (connection instanceof JedisCluster) {
+            JedisCluster jedisCluster = (JedisCluster) connection;
+            jedisCluster.eval(script, Collections.singletonList(lockPrefix + key), Collections.singletonList(request));
+        } else {
+            return false;
+        }
+        // 删除成功返回1，删除失败返回0
+        if (UNLOCK_MSG.equals(result)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

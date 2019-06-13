@@ -1,3 +1,20 @@
+# Java I/O
+
+## 分类
+
+Java 的 I/O 可以分成:磁盘I/O和网络I/O(Socket)，当然也可以从另一个角度分类，分成字节操作(InputStream 和 OutputStream)和字符操作(Reader 和 Writer)。
+
+不管是磁盘还是网络传输，最小的存储单元都是字节，而不是字符。但是在程序中操作的通常是字符形式的数据，因此需要提供对字符进行操作的方法。InputStreamReader 实现从字节流解码成字符流；OutputStreamWriter 实现字符流编码成为字节流。
+
+## 装饰者模式
+
+以 InputStream 为例，InputStream 是抽象类，FileInputStream 是 InputStream 的子类，属于具体实现类，提供了字节流的输入操作；BufferedInputStream 为 FileInputStream 提供缓存的功能。实例化一个具有缓存功能的字节流对象时，只需要在 FileInputStream 对象上再套一层 BufferedInputStream 对象即可。
+
+```java
+FileInputStream fileInputStream = new FileInputStream(filePath);
+BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+```
+
 ## 传统BIO模型分析
 
 >传统的服务器端同步阻塞I/O处理（也就是BIO，Blocking I/O）的经典编程模型：

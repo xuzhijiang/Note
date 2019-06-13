@@ -22,6 +22,9 @@ public class RedisLimit {
 
     private JedisConnectionFactory jedisConnectionFactory;
 
+    /**
+     * redis单机还是redis集群
+     */
     private int type;
 
     /**
@@ -29,7 +32,7 @@ public class RedisLimit {
      */
     private int limit = 200;
 
-    private static final int FAIL_CODE = 0;
+    private static final Integer FAIL_CODE = 0;
 
     /**
      * lua script
@@ -50,7 +53,7 @@ public class RedisLimit {
         Object connection = getConnection();
         Object result = limitRequest(connection);
 
-        if (FAIL_CODE != Integer.valueOf(result.toString())) {
+        if (FAIL_CODE.equals(result)) {
             return true;
         } else {
             return false;

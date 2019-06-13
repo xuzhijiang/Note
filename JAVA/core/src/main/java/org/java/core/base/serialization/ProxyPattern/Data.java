@@ -6,32 +6,32 @@ import java.io.Serializable;
 
 /**
  * Both Data and DataProxy class should implement Serializable interface.
- * DataºÍDataProxy¶¼Ó¦¸ÃÊµÏÖĞòÁĞ»¯½Ó¿Ú<p><br>
+ * Dataå’ŒDataProxyéƒ½åº”è¯¥å®ç°åºåˆ—åŒ–æ¥å£<p><br>
  * DataProxy should be able to maintain the state of Data object.
- * DataProxyÓ¦¸Ã¿ÉÒÔÎ¬»¤Data objectµÄ×´Ì¬<br><p>
- * DataProxy is inner private static class, so that other classes can¡¯t access it.
- * DataProxyÊÇÄÚ²¿Ë½ÓĞ¾²Ì¬Àà£¬Òò´ËÆäËûÀà²»¿ÉÒÔ·ÃÎÊËü<br><p>
+ * DataProxyåº”è¯¥å¯ä»¥ç»´æŠ¤Data objectçš„çŠ¶æ€<br><p>
+ * DataProxy is inner private static class, so that other classes canâ€™t access it.
+ * DataProxyæ˜¯å†…éƒ¨ç§æœ‰é™æ€ç±»ï¼Œå› æ­¤å…¶ä»–ç±»ä¸å¯ä»¥è®¿é—®å®ƒ<br><p>
  * DataProxy should have a single constructor that takes Data as argument.
- * DataProxyÓ¦¸ÃÓĞÒ»¸öµ¥¶À¹¹ÔìÆ÷£¬½ÓÊÜData×÷Îª²ÎÊı<p><br>
+ * DataProxyåº”è¯¥æœ‰ä¸€ä¸ªå•ç‹¬æ„é€ å™¨ï¼Œæ¥å—Dataä½œä¸ºå‚æ•°<p><br>
  * Data class should provide writeReplace() method returning DataProxy instance. 
  * So when Data object is serialized, the returned stream is of DataProxy class. 
- * However DataProxy class is not visible outside, so it can¡¯t be used directly.
- * DataÀàÓ¦¸ÃÌá¹©·µ»ØDataProxyÊµÀıµÄwriteReplace£¨£©·½·¨¡£ Òò´Ë£¬µ±ĞòÁĞ»¯Data¶ÔÏóÊ±£¬
- * ·µ»ØµÄÁ÷ÊÇDataProxyÀà¡£ µ«ÊÇDataProxyÀàÔÚÍâ²¿²»¿É¼û£¬Òò´ËÎŞ·¨Ö±½ÓÊ¹ÓÃ¡£<p><br>
+ * However DataProxy class is not visible outside, so it canâ€™t be used directly.
+ * Dataç±»åº”è¯¥æä¾›è¿”å›DataProxyå®ä¾‹çš„writeReplaceï¼ˆï¼‰æ–¹æ³•ã€‚ å› æ­¤ï¼Œå½“åºåˆ—åŒ–Dataå¯¹è±¡æ—¶ï¼Œ
+ * è¿”å›çš„æµæ˜¯DataProxyç±»ã€‚ ä½†æ˜¯DataProxyç±»åœ¨å¤–éƒ¨ä¸å¯è§ï¼Œå› æ­¤æ— æ³•ç›´æ¥ä½¿ç”¨ã€‚<p><br>
  * DataProxy class should implement readResolve() method returning 
  * Data object. So when Data class is deserialized, internally DataProxy 
- * is deserialized and when it¡¯s readResolve() method is called, we get Data object.
- * DataProxyÀàÓ¦¸ÃÊµÏÖ·µ»ØData¶ÔÏóµÄreadResolve£¨£©·½·¨¡£ Òò´Ë£¬µ±·´ĞòÁĞ»¯DataÀàÊ±£¬
- * ÄÚ²¿DataProxy±»·´ĞòÁĞ»¯£¬µ±µ÷ÓÃreadResolve£¨£©·½·¨Ê±£¬ÎÒÃÇµÃµ½Data¶ÔÏó¡£
+ * is deserialized and when itâ€™s readResolve() method is called, we get Data object.
+ * DataProxyç±»åº”è¯¥å®ç°è¿”å›Dataå¯¹è±¡çš„readResolveï¼ˆï¼‰æ–¹æ³•ã€‚ å› æ­¤ï¼Œå½“ååºåˆ—åŒ–Dataç±»æ—¶ï¼Œ
+ * å†…éƒ¨DataProxyè¢«ååºåˆ—åŒ–ï¼Œå½“è°ƒç”¨readResolveï¼ˆï¼‰æ–¹æ³•æ—¶ï¼Œæˆ‘ä»¬å¾—åˆ°Dataå¯¹è±¡ã€‚
  * <p><br>
  * Finally implement readObject() method in Data class and 
  * throw InvalidObjectException to avoid hackers attack trying to 
  * fabricate Data object stream and parse it.
- * ×îºóÔÚDataÀàÖĞÊµÏÖreadObject£¨£©·½·¨²¢Å×³öInvalidObjectException
- * ÒÔ±ÜÃâºÚ¿Í¹¥»÷ÊÔÍ¼¹¹ÔìData¶ÔÏóÁ÷²¢½âÎöËü¡£
+ * æœ€ååœ¨Dataç±»ä¸­å®ç°readObjectï¼ˆï¼‰æ–¹æ³•å¹¶æŠ›å‡ºInvalidObjectException
+ * ä»¥é¿å…é»‘å®¢æ”»å‡»è¯•å›¾æ„é€ Dataå¯¹è±¡æµå¹¶è§£æå®ƒã€‚
  * <p><br>
- * it¡¯s always better not to rely on default implementation
- * ĞòÁĞ»¯×îºÃ²»ÒªÒÀÀµÄ¬ÈÏµÄÊµÏÖ
+ * itâ€™s always better not to rely on default implementation
+ * åºåˆ—åŒ–æœ€å¥½ä¸è¦ä¾èµ–é»˜è®¤çš„å®ç°
  */
 public class Data implements Serializable{
 

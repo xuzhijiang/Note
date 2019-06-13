@@ -12,6 +12,11 @@ import java.util.Date;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+/**
+ * File 类可以用于表示文件和目录的信息，但是它不表示文件的内容
+ *
+ * 从 Java7 开始，可以使用 Paths 和 Files 代替 File。
+ */
 public class FileUtils {
 
     public static final String FILE_BASE_PATH = "C:" + File.separator + "Users" + File.separator + "xu" + File.separator + "Desktop" + File.separator;
@@ -285,10 +290,15 @@ public class FileUtils {
         os = new FileOutputStream(dest);
 
         byte[] byteArray = new byte[1024];
-        int len;
+        int cnt;
 
-        while ((len = is.read(byteArray)) > 0) {
-            os.write(byteArray, 0, len);
+        // is.read(byteArray, 0, buffer.length),
+        // read() 最多读取 buffer.length 个字节
+        // 返回的是实际读取的个数
+        // 返回 -1 的时候表示读到 eof，即文件尾
+        while ((cnt = is.read(byteArray)) > 0) {
+            // 把byteArray从0到cnt位置的数据写到os中
+            os.write(byteArray, 0, cnt);
         }
         // flush OutputStream to write any buffered data to file
         os.flush();

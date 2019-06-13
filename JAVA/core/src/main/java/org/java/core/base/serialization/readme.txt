@@ -1,95 +1,95 @@
-SerializationÔÚJDK1.1±»ÒıÈë£¬ÊÇJavaºËĞÄµÄÖØÒªÌØµãÖ®Ò».
+Serializationåœ¨JDK1.1è¢«å¼•å…¥ï¼Œæ˜¯Javaæ ¸å¿ƒçš„é‡è¦ç‰¹ç‚¹ä¹‹ä¸€.
 
-SerializationÔÚJavaÖĞÔÊĞíÎÒÃÇ°ÑÒ»¸ö¶ÔÏó×ª»¯³ÉÁ÷£¬È»ºóÎÒÃÇ
-¾Í¿ÉÒÔÍ¨¹ıÍøÂç·¢ËÍ»òÕß°ÑËü±£´æµ½ÎÄ¼ş»òÕß´æ´¢ÔÚÊı¾İ¿âÀïÃæÒÔ±ãÒÔºóÊ¹ÓÃ.
+Serializationåœ¨Javaä¸­å…è®¸æˆ‘ä»¬æŠŠä¸€ä¸ªå¯¹è±¡è½¬åŒ–æˆæµï¼Œç„¶åæˆ‘ä»¬
+å°±å¯ä»¥é€šè¿‡ç½‘ç»œå‘é€æˆ–è€…æŠŠå®ƒä¿å­˜åˆ°æ–‡ä»¶æˆ–è€…å­˜å‚¨åœ¨æ•°æ®åº“é‡Œé¢ä»¥ä¾¿ä»¥åä½¿ç”¨.
 
-DeserializationÊÇÒ»¸ö×ª»¯¶ÔÏóÁ÷ÎªÊµ¼ÊµÄ½«ÒªÔÚ³ÌĞòÖĞÊ¹ÓÃµÄJava¶ÔÏó¹ı³Ì.
-JavaÖĞµÄĞòÁĞ»¯Æğ³õ¿´ÆğÀ´ºÜÈİÒ×Ê¹ÓÃ£¬µ«Ëü´øÀ´ÁËÒ»Ğ©¼òµ¥µÄ°²È«ĞÔºÍÍêÕûĞÔÎÊÌâ£¬
-ÎÒÃÇ½«ÔÚ±¾ÎÄµÄºóÃæ²¿·Ö½éÉÜ¡£
+Deserializationæ˜¯ä¸€ä¸ªè½¬åŒ–å¯¹è±¡æµä¸ºå®é™…çš„å°†è¦åœ¨ç¨‹åºä¸­ä½¿ç”¨çš„Javaå¯¹è±¡è¿‡ç¨‹.
+Javaä¸­çš„åºåˆ—åŒ–èµ·åˆçœ‹èµ·æ¥å¾ˆå®¹æ˜“ä½¿ç”¨ï¼Œä½†å®ƒå¸¦æ¥äº†ä¸€äº›ç®€å•çš„å®‰å…¨æ€§å’Œå®Œæ•´æ€§é—®é¢˜ï¼Œ
+æˆ‘ä»¬å°†åœ¨æœ¬æ–‡çš„åé¢éƒ¨åˆ†ä»‹ç»ã€‚
 
-Èç¹ûÄãÏëÒªÒ»¸öÀà¶ÔÏóĞòÁĞ»¯£¬ÄãÖ»Ğè×öÊµÏÖjava.io.Serializable½Ó¿Ú.
-SerializableÔÚJavaÖĞÊÇÒ»¸ö±ê¼Ç½Ó¿Ú£¬Ã»ÓĞ×Ö¶Î»òÕß·½·¨µÄÊµÏÖ.Ëû¾ÍÏñÒ»¸ö
-Ñ¡Ôñ²Î¼ÓµÄ ¹ı³Ì£¬Í¨¹ıËüÎÒÃÇÊÇÎÒÃÇµÄÀàĞòÁĞ»¯.·ñÔòÅ×java.io.NotSerializableException
-Òì³££¬
+å¦‚æœä½ æƒ³è¦ä¸€ä¸ªç±»å¯¹è±¡åºåˆ—åŒ–ï¼Œä½ åªéœ€åšå®ç°java.io.Serializableæ¥å£.
+Serializableåœ¨Javaä¸­æ˜¯ä¸€ä¸ªæ ‡è®°æ¥å£ï¼Œæ²¡æœ‰å­—æ®µæˆ–è€…æ–¹æ³•çš„å®ç°.ä»–å°±åƒä¸€ä¸ª
+é€‰æ‹©å‚åŠ çš„ è¿‡ç¨‹ï¼Œé€šè¿‡å®ƒæˆ‘ä»¬æ˜¯æˆ‘ä»¬çš„ç±»åºåˆ—åŒ–.å¦åˆ™æŠ›java.io.NotSerializableException
+å¼‚å¸¸ï¼Œ
 
-SerializationÔÚJavaÖĞÊÇÓÉObjectInputStreamºÍObjectOuputStreamÊµÏÖ£¬
-ËùÒÔÎÒÃÇĞèÒªµÄÊÇÒ»¸ö°ü×°Æ÷°ü×°ËûÃÇ£¬°ÑËüÃÅ±£´æµ½ÎÄ¼ş»òÍ¨¹ıÍøÂç·¢ËÍ.
+Serializationåœ¨Javaä¸­æ˜¯ç”±ObjectInputStreamå’ŒObjectOuputStreamå®ç°ï¼Œ
+æ‰€ä»¥æˆ‘ä»¬éœ€è¦çš„æ˜¯ä¸€ä¸ªåŒ…è£…å™¨åŒ…è£…ä»–ä»¬ï¼ŒæŠŠå®ƒé—¨ä¿å­˜åˆ°æ–‡ä»¶æˆ–é€šè¿‡ç½‘ç»œå‘é€.
 
-¾²Ì¬±äÁ¿Ò²²»»á±»ĞòÁĞ»¯£¬ÒòÎªËüÊôÓÚÀà¶ø²»ÊÇ¶ÔÏó.
-Ê¹ÓÃtransient¹Ø¼ü×Ö¿ÉÒÔ²»ĞòÁĞ»¯Ä³Ò»¸ö³ÉÔ±±äÁ¿.
+é™æ€å˜é‡ä¹Ÿä¸ä¼šè¢«åºåˆ—åŒ–ï¼Œå› ä¸ºå®ƒå±äºç±»è€Œä¸æ˜¯å¯¹è±¡.
+ä½¿ç”¨transientå…³é”®å­—å¯ä»¥ä¸åºåˆ—åŒ–æŸä¸€ä¸ªæˆå‘˜å˜é‡.
 
-cmdÊäÈëÒÔÏÂÃüÁî¿ÉÒÔÎªÒ»¸öÊµÏÖSerialiableÉú³ÉserialVersionUID:
-serialver -classpath . com.journaldev.serialization.Employee(bin/ÏÂµÄÀàÃû)
+cmdè¾“å…¥ä»¥ä¸‹å‘½ä»¤å¯ä»¥ä¸ºä¸€ä¸ªå®ç°Serialiableç”ŸæˆserialVersionUID:
+serialver -classpath . com.journaldev.serialization.Employee(bin/ä¸‹çš„ç±»å)
 
-Note that it¡¯s not required that the serial version is 
+Note that itâ€™s not required that the serial version is 
 generated from this program itself, we can assign this 
 value as we want. It just need to be there to let deserialization 
 process know that the new class is the new version of the same 
 class and should be deserialized of possible.
-Çë×¢Òâ£¬ÈÃ³ÌĞò×Ô¶¯Éú³Éserial version id²»ÊÇ±ØĞèµÄ£¬ÎÒÃÇ¿ÉÒÔ×Ô¶¯¸øËü·ÖÅäÎÒÃÇÏëÒªµÄÖµ£¬
-ËüÖ»ÊÇÈÃ·´ĞòÁĞ»¯µÄ¹ı³ÌÖĞÖªµÀĞÂÀàÊÇÏàÍ¬ÀàµÄĞÂ°æ±¾£¬Ó¦¸Ã±»·´ĞòÁĞ»¯¾ÍĞĞÁË.
+è¯·æ³¨æ„ï¼Œè®©ç¨‹åºè‡ªåŠ¨ç”Ÿæˆserial version idä¸æ˜¯å¿…éœ€çš„ï¼Œæˆ‘ä»¬å¯ä»¥è‡ªåŠ¨ç»™å®ƒåˆ†é…æˆ‘ä»¬æƒ³è¦çš„å€¼ï¼Œ
+å®ƒåªæ˜¯è®©ååºåˆ—åŒ–çš„è¿‡ç¨‹ä¸­çŸ¥é“æ–°ç±»æ˜¯ç›¸åŒç±»çš„æ–°ç‰ˆæœ¬ï¼Œåº”è¯¥è¢«ååºåˆ—åŒ–å°±è¡Œäº†.
 
-Èç¹û¶ÔÀà×öÒÔÏÂ3ÖĞ¸Ä±ä£º
+å¦‚æœå¯¹ç±»åšä»¥ä¸‹3ä¸­æ”¹å˜ï¼š
 
 1. Adding new variables to the class
-Ôö¼ÓÒ»¸öĞÂµÄ±äÁ¿¸øÀà
+å¢åŠ ä¸€ä¸ªæ–°çš„å˜é‡ç»™ç±»
 2. Changing the variables from transient to non-transient, 
-for serialization it¡¯s like having a new field.°Ñ±äÁ¿´Ótransient±ä³Énon-transient.¶ÔÓÚĞòÁĞ»¯ËûÏñÓĞÁËÒ»¸öĞÂ×Ö¶Î
+for serialization itâ€™s like having a new field.æŠŠå˜é‡ä»transientå˜æˆnon-transient.å¯¹äºåºåˆ—åŒ–ä»–åƒæœ‰äº†ä¸€ä¸ªæ–°å­—æ®µ
 3. Changing the variable from static to non-static, 
-for serialization it¡¯s like having a new field.°Ñ±äÁ¿´Ó¾²Ì¬µÄ±äÎª·Ç¾²Ì¬µÄ£¬¶ÔÓÚĞòÁĞ»¯ËüÏñÓĞÁËÒ»¸öĞÂ×Ö¶Î
+for serialization itâ€™s like having a new field.æŠŠå˜é‡ä»é™æ€çš„å˜ä¸ºéé™æ€çš„ï¼Œå¯¹äºåºåˆ—åŒ–å®ƒåƒæœ‰äº†ä¸€ä¸ªæ–°å­—æ®µ
 
 But for all these changes to work, the java class should have serialVersionUID defined for the class
-¶ÔÓÚÕâĞ©¸Ä±äÒªÉúĞ§£¬Java class±ØĞëÒªÓĞserialVersionID¶¨ÒåÔÚÀàÖĞ
+å¯¹äºè¿™äº›æ”¹å˜è¦ç”Ÿæ•ˆï¼ŒJava classå¿…é¡»è¦æœ‰serialVersionIDå®šä¹‰åœ¨ç±»ä¸­
 
- * ÎÒÃÇÒÑ¾­¿´µ½£¬ĞòÁĞ»¯ÔÚjavaÖĞÊÇ×Ô¶¯µÄ£¬ÎÒÃÇËùÒª×öµÄ¾ÍÊÇÊµÏÖĞòÁĞ»¯½Ó¿Ú£¬
+ * æˆ‘ä»¬å·²ç»çœ‹åˆ°ï¼Œåºåˆ—åŒ–åœ¨javaä¸­æ˜¯è‡ªåŠ¨çš„ï¼Œæˆ‘ä»¬æ‰€è¦åšçš„å°±æ˜¯å®ç°åºåˆ—åŒ–æ¥å£ï¼Œ
  * The implementation is present in the ObjectInputStream and ObjectOutputStream classes
- * ¸ÃÊµÏÖ´æÔÚÓÚObjectInputStreamºÍObjectOutputStreamÖĞ£¬µ«ÊÇÈç¹ûÎÒÃÅÏë¸Ä±äÎÒÃÇ
- * ÕıÔÚ±£´æÊı¾İµÄ·½Ê½£¬ÀıÈçÎÒÃÇÓĞÒ»Ğ©Ãô¸ĞĞÅÏ¢ÔÚobjectÖĞ£¬ÔÚ±£´æ/¼ìË÷Ö®Ç°£¬ÎÒÃÇÒª¶ÔËûÃÇ¼ÓÃÜ/½âÃÜ£¬
- * ÕâÀïÓĞ4¸ö·½ÃæÎÒÃÇÌá¹©µÄÈ¥¸Ä±äĞòÁĞ»¯ĞĞÎª.Èç¹ûÀàÖĞ´æÔÚÕâĞ©·½·¨£¬ÔòËûÃÇÓÃÓÚĞòÁĞ»¯Ä¿µÄ.
+ * è¯¥å®ç°å­˜åœ¨äºObjectInputStreamå’ŒObjectOutputStreamä¸­ï¼Œä½†æ˜¯å¦‚æœæˆ‘é—¨æƒ³æ”¹å˜æˆ‘ä»¬
+ * æ­£åœ¨ä¿å­˜æ•°æ®çš„æ–¹å¼ï¼Œä¾‹å¦‚æˆ‘ä»¬æœ‰ä¸€äº›æ•æ„Ÿä¿¡æ¯åœ¨objectä¸­ï¼Œåœ¨ä¿å­˜/æ£€ç´¢ä¹‹å‰ï¼Œæˆ‘ä»¬è¦å¯¹ä»–ä»¬åŠ å¯†/è§£å¯†ï¼Œ
+ * è¿™é‡Œæœ‰4ä¸ªæ–¹é¢æˆ‘ä»¬æä¾›çš„å»æ”¹å˜åºåˆ—åŒ–è¡Œä¸º.å¦‚æœç±»ä¸­å­˜åœ¨è¿™äº›æ–¹æ³•ï¼Œåˆ™ä»–ä»¬ç”¨äºåºåˆ—åŒ–ç›®çš„.
  
 1. readObject(ObjectInputStream ois): If this method is present in the class, 
 ObjectInputStream readObject() method will use this method for reading the object from stream.
-Èç¹ûÕâ¸ö·½·¨´æÔÚÓÚÀàÖĞ£¬ObjectInputStream µÄreadObject·½·¨½«ÓÃÕâ¸ö·½·¨´ÓÁ÷ÖĞ¶ÁÈ¡Àà.
+å¦‚æœè¿™ä¸ªæ–¹æ³•å­˜åœ¨äºç±»ä¸­ï¼ŒObjectInputStream çš„readObjectæ–¹æ³•å°†ç”¨è¿™ä¸ªæ–¹æ³•ä»æµä¸­è¯»å–ç±».
 
 2. writeObject(ObjectOutputStream oos): If this method is present in the class, 
 ObjectOutputStream writeObject() method will use this method for writing the 
 object to stream. 
-Èç¹ûÕâ¸ö·½·¨´æÔÚÓÚÀàÖĞ£¬ObjectInputStream µÄwriteObject·½·¨½«ÓÃÕâ¸ö·½·¨½«¶ÔÏóĞ´ÈëÁ÷.
+å¦‚æœè¿™ä¸ªæ–¹æ³•å­˜åœ¨äºç±»ä¸­ï¼ŒObjectInputStream çš„writeObjectæ–¹æ³•å°†ç”¨è¿™ä¸ªæ–¹æ³•å°†å¯¹è±¡å†™å…¥æµ.
 
 One of the common usage is to obscure the object variables 
-to maintain data integrity.Í¨ÓÃÓÃ·¨Ö®Ò»ÊÇÒş²Ø¶ÔÏó±äÁ¿ÒÔÎ¬³ÖÊı¾İÍêÕûĞÔ.
+to maintain data integrity.é€šç”¨ç”¨æ³•ä¹‹ä¸€æ˜¯éšè—å¯¹è±¡å˜é‡ä»¥ç»´æŒæ•°æ®å®Œæ•´æ€§.
 
 3. Object writeReplace(): If this method is present, then after serialization 
 process this method is called and the object returned is serialized to the stream.
-Èç¹û´æÔÚ´Ë·½·¨£¬ÔòÔÚĞòÁĞ»¯¹ı³ÌÖ®ºóµ÷ÓÃ´Ë·½·¨£¬²¢½«·µ»ØµÄ¶ÔÏóĞòÁĞ»¯µ½Á÷ÖĞ¡£
+å¦‚æœå­˜åœ¨æ­¤æ–¹æ³•ï¼Œåˆ™åœ¨åºåˆ—åŒ–è¿‡ç¨‹ä¹‹åè°ƒç”¨æ­¤æ–¹æ³•ï¼Œå¹¶å°†è¿”å›çš„å¯¹è±¡åºåˆ—åŒ–åˆ°æµä¸­ã€‚
 
 4. Object readResolve(): If this method is present, then after 
 deserialization process, this method is called to return the final 
 object to the caller program.
-Èç¹û´æÔÚ´Ë·½·¨£¬ÔòÔÚ·´ĞòÁĞ»¯¹ı³ÌÖ®ºó£¬½«µ÷ÓÃ´Ë·½·¨ÒÔ½«×îÖÕ¶ÔÏó·µ»Ø¸øµ÷ÓÃÕß³ÌĞò¡£
+å¦‚æœå­˜åœ¨æ­¤æ–¹æ³•ï¼Œåˆ™åœ¨ååºåˆ—åŒ–è¿‡ç¨‹ä¹‹åï¼Œå°†è°ƒç”¨æ­¤æ–¹æ³•ä»¥å°†æœ€ç»ˆå¯¹è±¡è¿”å›ç»™è°ƒç”¨è€…ç¨‹åºã€‚
 
 One of the usage of this method is to implement Singleton pattern with Serialized classes. 
 Read more at Serialization and Singleton.
 
-Usually while implementing above methods, it¡¯s kept as private 
-so that subclasses can¡¯t override them(Í¨³£ÊµÏÖÉÏÊö·½·¨µÄÊ±ºò£¬Ëü±£³ÖÎªË½ÓĞµÄ£¬ÒÔ±ã×ÓÀà²»ÄÜ¸²¸ÇËûÃÇ). They are meant for serialization 
-purpose only and keeping them private avoids any security issue.(ËûÃÇÓÃÓÚĞòÁĞ»¯Ä¿µÄ¶øÒÑ£¬±£³ÖËûÃÇË½ÓĞ
-±ÜÃâÈÎºÎ°²È«Òş»¼)
+Usually while implementing above methods, itâ€™s kept as private 
+so that subclasses canâ€™t override them(é€šå¸¸å®ç°ä¸Šè¿°æ–¹æ³•çš„æ—¶å€™ï¼Œå®ƒä¿æŒä¸ºç§æœ‰çš„ï¼Œä»¥ä¾¿å­ç±»ä¸èƒ½è¦†ç›–ä»–ä»¬). They are meant for serialization 
+purpose only and keeping them private avoids any security issue.(ä»–ä»¬ç”¨äºåºåˆ—åŒ–ç›®çš„è€Œå·²ï¼Œä¿æŒä»–ä»¬ç§æœ‰
+é¿å…ä»»ä½•å®‰å…¨éšæ‚£)
 
 Serialization in java comes with some serious pitfalls such as:
-ĞòÁĞ»¯ÔÚJavaÖĞÓĞÒ»Ğ©ÑÏÖØµÄÈ±µã:
+åºåˆ—åŒ–åœ¨Javaä¸­æœ‰ä¸€äº›ä¸¥é‡çš„ç¼ºç‚¹:
 
-1. The class structure can¡¯t be changed a lot without breaking 
-the java serialization process. So even though we don¡¯t need some 
+1. The class structure canâ€™t be changed a lot without breaking 
+the java serialization process. So even though we donâ€™t need some 
 variables later on, we need to keep them just for backward compatibility.
-ÔÚ²»ÆÆ»µjavaĞòÁĞ»¯¹ı³ÌµÄÇé¿öÏÂ£¬Àà½á¹¹²»ÄÜ¸Ä±äºÜ¶à¡£ Òò´Ë£¬¼´Ê¹ÎÒÃÇÒÔºó²»ĞèÒªÄ³Ğ©±äÁ¿£¬ÎÒÃÇÒ²ĞèÒª±£ÁôËüÃÇÒÔ±ãÏòºó¼æÈİ¡£
+åœ¨ä¸ç ´åjavaåºåˆ—åŒ–è¿‡ç¨‹çš„æƒ…å†µä¸‹ï¼Œç±»ç»“æ„ä¸èƒ½æ”¹å˜å¾ˆå¤šã€‚ å› æ­¤ï¼Œå³ä½¿æˆ‘ä»¬ä»¥åä¸éœ€è¦æŸäº›å˜é‡ï¼Œæˆ‘ä»¬ä¹Ÿéœ€è¦ä¿ç•™å®ƒä»¬ä»¥ä¾¿å‘åå…¼å®¹ã€‚
 
 
 2. Serialization causes huge security risks, an attacker can change 
 the stream sequence and cause harm to the system. For example, user 
 role is serialized and an attacker change the stream value to make 
 it admin and run malicious code.
-ĞòÁĞ»¯Ôì³ÉÑÏÖØµÄ°²È«·çÏÕ£¬¹¥»÷Õß¿ÉÒÔ¸Ä±äÁ÷µÄĞòÁĞ£¬¶ÔÏµÍ³Ôì³ÉÉËº¦£¬ÀıÈç£¬ÓÃ»§½ÇÉ«±»ĞòÁĞ»¯£¬¹¥»÷Õß¸ü¸ÄÁ÷ÖµÒÔÊ¹Æä³ÉÎª¹ÜÀíÔ±²¢ÔËĞĞ¶ñÒâ´úÂë¡£
+åºåˆ—åŒ–é€ æˆä¸¥é‡çš„å®‰å…¨é£é™©ï¼Œæ”»å‡»è€…å¯ä»¥æ”¹å˜æµçš„åºåˆ—ï¼Œå¯¹ç³»ç»Ÿé€ æˆä¼¤å®³ï¼Œä¾‹å¦‚ï¼Œç”¨æˆ·è§’è‰²è¢«åºåˆ—åŒ–ï¼Œæ”»å‡»è€…æ›´æ”¹æµå€¼ä»¥ä½¿å…¶æˆä¸ºç®¡ç†å‘˜å¹¶è¿è¡Œæ¶æ„ä»£ç ã€‚
 
 Java Serialization Proxy pattern is a way to achieve greater 
 security with Serialization. In this pattern, an inner private
@@ -97,10 +97,10 @@ security with Serialization. In this pattern, an inner private
  This class is designed in the way to maintain the state of the main 
  class. This pattern is implemented by properly implementing readResolve() 
  and writeReplace() methods.
- Java Serialization ProxyÄ£Ê½ÊÇÒ»ÖÖÍ¨¹ıSerializationÊµÏÖ¸ü¸ß°²È«ĞÔµÄ·½·¨¡£ ÔÚ´ËÄ£Ê½ÖĞ£¬
- ÄÚ²¿Ë½ÓĞ¾²Ì¬ÀàÓÃ×÷ĞòÁĞ»¯Ä¿µÄµÄ´úÀíÀà¡£´ËÀàµÄÉè¼Æ·½Ê½ÊÇÎ¬»¤Ö÷ÀàµÄ×´Ì¬¡£ Í¨¹ıÕıÈ·ÊµÏÖreadResolve£¨£©
- ºÍwriteReplace£¨£©·½·¨À´ÊµÏÖ´ËÄ£Ê½¡£
+ Java Serialization Proxyæ¨¡å¼æ˜¯ä¸€ç§é€šè¿‡Serializationå®ç°æ›´é«˜å®‰å…¨æ€§çš„æ–¹æ³•ã€‚ åœ¨æ­¤æ¨¡å¼ä¸­ï¼Œ
+ å†…éƒ¨ç§æœ‰é™æ€ç±»ç”¨ä½œåºåˆ—åŒ–ç›®çš„çš„ä»£ç†ç±»ã€‚æ­¤ç±»çš„è®¾è®¡æ–¹å¼æ˜¯ç»´æŠ¤ä¸»ç±»çš„çŠ¶æ€ã€‚ é€šè¿‡æ­£ç¡®å®ç°readResolveï¼ˆï¼‰
+ å’ŒwriteReplaceï¼ˆï¼‰æ–¹æ³•æ¥å®ç°æ­¤æ¨¡å¼ã€‚
 
- serialVersionUIDµÄ×÷ÓÃ£º
- ËüÓÉObjectOutputStreamºÍObjectInputStreamÀàÓÃÓÚĞ´ÈëºÍ¶ÁÈ¡¶ÔÏó²Ù×÷¡£ 
- ËäÈ»ÓµÓĞÕâ¸ö×Ö¶Î²»ÊÇÇ¿ÖÆĞÔµÄ£¬µ«ÄãÓ¦¸Ã±£ÁôËü¡£ ·ñÔò£¬ÒÔºóÄãĞŞ¸ÄÀàµÄ½á¹¹£¬·´ĞòÁĞ»¯µÄÊ±ºò¾Í»áÊ§°Ü.
+ serialVersionUIDçš„ä½œç”¨ï¼š
+ å®ƒç”±ObjectOutputStreamå’ŒObjectInputStreamç±»ç”¨äºå†™å…¥å’Œè¯»å–å¯¹è±¡æ“ä½œã€‚ 
+ è™½ç„¶æ‹¥æœ‰è¿™ä¸ªå­—æ®µä¸æ˜¯å¼ºåˆ¶æ€§çš„ï¼Œä½†ä½ åº”è¯¥ä¿ç•™å®ƒã€‚ å¦åˆ™ï¼Œä»¥åä½ ä¿®æ”¹ç±»çš„ç»“æ„ï¼Œååºåˆ—åŒ–çš„æ—¶å€™å°±ä¼šå¤±è´¥.

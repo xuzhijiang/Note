@@ -17,18 +17,22 @@ public class ReadFileLineByLineUtils {
 	public static final String FILE_PATH = "d:" + File.separator;
 
 	/**
-	 * FileReader不支持编码并使用系统默认编码，
-	 * 因此在java中读取文本文件的效率不高。可能乱码,
+	 * FileReader不支持编码, 使用系统默认编码，
+	 * 在java中读取文本文件的效率不高,而且可能乱码,
 	 */
 	@Test
 	public void UsingBufferedReader() throws IOException {
 		BufferedReader reader = null;
 		String line;
+		// 不支持选择从字节流(InputStream)解码为字符流(InputStreamReader)的编码格式，所以可能乱码
 		reader = new BufferedReader(new FileReader(FILE_PATH + "source.txt"));
 		while ((line = reader.readLine()) != null) {
 			System.out.println(line);
 		}
-		reader.close();
+		// 装饰者模式使得 BufferedReader 组合了一个 Reader 对象
+		// 在调用 BufferedReader 的 close() 方法时会去调用 Reader 的 close() 方法
+		// 因此只要一个 close() 调用即可
+		reader.close();// 实际调用的是FileReader的close，而FileReader的close实际调用的是InputStreamReader的close
 	}
 
 	/**
@@ -45,6 +49,7 @@ public class ReadFileLineByLineUtils {
 	public void UsingBufferedReader2() throws IOException {
 		File file = new File(FILE_PATH + "source.txt");
 		FileInputStream fis = new FileInputStream(file);
+		// 支持选择从字节流(InputStream)解码为字符流(InputStreamReader)的编码格式
 		InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8.name());
 		BufferedReader br = new BufferedReader(isr);
 

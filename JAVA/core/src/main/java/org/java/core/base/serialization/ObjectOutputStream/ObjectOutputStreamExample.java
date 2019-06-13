@@ -7,9 +7,9 @@ import java.io.ObjectOutputStream;
 import org.java.core.base.serialization.Employee;
 
 /**
- * convert an object to output stream,°Ñ¶ÔÏó×ª»»³ÉÁ÷µÄ¹ı³Ì½Ğ×ö
- * ĞòÁĞ»¯£¬Ò»µ©Ò»¸ö¶ÔÏó×ª»»³ÉÁËÁ÷£¬ÄÇÃ´¾Í¿ÉÒÔ±£´æµ½ÎÄ¼şorÊı¾İ¿â£¬¾Í¿ÉÒÔÍ¨¹ı
- * ÍøÂç´«ÊäorÔÚsocketÁ¬½ÓÖĞÊ¹ÓÃÁË£¬
+ * convert an object to output stream,æŠŠå¯¹è±¡è½¬æ¢æˆæµçš„è¿‡ç¨‹å«åš
+ * åºåˆ—åŒ–ï¼Œä¸€æ—¦ä¸€ä¸ªå¯¹è±¡è½¬æ¢æˆäº†æµï¼Œé‚£ä¹ˆå°±å¯ä»¥ä¿å­˜åˆ°æ–‡ä»¶oræ•°æ®åº“ï¼Œå°±å¯ä»¥é€šè¿‡
+ * ç½‘ç»œä¼ è¾“oråœ¨socketè¿æ¥ä¸­ä½¿ç”¨äº†ï¼Œ
  * @author xu
  *
  */

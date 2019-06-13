@@ -7,8 +7,8 @@ import java.io.ObjectInputStream;
 import org.java.core.base.serialization.Employee;
 
 /**
- * ×ª»»ÊäÈëÁ÷(file)Îª¶ÔÏóµÄ¹ı³Ì½Ğ×ö·´ĞòÁĞ»¯,ObjectInputStreamµÄ
- * Ä¿µÄ¾ÍÊÇÌá¹©¸øÎÒÃÇ×ª»»ÊäÈëÁ÷Îª¶ÔÏóµÄÒ»ÖÖ·½Ê½,
+ * è½¬æ¢è¾“å…¥æµ(file)ä¸ºå¯¹è±¡çš„è¿‡ç¨‹å«åšååºåˆ—åŒ–,ObjectInputStreamçš„
+ * ç›®çš„å°±æ˜¯æä¾›ç»™æˆ‘ä»¬è½¬æ¢è¾“å…¥æµä¸ºå¯¹è±¡çš„ä¸€ç§æ–¹å¼,
  */
 public class ObjectInputStreamExample {
 	public static void main(String[] args) throws ClassNotFoundException, IOException {

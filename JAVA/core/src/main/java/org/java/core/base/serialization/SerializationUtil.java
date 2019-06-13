@@ -28,6 +28,6 @@ public class SerializationUtil {
 		oop.close();
 	}
 	//Notice that the method arguments work with Object that 
-	//is the base class of any java object. It¡¯s written in this way to be generic in nature.
-	//×¢Òâ·½·¨²ÎÊıÊ¹ÓÃµÄÊÇObject,ËùÓĞµÄÀàµÄ»ùÀà¶¼ÊÇObject£¬±¾ÖÊÉÏÕâÖÖ·½Ê½ÊÇÍ¨ÓÃµÄ.
+	//is the base class of any java object. Itâ€™s written in this way to be generic in nature.
+	//æ³¨æ„æ–¹æ³•å‚æ•°ä½¿ç”¨çš„æ˜¯Object,æ‰€æœ‰çš„ç±»çš„åŸºç±»éƒ½æ˜¯Objectï¼Œæœ¬è´¨ä¸Šè¿™ç§æ–¹å¼æ˜¯é€šç”¨çš„.
 }
