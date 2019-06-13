@@ -15,28 +15,11 @@ import java.io.IOException;
  * are working with any IDE, you will automatically get a 
  * warning that ��The serializable class Employee does not 
  * declare a static final serialVersionUID field of type long��.
- * ԭ��������֮ǰ����� serialVersionUID���µ�����ǲ�ͬ�ģ�ʵ���������û�ж������id��
- * ���Զ�����һ��id��Ȼ����������Java����������������������������������id.(�����������һ���ֶκ���Ϊ
- * serialVersionUID����û���ó������ɣ����Գ�����Զ���������һ����������һ���ֶκ�2�����id�϶���һ�������Է����л�
- * ���ɵ����ԭ���ľͲ�����)
- * <p>
- * ������serialVersionUID��Now uncomment the password field from 
+ * ������serialVersionUID��Now uncomment the password field from
  * Employee class and run the DeserializationTest program
  * and you will see that the object stream is deserialized successfully 
  * because the changeStr in Employee class is compatible with serialization process.
  * ��ΪEmployee������л������Ǽ��ݵģ�
  */
 public class DeserializationTest {
-	public static void main(String[] args) {
-		String filename = "employee.ser";
-		Employee empNew = null;
-		
-		try {
-			empNew = (Employee) SerializationUtil.deserialize(filename);
-		} catch (ClassNotFoundException | IOException e) {
-			e.printStackTrace();
-		}
-		
-		System.out.println("empNew Object: " + empNew);
-	}
 }

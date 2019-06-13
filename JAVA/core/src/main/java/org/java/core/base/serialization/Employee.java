@@ -2,31 +2,37 @@ package org.java.core.base.serialization;
 
 import java.io.Serializable;
 
-/**
- * 注意到这是一个简单的Java bean,有一些属性和getter setter方法，
- * 如果你想要一个对象属性不被序列化成流，你可以使用transient关键字，(transient: 暂时的)
- * 像我在salary变量上做的。
- * Notice that getter/setter方法不是必须的，无参构造器也不是必须的，
- */
 public class Employee implements Serializable{
 
-
-	//可以使用serialver命令，在控制台生成: serialver -classpath . com.journaldev.serialization.Employee
-	//注意后面的路径是bin下生成的字节码文件.当然也可以使用IDE自动生成.
 	private static final long serialVersionUID = 6115687027597651376L;
 	
-	private static final boolean FLAG = true;
-	private String name;
-	private int id;
-	transient private int salary;
-	private String password;
-	
-	@Override
-	public String toString(){
-		return "Employee{name="+name+",id="+id+",salary="+salary+"}";
-	}
-	
-	//getter and setter methods
+	private static final String SECRET_STR = "!x*13)$ln&(i$z.i";
+
+    private String name;
+
+    private int id;
+
+    private transient int salary;
+
+    private transient String password;
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", salary=" + salary +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+    public Employee(String name, int id, int salary, String password) {
+        this.name = name;
+        this.id = id;
+        this.salary = salary;
+        this.password = password;
+    }
+
 	public String getName() {
 		return name;
 	}
@@ -58,4 +64,5 @@ public class Employee implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 }

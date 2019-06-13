@@ -1,50 +1,37 @@
-Serialization在JDK1.1被引入，是Java核心的重要特点之一.
+# Serializable
 
-Serialization在Java中允许我们把一个对象转化成流，然后我们
-就可以通过网络发送或者把它保存到文件或者存储在数据库里面以便以后使用.
+序列化就是将一个对象转换成字节序列(字节流)，方便存储(保存到文件或数据库)和传输(通过网络发送),Serialization在java 1.1被引入,
 
-Deserialization是一个转化对象流为实际的将要在程序中使用的Java对象过程.
-Java中的序列化起初看起来很容易使用，但它带来了一些简单的安全性和完整性问题，
-我们将在本文的后面部分介绍。
+不会对静态变量进行序列化，因为序列化只是保存对象的状态，静态变量属于类的状态。
+
+反序列化是转化对象流为Java对象过程.
 
 如果你想要一个类对象序列化，你只需做实现java.io.Serializable接口.
-Serializable在Java中是一个标记接口，没有字段或者方法的实现.他就像一个
-选择参加的 过程，通过它我们是我们的类序列化.否则抛java.io.NotSerializableException
-异常，
+它是一个标记接口，没有字段或者方法的实现.否则抛java.io.NotSerializableException异常，
+
+(transient: 暂时的)
 
 Serialization在Java中是由ObjectInputStream和ObjectOuputStream实现，
-所以我们需要的是一个包装器包装他们，把它门保存到文件或通过网络发送.
+transient 关键字可以使一些属性不会被序列化。
 
-静态变量也不会被序列化，因为它属于类而不是对象.
-使用transient关键字可以不序列化某一个成员变量.
+ArrayList 中存储数据的数组 elementData 是用 transient 修饰的，因为这个数组是动态扩展的，并不是所有的空间都被使用，因此就不需要所有的内容都被序列化。通过重写序列化和反序列化方法，使得可以只序列化数组中有内容的那部分数据。
 
+```java
+private transient Object[] elementData;
+```
+
+可以使用serialver命令，在控制台生成: serialver -classpath . com.journaldev.serialization.Employee
+	注意后面的路径是bin下生成的字节码文件.当然也可以使用IDE自动生成.
+	
 cmd输入以下命令可以为一个实现Serialiable生成serialVersionUID:
 serialver -classpath . com.journaldev.serialization.Employee(bin/下的类名)
 
-Note that it’s not required that the serial version is 
-generated from this program itself, we can assign this 
-value as we want. It just need to be there to let deserialization 
-process know that the new class is the new version of the same 
-class and should be deserialized of possible.
 请注意，让程序自动生成serial version id不是必需的，我们可以自动给它分配我们想要的值，
 它只是让反序列化的过程中知道新类是相同类的新版本，应该被反序列化就行了.
 
-如果对类做以下3中改变：
-
-1. Adding new variables to the class
-增加一个新的变量给类
-2. Changing the variables from transient to non-transient, 
-for serialization it’s like having a new field.把变量从transient变成non-transient.对于序列化他像有了一个新字段
-3. Changing the variable from static to non-static, 
-for serialization it’s like having a new field.把变量从静态的变为非静态的，对于序列化它像有了一个新字段
-
-But for all these changes to work, the java class should have serialVersionUID defined for the class
-对于这些改变要生效，Java class必须要有serialVersionID定义在类中
-
- * 我们已经看到，序列化在java中是自动的，我们所要做的就是实现序列化接口，
- * The implementation is present in the ObjectInputStream and ObjectOutputStream classes
- * 该实现存在于ObjectInputStream和ObjectOutputStream中，但是如果我门想改变我们
- * 正在保存数据的方式，例如我们有一些敏感信息在object中，在保存/检索之前，我们要对他们加密/解密，
+不是必须要使用程序生成serialVersionUID，我们可以分配给serialVersionUID我们想要的值.
+ 
+ 例如我们有一些敏感信息在object中，在保存/检索之前，我们要对他们加密/解密，
  * 这里有4个方面我们提供的去改变序列化行为.如果类中存在这些方法，则他们用于序列化目的.
  
 1. readObject(ObjectInputStream ois): If this method is present in the class, 
