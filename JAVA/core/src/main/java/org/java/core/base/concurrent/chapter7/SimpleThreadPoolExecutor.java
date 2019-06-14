@@ -14,13 +14,25 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class SimpleThreadPoolExecutor implements Executor {
 
-    private BlockingQueue<Runnable> taskQueue = null; // 任务队列
-    private List<WorkerThread> threads = new ArrayList<WorkerThread>();//通过一个ArrayList代表一个线程池
+    /**
+     * 任务队列
+     */
+    private BlockingQueue<Runnable> taskQueue = null;
+
+    /**
+     * 通过一个ArrayList代表一个线程池
+     */
+    private List<WorkerThread> threads = new ArrayList<WorkerThread>();
+
+    /**
+     * 线程池是否停止的标记
+     */
     private boolean isStopped = false;
 
     public SimpleThreadPoolExecutor(int numOfThreads, int maxNoOfTasks){
         taskQueue = new LinkedBlockingQueue<Runnable>();
-        for(int i=0;i<numOfThreads;i++){
+        // 创建numOfThreads个线程
+        for(int i=0;i < numOfThreads;i++){
             threads.add(new WorkerThread(taskQueue));
         }
         for(WorkerThread thread : threads){
@@ -29,44 +41,48 @@ public class SimpleThreadPoolExecutor implements Executor {
     }
 
     /**
-     * 调用stop() 方法可以停止 SimpleThreadPoolExecutor 。在内部，
-     * 调用 stop 先会标记isStopped 成员变量（为 true）。然后，线程池的每一个子线程都调用WorkerThread .stop()
-     * 方法停止运行。注意，如果调用了stop()之后，再调用线程池SimpleThreadPoolExecutor.execute()
-     * ,execute() 方法会抛出 IllegalStateException 异常。
-     */
-    public synchronized void stop(){
-        this.isStopped = true;
-        for(WorkerThread thread : threads){
-            thread.toStop();//循环中断每个线程
-        }
-    }
-
-    /**
      * 为了执行一个任务，execute(Runnable task) 用Runnable 的实现作为调用参数。
      * 在内部，Runnable 对象被放入 阻塞队列 (Blocking Queue)，等待着被子线程取出队列。
-     * @param task
      */
     @Override
     public void execute(Runnable task) {
         if(this.isStopped)
             throw new IllegalStateException("SimpleThreadPoolExecutor is stopped");
-
         this.taskQueue.add(task);
     }
+
+    /**
+     * 调用stop() 方法可以停止 SimpleThreadPoolExecutor 。在内部，
+     * 调用 stop 先会标记isStopped 成员变量（为 true）。然后，线程池的每一个子线程都调用WorkerThread .stop()
+     * 方法停止运行。
+     *
+     * 注意，如果调用了stop()之后，再调用线程池SimpleThreadPoolExecutor.execute() 方法
+     * 会抛出 IllegalStateException 异常。
+     */
+    public synchronized void stop(){
+        this.isStopped = true;
+        for(WorkerThread thread : threads){
+            // 循环中断每个线程
+            thread.toStop();
+        }
+    }
+
 }
 
+/**
+ * 一个空闲的WorkerThread 线程会把 Runnable 对象从任务队列中取出并执行。
+ * 执行完毕后，WorkerThread 进入循环并且尝试从队列中再取出一个任务，直到线程终止。
+ */
 class WorkerThread extends Thread {
+
     private BlockingQueue<Runnable> taskQueue = null;
+
     private boolean isStopped = false;
 
     public WorkerThread(BlockingQueue<Runnable> queue) {
         this.taskQueue = queue;
     }
 
-    /**
-     * 一个空闲的WorkerThread 线程会把 Runnable 对象从任务队列中取出并执行。
-     * 执行完毕后，WorkerThread 进入循环并且尝试从队列中再取出一个任务，直到线程终止。
-     */
     @Override
     public void run() {
         //因为需要不断从的任务列出中取出task执行，因此需要放在一个循环中，否则线程对象执行完一个任务就会立刻结束
@@ -77,8 +93,7 @@ class WorkerThread extends Thread {
                 runnable.run();
             } catch (InterruptedException e) {
                 e.printStackTrace();
-                // 写日志或者报告异常,
-                // 但保持线程池运行.
+                // 写日志或者报告异常,但保持线程池运行.
             }
         }
     }
@@ -86,20 +101,20 @@ class WorkerThread extends Thread {
     /**
      * 注意WorkerThread.stop()方法中调用了this.interrupt()。
      * 它确保阻塞在taskQueue.take() 里的处理等待状态的线程能够跳出等待状态。
-     *
      */
     public synchronized void toStop() {
         isStopped = true;
-        //如果线程正在任务队列中获取任务，或者没有任务被阻塞，需要响应这个中断
+        // 如果线程正在任务队列中获取任务，或者没有任务被阻塞，需要响应这个中断
         this.interrupt();
     }
 
     public synchronized boolean isStopped(){
         return isStopped;
     }
+
 }
 
-//例如本例中，使用的LinkedBlockingQueue的take方法实现如下：
+// LinkedBlockingQueue的take方法实现如下：
 //public E take() throws InterruptedException {
 //    E x;
 //    int c = -1;

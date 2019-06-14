@@ -1,14 +1,5 @@
 package org.java.core.base.StaticKeyWord;
 
-import org.java.core.base.serialization.inheritance.SuperClass;
-
-//静态导包:
-//import static 包名.类名.静态成员变量;
-//
-//import static 包名.类名.静态成员函数;
-//
-// 导入后，使用起来就方便了
-
 /**
  * static静态的，可以用来修饰变量，修饰方法，代码块，静态内部类.
  */

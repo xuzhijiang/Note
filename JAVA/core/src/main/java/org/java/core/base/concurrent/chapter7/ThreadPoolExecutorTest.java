@@ -1,7 +1,6 @@
 package org.java.core.base.concurrent.chapter7;
 
 import org.junit.Test;
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -9,21 +8,21 @@ import java.util.concurrent.TimeUnit;
 
 public class ThreadPoolExecutorTest {
 
-    //测试corePoolSize和MaximumPoolSize随着任务提交量的变化,以及keepAliveTime与TimeUnit
+    // 测试corePoolSize和MaximumPoolSize随着任务提交量的变化,以及keepAliveTime与TimeUnit
     @Test
     public void threadPoolExecutorTest() throws InterruptedException {
         int corePoolSize = 2;
         int maximumPoolSize = 5;
         int keepAliveTime = 5;
 
-        // 需要注意的是，在这个案例中，线程池达到corePoolSize之后，立刻继续增长，
+        // 在这个案例中，线程池达到corePoolSize之后，立刻继续增长，
         // 这是因为我们使用的是SynchronousQueue的原因。这个队列的特点是，只要一有任务进来，
         // 就立马要找一个空闲的线程来运行这个任务，如果没有空闲的线程，就会抛出异常。
-        BlockingQueue workQueue = new SynchronousQueue();
+        BlockingQueue queue = new SynchronousQueue();
         int taskCount = 5;
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize,
-                keepAliveTime, TimeUnit.SECONDS, workQueue);
-        doTest(keepAliveTime, taskCount, threadPoolExecutor);
+        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSize,
+                keepAliveTime, TimeUnit.SECONDS, queue);
+        doTest(keepAliveTime, taskCount, threadPool);
     }
 
     private void doTest(int keepAliveTime, int taskCount, ThreadPoolExecutor threadPoolExecutor)
@@ -59,24 +58,4 @@ public class ThreadPoolExecutorTest {
         System.out.println("核心线程池大小: " + corePoolSize + ", 最大线程池大小: " + maximumPoolSize + ", 当前线程池大小: " + poolSize);
     }
 
-    class Task implements Runnable{
-        private ThreadPoolExecutor threadPoolExecutor;
-        private int taskId;
-
-        public Task(ThreadPoolExecutor threadPoolExecutor,final int taskId) {
-            this.threadPoolExecutor = threadPoolExecutor;
-            this.taskId = taskId;
-        }
-
-        @Override
-        public void run() {
-            try {
-                TimeUnit.SECONDS.sleep(10);//休眠10秒
-                System.out.print("第"+taskId+"个任务执行完:");
-                printPoolSize(threadPoolExecutor);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
