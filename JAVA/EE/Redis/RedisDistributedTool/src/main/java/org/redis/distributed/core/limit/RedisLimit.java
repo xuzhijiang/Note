@@ -53,7 +53,7 @@ public class RedisLimit {
         Object connection = getConnection();
         Object result = limitRequest(connection);
 
-        if (FAIL_CODE.equals(result)) {
+        if (!FAIL_CODE.equals(Integer.valueOf(result.toString()))) {
             return true;
         } else {
             return false;

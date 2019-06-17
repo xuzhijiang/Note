@@ -153,3 +153,5 @@ Object o = 0.7; System.out.println(o instanceof Float);    // false
 系统吞吐量(tian)
 
 为什么Thread.stop被废弃.
+
+java.util.UUID

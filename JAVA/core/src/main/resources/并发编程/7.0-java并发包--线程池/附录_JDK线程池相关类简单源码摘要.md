@@ -42,20 +42,6 @@ public interface ExecutorService extends Executor {
         <T> Future<T> submit(Runnable task, T result);
     
         Future<?> submit(Runnable task);
-    
-        <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks)
-            throws InterruptedException;
-    
-        <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks,
-                                      long timeout, TimeUnit unit)
-            throws InterruptedException;
-    
-        <T> T invokeAny(Collection<? extends Callable<T>> tasks)
-            throws InterruptedException, ExecutionException;
-    
-        <T> T invokeAny(Collection<? extends Callable<T>> tasks,
-                        long timeout, TimeUnit unit)
-            throws InterruptedException, ExecutionException, TimeoutException;
 }
 ```
 
@@ -88,40 +74,7 @@ public interface ScheduledExecutorService extends ExecutorService {
 /**
   * @since 1.5
   */
-public abstract class AbstractExecutorService implements ExecutorService {
-
-    protected <T> RunnableFuture<T> newTaskFor(Runnable runnable, T value) {
-        return new FutureTask<T>(runnable, value);
-    }
-
-    protected <T> RunnableFuture<T> newTaskFor(Callable<T> callable) {
-        return new FutureTask<T>(callable);
-    }
-
-    public Future<?> submit(Runnable task) {}
-
-    public <T> Future<T> submit(Runnable task, T result) { }
-
-    public <T> Future<T> submit(Callable<T> task) {}
-
-    private <T> T doInvokeAny(Collection<? extends Callable<T>> tasks,
-                              boolean timed, long nanos)
-        throws InterruptedException, ExecutionException, TimeoutException {}
-
-    public <T> T invokeAny(Collection<? extends Callable<T>> tasks)
-        throws InterruptedException, ExecutionException {}
-
-    public <T> T invokeAny(Collection<? extends Callable<T>> tasks,
-                           long timeout, TimeUnit unit)
-        throws InterruptedException, ExecutionException, TimeoutException {}
-
-    public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks)
-        throws InterruptedException {}
-
-    public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks,
-                                         long timeout, TimeUnit unit)
-        throws InterruptedException {}
-}
+public abstract class AbstractExecutorService implements ExecutorService {}
 ```
 
 # ThreadPoolExecutor
@@ -161,4 +114,17 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 public class ScheduledThreadPoolExecutor
     extends ThreadPoolExecutor
     implements ScheduledExecutorService {}
+```
+
+# Callable
+
+```java
+@FunctionalInterface
+public interface Callable<V> {
+    /**
+     * Computes a result, or throws an exception if unable to do so.
+     */
+    V call() throws Exception;
+}
+
 ```

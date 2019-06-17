@@ -30,7 +30,7 @@ public class SimpleThreadPoolExecutor implements Executor {
     private boolean isStopped = false;
 
     public SimpleThreadPoolExecutor(int numOfThreads, int maxNoOfTasks){
-        taskQueue = new LinkedBlockingQueue<Runnable>();
+        taskQueue = new LinkedBlockingQueue<>();
         // 创建numOfThreads个线程
         for(int i=0;i < numOfThreads;i++){
             threads.add(new WorkerThread(taskQueue));
