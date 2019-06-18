@@ -155,3 +155,5 @@ Object o = 0.7; System.out.println(o instanceof Float);    // false
 为什么Thread.stop被废弃.
 
 java.util.UUID
+
+线程通信的方式总结
