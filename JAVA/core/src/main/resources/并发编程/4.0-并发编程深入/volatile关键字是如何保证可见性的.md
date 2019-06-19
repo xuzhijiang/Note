@@ -56,7 +56,6 @@ public void initMap(){
 	flag = true ;//2
 }
 
-
 //发生在线程 B中 等到 Map 初始化成功进行其他操作
 public void doSomeThing(){
 	while(!flag){
@@ -65,10 +64,9 @@ public void doSomeThing(){
 	//dosomething
 	doSomeThing(value);
 }
-
 ```
 
-这里就能看出问题了，当 `flag` 没有被 `volatile` 修饰时，`JVM` 对 1 和 2 进行重排，导致 `value` 都还没有被初始化就有可能被线程 B 使用了。`所以加上 volatile之后可以防止这样的重排优化，保证业务的正确性。`
+这里就能看出问题了，当 `flag` 没有被 `volatile` 修饰时，`JVM` 对 1 和 2 进行重排，导致 `value` 都还没有被初始化就有可能被线程 B 使用了。`所以加上 volatile之后可以防止这样的重排优化，保证业务的正确性。`(不加volatile,多线程中可能会出现数据不一致的问题)
 
 ## 指令重排的的应用
 
@@ -79,8 +77,7 @@ public class Singleton {
 
     private static volatile Singleton singleton;
 
-    private Singleton() {
-    }
+    private Singleton() {}
 
     public static Singleton getInstance() {
         if (singleton == null) {

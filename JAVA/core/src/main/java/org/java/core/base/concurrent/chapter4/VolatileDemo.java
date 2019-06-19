@@ -14,6 +14,10 @@ public class VolatileDemo {
     /**
      * 由于我们使用了volatile关键字，因此自定义线程每次修改flag时，
      * 主线程都可以实时的感知到,不会出现延时.(注意，volatile不能保证线程安全)
+     * 这里如果没有用 volatile 来修饰 flag ，就有可能其中一个线程修改了 flag 的值
+     * 并不会立即刷新到主内存中，导致主线程没有及时感知到，会出现延时感知.
+     *
+     * 这里主要利用的是 `volatile` 的内存可见性。
      */
     @Test
     public void test01() {
