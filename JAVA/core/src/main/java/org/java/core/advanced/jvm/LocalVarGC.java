@@ -1,4 +1,4 @@
-package org.java.core.advanced.gc;
+package org.java.core.advanced.jvm;
 
 /**
  *  print GC info

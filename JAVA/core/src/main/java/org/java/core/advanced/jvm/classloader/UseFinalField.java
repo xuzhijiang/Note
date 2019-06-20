@@ -1,8 +1,5 @@
 package org.java.core.advanced.jvm.classloader;
 
-/**
- *  Final字段不会被引起初始化
- */
 public class UseFinalField {
     public static void main(String[] args) {
         System.out.println(FinalFieldClass.CONST_STR);
@@ -10,9 +7,14 @@ public class UseFinalField {
 }
 
 class FinalFieldClass {
-    public static final String CONST_STR = "CONSTSTR";
+    public static String CONST_STR = "CONSTSTR";
 
-    static {
+    /**
+     * 如果使用了 final 修饰的常量，使用时,FinalFieldClass类不会初始化(也就是不调用static中的代码)
+     */
+    // public static final String CONST_STR = "CONSTSTR";
+
+    static { // FinalFieldClass.class的初始化过程
         System.out.println("FinalFieldClass init");
     }
 }

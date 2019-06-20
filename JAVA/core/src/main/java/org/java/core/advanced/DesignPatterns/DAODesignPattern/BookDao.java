@@ -1,4 +1,4 @@
-package org.java.core.advanced.DAODesignPattern;
+package org.java.core.advanced.DesignPatterns.DAODesignPattern;
 
 import java.util.List;
 

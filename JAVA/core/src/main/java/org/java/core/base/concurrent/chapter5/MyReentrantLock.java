@@ -222,7 +222,7 @@ public class MyReentrantLock implements Serializable {
     /**
      * 非公平锁
      */
-    static final class NonfairSync extends MyReentrantLock.Sync {
+    static final class NonfairSync extends Sync {
         private static final long serialVersionUID = 7316153563782823691L;
 
         final void lock() {
@@ -240,7 +240,8 @@ public class MyReentrantLock implements Serializable {
     /**
      * 公平锁
      */
-    static final class FairSync extends MyReentrantLock.Sync {
+    static final class FairSync extends Sync {
+
         private static final long serialVersionUID = -3000897897090466540L;
 
         final void lock() {

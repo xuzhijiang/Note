@@ -28,7 +28,7 @@ import java.util.concurrent.locks.Condition;
  * 不要将锁的获取过程写在try块中。因为如果在获取锁(自定义锁的实现)时，发生了异常，异常抛出的同时，也会导致锁的无故释放。
  */
 public interface MyLock {
-    // 获取锁，调用该方法当前线程会获取锁，当锁获得后，该方法返回
+    // 阻塞的方式获取锁，调用该方法当前线程会获取锁，当锁获得后，该方法返回
     void lock();
 
     // 可中断的获取锁，和lock()方法不同之处在于该方法会响应中断，即在锁的获取中可以中断当前线程
@@ -37,7 +37,10 @@ public interface MyLock {
     // 尝试非阻塞的获取锁，调用该方法后立即返回。如果能够获取到返回true，否则返回false
     boolean tryLock();
 
-    // 超时获取锁，当前线程在以下三种情况下会被返回:1.当前线程在超时时间内获取了锁,2.当前线程在超时时间内被中断,3. 超时时间结束，返回false
+    // 超时获取锁，当前线程在以下三种情况下会被返回:
+    // 1.当前线程在超时时间内获取了锁,
+    // 2.当前线程在超时时间内被中断,
+    // 3. 超时时间结束，返回false
     boolean tryLock(long time, TimeUnit unit) throws InterruptedException;
 
     // 释放锁
