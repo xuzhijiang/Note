@@ -1,5 +1,9 @@
 package org.java.core.base.GettingStarted;
 
+import org.junit.Test;
+
+import java.util.concurrent.TimeUnit;
+
 /**
  *  Java 7改进了switch case以支持String。
  *  
@@ -20,14 +24,16 @@ package org.java.core.base.GettingStarted;
  */
 public class SwitchStringExample {
 
-	public static void main(String[] args) {
-		printColorUsingSwitch("red");
-		
-		printColorUsingIf("red");
-		
-		// switch case string is case sensitive
-		printColorUsingSwitch("RED");
-		printColorUsingSwitch(null);
+	public static void main(String[] args) throws InterruptedException {
+//		printColorUsingSwitch("red");
+//
+//		printColorUsingIf("red");
+//
+//		// switch case string is case sensitive
+//		printColorUsingSwitch("RED");
+//		printColorUsingSwitch(null);
+
+		test();
 	}
 
 	private static void printColorUsingIf(String color) {
@@ -50,6 +56,19 @@ public class SwitchStringExample {
 			break;
 		default:
 			System.out.println("INVALID COLOR CODE");
+		}
+	}
+
+	@Test
+	public static void test() throws InterruptedException {
+		int count = 0;
+		while (true) {
+			if (count > 100000) {
+				break;
+			}
+			count++;
+			System.out.println("count: " + count);
+			TimeUnit.SECONDS.sleep(10);
 		}
 	}
 }

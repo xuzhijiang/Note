@@ -2,6 +2,7 @@ package org.java.core.advanced.SystemClass;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -46,5 +47,27 @@ public class SystemUtils {
         //Set System property
         System.setProperty("user.country", "IN");
         System.out.println(System.getProperty("user.country")); //prints "IN"
+
+        //  jvm搜索类的顺序为：Bootstrap，Extension，User。
+
+        // Bootstrap中的路径是jvm自带的jar或zip文件，jvm首先搜索这些包文件，
+        // 用System.getProperty("sun.boot.class.path")可得到搜索路径。
+        String bootstrapPath = System.getProperty("sun.boot.class.path");
+        System.out.println("Bootstrap path: " + bootstrapPath);
+        String[] bootstrapPathArray = bootstrapPath.split(";");
+        System.out.println("bootstrapPathArray start-----------------------");
+        for (String path : bootstrapPathArray) {
+            System.out.println("bootstrapPathArray element: " + path);
+        }
+        System.out.println("bootstrapPathArray end-----------------------");
+
+        // Extension是位于JRE_HOME/lib/ext目录下的jar文件，jvm在搜索完Bootstrap后就搜索该目录下的jar文件，用System.getProperty("java.ext.dirs")可得到搜索路径。
+        String extensionPath = System.getProperty("java.ext.dirs");
+        System.out.println("Extension path: " +  extensionPath);
+
+        // User搜索顺序为当前路径.、CLASSPATH、-classpath，jvm最后搜索这些目录(当前路径，CLASSPATH, -classpath)，
+        // 用System.getProperty("java.class.path")可得到搜索路径
+        String applicationPath = System.getProperty("java.class.path");
+        System.out.println("Application path: " +  applicationPath);
     }
 }
