@@ -3,35 +3,30 @@ package org.java.core.base.Enum;
 import java.io.Closeable;
 import java.io.IOException;
 
-/**
- * This Enum JdbcQuickStartExample shows all the things we can do with Enum types
- * ���Enumʾ��չʾ��������Enum���Ϳ����������е�����
- */
 public enum ThreadStatesEnum implements Closeable {
+
 	START(1) {
 		@Override
 		public String toString() {
 			return "START implementation. Priority=" + getPriority();
 		}
 
+		// getDetail是抽象方法，所以必须要实现
 		@Override
 		public String getDetail() {
 			return "START";
 		}
-	},
-	RUNNING(2) {
+	},RUNNING(2) {
 		@Override
 		public String getDetail() {
 			return "RUNNING";
 		}
-	},
-	WAITING(3) {
+	},WAITING(3) {
 		@Override
 		public String getDetail() {
 			return "WAITING";
 		}
-	},
-	DEAD(4) {
+	},DEAD(4) {
 		@Override
 		public String getDetail() {
 			return "DEAD";
@@ -42,12 +37,12 @@ public enum ThreadStatesEnum implements Closeable {
 
 	public abstract String getDetail();
 
-	// Enum constructors should always be private.
-	private ThreadStatesEnum(int i) {
+	// Enum的构造器总是private的，所以不用显示的添加private
+	ThreadStatesEnum(int i) {
 		priority = i;
 	}
 
-	// Enum can have methods
+	// Enum可以有方法
 	public int getPriority() {
 		return this.priority;
 	}
@@ -56,7 +51,7 @@ public enum ThreadStatesEnum implements Closeable {
 		this.priority = p;
 	}
 
-	// Enum can override functions
+	// Enum可以覆写函数
 	@Override
 	public String toString() {
 		return "Default ThreadStatesConstructors implementation. Priority=" + getPriority();

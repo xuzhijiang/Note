@@ -157,3 +157,34 @@ Object o = 0.7; System.out.println(o instanceof Float);    // false
 java.util.UUID
 
 线程通信的方式总结
+
+### 4. finalize()
+
+类似 C++ 的析构函数，用于关闭外部资源。但是 try-finally 等方式可以做得更好，并且该方法运行代价很高，不确定性大，无法保证各个对象的调用顺序，因此最好不要使用。
+
+当一个对象可被回收时，如果需要执行该对象的 finalize() 方法，那么就有可能在该方法中让对象重新被引用，从而实现自救。自救只能进行一次，如果回收的对象之前调用了 finalize() 方法自救，后面回收时不会再调用该方法。
+
+不可变对象是其状态在初始化后不会更改的实例。
+
+String是一个不可变类，一旦实例化，其值永远不会改变。
+
+不可变类有利于缓存目的，因为您不需要担心值的变化。
+不可变类的其他好处是它本身就是线程安全的，所以在多线程环境下你不需要担心线程安全。
+
+1. 将类声明为final，因此它就不可以被扩展。(Declare the class as final so it can't be extended.)
+4. 使所有可变字段成为最终字段，以便它的值只能分配一次。(Make all mutable fields final so that it’s value can be assigned only once.)
+
+XML是广泛使用的用于存储或传输数据技术，并且它与平台无关。 
+
+Java提供各种API来读取，写入或操作XML数据。 
+
+一些常用的java xml解析器是:
+
+DOM Parser
+SAX Parser
+StAX Parser
+JAXB
+
+DOM Parser是最容易学习的java xml解析器。 
+DOM解析器将XML文件加载到内存中，我们可以逐节点遍历它来解析XML。 
+DOM Parser适用于小文件，但是当文件大小增加时，它执行速度慢并消耗更多内存。

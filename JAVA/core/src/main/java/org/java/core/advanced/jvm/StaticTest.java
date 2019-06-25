@@ -1,4 +1,4 @@
-package org.java.core.base.StaticKeyWord;
+package org.java.core.advanced.jvm;
 
 /**
  * static静态的，可以用来修饰变量，修饰方法，代码块，静态内部类.
