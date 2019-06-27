@@ -11,30 +11,10 @@ import java.util.Random;
 
 public class Utils {
 
-    public static final String IP_REGULAR_EXPRESS = "^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})";
-
-    public static final int FIXED_HOUR = 3;
-    public static final int FIXED_MINUTE = 0;
-    public static final int FIXED_SECOND = 0;
-
-    public static void main(String[] args) throws Exception {
-//		currentTimeToMillis();
-//		fixedTimeToMillis(24, 0, 0);
-//		fixedTimeToMillis(3, 0, 0);
-
-//		startFixedTimeToDoSomethingTimer(FIXED_HOUR, FIXED_MINUTE, FIXED_SECOND);
-
-//		fileLoad();
-
-//        String ip = resolveIp("www.baidu.com");
-//        System.out.println("ip of baidu: " + ip);
-
-//        System.out.println(getMacAddr());
-
-        testRandom();
-    }
-
-    static void testRandom() {
+    /**
+     * 测试随机数的生成
+     */
+    public static void testRandom() {
         // 使用单个种子创建新的随机数生成器,
         // 种子是伪随机数生成器的内部状态的初始值，它由方法{@link #next}维护。
         Random random = new Random(1);
@@ -71,7 +51,7 @@ public class Utils {
      * NetworkInterface networkInterface =NetworkInterface.getByInetAddress(ip);
      *
      */
-    private static String getMacAddr() {
+    public static void getMacAddr() {
         try {
             // 首先获取想要查看的ip地址，这个地址唯一对应一个网卡信息
             InetAddress ip = InetAddress.getLocalHost();
@@ -90,18 +70,18 @@ public class Utils {
                     sb.append("-");
                 }
             }
-            return sb.toString();
+            System.out.println(sb.toString());
         } catch (UnknownHostException | SocketException e) {
             throw new RuntimeException("get mac addr error", e);
         }
+        System.out.println("--- end ---");
     }
 
     /**
      * 将域名解析为IP
-     * @param host
      * @return
      */
-    static String resolveIp(String host) {
+    public static String resolveIp(String host) {
         String ip = null;
         System.out.println("ip: " + ip);
         try {
@@ -221,7 +201,7 @@ public class Utils {
         System.out.println("path: " + path);
     }
 
-    public static void testCalendar() {
+    public static void testCalendar(int fixedHours,int fixedMinutes,int fixedSeconds) {
         System.out.println("---result: " + TimeUnit.HOURS.toMillis(4L));
 
         Calendar date = Calendar.getInstance();
@@ -234,12 +214,12 @@ public class Utils {
         System.out.println("--------date: " + date.get(Calendar.MINUTE));
         System.out.println("--------date: " + date.get(Calendar.SECOND));
 
-        if (date.get(Calendar.HOUR_OF_DAY) > FIXED_HOUR) {
-            int time = 24 - (date.get(Calendar.HOUR_OF_DAY) - FIXED_HOUR);
+        if (date.get(Calendar.HOUR_OF_DAY) > fixedHours) {
+            int time = 24 - (date.get(Calendar.HOUR_OF_DAY) - fixedHours);
             // after time
             System.out.println("11111------------time: " + time);
         } else {
-            int time = FIXED_HOUR - date.get(Calendar.HOUR_OF_DAY);
+            int time = fixedHours - date.get(Calendar.HOUR_OF_DAY);
             // after time
             System.out.println("2222------------time: " + time);
         }
@@ -312,6 +292,8 @@ public class Utils {
 
         return totalMillis;
     }
+
+    public static final String IP_REGULAR_EXPRESS = "^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})";
 
     public static void testRegularExpression() {
         Pattern pattern = Pattern.compile(IP_REGULAR_EXPRESS);
