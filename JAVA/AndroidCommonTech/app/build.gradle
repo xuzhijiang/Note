@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 
 // 配置所有android构建过程需要的参数
 android {
-    // 用于编译的SDK版本
+    // 编译当前app module使用的SDK版本
     compileSdkVersion 28
 
     // 编译项目的工具版本,就是SDK目录下build-tools下工具的版本
@@ -14,7 +14,7 @@ android {
 
     // 项目默认配置
     defaultConfig {
-        // 应用程序包名
+        // app这个module的包名
         applicationId "com.android.core"
         // 最低支持Android版本
         minSdkVersion 19
@@ -26,6 +26,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     // 构建类型。默认两个：release和debug
     buildTypes {
         release {
@@ -37,9 +38,25 @@ android {
     }
 }
 
-// 用于配置引用的依赖
+// 用于配置app这个module引用的依赖
 dependencies {
+    // 1. 引用本地有顺序要求的jar（不推荐使用，建议引用服务器）
+    // 这里是引用app/libs目录下的jar,这里引用是有顺序的,commons-net-2.2.jar先于tools.jar
+    // implementation files("libs/commons-net-2.2.jar")
+    // implementation files("libs/tools.jar")
+
+    // 2. 引用本地无顺序要求的jar（不推荐使用，建议引用服务器）
+    // 这里引用的是app/extlibs下的jar
+    // implementation fileTree(dir: 'extlibs', include: ['*.jar'])
+
+    // compileOnly 表示只在编译时有效，不参与打包
+    // compileOnly files('extlibs/framework.jar')
+
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // 3. 引用服务器jar包（推荐使用）
+    // 三部分确定一个jar: groupId:artifactId:version
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
