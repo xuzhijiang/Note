@@ -1,13 +1,13 @@
 spring:
   application:
     name: data-jpa
-  # JPA配置:
+  # JPA閰嶇疆:
   jpa:
     show-sql: true
     properties:
       javax:
         persistence:
-          # 自动生成DDL脚本:
+          # 鑷姩鐢熸垚DDL鑴氭湰:
           schema-generation:
             create-source: metadata
             scripts:
