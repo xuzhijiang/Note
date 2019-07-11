@@ -2,16 +2,16 @@
 
 ## 为什么引入缓存
 
-往往数据库查询操作会成为影响用户使用体验的瓶颈，此时使用缓存往往是解决这一问题非常好的手段之一.
+往往数据库的I/O查询操作会成为影响用户使用体验的瓶颈，此时使用缓存往往是解决这一问题非常好的手段之一.
 
 ## 缓存注解
 
-1. @CacheConfig：用于配置该类中会用到的共用的缓存配置。在这里@CacheConfig(cacheNames = "users")：配置了该数据访问对象中返回的内容将存储于名为users的缓存对象中，我们也可以不使用该注解，直接通过@Cacheable自己配置缓存集的名字来定义。
-2. @Cacheable：配置了findByName函数的返回值将被加入缓存。同时在查询时，会先从缓存中获取，若不存在才再发起对数据库的访问。该注解主要有下面几个参数：
+1. @CacheConfig：作用于类。在这里@CacheConfig(cacheNames = "users")：配置了该数据访问对象中返回的内容将存储于名为users的缓存对象中，我们也可以不使用该注解，直接通过@Cacheable自己配置缓存集的名字来定义。
+2. @Cacheable：主要作用于方法，也可以作用于类,配置了findByName函数的返回值将被加入缓存。同时在查询时，会先从缓存中获取，若不存在才再发起对数据库的访问。该注解主要有下面几个参数：
 
     - value、cacheNames：两个等同的参数（cacheNames为Spring 4新增，作为value的别名），用于指定缓存存储的集合名,指定缓存组件的名字，CacheManager管理多个cache组件，对缓存的真正CRUD操作在Cache中，每一个缓存都有自己唯一的一个名字
 
-    - key：缓存对象存储在Map集合中的key值，非必需，缺省按照函数的所有参数组合作为key值，若自己配置需使用SpEL表达式，比如：@Cacheable(key = "#p0")：使用函数第一个参数作为缓存的key值,@Cacheable(cacheNames = "emp" , key = "#id"),缓存的名字是emp，key是方法中参数id的值.
+    - key：缓存对象存储在Map集合中的key值，非必需，缺省按照函数的所有参数组合作为key值，若自己配置需使用SpEL(Spring Expression Language)表达式，比如：@Cacheable(key = "#p0")：使用函数第一个参数作为缓存的key值,@Cacheable(cacheNames = "emp" , key = "#id"),缓存的名字是emp，key是方法中参数id的值.
     
     - condition：缓存对象的条件，非必需，也需使用SpEL表达式，只有满足表达式条件的内容才会被缓存，比如：@Cacheable(key = "#p0", condition = "#p0.length() < 3")，表示只有当第一个参数的长度小于3的时候才会被缓存，若做此配置上面的AAA用户就不会被缓存.
     

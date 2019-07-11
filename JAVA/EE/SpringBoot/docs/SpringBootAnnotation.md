@@ -93,7 +93,6 @@ a. 由于@Configuration注释，它会扫描@Bean方法来创建beans
     matchIfMissing = true
 )
 
-
 关于 @RestController和@RequestMapping ("/" )，不是SpringBoot 中的内容，是SpringMVC中的内容。
 
 @EnableAutoConfiguration 注解和SpringApplication是 SpringBoot中提供的注解

@@ -44,8 +44,8 @@ public interface MyBlockingQueue<E> extends MyQueue<E> {
     // 是BlockingQueue自带的，不是从Queue继承而来的.
     E take() throws InterruptedException;
 
-    // 删除队列头部元素，如果队列为空，返回null。否则返回元素。
-    // 从Queue继承而来
+    // 检索，并且删除队列头部元素，如果队列为空，返回null。否则返回元素。
+    // 是BlockingQueue自带的，不是从Queue继承而来的.
     E poll(long timeout, TimeUnit unit) throws InterruptedException;
 
     // 基于对象找到对应的元素，并删除。删除成功返回true，否则返回false
