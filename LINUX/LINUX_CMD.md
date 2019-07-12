@@ -189,6 +189,8 @@ shell中针对一个script.sh脚本，使用`. script.sh`, `bash script.sh`, `so
 4. -s 0 : 抓取数据包时默认抓取长度为68字节。加上-s 0 后可以抓到完整的数据包.
 5. -w ./target.cap : 保存的文件名.
 
+使用wireshark如何根据host，port过滤?
+
 ### df
 
 ```shell
@@ -203,4 +205,17 @@ tmpfs          tmpfs      47G     0   47G   0% /sys/fs/cgroup
 
 # 查看某一个文件夹的大小
 df -T -h /boot/
+```
+
+## Android
+
+```
+# 查看sdk版本号: 
+cat /proc/msp/sys
+
+# 查看图层
+dumpsys SurfaceFlinger --fps=1
+
+# 查看广播
+dumpsys |grep BroadcastRecord
 ```
