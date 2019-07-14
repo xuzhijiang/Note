@@ -1,14 +1,272 @@
 # Java I/O
 
-## 分类
+# 分类
 
-Java 的 I/O 可以分成:磁盘I/O和网络I/O(Socket)，当然也可以从另一个角度分类，分成字节操作(InputStream 和 OutputStream)和字符操作(Reader 和 Writer)。
+Java 的 I/O 可以分成:磁盘I/O和网络I/O(Socket)
 
-不管是磁盘还是网络传输，最小的存储单元都是字节，而不是字符。但是在程序中操作的通常是字符形式的数据，因此需要提供对字符进行操作的方法。InputStreamReader 实现从字节流解码成字符流；OutputStreamWriter 实现字符流编码成为字节流。
+### 按操作方式分类(字节还是字符)
+
+>字节流操作(InputStream-字节流输入 和 OutputStream-字节流输出)和字符流操作(Reader-字符流输入 和 Writer-字符流输出)。如果操作二进制文件那我们就使用字节流，如果是文本文件那我们就使用字符流。
+
+不管是磁盘还是网络传输，最小的存储单元都是字节，而不是字符(一个字符可能由一个或多个字节构成，具体多少个字节组成要看编码是什么)。但是在程序中操作的通常是字符形式的数据，因此需要提供对字符进行操作的方法。InputStreamReader 把字节流InputStream转化成字符流；OutputStreamWriter 实现字节流OutputStream转化成字符流。
+
+---
+    字节流和字符流：
+    
+    字节流：以字节为单位，每次次读入或读出是8位数据。可以读任何类型数据。
+    字符流：以字符为单位，每次次读入或读出是16位数据。其只能读取字符类型数据。
+    
+    输出流和输入流：
+    
+    输出流：从内存读出到文件。只能进行写操作。
+    输入流：从文件读入到内存。只能进行读操作。
+    
+    注意： 这里的出和入，都是相对于系统内存而言的。
+    
+    当然还可以按操作的对象分类:
+    
+---
+
+### 按操作对象分类
+
+>对文件进行操作(基于文件的流操作):
+
+- FileInputStream（字节输入流），
+- FileOutputStream（字节输出流），
+- FileReader（字符输入流），
+- FileWriter（字符输出流）
+
+>对管道进行操作(在多个线程或进程中传递数据的时候管道流非常有用)：
+
+- PipedInputStream（字节输入流）,
+- PipedOutStream（字节输出流），
+- PipedReader（字符输入流），
+- PipedWriter（字符输出流）。
+
+>字节数组/字符数组流进行操作：
+
+- ByteArrayInputStream，
+- ByteArrayOutputStream，
+- CharArrayReader，
+- CharArrayWriter；
+
+>缓冲操作:缓冲区的作用的主要目的是：避免每次和硬盘打交道，提升操作的性能.
+
+- BufferedInputStream，
+- BufferedOutputStream，
+- BufferedReader,
+- BufferedWriter,
+
+>转换流
+
+- InputStreamReader：把输入字节流转化成输入字符流；
+- OutputStreamWriter：把字节转化成字符。
+
+>基本类型数据操作：用于操作基本数据类型值。
+ 
+若是我们输出一个8个字节的long类型或4个字节的float类型，那怎么办呢？可以一个字节一个字节输出，但是这样转换费时间，数据流可以直接输出float类型或long类型，提高了数据读写的效率。
+
+- DataInputStream，
+- DataOutputStream。
+
+>打印操作(打印流)：
+
+一般是打印到控制台
+
+- PrintStream: System.out.println()中的out就是System类的一个static的PrintStream,操作字节.
+- PrintWriter: 操作字符,也有println()方法.
+
+>操作对象(对象流)：
+ 
+把封装的对象直接输出，而不是一个个转换成字符串再输出(用于序列化和反序列化)。
+ 
+- ObjectInputStream，对象反序列化；
+- ObjectOutputStream，对象序列化；
+ 
+>合并流：
+ 
+SequenceInputStream：可以认为是一个工具类，将两个或者多个输入流合并成一个输入流.
+
+---
+<table>
+    <thead>
+        <tr>
+            <th align="left">分类</th>
+            <th align="left">字节输入流</th>
+            <th align="left">字节输出流</th>
+            <th align="left">字符输入流</th>
+            <th align="left">字符输出流</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td align="left">抽象基类</td>
+            <td align="left"><em>java.io.InputStream</em>
+            </td>
+            <td align="left"><em>OutputStream</em>
+            </td>
+            <td align="left"><em>java.io.Reader</em>
+            </td>
+            <td align="left"><em>Writer</em>
+            </td>
+        </tr>
+        <tr>
+            <td align="left">访问文件</td>
+            <td align="left"><strong>FileInputStream</strong>
+            </td>
+            <td align="left"><strong>FileOutputStream</strong>
+            </td>
+            <td align="left"><strong>FileReader</strong>
+            </td>
+            <td align="left"><strong>FileWriter</strong>
+            </td>
+        </tr>
+        <tr>
+            <td align="left">访问数组</td>
+            <td align="left"><strong>ByteArrayInputStream</strong>
+            </td>
+            <td align="left"><strong>ByteArrayOutputStream</strong>
+            </td>
+            <td align="left"><strong>CharArrayReader</strong>
+            </td>
+            <td align="left"><strong>CharArrayWriter</strong>
+            </td>
+        </tr>
+        <tr>
+            <td align="left">访问管道</td>
+            <td align="left"><strong>PipedInputStream</strong>
+            </td>
+            <td align="left"><strong>PipedOutputStream</strong>
+            </td>
+            <td align="left"><strong>PipedReader</strong>
+            </td>
+            <td align="left"><strong>PipedWriter</strong>
+            </td>
+        </tr>
+        <tr>
+            <td align="left">访问字符串</td>
+            <td align="left"></td>
+            <td align="left"></td>
+            <td align="left"><strong>StringReader</strong>
+            </td>
+            <td align="left"><strong>StringWriter</strong>
+            </td>
+        </tr>
+        <tr>
+            <td align="left">缓冲流</td>
+            <td align="left">BufferedInputStream</td>
+            <td align="left">BufferedOutputStream</td>
+            <td align="left">BufferedReader</td>
+            <td align="left">BufferedWriter</td>
+        </tr>
+        <tr>
+            <td align="left">转换流</td>
+            <td align="left"></td>
+            <td align="left"></td>
+            <td align="left">InputStreamReader</td>
+            <td align="left">OutputStreamWriter</td>
+        </tr>
+        <tr>
+            <td align="left">对象流</td>
+            <td align="left">ObjectInputStream</td>
+            <td align="left">ObjectOutputStream</td>
+            <td align="left"></td>
+            <td align="left"></td>
+        </tr>
+        <tr>
+            <td align="left">抽象基类</td>
+            <td align="left"><em>FilterInputStream</em>
+            </td>
+            <td align="left"><em>FilterOutputStream</em>
+            </td>
+            <td align="left"><em>FilterReader</em>
+            </td>
+            <td align="left"><em>FilterWriter</em>
+            </td>
+        </tr>
+        <tr>
+            <td align="left">打印流</td>
+            <td align="left"></td>
+            <td align="left">PrintStream</td>
+            <td align="left"></td>
+            <td align="left">PrintWriter</td>
+        </tr>
+        <tr>
+            <td align="left">推回输入流</td>
+            <td align="left">PushbackInputStream</td>
+            <td align="left"></td>
+            <td align="left">PushbackReader</td>
+            <td align="left"></td>
+        </tr>
+        <tr>
+            <td align="left">特殊流</td>
+            <td align="left">DataInputStream</td>
+            <td align="left">DataOutputStream</td>
+            <td align="left"></td>
+            <td align="left"></td>
+        </tr>
+    </tbody>
+</table>
+
+---
+
+## 方法汇总
+
+>InputStream:
+
+- int read(); 从输入流中读取单个字节，返回读取的字节数据.
+- int read(byte[] b): 从输入流中最多读取b.length个字节的数据，并将其存储在字节数组b中，返回实际读取的字节数
+- int read(byte[] b,int off,int len); 从输入流中最多读取len个字节的数据，并将其存储在数组b中，放入数组b中时，并不是从数组起点开始，而是从off位置开始，返回实际读取的字节数
+
+>Reader:
+
+- int read(); 从输入流中读取单个字符，返回所读取的字符数据
+- int read(char[] b):从输入流中最多读取b.length个字符的数据，并将其存储在字节数组b中，返回实际读取的字符数
+- int read(char[] b,int off,int len); 从输入流中最多读取len个字符的数据，并将其存储在数组b中，放入数组b中时，并不是从数组起点开始，而是从off位置开始，返回实际读取的字符数。
+
+>OutputStream:
+
+- void write(int b); 将指定的字节输出到输出流中，其中b代表字节
+- void write(byte[] b): 将字节数组输出到指定输出流中。
+- void write(byte[] b, int off,int len ); 将字节数组从off位置开始，长度为len的字节输出到输出流中
+
+>Writer:
+
+- void write(int c): 将指定的字符输出到输出流中，其中b代表字符
+- void write(char[] c): 将字符数组输出到指定输出流中。
+- void write(char[] c, int off, int len): 将字符数组中从off位置开始，长度为len的字符输出到输出流中
+- void write(String str): 把字符串输出到输出流中
+- void write(String str, int off, int len): 把str字符串，从off位置开始，长度为len，输出到输出流中.
+
+## 什么是Filter流?
+
+Filter Stream主要作用是用来对存在的流增加一些额外的功能，装饰器模式的功能.
+
+>在java.io包中主要由4个可用的filter Stream。两个字节filter stream，两个字符filter stream. 分别是FilterInputStream, FilterOutputStream, FilterReader and FilterWriter.这些类是抽象类，不能被实例化的。
+具体的实现类: 
+
+- LineNumberInputStream 给目标文件增加行号,
+- DataInputStream: 有些特殊的方法如readInt(), readDouble()和readLine()等可以一次读取一个 int, double.
+- BufferedInputStream 增加缓存读取功能，提升性能
+
+## 其他IO相关类
+
+>java.io.File（已经被Java7的java.nio.file.Path取代和Files取代）
+
+File类是对文件系统中文件以及文件夹进行封装的对象，通过`对象的思想来操作文件和文件夹`。 File类保存文件或目录的各种元数据信息，包括文件名、文件长度、最后修改时间等，可以用于创建、删除文件和目录等方法。
+
+>java.io.RandomAccessFile
+
+通常来说，一个流只有一个功能，要么读，要么写。但是RandomAccessFile既可以读文件，也可以写文件。它既不是输入流也不是输出流，它两者都可以做到。
+
+- 该对象只能操作文件，所以构造函数接收两种类型的参数：a.字符串文件路径；b.File对象。
+- 该对象既可以对文件进行读操作，也能进行写操作，在进行对象实例化时可指定操作模式(r,rw)。
+
+>注意： IO中的很多功能都可以使用NIO替代，这些知识点大家知道就好，使用的话还是尽量使用NIO/AIO。
 
 ## 装饰者模式
 
-以 InputStream 为例，InputStream 是抽象类，FileInputStream 是 InputStream 的子类，属于具体实现类，提供了字节流的输入操作；BufferedInputStream 为 FileInputStream 提供缓存的功能。实例化一个具有缓存功能的字节流对象时，只需要在 FileInputStream 对象上再套一层 BufferedInputStream 对象即可。
+以 InputStream 为例，InputStream 是抽象类，FileInputStream 是 InputStream 的子类，属于具体实现类，提供了对于文件的字节流的输入操作；BufferedInputStream 为 FileInputStream 提供缓存的功能。实例化一个具有缓存功能的字节流对象时，只需要在 FileInputStream 对象上再套一层 BufferedInputStream 对象即可。
 
 ```java
 FileInputStream fileInputStream = new FileInputStream(filePath);
