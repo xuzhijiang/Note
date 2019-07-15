@@ -17,3 +17,21 @@
 每个apk都要有自己的签名，否则如果被其他人知道了apk的包名后，其他人的apk就可以直接覆盖了自己的apk，但是如果我们的apk是有签名的，那么到时候会校验其他人的apk的签名是否一致，不一致就不会被覆盖.
 
 可以使用as生成签名文件，要记住生成签名文件时候的密码，在后续的开发和维护中，会用到这个密码的。
+
+## AndroidStudio使用遇到的问题
+
+1. AS如何关联SDK源码?
+
+打开C:\Users\a\.AndroidStudio3.2\config\options\jdk.table.xml,然后找到对应的SDK，然后在
+sourcePath标签中:
+
+```
+<sourcePath>
+  <root type="composite">
+	<!-- <root url="file://$USER_HOME$/Library/Android/sdk/sources/android-28" type="simple" />  
+	url中的Android Api版本改成想要关联的版本，比如android-26，android-28
+	-->
+	<root url="file://$USER_HOME$/Library/Android/sdk/sources/android-28" type="simple" />
+  </root>
+</sourcePath>
+```

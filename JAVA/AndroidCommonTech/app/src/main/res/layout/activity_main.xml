@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <!--tools:context开发中查看Activity布局效果,context的用法，
+    在后面跟一个Activity的完整包名,当我们设置一个Activity主题时,
+    是在AndroidManifest.xml中设置中,而主题的效果又只能在运行后在Activtiy中显示,
+    使用context属性, 可以在开发阶段中看到设置在Activity中的主题效果-->
+
+    <!--当我们在Activity上加载一个fragment时，是需要在运行后才可以看到加载后的效果,
+    有没有方法在测试阶段就在布局预览窗口上显示呢?答案是有的,借助layout属性,例如,
+    在布局中加入这样一行代码: tools:layout=@layout/yourfragmentlayoutname
+    这样你的编写的fragment布局就会预览在指定主布局上了-->
 
     <TextView
         android:layout_width="wrap_content"

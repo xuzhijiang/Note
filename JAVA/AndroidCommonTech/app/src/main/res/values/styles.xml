@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--防止launcher跳转到移动专区的时候闪白屏-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
 </resources>
