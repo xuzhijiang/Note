@@ -10,7 +10,7 @@ android {
     // 注意区分SDK下platforms目录，这下面存放的是是某个sdk版本的
     // 皮肤，res资源文件(如果编译遇到某种style not found就是缺少这个目录)，
     // 字体等
-     buildToolsVersion "28.0.3"
+    buildToolsVersion "28.0.3"
 
     // 项目默认配置
     defaultConfig {
@@ -36,6 +36,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
 }
 
 // 用于配置app这个module引用的依赖
@@ -62,4 +63,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'org.jetbrains:annotations-java5:15.0'
 }

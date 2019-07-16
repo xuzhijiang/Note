@@ -40,9 +40,22 @@
     <!-- 在sdcard中建/删除文件的权限,只能授予系统应用 -->
     <!--<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />-->
 
+    <!--安装应用，只能授予系统应用的权限-->
+    <!--<uses-permission android:name="android.permission.INSTALL_PACKAGES" />-->
+    <!--删除应用，只能授予系统应用的权限-->
+    <!--<uses-permission android:name="android.permission.DELETE_PACKAGES" />-->
+    <!--只能授予系统应用的权限-->
+    <!--<uses-permission android:name="android.permission.WRITE_SETTINGS" />-->
+
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!-- 允许一个程序打开窗口使用 TYPE_SYSTEM_ALERT，显示在其他所有程序的顶层 -->
 
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+
+    <!--<uses-permission android:name="android.permission.WAKE_LOCK" />-->
+
+    <!--只能授予系统应用-->
+    <!--<uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />-->
 
     <!-- The AndroidManifest.xml file contains information of your package,
     including components of the application such as activities, services,
@@ -54,7 +67,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -69,6 +82,14 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".receiver.NetworkStateChangeReceiver" />
+
+        <service android:name=".service.ScreenService">
+            <intent-filter>
+                <action android:name="custom.intent.action.TAKE_SCREEN_CAP"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

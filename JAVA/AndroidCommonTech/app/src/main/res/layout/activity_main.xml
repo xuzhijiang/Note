@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
     <!--tools:context开发中查看Activity布局效果,context的用法，
     在后面跟一个Activity的完整包名,当我们设置一个Activity主题时,
     是在AndroidManifest.xml中设置中,而主题的效果又只能在运行后在Activtiy中显示,

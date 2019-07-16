@@ -1,10 +1,11 @@
-package com.android.core;
+package com.android.core.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
+import com.android.core.R;
 import com.android.core.receiver.NetworkStateChangeReceiver;
 
 public class MainActivity extends Activity {
@@ -33,6 +34,9 @@ public class MainActivity extends Activity {
         super.onResume();
     }
 
+    /**
+     * 动态注册BroadcastReceiver
+     */
     private void registerReceiver() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
@@ -42,6 +46,9 @@ public class MainActivity extends Activity {
         registerReceiver(mNetworkStateChangeReceiver, intentFilter);
     }
 
+    /**
+     * 动态注销BroadcastReceiver
+     */
     private void unregisterReceiver() {
         unregisterReceiver(mNetworkStateChangeReceiver);
     }
