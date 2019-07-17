@@ -9,8 +9,8 @@ public class UtilsTest {
     public static void main(String[] args) {
         Utils.testRandom();
 
-        Utils.fixedTimeToMillis(24, 0, 0);
-        Utils.fixedTimeToMillis(3, 0, 0);
+        Utils.toMillis(24, 0, 0);
+        Utils.toMillis(3, 0, 0);
 
         Utils.testRegularExpression();
     }

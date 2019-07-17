@@ -87,12 +87,14 @@ public class TimeServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         TimeServer server = new TimeServer();
+        // ServerSocketChannel 允许我们监听TCP连接请求
         ServerSocketChannel ssc= ServerSocketChannel.open();
         // 使用非阻塞模式的Channel
         ssc.configureBlocking(false);
         ssc.socket().bind(new InetSocketAddress(8080));
 
         while (true){
+            // 通过ServerSocketChannelImpl的 accept()方法 可以创建一个SocketChannel对象
             SocketChannel socketChannel = ssc.accept();
             if (socketChannel == null) {
                 continue;

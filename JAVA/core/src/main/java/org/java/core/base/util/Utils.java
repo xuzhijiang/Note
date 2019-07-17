@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.*;
 import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -228,17 +230,20 @@ public class Utils {
 //		date.set(date., Calendar.MONTH, Calendar.DAY_OF_MONTH, 3, 0, 0);
     }
 
+    /**
+     * 开机后，在一天中某一个固定时间做某件事情
+     * @param hours
+     * @param minutes
+     * @param seconds
+     */
     public static void startFixedTimeToDoSomethingTimer(int hours, int minutes, int seconds) {
-        long fixedMillis = fixedTimeToMillis(hours, minutes, seconds);
-        System.out.println("----------fixedMillis: " + fixedMillis);
+        long fixedMillis = toMillis(hours, minutes, seconds);
 
-        long currentMillis = fixedTimeToMillis(Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+        long currentMillis = toMillis(Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
                 Calendar.getInstance().get(Calendar.MINUTE),
                 Calendar.getInstance().get(Calendar.SECOND));
-        System.out.println("----------currentMillis: " + currentMillis);
 
-        long totalMillis = fixedTimeToMillis(24, 0, 0);
-        System.out.println("----------totalMillis: " + totalMillis);
+        long totalMillis = toMillis(24, 0, 0);
 
         long delayMillis = -1L;
         if (currentMillis > fixedMillis) {
@@ -247,6 +252,13 @@ public class Utils {
             delayMillis = fixedMillis - currentMillis;
         }
         System.out.println("--------delayMillis: " + delayMillis);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                // do sth
+            }
+        }, delayMillis);
     }
 
     public static long currentTimeToMillis() {
@@ -273,24 +285,16 @@ public class Utils {
         return totalMillis;
     }
 
-    public static long fixedTimeToMillis(int hours, int minutes, int seconds) {
-//		System.out.println("------- HOUR: " + hours);
-//		System.out.println("------- MINUTE: " + minutes);
-//		System.out.println("------- SECOND: " + seconds);
-
-        long hours2Seconds = TimeUnit.HOURS.toSeconds(hours);
-        long minutes2Seconds = TimeUnit.MINUTES.toSeconds(minutes);
-//		System.out.println("------- HOUR to SECOND: " + hours2Seconds);
-//		System.out.println("------- MINUTE TO SECOND: " + minutes2Seconds);
-//		System.out.println("------- SECOND: " + seconds);
-
-        long totalSeconds = hours2Seconds + minutes2Seconds + seconds;
-//		System.out.println("------------total seconds: " + totalSeconds);
-
-        long totalMillis = TimeUnit.SECONDS.toMillis(totalSeconds);
-//		System.out.println("------------total millis: " + totalMillis);
-
-        return totalMillis;
+    /**
+     * 将具体的时分秒转换成毫秒
+     * @param hours
+     * @param minutes
+     * @param seconds
+     * @return
+     */
+    public static long toMillis(int hours, int minutes, int seconds) {
+        long total = TimeUnit.HOURS.toMillis(hours) + TimeUnit.SECONDS.toMillis(seconds) + TimeUnit.MINUTES.toMillis(minutes);
+        return total;
     }
 
     public static final String IP_REGULAR_EXPRESS = "^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})";
@@ -307,6 +311,27 @@ public class Utils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 每次触摸遥控器后重新启动定时器
+     */
+    private void startUntouchControllerTimer() {
+        Timer timer = new Timer();
+        // 取消原来的定时器
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                // do sth
+            }
+        }, TimeUnit.SECONDS.toMicros(60L));
+
     }
 
 }

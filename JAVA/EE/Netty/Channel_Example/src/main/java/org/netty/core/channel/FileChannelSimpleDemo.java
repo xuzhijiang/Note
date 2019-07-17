@@ -1,9 +1,6 @@
 package org.netty.core.channel;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.MappedByteBuffer;
@@ -17,46 +14,65 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * 使用FileChannel读取数据到Buffer（缓冲区）以及利用Buffer（缓冲区）写入数据到FileChannel：
+ *
  * 获取通道的三种方式
- * 1. java针对支持通道的类提供了getChannel()方法。
- * 本地IO:FileInputStream/FileOutputStream、RandomAcsessFile。
- * 网络IO:Socket、ServerSocket、DatagramSocket。
- *
+ * 1. java针对支持通道的类提供了getChannel()方法
  * 2. 在jdk1.7中的NIO.2针对各个通道提供了静态方法open();
- *
  * 3. Files工具类的newByteChannel()
  *
  * 注意:以下示例都是使用通道解决本地的数据传输，NIO的核心是网络数据传输。
  */
 public class FileChannelSimpleDemo {
 
-    public static void main(String[] args) {
+    private static final String TEST_FILE_NAME = "test.txt";
 
+    public static void main(String[] args) throws IOException {
+        createTestFile();
+//        copyFileUsingFileChannel();
     }
 
+    public static void createTestFile() throws IOException {
+        File file = new File(TEST_FILE_NAME);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        FileWriter fw = new FileWriter(file);
+        fw.write("test file text");
+        fw.close();
+    }
+
+    public static void removeTestFile() {
+        File file = new File(TEST_FILE_NAME);
+        if (file.exists()) {
+            file.delete();
+        }
+    }
     /**
-     * 利用通道完成文件的复制(非直接缓冲区)
+     * 利用FileChannel通道完成文件的复制(非直接缓冲区)
      */
-    public static void test1(){
+    public static void copyFileUsingFileChannel(){
         FileInputStream fis = null;
         FileOutputStream fos = null;
         // 获取通道
         FileChannel inChannel = null;
         FileChannel outChannel = null;
         try {
-            fis = new FileInputStream("1.jpg");
-            fos = new FileOutputStream("2.jpg");
+            fis = new FileInputStream(TEST_FILE_NAME);
+            fos = new FileOutputStream("backup.txt");
+            // java针对支持通道的类提供了getChannel()方法
             inChannel = fis.getChannel();
             outChannel = fos.getChannel();
-            //分配指定大小的缓冲区,注意allocate分配的是非直接缓冲区
-            ByteBuffer buffer = ByteBuffer.allocate(1024);
-            //将通道中的数据存入缓存区中
-            while(inChannel.read(buffer) !=-1){
-                buffer.flip();//切换到数据模式
-                //将缓冲区中的数据写入通道中
+            ByteBuffer buffer = ByteBuffer.allocate(1024);//分配指定大小的缓冲区,注意allocate分配的是非直接缓冲区
+
+            while (inChannel.read(buffer) != -1){// 将通道中的数据写入缓存区buffer中
+                buffer.flip();// 从写模式切换到读模式
+                // 将缓冲区中的数据写入通道中
                 outChannel.write(buffer);
-                buffer.clear();//清空缓存区
+                buffer.clear();// 清空缓存区
             }
+
         }catch (IOException e) {
             e.printStackTrace();
         }finally{

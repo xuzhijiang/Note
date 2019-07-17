@@ -10,13 +10,13 @@ Java中提供的IO有关的API，其实依赖操作系统层面的IO操作实现
 
 ## Linux中的5中IO模型
 
-在Linux(UNIX)操作系统中，共有五种IO模型：
+在《UNIX网络编程：卷一》第六章——I/O复用。书中向我们提及了5种类UNIX下可用的I/O模型：
 
-- 阻塞式 I/O
-- 非阻塞式 I/O
-- I/O 复用（select 和 poll）
-- 信号驱动式 I/O（SIGIO）
-- 异步 I/O（AIO）
+- 阻塞式 I/O:blocking IO
+- 非阻塞式 I/O:nonblocking IO
+- I/O 复用（select，poll，epoll）:IO multiplexing
+- 信号驱动式 I/O（SIGIO）:signal driven IO
+- 异步 I/O（POSIX的aio_系列函数）:asynchronous IO
 
 ## 到底什么是IO
 

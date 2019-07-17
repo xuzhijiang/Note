@@ -1,22 +1,10 @@
 package com.android.core.media;
 
 import android.media.MediaPlayer;
-import android.os.Handler;
-import android.os.Looper;
 
 import java.io.IOException;
 
-public class CustomMediaPlayer extends MediaPlayer implements SoftDetectorMediaListener {
-
-    private Handler mMediaEventHandler;
-
-    public CustomMediaPlayer() {
-        Looper looper = Looper.myLooper();
-        if (looper == null) {
-            looper = Looper.getMainLooper();
-        }
-        mMediaEventHandler = new SoftDetectorMediaHandler(looper);
-    }
+public class CustomMediaPlayer extends MediaPlayer {
 
     @Override
     public void prepare() throws IOException, IllegalStateException {
@@ -56,11 +44,6 @@ public class CustomMediaPlayer extends MediaPlayer implements SoftDetectorMediaL
     @Override
     public void release() {
         super.release();
-    }
-
-    @Override
-    public void onMediaEvent(MediaPlayer player) {
-
     }
 
 }

@@ -38,7 +38,7 @@ public class TimeClient {
             }
         }
 
-        //如果走到这一步，说明连接建立成功
+        // 如果走到这一步，说明连接建立成功
         while (true){
             buffer.put("GET CURRENT TIME".getBytes());
             buffer.flip();

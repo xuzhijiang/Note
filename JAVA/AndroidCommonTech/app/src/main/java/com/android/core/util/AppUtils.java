@@ -357,4 +357,13 @@ public class AppUtils {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
+
+    public static void deleteAttributeByKey(Context context, String spName, String fileName, String key) {
+        SharedPreferences sp = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor = editor.remove(key);
+        editor.commit();
+    }
+
+
 }

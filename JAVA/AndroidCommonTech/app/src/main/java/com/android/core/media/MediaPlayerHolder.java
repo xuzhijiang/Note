@@ -4,11 +4,11 @@ public class MediaPlayerHolder {
 
     private CustomMediaPlayer player;
 
-    private MediaPlayerListener listener;
+    private MediaPlayerListenerImpl listener;
 
     public MediaPlayerHolder() {
         player = new CustomMediaPlayer();
-        listener = new MediaPlayerListener();
+        listener = new MediaPlayerListenerImpl();
 
         player.setOnBufferingUpdateListener(listener);
         player.setOnCompletionListener(listener);

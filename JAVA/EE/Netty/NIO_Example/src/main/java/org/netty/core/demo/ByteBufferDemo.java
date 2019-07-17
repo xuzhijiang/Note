@@ -6,22 +6,33 @@ import java.nio.ByteBuffer;
 /**
  * 以 ByteBuffer 类为例,也就是字节缓冲.
  */
-public class BufferCreateDemo {
+public class ByteBufferDemo {
 
-    // 新的缓冲区是由allocate或wrap操作创建的:
-
-    // 1. allocate操作创建一个缓冲区对象并分配一个私有的空间来储存容量大小的数据元素。
-    // 2. wrap操作创建一个缓冲区对象但是不分配任何空间来储存数据元素。
-    // 它使用您所提供的数组作为存储空间来储存缓冲区中的数据元素。
     public static void main(String[] args) {
-        //方式1：allocate方式直接分配，内部将隐含的创建一个数组
+
+//        createByteBuffer();
+
+//         copyDataFromByteBufferToByteArray();
+//        testMark();
+        allMethodsTest();
+    }
+
+    /**
+     * 缓冲区是由allocate或wrap操作创建的:
+     *
+     *      1. allocate创建一个缓冲区对象并分配一个私有的空间来储存数据元素。
+     *      2. wrap操作创建一个缓冲区对象但是不分配任何空间来储存数据元素。
+     *      它使用您所提供的数组作为存储空间来储存缓冲区中的数据元素。
+     */
+    private static void createByteBuffer() {
+        // 方式1：allocate方式直接分配，内部将隐含的创建一个数组
         // 这段代码隐含地从堆空间中分配了一个 byte 型数组作为备份存储器来储存 10 个 byte变量
         ByteBuffer allocate = ByteBuffer.allocate(10);
 
         //方式2：通过wrap根据一个已有的数组创建
         // 这意味着通过调用put()函数造成的对缓冲区的改动会直接影响这个数组，
         // 而且对这个数组的任何改动也会对这个缓冲区对象可见
-        byte[] bytes=new byte[20];
+        byte[] bytes = new byte[20];
         ByteBuffer wrap = ByteBuffer.wrap(bytes);
 
         // 方式3：通过wrap根据一个已有的数组指定区间创建
@@ -33,10 +44,6 @@ public class BufferCreateDemo {
 
         //打印出刚刚创建的缓冲区的相关信息
         print(allocate, wrap, wrapoffset);
-
-        test1();
-
-        testMark();
     }
 
     private static void print(Buffer... buffers) {
@@ -44,36 +51,26 @@ public class BufferCreateDemo {
             System.out.println("capacity="+buffer.capacity()
                     +",limit="+buffer.limit()
                     +",position="+buffer.position()
-                    +",hasRemaining:"+buffer.hasArray()
+                    +",hasRemaining:"+buffer.hasRemaining()
                     +",remaining="+buffer.remaining()
                     +",hasArray="+buffer.hasArray()
                     +",isReadOnly="+buffer.isReadOnly()
                     +",arrayOffset="+buffer.arrayOffset());
-            // arrayOffset()，返回缓冲区数据在数组中存储的开始位置的偏移量（从数组头 0 开始计算）。
-            // 如果您使用了带有三个参数的版本的 wrap()函数来创建一个缓冲区，对于这个缓冲区，
-            // arrayOffset()会一直返回 0
         }
     }
 
     /**
-     * Buffer基本用法实现测试
+     * 把数据从ByteBuffer拷贝到ByteArray中
      */
-    private static void test1(){
+    private static void copyDataFromByteBufferToByteArray(){
         String str = "Hello";
-        //分配一个指定大小的缓冲区
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
-        //利用put方法把str字符串存储到buffer缓冲区中
-        buffer.put(str.getBytes());
-        //切换到读数据模式
-        buffer.flip();
-        //利用get方法读数据(buffer.limit()就是buffer中元素的个数)
-        byte [] dst = new byte[buffer.limit()];
-        // 将buffer中的数据存放到dst中
-        buffer.get(dst);
-        //打印读到的数据
-        System.out.println(new String(dst,0,dst.length));
-        //rewind():可重复读数据
-        buffer.rewind();
+        ByteBuffer buffer = ByteBuffer.allocate(1024); // 分配缓冲区
+        buffer.put(str.getBytes()); // 把str字符串存储到buffer缓冲区中
+        buffer.flip();// 从写模式切换到读模式
+        byte [] dst = new byte[buffer.limit()];// (buffer.limit()就是刚刚写模式下的position，即写入的元素的个数)
+        buffer.get(dst); // 将buffer中的数据存放到dst中
+        System.out.println("dst: " + new String(dst));
+        buffer.rewind();// rewind()把position设为0，mark设为-1，不改变limit的值,这样我们可以重复读取buffer中的数据。
         //clear():清空缓冲区,但是缓冲区中的数据依然被存在，但是数据处于“被遗忘”状态
         buffer.clear();
     }
@@ -82,22 +79,24 @@ public class BufferCreateDemo {
         String str = "abcde";
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         buffer.put(str.getBytes());
-        buffer.flip();
-        System.out.println("没有读数据====="+buffer.position());
-        //第一次读数据
+        buffer.flip();// 从写模式切换到读模式.
+        System.out.println("position:"+buffer.position()+", limit: " + buffer.limit());
+
+        // 第一次读数据
         byte[] dst = new byte[buffer.limit()];
-        buffer.get(dst,0,2);
-        System.out.println(new String(dst,0,2));
-        System.out.println("mark标记前的position====="+buffer.position());
-        //Mark标记,记录position的值2,
+        buffer.get(dst,0,2);// 把buffer中0-2的数据读到dst中.
+        System.out.println("第一次读数据导dst的0-2: " + new String(dst,0,2));
+
+        System.out.println("mark标记前的position====="+buffer.position());// position的值2
         buffer.mark();
-        System.out.println("mark标记后============");
+
         //第二次读数据
         buffer.get(dst,2,2);
-        System.out.println(new String(dst,2,2));
-        System.out.println("第二次读取数据后====="+buffer.position());
-        //reset()方法后
-        buffer.reset();
+        System.out.println("第一次读数据导dst的2-4:"+ new String(dst,2,2));
+        System.out.println("第二次读取数据后的position====="+buffer.position());
+
+        // reset()方法后
+        buffer.reset();// reset到了之前调用mark的时候的postion.
         System.out.println("reset方法后的position====="+buffer.position());
         //判断缓冲区是否还有数据
         if(buffer.hasRemaining()){
@@ -106,4 +105,7 @@ public class BufferCreateDemo {
         }
     }
 
+    private static void allMethodsTest() {
+
+    }
 }

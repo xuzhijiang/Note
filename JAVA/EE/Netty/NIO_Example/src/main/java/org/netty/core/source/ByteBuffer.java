@@ -1,4 +1,4 @@
-package org.netty.core.concept;
+package org.netty.core.source;
 
 
 public abstract class ByteBuffer {
@@ -24,6 +24,6 @@ public abstract class ByteBuffer {
 //    public abstract ByteBuffer put (byte b);//从当前位置上普通，put之后，position会自动+1
 //    public abstract ByteBuffer put (int index, byte b);//从绝对位置上put
 
-    // 下面我们通过详细的案例说明，如何创建缓冲区，以及对缓存区进行操作：BufferCreateDemo
+    // 下面我们通过详细的案例说明，如何创建缓冲区，以及对缓存区进行操作：ByteBufferDemo
 
 }
