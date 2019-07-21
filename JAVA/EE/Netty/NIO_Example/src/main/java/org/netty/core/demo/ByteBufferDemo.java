@@ -14,7 +14,6 @@ public class ByteBufferDemo {
 
 //         copyDataFromByteBufferToByteArray();
 //        testMark();
-        allMethodsTest();
     }
 
     /**
@@ -103,9 +102,5 @@ public class ByteBufferDemo {
             //输出还有数据的数量
             System.out.println("remaining: " + buffer.remaining());
         }
-    }
-
-    private static void allMethodsTest() {
-
     }
 }

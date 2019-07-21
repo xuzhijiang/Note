@@ -56,6 +56,8 @@ public class FileChannelSimpleDemo {
         FileInputStream fis = null;
         FileOutputStream fos = null;
         // 获取通道
+        // 应该注意的是，只有套接字 Channel 才能配置为非阻塞，
+        // 而 FileChannel 不能，为 FileChannel 配置非阻塞也没有意义
         FileChannel inChannel = null;
         FileChannel outChannel = null;
         try {
@@ -64,10 +66,11 @@ public class FileChannelSimpleDemo {
             // java针对支持通道的类提供了getChannel()方法
             inChannel = fis.getChannel();
             outChannel = fos.getChannel();
+
             ByteBuffer buffer = ByteBuffer.allocate(1024);//分配指定大小的缓冲区,注意allocate分配的是非直接缓冲区
 
             while (inChannel.read(buffer) != -1){// 将通道中的数据写入缓存区buffer中
-                buffer.flip();// 从写模式切换到读模式
+                buffer.flip();// 从写buffer模式切换到读buffer模式
                 // 将缓冲区中的数据写入通道中
                 outChannel.write(buffer);
                 buffer.clear();// 清空缓存区

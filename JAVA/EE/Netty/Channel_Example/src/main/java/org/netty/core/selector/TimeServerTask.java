@@ -22,6 +22,7 @@ public class TimeServerTask implements Runnable{
             int count = 0;
             while((count = socketChannel.read(byteBuffer)) > 0){
                 byteBuffer.flip();
+
                 byte[] request = new byte[byteBuffer.remaining()];
                 byteBuffer.get(request);
                 String requestStr = new String(request);

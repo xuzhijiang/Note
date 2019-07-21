@@ -31,11 +31,16 @@ public class TimeServer {
     }
 
     public static void main(String[] args) throws IOException {
-        ServerSocketChannel ssc = ServerSocketChannel.open();
-        ssc.socket().bind(new InetSocketAddress(8080));
-        ssc.configureBlocking(false);
+        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
+        serverSocketChannel.socket().bind(new InetSocketAddress(8080));
+        // 通道必须配置为非阻塞模式，否则使用选择器就没有任何意义了，因为如果通道在某个事件上被阻塞，
+        // 那么服务器就不能响应其它事件，必须等待这个事件处理完毕才能去处理其它事件，
+        // 显然这和选择器的作用背道而驰。
+        serverSocketChannel.configureBlocking(false);
+
         Selector selector = Selector.open();
-        ssc.register(selector, ssc.validOps());
+        // 在将通道注册到选择器上时，还需要指定要注册的具体事件
+        serverSocketChannel.register(selector, serverSocketChannel.validOps());
 
         while(true){
             int readyCount = selector.select(1000);
@@ -43,22 +48,21 @@ public class TimeServer {
                 continue;
             }
 
-            Set<SelectionKey> selectionKeys = selector.selectedKeys();
-            Iterator<SelectionKey> keyIterator = selectionKeys.iterator();
+            Set<SelectionKey> keys = selector.selectedKeys();
+            Iterator<SelectionKey> keyIterator = keys.iterator();
             while(keyIterator.hasNext()){
-                SelectionKey selectionKey = keyIterator.next();
-                if(selectionKey.isValid()){
+                SelectionKey key = keyIterator.next();
+                if(key.isValid()){
                     // 表示ServerSocketChannel
-                    if(selectionKey.isAcceptable()){
-                        ServerSocketChannel server = (ServerSocketChannel) selectionKey.channel();
+                    if(key.isAcceptable()){
+                        ServerSocketChannel server = (ServerSocketChannel) key.channel();
                         SocketChannel socketChannel = server.accept();
-                        socketChannel.configureBlocking(false);
-                        socketChannel.register(selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE);
-                    }
 
-                    // 表示SocketChannel
-                    if(selectionKey.isReadable()){
-                        executor.submit(new TimeServerTask(selectionKey));
+                        socketChannel.configureBlocking(false);
+                        // 这个新连接主要用于从客户端读取数据和写数据
+                        socketChannel.register(selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE);
+                    } else if(key.isReadable()){
+                        executor.submit(new TimeServerTask(key));
                     }
                     keyIterator.remove();
                 }

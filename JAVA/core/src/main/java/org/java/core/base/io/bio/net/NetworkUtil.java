@@ -1,4 +1,4 @@
-package org.java.core.base.io.net;
+package org.java.core.base.io.bio.net;
 
 import org.junit.Test;
 
@@ -7,12 +7,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * - Socket：使用 TCP 协议实现网络通信
+ * - Datagram：使用 UDP 协议实现网络通信。DatagramSocket：通信类,DatagramPacket：数据包类
+ *
+ * ,ServerSocket：服务器端类,Socket：客户端类,
+ * 服务器ServerSocket和客户端Socket通过 InputStream 和 OutputStream 进行输入输出。
+ */
 public class NetworkUtil {
 
     @Test
