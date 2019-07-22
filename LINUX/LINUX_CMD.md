@@ -14,6 +14,8 @@ export PATH=$PATH:$JAVA_HOME/bin
 
 ### RedHat命令
 
+>Linux命令大全：[http://man.linuxde.net/](http://man.linuxde.net/)
+
 ```shell
 # yum 主要功能是更方便的添加/删除/更新RPM 包，自动解决包的倚赖性问题，便于管理大量系统的更新问题。
 
@@ -205,6 +207,8 @@ tmpfs          tmpfs      47G     0   47G   0% /sys/fs/cgroup
 
 # 查看某一个文件夹的大小
 df -T -h /boot/
+
+df -a
 ```
 
 ## Android
@@ -218,4 +222,8 @@ dumpsys SurfaceFlinger --fps=1
 
 # 查看广播
 dumpsys |grep BroadcastRecord
+
+monkey命令
+
+aapt
 ```
