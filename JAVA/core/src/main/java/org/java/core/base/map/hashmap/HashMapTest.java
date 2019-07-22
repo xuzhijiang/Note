@@ -1,0 +1,255 @@
+package org.java.core.base.map.hashmap;
+
+import org.junit.Test;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.AbstractMap;
+import java.util.function.BiFunction;
+
+public class HashMapTest {
+
+	public static void main(String[] args) {
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put("1", "1");
+		map.put("2", "2");
+		map.put("3", "3");
+		map.put("4", null); // null value
+		map.put(null, "100"); // null key
+
+		String value = map.get("3");
+		System.out.println("Key = 3, Value = " + value);
+
+		System.out.println("Key = 5, Value=" + map.getOrDefault("5", "Default Value"));
+
+		boolean keyExists = map.containsKey(null);
+		boolean valueExists = map.containsValue("100");
+
+		System.out.println("keyExists=" + keyExists + ", valueExists=" + valueExists);
+
+		Set<Map.Entry<String, String>> entrySet = map.entrySet();
+		System.out.println(entrySet);
+
+		System.out.println("map size=" + map.size());
+
+		Map<String, String> map1 = new HashMap<>();
+		map1.putAll(map);
+		System.out.println("map1 mappings= " + map1);
+
+		String nullKeyValue = map1.remove(null);
+		System.out.println("map1 null key value = " + nullKeyValue);
+		System.out.println("map1 after removing null key = " + map1);
+
+		Set<String> keySet = map.keySet();
+		System.out.println("map keys = " + keySet);
+
+		Collection<String> values = map.values();
+		System.out.println("map values = " + values);
+
+		map.clear();
+		System.out.println("map is empty=" + map.isEmpty());
+
+	}
+
+	@Test
+	public void testHashMapConstructor() {
+		Map<String, String> map1 = new HashMap<>();
+
+		Map<String, String> map2 = new HashMap<>(2^5);
+
+		Map<String, String> map3 = new HashMap<>(32,0.80f);
+
+		Map<String,String> map4 = new HashMap<>(map1);
+	}
+
+	/**
+	 * keySet方法返回HashMap中键的Set视图。 此Set视图由HashMap支持，
+	 * HashMap中的任何更改都反映在Set中，反之亦然。
+	 */
+	@Test
+	public void testHashMapKeySet() {
+		Map<String, String> map = new HashMap<>();
+		map.put("1", "a");
+		map.put("2", "b");
+		map.put("3", "c");
+
+		Set<String> keySet = map.keySet();
+		System.out.println(keySet);
+
+		map.put("4", "d");
+		System.out.println(keySet); // keySet is backed by Map
+
+		keySet.remove("1");
+		System.out.println(map); // map is also modified
+
+		Set<String> hashSet = new HashSet<>(map.keySet()); // copies the key to new Set
+		map.put("5", "5");
+		System.out.println(hashSet); // hashSet is not modified
+
+		System.out.println("----------");
+		for (String key : keySet) {
+			System.out.println(key);
+		}
+		System.out.println("----------");
+		Iterator<String> iterator = keySet.iterator();
+		while (iterator.hasNext()) {
+			System.out.println(iterator.next());
+		}
+	}
+
+	/**
+	 * values方法返回Map中value的Collection视图。此集合由HashMap支持，
+	 * 因此HashMap中的任何更改都将反映在值集合中，
+	 */
+	@Test
+	public void testHashMapValues() {
+		Map<String, String> map = new HashMap<>();
+		map.put("1", "a");
+		map.put("2", "b");
+		map.put("3", null);
+		map.put("4", null);
+		map.put(null, "d");
+
+		Collection<String> values = map.values();
+		System.out.println("map values = " + values);
+
+		map.remove(null);
+		System.out.println("map values after removing null key = " + values);
+
+		map.put("5", "5");
+		System.out.println("map values after put = " + values);
+
+		System.out.println(map);
+
+		values.remove("a"); // changing values collection
+		System.out.println(map); // updates in map too
+
+		System.out.println("---------");
+
+		//values的遍历方式一
+		for (String v : values) {
+			System.out.println(v);
+		}
+
+		System.out.println("-----------");
+
+		//values的遍历方式二
+		Iterator<String> iterator = values.iterator();
+		while(iterator.hasNext()){
+			System.out.println(iterator.next());
+		}
+	}
+
+	/**
+	 *  entrySet method returns the Set view of mappings.
+	 *  This entrySet is backed by HashMap, so any changes
+	 *  in map reflects in entry set and vice versa.
+	 */
+	@Test
+	public void testHashMapEntrySet() {
+		Map<String, String> map = new HashMap<>();
+		map.put("1", "1");
+		map.put("2", null);
+		map.put(null, "100");
+
+		Set<Map.Entry<String,String>> entrySet = map.entrySet();
+		Iterator<Map.Entry<String, String>> iterator = entrySet.iterator();
+
+		System.out.println("map before processing = "+map);
+		System.out.println("entrySet before processing = "+entrySet);
+
+		for (Map.Entry<String, String> entry : entrySet) {
+			System.out.println("key: " + entry.getKey());
+		}
+
+		while (iterator.hasNext()) {
+			Map.Entry<String, String> next = iterator.next();
+			if(next.getKey() == null) iterator.remove();
+		}
+
+		System.out.println("map after processing = "+map);
+		System.out.println("entrySet after processing = "+entrySet);
+
+		Map.Entry<String, String> simpleEntry = new AbstractMap.SimpleEntry<>("1","1");
+		entrySet.remove(simpleEntry);
+		System.out.println("map after removing Entry = "+map);
+		System.out.println("entrySet after removing Entry = "+entrySet);
+	}
+
+	/**
+	 * absent: 缺席
+	 */
+	@Test
+	public void testHashMapPutIfAbsent() {
+		Map<String, String> map = new HashMap<>();
+		map.put("1", "1");
+		map.put("2", null);
+		map.put(null, "100");
+
+		System.out.println("map before putIfAbsent = "+map);
+		System.out.println("putIfAbsent returns: "+map.putIfAbsent("1", "4"));
+		System.out.println("map after putIfAbsent = "+map);
+
+		System.out.println("map before putIfAbsent = "+map);
+		System.out.println("putIfAbsent returns: "+map.putIfAbsent("3", "3"));
+		System.out.println("map after putIfAbsent = "+map);
+	}
+
+	@Test
+	public void testHashMapCompute() {
+		Map<String, String> map = new HashMap<>();
+		map.put("1", "1");
+		map.put("2", "2");
+		map.put(null, "10");
+		map.put("10", null);
+
+		System.out.println("map before compute = "+map);
+		for (String key : map.keySet()) {
+			map.compute(key, (k,v) -> k+v);
+		}
+		map.compute("5", (k,v) -> k+v); //key not present, v = null
+		System.out.println("map after compute = "+map);
+	}
+
+	/**
+	 *  HashMap replaceAll方法可用于将每个条目的值替换为在该条目上调用给定函数的结果。
+	 *  在Java 8中添加了此方法，我们可以将lambda表达式用于此方法参数。
+	 */
+	@Test
+	public void testHashMapReplaceAll() {
+		Map<String, String> map = new HashMap<>();
+		map.put("1", "a");
+		map.put("2", "b");
+		map.put(null, "c");
+
+		System.out.println("map before replaceAll = " + map);
+		map.replaceAll(new MyBiFunction());
+		System.out.println("map after replaceAll = " + map);
+
+		// replaceAll using lambda expressions
+		map.replaceAll((k, v) -> {
+			if (k != null) return k + v;
+			else return v;});
+		System.out.println("map after replaceAll lambda expression = " + map);
+
+	}
+
+	private class MyBiFunction implements BiFunction<String, String, String> {
+
+		@Override
+		public String apply(String t, String u) {
+			if (t != null)
+				return t + u;
+			else
+				return u;
+		}
+
+	}
+}
+
+

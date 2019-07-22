@@ -8,7 +8,6 @@ HashMap中key用Set来存放，key不允许重复，value是用Collection存放�
 * 不保证映射的顺序,HashMap不是有序集合。您可以通过keys set迭代HashMap条目(entries)，
 但不保证它们按照它们添加到HashMap的顺序。
 * HashMap几乎与Hashtable类似，只是它不同步并允许null键和值。
-* HashMap使用它的inner class Node<K,V>来存储map entries.
 * 如果key用自定义的类，那么自定义的类就必须重写equals方法和hashCode方法
 * 如果添加两个相同的key,后面的会替换前面的
 * HashMap 判断两个 key 相等的标准是：两个 key 通过 equals() 方法返回 true，hashCode 值也相等。
@@ -42,55 +41,6 @@ public HashMap（int initialCapacity，float loadFactor）：这个HashMap构造
 
 public HashMap（Map <？extends K，？extends V> m）：创建一个映射，其映射与指定的映射相同，加载因子为0.75
 
-java中HashMap的重要方法：
-
-public void clear（）：这个HashMap方法将删除所有映射，HashMap将变为空。
-public boolean containsKey（Object key）：如果密钥存在，则此方法返回'true'，否则返回'false'。
-public boolean containsValue（Object value）：如果值存在，则此HashMap方法返回true，否则返回false。
-public Set <Map.Entry <K，V >> entrySet（）：遍历HashMap的键值对
-public V get（Object key）：返回映射到指定键的值，如果没有键的映射，则返回null。
-public boolean isEmpty（）：如果不存在键值映射，则返回true的实用程序方法。
-public Set <K> keySet（）：返回一个Set，包含了HashMap中的Key,用于遍历HashMap中的所有Key
-public V put（K key，V value）：将指定值与此映射中的指定键相关联。如果映射先前包含键的映射，则替换旧值。
-public void putAll（Map <？extends K，？extends V> m）：将指定地图中的所有映射复制到此地图。这些映射将替换此映射对当前位于指定映射中的任何键的任何映射。
-public V remove（Object key）：从此映射中移除指定键的映射（如果存在）。
-public int size（）：返回此映射中键 - 值映射的数量。
-public Collection <V> values（）：返回一个 Collection，包含了HashMap中的value，遍历HashMap中的value
-
-
-```java
-public static void main(String[] args) {
-	HashMap<Object,Object> hashMap = new HashMap<Object, Object>();
-	hashMap.put("AA", new Person("张三",12));
-	hashMap.put("BB", new Person("李四",13));
-	hashMap.put("CC", new Person("王五",14));
-	hashMap.put("DD", new Person("陈六",14));
-	Collection<Object> values = hashMap.values();
-	//values的遍历方式一
-	for (Object object : values) {
-		System.out.println(object);
-	}
-	//values的遍历方式二
-	Iterator<Object> iterator = values.iterator();
-	while(iterator.hasNext()){
-		System.out.println(iterator.next());
-	}
-}
-```
-
-```java
-public static void main(String[] args) {
-	HashMap<Object,Object> hashMap = new HashMap<Object, Object>();
-	hashMap.put("AA", new Person("张三",12));
-	hashMap.put("BB", new Person("李四",13));
-	hashMap.put("CC", new Person("王五",14));
-	hashMap.put("DD", new Person("陈六",14));
-	Set<Entry<Object,Object>> entrySet = hashMap.entrySet();
-	for (Entry<Object, Object> entry : entrySet) {
-		System.out.println(entry);
-	}
-}
-```
 
 There are many new methods in HashMap introduced in Java 8：
 
