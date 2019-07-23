@@ -4,22 +4,18 @@
 根据hash算法来计算entry(key-value)的存储位置.一个key-value对，就是一个Entry,所有的Entry是用Set存放，不可重复.
 HashMap中key用Set来存放，key不允许重复，value是用Collection存放，可重复.
 
-* HashMap中的key和value都可以为null，且它的方法都没有synchronized。 其他方法的实现大部分跟HashTable一致
-* 不保证映射的顺序,HashMap不是有序集合。您可以通过keys set迭代HashMap条目(entries)，
-但不保证它们按照它们添加到HashMap的顺序。
-* HashMap几乎与Hashtable类似，只是它不同步并允许null键和值。
+* HashMap中的key和value都可以为null，且它的方法都没有synchronized。 
+* HashMap几乎与Hashtable类似，只是HashMap不是同步的，并HashMap允许null键和值。
+* HashMap不是有序集合
 * 如果key用自定义的类，那么自定义的类就必须重写equals方法和hashCode方法
 * 如果添加两个相同的key,后面的会替换前面的
 * HashMap 判断两个 key 相等的标准是：两个 key 通过 equals() 方法返回 true，hashCode 值也相等。
 * HashMap 判断两个 value相等的标准是：两个 value 通过 equals() 方法返回 true。
 * HashMap的容量就是底层table数组的长度。
-* 负载因子：散列表的实际元素数目/散列表的容量，负载因子衡量的是一个散列表的空间使用程度，值越大代表装填程度越高，反之越小，如果负载因子越大代表空间利用充分，但是查询，搜索效率就降低，过小，空间利用率就降低，
-* HashMap是数组和链表的结合体，允许插入null的key和value。
+* 负载因子越大代表空间利用充分，但是查询，搜索效率就降低，过小，空间利用率就降低，
+* HashMap是数组和链表的结合体
 * HashMap是线程不安全的，采用Fail-Fast机制。
 * HashMap进行数组扩容时，需要重新计算每个元素在数组中的位置，耗性能。
-
-HashMap stores entries into multiple singly linked lists, called buckets or bins. Default number of bins 
-is 16 and it’s always power of 2.
 
 >HashMap对get和put操作使用了Key的hashCode()和equals()方法。所以HashMap关键对象应该提供这些方法的良好实现。
 这就是不可变类更适合键的原因，例如String和Interger。
@@ -27,39 +23,9 @@ is 16 and it’s always power of 2.
 Java HashMap不是线程安全的，对于多线程环境，您应该使用ConcurrentHashMap类或使用
 Collections.synchronizedMap（）方法获取同步映射。
 
-Java HashMap提供了四个构造函数：
-
-public HashMap（）：最常用的HashMap构造函数。 
-此构造函数将创建一个空的HashMap，其默认初始容量为16，加载因子为0.75。
-
-public HashMap（int initialCapacity）：此HashMap构造函数用于指定初始容量和0.75加载因子。 
-如果您知道要存储在HashMap中的映射数，这对于避免重新散列非常有用。
-
-public HashMap（int initialCapacity，float loadFactor）：这个HashMap构造函数将创建一个具
-有指定初始容量和加载因子的空HashMap。 如果知道要在HashMap中存储的最大映射数，则可以使用此方法。 
-在常见情况下，您应该避免这种情况，因为负载系数0.75可以在空间和时间成本之间进行良好的权衡。
-
-public HashMap（Map <？extends K，？extends V> m）：创建一个映射，其映射与指定的映射相同，加载因子为0.75
-
-
-There are many new methods in HashMap introduced in Java 8：
-
-public V computeIfAbsent（K key，Function <？super K，？extends V> mappingFunction）：如果指定的键尚未与值关联（或映射为null），则此方法尝试使用给定的映射计算其值函数并将其输入HashMap，除非Null。
-public V computeIfPresent（K key，BiFunction <？super K，？super V，？extends V> remappingFunction）：如果指定键的值存在且为非null，则尝试计算给定键及其当前键的新映射映射值。
-public V compute（K key，BiFunction <？super K，？super V，？extends V> remappingFunction）：此HashMap方法尝试计算指定键及其当前映射值的映射。
-public void forEach（BiConsumer <？super K，？super V> action）：此方法为此映射中的每个条目执行给定操作。
-public V getOrDefault（Object key，V defaultValue）：与get相同，但如果未找到指定键的映射，则返回defaultValue。
-public V merge（K key，V value，BiFunction <？super V，？super V，？extends V> remappingFunction）：如果指定的键尚未与值关联或与null关联，则将其与给定的non关联 - 空值。否则，将相关值替换为给定重映射函数的结果，或者如果结果为null则删除。
-public V putIfAbsent（K key，V value）：如果指定的键尚未与值相关联（或映射为null），则将其与给定值相关联并返回null，否则返回当前值。
-public boolean remove（Object key，Object value）：仅当指定键当前映射到指定值时才删除该条目。
-public boolean replace（K key，V oldValue，V newValue）：仅当前映射到指定值时，替换指定键的条目。
-public V replace（K key，V value）：仅当指定键当前映射到某个值时，才替换该键。
-public void replaceAll（BiFunction <？super K，？super V，？extends V> function）：将每个条目的值替换为在该条目上调用给定函数的结果。
-
 How HashMap works in java?
 
-java中的HashMap使用它的inner class Node<K，V>来存储映射mappings.
-HashMap使用散列算法，并在key上使用hashCode（）和equals（）方法进行get和put操作。
+java中的HashMap使用它的inner class Node<K，V>来存储映射mappings,HashMap使用散列算法，并在key上使用hashCode（）和equals（）方法进行get和put操作。
 
 HashMap使用单链表来存储元素，这些元素称为bin或buckets。当我们调用put方法时，
 key的hashCode用于确定存储映射(storing the mappings)的存储区(buckets)。
@@ -72,15 +38,8 @@ key的hashCode用于确定存储映射(storing the mappings)的存储区(buckets
 对于HashMap get操作，再次使用key的hashCode来确定要查找值的存储桶(存储区)(bucket)。
 识别出存储桶后，遍历条目以使用hashCode和equals方法找出Entry。如果找到匹配，则返回值，否则返回null。
 
-还有更多的事情涉及到诸如散列算法以获取密钥，重新映射映射等等。但是对于我们的工作，
-只需记住HashMap操作在Key上工作，并且需要良好的hashCode实现和equals方法以避免不必要的行为。
+对于我们的工作，只需记住HashMap在Key上操作，并且需要良好的hashCode实现和equals方法以避免不必要的行为。
 
-默认load factor 0.75提供了空间和时间复杂度之间的良好折衷。
-但您可以根据需要将其设置为不同的值。如果你想节省空间，那么你可以将它的值增加到0.80或0.90，
-但是获取/放置操作将花费更多时间。
-
-Load Factor is used to figure out when HashMap will be rehashed and bucket size will be increased. 
-Default value of bucket or capacity is 16 and load factor is 0.75. 
 
 ## HashMap底层实现原理
 

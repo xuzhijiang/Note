@@ -53,15 +53,26 @@ public class HashMapTest {
 
 		map.clear();
 		System.out.println("map is empty=" + map.isEmpty());
-
 	}
 
+
+	/**
+	 * 负载因子是用于计算何时HashMap将被用于重新散列，以及桶的大小何时应该扩容的一个参数.
+	 **/
 	@Test
 	public void testHashMapConstructor() {
+		// 此构造函数将创建一个空的HashMap，其默认初始容量为16，加载因子为0.75。
 		Map<String, String> map1 = new HashMap<>();
 
+		// 指定初始容量和默认0.75加载因子。 
+		// 如果你提前知道元素总数，那么就可以提前指定容量大小,避免重新散列消耗性能
 		Map<String, String> map2 = new HashMap<>(2^5);
 
+		// 指定容量大小和加载因子,一般情况下加载因子不要随意改
+		// 因为负载系数0.75可以在空间和时间成本之间进行良好的权衡。
+		// 默认load factor 0.75提供了空间和时间复杂度之间的良好折衷。
+		// 但你可以根据需要将其设置为不同的值。如果你想节省空间，
+		// 那么你可以将它的值增加到0.80或0.90，但是get/put操作将花费更多时间。
 		Map<String, String> map3 = new HashMap<>(32,0.80f);
 
 		Map<String,String> map4 = new HashMap<>(map1);

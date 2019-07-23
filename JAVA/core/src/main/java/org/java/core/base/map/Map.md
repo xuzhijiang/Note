@@ -45,13 +45,13 @@ Java中的HashMap采用的冲突解决方法是使用单独链表法，如下图
 https://raw.githubusercontent.com/fangjian0423/blogimages/master/images/hashmap01.png
 
     
-  有2个重要的特性影响着HashMap的性能，分别是capacity(容量)和load factor(加载因子)。
-  <p>
-  其中capacity表示哈希表bucket的数量，HashMap的默认值是16。load factor加载因子表示
-  当一个map的实际大小达到了bucket的这个比例之后，和ArrayList一样，
-  将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，
-  并将原来的对象放入新的bucket数组中。这个过程也叫做再哈希。默认的load factor为0.75 。
-  
+有2个重要的特性影响着HashMap的性能，分别是capacity(容量)和load factor(加载因子)。
+<p>
+其中capacity表示哈希表bucket的数量，HashMap的默认值是16。load factor加载因子表示
+当一个map的实际大小达到了bucket的这个比例之后，和ArrayList一样，
+将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，
+并将原来的对象放入新的bucket数组中。这个过程也叫做再哈希。默认的load factor为0.75 。
+
 ### 特点
 
 Java Map对象用于存储键值映射。 Map不能包含重复键.
@@ -68,9 +68,3 @@ Map使用hashCode和equals方法来获取和放置操作。所以可变类不适
 如果hashCode或equals的值在put之后发生更改，则在get操作中将无法获得正确的值。
 因为Map是根据key的hashCode来计算value的位置的，如果key的hashCode或equals值变化了，
 将计算错误的位置.
-
-一些重要的Map方法:
-
-	Set<K> keySet（）：返回Map中所有键的Set视图。此键集由Map支持，因此对Map的任何修改都将反映到键集，反之亦然。
-	Collection <V> values（）：返回Map中所有值的集合视图。此集合由Map支持，因此Map中的任何更改都将反映到此值集合，反之亦然。
-	Set<Map.Entry <K，V >> entrySet（）：返回Map中映射的Set视图。此Set由Map支持，因此Map中的任何修改都将反映在条目集中，反之亦然。
