@@ -12,8 +12,8 @@ import java.util.function.BiFunction;
 
 public class HashMapTest {
 
-	public static void main(String[] args) {
-
+	@Test
+	public void testHashMapMethods() {
 		Map<String, String> map = new HashMap<>();
 
 		map.put("1", "1");
@@ -22,18 +22,10 @@ public class HashMapTest {
 		map.put("4", null); // null value
 		map.put(null, "100"); // null key
 
-		String value = map.get("3");
-		System.out.println("Key = 3, Value = " + value);
-
+		System.out.println("Key = 3, Value = " + map.get("3"));
 		System.out.println("Key = 5, Value=" + map.getOrDefault("5", "Default Value"));
 
-		boolean keyExists = map.containsKey(null);
-		boolean valueExists = map.containsValue("100");
-
-		System.out.println("keyExists=" + keyExists + ", valueExists=" + valueExists);
-
-		Set<Map.Entry<String, String>> entrySet = map.entrySet();
-		System.out.println(entrySet);
+		System.out.println("null key exists? " + map.containsKey(null) + ",100 value Exists? " + map.containsValue("100"));
 
 		System.out.println("map size=" + map.size());
 
@@ -45,9 +37,6 @@ public class HashMapTest {
 		System.out.println("map1 null key value = " + nullKeyValue);
 		System.out.println("map1 after removing null key = " + map1);
 
-		Set<String> keySet = map.keySet();
-		System.out.println("map keys = " + keySet);
-
 		Collection<String> values = map.values();
 		System.out.println("map values = " + values);
 
@@ -55,13 +44,13 @@ public class HashMapTest {
 		System.out.println("map is empty=" + map.isEmpty());
 	}
 
-
 	/**
 	 * 负载因子是用于计算何时HashMap将被用于重新散列，以及桶的大小何时应该扩容的一个参数.
 	 **/
 	@Test
 	public void testHashMapConstructor() {
 		// 此构造函数将创建一个空的HashMap，其默认初始容量为16，加载因子为0.75。
+		// 当 HashMap 的 size > 16 * 0.75 时就会发生扩容
 		Map<String, String> map1 = new HashMap<>();
 
 		// 指定初始容量和默认0.75加载因子。 
@@ -76,6 +65,46 @@ public class HashMapTest {
 		Map<String, String> map3 = new HashMap<>(32,0.80f);
 
 		Map<String,String> map4 = new HashMap<>(map1);
+	}
+
+	/**
+	 * 遍历HashMap的3种方式
+	 *
+	 * **强烈建议**使EntrySet 进行遍历,因为EntrySet可以把 key value 同时取出，
+	 * 第二种还得需要通过 key 取一次 value，效率较低,
+	 * 第三种需要 `JDK1.8` 以上，通过外层遍历 table(内部数组)，内层遍历链表或红黑树。
+	 */
+	@Test
+	public void testHashMapTraverse() {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("a", 1);
+		map.put("b", 2);
+		map.put("c", 3);
+		map.put("d", 4);
+
+		// 第一种
+		Set<Map.Entry<String, Integer>> entries = map.entrySet();
+		for (Map.Entry<String, Integer> entry : entries) {
+			System.out.println("key: " + entry.getKey() + ", value: " + entry.getValue());
+		}
+
+		Iterator<Map.Entry<String, Integer>> iterator = entries.iterator();
+		while (iterator.hasNext()) {
+			Map.Entry<String, Integer> next = iterator.next();
+			System.out.println("key: " + next.getKey() + ", value: " + next.getValue());
+		}
+
+		// 第二种
+		Iterator<String> keyIterator = map.keySet().iterator();
+		while (keyIterator.hasNext()) {
+			String next = keyIterator.next();
+			System.out.println("key: " + next + ", value: " + map.get(next));
+		}
+
+		// 第三种
+		map.forEach((key, value) -> {
+			System.out.println("key=" + key + " value=" + value);
+		});
 	}
 
 	/**
@@ -262,5 +291,3 @@ public class HashMapTest {
 
 	}
 }
-
-

@@ -1,65 +1,75 @@
-### HashMap特点
+# HashMap
 
-> HashMap extends了AbstractMap类,AbstractMap实现了Map interface.
-根据hash算法来计算entry(key-value)的存储位置.一个key-value对，就是一个Entry,所有的Entry是用Set存放，不可重复.
-HashMap中key用Set来存放，key不允许重复，value是用Collection存放，可重复.
+## HashMap的特点 
 
-* HashMap中的key和value都可以为null，且它的方法都没有synchronized。 
-* HashMap几乎与Hashtable类似，只是HashMap不是同步的，并HashMap允许null键和值。
-* HashMap不是有序集合
+HashMap使用它的内部类 class Node<K，V>来存储映射,HashMap使用哈希算法来达到散列的目的，并在key上使用hashCode（）和equals（）方法进行get和put操作。
+
+> HashMap继承了AbstractMap，实现了Map接口,一个key-value对，就是一个Entry,所有的Entry都是不可重复.key不允许重复(相同的key,即equals方法返回true的key，后者的value会覆盖前者)，value可重复.
+
+* HashMap中的key和value可以为null
+* HashMap内部的元素是无序的
 * 如果key用自定义的类，那么自定义的类就必须重写equals方法和hashCode方法
 * 如果添加两个相同的key,后面的会替换前面的
 * HashMap 判断两个 key 相等的标准是：两个 key 通过 equals() 方法返回 true，hashCode 值也相等。
-* HashMap 判断两个 value相等的标准是：两个 value 通过 equals() 方法返回 true。
-* HashMap的容量就是底层table数组的长度。
-* 负载因子越大代表空间利用充分，但是查询，搜索效率就降低，过小，空间利用率就降低，
-* HashMap是数组和链表的结合体
-* HashMap是线程不安全的，采用Fail-Fast机制。
+* 我们只需记住HashMap在Key上操作，并且key需要良好的hashCode实现和equals方法以避免发生错误.
 * HashMap进行数组扩容时，需要重新计算每个元素在数组中的位置，耗性能。
 
->HashMap对get和put操作使用了Key的hashCode()和equals()方法。所以HashMap关键对象应该提供这些方法的良好实现。
-这就是不可变类更适合键的原因，例如String和Interger。
+# load factor(负载因子)的作用
 
-Java HashMap不是线程安全的，对于多线程环境，您应该使用ConcurrentHashMap类或使用
-Collections.synchronizedMap（）方法获取同步映射。
+用来控制数组存放数据的疏密程度,Map 在使用过程中不断的往里面存放数据，当数量达到了"桶容量*负载因子"的时候，
+就需要扩容，而扩容这个过程涉及到 rehash、复制数据等操作，所以非常消耗性能。因此通常建议能提前预估 HashMap 的大小最好，尽量的减少扩容带来的性能损耗
 
-How HashMap works in java?
+- load Factor太大(loadFactor接近于1)，空间利用率高，查找元素效率低，链表的长度就越长。--时间因素
+- load factor太小导致数组的利用率低,空间利用率低，存放的数据会很分散--空间因素
+- loadFactor的默认值为0.75f是官方给出的一个比较好的临界值。较好的衡量了时间因素和空间因素.
+- 负载因子越大代表空间利用充分，但是查询，搜索效率就降低，过小，空间利用率就降低，
 
-java中的HashMap使用它的inner class Node<K，V>来存储映射mappings,HashMap使用散列算法，并在key上使用hashCode（）和equals（）方法进行get和put操作。
+# HashMap实现原理
 
-HashMap使用单链表来存储元素，这些元素称为bin或buckets。当我们调用put方法时，
-key的hashCode用于确定存储映射(storing the mappings)的存储区(buckets)。
+## 以下基于 JDK1.7 分析
 
-一旦识别出桶(buckets or 存储区)，hashCode就用于检查是否已存在具有相同hashCode的key。
-如果存在具有相同hashCode的现有key，则在key上使用equals（）方法。
-如果equals返回true，则覆盖value，
-否则将对此单链接列表桶(bucket)进行新映射。如果没有具有相同hashCode的key，则将映射插入到桶中。
+![](1.7的HashMap数据结构图.png)
 
-对于HashMap get操作，再次使用key的hashCode来确定要查找值的存储桶(存储区)(bucket)。
-识别出存储桶后，遍历条目以使用hashCode和equals方法找出Entry。如果找到匹配，则返回值，否则返回null。
-
-对于我们的工作，只需记住HashMap在Key上操作，并且需要良好的hashCode实现和equals方法以避免不必要的行为。
-
-
-## HashMap底层实现原理
-
-HashMap底层是一个数组，数据中的每一个元素就是Entry类型，Entry又是一个链表结构，在jdk1.7和1.8的实现上有所不同。
-
-在jdk1.8之前,HashMap由数组 + 链表组成，也就是链表散列，数组是HashMap的主体，
-链表实则是为了解决哈希冲突而存在的，（拉链法解决哈希冲突） 。
-
-HashMap通过key的hashCode经过处理过后得到当前元素在数组中的存放位置(通过扰动函数实现，可以减少碰撞)，
-如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，
-如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。
+>HashMap是基于数组(数组需要连续内存.空间复杂度较高)和链表实现的,数组是HashMap的主体，链表实则是为了解决哈希(hash)冲突而存在的（拉链法解决哈希冲突）
 
 所谓 “拉链法” 就是：将链表和数组相结合。也就是说创建一个数组，数组中每一格就是一个链表。
 若遇到哈希冲突，则将冲突的值加到链表中即可。
 
-从上面的源码可以看出，当我们向HashMap中添加一个元素时，先根据key的hashCode计算hash值，
-根据这个hash值得到这个元素在数组的下标位置，如果这个位置已经存放了其他元素，那么他就会以链表的方式存放，
-新加入的放在链头，最先加入的放在链尾，如果数组上该位置没有元素，就直接放到该位置上。
+### put 方法
 
-### 小结：
+>首先会将传入的 Key 做 `hash(哈希)` 运算(用key的hashcode做计算)，计算出在数组中下标位置(最简单的是通过取模运算计算出index)，如果这个index位置已经存放了其他元素，那么就会以链表的方式存放，新加入的元素放在链头，老的元素加入的放在链尾，如果数组上该位置没有元素，就直接放到该位置上。
 
-当我们从HashMap中读取一个元素时，首先判断key是否为空，不为空就根据key计算hash值，根据hash值找到数组中对应位置的元素，
-然后通过key的equals方法，在对应位置的链表中找到需要元素的值。
+由于在计算机中`位运算比取模运算效率高的多`，所以 HashMap 规定数组的长度为 `2^n` 。这样用 `2^n - 1` 做位运算与取模效果一致，并且效率还要高出许多。
+
+由于数组的长度有限，所以难免会出现不同的 Key 通过运算得到的 index 相同，这种情况可以利用链表来解决，HashMap 会在 `table[index]`处形成链表，采用头插法将数据插入到链表中。
+
+### get 方法
+
+get 和 put 类似，也是将传入的 Key 计算出 index ，如果该位置上是一个链表就需要遍历整个链表，通过 `key.equals(k)` 来找到对应的元素。
+
+## 以下基于 JDK1.8 分析
+
+当 Hash 冲突严重时，在桶上形成的链表会变的越来越长，这样在查询时的效率就会越来越低；时间复杂度为 O(N)。因此 1.8 中重点优化了这个查询效率。
+
+![](1.8的HashMap的数据结构图.png)
+
+`JDK1.8` 中对 `HashMap` 进行了优化：当 `hash` 碰撞之后写入链表的长度超过了阈值(默认为8)并且 `table` 的长度不小于64(如果小于64，先进行扩容一次)时，链表将会转换为**红黑树**。以减少查找时间.
+
+jdk1.7中，假设 `hash` 冲突非常严重，一个数组后面接了很长的链表，此时查找的时间复杂度就是 `O(n)` 。如果是红黑树，查询的时间复杂度就是 `O(logn)` 。大大提高了查询效率。
+
+>但是，jdk1.8并未有修改HashMap之前的线程安全问题，我们都知道HashMap是线程不安全的，涉及到线程安全的时候，我们应该使用ConcurrentHashMap，
+
+## 并发以及性能分析
+
+HashMap的方法都没有synchronized，不是线程安全的,(Hashtable是线程安全的)
+
+多线程场景下推荐使用 ConcurrentHashMap或使用Collections.synchronizedMap（）方法获取同步Map。
+
+在并发环境下使用 `HashMap` 容易出现死循环。
+
+并发场景发生扩容，调用 `resize()` 方法里的 `rehash()` 时，容易出现环形链表。这样当获取一个不存在的 `key` 时，计算出的 `index` 正好是环形链表的下标时就会出现死循环。
+
+![](https://ws2.sinaimg.cn/large/006tNc79gy1fn85u0a0d9j30n20ii0tp.jpg)
+
+> 所以 HashMap 只能在单线程中使用，并且尽量的预设容量，尽可能的减少扩容。
+

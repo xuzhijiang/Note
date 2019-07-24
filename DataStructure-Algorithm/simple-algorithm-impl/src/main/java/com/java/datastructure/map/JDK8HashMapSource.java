@@ -5,95 +5,69 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * 在jdk1.7中HashMap实现原理分析，我们知道当hash冲突很严重的时候，链表的长度就会很长，
- * 我们也知道数组和链表的优缺点，简单总结一下：
- * <p>
- * 数组：数组查找效率高，插入和删除效率比较低。而且需要连续内存.空间复杂度较高
- * <p>
- * 链表：存储空间零散，存储内存可以不连续，故空间复杂度较低，
- * 链表查找效率低，插入和删除效率高
- * <p>
- * 所以，在jdk1.8中，对HashMap的实现做了相应的修改，jdk1.8 以后在解决哈希冲突时有了较大的变化，
- * 当链表长度大于阈值（默认为 8）时，将链表转化为红黑树，以减少查找时间。
- * <p>
- * 从源码中，可以知道jdk1.8之后，对HashMap的实现做了改变，主要在于将链表的长度超过临界值的时候，
- * 就将链表转为红黑树，利用红黑树的优点，可以更好的查找元素，使得查询的时间复杂度变为O(logn)
- * <p>
- * 但是，jdk1.8并未有修改HashMap之前的线程安全问题，我们都知道HashMap是线程不安全的，
- * 涉及到线程安全的时候，我们应该使用ConcurrentHashMap，有关ConcurrentHashMap的知识将在下一片博客中学习，
- * 这里简单的分析一下，为什么HashMap会造成线程不安全？
- * <p>
- * 多线程不能使用HashMap，要使用CurrentHashMap
- * <p>
- * HashMap注意的地方:
- * HashMap底层是个哈希表，使用拉链法解决冲突
- * HashMap内部存储的数据是无序的，这是因为HashMap内部的数组的下表是根据hash值算出来的
- * HashMap允许key为null
- * HashMap不是一个线程安全的类
+ * jdk8的HashMap代码摘要
  */
-public class HashMap8<K, V> {
-
-//    对比1.7中的常量，我们就会发现1.8中做了如下的改变。
-//    增加了TREEIFY_THRESHOLD，当链表的长度超过这个值的时候，就会将链表转换红黑树。
-//    Entry修改为Node，虽然Node的核心也是key、value、next。
+public class JDK8HashMapSource<K, V> {
 
     /**
-     * 默认的初始容量16
+     * 初始化桶大小，因为底层是数组，所以这是数组默认的大小
      */
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
 
     /**
-     * 最大的容量
+     * 桶最大值
      */
     static final int MAXIMUM_CAPACITY = 1 << 30;
 
     /**
-     * 默认的填充因子
+     * 默认的负载因子（0.75）
      */
     static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
     /**
-     * 当桶上的节点数量大于8时，会将链表转为红黑树
+     * 用于判断是否需要将链表转换为红黑树的阈值,
+     * 链表的长度超过8时，会将链表转为红黑树
      */
     static final int TREEIFY_THRESHOLD = 8;
 
     /**
-     * 当桶上的节点数量小于6时，会将红黑树转为链表
+     *  链表的长度小于6时，会将红黑树转为链表
      */
     static final int UNTREEIFY_THRESHOLD = 6;
 
     /**
-     * 桶中的结构转为红黑树对应的最小数组大小为64
+     * 桶的长度不小于64，才会将链表转化为红黑树
      */
     static final int MIN_TREEIFY_CAPACITY = 64;
+
+    transient Node<K,V>[] table;
+
     /**
-     * 加载因子，默认是0.75
-     */
-    final float loadFactor;
-    /**
-     * 存储元素的数组(哈希表数组)，总是2的幂次倍
-     */
-    transient Node<K, V>[] table;
-    /**
-     * 存放具体元素的集合
+     * 存放键值对的集合
      */
     transient Set<Map.Entry<K, V>> entrySet;
+
     /**
-     * 存放元素的个数(键值对个数)，注意的是这个值不等于数组的长度
+     * 当前已经存放的元素的数量(键值对个数)，注意的是这个值不等于数组的长度
      */
     transient int size;
+
+    /**
+     * 桶大小，可在初始化时显式指定,
+     */
+    int threshold;
+
+    /**
+     * 负载因子
+     */
+    final float loadFactor;
+
     /**
      * 每次扩容或者更改map结构的计数器
      */
     transient int modCount;
-    /**
-     * 临界值，当实际大小（容量 * 负载因子）超过临界值的时候，就会进行扩容操作
-     */
-    // 阀值(等于容量 * 加载因子)。默认值为12(16(默认容量) * 0.75(默认加载因子))。
-    // 当哈希表中的键值对个数超过该值时，会进行扩容
-    int threshold;
 
-    public HashMap8(int initialCapacity, float loadFactor) {
+    public JDK8HashMapSource(int initialCapacity, float loadFactor) {
         if (initialCapacity < 0)
             throw new IllegalArgumentException("Illegal initial capacity: " +
                     initialCapacity);
@@ -106,11 +80,11 @@ public class HashMap8<K, V> {
         this.threshold = tableSizeFor(initialCapacity);
     }
 
-    public HashMap8(int initialCapacity) {
+    public JDK8HashMapSource(int initialCapacity) {
         this(initialCapacity, DEFAULT_LOAD_FACTOR);
     }
 
-    public HashMap8() {
+    public JDK8HashMapSource() {
         this.loadFactor = DEFAULT_LOAD_FACTOR; // all other fields defaulted
     }
 
@@ -170,7 +144,6 @@ public class HashMap8<K, V> {
         // 最后一位是0，相反如果是奇数，最后一位是1，这样产生的索引值将更均匀 (n - 1) & hash
     }
 
-    // 参考,1.8的HashMap_put示意图.png
     public V put(K key, V value) {
         // 第一个参数就是关键字key的哈希值
         return putVal(hash(key), key, value, false, true);
@@ -277,8 +250,8 @@ public class HashMap8<K, V> {
         return null;
     }
 
-    HashMap8.Node<K, V> newNode(int hash, K key, V value, HashMap8.Node<K, V> next) {
-        return new HashMap8.Node<>(hash, key, value, next);
+    Node<K, V> newNode(int hash, K key, V value, Node<K, V> next) {
+        return new Node<>(hash, key, value, next);
     }
 
     // 哈希表扩容是使用resize方法完成：
@@ -375,40 +348,14 @@ public class HashMap8<K, V> {
         return newTab;
     }
 
-    // 红黑树节点
-    static final class TreeNode<K, V> extends Node {
-        TreeNode<K, V> parent;  // 父
-        TreeNode<K, V> left;    // 左
-        TreeNode<K, V> right;   // 右
-        TreeNode<K, V> prev;
-        boolean red;           // 判断颜色
-
-        TreeNode(int hash, Object key, Object value, Node next) {
-            super(hash, key, value, next);
-        }
-
-        public Node<K, V> putTreeVal(HashMap8<K, V> kvHashMap8, Node<K, V>[] tab,
-                                     int hash, K key, V value) {
-            return null;
-        }
-
-        public Node<K, V> getTreeNode(int hash, Object key) {
-            return null;
-        }
-
-        public void split(HashMap8<K, V> kvHashMap8, Node<K, V>[] newTab, int j, int oldCap) {
-        }
-    }
-
     // HashMap有个内部静态类Node，这个Node就是为了解决冲突而设计的链表中的节点的概念
     static class Node<K, V> implements Map.Entry<K, V> {
-        // 哈希值
-        final int hash;
+        final int hash; // hash 存放的是当前 key 的 hashcode
         final K key;
         V value;
-        HashMap8.Node<K, V> next;
+        Node<K, V> next; //  next 就是用于实现链表结构
 
-        Node(int hash, K key, V value, HashMap8.Node<K, V> next) {
+        Node(int hash, K key, V value, Node<K, V> next) {
             this.hash = hash;
             this.key = key;
             this.value = value;
@@ -449,4 +396,28 @@ public class HashMap8<K, V> {
         }
     }
 
+    // 红黑树节点
+    static final class TreeNode<K, V> extends Node {
+        TreeNode<K, V> parent;  // 父
+        TreeNode<K, V> left;    // 左
+        TreeNode<K, V> right;   // 右
+        TreeNode<K, V> prev;
+        boolean red;           // 判断颜色
+
+        TreeNode(int hash, Object key, Object value, Node next) {
+            super(hash, key, value, next);
+        }
+
+        public Node<K, V> putTreeVal(JDK8HashMapSource<K, V> kvHashMap8, Node<K, V>[] tab,
+                                     int hash, K key, V value) {
+            return null;
+        }
+
+        public Node<K, V> getTreeNode(int hash, Object key) {
+            return null;
+        }
+
+        public void split(JDK8HashMapSource<K, V> kvHashMap8, Node<K, V>[] newTab, int j, int oldCap) {
+        }
+    }
 }

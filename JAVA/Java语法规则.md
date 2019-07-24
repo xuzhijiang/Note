@@ -190,3 +190,7 @@ DOM解析器将XML文件加载到内存中，我们可以逐节点遍历它来�
 DOM Parser适用于小文件，但是当文件大小增加时，它执行速度慢并消耗更多内存。
 
 Java8是的接口可以添加default方法和类方法，参见: java.lang.Iterable
+
+java7中引入了Objects
+
+java7引入了Integer.compare(),比较 2个int是否相等
