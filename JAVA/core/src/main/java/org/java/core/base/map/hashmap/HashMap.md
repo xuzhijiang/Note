@@ -49,27 +49,36 @@ get 和 put 类似，也是将传入的 Key 计算出 index ，如果该位置�
 
 ## 以下基于 JDK1.8 分析
 
-当 Hash 冲突严重时，在桶上形成的链表会变的越来越长，这样在查询时的效率就会越来越低；时间复杂度为 O(N)。因此 1.8 中重点优化了这个查询效率。
+jdk1.7中，当 Hash 冲突严重时，在桶上形成的链表会变的越来越长，这样在查询时的效率就会越来越低。因此 1.8 中重点优化了这个查询效率。
 
 ![](1.8的HashMap的数据结构图.png)
 
-`JDK1.8` 中对 `HashMap` 进行了优化：当 `hash` 碰撞之后写入链表的长度超过了阈值(默认为8)并且 `table` 的长度不小于64(如果小于64，先进行扩容一次)时，链表将会转换为**红黑树**。以减少查找时间.
-
-jdk1.7中，假设 `hash` 冲突非常严重，一个数组后面接了很长的链表，此时查找的时间复杂度就是 `O(n)` 。如果是红黑树，查询的时间复杂度就是 `O(logn)` 。大大提高了查询效率。
+`JDK1.8` 中对 `HashMap` 进行了优化：当 `hash` 碰撞之后写入链表的长度超过了阈值(默认为8)并且 `table` 的长度不小于64(如果小于64，先进行扩容一次)时，链表将会转换为**红黑树**。以减少查找时间.如果是红黑树，查询的时间复杂度就是 `O(logn)` 。大大提高了查询效率。
 
 >但是，jdk1.8并未有修改HashMap之前的线程安全问题，我们都知道HashMap是线程不安全的，涉及到线程安全的时候，我们应该使用ConcurrentHashMap，
 
 ## 并发以及性能分析
 
-HashMap的方法都没有synchronized，不是线程安全的,(Hashtable是线程安全的)
+HashMap的方法都没有synchronized，不是线程安全的,(Hashtable是线程安全的),1.8 中对链表做了优化，修改为红黑树之后查询效率直接提高到了 O(logn)。但是 HashMap 原有的问题也都存在，比如在并发场景下使用时容易出现死循环。主要体现在容量大于`总量*负载因子`发生扩容时会出现环形链表从而导致死循环。
 
-多线程场景下推荐使用 ConcurrentHashMap或使用Collections.synchronizedMap（）方法获取同步Map。
+```java
+final HashMap<String, String> map = new HashMap<String, String>();
+for (int i = 0; i < 1000; i++) {
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            map.put(UUID.randomUUID().toString(), "");
+        }
+    }).start();
+}
+```
 
-在并发环境下使用 `HashMap` 容易出现死循环。
+但是为什么呢？简单分析下。
 
-并发场景发生扩容，调用 `resize()` 方法里的 `rehash()` 时，容易出现环形链表。这样当获取一个不存在的 `key` 时，计算出的 `index` 正好是环形链表的下标时就会出现死循环。
+并发场景发生扩容，调用 `resize()` 方法里的 `rehash()` 时，就是这里的并发操作容易在一个桶上形成环形链表。这样当获取一个不存在的 `key` 时，计算出的 `index` 正好是环形链表的下标时就会出现死循环。因为要不断的遍历`node.next`,而环形链表的node.next永远不等于null，也就是没有终止条件.
 
 ![](https://ws2.sinaimg.cn/large/006tNc79gy1fn85u0a0d9j30n20ii0tp.jpg)
 
-> 所以 HashMap 只能在单线程中使用，并且尽量的预设容量，尽可能的减少扩容。
+>因此 JDK 推出了专项专用的 ConcurrentHashMap ，该类专门用于解决并发问题。或使用Collections.synchronizedMap（）方法获取同步Map。
 
+> 所以 HashMap 只能在单线程中使用，并且尽量的预设容量，尽可能的减少扩容。

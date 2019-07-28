@@ -53,7 +53,7 @@ public class JDK8HashMapSource<K, V> {
     transient int size;
 
     /**
-     * 桶大小，可在初始化时显式指定,
+     * 扩容的阈值,注意不是数组的长度
      */
     int threshold;
 
@@ -77,6 +77,7 @@ public class JDK8HashMapSource<K, V> {
             throw new IllegalArgumentException("Illegal load factor: " +
                     loadFactor);
         this.loadFactor = loadFactor;
+        // 保证threshold为2的幂
         this.threshold = tableSizeFor(initialCapacity);
     }
 
@@ -90,18 +91,19 @@ public class JDK8HashMapSource<K, V> {
 
     /**
      * Returns a power of two size for the given target capacity.
+     * 上面的含义是: 返回给定目标容量的2的幂次方
+     *
      * 现在回过头来看例子，为什么初始化了一个容量为5的HashMap，但是哈希表的容量为8，而且阀值为6？
-     * <p>
+     *
      * 因为HashMap的构造函数初始化threshold的时候调用了tableSizeFor方法，
      * 这个方法会把容量改成2的幂的整数，主要是为了哈希表散列更均匀。
-     * <p>
-     * 比如cap传入5，返回值为8,8会赋值给threshold,然后再resize()中将threshold=8赋值给容量，然后threshold会变成"容量*加载因子=6"
-     * <p>
+     *
+     * 比如cap传入5，返回值为8,8会赋值给threshold,然后再resize()中将threshold=8赋值给容量，
+     * 然后threshold会变成"容量*加载因子=6"
      *
      * 阀值为6是因为之后进行resize操作的时候更新了阀值:阀值 = 容量 * 加载因子 = 8 * 0.75 = 6
      */
     static final int tableSizeFor(int cap) {
-        // 保证threshold为2的幂
         int n = cap - 1;
         n |= n >>> 1;
         n |= n >>> 2;
@@ -149,55 +151,48 @@ public class JDK8HashMapSource<K, V> {
         return putVal(hash(key), key, value, false, true);
     }
 
+    /**
+     * @param hash 当前key的哈希值
+     */
     final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
         Node<K, V>[] tab;
         Node<K, V> p;
         int n, i;
-        // 哈希表是空的话，重新构建，进行扩容
+        // 1. 判断当前桶是否为空，空的就需要初始化（resize 中会判断是否进行初始化）。
         if ((tab = table) == null || (n = tab.length) == 0)
             n = (tab = resize()).length;
 
-        /** 根据当前 key 的 hashcode 定位到具体的桶,并判断是否为空，
-         * 为空表明没有 Hash 冲突就直接在当前位置创建一个新桶即可。
-         */
+        // 2. 根据当前 key 的 hashcode 定位到具体的桶中并判断是否为空，
+        // 为空表明没有 Hash 冲突就直接在当前位置创建一个新桶即可。
         if ((p = tab[i = (n - 1) & hash]) == null)
-            // 没有hash冲突的话，直接在对应位置上构造一个新的节点即可
-            tab[i] = newNode(hash, key, value, null);
-        else { // 如果哈希表当前位置上已经有节点的话，说明有hash冲突
+            tab[i] = newNode(hash, key, value, null);// 没有hash冲突的话，直接在对应位置上构造一个新的节点即可
+        else {
             Node<K, V> e;
             K k;
-            // 关键字跟哈希表上的首个节点济宁比较
-            /** 如果当前桶有值（ Hash 冲突），
-             * 那么就要比较当前桶中的(key,以及key的hashcode) 与写入的 key 是否相等，相等就赋值给 e
-             */
+            // 3. 如果当前桶有值（ 有Hash 冲突），那么就要比较当前桶中的 key、key 的 hashcode
+            // 与写入的 key 是否相等，相等就赋值给 e,在第 8 步的时候会统一进行赋值及返回。
             if (p.hash == hash && ((k = p.key) == key || (key != null && key.equals(k)))) {
                 e = p;
-                // 如果使用的是红黑树，用红黑树的方式进行处理
-                /** 如果当前桶为红黑树，那就要按照红黑树的方式写入数据*/
-            } else if (p instanceof TreeNode) {
+            } else if (p instanceof TreeNode) {// 4. 如果当前桶为红黑树，那就要按照红黑树的方式写入数据。
                 e = ((TreeNode<K, V>) p).putTreeVal(this, tab, hash, key, value);
-            } else {// 跟链表进行比较
-                /** 如果是个链表，就需要将当前的 key、value 封装成一个新节点写入到
-                 * 当前桶的后面（形成链表）*/
+            } else {// 5. 如果是个链表，就需要将当前的 key、value 封装成一个新节点写入到当前桶的后面（形成链表）。
                 for (int binCount = 0; ; ++binCount) {
-                    if ((e = p.next) == null) {// 一直遍历链表，直到找到最后一个
+                    if ((e = p.next) == null) { // e等于null，说明一直遍历链表到了最后一个，还没有找到key值相同的，就直接构造新节点插入即可
                         p.next = newNode(hash, key, value, null); // 构造链表上的新节点
-                        /** 接着判断当前链表的大小是否大于预设的阈值，大于时就要转换为红黑树 */
+                        // 6. 接着判断当前链表的大小是否大于预设的阈值，大于时就要转换为红黑树。
                         if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
                             //treeifyBin(tab, hash);
                             break;
                     }
-                    /** 如果在遍历过程中找到 key 相同时直接退出遍历 */
-                    if (e.hash == hash &&
-                            ((k = e.key) == key || (key != null && key.equals(k))))
+                   // 7. 如果在遍历过程中找到 key 相同时直接退出遍历。
+                    if (e.hash == hash && ((k = e.key) == key || (key != null && key.equals(k))))
                         break;
                     p = e;
                 }
             }
 
-            // 如果找到了节点，说明关键字相同，进行覆盖操作，直接返回旧的关键字的值
-            /** 如果 e != null 就相当于存在相同的 key,那就需要将值覆盖 */
+            // 8. 如果 e != null 就相当于存在相同的 key,那就需要将值覆盖。
             if (e != null) { // existing mapping for key
                 V oldValue = e.value;
                 if (!onlyIfAbsent || oldValue == null)
@@ -207,39 +202,37 @@ public class JDK8HashMapSource<K, V> {
             }
         }
         ++modCount;
-        /** 最后判断是否需要进行扩容 */
+        // 9. 最后判断是否需要进行扩容。
         if (++size > threshold) // 如果目前键值对个数已经超过阀值，重新构建
             resize();
         //afterNodeInsertion(evict);// 节点插入以后的钩子方法
         return null;
     }
 
-    // get操作关键点就是怎么在哈希表上取数据，理解了put操作之后，get方法很容易理解了：
     public V get(Object key) {
         Node<K, V> e;
-        /** 首先将 key hash 之后取得所定位的桶 */
+        // 首先将 key hash 之后取得所定位的桶。
         return (e = getNode(hash(key), key)) == null ? null : e.value;
     }
 
-    // getNode方法就说明了如何取数据：
     final Node<K, V> getNode(int hash, Object key) {
         Node<K, V>[] tab;
-        Node<K, V> first, e;
+        Node<K, V> first, e;// first代表桶位置的第一个元素
         int n;
         K k;
-        /** 如果桶为空则直接返回 null  */
+        // 1. 如果桶table为空则直接返回 null
         if ((tab = table) != null && (n = tab.length) > 0 &&
-                (first = tab[(n - 1) & hash]) != null) {// 如果哈希表容量为0或者关键字没有命中，直接返回null
-            /** 否则判断桶的第一个位置(有可能是链表、红黑树)的 key 是否为查询的 key，是就直接返回 value */
-            if (first.hash == hash && // always check first node, // 关键字命中的话比较第一个节点
+                (first = tab[(n - 1) & hash]) != null) {// 取出hash对应的桶位置的第一个元素赋值给first
+            // 2. 判断桶的第一个位置(有可能是链表、红黑树)的 key 是否为查询的 key，是就直接返回 value。
+            if (first.hash == hash && // always check first node,
                     ((k = first.key) == key || (key != null && key.equals(k))))
                 return first;
-            /** 如果第一个不匹配，则判断它的下一个是红黑树还是链表 */
+            // 3. 如果第一个不匹配，则判断它的下一个是红黑树还是链表。
             if ((e = first.next) != null) {
-                /** 红黑树就按照树的查找方式返回值 */
-                if (first instanceof TreeNode)// 以红黑树的方式查找
+                // 4. 红黑树就按照树的查找方式返回值
+                if (first instanceof TreeNode)
                     return ((TreeNode<K, V>) first).getTreeNode(hash, key);
-                /** 链表就遍历匹配返回值 */
+                // 5. 不然就按照链表的方式遍历匹配返回值。
                 do {// 遍历链表查找
                     if (e.hash == hash &&
                             ((k = e.key) == key || (key != null && key.equals(k))))
@@ -254,13 +247,15 @@ public class JDK8HashMapSource<K, V> {
         return new Node<>(hash, key, value, next);
     }
 
-    // 哈希表扩容是使用resize方法完成：
+    /**
+     * 扩容是使用resize方法完成：
+     */
     final Node<K, V>[] resize() {
-        Node<K, V>[] oldTab = table;// 旧的table
+        Node<K, V>[] oldTab = table;// 旧数组
         int oldCap = (oldTab == null) ? 0 : oldTab.length;// 旧的容量
         int oldThr = threshold;// 旧的阈值
         int newCap, newThr = 0;// 新容量和新阈值
-        if (oldCap > 0) { // 如果老容量大于0，说明哈希表中已经有数据了，然后进行扩容
+        if (oldCap > 0) { // 1. 如果老容量大于0，说明哈希表中已经有数据了
             if (oldCap >= MAXIMUM_CAPACITY) { // 超过最大容量的话，不扩容
                 threshold = Integer.MAX_VALUE;
                 return oldTab;
@@ -272,25 +267,28 @@ public class JDK8HashMapSource<K, V> {
                     oldCap >= DEFAULT_INITIAL_CAPACITY) {
                 newThr = oldThr << 1; // double threshold// 阀值加倍
             }
-        } else if (oldThr > 0) {// initial capacity was placed in threshold// 根据threshold初始化数组
+        } else if (oldThr > 0) {// initial capacity was placed in threshold
+            // 根据threshold初始化数组,这种情况会发生在table为null，或者table.length为0的情况，
+            // 此时没有初始容量，所以用threshold充当initial capacity来初始化数组。
             newCap = oldThr;
-        } else {// zero initial threshold signifies using defaults  // 使用默认配置
+        } else {// zero initial threshold signifies using defaults
+            // 老的阈值小于0，则使用默认配置
             newCap = DEFAULT_INITIAL_CAPACITY;
             newThr = (int) (DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
         }
 
-        if (newThr == 0) {
+        if (newThr == 0) { // 如果新阈值等于0，就初始化新阈值
             float ft = (float) newCap * loadFactor;
             newThr = (newCap < MAXIMUM_CAPACITY && ft < (float) MAXIMUM_CAPACITY ?
                     (int) ft : Integer.MAX_VALUE);
         }
 
-        threshold = newThr;
+        threshold = newThr; // 将新阈值赋值给全局的阈值变量
 
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        Node<K, V>[] newTab = (Node<K, V>[]) new Node[newCap];// 新数组
+        // 使用新容量初始化新数组
+        Node<K, V>[] newTab = (Node<K, V>[]) new Node[newCap];
         table = newTab;
-        if (oldTab != null) {
+        if (oldTab != null) { // 如果旧数组不为null
             // HashMap的扩容会把原先哈希表的容量扩大两倍。扩大之后，会对节点重新进行处理
             // 哈希表上的节点的状态有3种，分别是单节点，无节点，链表，扩容对于这3种状态的处理方式如下：
 
@@ -311,8 +309,8 @@ public class JDK8HashMapSource<K, V> {
                     oldTab[j] = null; // 将oldTab中的位置为j的元素置位null
                     if (e.next == null) {// 这个桶只有一个节点，也就是单节点
                         newTab[e.hash & (newCap - 1)] = e;// 单节点扩容
-                    } else if (e instanceof TreeNode){
-                        ((TreeNode<K, V>) e).split(this, newTab, j, oldCap);// 红黑树方式处理
+                    } else if (e instanceof TreeNode){// 红黑树方式处理
+                        ((TreeNode<K, V>) e).split(this, newTab, j, oldCap);
                     } else { // preserve order// 链表扩容
                         Node<K, V> loHead = null, loTail = null;
                         Node<K, V> hiHead = null, hiTail = null;

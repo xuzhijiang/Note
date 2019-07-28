@@ -1,6 +1,3 @@
-In Simple Terminology, What Spring Boot means
-在简单术语中，Spring Boot意味着什么
-
 Spring Boot只是现有的Spring + 一些嵌入式HTTP服务器(Tomcat/Jetty等）- XML或Annotations配置。
 
 意味着我们不需要编写任何XML配置和少量注释。

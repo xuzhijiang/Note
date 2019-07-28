@@ -2,10 +2,10 @@
 
 ## 概念
 
-[Compose](https://docs.docker.com/compose/) 是 Docker 公司推出的一个工具软件，可以管理多个 Docker 容器组成一个应用。你需要定义一个 YAML 格式的配置文件docker-compose.yml，写好多个容器之间的调用关系。然后，只要一个命令，就能同时启动/关闭这些容器。
+[Compose](https://docs.docker.com/compose/) 是 Docker 公司推出的一个工具软件，可以管理多个 Docker 容器组成一个应用。你需要定义一个 YAML 格式的docker-compose.yml，写好多个容器之间的调用关系。然后，只要一个命令，就能同时启动/关闭这些容器。
 
 ```shell
-# 启动所有服务
+# 启动所有服务(up：构建、启动容器)
 $ docker-compose up
 
 # 关闭所有服务
@@ -16,8 +16,6 @@ $ docker-compose stop
 
 Mac 和 Windows 在安装 docker 的时候，会一起安装 docker compose。[Linux 系统下的安装参考官方文档](https://docs.docker.com/compose/install/#install-compose)
 
->安装完成后，运行下面的命令。
-
 ```shell
 $ docker-compose --version
 ```
@@ -27,6 +25,7 @@ $ docker-compose --version
 在docker-demo目录下，新建docker-compose.yml文件，写入下面的内容。
 
 ```shell
+<!-- 两个顶层标签表示有两个容器mysql和web -->
 mysql:
     image: mysql:5.7
     environment:
@@ -45,8 +44,6 @@ web:
      - wordpress:/var/www/html
 ```
 
->上面代码中，两个顶层标签表示有两个容器mysql和web,参数解释:
-
 - environment: 向容器进程传入一个环境变量WORDPRESS_DB_PASSWORD，该变量会被用作数据库密码
 
 >详细参数解释可以看: https://www.jianshu.com/p/658911a8cff3
@@ -59,6 +56,7 @@ $ docker-compose up
 
 # 现在关闭两个容器
 $ docker-compose stop
+
 # 关闭以后，这两个容器文件还存在，写在里面的数据不会丢失。下次启动的时候，还可以复用。
 
 # 下面的命令可以把这两个容器文件删除（容器必须已经停止运行）。
@@ -70,9 +68,8 @@ $ docker-compose rm
 ```shell
 # This Compose file defines two services: web and redis.
 
-# 表示该 Docker-Compose 文件使用的是 Version 2 file
 version: '3'
-services:
+services: # 多个容器集合
   web: # 指定服务名称
     build: . # 指定 Dockerfile 所在路径
     ports: # 指定端口映射
@@ -109,9 +106,6 @@ docker-compose stop eureka
 # rm：删除指定服务的容器
 docker-compose rm eureka
 
-# up：构建、启动容器
-docker-compose up
-
 # kill：通过发送 SIGKILL 信号来停止指定服务的容器
 docker-compose kill eureka
 
@@ -120,5 +114,4 @@ docker-compose scale user=3 movie=3
 
 # run：在一个服务上执行一个命令
 docker-compose run web bash
-
 ```
