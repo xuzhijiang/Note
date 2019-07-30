@@ -1,14 +1,15 @@
-## Spring AOP概述
+# Spring AOP概述
 
-大多数企业应用程序都有一些常见的"横切关注点"，一些常见的横切关注点是日志记录，事务管理，数据验证等。在"面向对象编程"中，应用程序的模块化是通过类实现的，而在"面向切面编程"应用程序中，模块化由Aspects(切面)实现，并且它们被配置为跨越不同的类。
+企业应用程序中一些常见的横切关注点是日志记录，事务管理，数据验证等。
 
-### 面向方面的编程核心概念
+- 在"面向对象编程"中，应用程序的模块化是通过类实现的
+- 而在"面向切面编程"应用程序中，模块化由Aspects(切面)实现，并且它们被配置为跨越不同的类。
 
-在我们深入实现Spring AOP实现之前，我们应该了解AOP的核心概念:
+## 面向切面编程核心概念
 
-1. Aspect(切面)：An aspect就是一个类，这个类实现了 跨越多个类的 企业应用程序关注点.
-例如事务管理,记录日志等。Aspects可以是通过"Spring XML configuration" 配置的普通类，
-也可以使用Spring AspectJ集成 使用@Aspect注解 将类定义为Aspect。
+1. Aspect(切面)：An aspect就是一个类，这个类实现了跨越多个类的 企业应用程序关注点.
+例如事务管理,记录日志等。可以是"XML" 配置的普通类，
+也可以使用Spring AspectJ集成的@Aspect注解 将类定义为Aspect。
 
 2. Join Point(连接点)：a join point是应用程序中的特定点，例如方法执行，
 异常处理，更改对象变量值等。在Spring AOP中，a join points始终是方法的执行。
@@ -26,7 +27,7 @@ Pointcut使用与连接点join point匹配的不同类型的表达式，Spring�
 6. AOP proxy：Spring AOP实现使用JDK动态代理来创建 具有target类和advice invocations(调用)的Proxy类，
 这些类称为AOP代理类。我们也可以通过将它添加为Spring AOP项目中的依赖项 来使用CGLIB代理。
 
-7. Weaving(编织)：将aspects与other objects链接以创建adviced 代理对象的过程。
+7. Weaving(编织)：将aspects与other objects链接以创建代理对象的过程。
 这可以在编译时，加载时或运行时完成。 Spring AOP在运行时执行weaving(编织)。
 
 AOP Advice Type
@@ -51,10 +52,6 @@ AOP Advice Type
 around advice负责 去调用join point方法并此方法返回某些内容时返回值。
 我们使用@Around批注来创建 around advice methods。
 
-上面提到的几点可能听起来令人困惑，但是当我们看看Spring AOP的实现时，情况会更清楚。
-让我们开始用AOP实现创建一个简单的Spring项目。 Spring支持使用AspectJ注释创建aspects，
-为简单起见，我们将使用它。所有上述AOP注释都在org.aspectj.lang.annotation包中定义。
-
 -------------------------------------------------
 
 Spring Advice with Custom Annotation Pointcut:(具有自定义 annotation Pointcut的Spring Advice)
@@ -69,21 +66,6 @@ Spring Advice with Custom Annotation Pointcut:(具有自定义 annotation Pointc
 Spring Framework @Transactional annotation 是Spring 事务管理(Transaction Management)的一种很好的例子。
 
 ### Spring AOP Method Profiling(方法分析)
-
-此示例展示给你 ”如何配置Spring AOP method profiling“。 
-我们可以在任何服务(或其他）类中使用Spring AOP和任何方法，
-而无需在任何服务类中编写任何一行性能分析代码(profiling code)。 
-面向方面编程(AOP）允许我们将(通常是重复的和样板）分析代码与服务代码分开。
-
-
-我们只在一个单独的类(SimpleProfiler.java）中编写我们的探查器代码(profiler code)一次，
-这就是全部，其余的只是spring.xml中的AOP配置.
-
-因此我们可以对以下内容 进行方法分析(profiler code):
-
-1. 分析任何(服务）类，profiling any (service) classes,
-2. 没有触及(服务）类的代码，without touching (service) classes’ code,
-3. 通过Spring-AOP方法。through Spring-AOP approach.
 
 ## 示例
 

@@ -2,6 +2,7 @@ package com.di;
 
 import com.di.bean.*;
 import com.di.controller.BeanServiceController;
+import com.di.dao.UserDAO;
 import com.di.service.CustomerService;
 import com.javax.other.bean.OtherBean;
 import org.springframework.boot.SpringApplication;
@@ -50,5 +51,12 @@ public class DependencyInjectApplication {
 
 		UseOptionalBean useOptionalBean=context.getBean(UseOptionalBean.class);
 		System.out.println(useOptionalBean);
+
+		testConditionalConfig(context);
+	}
+
+	private static void testConditionalConfig(ApplicationContext context) {
+		UserDAO dao=context.getBean(UserDAO.class);
+		System.out.println(dao.getAllUserNames());
 	}
 }

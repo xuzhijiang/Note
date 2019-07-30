@@ -17,4 +17,5 @@ public class UseOptionalBean {
                 "optionalBean=" + optionalBean +
                 '}';
     }
+
 }

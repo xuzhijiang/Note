@@ -1,9 +1,15 @@
 spring:
   application:
     name: hello
+  profiles:
+    active: DEV
 
 server:
   port: 9090
+
+xzj:
+  info: hello,spring boot
+  counter: 1
 
 fetch:
   proxies:

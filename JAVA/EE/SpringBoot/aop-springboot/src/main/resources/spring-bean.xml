@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+    <!--
+        使用Spring AOP，需要执行以下操作:
+        1.  声明AOP名称空间，如xmlns:aop =“http://www.springframework.org/schema/aop”
+        2. 添加aop：aspectj-autoproxy元素启用Spring AspectJ支持
+        3. 将Aspect类配置为Spring bean
+    -->
+
+    <!-- 启动对@AspectJ注解的支持 -->
+    <aop:aspectj-autoproxy />
+
+    <bean name="e" class="com.springboot.legacy.bean.Employee"/>
+
+    <bean name="employeeService" class="com.springboot.legacy.service.EmployeeService">
+        <property name="employee" ref="e"/>
+    </bean>
+
+    <bean name="XMLConfigAspect" class="com.springboot.legacy.aspect.XMLConfigAspect" />
+
+    <aop:config>
+        <aop:aspect ref="XMLConfigAspect"
+            id="XMLConfigAspectID" order="1">
+            <aop:pointcut
+                expression="execution(* com.springboot.legacy.bean.Employee.getName())"
+                id="getNamePointcut" />
+            <aop:around method="employeeAroundAdvice"
+                pointcut-ref="getNamePointcut" arg-names="proceedingJoinPoint" />
+        </aop:aspect>
+    </aop:config>
+
+    <!--通知spring使用cglib而不是jdk的来生成代理方法(注意pom要引入cglib依赖) -->
+    <!--<aop:aspectj-autoproxy proxy-target-class="true" />-->
+</beans>
