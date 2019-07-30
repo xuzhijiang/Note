@@ -8,12 +8,10 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 
 @Component
-// 实现Spring Bean生命周期接口ApplicationContextAware
 public class DataSourceShow implements ApplicationContextAware {
 
     ApplicationContext applicationContext = null;
 
-    // Spring容器会自动调用这个方法，注入Spring IoC容器
     @Override
     public void setApplicationContext(ApplicationContext applicationContext)
             throws BeansException {

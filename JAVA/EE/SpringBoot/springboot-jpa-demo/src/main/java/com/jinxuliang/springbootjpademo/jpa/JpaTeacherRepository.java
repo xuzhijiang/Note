@@ -18,7 +18,7 @@ public interface JpaTeacherRepository extends JpaRepository<Teacher, Integer> {
 
     //使用JPA查询语言自定义查询
     @Query("from teacher where name like concat('%', ?1, '%') ")
-    public List<Teacher> findUsers(String userName);
+    public List<Teacher> findTeachers(String userName);
 
     //直接使用原生的SQL命令
     @Query(value = "select * from Teacher where Teacher.gender=?1",nativeQuery = true)

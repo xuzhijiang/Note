@@ -49,6 +49,9 @@ public class AwareBean implements ApplicationContextAware,
         System.out.println("setBeanName: " + s);
     }
 
+    /**
+     * Spring容器会自动调用这个方法，注入Spring IoC容器
+     */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         // 返回一个字符串数组,表示所有的容器中的bean的名字
