@@ -1,9 +1,9 @@
-package com.feiyangedu.springcloud.data.repository;
+package com.springframework.datajpa.core.repository;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.feiyangedu.springcloud.data.domain.User;
+import com.springframework.datajpa.core.domain.User;
 
 /**
  * JpaRepository其实也是继承了PagingAndSortingRepository，然后实现了自己的方法，
@@ -12,6 +12,4 @@ import com.feiyangedu.springcloud.data.domain.User;
  * JPA的传统配置在persistence.xml文件中，但是这里我们是在application.yml中
  */
 @Transactional
-public interface UserRepository extends PagingAndSortingRepository<User, Long> {
-
-}
+public interface UserRepository extends PagingAndSortingRepository<User, Long> {}

@@ -1,4 +1,4 @@
-package com.feiyangedu.springcloud.data.request;
+package com.springframework.datajpa.core.request;
 
 public class UserReq {
 
