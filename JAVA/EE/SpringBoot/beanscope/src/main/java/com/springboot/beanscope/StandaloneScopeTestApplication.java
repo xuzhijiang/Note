@@ -10,7 +10,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class StandaloneScopeTestApplication {
 
     public static void main(String[] args) {
-        // 对于独立应用程序，您需要在应用程序中的某个位置初始化Spring IoC容器，然后才能使用它来获取spring bean
+        // 对于独立应用程序，您需要在应用程序中的某个位置初始化Spring IoC容器，然后才能使用它来获取spring other
         // 1. 我们初始化AnnotationConfigApplicationContext上下文(即Spring IoC容器)
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         // 注册配置类
@@ -24,19 +24,19 @@ public class StandaloneScopeTestApplication {
         // test singleton scope
         TestSingletonBean singletonBean1 = ctx.getBean(TestSingletonBean.class);
         TestSingletonBean singletonBean2 = ctx.getBean(TestSingletonBean.class);
-        System.out.println("singleton bean: " + (singletonBean1 == singletonBean2));
+        System.out.println("singleton other: " + (singletonBean1 == singletonBean2));
 
         // test prototype scope
         TestPrototypeBean prototypeBean1 = ctx.getBean(TestPrototypeBean.class);
         TestPrototypeBean prototypeBean2 = ctx.getBean(TestPrototypeBean.class);
-        System.out.println("prototype bean: " + (prototypeBean1 == prototypeBean2));
+        System.out.println("prototype other: " + (prototypeBean1 == prototypeBean2));
 
         // test request scope
         // 会抛出: No Scope registered for scope name 'request'(没有为范围名称“请求”注册的范围)
         try {
             TestRequestBean requestBean1 = ctx.getBean(TestRequestBean.class);
             TestRequestBean requestBean2 = ctx.getBean(TestRequestBean.class);
-            System.out.println("request bean: " + (requestBean1 == requestBean2));
+            System.out.println("request other: " + (requestBean1 == requestBean2));
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }

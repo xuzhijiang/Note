@@ -1,6 +1,6 @@
 package org.springframework.samples.routing.mapper.db2;
 
-import com.journaldev.spring.jdbc.routing.Routing;
+import com.legacy.springmvc.jdbc.routing.Routing;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;

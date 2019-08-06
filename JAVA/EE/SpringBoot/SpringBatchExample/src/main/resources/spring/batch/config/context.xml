@@ -6,10 +6,10 @@
 
 	<!-- stored job-meta in memory -->
 	<!--  
-	<bean id="jobRepository"
+	<other id="jobRepository"
 		class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
 		<property name="transactionManager" ref="transactionManager" />
-	</bean>
+	</other>
  	 -->
  	 
  	 <!-- stored job-meta in database -->

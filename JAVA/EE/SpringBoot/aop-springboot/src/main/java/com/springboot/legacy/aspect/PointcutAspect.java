@@ -20,7 +20,7 @@ public class PointcutAspect {
 
     // Pointcut to execute on all the methods of classes in a package
     // 在com.springboot.legacy.bean包中的类的所有方法上执行.
-    @Pointcut("within(com.springboot.legacy.bean.*)")
+    @Pointcut("within(com.springboot.legacy.other.*)")
     public void allMethodsPointcut(){
         // @Pointcut注解修饰的是空方法，里面的打印不会被执行
     }

@@ -16,8 +16,8 @@ public class InitAndDestoryBean {
  * 如果是原始的基于 XML 也是可以使用:
  *
  * ```xml
- * <bean class="InitAndDestoryBean" init-method="init" destroy-method="destroy">
- * </bean>
+ * <other class="com.springboot.beanscope.other.InitAndDestoryBean" init-method="init" destroy-method="destroy">
+ * </other>
  * ```
  *
  * 来达到相同的效果.

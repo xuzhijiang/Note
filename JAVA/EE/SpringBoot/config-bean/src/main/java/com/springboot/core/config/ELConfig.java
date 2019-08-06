@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 
 @Configuration
 @PropertySource("classpath:test.properties")// 指明配置文件所在位置，其内容会被抽取出来，放到环境变量中
+// @PropertySources用于添加一个属性源文件数组
 public class ELConfig {
 
     // 注入普通字符串

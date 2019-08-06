@@ -14,7 +14,7 @@
 batch：job  - 此标记定义我们要创建的作业。 Id属性指定作业的ID。我们可以在一个xml文件中定义多个作业。
 batch：step  - 此标记用于定义spring批处理作业的不同步骤。
 Spring Batch Framework提供了两种不同类型的处理方式，即“TaskletStep Oriented”和“Chunk Oriented”。在这个例子中使用的Chunk Oriented风格是指逐个读取数据并在事务边界内创建将被写出的“块”。
-读者：用于读取数据的spring bean。我们在这个示例中使用了csvFileItemReader bean，它是FlatFileItemReader的实例。
+读者：用于读取数据的spring other。我们在这个示例中使用了csvFileItemReader other，它是FlatFileItemReader的实例。
 处理器：这是用于处理数据的类。我们在这个例子中使用了CustomItemProcessor。
 writer：bean用于将数据写入xml文件。
 commit-interval：此属性定义处理完成后将提交的块的大小。基本上它意味着ItemReader将逐个读取数据，而ItemProcessor也将以相同的方式处理它，但ItemWriter只有在它等于commit-interval的大小时才会写入数据。
@@ -23,9 +23,9 @@ commit-interval：此属性定义处理完成后将提交的块的大小。基�
 	<import resource="../config/context.xml" />
 	<import resource="../config/database.xml" />
 
-	<bean id="report" class="com.journaldev.spring.model.Report"
+	<bean id="report" class="com.legacy.springmvc.model.Report"
 		scope="prototype" />
-	<bean id="itemProcessor" class="com.journaldev.spring.CustomItemProcessor" />
+	<bean id="itemProcessor" class="com.legacy.springmvc.CustomItemProcessor" />
 
 	<batch:job id="DemoJobXMLWriter">
 		<batch:step id="step1">
@@ -50,11 +50,11 @@ commit-interval：此属性定义处理完成后将提交的块的大小。基�
 					</bean>
 				</property>
 				<property name="fieldSetMapper">
-					<bean class="com.journaldev.spring.ReportFieldSetMapper" />
+					<bean class="com.legacy.springmvc.ReportFieldSetMapper" />
 
 					<!-- if no data type conversion, use BeanWrapperFieldSetMapper to map 
-						by name <bean class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper"> 
-						<property name="prototypeBeanName" value="report" /> </bean> -->
+						by name <other class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+						<property name="prototypeBeanName" value="report" /> </other> -->
 				</property>
 			</bean>
 		</property>
@@ -70,7 +70,7 @@ commit-interval：此属性定义处理完成后将提交的块的大小。基�
 	<bean id="reportMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
 		<property name="classesToBeBound">
 			<list>
-				<value>com.journaldev.spring.model.Report</value>
+				<value>com.legacy.springmvc.model.Report</value>
 			</list>
 		</property>
 	</bean>

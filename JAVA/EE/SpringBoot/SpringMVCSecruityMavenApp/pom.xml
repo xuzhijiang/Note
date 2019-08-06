@@ -71,6 +71,7 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+			<!--we are not using web.xml file right.由于它是一个Web应用程序，Maven搜索web.xml文件,如果在应用程序中没有找不到，则会引发一些错误。 这是为了避免Maven相关问题，我们需要在pom.xml文件中配置“<failOnMissingWebXml>”标志-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>

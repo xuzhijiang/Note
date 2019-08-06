@@ -1,6 +1,6 @@
 package org.springframework.samples.routing;
 
-import com.journaldev.spring.jdbc.routing.RoutingAdvice;
+import com.legacy.springmvc.jdbc.routing.RoutingAdvice;
 import org.springframework.samples.routing.mapper.db1.UserInsertMapper;
 import org.springframework.samples.routing.mapper.db1.UserSelectMapper;
 import org.springframework.samples.routing.mapper.db2.UserAccountMapper;

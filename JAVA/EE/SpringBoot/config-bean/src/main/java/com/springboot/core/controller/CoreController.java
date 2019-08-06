@@ -19,27 +19,17 @@ public class CoreController {
     @ResponseBody
     @RequestMapping(path = "/insert", method = RequestMethod.GET)
     public String insertUser(){
-        StringBuilder sb = new StringBuilder();
         User user = new User();
         user.setName("xzj");
-
         userMapper.insert(user);
+
         int id = user.getId();// 获得自动生成的主键
-
-        List<User> users = userMapper.selectAll();
-        for(User u : users){
-            System.out.println("id: " + u.getId() + ", name:" + u.getName());
-            sb.append("id: " + u.getId() + ", name:" + u.getName() + "\n");
-        }
-
         User u2 = new User();
         u2.setName("xxxxx");
         u2.setId(id);
         userMapper.update(u2);
 
-        userMapper.delete(id);
-
-        return sb.toString();
+        return u2.toString();
     }
 
 }

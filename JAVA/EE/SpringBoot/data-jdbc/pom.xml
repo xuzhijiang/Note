@@ -10,7 +10,7 @@
 	</parent>
 
 	<!-- App相关信息 -->
-	<groupId>com.itranswarp.springcloud</groupId>
+	<groupId>com.springdata.jdbc</groupId>
 	<artifactId>data-jdbc</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
@@ -34,6 +34,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<!-- 使用Swagger调试API -->
@@ -54,7 +58,7 @@
 		</dependency>
 		<!-- 嵌入式数据库通常用于开发和测试环境，不推荐用于生产环境。
 		Spring Boot提供自动配置的嵌入式数据库有H2、HSQL、Derby，
-		你不需要提供任何连接配置就能使用。下面引入Hsqldb(HSQL)作为数据库 -->
+				你不需要提供任何连接配置就能使用.(当然演示多数据源的时候会配置.)-->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>

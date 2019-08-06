@@ -2,9 +2,6 @@ package com.journaldev.webapp.spring.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
-// 将Spring Security Web与Servlet API集成
-
-// 最后一部分是将Spring Security配置类集成到Servlet API中。 
 // 这可以通过extend AbstractSecurityWebApplicationInitializer类
 // 并在超类构造函数中传递Security配置类来轻松完成。
 
@@ -38,12 +35,10 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
 // 则需要通过部署描述符注册DispatcherServlet。 有关更多详细信息，
 // 请参阅WebApplicationInitializer的JavaDoc。
 
-// 这就是Spring Security示例教程以及它在基于Servlet的Web应用程序中的集成。 
-
 public class SecurityWebApplicationInitializer extends
 		AbstractSecurityWebApplicationInitializer {
 
 	public SecurityWebApplicationInitializer() {
-        super(SecurityConfig.class);
+        super(com.journaldev.webapp.spring.security.SecurityConfig.class);
     }
 }

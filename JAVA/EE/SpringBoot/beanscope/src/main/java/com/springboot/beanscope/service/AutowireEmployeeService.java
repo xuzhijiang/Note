@@ -2,6 +2,7 @@ package com.springboot.beanscope.service;
 
 import com.springboot.beanscope.bean.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,8 +20,11 @@ public class AutowireEmployeeService {
 	}
 
 
-    //	6. @Qualifier注释 - 此注释用于避免bean映射中的冲突，我们需要为此注解提供将用于自动装配的bean的name。
-    // 此注释通常与@Autowired注释一起使用。
+    /**
+     *  在Service和Controller中,经常需要引用bean,但是可能有多个bean候选,
+     *  这时可以使用@Qualifier("beanName")- 用于避免在我们为同一类型配置两个bean时出现混淆.
+     *  告诉spring框架将名为beanName的bean注入类属性中
+     */
 //    @Autowired
 //    public void setEmployee(@Qualifier("employee") Employee e){
 //        this.employee=e;

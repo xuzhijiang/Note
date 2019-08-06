@@ -10,11 +10,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-// Spring安全示例UserDetailsService DAO实现
-// 由于我们也将使用基于DAO的身份验证，我们需要实现UserDetailsService接口
-// 并提供loadUserByUsername(）方法的实现。
-
-// 理想情况下，我们应该使用一些资源来验证用户，但为了简单起见，我只是进行基本验证。
 
 public class AppUserDetailsServiceDAO implements UserDetailsService {
 

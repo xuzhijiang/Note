@@ -19,7 +19,7 @@ import javax.servlet.ServletContext;
 import java.util.Arrays;
 
 /**
- * Aware接口可以用于在初始化 bean 时获得 Spring 中的一些对象，如Spring 上下文等。
+ * Aware接口可以用于在初始化 other 时获得 Spring 中的一些对象，如Spring 上下文等。
  * 这些Aware接口会被Spring回调
  */
 public class AwareBean implements ApplicationContextAware,

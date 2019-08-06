@@ -1,14 +1,13 @@
-### 使用Maven构建Web应用
+# 使用Maven构建Web应用
 
-#### Jave web war包目录结构说明
+## Jave web war包目录结构说明
 
-1. 如果需要第三方jar包，则会在WEB-INF(WEB INFormation)下创建一个lib文件夹，用于保存jar包。
+1. 在WEB-INF(WEB INFormation)下创建一个lib文件夹，用于保存第三方jar
 2. 在应用程序根目录(与WEB-INF同级）下，还可以创建子文件夹，比如js,css之类，用于保存各种Web资源
-3. 放在应用程序目录下的任何资源，用户只要输入资源URL，都可以直接访问到。如果
-想让某一个资源可以被Servlet访问，但不可以被用户访问，那么就要把它放在WEB-INF目录下。
+3. 放在应用程序目录下的任何资源，用户只要输入资源URL，都可以直接访问到。如果想让某一个资源可以被Servlet访问，但不可以被用户访问，那么就要把它放在WEB-INF目录下。
 4. 部署描述符总是命名为web.xml，并且放在WEB-INF目录下
 
-> java的web应用，其标准打包方式是war， war和jar类似，只不过它包含更多内容，如jsp文件、servlet文件、java类、web.xml配置，依 赖包、静态web资源(html css js文件)等。
+> java web应用，其标准打包方式是war， war和jar类似，只不过它包含更多内容，如jsp文件、servlet文件、java类、web.xml配置，依 赖包、静态web资源(html css js文件)等。
 
 war文件目录结构如下：
 
@@ -72,12 +71,10 @@ jar文件目录结构如下：
         └── web.xml
 ```
 
-### IntelliJ开发Web项目
+## IntelliJ开发Web项目
 
-本文介绍如何使用IntelliJ IDEA开发传统的Java Web
-(即Servlet和JSP）项目的步骤与方法，掌握好它们，就可
-以使用IntelliJ来编写程序，深入地学习Java Web开发技
-术，同时，这些技能也为实际工作所需要，因此，掌握以下内容是很重要的。
+介绍如何使用IntelliJ IDEA开发传统的Java Web
+(即Servlet和JSP）项目的步骤
 
 1. File/New Project/Create New
 2. 选择“Java Enterprise”,然后勾选 Additional Libraries and Frameworks下的“Web Application”，勾选创建web.xml

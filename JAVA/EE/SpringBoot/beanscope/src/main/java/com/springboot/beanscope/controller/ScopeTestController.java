@@ -32,7 +32,7 @@ public class ScopeTestController {
     }
 }
 
-// 现在等待1分钟，以便我们的session scoped bean(会话范围的bean)失效了。
+// 现在等待1分钟，以便我们的session scoped other(会话范围的bean)失效了。
 // 然后再次转到http://localhost:8080/nameSS，您应该看到原始输出
 // (DataSessionScope Constructor Called at XXX）。此外，您应该检查控制台消息，
 // 以便容器再次创建DataSessionScope。

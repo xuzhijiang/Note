@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class BeforeAspect {
 
 	// @Before annotation中传递的字符串参数是Pointcut表达式(横切点表达式)
-	// 4. 如果我们使用new运算符创建Employee bean，然后调用Employee的getName()则不会应用advice。
+	// 4. 如果我们使用new运算符创建Employee other，然后调用Employee的getName()则不会应用advice。
 	// 5. 只有当我们使用ApplicationContext来获取bean时，然后调用Employee bean的getName(),才会应用advice。
 	@Before("execution(public String getName())")
 	public void getName(){
@@ -29,7 +29,7 @@ public class BeforeAspect {
 		System.out.println("Service method getter called");
 	}
 
-	@Before("execution(public void com.springboot.legacy.bean..set*(*))")
+	@Before("execution(public void com.springboot.legacy.other..set*(*))")
 	public void loggingAdvice(JoinPoint joinPoint){
 		System.out.println("BeforeAspect Before: " + Arrays.toString(joinPoint.getArgs()));
 	}

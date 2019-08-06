@@ -1,7 +1,7 @@
 package org.springframework.samples.routing.service;
 
-import com.journaldev.spring.jdbc.routing.Routing;
-import com.journaldev.spring.jdbc.routing.RoutingContext;
+import com.legacy.springmvc.jdbc.routing.Routing;
+import com.legacy.springmvc.jdbc.routing.RoutingContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.routing.entity.User;
 import org.springframework.samples.routing.entity.UserAccount;

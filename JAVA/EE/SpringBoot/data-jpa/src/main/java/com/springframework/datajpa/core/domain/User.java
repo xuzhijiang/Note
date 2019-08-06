@@ -7,7 +7,7 @@ import javax.persistence.*;
  *
  * 由于配置了hibernate.hbm2ddl.auto，在应用启动的时候框架会自动去数据库中创建对应的表。
  */
-@Entity
+@Entity// @Entity：允许EntityManager使用此类,并将其放在上下文中。
 public class User {
 
 	@Id

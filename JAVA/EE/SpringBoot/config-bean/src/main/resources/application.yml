@@ -5,7 +5,7 @@ spring:
     active: DEV
 
 server:
-  port: 9090
+  port: 8080
 
 xzj:
   info: hello,spring boot

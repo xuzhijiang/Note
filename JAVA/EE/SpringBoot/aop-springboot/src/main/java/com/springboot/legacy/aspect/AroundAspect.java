@@ -19,7 +19,7 @@ public class AroundAspect {
 	// 3. 如果advised方法返回某些内容，advice method将其返回给调用者程序。 
 	// 4. 对于void方法，advice方法可以返回null。
 	// 5. 我们可以控制方法的输入和输出以及它的执行行为。
-	@Around("execution(* com.springboot.legacy.bean.Employee.getName())")
+	@Around("execution(* com.springboot.legacy.other.Employee.getName())")
 	public Object employeeAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
 		System.out.println("Before invoking getName() method");
 		Object value = null;

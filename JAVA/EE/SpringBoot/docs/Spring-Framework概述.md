@@ -1,7 +1,7 @@
 ### Spring技术的演化
 
-1. Spring Framework - XML配置为主-->注解为主
-2. Spring Boot - 手工编程-->自动化配置
+1. Spring Framework - XML配置为主-->注解为辅
+2. Spring Boot - 自动化配置--->注解为主
 3. Spring Cloud - 单体应用--->分布式微服务系统
 
 ### Spring Framework的技术特点

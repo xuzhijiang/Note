@@ -15,13 +15,16 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.PostConstruct;
 
 @Configuration
-@EnableConfigurationProperties(LogProperties.class)//启动指定类的ConfigurationProperties功能,也就是使用LogProperties.class的配置
+//启动指定类的ConfigurationProperties功能,
+// 也就是使用LogProperties.class的配置
+@EnableConfigurationProperties(LogProperties.class)
 public class LogAutoConfiguration extends AbstractPointcutAdvisor {
 
     private Logger logger = LoggerFactory.getLogger(LogAutoConfiguration.class);
 
     private Pointcut pointcut;
 
+    // advice指的是在pointcut之前(Before),还是之后(After),还是返回值以后(AfterReturning)
     private Advice advice;
 
     @Autowired

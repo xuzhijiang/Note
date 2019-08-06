@@ -1,5 +1,6 @@
 package com.springboot.core;
 
+import com.springboot.core.bean.EnvironmentBean;
 import com.springboot.core.config.ConfigProperties;
 import com.springboot.core.config.ELConfig;
 import com.springboot.core.profile.IProfileBean;
@@ -24,6 +25,8 @@ public class ConfigBeanApplication {
 		testExtractInfoFromPropertyFileByPrefix(context);
 
 		testProfile(context);
+
+		testEnvironment(context);
 	}
 
 	private static void testProfile(ApplicationContext context) {
@@ -44,4 +47,8 @@ public class ConfigBeanApplication {
 		config.printFields();
 	}
 
+	private static void testEnvironment(ApplicationContext ctx) {
+		EnvironmentBean bean = ctx.getBean(EnvironmentBean.class);
+		System.out.println(bean.getName());
+	}
 }

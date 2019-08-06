@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!--maxUploadSize属性值来设置最大上载大小限制。-->
+		<beans:property name="maxUploadSize" value="100000" />
+
+		<!--查看DispatcherServlet类的源代码，您将看到名为multipartResolver的MultipartResolver变量已定义并在以下方法中初始化：
+		private void initMultipartResolver(ApplicationContext context)
+	  {
+		this.multipartResolver = ((MultipartResolver)context.getBean("multipartResolver", MultipartResolver.class));
+	  }
+		-->
+
+		<!--使用此配置，任何具有enctype作为multipart/form-data的请求将在传递给Controller类之前由multipartResolver处理。-->
+	</beans:bean>
+
+</beans:beans>

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 public class OtherBean {
     @Override
     public String toString() {
-        return "OtherBean{} in com.javax.other.bean package";
+        return "OtherBean{} in com.javax.other.other package";
     }
 }

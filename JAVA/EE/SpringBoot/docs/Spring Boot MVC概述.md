@@ -3,8 +3,6 @@
 1. Spring Boot MVC应用
 2. Spring Boot RESTful Service开发
 
-本讲将会展示Spring Boot与Spring Boot MVC之间的区别
-
 ## Spring Boot MVC概述
 
 ### 技术全局视图

@@ -9,7 +9,7 @@
         使用Spring AOP，需要执行以下操作:
         1.  声明AOP名称空间，如xmlns:aop =“http://www.springframework.org/schema/aop”
         2. 添加aop：aspectj-autoproxy元素启用Spring AspectJ支持
-        3. 将Aspect类配置为Spring bean
+        3. 将Aspect类配置为Spring other
     -->
 
     <!-- 启动对@AspectJ注解的支持 -->

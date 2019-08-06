@@ -8,11 +8,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.WebApplicationContext;
 
 @Configuration
-@ComponentScan("com.springboot.beanscope.bean")
+@ComponentScan("com.springboot.beanscope.other")
 public class BeanConfig {
 
     // 指定POJO类作为Bean的初始化和销毁方法
-    @Bean(initMethod = "init", destroyMethod = "destroy")
+    // @Bean注释也可以与name，initMethod和destroyMethod等参数一起使用。
+    // name  - 允许你给bean命名
+    @Bean(name = "init-and-destroy-other", initMethod = "init", destroyMethod = "destroy")
     InitAndDestoryBean initAndDestoryBean() {
         return new InitAndDestoryBean();
     }

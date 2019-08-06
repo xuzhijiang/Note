@@ -26,3 +26,8 @@ lsof -a -u test -i
 
 lsof -i TCP:80 #see what application is listening on port 80
 ```
+
+## windows上解决SpringBoot内嵌服务器端口占用的问题
+
+1. netstat  -ano|findstr  8080(查看占用8080端口的进程）
+2. taskkill  /pid  6856  /f (运行windows自带taskkill命令，结束掉进程)

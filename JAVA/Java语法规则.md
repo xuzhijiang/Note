@@ -194,3 +194,11 @@ Java8是的接口可以添加default方法和类方法，参见: java.lang.Itera
 java7中引入了Objects
 
 java7引入了Integer.compare(),比较 2个int是否相等
+
+对于接口interface,4个修饰符public,默认,private,protected,和类是一样的作用,限制使用范围,但是interface的方法默认都是public的,不用再主动声明public关键字.
+
+private int age; // 默认值为0
+private String username;// 默认值为null
+private boolean isMale;//默认为false.
+
+网站支持https.

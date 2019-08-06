@@ -12,8 +12,7 @@ import javax.sql.DataSource;
 @MapperScan(basePackages = "com.springboot.core.mapper")
 public class DatabaseConfig {
 
-    // 我们只需要配置一个数据源即可，
-    // mybatis-spring-boot-starter会自动帮我们创建SqlSessionFactory和SqlSessionTemplate
+    // 我们只需要配置一个数据源即可，mybatis-spring-boot-starter会自动帮我们创建SqlSessionFactory和SqlSessionTemplate
     @Bean
     public DataSource druidDataSoruce() {
         DruidDataSource druidDataSource = new DruidDataSource();
