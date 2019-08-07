@@ -9,20 +9,13 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-// Spring安全示例WebSecurityConfigurer实现
-// 我们可以实现WebSecurityConfigurer接口，
-// 或者我们可以extendWebSecurityConfigurerAdapter并覆盖这些方法。
-
-// 请注意，我们通过覆盖configure(WebSecurity web）方法忽略所有HTML文件。
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
-	public void configure(AuthenticationManagerBuilder auth)
-			throws Exception {
-
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// in-memory authentication
 		// auth.inMemoryAuthentication().withUser("pankaj").password("pankaj123").roles("USER");
 
@@ -43,7 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.usersByUsernameQuery(findUserQuery)
 				.authoritiesByUsernameQuery(findRoles);
 	}
-	
+
+	// 通过覆盖configure(WebSecurity web）方法忽略所有HTML文件。
 	@Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()

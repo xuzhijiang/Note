@@ -6,6 +6,7 @@
 	<artifactId>WebappSpringSecurity</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+
 	<dependencies>
 		<!-- Spring Security Artifacts - START -->
 		<dependency>
@@ -54,8 +55,8 @@
 			<version>4.0.2.RELEASE</version>
 		</dependency>
 	</dependencies>
+
 	<build>
-		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -75,4 +76,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

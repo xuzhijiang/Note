@@ -8,14 +8,13 @@ import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 
 /**
- * ContentImportSelector根据EnableContentService注解里的policy加载不同的bean
+ * 根据EnableContentService注解里的policy加载不同的bean
  */
 public class ContentImportSelector implements ImportSelector {
     @Override
     public String[] selectImports(AnnotationMetadata importingClassMetadata) {
         Class<?> annotationType = EnableContentService.class;
-        AnnotationAttributes attributes = AnnotationAttributes.fromMap(
-                importingClassMetadata.getAnnotationAttributes(annotationType.getName(), false));
+        AnnotationAttributes attributes = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(annotationType.getName(), false));
         String policy = attributes.getString("policy");
 
         // 这样的话，如果在@EnableContentService注解的policy中使用core的话，

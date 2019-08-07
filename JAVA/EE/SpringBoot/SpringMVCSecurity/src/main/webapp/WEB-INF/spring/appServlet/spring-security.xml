@@ -5,10 +5,6 @@
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!--
-		Spring MVC Security Configuration
-
-		这是我们教程中最重要的部分
-
 		1. 定义了accessDecisionManager other，以便我们可以拥有自定义角色，默认情况下，所有角色都应以ROLE_开头，我们将在roleVoter bean属性rolePrefix中覆盖此设置。
 
 		2. 我们可以在spring安全配置中定义多个身份验证管理器。我已经为 in-memory authentication(内存中身份验证)定义了in-memory-auth，为UserDetailsS​​ervice DAO实现定义了dao-auth，为JDBC身份验证定义了jdbc-auth。对于JDBC身份验证，我已经为应用程序中定义的DataSource提供了配置，以及我们是否要使用servlet容器中定义的JNDI资源。

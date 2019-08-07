@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!--  
-	在这里，我们在顶部框架添加了三个类似菜单的选项
+	我们在顶部框架添加了三个类似菜单的选项
 
 	新的两个链接是：
 

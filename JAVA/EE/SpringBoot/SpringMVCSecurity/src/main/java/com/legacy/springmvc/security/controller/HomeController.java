@@ -1,4 +1,4 @@
-package com.legacy.springmvc.controller;
+package com.legacy.springmvc.security.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

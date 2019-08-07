@@ -9,9 +9,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 我们来看一个需求：定义一个Annotation，让使用了这个Annotaion的应用程序自动化地注入一些bean
+ * 需求：定义一个Annotation，让使用了这个Annotaion的应用程序自动化地注入一些bean.
  *
- * 我们会使用Spring提供的@Import注解配合完成。
+ * 我们会使用@Import注解配合完成
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

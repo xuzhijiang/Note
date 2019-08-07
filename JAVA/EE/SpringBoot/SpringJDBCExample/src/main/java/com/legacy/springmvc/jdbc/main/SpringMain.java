@@ -8,7 +8,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.legacy.springmvc.jdbc.model.Employee;
 
-// 我使用 Random Class为员工ID生成随机数。
 public class SpringMain {
 
 	public static void main(String[] args) {
