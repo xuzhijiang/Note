@@ -25,10 +25,9 @@ if(cookies !=null){
 <br>
 User=<%=user %>
 <br>
-<!-- 当客户端点击任何JSP页面中的Logout按钮时，将调用LogoutServlet。 -->
-<a href="CheckoutPage.jsp">Checkout Page</a>
-<form action="LogoutServlet" method="post">
-<input type="submit" value="Logout" >
-</form>
+    <a href="CheckoutPage.jsp">Checkout Page</a>
+    <form action="logout" method="post">
+        <input type="submit" value="Logout" >
+    </form>
 </body>
 </html>

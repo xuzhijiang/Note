@@ -20,9 +20,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public FilterRegistrationBean getDemoFilter(){
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         filterRegistrationBean.setFilter(new DemoFilter());
-
         List<String> urlPatterns = new ArrayList<>();
-        urlPatterns.add("/*");// 拦截路径，可以添加多个
+        // 拦截路径，可以添加多个
+        urlPatterns.add("/*");
         // 设置demoFilter过滤的url模式
         filterRegistrationBean.setUrlPatterns(urlPatterns);
         filterRegistrationBean.setOrder(1);

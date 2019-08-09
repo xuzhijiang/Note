@@ -4,8 +4,8 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.javadev.servlet</groupId>
-	<artifactId>LearnServlet</artifactId>
-	<name>LearnServlet</name>
+	<artifactId>ServletHttpSession</artifactId>
+	<name>ServletHttpSession</name>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
 

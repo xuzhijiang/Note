@@ -202,3 +202,7 @@ private String username;// 默认值为null
 private boolean isMale;//默认为false.
 
 网站支持https.
+
+Filter的FilterChain用于调用链中的下一个过滤器,这是责任链模式的一个很好的例子。
+
+Servlet的Listener涉及到的是观察者模式(Observer)

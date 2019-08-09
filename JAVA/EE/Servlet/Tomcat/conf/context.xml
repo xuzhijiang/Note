@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  简化版的context.xml
+-->
+<!-- The contents of this file will be loaded for each web application -->
+<!-- 这个文件的内容将会被每个应用加载 -->
+<Context>
+
+    <!-- Default set of monitored resources. If one of these changes, the    -->
+    <!-- web application will be reloaded.                                   --><
+	<!-- 监控资源的默认集合,如果这些资源之一变化了,web应用将重新加载 -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+    <!--
+    <Manager pathname="" />
+    -->
+</Context>

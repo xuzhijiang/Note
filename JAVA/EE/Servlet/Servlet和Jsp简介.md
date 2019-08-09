@@ -12,30 +12,7 @@
   如果我们不在URL中提供port，则请求转到协议的默认端口, 端口号0到1023是众所周知的服务的保留端口，
   例如80表示HTTP，443表示HTTPS，21表示FTP等。
 
-### 创建一个web application
-
-  由于servlet是服务器端技术，我们需要一个支持Servlet技术的Web容器.
-  
-  转到Eclipse -》 Preference -》 Server Runtime Environments， 并选择tomcat服务器的版本，我的是Tomcat 8。
-  
-  现在转到Servers视图，创建一个新服务器，指向上面添加的运行时环境。
-  
-  选择File> New> Dynamic Web Project
-  
-  module version as 3.0,也就是使用Servlet 3.0规范创建我们的servlet。
-  
-  选择File> New> Servlet创建我们的第一个servlet。
-  
-  当单击Finish时，它会生成我们的Servlet框架代码，节省了我们的时间。
-
-Jave Web应用被打包为Web Archive (WAR--Web ARchive),WAR有一个定义好的结构.
-你可以导出上面的dynamic web project作为WAR文件并且解压它来看看结构.
-
-### 部署描述符
-
-web.xml文件是web应用程序的部署描述符,包含了servlets的映射(prior to 3.0---3.0之前),欢迎页面，安全配置，session超时设置等.
-
-### JSP和Servlet如何学习?
+# JSP和Servlet如何学习?
 
 JSP与Servlet都是早期Java Web开发的核心技术，拥有悠久的历史。虽然现在的Web项目很少直接使用它们来进行开发，但新技术是从老技术上“长”出来的，并不是全盘抛弃了老技术。
 
@@ -44,35 +21,17 @@ Servlet和JSP只是Java EE众多技术中的两个，其他Java EE技
 
 所以，我们还是应该学习与掌握Servlet与JSP的基础知识，只需注意一下“度”，并没有太多必要花费太多时间去系统掌握其各种技术细节，而应该把精力放在理解Servlet的工作原理，以及Servlet与像Tomcat这样的Servlet容器之间的关系即可。
 
-#### Servlet
-
-比如,虽然Servlet已经被Spring MVC这样的框架所封装，但掌握它仍然是必需的. 再举例，就算是到了2018年才发布的Spring Boot 2.0中，Servlet仍然没有被废弃。
-
-#### JSP
+# JSP
 
 与Servlet现在仍然是Java Web开发的基础不太一样，JSP现在己经用得越来越少了，但如果不学习它，后面的很多内容没法学习。所以，掌握JSP的基础知识，能看懂JSP代码，并且具备动手编写一些简单JSP页面的技能，仍然是需要的。
 
 ## Servlet
 
-如果你深刻理解了Servlet的生命周期，就可以在底层做很多事情。在Request进来的时候，
-进行拦截，进行权限的判定。也可以在Response发给client的时候，进行拦截，统一检查、统一附加。
-所以Servlet不仅要学，而且要学深，学透。”
+如果你深刻理解了Servlet的生命周期，就可以在底层做很多事情。在Request进来的时候，进行拦截，进行权限的判定。也可以在Response发给client的时候，进行拦截，统一检查、统一附加。所以Servlet不仅要学，而且要学深，学透。”
 
-### Common Gateway Interface (CGI)
+## Servlet与Servlet容器
 
-在介绍Java Servlet API之前，先介绍一下早期使用的Web服务器扩展机制是CGI(公共网关接口)，web服务器收到请求后，将request转给CGI，CGI处理后，将产生一个响应，该响应会返回给web服务器，web服务器对response进行包装，以HTTP响应的方式返回给浏览器.
-CGI技术有许多缺点(drawbacks），例如为每个请求创建单独的进程，
-(platform dependent code)平台相关代码(C，C++），高内存使用和低性能。
-
-### Servlet与Servlet容器以及Web服务器和JVM的关系
-
-引入Java Servlet技术来克服CGI技术的缺点。
-
-Servlet容器也叫做Servlet引擎，是Web服务器的一部分，Servlet容器也仅仅不过是一个Java程序,Servlet容器也仅仅不过是一个Java程序,Servlet容器就是用来装Servlet的。引入servlet容器是为了处理复杂的HTTP请求。Servlet容器负责servlet的创建、执行和销毁。
-
-Java Servlet(Java服务器小程序)是一个基于Java技术的Web组件，运行在服务器端，它由Servlet容器所管理，用于生成动态的内容。 Servlet是平台独立的Java类(jdk中的jvm是和平台相关的，java是运行在jvm上，编写一个Servlet，实际上就是按照Servlet规范编写一个Java类。Servlet被编译为平台独立 的字节码，可以被动态地加载到支持Java技术的Web服务器中运行。 
-
-Servlet没有main方法，不能独立运行，它必须被部署到Servlet容器中，由容器来实例化和调用Servlet的方法(如doGet()和doPost()），Servlet容器在Servlet的生命周期内包容和管理Servlet。在JSP技术 推出后，管理和运行Servlet/JSP的容器也称为Web容器。
+Servlet容器(例如Tomcat)也仅仅不过是一个Java程序,Servlet容器就是用来装Servlet的。Servlet容器负责servlet的创建、执行和销毁。Servlet它必须被部署到Servlet容器中.
 
 有了servlet之后，用户在浏览器的地址栏中输入URL发来请求，Web服务器接收到该请求后，并不是将请求直接交给Servlet，而是交给Servlet容器。当Servlet容器接受到Web服务器传来的请求，发现处理请求的资源是Servlet时，然后Servlet容器(Web容器)创建两个对象HTTPServletRequest和HTTPServletResponse, 然后，它根据URL找到正确的servlet, 并为请求创建一个线程, Servlet容器实例化Servlet，然后它调用servlet service()方法, 然后基于HTTP method，service()方法调用doGet()或doPost()方法对请求进行处理,Servlet方法生成动态页面并将其写入response, servlet线程完成后,这个response由Servlet容器返回给Web服务器，Web服务器包装这个响应，以HTTP响应的形式发送给Web浏览器。
 

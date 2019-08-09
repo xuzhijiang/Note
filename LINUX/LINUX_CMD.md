@@ -80,7 +80,8 @@ free -h
 env
 printenv
 
-# 对比windows下查看GRADLE_HOME: echo %GRADLE_HOME%
+# windows下查看环境变量PATH:
+echo %PATH%
 
 # 关机
 shutdown -h now

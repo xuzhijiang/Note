@@ -1,0 +1,28 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+		 version="3.1">
+	
+	<display-name>ServletListener-Example</display-name>
+
+	<context-param>
+		<param-name>DBUSER</param-name>
+		<param-value>root</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>DBPWD</param-name>
+		<param-value>password</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>DBURL</param-name>
+		<param-value>jdbc:mysql://localhost/mysql_db</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>com.listener.core.listener.MyContextAttributeListener</listener-class>
+	</listener>
+
+</web-app>
