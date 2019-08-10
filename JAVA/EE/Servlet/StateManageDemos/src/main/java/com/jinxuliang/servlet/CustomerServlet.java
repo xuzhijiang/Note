@@ -100,9 +100,7 @@ public class CustomerServlet extends HttpServlet {
         }
     }
 
-    public void doGet(HttpServletRequest request,
-                      HttpServletResponse response)
-            throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uri = request.getRequestURI();
         System.out.println("-------URI: " + uri);
         if (uri.endsWith("/customer")) {

@@ -20,8 +20,8 @@ if(userName == null) response.sendRedirect("login.html");
 %>
 <h3>Hi <%=userName %>, Login successful.</h3>
 <br>
-    <form action="LogoutServlet" method="post">
-        <input type="submit" value="注销" >
+    <form action="/logout" method="post">
+        <input type="submit" value="logout" >
     </form>
 </body>
 </html>

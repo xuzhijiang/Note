@@ -1,6 +1,9 @@
 package com.jinxuliang.model;
 
-public class ShoppingItem {
+import java.io.Serializable;
+
+public class ShoppingItem implements Serializable {
+
     private Product product;
     private int quantity;
 

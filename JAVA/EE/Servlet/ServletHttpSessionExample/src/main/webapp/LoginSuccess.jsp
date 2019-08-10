@@ -36,7 +36,7 @@ if(cookies !=null){
 User=<%=user %>
 <br>
 <a href="CheckoutPage.jsp">Checkout Page</a>
-<form action="LogoutServlet" method="post">
+<form action="logout" method="post">
 <input type="submit" value="Logout" >
 </form>
 </body>

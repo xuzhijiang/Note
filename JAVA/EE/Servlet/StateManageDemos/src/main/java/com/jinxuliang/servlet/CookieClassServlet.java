@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "CookieClassServlet",
         urlPatterns = {"/cookieClass"})
 public class CookieClassServlet extends HttpServlet {
+
     private String[] methods = {
             "clone", "getComment", "getDomain",
             "getMaxAge", "getName", "getPath",

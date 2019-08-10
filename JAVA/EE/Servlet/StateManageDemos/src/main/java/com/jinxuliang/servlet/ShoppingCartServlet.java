@@ -68,11 +68,9 @@ public class ShoppingCartServlet extends HttpServlet {
         Product product = getProduct(productId);
         if (product != null && quantity >= 0) {
             ShoppingItem shoppingItem = new ShoppingItem(product, quantity);
-            // 一个用户可以有且最多有一个HttpSession，并且不会被其他用户访问到。
-            // HttpSession对象在用户第一次访问网站的时候自动被创建，你可以通过调用
-            // HttpServletRequest的getSession方法获取该对象。可以通过HttpSession
-            // 的setAttribute方法将值放入HttpSession，放到HttpSession的值不限于String类型，
-            // 可以是任意实现java.io.Serializable的java对象
+            // 可以通过HttpSession的setAttribute方法将值放入HttpSession，
+            // 放到HttpSession的值不限于String类型，
+            // 可以是任意实现java.io.Serializable的java对象(为了序列化可以保存)
             HttpSession session = request.getSession();
             System.out.println("session id: " + session.getId());
             List<ShoppingItem> cart = (List<ShoppingItem>) session.getAttribute(CART_ATTRIBUTE);

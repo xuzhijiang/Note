@@ -14,7 +14,7 @@ public class CookieInfoServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response) throws ServletException,IOException {
-        // 浏览器在访问同一Web服务器时，会将之前收到的cookie一并发送。
+
         Cookie[] cookies = request.getCookies();
 
         StringBuilder styles = new StringBuilder();
