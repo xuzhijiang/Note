@@ -1,7 +1,5 @@
 ## JSP与Servlet高级特性
 
-* 监听器
-* 过滤器
 * 异步处理
 * 实例展示：登录验证码
 
@@ -52,28 +50,6 @@ ServletRequestListener    它能够响应一个ServletRequest的创建或删除�
 ServletRequestAttributeListener  它能响应ServletRequest范围的属性值添加、删除、修改事件。
 
 AsyncListener 一个用于异步操作的监听器
-
-#### 注册方法
-
-编写一个监听器，只需要写一个Java类来实现对应的监听器接口就可以了。
-在Servlet3.0和Servlet 3.1中提供了两种注册监听器的方法。
-
-1. 第一种是使用WebListener注解
-
-```java
-@WebListener
-public class ListenerClass implements ListenerInterface {
-
-}
-```
-
-2. 第二种方法是在部署描述文档中增加一个listener元素
-
-```xml
-<listener>
-	<listener-class>fully-qualified listener class</listener-class>
-</listener>
-```
 
 ### 过滤器
 

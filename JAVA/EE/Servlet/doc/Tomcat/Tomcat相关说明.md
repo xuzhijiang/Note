@@ -1,12 +1,12 @@
 # 1. 什么是JavaEE规范?和JavaWeb的区别?
 
-SUN公司的JavaEE规范：JDBC，JNDI，EJB，RMI，JSP，Servlets，XML，JMS，Java IDL，JTS，JTA，JavaMail，JAF。
+SUN公司的JavaEE规范：JDBC，JNDI，EJB，RMI，JSP，Servlets，XML，JMS，Java IDL，JTS，JTA，JavaMail，JAF.Servlet和JSP只是Java EE众多技术中的两个，其他Java EE技术还有Java消息服务(JMS)，企业Java对象(EJB)、 JavaServer Faces以及Java持久化等
 
-还有一一个组织，专门搞开源的，叫Apache。搞出了一个叫Tomcat的服务器。Tomcat也没完全实现JavaEE规范的13种核心技术，Tomcat只实现了部分,其中重要的是Servlet和JSP。而其他服务器比如JBoss、Weblogic啥的都是完全支持的。所以人们往往更愿意叫Tomcat为轻量级的服务器，也有叫它Servlet/JSP容器的。
+还有一一个组织，专门搞开源的，叫Apache。搞出了一个叫Tomcat的服务器。Tomcat也没完全实现JavaEE规范的13种核心技术，Tomcat只实现了部分,其中重要的是Servlet和JSP。而其他服务器比如JBoss、Weblogic啥的都是完全支持JavaEE规范的。所以人们往往更愿意叫Tomcat为轻量级的服务器，也有叫它Servlet/JSP容器的。
 
-听到这，你不禁大叫：不对啊，我记得自己写的程序里有用到JDBC啊，还可以运行哩！
+听到这，你不禁大叫：不对啊，我记得自己写的程序里有用到JMS啊，还可以运行哩！
 
-啊，那是因为你导了JDBC包...但是你安装了Tomcat后另外导过Servlet/JSP的包吗？没有嘛！人家tomcat自己按照JavaEE规范实现了Servlet/JSP规范，都整到自己源码里了。
+啊，那是因为你自己手动导了JMS包...但是你安装了Tomcat后另外导过Servlet/JSP的包吗？没有嘛！人家tomcat自己按照JavaEE规范实现了Servlet/JSP规范，都整到自己Tomcat源码里了。
 
 所以我更愿意称自己是JavaWeb程序员，而不是JavaEE程序员。JavaEE其实很重.
 
@@ -26,6 +26,10 @@ Tomcat实现了几个Java EE规范，包括Java Servlet、Java Server Pages（JS
  
  >可以说Tomcat是一个不完整的Java EE应用服务器。
  
+# 如何学习Servlet/JSP/Tomcat
+ 
+我们还是应该学习与掌握Servlet与JSP的基础知识，只需注意一下“度”，并没有太多必要花费太多时间去系统掌握其各种技术细节，而应该把精力放在理解Servlet的工作原理，以及Servlet与像Tomcat这样的Servlet容器之间的关系即可。
+
 # 3. Tomcat与Servlet
 
 Tomcat实现的几个Java EE规范最重的是Servlet，因为实现了Servlet规范，所以Tomcat也是一个Servlet容器，可以运行我们自己编写的Servlet处理动态请求。
