@@ -5,16 +5,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * ThreadLocal源码解析
- *
- * @param <T>
  */
 public class MyThreadLocal<T> extends ThreadLocal<T>{
 
     private final int threadLocalHashCode = nextHashCode();
 
-    /**
-     * 下一个要发出的哈希码
-     */
     private static AtomicInteger nextHashCode = new AtomicInteger();
 
     private static final int HASH_INCREMENT = 0x61c88647;
@@ -35,13 +30,13 @@ public class MyThreadLocal<T> extends ThreadLocal<T>{
     public T get() {
         // 得到当前线程
         Thread t = Thread.currentThread();
-        // 拿到当前线程的ThreadLocalMap对象,因为Thread内部持有一个ThreadLocal.ThreadLocalMap threadLocals = null;
+        // ,因为每个线程内部都持有一个ThreadLocal.ThreadLocalMap threadLocals = null;
+        // 拿到当前线程的ThreadLocalMap对象
         MyThreadLocal.ThreadLocalMap map = getMap(t);
         if (map != null) {
-            // 找到该ThreadLocalMap对应的Entry
+            // 找到ThreadLocal对应的Entry
             MyThreadLocal.ThreadLocalMap.Entry e = map.getEntry(this);
             if (e != null) {
-                @SuppressWarnings("unchecked")
                 T result = (T)e.value;
                 return result;
             }

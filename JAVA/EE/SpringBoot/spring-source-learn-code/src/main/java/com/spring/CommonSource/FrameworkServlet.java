@@ -29,8 +29,7 @@ public class FrameworkServlet extends HttpServletBean {
         // a. 通过工具类WebApplicationContextUtils来获取Root WebApplicationContext
         // 其内部以”org.springframework.web.context.WebApplicationContext.ROOT”为
         // key从ServletContext中查找WebApplicationContext实例作为rootContext
-        WebApplicationContext rootContext =
-                WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+        WebApplicationContext rootContext = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
         WebApplicationContext wac = null;
 
         //3、此时webApplicationContext为null，因此不会进入以下代码块

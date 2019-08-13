@@ -44,9 +44,7 @@ public abstract class FrameworkServlet extends HttpServletBean{}
 public abstract class HttpServletBean extends HttpServlet{}
 ```
 
-因此在应用初始化时，其`HttpServlet的init方法`会被调用,也就是HttpServletBean.init()会被调用,HttpServletBean的init方法中，
-调用了initServletBean()方法，在HttpServletBean中，这个方法是空实现。
-FrameworkServlet覆盖了HttpServletBean中的initServletBean方法。
+因此在应用初始化时，其`HttpServlet的init方法`会被调用,也就是HttpServletBean.init()会被调用,HttpServletBean的init方法中，调用了initServletBean()方法，在HttpServletBean中，这个方法是空实现。FrameworkServlet实现了HttpServletBean中的initServletBean方法。
 
 >见: spring-boot-learn-code中的`com.spring.CommonSource.FrameworkServlet`
 
@@ -74,3 +72,50 @@ DispatcherServlet在初始化时，会根据`<init-param>`元素中`contextConfi
 到servlet-context.xml中进行配置，并不是一定要将service、dao层的配置单独放到
 root-context.xml中，然后使用ContextLoaderListener来加载。
 在这种情况下，就没有了Root WebApplicationContext，只有Servlet WebApplicationContext。
+
+# ContextLoaderListener解析
+
+ContextLoaderListener是一个监听器,由Spring编写并提供.我们搭建SSM框架时，需要做的仅仅是在web.xml中配置它，一般是这样：
+
+![](pics/ContextLoaderListener-webxml.jpg)
+
+![](pics/ContextLoaderListener-class.jpg)
+
+先不看ContextLoader，我们发现ContextLoaderListener实现了ServletContextListener,用于监听ServletContext的初始化和销毁.
+
+很明显Spring的ContextLoaderListener实现了ServletContextListener接口，写了一个监听器来监听项目启动。一旦项目启动，会触发ContextLoaderListener中的特定方法。
+
+![](pics/一旦项目启动，会触发ContextLoaderListener中的特定方法.jpg)
+
+也就是说Tomcat创建ServletContext时，会调用ContextLoaderListener的contextInitialized()，这个方法内部的initWebApplicationContext()就是用来初始化Spring的IOC容器的。再强调一遍：
+
+- ServletContext接口是Tomcat的实现的.
+- ServletContextListener是Tomcat提供的接口
+- ContextLoaderListener是Spring写的，实现了ServletContextListener
+- Spring自己写的监听器，用来创建Spring IOC容器天经地义
+
+至于Spring怎么创建IOC容器的，还记得web.xml中的那两处配置吗：
+
+![](pics/Spring怎么创建IOC容器-webxml.jpg)
+
+web.xml中配置了Spring配置文件的位置，那里边不是写了很多<bean/>啥的吗。读取xml配置文件反射创建对象加入IOC即可。
+
+Tomcat会解析web.xml，反射创建ContextLoaderListener。不要以为只有Spring有对象容器，Tomcat也有自己的对象容器好吧。
+
+Event对象其实就是被监听对象的包装，那么创建IOC时，要ServletContext对象作甚？那是因为，最终IOC容器其实是存放在ServletContext对象中(通过设置属性)。所以我上面就说了，别以为只有Spring会搞对象容器，我Tomcat虽然是一只小猫，但是吞你Spring。
+
+---
+
+>下面简单过一遍源码。看的时候，告诉自己，你看到的所有代码都在ContextLoader中，以免自乱阵脚：
+
+![](pics/SpringIOC如何通过ContextLoaderListener创建01.jpg)
+
+![](pics/SpringIOC如何通过ContextLoaderListener创建02.jpg)
+
+![](pics/SpringIOC如何通过ContextLoaderListener创建03.jpg)
+
+![](pics/SpringIOC如何通过ContextLoaderListener创建04.jpg)
+
+当然了，Spring也提供了工具类，方便从ServletContext中取出IOC容器：
+
+![](pics/Spring也提供了工具类取SpingIOC容器.jpg)

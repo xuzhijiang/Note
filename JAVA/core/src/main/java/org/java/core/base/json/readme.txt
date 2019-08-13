@@ -1,24 +1,24 @@
-JSON¹ã·ºÓÃÓÚWebÓ¦ÓÃ³ÌÐò»ò·þÎñÆ÷ÏìÓ¦£¬ÒòÎªËü±ÈXMLÇáÁ¿¼¶ÇÒ¸ü½ô´Õ¡£ JSON¶ÔÏóÒ×ÓÚ¶ÁÐ´£¬´ó¶àÊý¼¼Êõ¶¼Ö§³ÖJSON¶ÔÏó¡£ 
-Õâ¾ÍÊÇJava Web·þÎñÖÐµÄJSON·Ç³£ÊÜ»¶Ó­µÄÔ­Òò¡£
+JSONå¹¿æ³›ç”¨äºŽWebåº”ç”¨ç¨‹åºæˆ–æœåŠ¡å™¨å“åº”ï¼Œå› ä¸ºå®ƒæ¯”XMLè½»é‡çº§ä¸”æ›´ç´§å‡‘ã€‚ JSONå¯¹è±¡æ˜“äºŽè¯»å†™ï¼Œå¤§å¤šæ•°æŠ€æœ¯éƒ½æ”¯æŒJSONå¯¹è±¡ã€‚ 
+è¿™å°±æ˜¯Java WebæœåŠ¡ä¸­çš„JSONéžå¸¸å—æ¬¢è¿Žçš„åŽŸå› ã€‚
 
-JSON APIÌá¹©ÁËÁ½ÖÖJSON´¦Àí·½Ê½£º
+JSON APIæä¾›äº†ä¸¤ç§JSONå¤„ç†æ–¹å¼ï¼š
 
-¶ÔÏóÄ£ÐÍAPI - ËüÀàËÆÓÚDOM Parser£¬ÊÊÓÃÓÚÐ¡¶ÔÏó¡£
-Streaming API - ËüÓëStaX ParserÀàËÆ£¬ÊÊÓÃÓÚÄú²»Ï£Íû½«Õû¸ö¶ÔÏó±£ÁôÔÚÄÚ´æÖÐµÄ´óÐÍ¶ÔÏó¡£
+å¯¹è±¡æ¨¡åž‹API - å®ƒç±»ä¼¼äºŽDOM Parserï¼Œé€‚ç”¨äºŽå°å¯¹è±¡ã€‚
+Streaming API - å®ƒä¸ŽStaX Parserç±»ä¼¼ï¼Œé€‚ç”¨äºŽæ‚¨ä¸å¸Œæœ›å°†æ•´ä¸ªå¯¹è±¡ä¿ç•™åœ¨å†…å­˜ä¸­çš„å¤§åž‹å¯¹è±¡ã€‚
 
 JSON API provides two ways for JSON processing:
 
-1. Object Model API ¨C It¡¯s similar to DOM Parser 
+1. Object Model API â€“ Itâ€™s similar to DOM Parser 
 and good for small objects.
-2. Streaming API ¨C It¡¯s similar to StaX Parser 
-and good for large objects where you don¡¯t want to keep whole object in memory.
+2. Streaming API â€“ Itâ€™s similar to StaX Parser 
+and good for large objects where you donâ€™t want to keep whole object in memory.
 
-Java JSON APIµÄÒ»Ð©ÖØÒª½Ó¿ÚÊÇ£º
+Java JSON APIçš„ä¸€äº›é‡è¦æŽ¥å£æ˜¯ï¼š
 
-javax.json.JsonReader£ºÎÒÃÇ¿ÉÒÔÊ¹ÓÃËüÀ´½«JSON¶ÔÏó»òÊý×é¶ÁÈ¡µ½JsonObject¡£ ÎÒÃÇ¿ÉÒÔ´ÓJsonÀà»òJsonReaderFactory»ñÈ¡JsonReader¡£
-javax.json.JsonWriter£ºÎÒÃÇ¿ÉÒÔÊ¹ÓÃËüÀ´½«JSON¶ÔÏóÐ´ÈëÊä³öÁ÷¡£
-javax.json.stream.JsonParser£ºÕâ¿ÉÒÔ×÷ÎªÀ­½âÎöÆ÷£¬²¢Îª¶ÁÈ¡JSON¶ÔÏóÌá¹©Á÷Ö§³Ö¡£
-javax.json.stream.JsonGenerator£ºÎÒÃÇ¿ÉÒÔÊ¹ÓÃËüÀ´ÒÔÁ÷·½Ê½½«JSON¶ÔÏóÐ´ÈëÊä³öÔ´¡£
-javax.json.Json£ºÕâÊÇÓÃÓÚ´´½¨JSON´¦Àí¶ÔÏóµÄ¹¤³§Àà¡£ ´ËÀàÌá¹©ÁË´´½¨ÕâÐ©¶ÔÏó¼°ÆäÏàÓ¦¹¤³§µÄ×î³£ÓÃ·½·¨¡£ ¹¤³§ÀàÌá¹©ÁË´´½¨ÕâÐ©¶ÔÏóµÄ¸÷ÖÖ·½·¨¡£
-javax.json.JsonObject£ºJsonObject±íÊ¾²»¿É±äµÄJSON¶ÔÏóÖµ¡£
+javax.json.JsonReaderï¼šæˆ‘ä»¬å¯ä»¥ä½¿ç”¨å®ƒæ¥å°†JSONå¯¹è±¡æˆ–æ•°ç»„è¯»å–åˆ°JsonObjectã€‚ æˆ‘ä»¬å¯ä»¥ä»ŽJsonç±»æˆ–JsonReaderFactoryèŽ·å–JsonReaderã€‚
+javax.json.JsonWriterï¼šæˆ‘ä»¬å¯ä»¥ä½¿ç”¨å®ƒæ¥å°†JSONå¯¹è±¡å†™å…¥è¾“å‡ºæµã€‚
+javax.json.stream.JsonParserï¼šè¿™å¯ä»¥ä½œä¸ºæ‹‰è§£æžå™¨ï¼Œå¹¶ä¸ºè¯»å–JSONå¯¹è±¡æä¾›æµæ”¯æŒã€‚
+javax.json.stream.JsonGeneratorï¼šæˆ‘ä»¬å¯ä»¥ä½¿ç”¨å®ƒæ¥ä»¥æµæ–¹å¼å°†JSONå¯¹è±¡å†™å…¥è¾“å‡ºæºã€‚
+javax.json.Jsonï¼šè¿™æ˜¯ç”¨äºŽåˆ›å»ºJSONå¤„ç†å¯¹è±¡çš„å·¥åŽ‚ç±»ã€‚ æ­¤ç±»æä¾›äº†åˆ›å»ºè¿™äº›å¯¹è±¡åŠå…¶ç›¸åº”å·¥åŽ‚çš„æœ€å¸¸ç”¨æ–¹æ³•ã€‚ å·¥åŽ‚ç±»æä¾›äº†åˆ›å»ºè¿™äº›å¯¹è±¡çš„å„ç§æ–¹æ³•ã€‚
+javax.json.JsonObjectï¼šJsonObjectè¡¨ç¤ºä¸å¯å˜çš„JSONå¯¹è±¡å€¼ã€‚
 

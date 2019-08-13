@@ -58,12 +58,14 @@ class MyCustomClassLoader extends ClassLoader{
      * @return
      * @throws ClassNotFoundException
      */
+    @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         byte[] classData = loadByteCode(name);
         if (classData == null) {
             throw new ClassNotFoundException();
         } else {
             // 将字节码载入内存
+            // //调用类加载器本身的defineClass()方法，由字节码得到Class对象
             return defineClass(name, classData, 0, classData.length);
         }
     }

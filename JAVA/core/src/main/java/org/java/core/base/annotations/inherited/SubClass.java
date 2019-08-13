@@ -17,7 +17,5 @@ public class SubClass extends ParentClass implements MyInterface{
     }
 
     @Override
-    public void doSomething() {
-
-    }
+    public void doSomething() {}
 }

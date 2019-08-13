@@ -46,7 +46,7 @@ public class ScheduledThreadPoolExecutorTest {
         // 自动校正任务的执行时间，也就是说，如果任务执行了1秒，那么再过1秒就会执行，如果任务执行了1. 5秒，那么再过0. 5秒就会执行
         scheduledThreadPool.scheduleAtFixedRate(new ScheduledRunnable(), 10, 2,TimeUnit.SECONDS);
 
-        System.out.println("Main thread is over");
+        System.out.println("StaticProxyTest thread is over");
     }
 
     /**

@@ -5,11 +5,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * 使用@interface自定义注解时，自动继承了java.lang.annotation.Annotation接口，
- * 由编译程序自动完成其他细节。在定义注解时，不能继承其他的注解或接口。
+ * 使用@interface自定义注解时，自动继承了java.lang.annotation.Annotation接口，在定义注解时，不能继承其他的注解或接口(不能使用extends和implements)。
  *
  * @interface用来声明一个注解，其中的每一个方法实际上是声明了一个配置参数。
- *
  * 方法的名称就是参数的名称，返回值类型就是参数的类型
  *
  * 可以通过default来声明参数的默认值
@@ -27,7 +25,7 @@ import java.lang.annotation.RetentionPolicy;
  *
  * 一条没有@Target限制的注解可以应用于任何项上。
  *
- * @Inherited元注解只能应用于对类的注解(对接口没有作用)
+ * @Inherited元注解只能应用于注解
  */
 //@Inherited//测试是否可以被继承
 @Retention(RetentionPolicy.RUNTIME)//可以通过反射读取注解

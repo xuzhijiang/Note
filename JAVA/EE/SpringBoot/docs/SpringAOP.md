@@ -30,6 +30,8 @@ Pointcut使用与连接点join point匹配的不同类型的表达式，Spring�
 7. Weaving(编织)：将aspects与other objects链接以创建代理对象的过程。
 这可以在编译时，加载时或运行时完成。 Spring AOP在运行时执行weaving(编织)。
 
+>注意，实际上切面的作用是在方法前后，而不是方法内部的前后。
+
 AOP Advice Type
 
 根据advice的执行策略，它们具有以下类型:

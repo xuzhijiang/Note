@@ -52,36 +52,35 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
         long startTime = System.currentTimeMillis();
         try {
             if (this.context == null) {
-                // 3. 创建WebApplicationContext实现类的实例。
+                // 3. 创建WebApplicationContext实现类的实例。(也就是创建空的IOC容器)
                 // 其内部首先会确定WebApplicationContext实例类型。
                 // a. 首先判断有没有<context-param>元素的<param-name>值为contextClass，
                 // b. 如果有，则对应的<param-value>值，就是要创建的WebApplicationContext实例类型
                 // c. 如果没有指定，则默认的实现类为XmlWebApplicationContext。
                 // 这是在spring-web-xxx.jar包中的ContextLoader.properties指定的
-                // 注意这个时候，只是创建了WebApplicationContext对象实例，还没有加载对应的spring配置文件
+                // 注意这个时候，只是创建了WebApplicationContext对象实例，还没有加载对应的spring配置文件(也就是当前的IOC容器是空的)
                 this.context = createWebApplicationContext(servletContext);
             }
 
             //4. XmlWebApplicationContext实现了ConfigurableWebApplicationContext接口，因此会进入if代码块
             if (this.context instanceof ConfigurableWebApplicationContext) {
                 ConfigurableWebApplicationContext cwac = (ConfigurableWebApplicationContext) this.context;
-                // a. 由于WebApplicationContext对象实例还没有加载对应配置文件，
+                // a. 由于上面的WebApplicationContext对象实例还没有加载对应配置文件，还是空的IOC容器,
                 // spring上下文还没有被刷新，因此isActive返回false，进入if代码块
                 if (!cwac.isActive()) {
-                    //b. 当前ROOT WebApplicationContext的父context为null，
-                    // 则尝试通过loadParentContext方法获取父ApplicationContext，并设置到其中
-                    //c. 由于loadParentContext方法目前写死返回null，因此可以忽略4.2这个步骤。
+                    //b. 如果当前ROOT WebApplicationContext的父亲context为null，
+                    // 则尝试通过loadParentContext获取父亲context，并设置到刚刚创建的空的IOC容器中其中.
+                    //c. 由于loadParentContext方法目前写死返回null，因此可以忽略这个步骤。
                     if (cwac.getParent() == null) {
                         ApplicationContext parent = loadParentContext(servletContext);
                         cwac.setParent(parent);
                     }
-                    //d. 加载配置spring文件。根据<context-param>指定的contextConfigLocation，确定配置文件的位置。
+                    //d. 根据<context-param>指定的contextConfigLocation，确定配置文件的位置,加载配置spring bean.
                     configureAndRefreshWebApplicationContext(cwac, servletContext);
                 }
             }
 
-            // 5、将创建的WebApplicationContext实例
-            // 以”org.springframework.web.context.WebApplicationContext.ROOT”为key
+            // 5、将创建的WebApplicationContext实例(IOC容器),以”org.springframework.web.context.WebApplicationContext.ROOT”为key
             // 设置到ServletContext中
             servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);
 

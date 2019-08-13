@@ -1,6 +1,6 @@
 package org.java.core.base.annotations.inherited;
 
-@MyAnnotation(value = "类名上的注解")
+@MyAnnotation(value = "Parent类类名上的注解")
 public abstract class ParentClass {
 
     @MyAnnotation(value = "父类的abstractMethod方法")

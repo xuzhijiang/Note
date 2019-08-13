@@ -26,9 +26,6 @@ http://jinxuliang.com/course2/CoursePortal/Details/54004d84137e45731c99035b
 Java技术栈
 
 JDBC基础
-熟练编写单元测试.
-
-JUC： java.util.concurrent
 
 疯狂的Java算法——插入排序，归并排序以及并行归并排序:
 https://www.cnblogs.com/zuoxiaolong/p/alg2.html
@@ -57,8 +54,6 @@ Halo 可能是最好的 Java 博客系统: https://github.com/halo-dev/halo
 redis实现分布式锁:https://www.jishuwen.com/d/2Btj
 
 来源: http://www.akathink.com
-
-![多线程](http://ifeve.com/java-concurrency-thread-directory/)
 
 ![Springboot源码分析](http://fangjian0423.github.io)
 
