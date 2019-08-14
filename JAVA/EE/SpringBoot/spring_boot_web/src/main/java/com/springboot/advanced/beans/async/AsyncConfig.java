@@ -17,6 +17,7 @@ public class AsyncConfig implements AsyncConfigurer {
         executor.setMaxPoolSize(50);
         executor.setQueueCapacity(100);
         executor.initialize();
+        executor.setThreadNamePrefix("AsyncConfig Executor-");
         return executor;
     }
 

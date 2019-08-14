@@ -73,5 +73,9 @@ public class RestDemoApplicationTests {
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError());
     }
 
+    public void AssertUse() {
+        // org.junit.Assert.assertEquals(3, userSerivce.getAllUsers().intValue());
+    }
+
 }
 

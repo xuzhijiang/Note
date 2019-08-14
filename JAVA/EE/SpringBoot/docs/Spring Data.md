@@ -22,9 +22,9 @@
 
 JPA是一套ORM规范，Hibernate实现了JPA规范！如图：
 
-![](jpa-hibernate.png)
+![](pics/jpa-hibernate.png)
 
-![](jpa-hibernate-springdatajpa.png)
+![](pics/jpa-hibernate-springdatajpa.png)
 
 ## 为什么出现了JPA
 

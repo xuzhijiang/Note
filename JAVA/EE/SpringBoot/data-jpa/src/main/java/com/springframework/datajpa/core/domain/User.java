@@ -3,7 +3,7 @@ package com.springframework.datajpa.core.domain;
 import javax.persistence.*;
 
 /**
- * 通过ORM框架,User会被映射到数据库表中
+ * User的属性会通过ORM框架被映射到数据库表中
  *
  * 由于配置了hibernate.hbm2ddl.auto，在应用启动的时候框架会自动去数据库中创建对应的表。
  */

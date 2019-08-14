@@ -15,16 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
-
 import com.journaldev.util.User;
 
 @WebServlet(name = "Login", urlPatterns = { "/Login" })
 public class LoginServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-
-	static Logger logger = Logger.getLogger(LoginServlet.class);
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -59,7 +55,6 @@ public class LoginServlet extends HttpServlet {
 					rs.next();
 					User user = new User(rs.getString("name"), rs.getString("email"), rs.getString("country"),
 							rs.getInt("id"));
-					logger.info("User found with details=" + user);
 					HttpSession session = request.getSession();
 					session.setAttribute("User", user);
 					response.sendRedirect("home.jsp");
@@ -67,21 +62,17 @@ public class LoginServlet extends HttpServlet {
 				} else {
 					RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
 					PrintWriter out = response.getWriter();
-					logger.error("User not found with email=" + email);
 					out.println("<font color=red>No user found with given email id, please register first.</font>");
 					rd.include(request, response);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
-				logger.error("Database connection problem");
 				throw new ServletException("DB Connection problem.");
 			} finally {
 				try {
 					rs.close();
 					ps.close();
 				} catch (SQLException e) {
-					logger.error("SQLException in closing PreparedStatement or ResultSet");
-					;
 				}
 
 			}

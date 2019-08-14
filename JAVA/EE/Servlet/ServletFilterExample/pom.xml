@@ -65,24 +65,11 @@
                 </configuration>
             </plugin>
 
-			<!--  
-				需要特别注意的是，我们没有使用maven默认的war插件，这是因为默认的war插件不能打包没有web.xml文件的web项目，
-				所以我们需要明确指定一个更新的war插件。
-				因为我们使用的新的插件，所以不会报错，如果你使用默认的war插件，会提示你未找到web.xml文件。
-			-->
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.0.0</version>
             </plugin>
             
-            <!--  
-            	因为在pom.xml中加入了tomcat7和jetty插件，所以可以在命令行中输入下面命令启动web容器：
-            	mvn jetty:run
-				(http://localhost:8080/FirstServlet/jsps/hello.jsp)
-				or
-				mvn tomcat7:run
-				(http://localhost:8080/FirstServlet/jsps/hello.jsp)
-            -->
             <plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>

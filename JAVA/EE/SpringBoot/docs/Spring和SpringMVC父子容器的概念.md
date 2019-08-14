@@ -4,7 +4,7 @@
 
 >由于是在web应用中，因此最终实例化的是ApplicationContext的子接口WebApplicationContext.
 
-![](spring-springmvc.png)
+![](pics/spring-springmvc.png)
 
 图显示了2个WebApplicationContext实例，为了进行区分，分别称之为：
 

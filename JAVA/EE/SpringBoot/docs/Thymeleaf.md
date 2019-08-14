@@ -1,3 +1,7 @@
+# thymeleaf
+
+直接打开html页面展现html页面，但是渲染后,是渲染后页面,做到了不破坏HTML自身内容的数据逻辑分离,所以比jsp好.
+
 ## 2.SpringBoot引入thymeleaf
 
 1、pom.xml文件中引入thymeleaf

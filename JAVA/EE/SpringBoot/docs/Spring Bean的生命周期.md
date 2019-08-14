@@ -74,6 +74,6 @@
 11. 自定义销毁方法(@PostDestroy标注方法)
 12. destroy方法(接口DisposableBean)
 
-![](Bean-Life-Cycle.jpg)
+![](pics/Bean-Life-Cycle.jpg)
 
 >示例:beanscope
