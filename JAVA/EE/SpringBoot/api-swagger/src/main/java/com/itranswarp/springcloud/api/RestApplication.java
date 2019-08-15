@@ -11,19 +11,13 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * Spring Boot Application with Swagger support.
+ * 访问此链接测试Swagger: http://localhost:8080/swagger-ui.html
  */
 @SpringBootApplication
-@EnableSwagger2
-@RestController
 public class RestApplication {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(RestApplication.class, args);
 	}
 
-	@Bean
-	public Docket userApi() {
-		return new Docket(DocumentationType.SWAGGER_2).select().paths(PathSelectors.regex("^/api/.*$")).build();
-	}
 }

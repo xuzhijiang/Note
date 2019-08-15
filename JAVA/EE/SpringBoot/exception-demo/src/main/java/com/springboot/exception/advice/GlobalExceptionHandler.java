@@ -13,9 +13,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * 如果定义了多个异常处理程序方法，则使用最接近Exception类的处理程序方法。例如，如果我们为IOException和Exception定义了两个处理程序方法，并且我们的请求处理程序方法抛出IOException，那么将执行IOException的处理程序方法
+ * 如果定义了多个异常处理程序方法，则使用最接近Exception类的处理程序方法
  *
- * GlobalExceptionHandler中的处理程序方法与EmployeeController的异常处理程序方法相同，在控制器类无法处理异常时使用。
+ * GlobalExceptionHandler中的处理程序方法与EmployeeController的异常处理程序方法相同，
+ * 在控制器类无法处理异常时使用。
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -24,9 +25,7 @@ public class GlobalExceptionHandler {
 
     // 对于SQLException，我将database_error.jsp作为响应页面返回，其http状态代码为200。
     @ExceptionHandler(SQLException.class)
-    public String handleSQLException(HttpServletRequest request, Exception ex){
-        return "database_error";
-    }
+    public String handleSQLException(HttpServletRequest request, Exception ex){ return "database_error"; }
 
     // 对于IOException，我们返回void，使用注解@ResponseStatue指定了http状态代码为404
     @ExceptionHandler(IOException.class)
@@ -35,4 +34,5 @@ public class GlobalExceptionHandler {
         logger.info("IOException happened!!");
         //returning 404 error code
     }
+
 }

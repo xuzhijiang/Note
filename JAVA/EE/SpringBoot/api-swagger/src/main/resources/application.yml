@@ -1,11 +1,6 @@
 spring:
   application:
     name: api-swagger
-  datasource:
-    driverClassName: org.hsqldb.jdbc.JDBCDriver
-    jdbcUrl: jdbc:hsqldb:mem:db1
-    username: sa
-    password:
 
 server:
   port: 9090

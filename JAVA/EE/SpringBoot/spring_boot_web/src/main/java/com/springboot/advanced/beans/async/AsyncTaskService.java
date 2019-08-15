@@ -1,5 +1,7 @@
 package com.springboot.advanced.beans.async;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,17 @@ public class AsyncTaskService {
         return new AsyncResult<>("任务一完成");
     }
 
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    @Async("taskExecutor1")
+    public void doTaskRedis(int i) throws Exception {
+        System.out.println("开始做任务:" + i + "在线程"+Thread.currentThread().getName() +"上执行异步任务");
+        long start = System.currentTimeMillis();
+        System.out.println("-------:" + stringRedisTemplate.randomKey());
+        long end = System.currentTimeMillis();
+        System.out.println("完成任务" + i + "，耗时：" + (end - start) + "毫秒");
+    }
 }
 
 

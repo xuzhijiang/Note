@@ -10,6 +10,9 @@ import java.util.concurrent.Executor;
 @Configuration
 public class AsyncConfig implements AsyncConfigurer {
 
+    /**
+     * 自定义线程池
+     */
     @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor executor=new ThreadPoolTaskExecutor();

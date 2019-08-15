@@ -10,9 +10,7 @@ public class ExceptionConfiguration {
     @Bean
     public ExampleSimpleMappingExceptionResolver createSimpleMappingExceptionResolver() {
         ExampleSimpleMappingExceptionResolver r = new ExampleSimpleMappingExceptionResolver();
-
         r.setDefaultErrorView("default_error_view");
-
         return r;
     }
 }

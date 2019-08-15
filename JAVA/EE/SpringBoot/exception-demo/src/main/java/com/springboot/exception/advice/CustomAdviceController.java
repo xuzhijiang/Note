@@ -17,7 +17,6 @@ import java.util.Map;
 @ControllerAdvice(annotations = {Controller.class, RestController.class})
 public class CustomAdviceController {
 
-    // 方法使用@ExceptionHandler注释进行注释
     @ExceptionHandler(value = UserNotFoundException.class)// 要捕获哪一个异常
     @ResponseBody// 以JSON表达方式响应
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // 定义返回的错误状态码

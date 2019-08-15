@@ -15,4 +15,5 @@ public class UserServiceImp implements UserService {
     public User selectUser(int id) {
         return userMapper.selectUserById(id);
     }
+
 }

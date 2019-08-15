@@ -12,7 +12,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    // localhost:8080/showUser/2
     @RequestMapping("/showUser/{id}")
     public String selectUser (@PathVariable int id){
           return userService.selectUser(id).toString();
