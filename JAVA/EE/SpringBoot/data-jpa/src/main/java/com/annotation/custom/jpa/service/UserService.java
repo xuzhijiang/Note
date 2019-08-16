@@ -25,5 +25,7 @@ public class UserService {
     // 真正在开发业务逻辑时，我们通常在service层接口中使用@Transactional来对各个业务逻辑进行事务管理的配置
     // @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
     // User login(String name, String password);
-
+    // 
+    // @Transactional("accountTxManager")  //指明要使用的事务管理器
+    // 事务管理器有dataSource,不同的dataSource可能操作不同的数据库和表
 }

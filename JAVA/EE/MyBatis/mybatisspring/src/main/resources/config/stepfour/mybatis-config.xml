@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+    </settings>
+    <mappers>
+        <!--修改<mapper>元素的resource属性为class属性，指定UserMapper接口的全路径-->
+        <mapper class="com.mybatis.core.legacy.stepfour.UserMapper"/>
+    </mappers>
+</configuration>
