@@ -1,4 +1,4 @@
-package org.java.core.base.reflection.part2;
+package org.java.core.base.reflection;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -6,15 +6,15 @@ import java.util.ArrayList;
 /**
  * 通过Reflection来认识泛型的本质
  */
-public class ArrayListDemo {
+public class GenericAndReflection {
     public static void main(String[] args) {
 
         ArrayList mDataList1 = new ArrayList();
+
         /**
          * 我曾经见过的一个面试题：如何让ArrayList<String>类型的变量添加一个int类型的值，
          * 下面就以此为例来介绍如何通过反射了解集合泛型的本质
          */
-
         ArrayList<String> mDataList2 = new ArrayList<String>();
         System.out.println(mDataList1.getClass() == mDataList2.getClass());
 

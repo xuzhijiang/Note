@@ -10,12 +10,12 @@ import javax.json.stream.JsonParser;
 import javax.json.stream.JsonParser.Event;
 
 /**
- * Java JsonParserÊÇÒ»¸öpull½âÎöÆ÷£¬ÎÒÃÇÊ¹ÓÃ·µ»ØEvent¶ÔÏóµÄnext£¨£©
- * ·½·¨¶ÁÈ¡ÏÂÒ»¸öÔªËØ¡£ javax.json.stream.JsonParser.EventÊÇÒ»
- * ¸öEnum£¬ËüÊ¹ËüÀàĞÍ°²È«ÇÒÒ×ÓÚÊ¹ÓÃ¡£ ÎÒÃÇ¿ÉÒÔÔÚswitch caseÖĞÊ¹ÓÃÀ´
- * ÉèÖÃÎÒÃÇµÄjava beanÊôĞÔ¡£
+ * Java JsonParseræ˜¯ä¸€ä¸ªpullè§£æå™¨ï¼Œæˆ‘ä»¬ä½¿ç”¨è¿”å›Eventå¯¹è±¡çš„nextï¼ˆï¼‰
+ * æ–¹æ³•è¯»å–ä¸‹ä¸€ä¸ªå…ƒç´ ã€‚ javax.json.stream.JsonParser.Eventæ˜¯ä¸€
+ * ä¸ªEnumï¼Œå®ƒä½¿å®ƒç±»å‹å®‰å…¨ä¸”æ˜“äºä½¿ç”¨ã€‚ æˆ‘ä»¬å¯ä»¥åœ¨switch caseä¸­ä½¿ç”¨æ¥
+ * è®¾ç½®æˆ‘ä»¬çš„java beanå±æ€§ã€‚
  *
- *Ö÷ÒªµÄ¸´ÔÓĞÔ³öÏÖÔÚÎÒÃÇĞèÒª±àĞ´Âß¼­À´½âÎöÊı¾İÊ±£¬ÓĞÊ±Ëü»á±äµÃ¸´ÔÓ¡£
+ *ä¸»è¦çš„å¤æ‚æ€§å‡ºç°åœ¨æˆ‘ä»¬éœ€è¦ç¼–å†™é€»è¾‘æ¥è§£ææ•°æ®æ—¶ï¼Œæœ‰æ—¶å®ƒä¼šå˜å¾—å¤æ‚ã€‚
  */
 public class EmployeeJSONParser {
 

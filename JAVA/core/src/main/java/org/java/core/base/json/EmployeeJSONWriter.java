@@ -9,7 +9,7 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonWriter;
 
-// JsonObjectBuilderÊµÏÖÁË¹¹½¨Æ÷Ä£Ê½£¬Ê¹ÆäÒ×ÓÚÊ¹ÓÃ¡£
+// JsonObjectBuilderå®ç°äº†æ„å»ºå™¨æ¨¡å¼ï¼Œä½¿å…¶æ˜“äºä½¿ç”¨ã€‚
 public class EmployeeJSONWriter {
 
 	public static void main(String[] args) throws FileNotFoundException {

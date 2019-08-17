@@ -1,17 +1,3 @@
-### HTTP协议
-
-  HTTP在TCP/IP通信协议之上运行。
-  
-  Content Type – text, html, image, pdf etc. Also known as MIME type(也称为MIME type)
-  
-  MIME类型或内容类型(MIME Type or Content Type)：如果你观察HTTP MIME Type，
-  它包含“Content-Type”。 它也被称为MIME类型，服务器将其发送给客户端，让他们知道它发送的数据类型。 
-  它帮助客户端为用户呈现数据。 一些最常用的mime类型是text/html, 
-  text/xml, application/xml etc.
-  
-  如果我们不在URL中提供port，则请求转到协议的默认端口, 端口号0到1023是众所周知的服务的保留端口，
-  例如80表示HTTP，443表示HTTPS，21表示FTP等。
-  
 ## 三次握手(建立连接)
 
 ```

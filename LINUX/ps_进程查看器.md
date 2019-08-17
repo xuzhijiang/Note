@@ -14,7 +14,7 @@ ps命令是Process Status的缩写.ps命令列出的是当前那些进程的快�
 
 ```shell
 # 列出目前所有的正在内存中的程序
-ps aux
+ps -aux
 
 # 检查一个redis是否运行
 ps -ef | grep redis

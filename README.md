@@ -34,8 +34,6 @@ spring-boot-pay: https://gitee.com/52itstyle/spring-boot-pay/tree/master
 
 基于spring 4.x 开发的redis集群中间件应用:redis-cache、redis-cluster-cache、session共享、消息队列等:https://github.com/timebusker?tab=overview&from=2019-02-01&to=2019-02-18
 
-https://www.journaldev.com/java-tutorial-java-ee-tutorials
-
 基于Spring-boot和bootstrap搭建的商城系统: https://github.com/vito16/shop
 
 Spring Boot 学习资源:https://github.com/ityouknow/awesome-spring-boot

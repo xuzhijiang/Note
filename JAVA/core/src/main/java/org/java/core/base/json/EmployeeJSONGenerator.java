@@ -6,7 +6,7 @@ import java.io.OutputStream;
 import javax.json.Json;
 import javax.json.stream.JsonGenerator;
 
-// JsonGenerator·Ç³£Ò×ÓÚÊ¹ÓÃ£¬¿ÉÎª´óÊı¾İÌá¹©Á¼ºÃµÄĞÔÄÜ¡£
+// JsonGeneratoréå¸¸æ˜“äºä½¿ç”¨ï¼Œå¯ä¸ºå¤§æ•°æ®æä¾›è‰¯å¥½çš„æ€§èƒ½ã€‚
 public class EmployeeJSONGenerator {
 
 	public static void main(String[] args) throws IOException {
@@ -18,7 +18,6 @@ public class EmployeeJSONGenerator {
 		 * JsonGeneratorFactory factory = Json.createGeneratorFactory(null);
 		 * jsonGenerator = factory.createGenerator(fos);
 		 */
-		
 		Employee emp = EmployeeJSONWriter.createEmployee();
 		jsonGenerator.writeStartObject(); // {
 		jsonGenerator.write("id", emp.getId()); // "id":123

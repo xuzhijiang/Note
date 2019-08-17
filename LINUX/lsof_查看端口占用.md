@@ -1,4 +1,7 @@
 ```shell
+#  查看当前系统的端口使用：
+netstat -an
+
 # 查找某个文件相关的进程
 lsof /bin/bash
 

@@ -1,7 +1,20 @@
 package org.java.core.base.json;
 
 import java.util.Arrays;
-
+/*
+{
+	"id":123,
+	"name":"xuzhijiang",
+	"permanent":true,
+	"address":{
+			"street":"El Camino Real",
+			"city":"San Jose",
+			"zipcode":95014
+		},
+	"phoneNumbers":[9988664422, 1234567890],
+	"role":"Developer"
+}
+* */
 public class Employee {
 
 	private int id;

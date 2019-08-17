@@ -83,9 +83,17 @@ printenv
 # windows下查看环境变量PATH:
 echo %PATH%
 
-# 关机
-shutdown -h now
-halt
+# 指定现在立即关机
+`shutdown -h now`
+
+# 指定5分钟后关机，同时送出警告信息给登入用户
+`shutdown +5 "System will shutdown after 5 minutes"`
+
+# 重开机
+reboot
+
+# 做个重开机的模拟（只有纪录并不会真的重开机）
+reboot -w
 
 # 查看已安装软件包,并且过滤java(前提是java是通过rpm安装的)
 rpm -qa | grep java

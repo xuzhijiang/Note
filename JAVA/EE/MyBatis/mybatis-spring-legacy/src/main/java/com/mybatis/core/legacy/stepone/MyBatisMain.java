@@ -24,7 +24,7 @@ public class MyBatisMain {
     public static void main(String[] args) {
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            User user = session.selectOne("com.mybatis.core.legacy.stepone.mapper.UserMapper.GetUserByID", 2);
+            User user = session.selectOne("com.mybatis.core.legacy.stepone.UserMapper.GetUserByID", 2);
             System.out.println(user);
         } finally {
             session.close();
