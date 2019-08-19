@@ -89,8 +89,8 @@ ContextLoaderListener是一个监听器,由Spring编写并提供.我们搭建SSM
 
 也就是说Tomcat创建ServletContext时，会调用ContextLoaderListener的contextInitialized()，这个方法内部的initWebApplicationContext()就是用来初始化Spring的IOC容器的。再强调一遍：
 
-- ServletContext接口是Tomcat的实现的.
-- ServletContextListener是Tomcat提供的接口
+- ServletContext接口servlet规范中定义的接口,具体的实现类是由Tomcat的实现的.
+- ServletContextListener接口也是servlet规范中定义的接口,tomcat在创建和销毁ServletContext的时候会回调.
 - ContextLoaderListener是Spring写的，实现了ServletContextListener
 - Spring自己写的监听器，用来创建Spring IOC容器天经地义
 
@@ -119,3 +119,7 @@ Event对象其实就是被监听对象的包装，那么创建IOC时，要Servle
 当然了，Spring也提供了工具类，方便从ServletContext中取出IOC容器：
 
 ![](pics/Spring也提供了工具类取SpingIOC容器.jpg)
+
+# ContextLoaderListener vs DispatcherServlet
+
+![](pics/ContextLoaderListener-vs-DispatcherServlet.png)

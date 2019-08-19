@@ -69,3 +69,5 @@ https://github.com/jingedawang/Algorithms
 http://www.tianshouzhi.com
 
 redis分布式锁:http://www.kailing.pub/index/columns/colid/15.html
+
+服务器间的Session共享。比如用户第一次请求被负载到A服务器登录，第二次发起请求时却转到了B服务器。而B服务器此时并没有该用户的Session，因此用户不得不重新登录一遍...

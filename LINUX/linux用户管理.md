@@ -6,6 +6,7 @@
 - `useradd 选项 用户名`:添加用户账号
 - `userdel 选项 用户名`:删除用户帐号
 - `usermod 选项 用户名`:修改帐号
+- usermod -s /sbin/nologin nginx
 - `passwd 用户名`:更改或创建用户的密码
 - `passwd -S 用户名` :显示用户账号密码信息
 - `passwd -d 用户名`:  清除用户密码

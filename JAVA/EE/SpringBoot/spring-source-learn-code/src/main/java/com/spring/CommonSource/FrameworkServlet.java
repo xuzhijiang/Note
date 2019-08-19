@@ -7,6 +7,13 @@ import org.springframework.web.servlet.HttpServletBean;
 
 import javax.servlet.ServletException;
 
+/**
+ * spring mvc config的加载(configLocation的加载),好的文章:
+ *
+ * http://www.codesenior.com/en/tutorial/Spring-ContextLoaderListener-And-DispatcherServlet-Concepts
+ *
+ * https://stackoverflow.com/questions/15818047/spring-namespace-vs-contextconfiglocation-init-parameters-in-web-xml
+ */
 public class FrameworkServlet extends HttpServletBean {
 
     WebApplicationContext webApplicationContext;
