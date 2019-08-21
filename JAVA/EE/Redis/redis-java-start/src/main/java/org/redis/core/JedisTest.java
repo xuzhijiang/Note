@@ -1,25 +1,140 @@
 package org.redis.core;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import redis.clients.jedis.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * 通过Jedis来操作Redis中的各种数据类型
+ *
+ * redis连接不成功排查指南:
+ * https://yq.aliyun.com/articles/73894?spm=5176.154649.801570.2.kNutr4
  */
 public class JedisTest {
 
-    static Jedis jedis;
+    private static Jedis jedis;
 
+    private static String host = "94.191.29.122";
+
+    //等待可用连接的最大时间，单位是毫秒，默认值为-1，表示永不超时。
+    //如果超过等待时间，则直接抛出JedisConnectionException
+    private static Integer MAX_WAIT_MILLIS = 10000;
+    //在空闲时检查有效性, 默认false
+    private static Boolean TEST_WHILE_IDLE = true;
+
+    /**
+     * 如果你出现了异常ConnectionTimeoutException，连接超时异常，那么可能是：
+     * 可能是因为你的服务器防火墙没有针对6379端口开放，
+     * redis默认监听的就是这个端口，为了方便，可以选择直接关闭防火墙.命令为：service iptables stop
+     */
     @BeforeClass
     public static void beforeClass() {
-        jedis = new Jedis("localhost");
+        int port = 6379;
+        //当 new的时候，就与服务器建立了连接，默认是6379端口
+        jedis = new Jedis(host, port);
+        System.out.println("Connection to server sucessfully");
+        // jedis.auth("123456");
+        // select db 默认为0号数据库,注意cluster模式不允许选择数据库
+        // jedis.select(1);
+    }
+
+    @AfterClass
+    public static  void tearDown() {
+        jedis.quit();
+        jedis.close();
+    }
+
+    /**
+     * 直连模式(对应的是连接池模式)
+     *
+     * 常见错误排查:
+     *
+     * 1. Caused by: java.net.SocketTimeoutException: connect timed out - server开启了防火墙,不让连接导致,需要让防火墙打开特定的port
+     * 2. Caused by: java.net.ConnectException: Connection refused: connect -防火墙开启了端口,但是redis不允许访问.可能是bind地址是127.0.0.1的原因.
+     *
+     */
+    @Test
+    public void testStatus(){
+        System.out.println("redis Server status: " + jedis.ping());
+    }
+
+    /**
+     * 连接池模式
+     *
+     * 排错: https://yq.aliyun.com/articles/73894?spm=5176.154649.801570.2.kNutr4
+     */
+    @Test
+    public void testPool() {
+        JedisPoolConfig config = new JedisPoolConfig();
+        // //控制一个pool最多有多少个状态为idle(空闲)的jedis实例，默认值是8
+        //最大空闲连接数, 应用自己评估，不要超过Redis每个实例最大的连接数
+        config.setMaxIdle(200);
+        //可用连接实例的最大数目，默认为8；如果赋值为-1，则表示不限制
+        //最大连接数, 应用自己评估，不要超过Redis每个实例最大的连接数
+        config.setMaxTotal(300);
+        //在borrow(用)一个jedis实例时，是否提前进行validate(验证)操作；
+        //如果为true，则得到的jedis实例均是可用的
+        config.setTestOnBorrow(false);
+        //是否进行有效性检查
+        config.setTestOnReturn(false);
+
+        int port = 6379;
+        // String password = "123456";
+        int timeout = 3000;
+
+        // 3000为连接超时
+        // 创建一个连接池对象
+        // JedisPool jedisPool = new JedisPool(config, host, port, timeout, password);
+        JedisPool jedisPool = new JedisPool(config, host, port, timeout);
+        Jedis jedis = null;
+        try {
+            // // 从连接池获得一个连接，就是一个jedis对象。
+            jedis = jedisPool.getResource();
+            // do stuff here
+            jedis.zadd("zadd_key", 60, "xiaoming");
+            jedis.zadd("zadd_key", 70, "xiaohong");
+            Set<String> members = jedis.zrange("zadd_key", 0, -1);
+            jedis.zrem("zadd_key", "xiaoming");
+            for (String memeber : members) {
+                System.out.println(memeber);
+            }
+            jedis.del("zadd_key");
+
+        } finally {
+            if (jedis != null) {
+                jedis.quit();
+                jedis.close();
+            }
+        }
+        // when closing your app
+        jedisPool.destroy();
+    }
+
+    /**
+     * JedisClusterMaxAttemptsException: No more cluster attempts left.
+     * -由于创建集群使用的地址不对,要用公网的地址,而且要打开redis以及集群对应的端口
+     */
+    @Test
+    public void testJedisCluster() {
+        Set<HostAndPort> nodes = new HashSet<>();
+        nodes.add(new HostAndPort(host, 6379));
+        nodes.add(new HostAndPort(host, 6380));
+        nodes.add(new HostAndPort(host, 6381));
+        nodes.add(new HostAndPort(host, 6382));
+        nodes.add(new HostAndPort(host, 6383));
+        nodes.add(new HostAndPort(host, 6384));
+        JedisCluster jedisCluster = new JedisCluster(nodes);
+        // 直接使用JedisCluster对象操作redis。
+        jedisCluster.set("test", "abc");
+        String result = jedisCluster.get("test");
+        System.out.println(result);
+        jedisCluster.del("test");
+        jedisCluster.close();
     }
 
     /**

@@ -14,7 +14,7 @@ Java中提供的IO有关的API，其实依赖操作系统层面的IO操作实现
 
 - 阻塞式 I/O:blocking IO
 - 非阻塞式 I/O:nonblocking IO
-- I/O 复用（select，poll，epoll）:IO multiplexing
+- I/O 多路复用（select，poll，epoll）:IO multiplexing
 - 信号驱动式 I/O（SIGIO）:signal driven IO
 - 异步 I/O（POSIX的aio_系列函数）:asynchronous IO
 

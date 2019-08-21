@@ -19,12 +19,11 @@
     </properties>
 
     <dependencies>
-        <!-- Jedis是一个驱动，我们在使用java连接mysql 数据库的时候，需要使用驱动
-            同样作为数据库，java连接Redis 也需要需要驱动的，这个驱动就是 Jedis。-->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>3.0.0</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>

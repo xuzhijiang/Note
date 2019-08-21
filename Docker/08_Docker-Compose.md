@@ -2,7 +2,19 @@
 
 ## 概念
 
-[Compose](https://docs.docker.com/compose/) 是 Docker 公司推出的一个工具软件，可以管理多个 Docker 容器组成一个应用。你需要定义一个 YAML 格式的docker-compose.yml，写好多个容器之间的调用关系。然后，只要一个命令，就能同时启动/关闭这些容器。
+[Compose](https://docs.docker.com/compose/) 是 Docker 公司推出的一个工具软件，可以管理多个 Docker 容器组成一个应用。
+
+你需要定义一个 YAML 格式的docker-compose.yml，写好多个容器之间的调用关系。然后，只要一个命令，就能同时启动/关闭这些容器。
+
+---
+
+容器:一个应用实际上可以运行多个相同镜像的实例,也就是多个容器实例.
+
+项目(project):由一组关联的容器实例组成的一个完整业务单元。
+
+一个项目可以由多个容器实例关联而成，Compose 面向项目进行管理。
+
+---
 
 ```shell
 # 启动所有服务(up：构建、启动容器)
@@ -19,6 +31,8 @@ Mac 和 Windows 在安装 docker 的时候，会一起安装 docker compose。[L
 ```shell
 $ docker-compose --version
 ```
+
+[安装与卸载](https://yeasy.gitbooks.io/docker_practice/compose/install.html)
 
 ## WordPress 示例
 
@@ -65,17 +79,23 @@ $ docker-compose rm
 
 ## docker-compose.yml示例
 
+注意每个服务都必须通过 image 指令指定镜像或 build 指令（需要 Dockerfile）来自动构建生成镜像。
+
+如果使用 build 指令，在 Dockerfile 中设置的选项(例如：CMD, EXPOSE, VOLUME, ENV 等) 将会自动被获取，无需在 docker-compose.yml 中再次设置。
+
+command: 启动后默认执行的命令。
+
 ```shell
-# This Compose file defines two services: web and redis.
+# 这个compose定义了2个服务: web and redis.
 
 version: '3'
-services: # 多个容器集合
+services: # 多个容器(服务)集合
   web: # 指定服务名称
     build: . # 指定 Dockerfile 所在路径
     ports: # 指定端口映射
       - "5000:5000" # 第一个5000是外部服务器端口，第二个是容器内部的port
   redis:
-    image: "redis:alpine"
+    image: "redis:alpine" # 指定要使用的镜像
 
 # 在 docker-compose.yml 所在路径下执行命令就会自动构建镜像并使用镜像启动容器:
 docker-compose up
@@ -115,3 +135,7 @@ docker-compose scale user=3 movie=3
 # run：在一个服务上执行一个命令
 docker-compose run web bash
 ```
+
+# 参考
+
+[Compose模板文件](https://yeasy.gitbooks.io/docker_practice/compose/compose_file.html)

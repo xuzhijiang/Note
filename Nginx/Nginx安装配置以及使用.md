@@ -60,38 +60,14 @@ ps -ef | grep -i nginx
 
 # 停止nginx
 ./nginx -s quit 优雅的停止(or stop)
-```
-
-# 开启端口
-
-```shell
-# linux默认是不能访问8080端口的，所以要手动打开
-
-# 方式1: 临时的添加iptable rule
-iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 8080 -j ACCEPT
-
-# 方式2: 永久添加iptable rule
-vi /etc/sysconfig/iptables
-
-# 然后在at INPUT section中添加
--A INPUT -p tcp -m state --state NEW -m tcp --dport 8080 -j ACCEPT
-
-# 然后重启iptables service
-systemctl restart iptables
-# 或者
-service iptables restart
-
-# 使用命令检查所有应用的iptables规则列表
-iptables -nL 
 
 sudo /etc/init.d/nginx start    # 启动
 sudo /etc/init.d/nginx stop     # 停止
 sudo /etc/init.d/nginx restart  # 重启
+
 sudo service nginx start
 sudo service nginx stop
 sudo service nginx restart
-service ngnix status #查看nginx服务的状态
 
-# 关闭防火墙(谨慎使用)
-service iptables stop
+service ngnix status #查看nginx服务的状态
 ```

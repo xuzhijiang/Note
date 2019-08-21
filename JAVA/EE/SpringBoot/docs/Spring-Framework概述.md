@@ -1,64 +1,15 @@
-### Spring技术的演化
+## Spring技术的演化
 
 1. Spring Framework - XML配置为主-->注解为辅
 2. Spring Boot - 自动化配置--->注解为主
 3. Spring Cloud - 单体应用--->分布式微服务系统
-
-### Spring Framework的技术特点
-
-> Spring使用简单的POJO(Plain Old Java Object，即无特殊要求的普通Java对象）来进行企业级开发。每一个被Spring管理的Java对象都称之为Bean；而Spring提供了一个IoC容器用来初始化Bean对象， 解决Bean对象间的依赖管理和对象的使用。
 
 ## Spring Framework中最重要的两个核心特性
 
 * 依赖注入(DI： DependencyInjection）:Spring使用“依赖注入”这种手段来管理`各类Java资源`，降低了各种资源的耦合
 * 面向切面编程(AOP： Aspect-OrientedProgramming）:Spring通过动态代理技术实现了面向切面的编程(AOP），避免了编写大量重复的代码
 
-### 依赖注入
-
-> 很多框架通过强迫应用继承它们的特定类或实现它们的特定接口从而导致应用与框架绑死。为了用某个框架，我自己写的MyClass类，必须继承自Base类，实现ICanDo接口。Java EE中这种情况非常常见，如下:
-
-Spring使用依赖注入的方式解决了这个问题.MyClass类该怎么写就怎么写，你只需要告诉框架你“需要什么”就行了，框架会自动提供给你。无需继承特定的类，或实现特定的接口,如下:
-
-1. Java依赖注入设计模式解决了硬编码依赖的问题，并使我们的应用程序松散耦合，并帮助我们使应用程序灵活且易于扩展,和可维护。 
-2. 依赖注入使得依赖项的解析从编译时移动到运行时。
-3. 在运行时而不是编译时绑定服务
-
-#### 依赖注入的缺点(Disadvantages)
-
-1.If overused, it can lead to maintenance issues because effect 
-of changes are known at runtime.如果过度使用，则可能导致维护问题，因为更改的影响在运行时已知。
-
-2. Dependency injection in java hides the service class dependencies 
-that can lead to runtime errors that would have been caught at compile time.因为Java中的依赖注入是一种通过将对象绑定从编译时移到运行时来实现应用程序控制反转(IoC,Inversion of control)的方法,所以java中的依赖注入隐藏了可能导致在编译时捕获的运行时错误的服务类依赖项。
-
-#### 依赖注入的实现
-
-通过使用Java Reflection API和Java annotation来实现依赖注入的过程。我们所需要的只是annotation字段、构造函数、setter方法，并在配置xml文件或类中配置它们。
-
-你是否想知道Spring Framework如何进行自动装配(autowiring)并调用对于Spring Framework是未知的方法么？这是通过大量使用Java Reflection来完成的，我们可以使用它来分析和修改类在运行时的行为。
-
-是否使用基于 Constructor的依赖注入或基于setter method的依赖注入取决于您的要求。
-例如,如果我的应用程序在没有服务类的情况下根本无法工作，
-那么我会更喜欢基于构造函数的DI(依赖注入)，
-否则我会选择基于setter方法的DI，只有在真正需要时才使用它。
-
-> setter dependency injection依赖注入的最好例子之一是Struts2 Servlet API Aware interfaces
-
-#### Spring IoC Container
-
-Spring IoC是实现对象依赖关系之间松散耦合的机制。要在运行时实现对象的松散耦合和动态绑定，对象依赖项将由其他(assembler)组装器对象注入。 
-
-Spring IoC容器是将依赖项(dependencies)注入对象并使其准备好可供我们使用的程序。
-
-Spring IoC容器类是org.springframework.beans和org.springframework.context包的一部分。
-Spring IoC容器为我们提供了 "解耦对象依赖关系" 的不同方法。
-
-BeanFactory是根接口(root interface)，也就是最顶层接口,代表了Spring IoC容器。
-ApplicationContext是BeanFactory接口的子接口，提供Spring AOP功能，i18n等。
-
-ApplicationContext的一些有用的子接口是ConfigurableApplicationContext和
-WebApplicationContext。 Spring Framework提供了许多有用的ApplicationContext实现类，
-我们可以使用它们来获取spring上下文(context)，然后是获取Spring Bean。
+## Spring IoC Container
 
 > 我们使用的一些有用的ApplicationContext实现是:
 
@@ -68,89 +19,33 @@ WebApplicationContext。 Spring Framework提供了许多有用的ApplicationCont
 除了可以从文件系统中的任何位置加载xml配置文件。
 4. AnnotationConfigWebApplicationContext和XmlWebApplicationContext。
 
-### AOP
+## Spring 5 Features
 
-面向切面编程(aspectoriented programming,AOP）有助于将遍布应用各处的功
-能分离出来形成可重用的组件.
+Spring 5带来了大量的更新.Spring 5的一些重要特性是：
 
-系统由许多不同的组件组成，每一个组件各负责一块特定功能，其职责不能也不应该重叠.诸如日志模块、事务管理和安全模块，等这样的系统服务为多个组件所需要，它们通常被称为“横切关注点”， AOP能方便让它们被多个组件所重用.
-
-#### Spring Framework核心组件:SpEL，Context，Core，Beans
-
-1. SpEL模块为执行期间操作对象提供了强大的表达式语言(expression language)
-2. Context是在Beans和Core的基础上构建的，允许您访问设置中定义的任何对象。 Context模块的关键元素是ApplicationContext接口。
-3. Core模块提供了框架的关键部分，包括IoC和DI属性。
-4. Bean模块负责创建和管理Spring Beans  - 是应用程序上下文结构单元。
-
-#### Spring Framework Web
-
-Spring框架Web层由Web，Web-MVC，Web-Socket，Web-Portlet等组成。
-
-1. Web模块提供下载文件，创建Web应用程序，rest web service等功能。
-2. Web-MVC包含用于Web应用程序的Spring MVC实现。
-3. Web-Socket使用Web应用程序中的Web-Sockets为客户端和服务器之间的通信提供支持
-4. Web-Portlet通过portlet环境提供MVC实现
-
-#### Spring Framework其他模块
-
-Spring还包括许多其他重要的模块，例如AOP，Aspects，Instrumentation，Messaging和Test。
-
-1. AOP实现面向方面的编程，并允许使用整个AOP功能库。
-2. Aspects模块提供与AspectJ的集成，AspectJ也是一个功能强大的AOP框架。
-3. Instrumentation负责支持在服务器应用程序中使用的类检测和类加载器。
-4. Messaging模块提供STOMP支持。
-5. 最后，Test模块使用TestNG或JUnit Framework提供测试。
-
-#### Spring 5 Features
-
-> Spring 5为Spring 4带来了大量的更新.Spring 5的一些重要特性是：
-
-1. 支持Java 8，Java 9，Java EE 7，Java EE 8，Servlet 4.0，Bean Validation 2.0和JPA2.2。我很高兴看到Spring正在努力追赶所使用的主要技术的最新版本。
+1. 支持Java 8，Java 9.
 2. 使用新模块改进了日志记录 -  spring-jcl。
 3. 文件操作使用NIO 2流，从而提高了性能。
 4. 支持Reactor 3.1 Flux和Mono以及RxJava 1.3和2.1作为Spring MVC控制器方法的返回值。
 5. 支持Kotlin，Project Lombok，JSON Binding API作为Jackson和GSON的替代品。
 6. Spring WebFlux – Spring getting Reactive.
-7. 支持JUnit 5
-8. 通过Kotlin提供功能编程支持。
 
-#### 小结： Spring Framework的主要特性
+## JDK Version Range
 
-1. ①使用POJO进行轻量级和最小侵入式开发。
-2. ②通过依赖注入和基于接口编程实现松耦合。
-3. ③通过AOP和默认约定进行声明式编程，减少模式化的固定而重复的代码。
-4. ④Spring是开放的，能很方便地整合其他开发框架。
+- Spring Framework 5.1.x: JDK 8-12
+- Spring Framework 5.0.x: JDK 8-10
+- Spring Framework 4.3.x: JDK 6-8
+   
+## Spring Boot 2.0的特点
 
-## Spring Boot
-
-### Spring Boot是什么？
-
-从本质上来说， Spring Boot就是Spring，它做了那些没有它你自己也会去做的Spring Bean配置。简单地说，就是在早期技术的基础之上，实现了“自动化”配置。
-
-> Spring Framework + 自动化配置 = Spring Boot
-
-Spring Boot是当前Spring应用开发的主流。新项目不要再使用早期的Spring技术(比如使用XML定义Bean）。
-
-#### Spring Boot的特点
-
-1. Spring Boot提供了一些预先组织好的“起步依赖(spring-bootstarter）”，从而使开发者不再需要自行维护复杂的组件(jar包）依赖，而是只需要声明“我需要什么功能”就行了。
-2. Spring Boot让Spring应用开发，从早期的以“组件为中心”，转换为“以功能为中心”。
-3. Spring Boot 2.0与1.0有许多变化，并且只支持JDK 8及以上版本。
-4. Spring Boot 在应用程序里嵌入了一个Servlet容器(Tomcat、 Jetty或Undertow），可独立运行，无需部署到外部的Servlet容器中。
-5. Spring Boot 2.0还提供了支持响应式编程特性的容器(默认为Netty）， 因此，它就是一个jar包，可以直接使用java –jar命令来运行。
-6. Spring Boot提供了一整套工具，称为Spring Boot Actuator，可以用于
-监控Spring Boot应用程序运行的状态。
-7. Spring技术家族的其他成员(比如Spring MVC），基本上都针对Spring
-Boot进行了调整或重写，并且增加了新的成员，比如Web Flux。
-8. Spring Boot还是Spring Cloud技术的基础，单个的微服务，可以使用Spring Boot来开发。
-9. 要学习Spring，从Spring Boot起步！
-10. Spring Boot 2.0基于Spring Framework 5.0构建，并提供了两个技术栈。
-11. Servlet技术栈用于开发经典的Java Web应用，使用MVC框架，能很方便地访问各种数据
+1. Spring Boot 2.0(基于spring5)与1.0有许多变化，并且只支持JDK 8及以上版本,并提供了两个技术栈。
+2. Spring Boot 2.0还提供了支持响应式编程特性的容器(默认为Netty）， 因此，它就是一个jar包，可以直接使用java –jar命令来运行。
+3. Servlet技术栈用于开发经典的Java Web应用，使用MVC框架，能很方便地访问各种数据
 库，跑在Tomcat这种经典Web容器上。
-12. Reactive技术栈是全新的，用于开发高性能的分布式软件系统系统，特别适合于开发微
+4. Reactive技术栈是全新的，用于开发高性能的分布式软件系统系统，特别适合于开发微
 服务.
 
-##### Reactive Stack
+## Reactive Stack
 
 Spring WebFlux is a non-blocking web framework built from the ground up 
 to take advantage of multi-core, next-generation processors and handle
@@ -162,7 +57,7 @@ massive numbers of concurrent connections.
 4. Spring WebFlux
 5. Spring Data Reactive Repositories Mongo, Cassandra, Redis, Couchbase
 
-##### Servlet Stack
+## Servlet Stack
 
 Spring MVC is built on the Servlet API and uses a synchronous blocking 
 I/O architecture with a one-request-per-thread-model.
@@ -173,10 +68,109 @@ I/O architecture with a one-request-per-thread-model.
 4. Spring MVC
 5. Spring Data Repositories JDBC, JPA, NoSQL
 
-### 学习指南
+# 学习指南
 
-1. 学习Spring技术，要先学Spring Framework，再学Spring Boot，
-2. Spring Boot学好之后，才能学Spring Cloud。这个顺序不能弄反了。
-3. 早期的使用XML配置文件的Spring技术，可以跳过不学。
-4. Spring Boot 2.0所引入的两个技术栈，各有其适合的应用场景，使用Servlet技术栈的，适合于开发传统Web项目。开发微服务，推荐使用Reactive技术栈。
-6. 当前主流的Web技术方案是“前后端分离”，如果使用Java开发后端服务，可以使用Spring MVC或WebFlux开发RESTful Service，诸如Thymeleaf之类传统的MVC视图技术也可以不用了， Vue/React/Angular用起来更方便和强大。
+1. Spring Boot 2.0所引入的两个技术栈，各有其适合的应用场景，使用Servlet技术栈的，适合于开发传统Web项目。开发微服务，推荐使用Reactive技术栈。
+2. 当前主流的Web技术方案是“前后端分离”，如果使用Java开发后端服务，可以使用Spring MVC或WebFlux开发RESTful Service，诸如Thymeleaf之类传统的MVC视图技术也可以不用了， Vue/React/Angular用起来更方便和强大。
+
+# spring framework高级特性
+
+本讲PPT介绍Spring Framework所提供一些高级特性，这些特性在实际开发中用得并不算多，但了解它们还是必要的。这些特性包括：
+
+* Spring ApplicationEvent(Spring的应用程序事件)
+* Spring Aware-用到Spring容器本身
+* Spring异步调用-@EnableAsync开启对异步任务的支持,使用@Async注解来声明其是一个异步任务.
+* Spring计划任务 -@EnableScheduling 来开启对计划任务的支持，然后在要执行计划任务的方法上注解@Scheduled，声明这是一个计划任务。
+
+# Spring AOP的实现原理?
+
+AOP的实现，最关键的有两步：
+
+1. 得到代理对象
+2. 利用递归责任链执行前置以及后置的advice(通知)及目标方法
+
+IOC容器初始化时，对于涉及AOP操作的目标类，其实Spring返回的是代理对象，而不是目标类的实例。
+
+代理对象proxy其实包含了很多东西，比如：
+
+- 目标对象
+- 增强器
+
+代理对象最终都会间接调用目标对象的同名方法，比如proxy.add() --> target.add(),但代理对象允许在调用add()前后添加一些增强代码，作为功能扩展
+即，调用代理对象的方法最终都会“转嫁”成调用目标方法，但是在调用前后会执行一些其他操作，我称这些其他操作为“增强代码”，本质上就是上面提到的增强器。
+
+>代理对象方法 = 拦截器链 + 目标对象方法
+
+假设代理对象proxy调用了某个方法，而这个方法会触发CglibAopProxy.intercept()。先不要理会为啥会触发这个方法，反正人家就是这样设定的。我们来看看intercept()方法：
+
+![](pics/v2-b1b48f15070ae90b770e3ba5e100c2a9_hd.jpg)
+
+intercept()如果没有拦截器链,直接执行目标方法,如果有拦截器链,就传入拦截器链和目标对象，最终new CglibMethodInvocation(...).proceed(),我们主要考虑有拦截器链的情况。
+
+intercept()说穿了，就干了两件事：收集拦截器，做成链,然后把拦截器链和目标对象等传入，执行new CglibMethodInvocation(...).proceed()
+
+>new CglibMethodInvocation(proxy, target, method, args, targetClass, chain, methodProxy).proceed();
+
+这里new了一个CglibMethodInvocation对象，包括目标对象、拦截器链啥的。
+
+![](https://pic3.zhimg.com/80/v2-9ab467470a3b663abff9fc83d9d757e8_hd.jpg)
+
+简化后的示意图：
+
+![](https://pic3.zhimg.com/80/v2-ed1796a21b678af0f6db065ab0444ac0_hd.jpg)
+
+也就是说，只要拦截器链没执行完，就不会执行目标方法。即：
+
+- 先执行全部的拦截器
+- 最后执行目标方法
+
+我知道你看到这里，会有什么疑问：既然拦截器都在目标方法前执行，怎么会出现AOP的后置调用呢?
+
+```java
+before... 
+target.add() 
+afterReturning... ...
+```
+
+别急，我们看看拦截器的invoke()干了啥。
+
+刚才说过了，拦截器是对增强的包装。我们增强方法有哪些来着？Before/AfterReturning...等等，所以拦截器肯定也有对应的Before/AfterReturning...
+
+我们先看Before拦截器：
+
+![](https://pic3.zhimg.com/80/v2-107b1daa76d57feddb3c69f1eff15991_hd.jpg)
+
+- 先调用了this.advice.before()。即，反射执行@Before方法。
+- 再调用了mi.proceed()。这个mi，就是我上一个截图传入的this，也就是CglibMethodInvocation对象。
+
+再看After拦截器：
+
+![](https://pic4.zhimg.com/80/v2-143b5411efc29f30d41eb923265cb19f_hd.jpg)
+
+- 先调用mi.proceed()
+- 后反射调用@After方法
+
+先别管具体上下文环境以及方法含义，我就问你，单纯看语句调用顺序，Before拦截器和After拦截器有何不同？
+
+答案是：
+
+- Before拦截器是先反射调用@Before，再调用mi.proceed()。
+- 而After拦截器是先调用mi.proceed()，再反射调用@AfterRetruning方法。(因为finally是目标对象的方法返回之后才带调用,这里就是aop的精华)
+
+>其实，只有Before是特殊的，其他拦截器都是先调用proceed()，再反射调用通知方法。
+
+AOP递归责任链：
+
+![](https://pic3.zhimg.com/80/v2-d5158657084b9a6f0f3b3587a2a1e8da_hd.jpg)
+
+跟着调用栈，可以看到顺序是before---target.add()---after...,流程解读：
+
+1. proxy.add()触发CglibAopProxy.intercept()
+2. intercept()中获取所有的拦截器，排好序后做出拦截器链（顺序和AOP执行顺序相反，before反而放链的末尾！）
+,传入拦截器链和目标对象，new CglibMethodInvocation()并调用proceed()
+3. proceed()先执行全部拦截器，最后执行目标方法
+4. 目标方法的return是整个递归责任链的精华所在
+
+# 参考:
+
+- [https://www.zhihu.com/question/23641679/answer/704897152](https://www.zhihu.com/question/23641679/answer/704897152)

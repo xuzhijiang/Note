@@ -25,3 +25,16 @@ passwd命令用于设置用户的认证信息，包括用户密码、密码过�
 - `groupadd 选项 用户组` :增加一个新的用户组
 - `groupdel 用户组`:要删除一个已有的用户组
 - `groupmod 选项 用户组` : 修改用户组的属性
+
+# 如何解决: There were 49 failed login attempts？
+
+目前已有的解决办法如下：
+
+1. 使用 ssh-keygen，禁用密码登陆
+2. 使用PAM模块，参考HowTo: Configure Linux To Track and Log Failed Login Attempt Records，其实就是登陆尝试次数设置和延时
+
+我的解决思路如下：
+
+1. 通过脚本获取尝试登陆失败的IP
+2. 将获取的IP写入到/etc/hosts.deny文件，进行屏蔽
+3. 使用inotify-tools，监控/var/log/secure文件，来实时更新/etc/hosts.deny文件

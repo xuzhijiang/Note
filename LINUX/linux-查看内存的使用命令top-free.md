@@ -154,6 +154,9 @@ PID USER PR NI VIRT RES SHR S %CPU %MEM TIME+ COMMAND
 # Linux下查看内存还有一个更方便的命令，free:
 free
 
+# 查看内存的使用情况
+free -h
+
 total used free shared buffers cached
 Mem: 4086496 4034044 52452 0 112756 1831564
 -/+ buffers/cache: 2089724 1996772(第一列已用内存，第二列是可用内存)
