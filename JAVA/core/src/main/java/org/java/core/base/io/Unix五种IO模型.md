@@ -8,7 +8,7 @@ Java中提供的IO有关的API，其实依赖操作系统层面的IO操作实现
 
 比如在Linux 2.6以后，Java中NIO和AIO都是通过epoll来实现的.而在Windows上，AIO是通过IOCP来实现的。
 
-## Linux中的5中IO模型
+## Linux中的5中IO模型 
 
 在《UNIX网络编程：卷一》第六章——I/O复用。书中向我们提及了5种类UNIX下可用的I/O模型：
 

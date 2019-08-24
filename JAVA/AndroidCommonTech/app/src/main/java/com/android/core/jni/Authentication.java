@@ -22,6 +22,7 @@ public class Authentication {
     static{
         // 加载iptvplayer_jni.so
         // System.loadLibrary("iptvplayer_jni");
+        // System.load("iptvplayer_jni.so");
         // native_init();
     }
 

@@ -8,6 +8,7 @@ import redis.clients.jedis.*;
 
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 通过Jedis来操作Redis中的各种数据类型
@@ -19,14 +20,16 @@ public class JedisTest {
 
     private static Jedis jedis;
 
-    private static String host = "94.191.29.122";
+    private static String host;
 
     //等待可用连接的最大时间，单位是毫秒，默认值为-1，表示永不超时。
     //如果超过等待时间，则直接抛出JedisConnectionException
     private static Integer MAX_WAIT_MILLIS = 10000;
+
     //在空闲时检查有效性, 默认false
     private static Boolean TEST_WHILE_IDLE = true;
 
+    private static final String DEFAULT_REDIS_HOST = "127.0.0.1";
     /**
      * 如果你出现了异常ConnectionTimeoutException，连接超时异常，那么可能是：
      * 可能是因为你的服务器防火墙没有针对6379端口开放，
@@ -34,6 +37,10 @@ public class JedisTest {
      */
     @BeforeClass
     public static void beforeClass() {
+        host = System.getenv("REDIS_HOST_NAME");
+        if (host == null || "".equals(host)) {
+            host = DEFAULT_REDIS_HOST;
+        }
         int port = 6379;
         //当 new的时候，就与服务器建立了连接，默认是6379端口
         jedis = new Jedis(host, port);
@@ -304,6 +311,7 @@ public class JedisTest {
 
         Response<String> pipeString = p.get("foo1");
         Response<Set<String>> resp = p.zrange("foo", 0, -1);
+        // 执行同步, 一次IO请求发送全部命令, 减少网络通信
         p.sync();
 
         int size = resp.get().size();
@@ -333,5 +341,14 @@ public class JedisTest {
         t.exec(); // dont forget it
         String foolbar = result1.get(); // use Response.get() to retrieve things from a Response
         int soseSize = sose.get().size(); // on sose.get() you can directly call Set methods!
+    }
+
+    @Test
+    public void testTTL() throws InterruptedException {
+        jedis.setex("key_ttl", 5, "value_ttl");
+        TimeUnit.SECONDS.sleep(2);
+        System.out.println("ttl: " + jedis.ttl("key_ttl"));
+        TimeUnit.SECONDS.sleep(4);
+        System.out.println("ttl: " + jedis.ttl("key_ttl"));
     }
 }

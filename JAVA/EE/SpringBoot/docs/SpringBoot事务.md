@@ -58,3 +58,7 @@ public enum Propagation {
 7. NESTED：如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于REQUIRED。
 
 >指定方法：通过使用propagation属性设置，例如：`@Transactional(propagation = Propagation.REQUIRED)`
+
+# 分布式事务
+
+例如在下单场景下，库存和订单如果不在同一个节点上，就涉及分布式事务。

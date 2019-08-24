@@ -11,11 +11,10 @@
     </parent>
 
     <!-- App相关信息 -->
-	<groupId>com.didispace</groupId>
-	<artifactId>Chapter4-4-1</artifactId>
+	<groupId>com.ehcache.core</groupId>
+	<artifactId>EhCache-Core</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-	<name>Chapter4-4-1</name>
 
 	<properties>
 		<!-- 指定源码编码方式UTF-8 -->
@@ -33,18 +32,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-
 		<!-- 引入Spring Data Jpa，Spring-data-jpa依赖于Hibernate -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-
 		<!-- 引入Hsqldb作为数据库，因为是嵌入式数据库，所以不需要在application.yml中
 		 设置数据库连接信息,-->
 		<dependency>
@@ -52,20 +48,17 @@
 			<artifactId>hsqldb</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
 		<!-- 使用spring-boot-devtools可以监控源码改动并自动重新加载 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
-
 		<!-- spring boot cache依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
-
 		<!--Ehcache依赖-->
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
