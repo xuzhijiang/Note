@@ -22,7 +22,7 @@ systemctl stop firewalld
 # 开启firewalld之后,就可以使用firewall-cmd
 
 # 查看防火墙状态
-firewall-cmd    --state
+firewall-cmd  --state
 
 # 打印所有的Firewalld配置
 $ sudo firewall-cmd --list-all
@@ -78,7 +78,7 @@ vi /etc/sysconfig/iptables
 service iptables restart
 
 # 使用命令检查所有应用的iptables规则列表
-iptables -nL 
+iptables -nL
 
 # 关闭防火墙(谨慎使用)
 service iptables stop

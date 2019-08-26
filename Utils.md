@@ -48,6 +48,7 @@ site:http://www.apple.com/
 8. 类似于eclipse中ctrl+k：ctrl+F3
 9. ctrl+alt+b: 定位到变量定义的地方
 10. 显示一个类的继承信息:ctrl+h
+11. ctrl+alt+b: 选中一个接口的方法,然后可以定位具体的实现类中.
 
 ### Java书写规范
 

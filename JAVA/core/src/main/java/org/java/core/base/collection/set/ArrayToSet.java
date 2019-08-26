@@ -5,12 +5,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * ÓëList²»Í¬£¬ÎÒÃÇ²»ÄÜÖ±½Ó½«Java Set×ª»»ÎªÊı×é£¬ÒòÎªËü²»ÊÇÊ¹ÓÃArrayÊµÏÖµÄ¡£
+ * ä¸Listä¸åŒï¼Œæˆ‘ä»¬ä¸èƒ½ç›´æ¥å°†Java Setè½¬æ¢ä¸ºæ•°ç»„ï¼Œå› ä¸ºå®ƒä¸æ˜¯ä½¿ç”¨Arrayå®ç°çš„ã€‚
  * 
- * ËùÒÔÎÒÃÇ²»ÄÜÊ¹ÓÃArraysÀàÀ´»ñµÃarray×÷ÎªsetµÄÊÓÍ¼¡£ ÎÒÃÇ¿ÉÒÔ²ÉÓÃÁíÒ»ÖÖ·½·¨¡£
- * ÎÒÃÇ¿ÉÒÔÊ¹ÓÃArrays.asList£¨£©·½·¨½«Êı×é×ª»»ÎªList£¬È»ºóÊ¹ÓÃËüÀ´´´½¨Set¡£
+ * æ‰€ä»¥æˆ‘ä»¬ä¸èƒ½ä½¿ç”¨Arraysç±»æ¥è·å¾—arrayä½œä¸ºsetçš„è§†å›¾ã€‚ æˆ‘ä»¬å¯ä»¥é‡‡ç”¨å¦ä¸€ç§æ–¹æ³•ã€‚
+ * æˆ‘ä»¬å¯ä»¥ä½¿ç”¨Arrays.asListï¼ˆï¼‰æ–¹æ³•å°†æ•°ç»„è½¬æ¢ä¸ºListï¼Œç„¶åä½¿ç”¨å®ƒæ¥åˆ›å»ºSetã€‚
  * 
- * Í¨¹ıÊ¹ÓÃÕâÖÖ·½·¨£¬ÎÒÃÇ¿ÉÒÔÍ¨¹ıÁ½ÖÖ·½Ê½½«JavaÊı×é×ª»»ÎªSet¡£
+ * é€šè¿‡ä½¿ç”¨è¿™ç§æ–¹æ³•ï¼Œæˆ‘ä»¬å¯ä»¥é€šè¿‡ä¸¤ç§æ–¹å¼å°†Javaæ•°ç»„è½¬æ¢ä¸ºSetã€‚
  */
 public class ArrayToSet {
 	public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class ArrayToSet {
 		System.out.println(vowelsSet);
 
 		/**
-		 * Unlike List, Set is NOt backed(Ö§³Ö) by array, so we can do structural modification
+		 * Unlike List, Set is NOt backed(æ”¯æŒ) by array, so we can do structural modification
 		 * without any issues.
 		 */
 		vowelsSet.remove("e");

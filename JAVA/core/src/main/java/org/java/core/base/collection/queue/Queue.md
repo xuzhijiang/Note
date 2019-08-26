@@ -1,16 +1,37 @@
 # Queue
 
-## 类的继承关系
+![](../core/Collection_interfaces.png)
 
-```java
-public interface Queue<E> extends Collection<E> {}
+![](Queue的类图.png)
 
-public interface Collection<E> extends Iterable<E> {}
+## 重要的实现类
 
-public interface Iterable<T> {}
-```
+- PriorityQueue：基于堆结构实现，可以用它来实现优先级队列
+- LinkedList：基于双向链表实现的双向队列.(实现了Deque)
 
->一些常用的Queue实现类是LinkedList，PriorityQueue，ArrayBlockingQueue， DelayQueue，LinkedBlockingQueue，PriorityBlockingQueue等.AbstractQueue提供了Queue接口的骨干实现，以减少实现Queue的工作量。
+![](PriorityQueue-Class-Diagram.jpg)
+
+![](../list/linkedList/LinkedList类图.png)
+
+还有其他的,如:
+
+- ArrayBlockingQueue
+- LinkedBlockingQueue
+- PriorityBlockingQueue
+
+![](PriorityBlockingQueue类图01.png)
+
+![](PriorityBlockingQueue类图.png)
+
+>AbstractQueue提供了Queue接口的骨干实现，以减少实现Queue的工作量
+
+## Deque
+
+通过看java.util.Queue的方法可以得出结论: Queue在Java中的语义就是一个单端队列/单向队列.也就是只能从一头入队,另一头出队.
+
+而java.util.Deque在Java中的语义是双端队列/双向队列.也就是可以从一头入队,也可以从这头出队.(虽然Deque的英文意思是队列/顺序/排队的意思,英文意思没有体现出双端队列,所以英文意思和它的java语义不太一样)
+
+![](Deque接口的方法.png)
 
 ## 分类
 

@@ -1,97 +1,21 @@
-## List
+# List
 
-List接口是`有序的可重复的`集合，可以通过索引来访问List中的元素,list内部维护了一个动态数组，当数组满了，再次插入数据到list当中的时候，list会自动扩容。使用List接口能够精确的控制每一个元素插入的位置。
+![](../core/Collection_interfaces.png)
 
-* ArrayList采用数组实现，数组的访问速度要比链表快，所以ArrayList更适合查询操作，
-* LinkedList采用链表实现，插入和删除的效率要高于数组，
-* Vector是一种古老的实现类，采用数组的实现，内部方法使用了Sychronized关键字，是线程安全的。
+![](List类图.png)
 
-List的接口继承关系:
+## 重要的实现类
 
-	public interface List<E> extends Collection<E>.
+- ArrayList：存储有序可重复的元素的集合,支持通过下标索引来访问元素.内部维护了一个动态数组.当数组满了，再次插入数据到ArrayList当中的时候，ArrayList会自动扩容.使用ArrayList能够精确的控制每一个元素插入的位置.(线程不安全)
 
-	public interface Collection<E> extends Iterable<E>.
-	
-	public interface Iterable<T>.
+- Vector：一种古老的实现类,和 ArrayList 类似，内部方法使用了synchronized关键字，是线程安全的
 
-Java 1.5 came up with thread-safe collection classes that allowed to modify Collections
-while iterating over it, some of them are CopyOnWriteArrayList, ConcurrentHashMap, 
-CopyOnWriteArraySet. These classes are in java.util.concurrent package. All the collection 
-classes are present in java.util and java.util.concurrent package.
+- LinkedList：基于双向链表实现，只能顺序一个个的访问,不能通过下标索引访问元素，但可以高效的插入和删除元素。LinkedList还可以用作栈、队列和双向队列。
 
-Java1.5提出了线程安全的集合类，允许当迭代它的时候修改集合，他们中的一些是CopyOnWriteArrayList, ConcurrentHashMap, 
-CopyOnWriteArraySet, 这些类是在java.util.concurrent保重，所有的这些集合类都存在于java.util和java.util.concurrent包中.
+## 在合适的场景使用合适类型的List
 
-### LinkedList
+如果一堆对象,可以按照索引下标0,1,2这样的形式来组织的话,可以考虑使用ArrayList,此时通过索引查找元素的速度极快,O(1)的时间复杂度.
 
-由连接实现数据的存储，随机添加和删除元素的的操作的效率要高于数组，简单说就更适用于频繁的插入和实现操作。
+如果一堆对象不可以通过下标的形式组织的话,就没必要使用ArrayList,因为查找效率比较低,也是需要一个个比对,而且更重要的是,插入和删除效率也低,而且内存分配的时候需要分配连续的内存(因为ArrayList是基于数组的),这个时候可以考虑LinkedList.
 
-```java
-public class LinkedList<E>
-extends AbstractSequentialList<E>
-implements List<E>, Deque<E>, Cloneable, java.io.Serializable{}
-```
-
-* LinkList继承了AbstractSequentialList的双向链表，这个和ArrayList不同,ArrayList继承的是AbstractList。
-* LinkList实现了List接口，能对它进行队列操作。
-* LinkList实现了Deque接口，表明可以用作双向队列操作。
-* LinkList实现了Cloneable接口，表明可以实现克隆操作。
-* Linklist实现了Serializable接口，表明支持序列化，可以通过序列化传输。
-
-#### LinkedList继承AbstractSequentialList的必然性
-
->AbstractSequentialList的源码如下：
-
-```java
-public abstract class AbstractSequentialList<E> extends AbstractList<E> {}
-```
-
->可以看出AbstractSequentialList这个类是一个抽象类，而且也继承了AbstractList类，再看里面的方法，如下：
-
-```java
-public E get(int index) {
-    try {
-        return listIterator(index).next();
-    } catch (NoSuchElementException exc) {
-        throw new IndexOutOfBoundsException("Index: "+index);
-    }
-}
-
-public E set(int index, E element) {
-    try {
-        ListIterator<E> e = listIterator(index);
-        E oldVal = e.next();
-        e.set(element);
-        return oldVal;
-    } catch (NoSuchElementException exc) {
-        throw new IndexOutOfBoundsException("Index: "+index);
-    }
-}
-
-public void add(int index, E element) {
-    try {
-        listIterator(index).add(element);
-    } catch (NoSuchElementException exc) {
-        throw new IndexOutOfBoundsException("Index: "+index);
-    }
-}
-
-public E remove(int index) {
-    try {
-        ListIterator<E> e = listIterator(index);
-        E outCast = e.next();
-        e.remove();
-        return outCast;
-    } catch (NoSuchElementException exc) {
-        throw new IndexOutOfBoundsException("Index: "+index);
-    }
-}
-```
-
->从上述代码可以看出，AbstractSequentialList类实现了这个操作集合的基本也是骨干的方法，
-LinkList是双向链表，他继承了AbstractSequentialList这个类，就相当于已经实现了这些方法。
-注意，除了正向迭代器，还可以使用反向迭代器:使用descendingIterator()方法
-
-#### Vector
-
-是一种古老的实现类，在Vector类中，里面的方法添加了synchronized修饰，是线程安全的，他的性能比ArrayList差，用的地方比较少，
+![](../core/Vector.png)

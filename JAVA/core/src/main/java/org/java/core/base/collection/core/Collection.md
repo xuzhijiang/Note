@@ -1,31 +1,50 @@
+# 容器为什么会出现?
+
+如果要存储一堆对象,其实最简单的首先我们能想到的是使用数组,但是数组存储对象有如下弊端：
+
+1. 数组长度一旦初始化后,存储对象的容量就不能改变
+2. 获取数组中真实存储的对象的个数也没有现成方法可用.只能获取数组的总长度.
+
+>所以基于数组的缺陷,才出现了容器.
+
+# 容器
+
+Java中的容器包括 Collection 和 Map 两类，Collection 存储着对象的集合，而 Map 存储着键值对（两个对象）的映射表。这里主要讨论Collection.
+
 ## Collection(集合)
 
-### 概念
+![](Collection类图01.png)
 
->java.util.Collection是集合框架的根接口，位于集合框架顶部
+![](Collection类图02.png)
 
-在Collection体系中，存在了Iterator迭代器和Comparable，Comparator对象排序接口
+![](Collection_interfaces.png)
 
-> Collection接口是最基本的集合接口，它不提供直接的实现，而是由子接口来提供实现,
-以下是其重要子接口:
+`java.util.Collection`位于集合框架顶部的接口.不提供直接的实现，而是由子接口/子类来实现,以下是其重要子接口:
 
-* Set是元素无序，不可重复的接口
-* List是存储有序可重复的元素接口
-* Queue接口
+* `java.util.Set`
+* `java.util.List`
+* `java.util.Queue`
 
-### 集合重要的实现类
+![](HashSet类图01.png)
 
-* ArrayList(常用)
+![](Set实现类类图.jpg)
+
+![](Java_collection_list_implementations.jpg)
+
+>注意jdk8中新特性: 接口中可以使用default关键字来实现一个方法.
+
+## Collection重要的实现类(都是3大子接口的实现类)
+
+* ArrayList(线程不安全的)
 * LinkedList(线程不安全的)
-* HashMap(常用)
+* HashMap(线程不安全的)
 * TreeMap(线程不安全的)
-* HashSet(常用)
-* TreeSet
-* Vector(线程安全,因为内部使用了synchronized修饰)
+* HashSet(线程不安全的)
+* TreeSet(线程不安全的)
+* Vector(线程安全,因为内部的方法都使用了synchronized修饰)
 
-### 存储对象的容器
+![](Vector.png)
 
->除了集合可以存储对象，数组也可以存储对象，但是数组存储对象有如下弊端：
+## `java.util.Collection`接口中的方法
 
-1.数组长度一旦初始化就不可改变，存储对象的个数就不能改变
-2.数组中真实存储的对象的个数也没有现成方法可用
+![](Collection接口中定义的方法.png)
