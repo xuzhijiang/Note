@@ -1,9 +1,13 @@
 package org.java.core.base.util;
 
+import org.junit.Test;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ArrayUtils {
-	
+
 	public static void main(String[] args) {
 		int[] arr1 = {1,2,3,4,5};
 		int[] arr2 = {10,11,12,13,14};
@@ -12,4 +16,38 @@ public class ArrayUtils {
 		System.arraycopy(arr1, 0, arr2, 2, 2);
 		System.out.println(Arrays.toString(arr2));
 	}
+
+	/**
+	 * Array转成List
+	 */
+	@Test
+	public void arrayToList() {
+		String[] vowels = { "a", "e", "i", "o", "u" };
+
+		// 返回的是一个ArrayList，可以参照内部实现
+		List<String> vowelsList = Arrays.asList(vowels);
+
+		/**
+		 * List is backed by array, we can't do structural modification
+		 * List是由数组支持的，我们不能做结构修改 Both of the below statements will throw
+		 * java.lang.UnsupportedOperationException
+		 */
+		 try {
+			 vowelsList.remove("e");
+			 vowelsList.clear();
+		 } catch (Exception e) {
+		 	e.printStackTrace();
+		 }
+
+		// 最好的将array变成List的方法:
+		List<String> myList = new ArrayList<String>();
+		for (String s : vowels) {
+			myList.add(s);
+		}
+		System.out.println(myList);
+		myList.clear();
+		myList.add(null);
+		System.out.println(myList);
+	}
+
 }

@@ -5,11 +5,13 @@
 1. 数组长度一旦初始化后,存储对象的容量就不能改变
 2. 获取数组中真实存储的对象的个数也没有现成方法可用.只能获取数组的总长度.
 
->所以基于数组的缺陷,才出现了容器.
+>所以基于数组的缺陷,才出现了容器.(严格说,数组也是一种容器)
 
 # 容器
 
 Java中的容器包括 Collection 和 Map 两类，Collection 存储着对象的集合，而 Map 存储着键值对（两个对象）的映射表。这里主要讨论Collection.
+
+>当然也可以换个角度分,把容器分为线程不安全的容器和并发容器(多线程安全的).
 
 ## Collection(集合)
 
@@ -48,3 +50,9 @@ Java中的容器包括 Collection 和 Map 两类，Collection 存储着对象的
 ## `java.util.Collection`接口中的方法
 
 ![](Collection接口中定义的方法.png)
+
+## Collection遍历
+
+Collection 继承了 Iterable 接口，其中Iterable接口定义的 iterator() 方法能够产生一个 Iterator 对象，通过这个对象就可以迭代遍历 Collection 中的元素.(迭代器模式)
+
+

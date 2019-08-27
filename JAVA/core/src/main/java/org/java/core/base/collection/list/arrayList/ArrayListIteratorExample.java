@@ -12,7 +12,6 @@ import java.util.List;
  * 
  * 注意： iterator.remove()不会产生异常
  * @author a
- *
  */
 public class ArrayListIteratorExample {
 	public static void main(String[] args) {

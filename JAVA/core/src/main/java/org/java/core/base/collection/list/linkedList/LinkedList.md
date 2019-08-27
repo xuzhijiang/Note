@@ -25,4 +25,4 @@
 
 LinkedList实现了Deque,所以可以使用:
 
-![](../../queue/Deque接口的方法.png)
+![](../../queue/deque/Deque接口的方法.png)

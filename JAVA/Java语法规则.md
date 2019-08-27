@@ -138,11 +138,14 @@ float           0.0f
 double          0.0d
 char            'u0000'
 String (or any object)   null
+int             0
+Integer         null
 
 0.78 默认是Double类型的，如果要指定它为Float类型的，就要加上f
 Object o = 0.78; System.out.println(o instanceof Double);    // true
 Object o = 0.7; System.out.println(o instanceof Float);    // false
 注意instanceof后面的类型必须是对象类型，不能为primitive原始类型，否则编译不过去.
+
 
 对于消息系统，个人的建议：
 

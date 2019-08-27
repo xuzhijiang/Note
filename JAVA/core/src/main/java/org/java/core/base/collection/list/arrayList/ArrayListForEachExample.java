@@ -17,7 +17,6 @@ import java.util.function.Consumer;
 public class ArrayListForEachExample {
 	
 	public static void main(String[] args) {
-			
 		List<String> stocks = new ArrayList<>();
 		stocks.add("Google"); 
 		stocks.add("Apple");

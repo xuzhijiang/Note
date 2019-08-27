@@ -24,6 +24,13 @@ HashMap使用它的内部类 class Node<K，V>来存储映射,HashMap使用哈�
 - loadFactor的默认值为0.75f是官方给出的一个比较好的临界值。较好的衡量了时间因素和空间因素.
 - 负载因子越大代表空间利用充分，但是查询，搜索效率就降低，过小，空间利用率就降低，
 
+有2个重要的特性影响着HashMap的性能，分别是capacity(容量)和load factor(加载因子)。
+
+其中capacity表示哈希表bucket的数量，HashMap的默认值是16。load factor加载因子表示
+当一个map的实际大小达到了bucket的这个比例之后，和ArrayList一样，
+将会创建原来HashMap大小的两倍的bucket数组，来重新调整map的大小，
+并将原来的对象放入新的bucket数组中。这个过程也叫做再哈希。默认的load factor为0.75 。
+
 # HashMap实现原理
 
 ## 以下基于 JDK1.7 分析

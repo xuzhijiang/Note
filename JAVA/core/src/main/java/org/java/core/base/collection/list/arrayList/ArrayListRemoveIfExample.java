@@ -7,8 +7,6 @@ import java.util.function.Predicate;
 /**
  * 在Java 8中添加了ArrayList removeIf方法。
  * 此方法将删除列表中满足给定谓词的所有元素。
- * @author a
- *
  */
 public class ArrayListRemoveIfExample {
 
@@ -29,11 +27,9 @@ public class ArrayListRemoveIfExample {
 	}
 
 	class MyPredicate implements Predicate<Integer> {
-
 		@Override
 		public boolean test(Integer t) {
 			return t %2 == 0;
 		}
-		
 	}
 }

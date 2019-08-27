@@ -1,12 +1,10 @@
 package com.java.datastructure.collection.list.linkedlist;
 
 /**
- * 双端链表
+ * 双端链表(单向链表)
  *
- * 我们可以像在单链表中在表头插入一个元素一样，在链表的尾端插入元素。
- * 如果不维护对最后一个节点的引用，我们必须要迭代整个链表才能得到最后一个节点，
- * 然后再插入，效率很低。因此我们在双链表中添加一个addLast方法，用于添加节点到末尾。
- * @param <T>
+ * 我们想在链表的尾端插入元素,如果不维护对最后一个节点的引用，我们必须要迭代整个链表才能得到最后一个节点，
+ * 然后再插入，效率很低。因此我们在双端链表中添加一个addLast方法，用于添加节点到末尾。
  */
 public class DoubleLinkList<T> extends SingleLinkList<T> {
 
@@ -15,7 +13,6 @@ public class DoubleLinkList<T> extends SingleLinkList<T> {
 
     /**
      * 添加到链表最后
-     * @param data
      */
     public void addLast(T data){
         Node node = new Node();
@@ -38,8 +35,6 @@ public class DoubleLinkList<T> extends SingleLinkList<T> {
 
     /**
      * 当链表中没有元素时，清空lastNode引用
-     * @param data
-     * @return
      */
     @Override
     public boolean remove(Object data) {
@@ -62,17 +57,4 @@ public class DoubleLinkList<T> extends SingleLinkList<T> {
         }
     }
 
-    public static void main(String[] args) {
-        testAddFirst();
-    }
-    public static void testAddFirst() {
-        DoubleLinkList<Integer> linkList=new DoubleLinkList<Integer>();
-        for (int i = 0; i < 5; i++) {
-            linkList.addFirst(i);
-        }
-        for (int i = 0; i < 5; i++) {
-            linkList.addLast(i);
-        }
-        linkList.display();
-    }
 }

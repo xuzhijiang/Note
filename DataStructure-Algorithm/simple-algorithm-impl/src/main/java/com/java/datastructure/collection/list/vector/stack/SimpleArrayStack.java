@@ -2,6 +2,9 @@ package com.java.datastructure.collection.list.vector.stack;
 
 import java.util.Arrays;
 
+/**
+ * 用数组实现的Stack(栈)
+ */
 public class SimpleArrayStack<T> {
 
     private Object[] array;
@@ -54,7 +57,7 @@ public class SimpleArrayStack<T> {
     }
 
     public static void main(String[] args) {
-        SimpleArrayStack<Integer> simpleStack=new SimpleArrayStack<Integer>();
+        SimpleArrayStack<Integer> simpleStack=new SimpleArrayStack<>();
         System. out.print("push:\t" );
         for (int i = 0; i < 1000; i++) {
             simpleStack.push(i );

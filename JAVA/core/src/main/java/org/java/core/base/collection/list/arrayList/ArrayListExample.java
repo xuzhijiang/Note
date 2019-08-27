@@ -4,55 +4,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Below is a simple program for Arraylist JdbcQuickStartExample showing
- * commonly used methods.
- * @author PopovichXu
- */
 public class ArrayListExample {
 
 	public static void main(String args[]) {
-		
-		List<String> letters = new ArrayList<String>();
-		
-		//add JdbcQuickStartExample
+		List<String> letters = new ArrayList<>();
 		letters.add("A");
 		letters.add("C");
 		letters.add("D");
-		
 		letters.add(1, "B");
-		System.out.println(letters);
-		
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 		list.add("E");list.add("H");
-		
-		//appending list elements to letters
 		letters.addAll(list);
 		System.out.println(letters);
-		
-		//clear JdbcQuickStartExample to empty the list
 		list.clear();
-		
 		list.add("F");list.add("G");
-		
-		//inserting list inside letters to get right sequence
+		System.out.println(letters);
 		letters.addAll(5, list);
 		System.out.println(letters);
-		
-		//contains JdbcQuickStartExample
-		System.out.println("Letters list contains E ? "+letters.contains("E"));
-		System.out.println("Letters list contains Z ? "+letters.contains("Z"));
-		
+
 		//ensureCapacity JdbcQuickStartExample, it's ArrayListSource method, so object should be defined like below.
 		ArrayList<String> tempList = new ArrayList<>();
 		tempList.ensureCapacity(1000);
-		
-		//get JdbcQuickStartExample
-		String e = letters.get(4);
-		System.out.println("Letter at 5th place: "+e);
-		
-		//tempList is empty?
-		System.out.println("tempList is empty ? "+tempList.isEmpty());
 		
 		//indexOf JdbcQuickStartExample
 		System.out.println("First index of D = "+letters.indexOf("D"));

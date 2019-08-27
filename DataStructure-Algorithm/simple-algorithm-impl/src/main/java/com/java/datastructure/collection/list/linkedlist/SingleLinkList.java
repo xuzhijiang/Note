@@ -1,24 +1,27 @@
 package com.java.datastructure.collection.list.linkedlist;
 
-import com.java.datastructure.iterator.MyIterable;
-import com.java.datastructure.iterator.MyIterator;
+import java.util.Iterator;
 
 /**
- * 单端链表
- * 维护第一个节点(firstNode)的引用，作为整个链表的入口.
- * @param <T> 每个Node中存放的data的类型Type
+ * 单端链表(单向链表)
+ *
+ * 注意区分:
+ * 单端链表: 只维护firstNode或者lastNode
+ * 双端链表: 维护firstNode和lastNode
+ * 单向链表: 每个node,只维护了这个node的next
+ * 双向链表: 每个node,维护了这个node的prev和这个node的next
+ *
+ * JDK的LinkedList是双端双向链表
  */
-public class SingleLinkList<T> implements MyIterable<T> {
-    // 链表中第一个节点
+public class SingleLinkList<T> implements Iterable<T> {
+
+    // 链表中第一个节点,作为整个链表的入口
     protected Node<T> firstNode;
 
     // 链表中维护的节点总量
     protected int size;
 
-    /**
-     * 添加到链表的最前面
-     * @param data Node中的data
-     */
+    // 添加到链表的最前面
     public void addFirst(T data) {
         Node node = new Node();
         node.setData(data);
@@ -30,41 +33,41 @@ public class SingleLinkList<T> implements MyIterable<T> {
     /**
      * 如果链表中包含要删除的元素，删除第一个匹配上的要删除的元素，
      * 并且返回true；如果没有找到要删除的元素，返回false
-     * @param data
-     * @return
      */
     public boolean remove(Object data) {
-        if (size == 0) {
-            firstNode = null;
+        if (firstNode == null) {
             return false;
         }
 
-        // 如果只有一个节点，就判断这个节点(也就是头结点)
-        // 是否是要删除的元素
-        if(size == 1){//size==1，所以firstNode肯定不为null
-            // 判断一下第一个元素是否是要remove的元素
-            if((firstNode.getData() == null && data==null) ||
-                    (firstNode.getData() != null && firstNode.getData().equals(data))){
-                firstNode = null;
-                size--;
-                return true;
-            }
-            return false;
+        // 如果要删除的元素就是firstNode的话
+        if((firstNode.getData() == null && data==null) ||
+                (firstNode.getData() != null && firstNode.getData().equals(data))){
+            Node oldFirstNode = firstNode;
+            firstNode = firstNode.getNext();
+            // 置空要删除的节点
+            oldFirstNode.setData(null);
+            oldFirstNode.setNext(null);
+            oldFirstNode = null;
+            size--;
+            return true;
         }
 
         // 走到这里，说明firstNode不是要remove的元素
         Node pre = firstNode;
         Node current = firstNode.getNext();
-        while(current != null){
-            // 如果当前节点中维护的值就是要删除的值，直接将上一个节点pre的next
+        while(current != null){// 说明链表还有数据
+            // 如果当前节点中维护的值就是要删除的值，直接将上一个节点的next
             // 应用指向当前节点current的下一个节点接口
             if((current.getData() == null && data==null)
-                    || (current.getData().equals(data))){
+                    || (current.getData() != null && current.getData().equals(data))){
                 pre.setNext(current.getNext());
+                // 置空要删除的节点
+                current.setData(null);
+                current.setNext(null);
+                current = null;
                 size--;
                 return true;
             }
-
             // 如果当前元素不是要删除的元素，继续循环
             pre = current;
             current = current.getNext();
@@ -74,23 +77,21 @@ public class SingleLinkList<T> implements MyIterable<T> {
 
     /**
      * 如果包含返回true，如果不包含，返回false
-     * @param data
-     * @return
      */
     public boolean contains(Object data){
-        if(size == 0){
+        if(firstNode == null){
             return false;
         }
 
         Node current = firstNode;
-        while(current != null){
+        do {
             if((current.getData() == null && data==null) ||
                     (current.getData() != null && current.getData().equals(data))){
                 return true;
             }
-
             current = current.getNext();
-        }
+        } while (current != null);
+
         return false;
     }
 
@@ -102,9 +103,6 @@ public class SingleLinkList<T> implements MyIterable<T> {
         return size;
     }
 
-    /**
-     * 打印所有元素
-     */
     public void display(){
         if(!isEmpty()){
             Node current = firstNode;
@@ -117,10 +115,9 @@ public class SingleLinkList<T> implements MyIterable<T> {
 
     /**
      * 删除第一个元素
-     * @return
      */
     public T removeFirst(){
-        if(size() != 0){
+        if(size != 0){
             Node oldFirstNode = firstNode;
             firstNode = firstNode.getNext();
             size--;
@@ -131,111 +128,55 @@ public class SingleLinkList<T> implements MyIterable<T> {
 
     public T getFirst(){
         if(size() != 0){
-            return (T) firstNode.getData();
+            return firstNode.getData();
         }
         return null;
     }
 
-    public static void main(String[] args) {
-//        testAddFirst();
-//
-//        testRemove();
-//
-//        testRemoveFisrt();
+    protected static class Node<E> {
+        // Node 中维护的数据
+        private E data;
+        // 下一个元素的引用
+        private Node<E> next;
+        // 上一个元素的引用
+        private Node<E> prev;
 
-        testIterator();
+        Node() {}
 
-        testIterator2();
-    }
-
-    private static void testRemove() {
-        System.out.println("---------");
-        SingleLinkList<Integer> linkList=new SingleLinkList<Integer>();
-        for (int i = 0; i < 10; i++) {
-            linkList.addFirst(i);
+        Node(Node<E> prev, E element, Node<E> next) {
+            this.data = element;
+            this.next = next;
+            this.prev = prev;
         }
-        if(!linkList.isEmpty()){
-            linkList.remove(5);
-        }
-        linkList.display();
-    }
 
-    private static void testAddFirst() {
-        SingleLinkList<Integer> linkList=new SingleLinkList<Integer>();
-        for (int i = 0; i < 10; i++) {
-            linkList.addFirst(i);
+        public E getData() {
+            return data;
         }
-        linkList.display();
-    }
 
-    public static void testRemoveFisrt() {
-        System.out.println("---------------");
-        SingleLinkList<Integer> linkList=new SingleLinkList<Integer>();
-        for (int i = 0; i < 10; i++) {
-            linkList.addFirst(i);
+        public void setData(E data) {
+            this.data = data;
         }
-        linkList.removeFirst();
-        linkList.display();
-    }
 
-    public static void testIterator(){
-        System.out.println("---------");
-        SingleLinkList<Integer> linkList=new SingleLinkList<Integer>();
-        for (int i = 0; i < 10; i++) {
-            linkList.addFirst(i);
+        public Node getNext() {
+            return next;
         }
-        System.out.println("链表中元素：");
-        linkList.display();
-        System.out.println("\n开始迭代：");
-        MyIterator<Integer> iterator = linkList.iterator();
-        while (iterator.hasNext()){
-            Integer next = iterator.next();
-            System.out.println(next);
+
+        public void setNext(Node next) {
+            this.next = next;
         }
     }
 
-    public static void testIterator2(){
-        SingleLinkList<Integer> linkList=new SingleLinkList<Integer>();
-        for (int i = 0; i < 10; i++) {
-            linkList.addFirst(i);
-        }
-        System.out.println("链表中元素：");
-        linkList.display();
-        System.out.println("\n开始迭代：");
-
-        // 特别的，由于我们的迭代器实现了Java的标准接口(java.lang.Iterable)，
-        // 所以我们可以使用java的增强for循环来进行迭代，
-
-        // 如果没有实现这些接口，而是实现了我们自己定义的MyIterable，是无法使用增强for循环的
-//        for (Integer data : linkList) {
-//            System.out.println(data);
-//        }
-    }
-
-    /**
-     * 可以看到，我们构建的时候，是把链表的第一个元素当做构造参数传递给了NodeIterator
-     * @return
-     */
     @Override
-    public MyIterator iterator() {
+    public Iterator iterator() {
+        // 把链表的firstNode当做构造参数传递给了NodeIterator
         return new NodeIterator<T>(firstNode);
     }
 
     /**
-     * 通过标准的jdk中的Iterator接口实现的迭代器
-     * @return
+     * 在SingleLinkList中定义一个内部类NodeIterator，实现Iterator接口,
+     * 这样我们定义的SingleLinkList就可以使用JDK的增强for循环了
      */
-//    @Override
-//    public Iterator iterator(){
-//        return new NodeIterator<T>(firstNode);
-//    }
-
-    /**
-     * 在SingleLinkList中定义一个内部类NodeIterator，实现Iterator接口
-     * @param <T>
-     */
-    private class NodeIterator<T> implements MyIterator<T> {//自定义的Iterator接口实现
-    //private class NodeIterator<T> implements Iterator<T> {
+    private class NodeIterator<T> implements Iterator<T> {
 
         private Node node;
 
@@ -261,6 +202,7 @@ public class SingleLinkList<T> implements MyIterable<T> {
             // 待完善
             SingleLinkList.this.remove(t);
         }
+
     }
 
 }

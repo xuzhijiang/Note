@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class MyMapTest {
+
     public static void main(String[] args) {
         MyHashMap7<String,String > map = new MyHashMap7();
         Long t1 = System.currentTimeMillis();
@@ -29,4 +30,5 @@ public class MyMapTest {
         Long t4 = System.currentTimeMillis();
         System.out.println("JDK的HashMap耗时："+ TimeUnit.MILLISECONDS.toSeconds(t4 - t3) + "秒");
     }
+
 }

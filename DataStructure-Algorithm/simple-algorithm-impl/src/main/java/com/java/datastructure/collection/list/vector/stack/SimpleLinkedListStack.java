@@ -2,9 +2,12 @@ package com.java.datastructure.collection.list.vector.stack;
 
 import com.java.datastructure.collection.list.linkedlist.SingleLinkList;
 
+/**
+ * 用链表实现的Stack(栈)
+ */
 public class SimpleLinkedListStack<T> {
 
-    private SingleLinkList<T> singleLinkList = new SingleLinkList<T>();
+    private SingleLinkList<T> singleLinkList = new SingleLinkList<>();
 
     public void push(T t){
         singleLinkList.addFirst(t);

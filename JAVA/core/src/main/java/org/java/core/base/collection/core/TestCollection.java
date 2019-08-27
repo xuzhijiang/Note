@@ -25,7 +25,8 @@ public class TestCollection {
             // 注意：Collection没有get方法，意味着不能使用这种方法遍历
             System.out.println(myList.get(i));
         }
-        // 第二种:foreach
+        // 第二种: JDK 1.5引入的foreach,
+        // 注意如果是自定义容器,如果想要使用增强for循环,则需要实现Iterable接口.否则JDK不能识别
         for(Person p : collection){
             System.out.println(p);
         }
