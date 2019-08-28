@@ -123,3 +123,23 @@ Event对象其实就是被监听对象的包装，那么创建IOC时，要Servle
 # ContextLoaderListener vs DispatcherServlet
 
 ![](pics/ContextLoaderListener-vs-DispatcherServlet.png)
+
+# web.xml vs Initializer with Spring
+
+演示从web.xml配置到 `web.xml+java配置`的混合配置 再到完全都是java配置.
+
+![](pics/web-xml-vs-Initializer-with-Spring-01.png)
+![](pics/web-xml-vs-Initializer-with-Spring-02.png)
+![](pics/web-xml-vs-Initializer-with-Spring-03.png)
+![](pics/web-xml-vs-Initializer-with-Spring-04.png)
+![](pics/web-xml-vs-Initializer-with-Spring-05.png)
+![](pics/web-xml-vs-Initializer-with-Spring-06.png)
+![](pics/web-xml-vs-Initializer-with-Spring-07.png)
+![](pics/web-xml-vs-Initializer-with-Spring-08.png)
+![](pics/web-xml-vs-Initializer-with-Spring-09.png)
+![](pics/web-xml-vs-Initializer-with-Spring-10.png)
+![](pics/web-xml-vs-Initializer-with-Spring-11.png)
+
+# 参考
+
+- [https://www.baeldung.com/spring-xml-vs-java-config](https://www.baeldung.com/spring-xml-vs-java-config)

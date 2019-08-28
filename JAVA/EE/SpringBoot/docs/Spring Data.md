@@ -43,9 +43,17 @@ Spring Data JPA提供的一些很酷的功能是：
 	5. 支持实体的XML映射
 	6. 通过使用CrudRepository减少通用CRUD操作的代码大小
 
-## 基于项目依赖让Spring Boot自动配置数据源
+## 基于项目依赖让Spring Boot自动配置DataSource(数据源)
 
 在添加了项目依赖Spring Boot的spring-boot-starter-data-jpa后,Spring Boot就会默认为你配置数据源，这些默认的数据源主要是内存数据库，如h2、hqldb和Derby等内存数据，具体是哪个，依赖于你在项目的Maven配置文件pom.xml中加入了对哪个数据库的依赖.
+
+## SpringBoot配置多个DataSource
+
+![](pics/SpringBoot配置多个DataSource-01.png)
+![](pics/SpringBoot配置多个DataSource-02.png)
+![](pics/SpringBoot配置多个DataSource-03.png)
+![](pics/SpringBoot配置多个DataSource-04.png)
+![](pics/SpringBoot配置多个DataSource-05.png)
 
 ### 小结
 

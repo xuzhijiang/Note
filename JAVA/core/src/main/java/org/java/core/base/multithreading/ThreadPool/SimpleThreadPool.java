@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit;
 public class SimpleThreadPool {
 
 	public static void main(String[] args) {
-		//java.util.concurrent.ExecutorsÌá¹©java.util.concurrent.Executor½Ó¿ÚµÄÊµÏÖ
-		//ÒÔÔÚjavaÖĞ´´½¨Ïß³Ì³Ø
-		//ExecutorsÀàÊ¹ÓÃThreadPoolExecutorÌá¹©ExecutorServiceµÄ¼òµ¥ÊµÏÖ£¬ExecutorsÖĞµÄÌá¹©µÄÊµÏÖ´úÂëÈçÏÂ:
+		//java.util.concurrent.Executorsæä¾›java.util.concurrent.Executoræ¥å£çš„å®ç°
+		//ä»¥åœ¨javaä¸­åˆ›å»ºçº¿ç¨‹æ± 
+		//Executorsç±»ä½¿ç”¨ThreadPoolExecutoræä¾›ExecutorServiceçš„ç®€å•å®ç°ï¼ŒExecutorsä¸­çš„æä¾›çš„å®ç°ä»£ç å¦‚ä¸‹:
 		
 //		public static ExecutorService newFixedThreadPool(int nThreads) {
 //	        return new ThreadPoolExecutor(nThreads, nThreads,
@@ -19,7 +19,7 @@ public class SimpleThreadPool {
 //	                                      new LinkedBlockingQueue<Runnable>());
 //	    }
 		
-		ExecutorService executor = Executors.newFixedThreadPool(5);//Ïß³Ì³ØÖĞÏß³ÌµÄÊıÁ¿
+		ExecutorService executor = Executors.newFixedThreadPool(5);//çº¿ç¨‹æ± ä¸­çº¿ç¨‹çš„æ•°é‡
 		for (int i = 0; i < 10; i++) {
 			Runnable worker = new WorkerThread("" + i);
 			executor.execute(worker);
@@ -30,7 +30,7 @@ public class SimpleThreadPool {
 		System.out.println("Finished all threads");
 	}
 
-	//ÎÒÃÇ´´½¨5¸ö¹¤×÷Ïß³ÌµÄ¹Ì¶¨´óĞ¡µÄÏß³Ì³Ø,È»ºóÎÒÃÇÏò´Ë³ØÌá½»10¸ö×÷Òµ£¬ÒòÎª³Ø´óĞ¡Îª5£¬
-	//Ëü½«¿ªÊ¼´¦Àí5¸ö×÷Òµ£¬ÆäËû×÷Òµ½«´¦ÓÚµÈ´ı×´Ì¬£¬Ö»ÒªÆäÖĞÒ»¸ö×÷ÒµÍê³É£¬
-	//µÈ´ı¶ÓÁĞÖĞµÄÁíÒ»¸ö×÷Òµ½« ÓÉ¹¤×÷Ïß³Ì½ÓÊÕ²¢Ö´ĞĞ¡£
+	//æˆ‘ä»¬åˆ›å»º5ä¸ªå·¥ä½œçº¿ç¨‹çš„å›ºå®šå¤§å°çš„çº¿ç¨‹æ± ,ç„¶åæˆ‘ä»¬å‘æ­¤æ± æäº¤10ä¸ªä½œä¸šï¼Œå› ä¸ºæ± å¤§å°ä¸º5ï¼Œ
+	//å®ƒå°†å¼€å§‹å¤„ç†5ä¸ªä½œä¸šï¼Œå…¶ä»–ä½œä¸šå°†å¤„äºç­‰å¾…çŠ¶æ€ï¼Œåªè¦å…¶ä¸­ä¸€ä¸ªä½œä¸šå®Œæˆï¼Œ
+	//ç­‰å¾…é˜Ÿåˆ—ä¸­çš„å¦ä¸€ä¸ªä½œä¸šå°† ç”±å·¥ä½œçº¿ç¨‹æ¥æ”¶å¹¶æ‰§è¡Œã€‚
 }

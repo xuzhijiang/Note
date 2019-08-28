@@ -16,12 +16,12 @@ public class ConcurrencyLockExample implements Runnable {
 
 	@Override
 	public void run() {
-		//ÕýÈçÄãËù¿´µ½µÄ£¬ÎÒÕýÔÚÊ¹ÓÃtryLock£¨£©·½·¨À´È·±£ÎÒµÄÏß³ÌÖ»µÈ´ýÒ»¶¨µÄÊ±¼ä£¬
-		//Èç¹ûËüÃ»ÓÐ»ñµÃ¶ÔÏóµÄËø£¬ËüÖ»Ö´ÐÐdoLogging()
+		//æ­£å¦‚ä½ æ‰€çœ‹åˆ°çš„ï¼Œæˆ‘æ­£åœ¨ä½¿ç”¨tryLockï¼ˆï¼‰æ–¹æ³•æ¥ç¡®ä¿æˆ‘çš„çº¿ç¨‹åªç­‰å¾…ä¸€å®šçš„æ—¶é—´ï¼Œ
+		//å¦‚æžœå®ƒæ²¡æœ‰èŽ·å¾—å¯¹è±¡çš„é”ï¼Œå®ƒåªæ‰§è¡ŒdoLogging()
 		
-		//try-finally¿éÀ´È·±£¼´Ê¹doSomething£¨£©·½·¨µ÷ÓÃÅ×³öÈÎºÎÒì³£Ò²»áÊÍ·ÅËø¶¨¡£
+		//try-finallyå—æ¥ç¡®ä¿å³ä½¿doSomethingï¼ˆï¼‰æ–¹æ³•è°ƒç”¨æŠ›å‡ºä»»ä½•å¼‚å¸¸ä¹Ÿä¼šé‡Šæ”¾é”å®šã€‚
 		try {
-			//tryLockµÈ´ýËøÄ³Ò»¸ö¸ø¶¨µÄÊ±¼ä
+			//tryLockç­‰å¾…é”æŸä¸€ä¸ªç»™å®šçš„æ—¶é—´
 			if (lock.tryLock(10, TimeUnit.SECONDS)) {
 				resource.doSomething();
 			}

@@ -4,7 +4,7 @@ package org.java.core.base.multithreading.synchronization;
  * Notice that hacker code is getting lock on class monitor 
  * and not releasing it, it will cause deadlock and DoS in the system.
  * <p>
- * <p>Çë×¢Òâ£¬ºÚ¿Í´úÂëÔÚÀà¼àÊÓÆ÷ÉÏ»ñµÃËø¶¨¶ø²»ÊÍ·ÅËü£¬Ëü½«µ¼ÖÂÏµÍ³ÖĞµÄËÀËøºÍDoS¡£
+ * <p>è¯·æ³¨æ„ï¼Œé»‘å®¢ä»£ç åœ¨ç±»ç›‘è§†å™¨ä¸Šè·å¾—é”å®šè€Œä¸é‡Šæ”¾å®ƒï¼Œå®ƒå°†å¯¼è‡´ç³»ç»Ÿä¸­çš„æ­»é”å’ŒDoSã€‚
  */
 public class HackerCodeExample3 {
 	
@@ -25,8 +25,8 @@ public class HackerCodeExample3 {
 class MyObject3
 {
 	//locks on the class object's monitor
-	//Ëø¶¨Àà¶ÔÏóµÄ¼àÊÓÆ÷£¬·½·¨Ãû³ÆÇ°Ãæ¼ÓÉÏstatic synchronized¹Ø¼ü×Ö
-	//µÈ¼ÛÓÚ´Ë·½·¨ÓÃÓÃµ±Ç°ÀàµÄclassµ±×öËø.
+	//é”å®šç±»å¯¹è±¡çš„ç›‘è§†å™¨ï¼Œæ–¹æ³•åç§°å‰é¢åŠ ä¸Šstatic synchronizedå…³é”®å­—
+	//ç­‰ä»·äºæ­¤æ–¹æ³•ç”¨ç”¨å½“å‰ç±»çš„classå½“åšé”.
 	public static synchronized void doSomething() {
 		System.out.println("Myobject doSomething");
 		//....

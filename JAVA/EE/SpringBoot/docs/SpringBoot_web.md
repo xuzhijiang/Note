@@ -1,86 +1,3 @@
-## Spring Boot Web页面设计
-
-> 示例项目: webjar_demo
-
-在之前的示例中，我们都是通过@RestController来处理请求，所以返回的内容为json对象。那么如果需要渲染html页面的时候，要如何实现呢？
-
-### 模板引擎
-
-在动态HTML实现上Spring Boot依然可以完美胜任，并且提供了多种模板引擎的默认配置支持,Spring Boot提供了默认配置的模板引擎主要有以下几种：
-
-1. Thymeleaf
-2. FreeMarker
-3. Velocity
-4. Groovy
-5. Mustache
-
->Spring Boot建议使用这些模板引擎，避免使用JSP，若一定要使用JSP将无法实现Spring Boot的多种特性
-
-当你使用上述模板引擎中的任何一个，它们默认的模板配置路径为：src/main/resources/templates。当然也可以修改这个路径，具体如何修改，可在后续各模板引擎的配置属性中查询并修改。
-
-#### Thymeleaf基础概述
-
-在传统的Spring Boot MVC项目中，需要在Server端使用特定的视图模板，基于这些模板“填空”以得到一张完整的HTML网页，再把它传回给浏览器。负责完成这一“填空” 工作的， 是“模板引擎”。
-
-Thymeleaf是Spring Boot Web项目可用的诸多视图引擎中的一种，Spring官方推荐使用它(而不是历史更为悠久的JSP）来编写视图模板。Thymeleaf是一个XML/XHTML/HTML5模板引擎，可用于Web与非Web环境中的应用开发。它是一个开源的Java库.
-
-Thymeleaf提供了一个用于整合Spring MVC的可选模块，在应用开发中，你可以使用Thymeleaf来完全代替JSP或其他模板引擎，如Velocity、FreeMarker等。Thymeleaf的主要目标在于提供一种可被浏览器正确显示的、格式良好的模板创建方式，因此也可以用作静态建模。你可以使用它创建经过验证的XML与HTML模板。相对于编写逻辑或代码，开发者只需将标签属性添加到模板中即可。接下来，这些标签属性就会在DOM(文档对象模型）上执行预先制定好的逻辑。
-
-示例模板：
-
-```html
-<table>
-  <thead>
-    <tr>
-      <th th:text="#{msgs.headers.name}">Name</td>
-      <th th:text="#{msgs.headers.price}">Price</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr th:each="prod : ${allProducts}">
-      <td th:text="${prod.name}">Oranges</td>
-      <td th:text="${#numbers.formatDecimal(prod.price,1,2)}">0.99</td>
-    </tr>
-  </tbody>
-</table>
-```
-
->可以看到Thymeleaf主要以属性的方式加入到html标签中，浏览器在解析html时，当检查到没有的属性时候会忽略，所以Thymeleaf的模板可以通过浏览器直接打开展现，这样非常有利于前后端的分离。
-
-Thymeleaf提供了诸如循环、条件判断、样式处理等手段，可以方便地控制HTML代码的生成过程，既可以用于在Server端生成全部HTML页面的传统Web应用，也可用于开发“单页面应用(SPA： Single PageApplication）”类型的现代Web应用。
-
-#### Thymeleaf的默认参数配置
-
-如有需要修改默认配置的时候，只需复制下面要修改的属性到application.properties中，并修改成需要的值，如修改模板文件的扩展名，修改默认的模板路径等:
-
-```
-# Enable template caching.
-spring.thymeleaf.cache=true 
-# Check that the templates location exists.
-spring.thymeleaf.check-template-location=true 
-# Content-Type value.
-spring.thymeleaf.content-type=text/html 
-# Enable MVC Thymeleaf view resolution.
-spring.thymeleaf.enabled=true 
-# Template encoding.
-spring.thymeleaf.encoding=UTF-8 
-# Comma-separated list of view names that should be excluded from resolution.
-spring.thymeleaf.excluded-view-names= 
-# Template mode to be applied to templates. See also StandardTemplateModeHandlers.
-spring.thymeleaf.mode=HTML5 
-# Prefix that gets prepended to view names when building a URL.
-spring.thymeleaf.prefix=classpath:/templates/ 
-# Suffix that gets appended to view names when building a URL.
-spring.thymeleaf.suffix=.html  spring.thymeleaf.template-resolver-order= # Order of the template resolver in the chain. spring.thymeleaf.view-names= # Comma-separated list of view names that can be resolved.
-```
-
-#### Spring Boot MVC支持的视图引擎
-
-Spring Boot MVC支持多种视图模板引擎，能自动检测并配置好几种引擎。比较常用的(官方推荐）是Thymeleaf。
-
-> 注意：在Spring早期Web项目中比较常见的JSP，Spring官方己经不再推荐在Spring
-Boot项目中使用。
-
 #### 控制器与模板之间的信息交换方式
 
       Model对象          生成
@@ -223,3 +140,27 @@ spring-boot-devtools是一个自动应用代码更改到最新的App上面去，
 以上配置说明只有static目录和public目录下的内容修改后不会引起重启。
 
 >由于默认的配置已经比较合理，所以有一种可能的情况是，我们希望在默认的配置下，添加其他我们想要的目录，在这个目录下修改内容时也不重新启动，此时可以将spring.devtools.restart.exclude改为spring.devtools.restart.additional-exclude即可。
+
+# Spring Boot的嵌入式容器
+
+默认情况下，启动一个内嵌的Tomcat容器,会在8080端口监听.
+
+![](pics/默认使用tomcat容器.png)
+
+![](pics/自动包含tomcat依赖.png)
+
+# 如何部署Spring Boot Web项目
+
+Spring Boot项目主要有两种部署方式：
+
+1. 打包为war，然后部署到Tomcat这种外部的Servlet容器中。
+2. SpringBoot通过`spring-boot-maven-plugin`构建了一个“自包容”的jar包(称为Fat JAR），然后使用java -jar命令直接运行。通常我们将一个可以运行的 jar包称之为fat jar 。因为这样的 jar包内部通常包含了自己运行时的所有依赖，体积比较大
+
+springbootstudy-0.0.1-SNAPSHOT.jar是我们打包好的，内部包含了其他依赖的，可以直接运行的jar，而springbootstudy-0.0.1-SNAPSHOT.jar.original 则是原始的打包后的jar。进入target生成文件夹所在目录，我们可以看看这两个文件的区别：第一个可以直接运行的springbootstudy-0.0.1-SNAPSHOT.jar的大小为13M 左右，而第二个只有 6KB。可以直接解压这个 jar文件，就会发现这个jar的 lib目录下，实际上存放了所有依赖的 jar。而 springbootstudy-0.0.1-SNAPSHOT.jar.original 则是没有包含这些依赖的 jar的原始包
+
+我们可以通过命令`java -jar springbootstudy-0.0.1-SNAPSHOT.jar`来直接运行这个jar.
+
+# 将项目打包为war，然后部署到外部Tomcat容器
+
+1. 步骤一、修改打包方式打开pom.xml，将打包方式由jar改为war
+2. 步骤二、调整嵌入式Tomcat插件的编译方式,默认情况下， spring-boot-starter-web会启动一个嵌入式的tomcat，因为现在我们是要生成一个war包，跑在外部的tomcat上，所以，给项目添加一个tomcat依赖(spring-boot-starter-tomcat)，并将其scope设置为“provided(表明这些组件由外部容器提供）”从而覆盖掉默认设置。

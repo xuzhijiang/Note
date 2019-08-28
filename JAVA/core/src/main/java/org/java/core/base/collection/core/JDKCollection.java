@@ -6,11 +6,8 @@ import java.util.function.Predicate;
 /**
  *
  * 涉及到比较的都要依赖对象的equals方法。一般而言集合中的对象元素都应该重写equals方法。
- *
  * @see Collections  Collections是一个工具类，提供了一系列的静态方法来辅助容器操作，这些方法包括对容器的搜索，排序等
- *
  * @since 1.2
- * @param <E>
  */
 public interface JDKCollection<E> extends Iterable<E> {
 
@@ -47,21 +44,14 @@ public interface JDKCollection<E> extends Iterable<E> {
     <T> T[] toArray(T[] a);
 
     /**
-     * 如果一个集合因为任何原因拒绝去添加某一个元素，除了它已经包含了这个元素，
-     * 其他情况下会抛出异常，而不是返回false
-     *
-     * @throws IllegalStateException if the element cannot be added at this
-     *         time due to insertion restrictions
-     *
-     * 向集合中添加元素,如果由于插入限制，导致不可以被添加到集合当中，就抛出IllegalStateException
+     * 添加元素到队列里，添加成功返回true，由于容量满导致添加失败会抛出IllegalStateException异常
      */
     boolean add(E e);
 
     /**
-     * 删除集合中某一个元素，删除成功返回true
+     * 基于对象o,找到对应的元素，并删除。删除成功返回true，否则返回false
      */
     boolean remove(Object o);
-
 
     // Bulk Operations
 
@@ -119,18 +109,11 @@ public interface JDKCollection<E> extends Iterable<E> {
     /**
      * 判断当前集合是否与形参集合完全相同.
      * (注意元素顺序不同的时候，返回false,即使元素通过equals是相等的.)
-     *
-     * @see Object#equals(Object)
-     * @see Set#equals(Object)
-     * @see List#equals(Object)
      */
     boolean equals(Object o);
 
     /**
      * Returns the hash code value for this collection.
-     *
-     * @see Object#hashCode()
-     * @see Object#equals(Object)
      */
     int hashCode();
 

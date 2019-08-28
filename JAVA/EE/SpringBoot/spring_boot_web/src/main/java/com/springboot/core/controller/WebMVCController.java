@@ -36,7 +36,7 @@ public class WebMVCController {
     // 1. 控制器类的URL与方法的URL“合成”为最终的URL：http://localhost:8080/mvc/index
     // 2. Spring MVC可将Request对象“注入”到方法中
     // 3. 在RequestMapping注解中使用produces属性可以指定MIME值，这个值将放到响应的Header中发回给客户端。
-    @RequestMapping(value = "/index", produces = "text/plain;charset=UTF-8")
+    @RequestMapping(value = "/ ", produces = "text/plain;charset=UTF-8")
     @ResponseBody
     public String index(HttpServletRequest request) {
         return "url:" + request.getRequestURL() + " access";

@@ -209,3 +209,8 @@ private boolean isMale;//默认为false.
 Filter的FilterChain用于调用链中的下一个过滤器,这是责任链模式的一个很好的例子。
 
 Servlet的Listener涉及到的是观察者模式(Observer)
+
+类不能使用private,protected修饰.
+
+
+值传递,引用传递.

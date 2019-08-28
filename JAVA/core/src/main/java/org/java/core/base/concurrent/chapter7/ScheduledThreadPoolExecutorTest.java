@@ -7,17 +7,8 @@ import java.util.concurrent.*;
 
 public class ScheduledThreadPoolExecutorTest {
 
-    public static void main(String[] args) {
-        //scheduleWithFixedDelay();
-
-//        scheduleAtFixedRate();
-
-//        testScheduleRunnable();
-
-        testScheduleCallable();
-    }
-
-    public static void FourWayCreateScheduledThreadPoolExecutor() {
+    @Test
+    public void FourWayCreateScheduledThreadPoolExecutor() {
         int corePoolSize = 5;
         ThreadFactory threadFactory = Executors.defaultThreadFactory();
         // ExecutorsE类提供了4个工厂方法，可以帮助我们快速的创建ScheduledThreadPoolExecutor
@@ -29,10 +20,10 @@ public class ScheduledThreadPoolExecutorTest {
 
 
     // 不考虑任务执行时间 ，总是在上一次任务执行完成之后，再延迟指定时间进行执行
-    public static void scheduleWithFixedDelay() {
+    @Test
+    public void scheduleWithFixedDelay() {
         ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(16);
         System.out.println("time: " + new Date().toLocaleString());
-
         scheduledThreadPool.scheduleWithFixedDelay(new ScheduledRunnable(), 10, 2, TimeUnit.SECONDS);
         System.out.println("main thread is over");
     }

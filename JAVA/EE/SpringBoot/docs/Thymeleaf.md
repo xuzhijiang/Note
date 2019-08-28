@@ -22,6 +22,64 @@
 </properties>
 ~~~
 
+# Thymeleaf
+
+Thymeleaf不是SpringBoot默认的模板引擎,需要引入Thymeleaf依赖才可以使用,不像内嵌的tomcat容器,是spring-boot-start-web中默认就自带了tomcat依赖.
+
+在传统的Spring Boot MVC项目中，需要在Server端使用特定的视图模板，基于这些模板“填空”以得到一张完整的HTML网页，再把它传回给浏览器。负责完成这一“填空” 工作的， 是“模板引擎”。
+
+Thymeleaf是Spring Boot Web项目可用的诸多视图引擎中的一种，Spring官方推荐使用它(而不是历史更为悠久的JSP）来编写视图模板。Thymeleaf是一个XML/XHTML/HTML5模板引擎，可用于Web与非Web环境中的应用开发。它是一个开源的Java库.
+
+Thymeleaf提供了一个用于整合Spring MVC的可选模块，在应用开发中，你可以使用Thymeleaf来完全代替JSP或其他模板引擎，如Velocity、FreeMarker等。Thymeleaf的主要目标在于提供一种可被浏览器正确显示的、格式良好的模板创建方式，因此也可以用作静态建模。你可以使用它创建经过验证的XML与HTML模板。相对于编写逻辑或代码，开发者只需将标签属性添加到模板中即可。接下来，这些标签属性就会在DOM(文档对象模型）上执行预先制定好的逻辑。
+
+示例模板：
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th th:text="#{msgs.headers.name}">Name</td>
+      <th th:text="#{msgs.headers.price}">Price</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="prod : ${allProducts}">
+      <td th:text="${prod.name}">Oranges</td>
+      <td th:text="${#numbers.formatDecimal(prod.price,1,2)}">0.99</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+>可以看到Thymeleaf主要以属性的方式加入到html标签中，浏览器在解析html时，当检查到没有的属性时候会忽略，所以Thymeleaf的模板可以通过浏览器直接打开展现，这样非常有利于前后端的分离。
+
+Thymeleaf提供了诸如循环、条件判断、样式处理等手段，可以方便地控制HTML代码的生成过程，既可以用于在Server端生成全部HTML页面的传统Web应用，也可用于开发“单页面应用(SPA： Single PageApplication）”类型的现代Web应用。
+
+#### Thymeleaf的默认参数配置
+
+如有需要修改默认配置的时候，只需复制下面要修改的属性到application.properties中，并修改成需要的值，如修改模板文件的扩展名，修改默认的模板路径等:
+
+```
+# Enable template caching.
+spring.thymeleaf.cache=true 
+# Check that the templates location exists.
+spring.thymeleaf.check-template-location=true 
+# Content-Type value.
+spring.thymeleaf.content-type=text/html 
+# Enable MVC Thymeleaf view resolution.
+spring.thymeleaf.enabled=true 
+# Template encoding.
+spring.thymeleaf.encoding=UTF-8 
+# Comma-separated list of view names that should be excluded from resolution.
+spring.thymeleaf.excluded-view-names= 
+# Template mode to be applied to templates. See also StandardTemplateModeHandlers.
+spring.thymeleaf.mode=HTML5 
+# Prefix that gets prepended to view names when building a URL.
+spring.thymeleaf.prefix=classpath:/templates/ 
+# Suffix that gets appended to view names when building a URL.
+spring.thymeleaf.suffix=.html  spring.thymeleaf.template-resolver-order= # Order of the template resolver in the chain. spring.thymeleaf.view-names= # Comma-separated list of view names that can be resolved.
+```
+
 ## 3.Thymeleaf基本使用
 
 ~~~java
@@ -209,5 +267,3 @@ controller数据准备如下：
 </body>
 </html>
 ~~~
-
-

@@ -10,26 +10,26 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
- * Java CallableºÍFutureÔÚ¶àÏß³Ì±à³ÌÖĞ¾­³£Ê¹ÓÃ£¬ÎÒÃÇÑ§µ½ÁËºÜ¶à¹ØÓÚjavaÏß³ÌµÄÖªÊ¶£¬
- * µ«ÓĞÊ±ÎÒÃÇÏ£ÍûÏß³Ì¿ÉÒÔ·µ»ØÒ»Ğ©ÎÒÃÇ¿ÉÒÔÊ¹ÓÃµÄÖµ¡£
- * Java 5ÔÚ²¢·¢°üÖĞÒıÈëÁËjava.util.concurrent.Callable½Ó¿Ú¡£
+ * Java Callableå’ŒFutureåœ¨å¤šçº¿ç¨‹ç¼–ç¨‹ä¸­ç»å¸¸ä½¿ç”¨ï¼Œæˆ‘ä»¬å­¦åˆ°äº†å¾ˆå¤šå…³äºjavaçº¿ç¨‹çš„çŸ¥è¯†ï¼Œ
+ * ä½†æœ‰æ—¶æˆ‘ä»¬å¸Œæœ›çº¿ç¨‹å¯ä»¥è¿”å›ä¸€äº›æˆ‘ä»¬å¯ä»¥ä½¿ç”¨çš„å€¼ã€‚
+ * Java 5åœ¨å¹¶å‘åŒ…ä¸­å¼•å…¥äº†java.util.concurrent.Callableæ¥å£ã€‚
  * <p><br>
- * Java Callable½Ó¿ÚÊ¹ÓÃGenericÀ´¶¨ÒåObjectµÄ·µ»ØÀàĞÍ,
- * ExecutorsÀàÌá¹©ÁËÔÚÏß³Ì³ØÖĞÖ´ĞĞJava CallableµÄÓĞÓÃ·½·¨,
- * ÓÉÓÚ¿Éµ÷ÓÃÈÎÎñ²¢ĞĞÔËĞĞ£¬ÎÒÃÇ±ØĞëµÈ´ı·µ»ØµÄObject¡£
+ * Java Callableæ¥å£ä½¿ç”¨Genericæ¥å®šä¹‰Objectçš„è¿”å›ç±»å‹,
+ * Executorsç±»æä¾›äº†åœ¨çº¿ç¨‹æ± ä¸­æ‰§è¡ŒJava Callableçš„æœ‰ç”¨æ–¹æ³•,
+ * ç”±äºå¯è°ƒç”¨ä»»åŠ¡å¹¶è¡Œè¿è¡Œï¼Œæˆ‘ä»¬å¿…é¡»ç­‰å¾…è¿”å›çš„Objectã€‚
  * <p>
  * <strong>Java Future</strong><br><br>
  * Java Callable tasks return java.util.concurrent.Future object. Using Java 
  * Future object, we can find out the status of the Callable task and get the 
  * returned Object. It provides get() method that can wait for the Callable to 
  * finish and then return the result.
- * Java CallableÈÎÎñ·µ»ØFuture¶ÔÏó£¬ÓÃJava Future¶ÔÏó£¬ÎÒÃÇ¿ÉÒÔÕÒµ½CallableÈÎÎñµÄ ×´Ì¬£¬²¢ÇÒ
- * µÃµ½·µ»ØµÄ¶ÔÏó£¬ËüÌá¹©ÁËget·½·¨¿ÉÒÔµÈ´ıCallableÍê³É£¬È»ºó·µ»Ø½á¹û¡£
+ * Java Callableä»»åŠ¡è¿”å›Futureå¯¹è±¡ï¼Œç”¨Java Futureå¯¹è±¡ï¼Œæˆ‘ä»¬å¯ä»¥æ‰¾åˆ°Callableä»»åŠ¡çš„ çŠ¶æ€ï¼Œå¹¶ä¸”
+ * å¾—åˆ°è¿”å›çš„å¯¹è±¡ï¼Œå®ƒæä¾›äº†getæ–¹æ³•å¯ä»¥ç­‰å¾…Callableå®Œæˆï¼Œç„¶åè¿”å›ç»“æœã€‚
  * <p>
- * Java FutureÌá¹©cancel£¨£©·½·¨À´È¡Ïû¹ØÁªµÄCallableÈÎÎñ¡£
- * ÓĞÒ»¸öget£¨£©·½·¨µÄÖØÔØ°æ±¾£¬ÎÒÃÇ¿ÉÒÔÖ¸¶¨µÈ´ı½á¹ûµÄÊ±¼ä£¬
- * ±ÜÃâµ±Ç°Ïß³Ì±»×èÈû¸ü³¤Ê±¼äÊÇÓĞÓÃµÄ,ÓĞisDone£¨£©ºÍisCancelled£¨£©
- * ·½·¨À´²éÕÒ¹ØÁªµÄCallableÈÎÎñµÄµ±Ç°×´Ì¬¡£
+ * Java Futureæä¾›cancelï¼ˆï¼‰æ–¹æ³•æ¥å–æ¶ˆå…³è”çš„Callableä»»åŠ¡ã€‚
+ * æœ‰ä¸€ä¸ªgetï¼ˆï¼‰æ–¹æ³•çš„é‡è½½ç‰ˆæœ¬ï¼Œæˆ‘ä»¬å¯ä»¥æŒ‡å®šç­‰å¾…ç»“æœçš„æ—¶é—´ï¼Œ
+ * é¿å…å½“å‰çº¿ç¨‹è¢«é˜»å¡æ›´é•¿æ—¶é—´æ˜¯æœ‰ç”¨çš„,æœ‰isDoneï¼ˆï¼‰å’ŒisCancelledï¼ˆï¼‰
+ * æ–¹æ³•æ¥æŸ¥æ‰¾å…³è”çš„Callableä»»åŠ¡çš„å½“å‰çŠ¶æ€ã€‚
  * <p>
  */
 public class MyCallable implements Callable<String> {
@@ -42,7 +42,7 @@ public class MyCallable implements Callable<String> {
         return Thread.currentThread().getName();
     }
     
-    // ÎÒÃÇÊ¹ÓÃExecutor¿ò¼Ü²¢ĞĞÖ´ĞĞ100¸öÈÎÎñ£¬²¢Ê¹ÓÃJava Future»ñÈ¡Ìá½»ÈÎÎñµÄ½á¹û¡£
+    // æˆ‘ä»¬ä½¿ç”¨Executoræ¡†æ¶å¹¶è¡Œæ‰§è¡Œ100ä¸ªä»»åŠ¡ï¼Œå¹¶ä½¿ç”¨Java Futureè·å–æäº¤ä»»åŠ¡çš„ç»“æœã€‚
     public static void main(String args[]){
         //Get ExecutorService from Executors utility class, thread pool size is 10
         ExecutorService executor = Executors.newFixedThreadPool(10);
@@ -64,7 +64,7 @@ public class MyCallable implements Callable<String> {
         
         for(Future<String> fut : list){
             try {
-            	//Èç¹ûÈÎÎñÃ»ÓĞÖ´ĞĞÍê³É£¬¾Í×èÈûµÈ´ı£¬because Future.get() waits 
+            	//å¦‚æœä»»åŠ¡æ²¡æœ‰æ‰§è¡Œå®Œæˆï¼Œå°±é˜»å¡ç­‰å¾…ï¼Œbecause Future.get() waits 
             	//for task to get completed
             	
             	//print the return value of Future, notice the output delay in console

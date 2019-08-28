@@ -8,6 +8,8 @@
 * @RequestMapping：配置url映射
 * @PathVariable:url中的参数可通过@PathVariable绑定到函数的参数中
 
+通过@RestController来处理请求，所以返回的内容为json对象.
+
 @RequestMapping注释用于将请求URI映射到处理程序方法。
 我们还可以指定客户端应用程序应该使用的HTTP方法来调用rest方法(to invoke the rest method)。
 

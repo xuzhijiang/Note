@@ -7,10 +7,9 @@ import java.util.concurrent.*;
 
 /**
  * Callable与Future的作用是,我们可以启动一个线程去执行某个任务，而另外一个线程等待获取这个线程执行完
- * 返回的结果，然后执行响应的操作.
+ * 返回的结果，然后执行相应的操作.
  *
- * 例如: 我们可以启动A线程去执行某个任务，而B线程等待获取A线程执行的结果,
- * 假设线程A中进行某种运算，而主线程需要等待其运算结果，以便进行接下来的操作。
+ * 例如: 我们可以启动A线程去执行某个任务，而B线程等待获取A线程执行的结果,假设线程A中进行某种运算，而主线程需要等待其运算结果，以便进行接下来的操作。
  */
 public class CallableAndFuture {
 
@@ -18,11 +17,8 @@ public class CallableAndFuture {
 
     /**
      * 传统实现方式(自旋锁+共享变量):
-     *
      * 在没有使用Callable与Future之前，我们要实现刚刚上面的需求:
-     *
      * "线程A中进行某种运算，而主线程需要等待其运算结果，以便进行接下来的操作"
-     *
      * 这样的效果，通常需要通过共享变量和自旋锁实现(或者使用wait、notify)
      */
     @Test
@@ -40,7 +36,6 @@ public class CallableAndFuture {
                     e.printStackTrace();
                 }
             }
-
         }.start();
 
         System.out.println("start time："+new Date());

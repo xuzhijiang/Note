@@ -16,9 +16,9 @@ public class WorkerPool {
 		ThreadFactory threadFactory = Executors.defaultThreadFactory();
 
 		// creating the ThreadPoolExecutor
-		//ÔÚ³õÊ¼»¯ThreadPoolExecutorÊ±£¬ÎÒÃÇ½«³õÊ¼³Ø´óĞ¡±£³ÖÎª2£¬×î´ó³Ø´óĞ¡±£³ÖÎª4£¬¹¤×÷¶ÓÁĞ´óĞ¡±£³ÖÎª2.
-		//Òò´Ë£¬Èç¹ûÓĞ4¸öÕıÔÚÔËĞĞµÄÈÎÎñ²¢ÇÒÌá½»ÁË¸ü¶àÈÎÎñ£¬
-		//Ôò¹¤×÷¶ÓÁĞ½«Ö»±£ÁôÆäÖĞµÄ2¸ö ÆäÓà²¿·Ö½«ÓÉRejectedExecutionHandlerImpl´¦Àí¡£
+		//åœ¨åˆå§‹åŒ–ThreadPoolExecutoræ—¶ï¼Œæˆ‘ä»¬å°†åˆå§‹æ± å¤§å°ä¿æŒä¸º2ï¼Œæœ€å¤§æ± å¤§å°ä¿æŒä¸º4ï¼Œå·¥ä½œé˜Ÿåˆ—å¤§å°ä¿æŒä¸º2.
+		//å› æ­¤ï¼Œå¦‚æœæœ‰4ä¸ªæ­£åœ¨è¿è¡Œçš„ä»»åŠ¡å¹¶ä¸”æäº¤äº†æ›´å¤šä»»åŠ¡ï¼Œ
+		//åˆ™å·¥ä½œé˜Ÿåˆ—å°†åªä¿ç•™å…¶ä¸­çš„2ä¸ª å…¶ä½™éƒ¨åˆ†å°†ç”±RejectedExecutionHandlerImplå¤„ç†ã€‚
 		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2, 4, 10, TimeUnit.SECONDS,
 				new ArrayBlockingQueue<Runnable>(2), threadFactory, rejectionHandler);
 
@@ -34,9 +34,9 @@ public class WorkerPool {
 		
 		Thread.sleep(30000);
 		// shut down the pool
-		//Æô¶¯ÓĞĞò¹Ø±Õ£¬ÆäÖĞÖ´ĞĞÏÈÇ°Ìá½»µÄÈÎÎñ£¬µ«²»»á½ÓÊÜÈÎºÎĞÂÈÎÎñ¡£
-		//Èç¹ûÒÑ¾­¹Ø±Õ£¬Ôò²»»á²úÉú¶îÍâµÄÓ°Ïì
-		//´Ë·½·¨²»»áµÈ´ıÏÈÇ°Ìá½»µÄÈÎÎñÖ´ĞĞÍê³É¡£ ¿ÉÒÔÊ¹ÓÃawaitTerminationÀ´×öµ½ÕâÒ»µã¡£
+		//å¯åŠ¨æœ‰åºå…³é—­ï¼Œå…¶ä¸­æ‰§è¡Œå…ˆå‰æäº¤çš„ä»»åŠ¡ï¼Œä½†ä¸ä¼šæ¥å—ä»»ä½•æ–°ä»»åŠ¡ã€‚
+		//å¦‚æœå·²ç»å…³é—­ï¼Œåˆ™ä¸ä¼šäº§ç”Ÿé¢å¤–çš„å½±å“
+		//æ­¤æ–¹æ³•ä¸ä¼šç­‰å¾…å…ˆå‰æäº¤çš„ä»»åŠ¡æ‰§è¡Œå®Œæˆã€‚ å¯ä»¥ä½¿ç”¨awaitTerminationæ¥åšåˆ°è¿™ä¸€ç‚¹ã€‚
 		threadPoolExecutor.shutdown();
 		// shut down the monitor thread
 		Thread.sleep(5000);

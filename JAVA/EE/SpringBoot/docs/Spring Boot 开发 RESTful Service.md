@@ -1,25 +1,3 @@
-## Spring Boot 开发 RESTful Service
-
-### REST概述
-
-由于在很长的一段时间内，浏览器的功能受限，它仅能承担网页渲染和一些简单脚本的执行工作，因此，WebServer需要负责生成所有HTML文档和提供数据资源的任务。
-在这个时代，占主流的是各种MVC框架， Web Server负责生成好HTML代码之后，再发回给浏览器显示。
-
-然而,2010年以后，以手机为代表的智能设备异军突起，很快地，手机引发的互联网流量就超过了PC端引发的。手机App的界面有多种构建方式， HTML仅是其中的一种，手机App的用户使用体验，与浏览器中的网页通常很不一样。
-
-为了能同时支持手机和PC，传统互联网进化为了“移动互联网”，相应地,Web Server端应用的职责也发生了大的变化，Web Server慢慢地不再负责“组装”或“生成”用户界面，而将这个工作“下发”给客户端App负责。
-
-### 时代的变迁引发技术的变革
-
-    前端				<---------------->RESTful Service   	后端
-客户端应用 									             Server端应用
-
-#### MPA vs SPA
-
-1. Multipage Application(MPA)------Spring MVC
-2. Single Page Application(SPA)----Web前端框架 + RESTful Service
-
-
 ### REST的由来
 
 REST这个词，是Roy Thomas Fielding在他2000年的博士论文中提出的。
@@ -102,10 +80,6 @@ OPTIONS   		提供资源可供客户端修改的属性信息。
 4. @PatchMapping: 对应HTTP的PATCH请求，提交资源部分修改的属性.
 5. @DeleteMapping: 对应HTTP的DELETE请求，删除服务器端的资源
 
-> rest_demo示例项目解析
-
-access: localhost:8080/myservice/hello
-
 ### 分页功能的实现
 
 指定分页默认参数值:
@@ -126,7 +100,3 @@ public Page<SearchOrderOut> getOrders(@RequestBody @Valid Search search,
 在REST风格的设计中，如果是简单的参数，往往会通过URL直接传递，在Spring MVC可以使用注解@PathVariable进行获取，这样就能够满足REST风格传递参数的要求。
 
 对于那些复杂的参数，例如，你需要传递一个复杂的资源需要十几个甚至几十个字段，通常会使用Json字符串来封装它们，然后将它放到HTTP请求的Body中，以POST方式提交给服务器。这样Server端可以使用注解@RequestBody将Json数据转换为Java对象。
-
-### 学习指导
-
-本讲介绍了Spring Boot开发RESTful Service的基本编程技巧，仅仅只是一个入门的介绍，同学们需要在PPT所介绍的基础之上，进一步学习相关的技术。RESTful Service在现代的Web应用中得到了广泛的应用，是一个需要重点掌握的内容。

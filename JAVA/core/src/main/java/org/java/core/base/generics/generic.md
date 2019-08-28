@@ -1,37 +1,12 @@
-Java泛型是jdk1.5的一个新特性，以便在使用Collection类时删除type-casting，并在编译时提供类型检查的方法
-(type checking at compile time.)。
+Java泛型是jdk1.5的一个新特性，以便在使用Collection类时删除type-casting(消除在使用集合类时常见的ClassCastException风险)，并在编译时提供类型检查
+
  我们可以使用泛型来创建泛型类型接口和类，我们也可以将它与方法一起使用。
 
-在Java 5中添加了泛型，以提供编译时类型检查并消除在使用集合类时常见的ClassCastException风险。
- 整个集合框架被重写为使用泛型以确保类型安全。 
- 让我们看看泛型如何帮助我们安全地使用集合类。
 
 在创建列表时，我们已指定列表中的元素类型为String。 
 因此，如果我们尝试在列表中添加任何其他类型的对象，程序将抛出编译时错误。
-另请注意，在for循环中，我们不需要在列表中对元素进行类型转换，
-因此在运行时删除了ClassCastException。
 
-我们可以使用泛型类型定义我们自己的类。 泛型类型是在类型上参数化的类或接口。 
-我们使用尖括号（<>）来指定类型参数。
-
-除了使用泛型定义一个类，还可以定义接口，Comparable interface 是接口中泛型的一个很好的例子，它的编写如下：
-
-//package java.lang;
-//import java.util.*;
-//
-//public interface Comparable<T> {
-//    public int compareTo(T o);
-//}
-
-我们也可以有多种不同类型的参数，例如Map接口中:
-public interface Map<K,V> {}
-new HashMap<String, List<String>>();也是有效的
-
-Java泛型类型：
-
-Java泛型类型命名约定有助于我们轻松地理解代码，并且具有命名约定是Java编程语言的最佳实践之一。
-因此泛型也附带了它自己的命名约定。 通常，类型参数名称是单个大写字母，
-以便于与java变量轻松区分。 最常用的类型参数名称是：
+泛型类型是在类型上参数化的类或接口。 
 
 E – Element (used extensively by the Java Collections Framework, for example ArrayList, Set etc.)
 K – Key (Used in Map)

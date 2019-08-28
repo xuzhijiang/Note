@@ -238,8 +238,7 @@ public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E> {
     /**
      * offer(E,long,TimeUnit)会在等待一段时间后返回,但是等待的过程中是可以响应中断的
      */
-    public boolean offer(E e, long timeout, TimeUnit unit)
-            throws InterruptedException {
+    public boolean offer(E e, long timeout, TimeUnit unit) throws InterruptedException {
 
         checkNotNull(e);
         long nanos = unit.toNanos(timeout);

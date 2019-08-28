@@ -1,7 +1,6 @@
 package org.java.core.base.concurrent.chapter7;
 
 import org.junit.Test;
-
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -15,10 +14,7 @@ public class ThreadPoolExecutorTest {
         int corePoolSize = 2;
         int maximumPoolSize = 5;
         int keepAliveTime = 5;
-        /**
-         * 任务的数量
-         */
-        int taskCount = 5;
+        int taskCount = 5; // 任务的数量
 
         // 需要注意的是,在本例中，线程池达到corePoolSize之后，立刻继续增长，
         // 这是因为我们使用的是SynchronousQueue的原因。这个队列的特点是，只要一有任务进来，
@@ -27,8 +23,7 @@ public class ThreadPoolExecutorTest {
 
         // executor(线程池)刚刚创建的时候，是不会初始化所有线程的。只有等到有任务进来的时候，才会创建线程对象。
         // 在这个案例中,每次提交一个任务，创建一个线程。当达到maxPoolSize的时候，线程池不会继续增大。
-        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSize,
-                keepAliveTime, TimeUnit.SECONDS, queue);
+        ThreadPoolExecutor threadPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.SECONDS, queue);
 
         threadPool.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardOldestPolicy());
 

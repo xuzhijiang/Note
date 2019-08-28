@@ -1,25 +1,5 @@
 package org.java.core.base.multithreading.ThreadSafety;
 
-/**
- * Java�е��̰߳�ȫ��һ���ǳ���Ҫ�����⡣Java�ṩ���̻߳���֧��,����֪��
- * ����߳����ڶ�ȡ�޸Ĺ�����������ʱ���ܵ������ݲ�һ�¡�
- * ���ݲ�һ�µ�ԭ������Ϊ�����κ��ֶ�ֵ����ԭ�ӹ��̣�����Ҫ�������裺
- * ���ȶ�ȡ��ǰֵ���ڶ�������Ҫ�Ĳ����Ի�ȡ���µ�ֵ�������������µ�ֵ������ֶ����á�
- * <p>�̰߳�ȫ��Java����ʹ���ǵĳ����ڶ��̻߳����а�ȫʹ�õĹ���,�����¼��ַ�ʽ:
- * <p>Synchronization is the easiest and most widely used 
- * tool for thread safety in java.
- * Synchronization���������Լ���㷺ʹ�õ������̰߳�ȫ�Ĺ�����java��
- * <p>Use of Atomic Wrapper classes from java.util.concurrent.atomic package. 
- * For JdbcQuickStartExample AtomicInteger,��ԭ�Ӱ�����,��java.util.concurrent.atomic����.
- * <p>Use of locks from {@link java.util.concurrent.locks} package.
- * ʹ����
- * <p>Using thread safe collection classes, check this post for usage 
- * of {@link java.util.concurrent.ConcurrentHashMap} for thread safety.
- * ʹ���̰߳�ȫ�ļ����࣬
- * <p>Using volatile(�ױ��) keyword with variables to make every thread read 
- * the data from memory, not read from thread cache.
- * ʹ�ô���volatile�ؼ��ֵı�����ʹÿ���̴߳��ڴ��ж�ȡdata�������Ǵ��̻߳����ж�ȡ.
- */
 public class ThreadSafetyExample {
 	public static void main(String[] args) {
 		SafetyProcessingThread pt = new SafetyProcessingThread();

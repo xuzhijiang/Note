@@ -1,14 +1,14 @@
 package org.java.core.base.multithreading.ThreadJoin;
 
 /**
- * Java Thread join·½·¨¿ÉÓÃÓÚÔİÍ£µ±Ç°Ïß³ÌÖ´ĞĞ£¬³ı·ÇÖ¸¶¨µÄÏß³ÌÒÑËÀ¡£
+ * Java Thread joinæ–¹æ³•å¯ç”¨äºæš‚åœå½“å‰çº¿ç¨‹æ‰§è¡Œï¼Œé™¤éæŒ‡å®šçš„çº¿ç¨‹å·²æ­»ã€‚
  * There are three overloaded join functions.
  * <p>
  * <strong>public final void join():</strong><br>
  * <strong>public final synchronized void join(long millis):</strong><br>
- * µÈ´ıµ÷ÓÃjoinµÄÏß³Ìto be dead or wait for specified milliseconds. 
+ * ç­‰å¾…è°ƒç”¨joinçš„çº¿ç¨‹to be dead or wait for specified milliseconds. 
  * Since thread execution depends on OS implementation, 
- * it doesn¡¯t guarantee that the current thread will wait only for given time.
+ * it doesnâ€™t guarantee that the current thread will wait only for given time.
  * <strong>public final synchronized void join(long millis, int nanos):</strong><br>
  */
 public class ThreadJoinExample
@@ -23,7 +23,7 @@ public class ThreadJoinExample
         //start second thread after waiting for 2 seconds or if it's dead
 		try {
 			//pause main thread 2000 milliseconds.
-			//main threadµÈ´ıt1 2Ãë£¬»òÕßÈç¹û2ÃëÄÚt1±äÎªdead£¬main thread²Å»á¼ÌĞøÖ´ĞĞ
+			//main threadç­‰å¾…t1 2ç§’ï¼Œæˆ–è€…å¦‚æœ2ç§’å†…t1å˜ä¸ºdeadï¼Œmain threadæ‰ä¼šç»§ç»­æ‰§è¡Œ
 			t1.join(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -32,8 +32,8 @@ public class ThreadJoinExample
 		t2.start();
 		
 		//start third thread only when first thread is dead.
-		//Ö»ÓĞµ±µÚÒ»¸öÏß³ÌËÀµÄÊ±ºò£¬»òÕßÖ´ĞĞÍê³É£¬²ÅÈ¥startµÚÈı¸öÏß³Ì,Ò²¾ÍÊÇÖ»ÓĞµÈµÚÒ»¸öÏß³ÌÖ´ĞĞÍê³É(±äÎªdead×´Ì¬)£¬Ö÷Ïß³Ì
-		//²ÅÍùÏÂ¼ÌĞøÖ´ĞĞ
+		//åªæœ‰å½“ç¬¬ä¸€ä¸ªçº¿ç¨‹æ­»çš„æ—¶å€™ï¼Œæˆ–è€…æ‰§è¡Œå®Œæˆï¼Œæ‰å»startç¬¬ä¸‰ä¸ªçº¿ç¨‹,ä¹Ÿå°±æ˜¯åªæœ‰ç­‰ç¬¬ä¸€ä¸ªçº¿ç¨‹æ‰§è¡Œå®Œæˆ(å˜ä¸ºdeadçŠ¶æ€)ï¼Œä¸»çº¿ç¨‹
+		//æ‰å¾€ä¸‹ç»§ç»­æ‰§è¡Œ
 		try {
 			t1.join();
 		} catch (InterruptedException e) {

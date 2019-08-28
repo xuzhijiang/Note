@@ -10,7 +10,7 @@ package org.java.core.base.multithreading.ThreadSleep;
  * execution depends on system timers and schedulers. For a quiet 
  * system, the actual time for sleep is near to the specified sleep 
  * time but for a busy system it will be little bit more.
- * 3. Thread sleep doesn¡¯t lose any monitors or locks current thread has acquired.
+ * 3. Thread sleep doesnâ€™t lose any monitors or locks current thread has acquired.
  * 4. Any other thread can interrupt the current thread in sleep, 
  * in that case InterruptedException is thrown.
  * 

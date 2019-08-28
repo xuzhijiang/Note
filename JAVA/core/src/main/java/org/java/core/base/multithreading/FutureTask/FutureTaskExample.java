@@ -8,17 +8,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * FutureTaskÊÇFuture½Ó¿ÚµÄ»ù±¾¾ßÌåÊµÏÖ£¬²¢Ìá¹©Òì²½´¦Àí¡£
- * Ëü°üº¬Æô¶¯ºÍÈ¡ÏûÈÎÎñµÄ·½·¨£¬ÒÔ¼°¿ÉÒÔ·µ»ØFutureTask×´Ì¬µÄ·½·¨£¬
- * ÎŞÂÛËüÊÇÍê³É»¹ÊÇÈ¡Ïû,
- * ÎÒÃÇĞèÒªÒ»¸ö¿Éµ÷ÓÃ¶ÔÏóÀ´´´½¨Î´À´ÈÎÎñ£¬È»ºóÎÒÃÇ¿ÉÒÔÊ¹ÓÃJavaÏß³Ì³ØÖ´ĞĞÆ÷À´Òì²½´¦ÀíÕâĞ©ÈÎÎñ¡£
+ * FutureTaskæ˜¯Futureæ¥å£çš„åŸºæœ¬å…·ä½“å®ç°ï¼Œå¹¶æä¾›å¼‚æ­¥å¤„ç†ã€‚
+ * å®ƒåŒ…å«å¯åŠ¨å’Œå–æ¶ˆä»»åŠ¡çš„æ–¹æ³•ï¼Œä»¥åŠå¯ä»¥è¿”å›FutureTaskçŠ¶æ€çš„æ–¹æ³•ï¼Œ
+ * æ— è®ºå®ƒæ˜¯å®Œæˆè¿˜æ˜¯å–æ¶ˆ,
+ * æˆ‘ä»¬éœ€è¦ä¸€ä¸ªå¯è°ƒç”¨å¯¹è±¡æ¥åˆ›å»ºæœªæ¥ä»»åŠ¡ï¼Œç„¶åæˆ‘ä»¬å¯ä»¥ä½¿ç”¨Javaçº¿ç¨‹æ± æ‰§è¡Œå™¨æ¥å¼‚æ­¥å¤„ç†è¿™äº›ä»»åŠ¡ã€‚
  * <p><br>
- * FutureTaskÃ»ÓĞÈÎºÎºÃ´¦£¬µ«ÊÇµ±ÎÒÃÇÏëÒª¸²¸ÇÒ»Ğ©Future½Ó¿Ú·½·¨
- * ²¢ÇÒ²»ÏëÊµÏÖFuture½Ó¿ÚµÄÃ¿¸ö·½·¨Ê±£¬Ëü»áÅÉÉÏÓÃ³¡¡£
+ * FutureTaskæ²¡æœ‰ä»»ä½•å¥½å¤„ï¼Œä½†æ˜¯å½“æˆ‘ä»¬æƒ³è¦è¦†ç›–ä¸€äº›Futureæ¥å£æ–¹æ³•
+ * å¹¶ä¸”ä¸æƒ³å®ç°Futureæ¥å£çš„æ¯ä¸ªæ–¹æ³•æ—¶ï¼Œå®ƒä¼šæ´¾ä¸Šç”¨åœºã€‚
  */
 public class FutureTaskExample {
 	public static void main(String[] args) {
-		MyCallable callable1 = new MyCallable(1000);//Í¬Ò»¸ö°üÖĞµÄMyCallable²»ÓÃÒıÈë
+		MyCallable callable1 = new MyCallable(1000);//åŒä¸€ä¸ªåŒ…ä¸­çš„MyCallableä¸ç”¨å¼•å…¥
 		MyCallable callable2 = new MyCallable(2000);
 
 		FutureTask<String> futureTask1 = new FutureTask<String>(callable1);
@@ -39,12 +39,12 @@ public class FutureTaskExample {
 
 				if (!futureTask1.isDone()) {
 					// wait indefinitely for future task to complete
-					//get·½·¨ÎŞÏŞÆÚµÈ´ıÎ´À´µÄÈÎÎñÍê³É
+					//getæ–¹æ³•æ— é™æœŸç­‰å¾…æœªæ¥çš„ä»»åŠ¡å®Œæˆ
 					System.out.println("FutureTask1 output=" + futureTask1.get());
 				}
 
 				System.out.println("Waiting for FutureTask2 to complete");
-				////get·½·¨µÈ´ı200ºÁÃë
+				////getæ–¹æ³•ç­‰å¾…200æ¯«ç§’
 				String s = futureTask2.get(200L, TimeUnit.MILLISECONDS);
 				if (s != null) {
 					System.out.println("FutureTask2 output=" + s);

@@ -5,7 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Èç¹ûÈÎÎñÒÑÔÚÖ´ĞĞ£¬Timer½«µÈ´ıËüÍê³É£¬Ò»µ©Íê³É£¬Ëü½«ÔÙ´Î´Ó¶ÓÁĞÖĞ¿ªÊ¼ÏÂÒ»¸öÈÎÎñ¡£
+ * å¦‚æœä»»åŠ¡å·²åœ¨æ‰§è¡Œï¼ŒTimerå°†ç­‰å¾…å®ƒå®Œæˆï¼Œä¸€æ—¦å®Œæˆï¼Œå®ƒå°†å†æ¬¡ä»é˜Ÿåˆ—ä¸­å¼€å§‹ä¸‹ä¸€ä¸ªä»»åŠ¡ã€‚
  */
 public class MyTimerTask extends TimerTask {
 
@@ -17,8 +17,8 @@ public class MyTimerTask extends TimerTask {
 	}
 
 	/**
-	 * ÔÚÊ¹ÓÃTimerµ÷¶ÈÈÎÎñÊ±£¬ÄúÓ¦¸ÃÈ·±£Ê±¼ä¼ä¸ô³¬¹ıÕı³£µÄÏß³ÌÖ´ĞĞ£¬
-	 * ·ñÔòÈÎÎñ¶ÓÁĞ´óĞ¡½«¼ÌĞøÔö³¤£¬×îÖÕÈÎÎñ½«Ê¼ÖÕÖ´ĞĞ¡£
+	 * åœ¨ä½¿ç”¨Timerè°ƒåº¦ä»»åŠ¡æ—¶ï¼Œæ‚¨åº”è¯¥ç¡®ä¿æ—¶é—´é—´éš”è¶…è¿‡æ­£å¸¸çš„çº¿ç¨‹æ‰§è¡Œï¼Œ
+	 * å¦åˆ™ä»»åŠ¡é˜Ÿåˆ—å¤§å°å°†ç»§ç»­å¢é•¿ï¼Œæœ€ç»ˆä»»åŠ¡å°†å§‹ç»ˆæ‰§è¡Œã€‚
 	 */
 	private void completeTask() {
 		try {
@@ -31,7 +31,7 @@ public class MyTimerTask extends TimerTask {
 
 	public static void main(String args[]) {
 		TimerTask timerTask = new MyTimerTask();
-		//¿ÉÒÔ´´½¨Java Timer¶ÔÏóÒÔ½«Ïà¹ØÈÎÎñ×÷ÎªÊØ»¤³ÌĞòÏß³ÌÔËĞĞ¡£
+		//å¯ä»¥åˆ›å»ºJava Timerå¯¹è±¡ä»¥å°†ç›¸å…³ä»»åŠ¡ä½œä¸ºå®ˆæŠ¤ç¨‹åºçº¿ç¨‹è¿è¡Œã€‚
 		// running timer task as daemon thread
 		Timer timer = new Timer(true);
 //		 Java Timer object is scheduled to run the task every 10 seconds

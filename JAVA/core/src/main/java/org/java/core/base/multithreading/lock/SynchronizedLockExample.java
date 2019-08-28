@@ -10,7 +10,7 @@ public class SynchronizedLockExample implements Runnable{
 	
 	@Override
 	public void run() {
-		//使用synchronized块获取Resource对象的锁
+		//浣跨敤synchronized鍧楄幏鍙朢esource瀵硅薄鐨勯攣
 		synchronized (resource) {
 			resource.doSomething();
 		}

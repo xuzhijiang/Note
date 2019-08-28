@@ -1,8 +1,8 @@
 package org.java.core.base.multithreading.synchronization;
 
 /**
- * Notice that hacker¡¯s code is trying to lock the myObject
- * instance and once it gets the lock, it¡¯s never releasing 
+ * Notice that hackerâ€™s code is trying to lock the myObject
+ * instance and once it gets the lock, itâ€™s never releasing 
  * it causing doSomething() method to block on waiting for 
  * the lock, this will cause system to go on deadlock and 
  * cause Denial of Service (DoS).
@@ -27,8 +27,8 @@ public class HackerCodeExample1 {
 class MyObject
 {
 	//Locks on the object's monitor
-	//Ëø¶¨¶ÔÏóµÄ¼àÊÓÆ÷£¬·½·¨Ãû³ÆÇ°Ãæ¼ÓÉÏsynchronized¹Ø¼ü×Ö
-	//µÈ¼ÛÓÚ´Ë·½·¨ÓÃÓÃµ±Ç°¶ÔÏóµ±×öËø.
+	//é”å®šå¯¹è±¡çš„ç›‘è§†å™¨ï¼Œæ–¹æ³•åç§°å‰é¢åŠ ä¸Šsynchronizedå…³é”®å­—
+	//ç­‰ä»·äºæ­¤æ–¹æ³•ç”¨ç”¨å½“å‰å¯¹è±¡å½“åšé”.
 	public synchronized void doSomething() {
 		System.out.println("Myobject doSomething");
 		//....

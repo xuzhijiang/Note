@@ -1,12 +1,6 @@
 package org.java.core.base.concurrent.WaiterNotifier;
 
 /**
- * 深入理解线程通信:
- *
- * 开发中不免会遇到需要所有子线程执行完毕通知主线程处理某些逻辑的场景。
- *
- * Object类包含了几个final方法(不允许覆盖的方法)，允许线程就锁状态进行通信(通过线程调用锁的wait和notify相关方法)。
- *
  * 在"任何对象"上调用这些方法(wait,notify等)的线程应该具有"对象监视器"
  * (也就是线程必须要拥有锁对象,才能调用锁对象的这些方法)，
  * 否则它会抛出java.lang.IllegalMonitorStateException异常。
