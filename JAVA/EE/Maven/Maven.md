@@ -1,5 +1,3 @@
-官方中央服务器地址(central server):https://repo.maven.apache.org/maven2/
-
 ## 查找依赖的顺序:
 
 1. find jar: local repo(本地仓库)

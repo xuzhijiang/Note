@@ -149,7 +149,7 @@ Host内部可以有Context, Context（上下文）表示在特定虚拟主机(Ho
 
 可以看到server.xml中默认没有定义Context，但存在/conf/context.xml，在前面说过,此context.xml为部署与此Tomcat实例上所有的web应用程序提供的默认配置文件，删除注释后其内容如下：
 
-通过它可以找到默认的和各web应用程序提供部署描述符文件web.xml，/conf/web.xml定义了Tomcat提供的默认Servlet处理程序，主要用来处理静态资源请求；而各webapp的web.xml可以定义其他的动态请求url映射到不同Servlet程序处理。
+通过它可以找到默认的和各web应用程序提供部署描述符文件web.xml，/conf/web.xml定义了Tomcat提供的DefaultServlet处理程序，主要用来处理静态资源请求；而各webapp的web.xml可以定义其他的动态请求url映射到不同Servlet程序处理。
 
 ```xml
 <Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true">

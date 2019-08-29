@@ -214,3 +214,5 @@ Servlet的Listener涉及到的是观察者模式(Observer)
 
 
 值传递,引用传递.
+
+使用synchronized的3种方式: 静态方法,实例方法,代码块.

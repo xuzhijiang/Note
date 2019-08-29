@@ -4,19 +4,7 @@ import java.util.Arrays;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * CopyOnWrite顾名思义: 在写的时候复制
- *
- * 以下是主要源码分析
- *
- * CopyOnWriteArrayList使用场景分析:
- *
- * 1. 读写分离，我们修改的是新数组，读取的是老数组，不是一个对象，实现了读写分离。这种技术数据库用的非常多，
- * 在高并发下为了缓解数据库的压力，即使做了缓存也要对数据库做读写分离，读的时候使用读库，
- * 写的时候使用写库，然后读库、写库之间进行一定的同步，这样就避免同一个库上读、写的IO操作太多。
- * 2. 场景：读操作远多于修改操作
- *
  * @since 1.5
- * @param <E>
  */
 public class MyCopyOnWriteArrayList<E> {
 

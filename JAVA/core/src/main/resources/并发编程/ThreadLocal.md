@@ -2,7 +2,7 @@
 
 ThreadLocal用于创建线程局部变量,假如有一个对象A,A有一个public的变量var1,所有线程都共享对象A的var1，因此var1不是线程安全的。使用ThreadLocal后,每个线程内部都有自己的var1,且各个线程的修改都互不影响.
 
->示例: org.java.core.base.multithreading.TheadLocalExample.ThreadLocalExample
+>示例: org.java.core.base.concurrent.ThreadLocalExample
 
 # ThreadLocal、ThreadLocalMap、Thread三者关系
 
@@ -10,7 +10,19 @@ ThreadLocal用于创建线程局部变量,假如有一个对象A,A有一个publi
 
 ![](pics/ThreadLocalMap直观图.jpg)
 
+## ThreadLocal的get方法图解
+
+![](pics/ThreadLocal-get.png)
+
+![](pics/get图解.jpg)
+
+![](pics/get图解02.jpg)
+
 ## ThreadLocal的set方法图解
+
+![](pics/ThreadLocal-set.png)
+
+![](pics/ThreadLocal-setInitialValue.png)
 
 ![](pics/set源码图解01.jpg)
 
@@ -20,11 +32,9 @@ ThreadLocal用于创建线程局部变量,假如有一个对象A,A有一个publi
 
 >ThreadLocalMap创建的table可以看成一个哈希表，默认大小是16，即有16个槽(slot)。创建table完毕，根据firstKey算出本次插入的槽位，然后用内部类Entry将两个值包装成键值对(entry)，放入槽中：table[i] = new Entry(firstKey, firstValue);
 
-## ThreadLocal的get方法图解
+## ThreadLocal的remove方法图解
 
-![](pics/get图解.jpg)
-
-![](pics/get图解02.jpg)
+![](pics/ThreadLocal-remove.png)
 
 # synchronized和ThreadLocal的区别
 

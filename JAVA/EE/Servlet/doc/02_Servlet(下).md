@@ -165,7 +165,7 @@ DispatcherServlet: ![](pics/DispatcherServlet-class.jpg)
 
 ## DispatcherServlet与SpringMVC
 
-SpringMVC的核心控制器叫DispatcherServlet，映射原理和我们上面山寨版的一样，因为本质还是个Servlet。但SpringMVC提供了一个标签，解决上面/无法读取静态资源的问题：
+SpringMVC的核心控制器叫DispatcherServlet，映射原理和我们上面山寨版的一样，因为本质还是个Servlet。但SpringMVC提供了一个标签，解决上面`/`无法读取静态资源的问题：
 
 ```xml
 <!-- 静态资源处理  css js imgs -->
