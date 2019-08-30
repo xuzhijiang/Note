@@ -1,7 +1,6 @@
 package org.java.core.base.concurrent.chapter5;
 
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;

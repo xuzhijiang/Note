@@ -12,15 +12,14 @@ public class VolatileDemo {
     volatile static boolean flag = true;
 
     /**
-     * 由于我们使用了volatile关键字，因此自定义线程每次修改flag时，
-     * 主线程都可以实时的感知到,不会出现延时.(注意，volatile不能保证线程安全)
-     * 这里如果没有用 volatile 来修饰 flag ，就有可能其中一个线程修改了 flag 的值
+     * 由于我们使用了volatile关键字，因此自定义线程每次修改flag时，主线程都可以实时的感知到,不会出现延时.
+     * (注意，volatile不能保证线程安全,只能保证可见),这里如果没有用 volatile 来修饰 flag ，就有可能其中一个线程修改了 flag 的值
      * 并不会立即刷新到主内存中，导致主线程没有及时感知到，会出现延时感知.
      *
-     * 这里主要利用的是 `volatile` 的内存可见性。
+     * 这里主要利用的是 `volatile` 的内存可见性
      */
     @Test
-    public void test01() {
+    public void testVolatileVisible() {
         // 线程每隔1毫秒，修改一次flag的值
         new Thread(){
             @Override
@@ -47,11 +46,10 @@ public class VolatileDemo {
         }
     }
 
-    // 不能保证线程安全的示例
 
+    // volatile不能保证线程安全.
     //使用 volatile 修饰数据不能保证原子性，只能保证对每个线程的可见性
     private static volatile int count = 0 ;
-
     private static AtomicInteger atomicCount = new AtomicInteger() ;
 
     /**
@@ -65,13 +63,22 @@ public class VolatileDemo {
      * 这里面涉及到获取值、自增、赋值的操作并不能同时完成。
      * 假如t1,t2,main都获取了主存中的同一个count值，然后分别做自增，赋值操作，就有问题.
      *
-     * - 所以想达到线程安全可以使这三个线程串行执行(其实就是单线程，没有发挥多线程的优势)。
-     * - 也可以使用 `synchronized` 或者是锁的方式来保证原子性。
+     * - 所以想达到线程安全可以使用 `synchronized` 或者是锁的方式来保证原子性。
      * - 还可以用 `Atomic` 包中 `AtomicInteger` 来替换 `int`，它利用了 `CAS` 算法来保证了原子性。
      */
     @Test
     public void volatileCanNotGuaranteeThreadSafe() throws InterruptedException {
-        Runnable runnable = new MyRunnable();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("thread: " + Thread.currentThread().getName());
+                for (int i=0;i<1000000 ;i++) {
+                    count++ ;
+                    atomicCount.incrementAndGet() ;
+                }
+            }
+        };
+
         Thread t1 = new Thread(runnable, "t1----");
         Thread t2 = new Thread(runnable, "t2----");
         t1.start();
@@ -87,22 +94,9 @@ public class VolatileDemo {
         System.out.println("atomicCount="+atomicCount);
     }
 
-    private static class MyRunnable implements Runnable {
-        @Override
-        public void run() {
-            System.out.println("thread: " + Thread.currentThread().getName());
-            for (int i=0;i<1000000 ;i++) {
-                count++ ;
-                atomicCount.incrementAndGet() ;
-            }
-        }
-    }
-
     /***
-     * Java 虽说是基于内存通信的(volatile关键字)，但也可以使用管道通信。
-     *
+     * Java 线程虽说是基于内存通信的(volatile关键字)，但也可以使用管道通信。
      * 需要注意的是，输入流和输出流需要首先建立连接。这样线程 B 就可以收到线程 A 发出的消息了。
-     *
      * 实际开发中可以灵活根据需求选择最适合的线程通信方式。
      */
     @Test
@@ -110,7 +104,6 @@ public class VolatileDemo {
         // 面向于字符 PipedInputStream 面向于字节
         PipedWriter writer = new PipedWriter();
         PipedReader reader = new PipedReader();
-
         //输入输出流建立连接
         writer.connect(reader);
 
@@ -152,7 +145,6 @@ public class VolatileDemo {
                 }
             }
         });
-
         t2.start();
 
         t1.join();

@@ -6,7 +6,7 @@ import java.util.*;
 
 /**
  * 1. ListIterator它从Java 1.2开始提供
- * 2. 与Iterator(也是Java 1.2中引入)不同，它支持前向和后向迭代。它是一个双向迭代器。
+ * 2. 与Iterator(也是Java 1.2引入)不同，它支持前向和后向迭代()可以在两个方向上遍历列表。它是一个双向迭代器
  * 3. ListIterator有以下一些限制: 与Iterator不同，它不适用于整个Collection API,只能用于用于所有List实现的类.
  *
  * public interface Iterator<E> {}
@@ -60,4 +60,25 @@ public class ListIteratorTest
 		}
 	}
 
+	// add/remove
+	@Test
+	public void testAddAndRemove() {
+		List<Integer> list = new ArrayList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		System.out.print(list);
+
+		// 将游标定位在最后一个位置,因为要向前迭代
+		ListIterator<Integer> listIterator = list.listIterator(list.size());
+
+		while(listIterator.hasPrevious()){
+			int x = listIterator.previous();
+			if(x==5){
+				listIterator.remove();
+				listIterator.add(20);
+			}
+		}
+		System.out.println("\n"+list);
+	}
 }

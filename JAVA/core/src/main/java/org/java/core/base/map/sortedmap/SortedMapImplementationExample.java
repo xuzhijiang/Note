@@ -19,8 +19,8 @@ public class SortedMapImplementationExample {
 		Comparator comparator = sortedMap0.comparator();
 
 		SortedMap<String, PersonalDetails> sortedMap = new TreeMap<>(Comparator.reverseOrder());
-		sortedMap.put("Dan Brown", new PersonalDetails("Writer", LocalDate.of(1964, 6, 22), "New Hampshire"));
-		sortedMap.put("Ayn Rand", new PersonalDetails("Writer", LocalDate.of(1905, 2, 2), "Saint Petersburg"));
+		sortedMap.put("Dan Brown", new PersonalDetails("WorkerThread", LocalDate.of(1964, 6, 22), "New Hampshire"));
+		sortedMap.put("Ayn Rand", new PersonalDetails("WorkerThread", LocalDate.of(1905, 2, 2), "Saint Petersburg"));
 		sortedMap.put("Devdutt Pattanaik", new PersonalDetails("Mythologist", LocalDate.of(1970, 12, 11), "Mumbai"));
 		Set<Map.Entry<String, PersonalDetails>> entrySet = sortedMap.entrySet();
 		entrySet.forEach(entry -> {

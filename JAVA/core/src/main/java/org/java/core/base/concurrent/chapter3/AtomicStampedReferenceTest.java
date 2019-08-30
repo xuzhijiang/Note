@@ -12,20 +12,19 @@ public class AtomicStampedReferenceTest {
     private static CountDownLatch countDownLatch = new CountDownLatch(1);
 
     public static void main(String[] args) throws InterruptedException {
-
         new Thread(() -> {
             // 获取当前版本号
             int stamp = a.getStamp();
             System.out.println("线程: " + Thread.currentThread() + ", 当前 value = " + a.getReference() + ", version: " + stamp);
-
             // 计数器阻塞，直到计数器为0，才执行
             try {
                 countDownLatch.await();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            System.out.println("线程: " + Thread.currentThread() + ",CAS操作结果: " + a.compareAndSet(1, 2, stamp, stamp + 1));
+            //System.out.println(",CAS操作结果: " + a.compareAndSet(1, 2, stamp, stamp + 1));
+            System.out.println(",CAS操作结果: " + a.compareAndSet(1, 100, 2, a.getStamp() + 1));
+            System.out.println("线程: " + Thread.currentThread() + "value = " + a.getReference() + ", version: " + a.getStamp());
         }, "aaaa").start();
 
         Thread.sleep(1000);
@@ -40,7 +39,8 @@ public class AtomicStampedReferenceTest {
             a.compareAndSet(2, 1, a.getStamp(), a.getStamp() + 1);
             System.out.println("线程: " + Thread.currentThread() + "value = " + a.getReference() + " version : " + a.getStamp());
 
-            // 线程计数器
+            // 锁存器的数量减一
+            // Decrements the count of the latch, releasing all waiting threads if the count reaches zero.
             countDownLatch.countDown();
         }, "bbbb").start();
 

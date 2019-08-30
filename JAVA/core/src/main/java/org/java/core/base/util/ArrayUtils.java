@@ -17,6 +17,14 @@ public class ArrayUtils {
 		System.out.println(Arrays.toString(arr2));
 	}
 
+	@Test
+	public void testArraysCopy() {
+		int[] arr1 = {1,2,3,4,5};
+		// 直接返回一个新数组.ArrayList中的 扩容用到了这个方法.
+		int[] ints = Arrays.copyOf(arr1, 3);
+		System.out.println(Arrays.toString(ints));
+	}
+
 	/**
 	 * Array转成List
 	 */

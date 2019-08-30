@@ -1,6 +1,10 @@
 # LinkedList
 
+![](LinkedList概述.png)
+
 添加和删除元素的效率要高于ArrayList，更适用于频繁的插入和实现操作。
+
+# 类继承结构
 
 ![](LinkedList类图.png)
 

@@ -3,7 +3,6 @@ package org.java.core.base.ObjectClass.EqualsMethod;
 public class EqualsMethodExample {
 
     public static void main(java.lang.String[] args) {
-
         java.lang.Object obj1 = new java.lang.Object();
         java.lang.Object obj2 = new java.lang.Object();
         System.out.println(obj1.equals(obj2));//false
