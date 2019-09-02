@@ -4,6 +4,8 @@
 
 ![](Queue的类图.png)
 
+![](Queue的方法.png)
+
 ## 重要的实现类
 
 - PriorityQueue：基于堆结构实现，可以用它来实现优先级队列

@@ -76,8 +76,19 @@ public class JavaObjectSorting {
         strList.add("Z");
         strList.add("E");
         System.out.println("字符串List排序前: " + strList);
+        // 使用Collections类进行自然排序
         Collections.sort(strList);
         System.out.println("字符串List排序前: " + strList + "\r\n");
+    }
+
+    // List使用Comparator进行排序.
+    @Test
+    public void testListSort() {
+        List<Integer> list = new ArrayList();
+        list.add(10);list.add(2);list.add(-3);list.add(100);list.add(1);
+        // 自定义排序规则,这里是reverse order
+        list.sort((o1, o2) -> {return (o2 - o1);});
+        System.out.println(list);
     }
 
     @Test

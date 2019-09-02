@@ -4,6 +4,8 @@
 
 添加和删除元素的效率要高于ArrayList，更适用于频繁的插入和实现操作。
 
+![](linkedList也是支持通过索引访问的,只不过时间复杂度比ArrayList高.png)
+
 # 类继承结构
 
 ![](LinkedList类图.png)
@@ -19,14 +21,10 @@
 
 ## LinkedList的特点
 
-内部是使用双向链表实现.它是一个有序集合(以插入顺序存储来维护保持顺序性)，支持重复元素。它以插入顺序存储元素。可以添加任意数量的null元素, 不是线程安全
-
-可以使用Collections.synchronizedList()创建一个同步的LinkedList,没有实现RandomAccess接口。所以我们只能按顺序一个个的访问元素。它不支持通过下标随机访问元素.当我们尝试从LinkedList访问某个元素时，要从LinkedList的开头或结尾开始 搜索该元素。
-
-我们可以使用ListIterator迭代LinkedList元素.
+内部是使用双向链表实现.它是一个有序集合(以插入顺序存储来维护保持顺序性)，支持重复元素。可以添加任意数量的null元素, 不是线程安全.
 
 ## LinkedList的接口Deque的方法
 
-LinkedList实现了Deque,所以可以使用:
+LinkedList实现了Deque,使得LinkedList类也具有队列(双端队列)的特性:
 
-![](../../queue/deque/Deque接口的方法.png)
+![](../../queue/deque/Deque方法.png)

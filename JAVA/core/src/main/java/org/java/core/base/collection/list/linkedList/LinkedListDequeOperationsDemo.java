@@ -3,12 +3,9 @@ package org.java.core.base.collection.list.linkedList;
 import java.util.LinkedList;
 import java.util.Deque;
 
-/**
- * Java LinkedList Deque����
- * ��������ǽ�̽��LinkedList���������ΪDeque������ 
- * ����ʹ����Щ������ʵ�ֶ��л��ջ��
- * ���ǽ��ں�������������Stack��Queues������빤����
- */
+// LinkedList实现了Deque,所以拥有Deque的特性,也就是可以当作队列来操作,
+// 准确的是可以当作双端队列.
+// 当然,因为Deque可以当作Stack,所以LinkedList也可以当作栈来使用>
 public class LinkedListDequeOperationsDemo {
 	public static void main(String[] args) {
 		Deque<Integer> names = new LinkedList<Integer>();

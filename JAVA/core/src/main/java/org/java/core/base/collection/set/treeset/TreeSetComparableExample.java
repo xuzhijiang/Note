@@ -6,10 +6,6 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-/**
- * ���ڣ����ǽ�����һ������Person���������򼯡� 
- * To���ṩ��Ȼ����Person��Ӧ�þ���Comparable�ӿڵ�ʵ�֡�
- */
 public class TreeSetComparableExample {
 	public static void main(String[] args){
 

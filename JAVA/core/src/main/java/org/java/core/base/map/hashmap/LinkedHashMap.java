@@ -36,17 +36,6 @@ public class LinkedHashMap<K,V> extends HashMap<K,V> implements Map<K,V>
     transient int modCount;
 
     /**
-     * LinkedHashMap有个内部类Entry，这个Entry就是链表中的节点，继承自HashMap.Node，
-     * 多出了2个属性before和after，所以LinkedHashMap内部链表的节点是双向的
-     */
-//    static class Node<K,V> extends HashMap.Node<K,V> {
-//        LinkedHashMap.Node<K,V> before, after;
-//        Node(int hash, K key, V value, Node<K,V> next) {
-//            super(hash, key, value, next);
-//        }
-//    }
-
-    /**
      * LinkedHashMap还有两个重要的属性head，tail，这2个属性用于存储插入的节点，形成一个双向链表
      */
     // 首节点

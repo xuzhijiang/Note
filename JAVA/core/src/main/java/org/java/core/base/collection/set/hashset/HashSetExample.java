@@ -1,37 +1,19 @@
 package org.java.core.base.collection.set.hashset;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import org.junit.Test;
+
+import java.util.*;
 
 public class HashSetExample {
 
-	public static void main(String[] args) {
+	@Test
+	public void testHashSet() {
 
 		Set<String> fruits = new HashSet<>();
-		
-		//add JdbcQuickStartExample
 		fruits.add("Apple");
 		fruits.add("Banana");
 		
-		//isEmpty JdbcQuickStartExample
-		System.out.println("fruits set is empty = "+fruits.isEmpty());
-
-		//contains JdbcQuickStartExample
-		System.out.println("fruits contains Apple = "+fruits.contains("Apple"));
-		System.out.println("fruits contains Mango = "+fruits.contains("Mango"));
-		
-		//remove JdbcQuickStartExample
-		System.out.println("Apple removed from fruits set = "+fruits.remove("Apple"));
-		System.out.println("Mango removed from fruits set = "+fruits.remove("Mango"));
-		
-		//size JdbcQuickStartExample
-		System.out.println("fruits set size = "+fruits.size());
-		
-		//addAll JdbcQuickStartExample
-		List<String> list = new ArrayList<>(); 
+		List<String> list = new ArrayList<>();
 		list.add("Apple"); list.add("Apple"); 
 		list.add("Banana"); list.add("Mango");
 		
@@ -40,23 +22,25 @@ public class HashSetExample {
 		fruits.addAll(list);
 		System.out.println("fruits set after addAll = "+fruits);
 
-		//iterator JdbcQuickStartExample
-		Iterator<String> iterator = fruits.iterator();
-		while(iterator.hasNext()){
-			System.out.println("Consuming fruit "+iterator.next());
-		}
-		
-		//removeAll JdbcQuickStartExample
 		fruits.add("Orange");
-		System.out.println("fruits set before removeAll = "+fruits);
-		System.out.println("list = "+list);
 		fruits.removeAll(list);
 		System.out.println("fruits set after removeAll = "+fruits);
 		
-		//clear JdbcQuickStartExample
 		fruits.clear();
 		System.out.println("fruits set is empty = "+fruits.isEmpty());
-
 	}
 
+	@Test
+	public void testLinkedHashSet() {
+		Set<String> set = new LinkedHashSet<String>(5);
+		set.add("java");
+		set.add("golang");
+		set.add("python");
+		set.add("ruby");
+		set.add("scala");
+
+		for(String str : set) {
+			System.out.println(str);
+		}
+	}
 }

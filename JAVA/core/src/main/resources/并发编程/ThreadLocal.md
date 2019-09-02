@@ -42,6 +42,8 @@ ThreadLocal用于创建线程局部变量,假如有一个对象A,A有一个publi
 
 # ThreadLocal的应用场景
 
+![](pics/ThreadLocal应用案例.png)
+
 ```java
 // ThreadLocal应用广泛，下面介绍下在SpringMVC中的应用。
 

@@ -68,5 +68,6 @@ public class ArrayListExample {
 		arrayList.clear();
 		// 判断ArrayList是否为空
 		System.out.println("ArrayList is empty: " + arrayList.isEmpty());
+
 	}
 }
