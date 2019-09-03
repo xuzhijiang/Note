@@ -1,4 +1,4 @@
-package org.java.core.base.map.hashmap;
+package org.java.core.base.map.hashmap.source;
 
 import java.util.Map;
 import java.util.Objects;
@@ -347,7 +347,7 @@ public class JDK8HashMapSource<K, V> {
     }
 
     // HashMap有个内部静态类Node，这个Node就是为了解决冲突而设计的链表中的节点的概念
-    static class Node<K, V> implements Map.Entry<K, V> {
+    public static class Node<K, V> implements Map.Entry<K, V> {
         final int hash; // hash 存放的是当前 key 的 hashcode
         final K key;
         V value;

@@ -1,5 +1,7 @@
 # ConcurrentHashMap
 
+专门解决HashMap线程不安全问题而引入的类.
+
 * ConcurrentHashMap是map接口的实现类，ConcurrentHashMap是HashMap的线程安全版本。
 * 线程安全的有ConcurrentHashMap，ConcurrentSkipListMap，HashTable，Properties(extends HashTable)，
 但是HashTable是过时的类库，所以在并发中使用最多的是是ConcurrentHashMap和ConcurrentSkipListMap。

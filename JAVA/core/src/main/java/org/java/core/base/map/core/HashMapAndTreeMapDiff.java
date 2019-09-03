@@ -1,9 +1,7 @@
 package org.java.core.base.map.core;
 
 import org.junit.Test;
-
 import java.util.*;
-import java.util.Map.Entry;
 
 /**
  * 正确使用Map，只需要key正确实现hashCode()和equals()就行了吗？恐怕不行。
@@ -12,7 +10,7 @@ import java.util.Map.Entry;
  * 因为HashMap是依赖于这两个方法判断key是否相等以及桶的位置.
  *
  * 但是，如果换成TreeMap，正确实现key的hashCode()和equals()，结果并不一定正确。
- * TreeMap不是依赖于这2个方法来判断key是否相等，而是依赖于compareTo()方法,
+ * TreeMap不是依赖于这2个方法来判断key是否相等，而是依赖于compareTo()方法,来判断key是否相等
  * TreeMap还需要正确的实现compareTo方法.
  */
 public class HashMapAndTreeMapDiff {

@@ -2,9 +2,10 @@
 
 ![](LinkedList概述.png)
 
-添加和删除元素的效率要高于ArrayList，更适用于频繁的插入和实现操作。
+添加和删除元素的效率要高于ArrayList，更适用于频繁的插入和实现操作。而且基于数组实现的ArrayList需要连续内存.新增元素总是添加到链表末尾。
 
 ![](linkedList也是支持通过索引访问的,只不过时间复杂度比ArrayList高.png)
+![](LinkedList特点.png)
 
 # 类继承结构
 

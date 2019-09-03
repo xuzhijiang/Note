@@ -1,4 +1,4 @@
-package org.java.core.base.map.hashmap;
+package org.java.core.base.map.hashmap.source;
 
 import java.util.Map;
 

@@ -13,6 +13,9 @@ Java中的容器包括 Collection 和 Map 两类，Collection 存储着对象的
 
 >当然也可以换个角度分,把容器分为线程不安全的容器和并发容器(多线程安全的).
 
+![](Java集合框架类图.png)
+![](Java集合概述.png)
+
 ## Collection(集合)
 
 ![](Collection类图01.png)
@@ -54,5 +57,3 @@ Java中的容器包括 Collection 和 Map 两类，Collection 存储着对象的
 ## Collection遍历
 
 Collection 继承了 Iterable 接口，其中Iterable接口定义的 iterator() 方法能够产生一个 Iterator 对象，通过这个对象就可以迭代遍历 Collection 中的元素.(迭代器模式)
-
-
