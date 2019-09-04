@@ -1,99 +1,75 @@
 # ConcurrentHashMap
 
-专门解决HashMap线程不安全问题而引入的类.
+- ConcurrentHashMap是HashMap的线程安全版本
+- 线程安全的有ConcurrentHashMap，ConcurrentSkipListMap，HashTable,但是HashTable是过时的类库，所以在并发中使用最多的是是ConcurrentHashMap和ConcurrentSkipListMap
+- ConcurrentHashMap在并发的开发中使用频率高
 
-* ConcurrentHashMap是map接口的实现类，ConcurrentHashMap是HashMap的线程安全版本。
-* 线程安全的有ConcurrentHashMap，ConcurrentSkipListMap，HashTable，Properties(extends HashTable)，
-但是HashTable是过时的类库，所以在并发中使用最多的是是ConcurrentHashMap和ConcurrentSkipListMap。
-* ConcurrentHashMap在并发的开发中使用频率高，他的主要方法和HashMap基本一样。
+# 1.7的ConcurrentHashMap实现原理
 
-## 1.7的ConcurrentHashMap实现原理
+![](pics/ConcurrentHashMap数据存储结构.png)
+![](pics/ConcurrentHashMap数据存储结构02.png)
+![](pics/ConcurrentHashMap数据存储结构03.png)
+![](pics/Unsafe类-CAS.png)
 
-![](ConcurrentHashMapJDK7.jpg)
+* ConcurrentHashMap 采用了分段锁,一个ConcurrentHashMap中包含一个Segment数组.
+* 锁的粒度从整个ConcurrentHashMap降低到了每个Segment段上,因为Segment是继承了ReentrantLock,所以每个Segment就是一个锁.
+* Segment数组中一个Segment元素中包含一个HashEntry数组(使用volatile修饰保证可见性).
+* 当修改修改时，首先要获得是哪个Segment，然后拿到这个Segment中的HashEntry数组，然后在定位到HashEntry数组中某一个桶,每个桶上都是一个链表.
 
-* 一个Segment中包含一个HashEntry数组
-* 当我们要对HashEntry中的数据进行修改时，首先要获得是哪个Segment，然后获得这个Segment中的HashEntry数组，再根据HashEntry数组找到对应的HashEntry.
+1.7的`ConcurrentHashMap`采用了分段锁技术，其中 `Segment` 继承于 `ReentrantLock`。不会像 `HashTable` 直接使用synchronized，支持 Segment 数组大小的线程并发.
 
-如图所示，1.7的ConcurrentHashMap是由 `Segment` 数组、`HashEntry` 数组组成，和 `HashMap` 一样，仍然是数组加链表组成。
+## put 方法-1.7
 
->`ConcurrentHashMap` 采用了分段锁技术，其中 `Segment` 继承于 `ReentrantLock`。不会像 `HashTable` 那样不管是 `put` 还是 `get` 操作都需要做同步处理，理论上 ConcurrentHashMap 支持 `CurrencyLevel` (Segment 数组数量)的线程并发。每当一个线程占用锁访问一个 `Segment` 时，不会影响到其他的 `Segment`。
+put 操作需要加锁处理。
 
-### get 方法
-`ConcurrentHashMap` 的 `get` 方法是非常高效的，因为整个过程都不需要加锁。
+![](pics/put-jdk7.png)
+![](pics/put-jdk7-02.png)
+![](pics/put-jdk7-03.png)
+![](pics/put-jdk7-04.png)
 
-只需要将 `Key` 通过 `Hash` 之后定位到具体的 `Segment` ，再通过一次 `Hash` 定位到具体的元素上。由于 `HashEntry` 中的 `value` 属性是用 `volatile` 关键词修饰的，保证了内存可见性，所以每次获取时都是最新值
+## get 方法-1.7
 
-### put 方法
+`ConcurrentHashMap` 的读性能非常高效的，因为整个过程都不需要加锁,并用Unsafe.getObjectVolatile方法读取元素(注意这个是保证可见性的读取方法,不是一个CAS方法)，这个方法保证读取对象永远是最新的.
 
-虽然 HashEntry 中的 value 是用 `volatile` 关键词修饰的，但是并不能保证并发的原子性，所以 put 操作时仍然需要加锁处理。
+![](pics/get方法-jdk7.png)
 
-首先也是通过 Key 的 Hash 定位到具体的 Segment，在 put 之前会进行一次扩容校验。这里比 HashMap 要好的一点是：HashMap 是插入元素之后再看是否需要扩容，有可能扩容之后后续就没有插入就浪费了本次扩容(扩容非常消耗性能)。
+只需要将 `Key` 通过 `Hash` 之后定位到具体的 `Segment` ，再通过一次 `Hash` 定位到具体的HashEntry元素。由于 `HashEntry` 数组中的元素是用 `volatile` 关键词修饰的，保证了内存可见性(并不能保证并发的安全)，所以每次获取时都是最新值
 
-而 ConcurrentHashMap 不一样，它是在将数据插入之前检查是否需要扩容，之后再做插入操作。
+## size 方法-1.7
 
-### size 方法
+在执行 size 操作时，需要遍历所有 Segment 然后把 count 累计起来。
 
-每个 `Segment` 都有一个 `volatile` 修饰的全局变量 `count` ,求整个 `ConcurrentHashMap` 的 `size` 时很明显就是将所有的 `count` 累加即可。但是 `volatile` 修饰的变量却不能保证多线程的原子性，所有直接累加很容易出现并发问题。
+在执行 size 操作时先尝试不加锁计算2次，如果两次不加锁计算得到的结果一致，那么可以认为并发过程中计算的值正确,结束计算,并返回.
 
-但如果每次调用 `size` 方法将其余的修改操作加锁效率也很低。所以做法是先尝试两次将 `count` 累加，如果容器的 `count` 发生了变化再加锁来统计 `size`。
+尝试次数使用 RETRIES_BEFORE_LOCK 定义，该值为 2，retries 初始值为 -1，因此尝试次数为 3。
 
-至于 `ConcurrentHashMap` 是如何知道在统计时大小发生了变化呢，每个 `Segment` 都有一个 `modCount` 变量，每当进行一次 `put remove` 等操作，`modCount` 将会 +1。只要 `modCount` 发生了变化就认为大小在发生变化。
+如果前两次计算不一致,则进行第三次计算,第三次计算的时候会强制锁住所有的 segment,重新计算.
 
-## JDK1.8 实现
+![](pics/jdk7-size.png)
+![](pics/jdk7-size02.png)
 
-1.8 中的 ConcurrentHashMap 数据结构和实现与 1.7 还是有着明显的差异。
+# JDK1.8 实现
 
-其中抛弃了原有的 Segment 分段锁，而采用了 `CAS + synchronized` 来保证并发安全性。
+- 1.8 在 1.7 的数据结构上做了大的改动，1.8 抛弃了 Segment 分段锁(ReentrantLock),
+- 抛弃了ReentrantLock 改为了(synchronized+CAS)来保证并发更新的安全性
+- 3.size方法优化，增加了CounterCell内部类，用于并行计算每个桶中元素的数量.
 
-也将 1.7 中存放数据的 HashEntry 改为 Node，但作用都是相同的。其中的 `val next` 都用了 volatile 修饰，保证了可见性。
+>这样可以看出在新版的 JDK 中对 synchronized 优化是很到位的,相较ReentrantLock，性能不并差
 
-### put 方法
+>底层采用数组+链表+红黑树的存储结构,采用红黑树之后可以保证查询效率`logn`.
 
-重点来看看 put 函数：
+## put 方法-1.8
 
-![](https://ws3.sinaimg.cn/large/006tNc79gy1fthrz8jlo8j30oc0rbte3.jpg)
+![](pics/jdk8-CAS保证初始化table是多线程安全的.png)
+![](pics/jdk8-CAS保证初始化table是多线程安全的02.png)
+![](pics/jdk8-CAS保证初始化table是多线程安全的03.png)
+![](pics/jdk8-CAS保证初始化table是多线程安全的04.png)
 
-- 根据 key 计算出 hashcode 。
-- 判断是否需要进行初始化。
-- `f` 即为当前 key 定位出的 Node，如果为空表示当前位置可以写入数据，利用 CAS 尝试写入，失败则自旋保证成功。
-- 如果当前位置的 `hashcode == MOVED == -1`,则需要进行扩容。
-- 如果都不满足，则利用 synchronized 锁写入数据。
-- 如果数量大于 `TREEIFY_THRESHOLD` 则要转换为红黑树。
+## get 方法-1.8
 
-### get 方法
-
-![](https://ws1.sinaimg.cn/large/006tNc79gy1fthsnp2f35j30o409hwg7.jpg)
-
-- 根据计算出来的 hashcode 寻址，如果就在桶上那么直接返回值。
-- 如果是红黑树那就按照树的方式获取值。
-- 都不满足那就按照链表的方式遍历获取值。
-
-## 总结
-
-1.8 在 1.7 的数据结构上做了大的改动，采用红黑树之后可以保证查询效率（`O(logn)`），甚至取消了 ReentrantLock 改为了 synchronized，这样可以看出在新版的 JDK 中对 synchronized 优化是很到位的。
-
-##源码
-
-```java
-// ConcurrentHashMap继承了AbstractMap这个类
-public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
-    implements ConcurrentMap<K, V>, Serializable {
-```
-
->ConcurrentHashMap完全允许多个读操作并发进行，读操作并不需要加锁初始化segments数组
-
-```java
-    public ConcurrentHashMap(int initialCapacity,
-                            float loadFactor, int concurrencyLevel) {
-}
-```
-
-* 构造方法中initialCapacity代表数组容量，loadFactor代表负载因子，concurrencyLevel代表并发级别。
-* segment数组的长度通过concurrencyLevel计算得出，为了通过按位与的哈希算法类定位segment的索引，就必须保证segment数组的长度是2的N次方，所以必须计算出一个大于或等于concurrencyLevel的最小的2的n次方值来作为segment数组的长度，concurrencyLevel的最大并发级别是655535，所以segment数组的最大长度为66636.对应的二进制是16位。
+![](pics/jdk8-get.png)
 
 ## 常见问题
-
-看完了整个 HashMap 和 ConcurrentHashMap 在 1.7 和 1.8 中不同的实现方式相信大家对他们的理解应该会更加到位。
 
 其实这块也是面试的重点内容，通常的套路是：
 
@@ -103,3 +79,8 @@ public class ConcurrentHashMap<K, V> extends AbstractMap<K, V>
 4. 不安全会导致哪些问题？
 5. 如何解决？有没有线程安全的并发容器？
 6. ConcurrentHashMap 是如何实现的？ 1.7、1.8 实现有何不同？为什么这么做？
+
+# 好的文章
+
+- [https://www.jianshu.com/p/85d158455861](https://www.jianshu.com/p/85d158455861)
+- [https://www.jianshu.com/p/47c1be88a88e](https://www.jianshu.com/p/47c1be88a88e)

@@ -24,6 +24,9 @@ public class HashMapAndTreeMapDiff {
 	public void testTreeMap() {
 		System.out.println("-------TreeMap------");
 		Map<Student, Integer> map = new TreeMap<>();
+		// 作为TreeMap的key,Student必须实现Comparable接口,否则会报异常
+		// java.lang.ClassCastException: org.java.core.base.map.core.HashMapAndTreeMapDiff$Student cannot be cast to java.lang.Comparable
+		// 当然不实现Comparable接口也可以,但是要提供一个Comparator在 构造函数中,否则会提示上面的 错误.
 		map.put(new Student("aa", 99), 99);
 		map.put(new Student("bb", 79), 79);
 		map.put(new Student("cc", 59), 59);

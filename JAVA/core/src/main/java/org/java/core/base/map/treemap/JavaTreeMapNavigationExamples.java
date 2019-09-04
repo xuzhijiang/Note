@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-// �ó�����ʾ��NavigableMap�������÷���
 public class JavaTreeMapNavigationExamples {
 
 	public static void main(String[] args) {
