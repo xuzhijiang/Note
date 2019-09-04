@@ -33,8 +33,6 @@ public enum Isolation {
 
 ### 传播行为
 
-事务的传播行指，如果在开始当前事务之前，一个事务上下文已经存在，此时有若干选项可以指定一个事务性方法的执行行为。
-
 我们可以看org.springframework.transaction.annotation.Propagation枚举类中定义了6个表示传播行为的枚举值：
 
 ```java

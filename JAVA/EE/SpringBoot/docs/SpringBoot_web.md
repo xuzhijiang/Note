@@ -10,7 +10,7 @@
 
 在我们开发Web应用的时候，需要引用大量的js、css、图片等静态资源。
 
-Spring Boot默认提供静态资源目录位置需置于classpath下，目录名需符合如下规则：
+Spring Boot默认情况下,将放置在classpath下的以下文件夹中的文件视为静态资源文件，并将其映射为一个唯一的URL：
 
 * /static
 * /public
@@ -20,13 +20,6 @@ Spring Boot默认提供静态资源目录位置需置于classpath下，目录名
 我们可以在src/main/resources/目录下创建static，在该位置放置一个图片文件。启动程序后，尝试访问http://localhost:808/D.jpg。如能显示图片，配置成功。
 
 Thymleleaf的模板文件被视为静态资源，只不过它比较特殊，与普通的html，图片， js代表等常规静态资源不一样，需要经过模板引擎的处理之后再传给客户端罢了。
-
-Spring Boot将放置在以下文件夹中的文件视为静态资源文件，并将其映射为一个唯一的URL：
-
-* /static
-* /public
-* /resources
-* /META-INF/resources
 
 默认情况下， Thymeleaf从classpath:/templates/处加载模板
 

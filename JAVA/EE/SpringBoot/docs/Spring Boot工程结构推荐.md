@@ -1,10 +1,6 @@
-## Spring Boot工程结构推荐
-
->前人总结的最佳实践案例可以帮助我们免去很多不必要的麻烦
-
 ### 工程结构(最佳实践）
 
-Spring Boot框架本身并没有对工程结构有特别的要求，但是按照最佳实践的工程结构可以帮助我们减少可能会遇见的坑，尤其是Spring包扫描机制的存在，如果您使用最佳实践的工程结构，可以免去不少特殊的配置工作。
+Spring Boot框架本身并没有对工程结构有特别的要求，但是按照最佳实践的工程结构可以帮助我们减少可能会遇见的坑，减少工作量,尤其是Spring包扫描机制的存在.
 
 每一个类都应在一个包下面，而不应该直接放在classes目录下，因为这可能会导致一些注解，例如@ComponentScan, @EntityScan or @SpringBootApplication失效。对于@EnableAutoConfiguration注解，官方建议将其放在我们项目的root package下面.
 
