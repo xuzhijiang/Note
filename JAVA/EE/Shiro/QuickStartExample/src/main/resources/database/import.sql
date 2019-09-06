@@ -10,7 +10,6 @@ INSERT INTO `sys_role` (`id`,`available`,`description`,`role`) VALUES (1,0,'管�
 INSERT INTO `sys_role` (`id`,`available`,`description`,`role`) VALUES (2,0,'VIP会员','vip');
 INSERT INTO `sys_role` (`id`,`available`,`description`,`role`) VALUES (3,1,'test','test');
 
-INSERT INTO `sys_role_permission` VALUES ('1', '1');
 INSERT INTO `sys_role_permission` (`permission_id`,`role_id`) VALUES (1,1);
 INSERT INTO `sys_role_permission` (`permission_id`,`role_id`) VALUES (2,1);
 INSERT INTO `sys_role_permission` (`permission_id`,`role_id`) VALUES (3,2);

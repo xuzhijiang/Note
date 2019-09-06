@@ -43,3 +43,11 @@ Spring Boot框架本身并没有对工程结构有特别的要求，但是按照
 
 >@SpringBootApplication，这个注解的作用相当于同时添加了:@EnableAutoConfiguration
 ,@ComponentScan,@Configuration
+
+# 热部署
+
+![](pics/实现热部署01.png)
+![](pics/实现热部署02.png)
+![](pics/实现热部署03.png)
+![](pics/实现热部署04.png)
+![](pics/实现热部署05.png)

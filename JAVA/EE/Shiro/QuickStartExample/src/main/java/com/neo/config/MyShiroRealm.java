@@ -24,7 +24,6 @@ public class MyShiroRealm extends AuthorizingRealm {
 
     /**
      * 返回一个唯一的Realm名字
-     * @return
      */
     @Override
     public String getName() {
