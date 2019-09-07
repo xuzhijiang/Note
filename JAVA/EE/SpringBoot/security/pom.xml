@@ -10,8 +10,8 @@
 	</parent>
 
 	<!-- App相关信息 -->
-	<groupId>com.itranswarp.springcloud</groupId>
-	<artifactId>security</artifactId>
+	<groupId>spring.security.core</groupId>
+	<artifactId>SpringBootSecurity</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Secure SpringBoot App</name>

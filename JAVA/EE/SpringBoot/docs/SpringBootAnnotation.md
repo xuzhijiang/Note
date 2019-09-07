@@ -92,3 +92,5 @@ a. 由于@Configuration注释，它会扫描@Bean方法来创建beans
 因此在main方法run后，就启动 tomcat，让用户通过url来访问。
 
 org.springframework.context.annotation.Primary注解(@Primary):声明默认的，首要的bean(在没有具体指明名字的时候使用).
+
+@Import(value = { LoginSecurityConfig.class })
