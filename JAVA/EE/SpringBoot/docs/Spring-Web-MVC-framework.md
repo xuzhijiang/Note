@@ -82,3 +82,13 @@ Spring Boot提供了一个默认的映射：/error，当处理中抛出异常之
 虽然，Spring Boot中实现了默认的error映射，但是在实际应用中，上面你的错误页面对用户来说并不够友好，我们通常需要自定义异常提示.
 
 >Spring Boot项目的默认异常处理机制，是由一个内置的BasicErrorController实现的。
+
+# 使用WebMvcConfigurer
+
+![](pics/使用WebMvcConfigurer配置SpringMVC01.png)
+![](pics/使用WebMvcConfigurer配置SpringMVC02.png)
+![](pics/使用WebMvcConfigurer配置SpringMVC03.png)
+![](pics/使用WebMvcConfigurer配置SpringMVC04.png)
+![](pics/WebMvcConfigurer目录加载问题.png)
+![](pics/WebMvcConfigurerAdapter过时01.png)
+![](pics/直接实现WebMvcConfigurer.png)

@@ -1,4 +1,11 @@
-## 补充知识： Spring Boot Web项目中的静态资源
+# 传统的基于web.xml静态资源
+
+![](pics/jsp页面不能访问静态资源解决方法01.png)
+![](pics/jsp页面不能访问静态资源解决方法02.png)
+![](pics/jsp页面不能访问静态资源解决方法03.png)
+![](pics/jsp页面不能访问静态资源解决方法04.png)
+
+# Spring Boot Web项目中的静态资源
 
 在我们开发Web应用的时候，需要引用大量的js、css、图片等静态资源。Spring Boot默认情况下,将放置在classpath下的以下文件夹中的文件视为静态资源文件，并将其映射为一个唯一的URL：
 
@@ -7,11 +14,33 @@
 - classpath:/resources
 - classpath:/META-INF/resources
 
+![](pics/Migrate-Application-Resources.png)
+![](pics/静态资源访问.png)
+
 我们可以在src/main/resources/目录下创建static，在该位置放置一个图片文件。启动程序后，尝试访问http://localhost:808/D.jpg。如能显示图片，配置成功。
 
-Thymleleaf的模板文件被视为静态资源，只不过Thymleleaf模板后缀也是html比较特殊，与普通的html，图片， js代表等常规静态资源不一样，需要经过模板引擎的处理之后再传给客户端罢了。
+![](pics/springboot工程是没有webapp文件夹的.png)
 
-默认情况下， Thymeleaf从classpath:/templates/处加载模板.
+# 新增静态资源路径
+
+![](pics/新增静态资源路径.png)
+
+# 自定义静态资源映射
+
+![](pics/自定义静态资源映射.png)
+![](pics/自定义静态资源映射01.png)
+![](pics/自定义静态资源映射02.png)
+
+# 设置静态默认欢迎页面
+
+![](pics/设置欢迎界面.png)
+![](pics/设置欢迎界面01.png)
+![](pics/设置欢迎界面02-设置默认的View跳转页面.png)
+
+# Favicon设置
+
+![](pics/Favicon设置01.png)
+![](pics/Favicon设置02.png)
 
 ### WebJars基础
 
@@ -153,5 +182,3 @@ springbootstudy-0.0.1-SNAPSHOT.jar是我们打包好的，内部包含了其他�
 
 1. 步骤一、修改打包方式打开pom.xml，将打包方式由jar改为war
 2. 步骤二、调整嵌入式Tomcat插件的编译方式,默认情况下， spring-boot-starter-web会启动一个嵌入式的tomcat，因为现在我们是要生成一个war包，跑在外部的tomcat上，所以，给项目添加一个tomcat依赖(spring-boot-starter-tomcat)，并将其scope设置为“provided(表明这些组件由外部容器提供）”从而覆盖掉默认设置。
-
-

@@ -147,6 +147,7 @@ Event对象其实就是被监听对象的包装，那么创建IOC时，要Servle
 ![](pics/springboot%20是如何帮我们省去web.xml配置的03.png)
 ![](pics/spring-boot-web-start的作用.png)
 ![](pics/从Spring迁移到SpringBoot-web-start.png)
+![](pics/SpringBoot如何完全控制SpringMVC.png)
 
 # 传统的web-xml中通过反射创建DispatcherServlet
 

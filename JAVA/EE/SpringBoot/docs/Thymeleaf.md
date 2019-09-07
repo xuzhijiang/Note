@@ -24,6 +24,10 @@
 
 # Thymeleaf
 
+Thymleleaf模板后缀也是html比较特殊，与普通的html，图片， js代表等常规静态资源不一样，需要经过模板引擎的处理之后再传给客户端罢了。
+
+默认情况下， Thymeleaf从classpath:/templates/处加载模板.
+
 Thymeleaf不是SpringBoot默认的模板引擎,需要引入Thymeleaf依赖才可以使用,不像内嵌的tomcat容器,是spring-boot-start-web中默认就自带了tomcat依赖.
 
 在传统的Spring Boot MVC项目中，需要在Server端使用特定的视图模板，基于这些模板“填空”以得到一张完整的HTML网页，再把它传回给浏览器。负责完成这一“填空” 工作的， 是“模板引擎”。
