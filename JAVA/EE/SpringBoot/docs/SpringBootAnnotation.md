@@ -62,9 +62,12 @@ Accept      =  */*
 
 使用SpringBootApplication注解相当于使用了3个注解，`@SpringBootApplication = @Configuration + @EnableAutoConfiguration + @ComponentScan`
 
-a. 由于@Configuration注释，它会扫描@Bean方法来创建beans
-    b. 由于@ComponentScan注释，它执行组件扫描(组件表示使用@Component，@Service，@Repository，@Controller等注释的Bean）。
-    c. 由于@EnableAutoConfiguration注释，它会触发Spring Boot Auto-Configuration
+@Configuration会扫描@Bean方法来创建beans
+b. 由于@ComponentScan注释，它执行组件扫描(组件表示使用@Component，@Service，@Repository，@Controller等注释的Bean）。
+@EnableAutoConfiguration  - 告诉SpringBoot自动依据类路径的设置添加bean.
+
+@ComponentScan – which scans for other configurations and beans in the same package as the Application class or below
+@ComponentScan  - 扫描与Application类相同的包或子包中的其他配置和bean
 
 比如你的项目的包路径是 com.spring.core，对应的controller和repository包是 com.spring.core.controller和com.spring.core.repository。 那么这个SpringApplication的包路径必须为com.spring.core。 因为SpringBootApplication注解内部是使用ComponentScan注解，这个注解会扫描SpringApplication包所在的路径下的各个bean。
 
@@ -93,4 +96,27 @@ a. 由于@Configuration注释，它会扫描@Bean方法来创建beans
 
 org.springframework.context.annotation.Primary注解(@Primary):声明默认的，首要的bean(在没有具体指明名字的时候使用).
 
-@Import(value = { LoginSecurityConfig.class })
+Springboot中显示的导入配置类的方法;
+
+1. @Import(value = { LoginSecurityConfig.class })
+2. @ComponentScan(basePackages="pkg")-这个是为了导入和MainApplication不是同一个包,也不是其子包的package中的配置.
+
+
+@Bean
+    @ConditionalOnMissingBean(RequestContextListener.class)
+    public RequestContextListener requestContextListener() {
+        return new RequestContextListener();
+    }
+
+如果您已经有XML文件，您不希望转换为Java配置，您仍然可以使用@ImportResource导入它们：
+
+@SpringBootApplication
+@ImportResource("applicationContext.xml")
+public class Application {
+    //...
+}    
+
+@ConditionalOnProperty(
+            value = {"spring.mvc.favicon.enabled"},
+            matchIfMissing = true // 如果缺失了,就是true
+        )

@@ -140,6 +140,36 @@ Event对象其实就是被监听对象的包装，那么创建IOC时，要Servle
 ![](pics/web-xml-vs-Initializer-with-Spring-10.png)
 ![](pics/web-xml-vs-Initializer-with-Spring-11.png)
 
+# springboot是如何帮我们省去web.xml配置的
+
+![](pics/springboot是如何帮我们省去web.xml配置的.png)
+![](pics/springboot%20是如何帮我们省去web.xml配置的02.png)
+![](pics/springboot%20是如何帮我们省去web.xml配置的03.png)
+![](pics/spring-boot-web-start的作用.png)
+![](pics/从Spring迁移到SpringBoot-web-start.png)
+
+# 传统的web-xml中通过反射创建DispatcherServlet
+
+![](pics/传统的web-xml中通过反射创建DispatcherServlet.png)
+![](pics/传统的web-xml中通过反射创建DispatcherServlet02.png)
+
+# 使用WebApplicationInitializer的方式创建DispatcherServlet
+
+![](pics/使用WebApplicationInitializer的方式创建DispatcherServlet.png)
+![](pics/使用WebApplicationInitializer的方式创建DispatcherServlet02.png)
+
+# 究竟Springboot如何配置DispatcherServlet
+
+![](pics/究竟Springboot如何配置DispatcherServlet01.png)
+![](pics/究竟Springboot如何配置DispatcherServlet02.png)
+![](pics/究竟Springboot如何配置DispatcherServlet03.png)
+![](pics/究竟Springboot如何配置DispatcherServlet04.png)
+
+# SpringBoot中如何创建ContextLoaderListener
+
+![](pics/SpringBoot中如何创建ContextLoaderListener01.png)
+![](pics/SpringBoot中如何创建ContextLoaderListener02.png)
+
 # 参考
 
 - [https://www.baeldung.com/spring-xml-vs-java-config](https://www.baeldung.com/spring-xml-vs-java-config)

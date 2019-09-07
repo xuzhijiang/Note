@@ -30,6 +30,7 @@ public class SpringBootWebApplication extends SpringBootServletInitializer {
         // 注册applicationClass作为配置类.
         return builder.sources(applicationClass);
     }
+
 }
 
 /**

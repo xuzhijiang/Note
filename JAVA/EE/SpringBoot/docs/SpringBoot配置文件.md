@@ -1,8 +1,8 @@
-# 一、Spring Boot学习笔记-配置文件
+# 一、Spring Boot-配置文件
 
 SpringBoot的默认情况下会加载classpath下两个默认的配置文件：application.properties和application.yml。通常情况下，我们只要选择其中一种即可。
 
-默认情况下，SpringBoot按照如下优先顺序加载application.properties或者application.yml文件中的配置，并注入Environment对象中。
+默认情况下，SpringBoot按照如下优先顺序加载application.properties或者application.yml文件中的配置，并注入Environment对象中.
 
 1. 用户当前所在目录下的/config子目录
 2. 用户当前所在目录
@@ -11,58 +11,40 @@ SpringBoot的默认情况下会加载classpath下两个默认的配置文件：a
 
 >也就是说1的优先级最高，4的优先级最低。如果出现配置项重复，优先级高的会覆盖优先级低的配置项。
 
-Springboot提供大量的默认配置,一部分是Spring自身的默认配置，另一部分是与springboot整合的第三方框架的默认配置。`我们可以在两种类型(yml or properties)的配置文件中覆盖其默认配置，也可以自定义我们自己的配置项`
+Springboot提供大量的默认配置,一部分是Spring自身的默认配置，另一部分是与springboot整合的第三方框架的默认配置。`我们可以在配置文件中覆盖其默认配置，也可以自定义我们自己的配置项`
 
->这里有很明显的springboot对于内嵌web容器的两个默认配置项：
+## 属性的引用
 
-1. 默认的监听端口:8080,
-2. 应用的contextPath为"/"。
+我们直接在application.properties中定义一些自己使用的属性，然后通过@Value("${属性名}")注解来加载对应的配置属性:
 
->如我们想要覆盖默认的配置，可以按照如下方式进行：
-
-例如application.properties文件：
-
+```yml
+# 各个参数之间也可以直接引
+com.blog.name=name
+com.blog.title=title
+com.blog.desc=${com.blog.name} - 《${com.blog.title}》
 ```
-#Tomcat configuration
-server.port=80
-server.contextPath=/springboot
- 
-#Custom configuration
-name=xuzhijiang
-```
-
-对于这个文件中的配置项，我们在程序中可以直接使用@Value注解进行引用：
 
 ```java
 //要注意的是，@Value注解是在Bean实例化之后再进行注入的，也就是说,当我们在构造方法中使用这个属性的值时，起还是为null。等到实例化之后，这个属性就会被设置
-@RestController
-@EnableAutoConfiguration
 public class Application {
     @Value("${name}")
     private String name;
- 
-    @RequestMapping("/")
-    public String hello() {
-        return "Hello ,"+name;
-    }
- 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
 }
 ```
 
-对于上述的application.properties，对应的application.yml为
+## 使用随机数:
 
-```yml
-server:
-     contextPath: /springboot
-     port: 80
-name: xzj
-```
+在一些情况下，有些参数我们需要希望它不是一个固定的值，比如密钥、服务端口等。Spring Boot的属性配置文件中可以通过${random}来产生int值、long值或者string字符串，来支持属性的随机值.
 
->值得注意的是，不论我们使用的是哪一种方式，我们都可以通过属性的全路径来注入参数。
-也就是说，之前案例中的@Value(${name})在两种配置文件的情况下，都是可以正常使用的。
+## 通过命令行设置属性值
+
+java -jar xxx.jar --server.port=8888，通过使用–-server.port属性来设置xxx.jar应用的端口为8888
+
+通过命令行来修改属性值固然提供了不错的便利性，但是通过命令行就能更改应用运行的参数，那岂不是很不安全？是的，所以Spring Boot也贴心的提供了屏蔽命令行访问属性的设置，只需要这句设置就能屏蔽：SpringApplication.setAddCommandLineProperties(false)。
+
+指定SpringBoot加载属性文件的位置:`java -jar -Dspring.config.location=C:\application.properties demo.jar`
+
+Spring boot会默认从从类路径下加载application.properties或者application.yml
 
 ## yaml语法
 

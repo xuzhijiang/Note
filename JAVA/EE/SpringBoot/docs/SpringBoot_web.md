@@ -1,19 +1,17 @@
 ## 补充知识： Spring Boot Web项目中的静态资源
 
-在我们开发Web应用的时候，需要引用大量的js、css、图片等静态资源。
+在我们开发Web应用的时候，需要引用大量的js、css、图片等静态资源。Spring Boot默认情况下,将放置在classpath下的以下文件夹中的文件视为静态资源文件，并将其映射为一个唯一的URL：
 
-Spring Boot默认情况下,将放置在classpath下的以下文件夹中的文件视为静态资源文件，并将其映射为一个唯一的URL：
-
-* /static
-* /public
-* /resources
-* /META-INF/resources
+- classpath:/static
+- classpath:/public
+- classpath:/resources
+- classpath:/META-INF/resources
 
 我们可以在src/main/resources/目录下创建static，在该位置放置一个图片文件。启动程序后，尝试访问http://localhost:808/D.jpg。如能显示图片，配置成功。
 
-Thymleleaf的模板文件被视为静态资源，只不过它比较特殊，与普通的html，图片， js代表等常规静态资源不一样，需要经过模板引擎的处理之后再传给客户端罢了。
+Thymleleaf的模板文件被视为静态资源，只不过Thymleleaf模板后缀也是html比较特殊，与普通的html，图片， js代表等常规静态资源不一样，需要经过模板引擎的处理之后再传给客户端罢了。
 
-默认情况下， Thymeleaf从classpath:/templates/处加载模板
+默认情况下， Thymeleaf从classpath:/templates/处加载模板.
 
 ### WebJars基础
 
@@ -128,7 +126,13 @@ spring-boot-devtools是一个自动应用代码更改到最新的App上面去，
 
 # Spring Boot的嵌入式容器
 
-默认情况下，启动一个内嵌的Tomcat容器,会在8080端口监听.
+内嵌web容器的两个默认配置项：默认的监听端口:8080,应用的contextPath为"/"。如我们想要覆盖默认的配置，可以按照如下方式进行：
+
+```yaml
+#Tomcat configuration
+server.port=80
+server.contextPath=/springboot
+```
 
 ![](pics/默认使用tomcat容器.png)
 
@@ -149,3 +153,5 @@ springbootstudy-0.0.1-SNAPSHOT.jar是我们打包好的，内部包含了其他�
 
 1. 步骤一、修改打包方式打开pom.xml，将打包方式由jar改为war
 2. 步骤二、调整嵌入式Tomcat插件的编译方式,默认情况下， spring-boot-starter-web会启动一个嵌入式的tomcat，因为现在我们是要生成一个war包，跑在外部的tomcat上，所以，给项目添加一个tomcat依赖(spring-boot-starter-tomcat)，并将其scope设置为“provided(表明这些组件由外部容器提供）”从而覆盖掉默认设置。
+
+
