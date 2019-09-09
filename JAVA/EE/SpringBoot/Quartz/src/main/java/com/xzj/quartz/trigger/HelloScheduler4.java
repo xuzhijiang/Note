@@ -9,15 +9,13 @@ import java.util.Date;
 /**
  * 认识CronTrigger
  *
+ * http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html#
+ *
  * 基于日历的作业调度器，而不是像SimpleTrigger那样精确的指定时间间隔，比SimpleTrigger更常用。
  *
  * 用于配置CronTrigger实例，是由7个子表达式组成的字符串，描述了时间表的详细信息，格式为：
  *
  * [秒] [分] [小时] [日] [月] [周] [年]
- *
- * 通配符说明: https://i.imgur.com/zHJFs5I.png
- * 表达式说明: https://i.imgur.com/W1oTyxC.png
- * 每个字段说明:https://i.imgur.com/FQlxFOc.png
  *
  * ?: 表示不指定值，使用的场景为不需要关心当前设置这个字段值
  * *:表示所有值，例如在分钟的字段设置*表示每一分钟都会触发
@@ -49,6 +47,7 @@ public class HelloScheduler4 {
                 .withSchedule(
                         CronScheduleBuilder.cronSchedule("* * * * * ? *"))
                 .build();
+
         // 创建Schedule实例
         SchedulerFactory sFactory = new StdSchedulerFactory();
         Scheduler scheduler = sFactory.getScheduler();

@@ -25,6 +25,17 @@ public class ArrayUtils {
 		System.out.println(Arrays.toString(ints));
 	}
 
+	@Test
+	public void listToArray()  {
+		ArrayList<String> list = new ArrayList<>();
+		list.add("a");list.add("b");list.add("c");
+		Object[] result = new Object[0];
+		// 如果list的size大于传入的array的length的话,就重新创建数组.
+		Object[] objects = list.toArray(result);
+		System.out.println("result: " + Arrays.toString(result));
+		System.out.println("objects: " + Arrays.toString(objects));
+	}
+
 	/**
 	 * Array转成List
 	 */

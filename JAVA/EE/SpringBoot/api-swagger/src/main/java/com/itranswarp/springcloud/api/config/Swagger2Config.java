@@ -32,7 +32,7 @@ public class Swagger2Config {
                 .title("我是标题")
                 .description("我是描述")
                 .termsOfServiceUrl("myServiceUrl")
-                .contact("许志江")
+                .contact("xxx-contact")
                 .version("V2.0.1")
                 .build();
     }

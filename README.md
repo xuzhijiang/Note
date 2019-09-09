@@ -8,7 +8,6 @@ jdk配置:
 3. CLASSPATH: 可以不用配置
 4. PATH: %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;
 
-算法: https://github.com/michaelliao/algorithms
 springcloud: https://github.com/michaelliao/springcloud
 
 Spring、SpringMVC、MyBatis、Spring Boot:https://github.com/lenve/JavaEETest
@@ -38,30 +37,13 @@ spring-boot-pay: https://gitee.com/52itstyle/spring-boot-pay/tree/master
 
 Spring Boot 学习资源:https://github.com/ityouknow/awesome-spring-boot
 
-
-Spring Boot 教程、技术栈示例代码，快速简单上手教程:https://github.com/ityouknow/spring-boot-examples
-
-spring boot 实践学习案例，是 spring boot 初学者及核心技术巩固的最佳实践:https://gitee.com/jeff1993/springboot-learning-example
-
-关于Java Design Pattern (设计模式) 学习积累的例子，是初学者及设计模式巩固的最佳实践。:https://github.com/JeffLi1993/java-designpattern-learning
-
 Halo 可能是最好的 Java 博客系统: https://github.com/halo-dev/halo
 
 购买域名:https://www.namecheap.com/
 
 来源: http://www.akathink.com
 
-![Springboot源码分析](http://fangjian0423.github.io)
-
-![红黑树](https://www.coursera.org/lecture/algorithms-part1/red-black-bsts-GZe13)
-
-![数据结构和算法](http://www.xuetangx.com/courses/course-v1:TsinghuaX+30240184_2X+sp/about)
-
-
 引用: http://objcoding.com
 
-https://crossoverjie.top/categories/
-
-https://github.com/jingedawang/Algorithms
 
 服务器间的Session共享。比如用户第一次请求被负载到A服务器登录，第二次发起请求时却转到了B服务器。而B服务器此时并没有该用户的Session，因此用户不得不重新登录一遍...

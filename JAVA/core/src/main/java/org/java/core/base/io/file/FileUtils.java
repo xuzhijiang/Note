@@ -128,6 +128,23 @@ public class FileUtils {
         }
     }
 
+    @Test
+    public void createDir() throws IOException {
+        // 相对路径是指当前项目的根路径.
+        File dir = new File("./data/");
+        if (dir.mkdirs()) {
+            System.out.println("./data/ 创建成功");
+        }
+        File file = new File(dir + File.separator+ "aa.txt");
+        System.out.println(file.getAbsolutePath());
+        if (file.createNewFile()) {
+            System.out.println("./data/aa.txt创建成功");
+        }
+        FileOutputStream fos = new FileOutputStream(file);
+        fos.write("hello".getBytes());
+        fos.close();
+    }
+
     /**
      * 以递归方式删除java中的非空文件夹
      *

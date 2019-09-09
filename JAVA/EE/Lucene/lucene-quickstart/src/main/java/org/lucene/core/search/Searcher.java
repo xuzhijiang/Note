@@ -20,7 +20,8 @@ import java.util.List;
 /**
  * Term是索引库中最基本的搜索单元。因为在建立索引的时候，如果指定不分词(如案例中的文件名和文件路径)，
  * 那么整个内容就是一个Term，而如果指定分词(如案例中的文件内容)，内容就会被拆分成多个Term，
- * 这些过程是在建立索引的过程中由Lucene框架自动完成的，因此Term是Lucene中最基本的搜索单元，在建立索引的时候我们不需要考虑Term。
+ * 这些过程是在建立索引的过程中由Lucene框架自动完成的，因此Term是Lucene中最基本的搜索单元，
+ * 在建立索引的时候我们不需要考虑Term。
  *
  * 在搜索的时候，我们可以使用Term配合TermQuery进行查询。
  *
@@ -81,7 +82,8 @@ public class Searcher {
         IndexReader indexReader = DirectoryReader.open(directory);
         IndexSearcher indexSearcher = new IndexSearcher(indexReader);
         // 在dirctory目录下，查找要查找的内容query
-        TopDocs topDocs = indexSearcher.search(query, 100);// 根据指定查询条件查询，只返回前n条(这里是前100条)结果
+        // // 根据指定查询条件查询，只返回前n条(这里是前100条)结果
+        TopDocs topDocs = indexSearcher.search(query, 100);
         int count = topDocs.totalHits;// 总结果数
         ScoreDoc[] scoreDocs = topDocs.scoreDocs;// 按照得分进行排序后的前n条结果的信息
 
@@ -90,11 +92,10 @@ public class Searcher {
         for (ScoreDoc scoreDoc : scoreDocs) {
             float score = scoreDoc.score;// 相关度得分
             System.out.println("相关度得分: " + score);
-            int docId = scoreDoc.doc; // Document在数据库的内部编号(是唯一的，由lucene自动生成)
-
+            // Document在数据库的内部编号(是唯一的，由lucene自动生成)
+            int docId = scoreDoc.doc; 
             // 根据编号取出真正的Document数据
             Document doc = indexSearcher.doc(docId);
-
             // 把Document转成Article
             Article artical = new Article(
                     Integer.parseInt(doc.getField("id").stringValue()),//需要转为int型

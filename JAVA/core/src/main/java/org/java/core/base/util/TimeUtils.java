@@ -2,6 +2,7 @@ package org.java.core.base.util;
 
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
@@ -12,6 +13,34 @@ import java.util.concurrent.TimeUnit;
  * 日期时间处理工具类
  */
 public class TimeUtils {
+
+    /**
+     * 返回当前日期是星期几
+     *
+     * @return 1-6 星期一至星期六   0：星期日
+     */
+    @Test
+    public void getCurrentDayOfWeek() {
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date(System.currentTimeMillis()));
+        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        System.out.println("dayOfWeek: " + (dayOfWeek-1));
+    }
+
+    /**
+     * 得到当前时间的Long数字
+     * 2015年5月8号10点42分 -> 201505081042
+     * @return
+     */
+    @Test
+    public void getCurrentDateTimeNumber() {
+        String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date(System
+                .currentTimeMillis()));
+        Long result = Long.valueOf(date);
+        System.out.println(date);
+        System.out.println(result);
+        System.out.println(new SimpleDateFormat("yyyy年MM月dd日").format(new Date(System.currentTimeMillis())));
+    }
 
     @Test
     public void timeMillisToDate() {
