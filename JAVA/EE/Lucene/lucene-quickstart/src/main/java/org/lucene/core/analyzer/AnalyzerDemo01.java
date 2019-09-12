@@ -9,13 +9,16 @@ import java.io.IOException;
 import java.io.StringReader;
 
 /**
- * 在"建立索引"和"用户搜索"时，都会用到分词器，建立索引时和搜索时使用的分词器应该是同一个，否则可能会出现搜不到的情况。
+ * 在"建立索引"和"用户搜索"时，都会用到分词器，建立索引时和搜索时使用的分词器应该是同一个，
+ * 否则可能会出现搜不到的情况。
  *
  * 实际中，我们不会去开发分词器，都是使用别人开发好的分词器，因此我们主要是学会如何使用这些分词器。
  *
- * 目前所有的分词器，对英文都有很好的处理。例如对于这样的一句话：An IndexWriter creates and maintains an index.
+ * 目前所有的分词器，对英文都有很好的处理。例如对于这样的一句话：
+ * An IndexWriter creates and maintains an index.
  *
- * 存储时,第一步：切分关键词：分词器首先会根据空格将这段话拆分为一个个单独的英语单词，并将标点去掉:
+ * 存储时,第一步：切分关键词：分词器首先会根据空格将这段话拆分为一个个单独的英语单词，
+ * 并将标点去掉:
  *
  * An
  * IndexWriter
@@ -52,7 +55,8 @@ public class AnalyzerDemo01 {
 
     private static void testPaoding() throws IOException{
         // 注意classpath:dic/下一定要有文件，如果只有一个dic文件夹的话，就会一直报错，
-        // 说实话PaodingAnalyzer源码写的真不咋地...,调试半天，提示的错误有问题，一直报文件夹不存在，其实是文件不存在!!!
+        // 说实话PaodingAnalyzer源码写的真不咋地...,调试半天，提示的错误有问题，
+        // 一直报文件夹不存在，其实是文件不存在!!!
         Analyzer analyzer = new PaodingAnalyzer("classpath:paoding/paoding-analysis.properties");
         String text = "我爱北京天安门";
         TokenStream tokenStream = analyzer.tokenStream("", text);

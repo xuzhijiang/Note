@@ -224,3 +224,5 @@ Comparator是策略模式的体现.
 双重锁检查.
 
 如何判断一个请求是来自电脑还是mobile.
+
+门面模式(slf4j-logback)

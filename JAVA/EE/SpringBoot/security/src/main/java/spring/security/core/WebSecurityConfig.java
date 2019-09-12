@@ -8,25 +8,39 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 //如果在应用程序中使用@Configuration修饰了一个WebSecurityConfigurerAdapter的子类，
-// 则会关闭Spring Boot中的默认Webapp security settings(安全设置.)
+// 则会关闭Spring Boot中的默认security settings(安全设置.)
 @Configuration
-@EnableWebSecurity//通过@EnableWebSecurity注解开启Spring Security的功能
+//通过@EnableWebSecurity注解开启Spring Security的功能,
+// 注意不是通过继承WebSecurityConfigurerAdapter开启的spring security功能,是通过@EnableWebSecurity
+// 即使不继承WebSecurityConfigurerAdapter,添加@EnableWebSecurity也会开启spring security
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private AccessDeniedHandler accessDeniedHandler;
 
     /**
      * Spring Security提供了一个过滤器来拦截请求并验证用户身份.
+     *
+     *  // roles admin allow to access /admin/**
+     *    roles user allow to access /user/**
+     *     custom 403 access denied handler
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                // 指定了/和/home不需要任何认证就可以访问
-                .antMatchers("/", "/home").permitAll()
+        http.csrf().disable()
+                .authorizeRequests()
+                // 指定了/和/home,/about不需要任何认证就可以访问
+                .antMatchers("/", "/home", "/about").permitAll()
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/user/**").hasAnyRole("USER")
                 // 其他的路径都必须通过身份验证
                 .anyRequest().authenticated()
                 .and()
@@ -41,7 +55,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // 默认访问/logout会发生注销操作(post方法),注销完成后重定向到/login?logout
                 .logout()
-                .permitAll();
+                .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
 
     /**
@@ -50,6 +66,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder()).withUser("user").password(new BCryptPasswordEncoder().encode("password")).roles("USER");
+
+//        auth.inMemoryAuthentication()
+//                .withUser("user").password("password").roles("USER")
+//                .and()
+//                .withUser("admin").password("password").roles("ADMIN");
     }
 
     /**
@@ -88,5 +109,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/*.html");
 	}
 	*/
+
+	/*
+    //Spring Boot configured this already.
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+    }*/
 
 }

@@ -57,13 +57,38 @@ firewall-cmd --remove-port=6379/tcp
 # iptables常用命令
 
 ```shell
-# centos需要安装,默认是没有这个文件的.
-iptables所在目录：/etc/sysconfig/iptables
+# centos需要安装iptables,默认是没有/etc/sysconfig/iptables这个文件的.
+# iptables所在目录：/etc/sysconfig/iptables
+
+# 我们在某一个时刻只能运行firewalld或者iptables,所以使用iptables之前
+# 要先把firewalld给彻底disable了.而且不能让firewalld开机启动.
+# 等切换回firewalld的时候,也要把iptables给彻底关闭了,不能开机启动.
+
+# Disable FirewallD
+# 停止当前正在允许的firewalld
+sudo systemctl stop firewalld
+# 禁止开机启动(注意此命令没有停止当前正在允许的firewalld)
+sudo systemctl disable firewalld
+# 阻止其他服务启动firewalld,也包括阻止从命令行启动.
+sudo systemctl mask --now firewalld
+
+# Install and Enable Iptables
+sudo yum install iptables-services
+
+# Once the package is installed start the Iptables service:
+systemctl status iptables
+systemctl enable iptables
+systemctl status iptables
+systemctl restart iptables
+
 
 service iptables status    #查看iptables状态
 service iptables restart   #iptables服务重启
 systemctl restart iptables #iptables服务重启
 service iptables stop      #iptables服务禁用
+
+# check the current iptables rules use the following commands:
+iptables -nvL
 
 # 方式1: 临时的添加iptable rule
 iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 8080 -j ACCEPT
@@ -90,3 +115,7 @@ service iptables stop
 - [https://linuxhint.com/open-port-80-centos7/](https://linuxhint.com/open-port-80-centos7/)
 - [https://www.dreamvps.com/tutorials/open-port-in-centos-7-firewalld/](https://www.dreamvps.com/tutorials/open-port-in-centos-7-firewalld/)
 - [https://www.codero.com/knowledge-base/content/10/377/en/how-to-manage-firewall-rules-in-centos-7.html](https://www.codero.com/knowledge-base/content/10/377/en/how-to-manage-firewall-rules-in-centos-7.html)
+- [iptables](https://man.linuxde.net/iptables)
+- [iptables](https://www.rootusers.com/how-to-install-iptables-firewall-in-centos-7-linux/)
+- [iptables](https://linuxhint.com/iptables_for_beginners/)
+- [iptables](http://www.zsythink.net/archives/1199)

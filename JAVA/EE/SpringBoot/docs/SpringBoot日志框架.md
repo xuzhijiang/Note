@@ -1,51 +1,55 @@
-# SpringBoot日志框架概述
+# 日志框架对比
 
-日志框架中我们选择的是SLF4J日志门面。日志实现选择的是Logback。调用日志记录的方法，不应该直接调用实现类，而是调用日志抽象层里面的方法。
+![](pics/常用日志框架02.png)
+![](pics/常用日志框架03.png)
+![](pics/常用日志框架04.png)
+![](pics/常用日志框架05.jpeg)
 
-## 1.使用slf4j的方法
+![](pics/slf4j理解07.png)
+![](pics/slf4j理解08.png)
+![](pics/slf4j理解09.png)
+![](pics/slf4j理解10.png)
 
-给系统导入slf4j包和日志实现Logback包，如果要使用log4j,就导入slf4j和slf4j-log4、log4j包,每一个日志的实现框架都有自己的配置文件，使用slf4j以后，配置文件还是写日志实现框架的配置文件。
+![](pics/常用日志框架06.png)
+![](pics/常用日志框架07.png)
+![](pics/常用日志框架08.png)
 
-## 3.SpringBoot中的日志关系
+![](pics/slf4j理解.png)
+![](pics/slf4j理解02.png)
+![](pics/slf4j理解03.png)
+![](pics/slf4j理解04.png)
+![](pics/slf4j理解05.png)
+![](pics/slf4j理解06.png)
 
-~~~xml
- <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-      <version>2.0.0.RELEASE</version>
-      <scope>compile</scope>
-    </dependency>
-~~~
+- [slf4j理解](https://www.slf4j.org/manual.html)
 
-SpringBoot使用下面的日志
+# SpringBoot使用Logback(我们自己开发使用的框架)
 
-~~~xml
- <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-logging</artifactId>
-      <version>2.0.0.RELEASE</version>
-      <scope>compile</scope>
-    </dependency>
-~~~
+- [logback好的理解](https://javadeveloperzone.com/spring-boot/spring-boot-slf4j-and-logback-example/)
 
-SpringBoot底层使用slf4j+logback的方式进行日志记录。同时将其他日志框架也装换为slf4框架。如果我们使用其他框架，就先把这个框架的默认日志框架给排除，例如我们使用Spring，就先排除Spring默认的commons-logging日志框架。
+spring boot的start自动引入了logback.
 
+![](pics/SpringBoot-logback.png)
+![](pics/SpringBoot-logback02.png)
+![](pics/SpringBoot-logback03.png)
+![](pics/SpringBoot-logback04.png)
 
-### 指定日志文件输出位置
+其中日志框架门面是SLF4J(对应slf4j-api这个jar包)。slf4j门面的具体实现是Logback(对应logback-classic这个jar包)。调用日志记录的方法，不应该直接调用实现类，而是调用日志抽象层里面的方法。
 
-| logging.file | logging.path | Example  | Desciption            |
-| ------------ | ------------ | -------- | --------------------- |
-| (none)       | (none)       |          | 只在控制台输出               |
-| 指定文件名        | (none)       | my.log   | 输出日志到my.log文件         |
-| (none)       | 指定目录         | /var/log | 输出到指定目录的spring.log文件中 |
+>每一个日志的实现框架都有自己的配置文件，即使使用slf4j，配置文件还是写日志实现框架的配置文件:
 
-logging.file不指定路径在当前项目下生成springboot.log文件，也可以指定路径D:/springboot.log
+1. Logback：logback-spring.xml, logback-spring.groovy, logback.xml, logback.groovy
+2. Log4j：log4j-spring.properties, log4j-spring.xml, log4j.properties, log4j.xml
+3. Log4j2：log4j2-spring.xml, log4j2.xml
+4. JDK (Java Util Logging)：logging.properties
 
-logging.path指定为/spring/log就会在当前磁盘的根路径下创建一个spring文件夹和log文件夹，使用spring.log为日志文件。
+Spring Boot官方推荐优先使用带有-spring的文件名作为你的日志配置(如使用logback-spring.xml，而不是logback.xml）
 
-## 5.使用自己的配置文件
+![](pics/logback-设置日志级别.png)
 
-如果使用logback配置文件，就吧logback.xml放在项目resources目录下即可，
+## logback配置文件详解-logback.xml
+
+吧logback.xml放在项目resources目录下即可，
 
 ~~~xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -121,8 +125,6 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <!-- Spring framework logger -->
     <logger name="org.springframework" level="debug" additivity="false"></logger>
 
-
-
     <!-- 
     root与logger是父子关系，没有特别定义则默认为root，任何一个类只会和一个logger对应，
     要么是定义的logger，要么是root，判断的关键在于找到这个logger，然后判断这个logger的appender和level。 
@@ -134,7 +136,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 </configuration> 
 ~~~
 
-如果将logback.xml更改为logback-spring.xml就是有SpringBoot解析日志配置，就可以使用SpringBoot的Profile功能，指定在某种开发环境下才生效。
+如果将logback.xml更改为logback-spring.xml就是由SpringBoot解析这个配置文件，就可以使用SpringBoot的Profile功能，指定在某种开发环境下才生效。
 
 ~~~xml
 <layout class="ch.qos.logback.classic.PatternLayout">
@@ -147,3 +149,97 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         </layout>
 ~~~
 
+# Spring boot中使用log4j
+
+在spring boot中引入log4j桥接jar以及实现jar.
+
+## log4j控制台输出
+
+```
+# 设定root日志的输出级别为INFO
+# LOG4J配置
+log4j.rootCategory=INFO, stdout
+
+# 控制台输出(appender为控制台输出stdout)
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L - %m%n
+```
+
+## log4j输出到文件
+
+```
+# LOG4J配置
+log4j.rootCategory=INFO, stdout, file
+
+# root日志输出
+log4j.appender.file=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.file.file=logs/all.log
+log4j.appender.file.DatePattern='.'yyyy-MM-dd
+log4j.appender.file.layout=org.apache.log4j.PatternLayout
+log4j.appender.file.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L - %m%n
+```
+
+## log4j分类输出
+
+```xml
+# com.didispace包下的日志配置
+log4j.category.com.didispace=DEBUG, didifile
+
+# com.didispace下的日志输出
+log4j.appender.didifile=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.didifile.file=logs/my.log
+log4j.appender.didifile.DatePattern='.'yyyy-MM-dd
+log4j.appender.didifile.layout=org.apache.log4j.PatternLayout
+log4j.appender.didifile.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L ---- %m%n
+
+```
+
+>可以对不同级别进行分类，比如对ERROR级别输出到特定的日志文件中，具体配置可以如下。
+
+```xml
+log4j.logger.error=errorfile
+
+# error日志输出
+log4j.appender.errorfile=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.errorfile.file=logs/error.log
+log4j.appender.errorfile.DatePattern='.'yyyy-MM-dd
+log4j.appender.errorfile.Threshold = ERROR
+log4j.appender.errorfile.layout=org.apache.log4j.PatternLayout
+log4j.appender.errorfile.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L - %m%n
+```
+
+## log4j示例
+
+log4j.properties中对com.didispace包下的日志定义是这样的，固定定义了DEBUG级别，并输出到名为didifile定义的appender中：
+
+```xml
+
+# LOG4J配置
+log4j.category.com.didispace=DEBUG, didifile
+
+# com.didispace下的日志输出
+log4j.appender.didifile=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.didifile.file=logs/my.log
+log4j.appender.didifile.DatePattern='.'yyyy-MM-dd
+log4j.appender.didifile.layout=org.apache.log4j.PatternLayout
+log4j.appender.didifile.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L ---- %m%n
+```
+
+# SpringBoot使用log4j2
+
+![](pics/使用log4j2依赖添加.png)
+
+# Spring Boot源码内部使用的日志框架-Commons Logging
+
+![](pics/常用日志框架01.png)
+![](pics/SpringBoot内部的日志框架01.png)
+![](pics/SpringBoot内部的日志框架02.png)
+![](pics/SpringBoot内部的日志框架03.png)
+![](pics/SpringBoot内部的日志框架04.png)
+![](pics/SpringBoot内部的日志框架05.png)
+
+Spring Boot源码内部使用Commons Logging(区别与一般用户开发代码使用的框架).根据上面的代码截图,可以知道,Commons Logging是内部也要根据加载不同的实现类来确定具体使用什么实现类来打印日志.这主要得益于Commons Logging是提供的Log接口,然后就可以通过动态加载实现类来达到目的.
+
+![](pics/SpringBoot内部的日志框架06.png)
+![](pics/SpringBoot内部的日志框架07.png)

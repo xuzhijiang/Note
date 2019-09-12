@@ -72,3 +72,37 @@ wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-
 yum clean all
 yum makecache
 ```
+
+# tomcat安装-centos
+
+```shell
+cd /opt/ && wget tomcat-download-url.tar.gz
+tar -zxvf tomcat-download-url.tar.gz
+ln -s tomcat-download-url tomcat
+
+vim /etc/profile.d/tomcat.sh
+# 增加:
+export CATALINA_HOME=/opt/tomcat
+export PATH=$CATALINA_HOME/bin:$PATH
+# 导入到环境变量中
+. /etc/profile.d/tomcat.sh
+# 查看版本号信息
+catalina.sh version
+catalina.sh start
+netstat -tunlp | grep java
+# 可以访问了,注意关闭防火墙,或者打开8080端口
+```
+
+## 为Tomcat提供SysV脚本，方便使用、管理
+
+```shell
+vim /etc/rc.d/init.d/tomcat
+# 添加shell项目下的tomcat-manage.sh内容.
+
+chmod +x /etc/rc.d/init.d/tomcat
+
+chkconfig --add tomcat
+chkconfig tomcat --list
+
+service tomcat version # 中间的tomcat就是上面的/etc/rc.d/init.d/tomcat脚本名字
+```

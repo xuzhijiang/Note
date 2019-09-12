@@ -108,7 +108,7 @@ Springboot中显示的导入配置类的方法;
         return new RequestContextListener();
     }
 
-如果您已经有XML文件，您不希望转换为Java配置，您仍然可以使用@ImportResource导入它们：
+如果您已经有XML文件，您不希望转换为Java配置，您仍然可以使用@ImportResource导入它们,这样可以兼容xml和新的注解.
 
 @SpringBootApplication
 @ImportResource("applicationContext.xml")

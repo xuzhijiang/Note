@@ -141,7 +141,6 @@ PID USER PR NI VIRT RES SHR S %CPU %MEM TIME+ COMMAND
 # A cache is something that has been "read" from the disk and stored for later use.
 # 缓存是从磁盘“读取”并存储以供以后使用的东西。
 
-
 # 而这两块是为了提高系统效率而分配的内存，在内存富余的时候，操作系统将空闲内存利用起来，
 # 而有内存需求时，系统会释放这部分的内存供应用程序使用。
 
@@ -155,7 +154,7 @@ PID USER PR NI VIRT RES SHR S %CPU %MEM TIME+ COMMAND
 free
 
 # 查看内存的使用情况
-free -h
+free -h  (human read)
 
 total used free shared buffers cached
 Mem: 4086496 4034044 52452 0 112756 1831564
@@ -178,4 +177,20 @@ Swap: 4094 781 3312
 # 这样，真正应用程序的内存使用量就可以得出来了，上面的例子中内存占用率为51.1%。
 
 # 参考:https://zhuanlan.zhihu.com/p/25082224
+
+# free -h的available作用:只是一种可用内存的预估计.
+free -h
+              total        used        free      shared  buff/cache   available
+Mem:           992M        420M        104M        412K        467M        401M
+Swap:            0B          0B          0B
+
+# The available memory is just a estimate of how memory can be really used in your system for loading programs, so it is not a precise value.
+
+# Estimation of how much memory is available for starting new applications
 ```
+
+
+# 参考
+
+- [free](https://unix.stackexchange.com/questions/326833/meaning-of-available-field-in-free-m-command)
+- [free](http://man7.org/linux/man-pages/man1/free.1.html)

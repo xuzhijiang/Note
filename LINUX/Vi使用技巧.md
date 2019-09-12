@@ -10,6 +10,6 @@
 # 将修改另外保存到file中，不退出vi
 :w file
 
-# linux下paste code对齐命令:
+# linux下粘贴的代码对齐命令:
 # 按v，然后上下键，然后按=
 ```

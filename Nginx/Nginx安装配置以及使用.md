@@ -68,6 +68,5 @@ sudo /etc/init.d/nginx restart  # 重启
 sudo service nginx start
 sudo service nginx stop
 sudo service nginx restart
-
 service ngnix status #查看nginx服务的状态
 ```
