@@ -67,6 +67,8 @@ spring.servlet.multipart.resolve-lazily=false
 
 ![](pics/常用的数据校验规则.png) 
 
+- [好的总结](https://www.funtl.com/zh/supplement1/#jsr-303-%E7%AE%80%E4%BB%8B)
+
 ## 异常处理
 
 Spring Boot提供了一个默认的映射：/error，当处理中抛出异常之后，会转到/error中处理，并且该请求有一个全局的错误页面用来展示异常内容。
@@ -92,3 +94,26 @@ Spring Boot提供了一个默认的映射：/error，当处理中抛出异常之
 ![](pics/WebMvcConfigurer目录加载问题.png)
 ![](pics/WebMvcConfigurerAdapter过时01.png)
 ![](pics/直接实现WebMvcConfigurer.png)
+
+# Spring 整合 Spring MVC
+
+![](pics/DispatcherServlet组件.png)
+![](pics/DispatcherServlet工作原理.png)
+
+![](pics/Spring整合SpringMVC01.png)
+![](pics/Spring整合SpringMVC02.png)
+![](pics/Spring整合SpringMVC03.png)
+![](pics/Spring整合SpringMVC04.png)
+![](pics/Spring整合SpringMVC05.png)
+![](pics/Spring整合SpringMVC06.png)
+![](pics/Spring整合SpringMVC07.png)
+
+# spring mvc拦截器
+
+![](pics/拦截器.png)
+![](pics/拦截器02.png)
+![](pics/拦截器03.png)
+
+简单概括:perHandle()方法是按照配置文件顺序执行 然后逆序执行每个拦截器的postHandle()方法 ，最后逆序执行afterCompletion()方法
+
+- [来源](https://www.funtl.com/zh/spring-mvc/第一个-Controller-控制器.html#概述)

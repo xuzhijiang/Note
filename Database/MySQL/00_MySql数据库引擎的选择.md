@@ -18,5 +18,7 @@ MySQL 5.7.5后only_full_group_by成为sql_mode的默认选项之一，这可能�
 ![](pics/only_full_group_by-01.png)
 ![](pics/only_full_group_by-02.png)
 ![](pics/only_full_group_by-03.png)
+![](pics/only_full_group_by-04.png)
+![](pics/only_full_group_by-05.png)
 
 - [only_full_group_by研读](https://blog.csdn.net/allen_tsang/article/details/54892046)

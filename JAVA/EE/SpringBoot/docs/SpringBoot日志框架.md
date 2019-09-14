@@ -23,7 +23,7 @@
 
 - [slf4j理解](https://www.slf4j.org/manual.html)
 
-# SpringBoot使用Logback(我们自己开发使用的框架)
+# SpringBoot使用Logback(普通用户自己开发使用的日志框架,不是源码使用的日志框架)
 
 - [logback好的理解](https://javadeveloperzone.com/spring-boot/spring-boot-slf4j-and-logback-example/)
 
@@ -151,7 +151,11 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 
 # Spring boot中使用log4j
 
-在spring boot中引入log4j桥接jar以及实现jar.
+在spring boot中引入log4j桥接jar包以及实现slf4j门面的jar.
+
+![](pics/log4j-日志附加器.png)
+![](pics/log4j-日志附加器2.png)
+![](pics/log4j-日志附加器3.png)
 
 ## log4j控制台输出
 
@@ -189,13 +193,15 @@ log4j.category.com.didispace=DEBUG, didifile
 # com.didispace下的日志输出
 log4j.appender.didifile=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.didifile.file=logs/my.log
-log4j.appender.didifile.DatePattern='.'yyyy-MM-dd
+log4j.appender.didifile.DatePattern='.'<yy></yy>yy-MM-dd
 log4j.appender.didifile.layout=org.apache.log4j.PatternLayout
 log4j.appender.didifile.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L ---- %m%n
 
 ```
 
->可以对不同级别进行分类，比如对ERROR级别输出到特定的日志文件中，具体配置可以如下。
+>可以对不同级别进行分类,log4j共分 6 个级别：fatal(致命的),error,warn,info,debug,trace(堆栈)
+
+对ERROR级别输出到特定的日志文件中，具体配置可以如下。
 
 ```xml
 log4j.logger.error=errorfile

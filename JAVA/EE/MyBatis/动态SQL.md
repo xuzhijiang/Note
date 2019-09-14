@@ -1,17 +1,44 @@
+## 如果数据库中的字段和类中的属性不一致怎么办?
+
+User中的用户名是userName,而表中是user_name:
+
+```xml
+<select id="selectAll" resultType="User">
+  SELECT 
+    a.id, 
+    a.user_name AS a.userName // 把下划线变成类中的驼峰,好让表中的user_name匹配上类中的userName
+   FROM t_user AS a;
+</select>
+```
+
 # MyBatis的动态SQL
 
-MyBatis 的强大特性之一便是它的动态 SQL。MyBatis 采用功能强大的基于OGNL的表达式来淘汰其它大部分元素。 如下
+MyBatis 的强大特性之一便是它的动态 SQL, 如下
 
 - if
-- choose (when, otherwise)
+- choose (里面只可以包含when, otherwise)
 - trim (where, set)
 - foreach
 
-## if的使用
+![](pics/动态sql01.png)
+![](pics/if标签.png)
+![](pics/where标签01.png)
+![](pics/where标签02.png)
+![](pics/choose标签01.png)
+![](pics/choose标签02.png)
+![](pics/foreach标签-遍历数组01.png)
+![](pics/foreach标签-遍历数组02.png)
+![](pics/foreach标签-遍历数组03.png)
+![](pics/foreach标签-遍历集合01.png)
+![](pics/foreach标签-遍历集合02.png)
+![](pics/foreach标签-遍历集合03.png)
+![](pics/foreach标签-遍历集合04.png)
+![](pics/sql标签01.png)
+![](pics/sql标签02.png)
 
-动态 SQL 通常要做的事情是根据条件包含 where 子句的一部分。比如 
+# if
 
-**注意：在xml文件中特殊符号，像<，>要使用转义字符**
+对于该标签的执行，当 test 的值为 true 时，会将其包含的 SQL 片断拼接到其所在的 SQL 语句中。
 
 ```xml
 <select id="findActiveBlogWithTitleLike"

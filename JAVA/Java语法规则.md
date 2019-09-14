@@ -226,3 +226,17 @@ Comparator是策略模式的体现.
 如何判断一个请求是来自电脑还是mobile.
 
 门面模式(slf4j-logback)
+
+别人问什么是spring mvc,直接讲mvc是什么即可,spring mvc是一个mvc框架的实现,当然struts也是mvc的实现,都属于mvc框架.
+
+如果不用spring mvc,就要使用servlet,那么每处理一个请求,都要创建一个servlet,很大工作量,以及没法维护.
+所以引入spring mvc,里面有一个核心组件,叫做DispatcherServlet,帮助我们分发请求(把servlet变成controller).
+就不用写那么多sevlet,而且还根据业务逻辑,把请求分到不同的controller,便于维护.(面试要问如何实现,可以简单说下handlermapping到controller.)
+
+
+拦截器,其实就是使用servelt的filter来实现的,为什么不用filter呢,为什么会出现拦截器这个东西呢,因为filter使用和维护比较麻烦,所以spring mvc为了解决filter的问题,引入了拦截器.
+
+spring mvc依赖了哪些jar包啊?
+
+spring-webmvc.(spring-webmvc已经依赖了spring-web,spring-aop,spring-beans,spring-context,spring-core等.) 
+

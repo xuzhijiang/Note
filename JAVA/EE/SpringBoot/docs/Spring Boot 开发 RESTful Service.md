@@ -1,25 +1,8 @@
-### REST的由来
+# REST的由来
 
-REST这个词，是Roy Thomas Fielding在他2000年的博士论文中提出的。
-Fielding将他对互联网软件的架构原则，命名为“REST(Representational State Transfer）”。
+REST这个词，是国外的一个博士论文中提出的,“REST(Representational State Transfer）-表现状态转换”。
 
-如果一个架构符合REST原则，就称它为“REST风格”架构。
-
-#### REST的三个关键术语
-
-##### 资源
-
-* 互联网被看成是一个Web资源的集合资源
-* 每个资源对应一个特定的URI。
-
-##### 资源的表达
-
-* 通常使用Json来标准化客户端访问资源的信息交换过程
-
-##### 状态转换
-
-* 资源可以创建(create）、访问(visit）、修改(update）和删除(delete）。
-* 状态转换过程基于HTTP协议所定义的method实现
+REST比较抽象,简单的说就是一种软件的架构风格,让访问的api看上去更优雅.
 
 ### HTTP method定义了若干种资源访问方式
 
