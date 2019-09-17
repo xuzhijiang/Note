@@ -48,14 +48,12 @@ POM 代表项目对象模型.
 16. mvn help:describe -Dplugin=eclipse(查看eclipse插件的所有命令)
 17. Goal Prefix:eclipse(目标前缀是eclipse)
 
-
-
 mvn test (compile and run unit tests)
 mvn package (compile, run unit tests, and build the distributable package)
 mvn install (all of the above, and install distributable package into local repository.Install is very useful if you need to build other packages which depend on changes to this package)
 mvn deploy (all of the above, and install package into remote (aka public) repository for sharing with other developers)
 
-### Maven配置文件Scope解释
+# Maven配置文件Scope解释
 
 >scope有compile、test、runtime、provided、system，其中默认的值是compile
 
@@ -82,9 +80,9 @@ mvn deploy (all of the above, and install package into remote (aka public) repos
 
 5. 从参与度(编译，测试，运行)来说，也provided相同，不过被依赖项不会从maven仓库抓，而是从本地文件系统拿，一定需要配合systemPath属性使用。
 
-## maven替换中央仓库- 阿里云
+# maven替换中央仓库- 阿里云
 
-### 第一种: 修改local repo仓库地址
+第一种: 修改local repo仓库地址
 
 ```shell
 # 修改maven根目录下的conf文件夹中的setting.xml文件
@@ -99,7 +97,7 @@ sudo vim settings.xml
 
 ```xml
 # pom.xml文件里添加
-<repositories>  
+<repositories>
         <repository>  
             <id>alimaven</id>  
             <name>aliyun maven</name>  
@@ -113,3 +111,82 @@ sudo vim settings.xml
         </repository>  
 </repositories>  
 ```
+
+# Nexus
+
+Nexus 是一个强大的仓库管理器，极大地简化了内部仓库的维护和外部仓库的访问,[download](https://www.sonatype.com/).
+
+## 为什么使用Nexus
+
+如果没有私服，我们所需的jar都需要通过maven中央仓库和第三方的Maven仓库(如阿里云等)下载到本地，而一个团队中的所有人都重复的从maven仓库下载构件无疑加大了仓库的负载和浪费了外网带宽，如果网速慢的话，还会影响项目的进程。很多情况下项目的开发都是在内网进行的，连接不到maven仓库怎么办呢？开发的公共构件怎么让其它项目使用？这个时候我们不得不为自己的团队搭建属于自己的maven私服，这样既节省了网络带宽也会加速项目搭建的进程，当然前提条件就是你的私服中拥有项目所需的所有构件。
+
+- 如果公司开发组的开发环境全部内网，这时如何连接到在互联网上的Maven中央仓库呢？
+- 如果公司经常开发一些公共的组件，如何共享给各个开发组，使用拷贝方式吗？如果这样，公共库升级了怎么办？
+
+## Windows下使用Nexus
+
+- [http://www.luyixian.cn/news_show_3701.aspx](http://www.luyixian.cn/news_show_3701.aspx)
+- [https://cloud.tencent.com/developer/article/1492820](https://cloud.tencent.com/developer/article/1492820)
+- [https://www.cnblogs.com/dingyingsi/p/3687077.html](https://www.cnblogs.com/dingyingsi/p/3687077.html)
+- [https://www.funtl.com/zh/nexus/](https://www.funtl.com/zh/nexus/#%E6%9C%AC%E8%8A%82%E8%A7%86%E9%A2%91)
+
+![](pics/Nexus01.png)
+![](pics/Nexus02.png)
+
+### 分组
+
+![](pics/Nexus03.png)
+![](pics/Nexus分组.png)
+
+![](pics/Nexus04.png)
+![](pics/Nexus分组02.png)
+
+### 创建各种仓库
+
+![](pics/Nexus05.png)
+![](pics/Nexus06.png)
+![](pics/Nexus07.png)
+![](pics/Nexus08.png)
+![](pics/Nexus09.png)
+![](pics/Nexus10.png)
+
+### 从私服下载jar的配置
+
+> 注意,如果修改的是Maven的conf/settings.xml,那么就不用配置单个项目了,因为这个项目所使用的maven都会自动使用settings.xml中的配置.如果修改的是单个项目的pom.xml,则对其他项目无效.
+
+![](pics/从私服上下载jar包01.png)
+![](pics/从私服上下载jar包02.png)
+![](pics/从私服上下载jar包03.png)
+
+![](pics/Nexus11.png)
+![](pics/Nexus12.png)
+![](pics/Nexus13.png)
+![](pics/Nexus14.png)
+![](pics/Nexus15.png)
+![](pics/Nexus16.png)
+
+![单个项目引用私服](pics/本地项目配置引用私服.png)
+
+### 上传jar到私服
+
+![](pics/往私服上上传代码01.png)
+![](pics/往私服上上传代码02.png)
+
+![](pics/Nexus17.png)
+![](pics/Nexus18.png)
+![](pics/Nexus19.png)
+![](pics/Nexus20.png)
+![](pics/Nexus21.png)
+![](pics/Nexus22.png)
+
+![](pics/snapshot-release-部署jar注意.png)
+
+### 其他注意事项
+
+![](pics/下载远程索引.png)
+![](pics/设置部署策略01.png)
+![](pics/设置部署用户名.png)
+
+## Linux下使用
+
+- [https://yq.aliyun.com/articles/7427](https://yq.aliyun.com/articles/7427)

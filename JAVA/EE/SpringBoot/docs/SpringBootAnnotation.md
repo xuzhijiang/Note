@@ -20,7 +20,7 @@
     但是我的接口中定义了consumes={"application/xml"},我只接收application/xml 格式，也只返回xml格式.很明显，用户调不通这个接口.
 ---
 
-# Resource注解
+# Resource注解-JSR-250提供的注解
 
 ![](pics/Resource注解.png)
 
@@ -55,7 +55,9 @@
 
 # @Value
 
-@Value("${age}")获取配置文件中的属性值
+给Bean中的字段添加@Value注解，能为其设置默认值。
+
+这个值除了直接指定，还可以从项目的application.properties文件中提取: @Value("${age}")获取配置文件中的属性值
 
 # @SpringBootApplication
 
@@ -63,9 +65,16 @@
 
 - @ComponentScan: 执行组件扫描(使用@Component，@Service，@Repository，@Controller等注释的Bean)-扫描与Application类相同的包或子包中的其他配置和bean
 - @EnableAutoConfiguration  - 告诉SpringBoot自动依据类路径的设置添加bean.
+- @Configuration和@Bean一起使用,用于定义bean
 
 @EnableAutoConfiguration 注解的作用是让 SpringBoot来“猜测” 如何配置 Spring。猜测的依据很简单，就是根据依赖的jar包。因为在我们的依赖中，包含了 Tomcat和SpringMvc ，因此SpringBoot的自动配置机制就会认为这是一个web应用。
 因此在main方法run后，就启动 tomcat，让用户通过url来访问
+
+# @ComponentScan
+
+在Spring Boot项目中，默认情况下，会扫描程序入口点类所在的包及下属子包中的Bean组件。如果Bean组件放在其他的包中，则可以给配置类添加@ComponentScan注解,指定额外的要扫描Bean组件的包.
+
+通过@ComponentScan注解扫描特定的包只是这一注解最常见的用法罢了，这一注解其实包容有诸多的属性，比如它可以定义过滤器，将特定的Bean排除在外。
 
 # @JsonView的应用场景
 
@@ -129,3 +138,8 @@ public RequestContextListener requestContextListener() {
 - @Primary:声明默认的，首要的bean(在没有具体指明名字的时候使用).
 - Springboot中显示的导入配置类的方法; @Import(value = { LoginSecurityConfig.class })
 - @ComponentScan(basePackages="pkg")-这个是为了导入和MainApplication不是同一个包,也不是其子包的package中的配置.
+- @Qualifier: 如果在注入时发现符合要求的Bean有多个，可以使用@Qualifier来人为指定选哪个Bean
+- @RequestHeader and @ResponseHeader
+- @PreDestroy
+- @Autowired: 能将一个Bean“自动”从外部注入到本Bean中,当然可以通过@Autowired的required属性为false定义一个可选的注入
+- @PropertySource

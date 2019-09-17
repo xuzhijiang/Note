@@ -8,22 +8,15 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 
 /**
  * 在微服务架构中，业务都会被拆分成一个独立的服务，服务与服务的通讯是基于 http restful 的。
- * Spring cloud 有两种服务调用方式，一种是 ribbon + restTemplate，另一种是 feign。
- * 在这一篇文章首先讲解下基于 ribbon + rest
  *
- * Ribbon 简介:
+ * Spring cloud 有两种服务调用方式，一种是 ribbon + restTemplate，另一种是 feign。
+ *
+ * 这里是 ribbon + rest
  *
  * Ribbon 是一个负载均衡客户端，可以很好的控制 http 和 tcp 的一些行为。
- *
- * 准备工作:
- *
- * 启动服务提供者（服务名称:hello-spring-cloud-service-admin），端口号为：8762, 8763，
- * 启动后在 Eureka 中会注册两个hello-spring-cloud-service-admin实例，这相当于一个小集群
- *
- * 创建服务消费者（Ribbon）:
  */
 @SpringBootApplication
-@EnableDiscoveryClient // 通过 @EnableDiscoveryClient 注解注册到服务中心
+@EnableDiscoveryClient // 通过 @EnableDiscoveryClient 发现服务.
 @EnableHystrix // Ribbon 中使用熔断器,增加 @EnableHystrix 注解
 @EnableHystrixDashboard // 增加 Hystrix 仪表盘功能,启用HystrixDashboard
 public class WebAdminRibbonApplication {

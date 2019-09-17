@@ -18,4 +18,5 @@ public class AdminController {
     public String sayHi(@RequestParam String message) {
         return adminService.sayHi(message);
     }
+
 }

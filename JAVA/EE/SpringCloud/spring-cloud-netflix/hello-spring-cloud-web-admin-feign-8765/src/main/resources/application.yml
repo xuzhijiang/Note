@@ -14,7 +14,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/ # 注册当前feign服务到Eureka
 
 # Feign 中使用熔断器(在Feign中不需要在Application上添加Ribbon 中使用熔断器)
 # Feign 是自带熔断器的，但默认是关闭的。需要在配置文件中配置打开它:

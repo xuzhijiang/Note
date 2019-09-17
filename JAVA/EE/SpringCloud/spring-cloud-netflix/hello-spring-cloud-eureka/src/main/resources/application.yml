@@ -1,6 +1,6 @@
 spring:
   application:
-    name: hello-spring-cloud-eureka
+    name: hello-spring-cloud-eureka # 根据这个命名找到这个注册发现服务,所以名字很重要,要起名
 
 server:
   port: 8761
@@ -17,6 +17,5 @@ eureka:
 # Eureka 是一个高可用的组件，它没有后端缓存，每一个实例注册之后需要向注册中心发送心跳（因此可以在内存中完成），
 # 在默认情况下 Erureka Server 也是一个 Eureka Client ,必须要指定一个 Server。
 
-# 通过 eureka.client.registerWithEureka:false 和 fetchRegistry:false 来表明自己是一个 Eureka Server.
-
-# Eureka Server 是有界面的，启动工程，打开浏览器访问：http://localhost:8761
+# 通过 eureka.client.registerWithEureka:false 和 fetchRegistry:false 来表明自己是一个 Eureka 服务端.
+# 不加这两个属性配置的话,会认为你是Eureka客户端

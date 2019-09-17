@@ -14,4 +14,4 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/ # 把当前服务注册eureka服务端(这个地址就是eureka的地址)

@@ -9,7 +9,8 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-# 增加 Zuul 配置
+
+# 增加 Zuul 路由网关配置
 # 路由说明：
   #
   #以 /api/a 开头的请求都转发给 hello-spring-cloud-web-admin-ribbon 服务
@@ -18,7 +19,7 @@ zuul:
   routes:
     api-a:
       path: /api/a/**
-      serviceId: hello-spring-cloud-web-admin-ribbon
+      serviceId: hello-spring-cloud-web-admin-ribbon # hello-spring-cloud-web-admin-ribbon服务消费则
     api-b:
       path: /api/b/**
-      serviceId: hello-spring-cloud-web-admin-feign
+      serviceId: hello-spring-cloud-web-admin-feign # hello-spring-cloud-web-admin-feign服务消费者

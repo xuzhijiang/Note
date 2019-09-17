@@ -1,6 +1,6 @@
 package com.funtl.hello.spring.cloud.zuul.fallback;
 
-// 配置网关路由失败时的回调
+// 配置网关路由失败时的回调, 解决api网关路由失败的问题.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
@@ -25,6 +25,7 @@ public class WebAdminFeignFallbackProvider implements FallbackProvider {
     @Override
     public String getRoute() {
         // ServiceId，如果需要所有调用都支持回退，则 return "*" 或 return null
+        // 在hello-spring-cloud-web-admin-feign服务路由失败的时候会回调.
         return "hello-spring-cloud-web-admin-feign";
     }
 
@@ -65,8 +66,10 @@ public class WebAdminFeignFallbackProvider implements FallbackProvider {
 
             }
 
+            // 响应体
             @Override
             public InputStream getBody() throws IOException {
+                // ObjectMapper用于封装json
                 ObjectMapper objectMapper = new ObjectMapper();
                 Map<String, Object> map = new HashMap<>();
                 map.put("status", 200);
@@ -74,13 +77,16 @@ public class WebAdminFeignFallbackProvider implements FallbackProvider {
                 return new ByteArrayInputStream(objectMapper.writeValueAsString(map).getBytes("UTF-8"));
             }
 
+            // 设置响应header
             @Override
             public HttpHeaders getHeaders() {
                 HttpHeaders headers = new HttpHeaders();
+                // 说明是json数据,而且是utf8编码.
                 // 和 getBody 中的内容编码一致
                 headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
                 return headers;
             }
+
         };
     }
 }

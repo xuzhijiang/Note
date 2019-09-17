@@ -4,21 +4,6 @@
 2. Spring Boot - 自动化配置--->注解为主
 3. Spring Cloud - 单体应用--->分布式微服务系统
 
-# Spring Framework中最重要的两个核心特性
-
-* 依赖注入(DI： DependencyInjection）:Spring使用“依赖注入”这种手段来管理`各类Java资源`，降低了各种资源的耦合
-* 面向切面编程(AOP： Aspect-OrientedProgramming）:Spring通过动态代理技术实现了面向切面的编程(AOP），避免了编写大量重复的代码
-
-# Spring IoC Container
-
-我们使用的一些有用的ApplicationContext实现是:
-
-1. AnnotationConfigApplicationContext：如果我们在独立的Java应用程序中使用Spring并using annotations for Configuration，那么我们可以使用它来初始化容器并获取bean对象。
-2. ClassPathXmlApplicationContext：如果我们在独立应用程序中有spring bean配置xml文件，那么我们可以使用这个类加载文件并获取容器对象。
-3. FileSystemXmlApplicationContext：这类似于ClassPathXmlApplicationContext，
-除了可以从文件系统中的任何位置加载xml配置文件。
-4. AnnotationConfigWebApplicationContext和XmlWebApplicationContext。
-
 # Spring 5重要特性
 
 - 使用新模块改进了日志记录 -  spring-jcl。
@@ -72,6 +57,11 @@ massive numbers of concurrent connections.
 
 1. Spring Boot 2.0所引入的两个技术栈，各有其适合的应用场景，使用Servlet技术栈的，适合于开发传统Web项目。开发微服务，推荐使用Reactive技术栈。
 2. 当前主流的Web技术方案是“前后端分离”，如果使用Java开发后端服务，可以使用Spring MVC或WebFlux开发RESTful Service，诸如Thymeleaf之类传统的MVC视图技术也可以不用了， Vue/React/Angular用起来更方便和强大.
+
+# Spring Framework最重要的两个核心特性
+
+* 依赖注入(DI： DependencyInjection）:Spring使用“依赖注入”这种手段来管理`各类Java资源`，降低了各种资源的耦合
+* 面向切面编程(AOP： Aspect-OrientedProgramming）:Spring通过动态代理技术实现了面向切面的编程(AOP），避免了编写大量重复的代码
 
 # spring framework高级特性
 

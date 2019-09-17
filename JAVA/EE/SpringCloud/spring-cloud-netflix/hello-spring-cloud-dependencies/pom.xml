@@ -50,8 +50,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--spring-cloud-dependencies：在 properties 配置中预定义了版本号为 Finchley.RC1 ，
-            表示我们的 Spring Cloud 使用的是 F 版-->
+            <!--在 properties 配置中预定义了版本号为 Finchley.RC1 ，表示我们的 Spring Cloud 使用的是 F 版-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -179,6 +178,8 @@
         </pluginManagement>
 
         <!-- 资源文件配置 -->
+        <!-- 因为jar包打包的时候是不会打包静态资源文件的,所以要配置下,让maven给打包进去 -->
+        <!-- html,css,js这些都是静态资源文件 -->
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -192,7 +193,7 @@
         </resources>
     </build>
 
-    <!--repositories：配置项目下载依赖时的第三方库-->
+    <!--repositories：配置项目下载依赖时的第三方库, 这里把市面上的仓库都加上了 -->
     <repositories>
         <repository>
             <id>aliyun-repos</id>
@@ -228,7 +229,7 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-
+        <!-- 必须要添加spring的仓库,否则有些最新的东西就依赖不了 -->
         <repository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
@@ -246,7 +247,7 @@
             </snapshots>
         </repository>
     </repositories>
-
+    <!-- 插件仓库   -->
     <pluginRepositories>
         <pluginRepository>
             <id>aliyun-repos</id>

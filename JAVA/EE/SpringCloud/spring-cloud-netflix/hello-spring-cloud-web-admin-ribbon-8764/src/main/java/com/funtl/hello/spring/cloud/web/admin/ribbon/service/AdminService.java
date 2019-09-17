@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * 创建测试用的 Service:
- *
  * 在这里我们直接用的"程序名(spring.application.name)"替代了具体的 URL 地址，
  * 在 Ribbon 中它会根据"服务名"来选择具体的"服务实例"，
  * 然后根据“服务实例”在请求的时候会用具体的 URL 替换掉服务名，代码如下：
@@ -25,10 +23,12 @@ public class AdminService {
     // 在 Ribbon 调用方法上增加 @HystrixCommand 注解并指定 fallbackMethod 熔断方法
     @HystrixCommand(fallbackMethod = "hiError")
     public String sayHi(String message) {
+        // 这里用了服务的名字,因为服务的ip和端口交给eureka来托管,服务也交给eureka来托管,所以能狗通过服务名字找到ip和端口
         return restTemplate.getForObject("http://HELLO-SPRING-CLOUD-SERVICE-ADMIN/hi?message=" + message, String.class);
     }
 
     public String hiError(String message) {
         return "Hi, your message is :\"" + message + "\" but request error.";
     }
+
 }

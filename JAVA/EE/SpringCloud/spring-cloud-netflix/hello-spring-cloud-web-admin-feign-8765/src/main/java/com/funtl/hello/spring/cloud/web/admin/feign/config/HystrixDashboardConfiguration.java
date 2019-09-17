@@ -8,11 +8,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class HystrixDashboardConfiguration {
 
+    /**
+     * Spring Boot 2.x 版本开启 Hystrix Dashboard 与 Spring Boot 1.x 的方式略有不同，
+     * 需要增加一个 HystrixMetricsStreamServlet 的配置
+     *
+     * @return
+     */
     @Bean
     public ServletRegistrationBean getServlet() {
         HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
         ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
         registrationBean.setLoadOnStartup(1);
+        // 注意这个是用在查看熔断器监控状态的,输入http://host:port/hystrix
+        // 然后在文本框中输入: http://host:port/hystrix.stream就可以跳转到相应的监控的情况.
         registrationBean.addUrlMappings("/hystrix.stream");
         registrationBean.setName("HystrixMetricsStreamServlet");
         return registrationBean;

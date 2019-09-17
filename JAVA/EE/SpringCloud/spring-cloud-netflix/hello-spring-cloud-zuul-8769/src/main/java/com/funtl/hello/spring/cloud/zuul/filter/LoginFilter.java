@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * 创建服务过滤器
+ * Zuul 路由网关的服务过滤演示
  *
- * Zuul 的服务过滤演示
+ * 创建服务过滤器
  *
  * 测试过滤器
  *
@@ -69,13 +69,17 @@ public class LoginFilter extends ZuulFilter {
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
         logger.info("{} >>> {}", request.getMethod(), request.getRequestURL().toString());
+        // http://localhost:8769/api/b/hi?message=HelloZuul&token=123
         String token = request.getParameter("token");
         if (token == null) {
             logger.warn("Token is empty");
+            // false: 不给你路由转发了.
             context.setSendZuulResponse(false);
+            // 401: 没有授权,需要添加令牌.
             context.setResponseStatusCode(401);
             try {
-                context.getResponse().getWriter().write("Token is empty");
+                context.getResponse().setContentType("text/html;charset=utf-8");
+                context.getResponse().getWriter().write("Token is empty(非法请求.)");
             } catch (IOException e) {
                 e.printStackTrace();
             }

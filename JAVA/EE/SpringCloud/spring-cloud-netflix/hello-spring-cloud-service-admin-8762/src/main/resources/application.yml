@@ -5,11 +5,11 @@ spring:
 server:
   port: 8762
 
-# 向eureka-server注册
+# 向eureka-server服务端注册当前服务
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/ # 要把当前服务注册到哪个地址
 
 # 当 Client 向 Server(eureka-server) 注册时，它会提供一些元数据，例如主机和端口，URL，主页等。
 

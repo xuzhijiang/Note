@@ -42,7 +42,7 @@
 ![](pics/Favicon设置01.png)
 ![](pics/Favicon设置02.png)
 
-### WebJars基础
+# WebJars基础
 
 现代网页设计，离不开各种各样的Web前端UI库。各种UI库通常都会包容多个文件(比如.css， .js，字体，图标等）。
 
@@ -50,7 +50,7 @@ Spring Boot支持一种被称为webjar的技术，将一些前端框架(比如Bo
 
 使用WebJars打包的资源，其URL以“/webjars/”打头，也就是说，所有指向/webjars/的HTTP请求，都会被导向这个包中所包容的静态资源文件。
 
-#### 获取webjar的maven依赖(以Bootstrap为例）
+## 获取webjar的maven依赖(以Bootstrap为例）
 
 要想在Spring Boot Web项目中使用诸如Bootstrap等前端框架，需要访问webjars或
 MavenRepository网站去搜索其Maven依赖声明。
@@ -60,7 +60,7 @@ MavenRepository网站去搜索其Maven依赖声明。
 
 >http://www.webjars.org/, https://mvnrepository.com
 
-#### 如何引用WebJars包？
+## 如何引用WebJars包？
 
 特别注意其包名：`resources.webjars.jquery.1.11.1，`这实际上就是文件夹名，你可以这样看：所有jquery文件位于resources文件夹下的
 /webjars/jquery/1.11.1下。
@@ -71,7 +71,7 @@ MavenRepository网站去搜索其Maven依赖声明。
 </script>
 ```
 
-## SpringBoot静态资源映射规则
+# SpringBoot静态资源映射规则
 
 >在默认的情况下，SpringBoot会加载classpath下的/static、/public、/resources 、 /META-INF/resources目录下的静态资源供用户进行访问，个人感觉 static可能更具有说明力。我们可以在项目的src/main/resources目录下建立static文件夹.注意在我们访问的URL中并不会包含"static"这个单词， static是所有静态资源的根目录，就相当于常规J2EE开发下的 webapp目录一样，因此 url是不需要包含的。
 
@@ -120,7 +120,7 @@ webjars:以jar包的方式引入资源，网页搜索webjars,选择maven的方�
 "/":当前项目的根路径
 ~~~
 
-## Spring boot配置Servelt、Filter、Listener
+# Spring boot配置Servelt、Filter、Listener
 
 >实例:spring_boot_web
 
@@ -130,28 +130,13 @@ Spring Boot集成了servlet容器，当我们在pom文件中增加spring- boot-s
 
 >SpringBoot提供了2种方式配置Servlet、Listener、Filter。一种是基于RegistrationBean，另一种是基于注解。
 
-### 基于RegistrationBean的配置
+## 基于RegistrationBean的配置
 
 >spring boot提供了ServletRegistrationBean，FilterRegistrationBean，ServletListenerRegistrationBean这3个东西来进行配置Servlet、Filter、Listener,见:配置类WebConfig.java
 
-### 基于注解的配置
+## 基于注解的配置
 
 >在对应的Servlet，Filter，Listener打上对应的注解@WebServlet，@WebFilter，@WebListener,在启动类加上注解@ServletComponentScan即可
-
-## SpringBoot热加载
-
-spring-boot-devtools是一个自动应用代码更改到最新的App上面去，使应用可以自动重启的模块
-.原理是在发现代码有更改之后，重新启动应用，但是比速度比手动停止后再启动还要更快，更快的深层原理是使用了两个ClassLoader，一个Classloader加载那些不会改变的类（第三方Jar包），另一个ClassLoader加载会更改的类，称为restart ClassLoader,这样在有代码更改的时候，原来的restart ClassLoader 被丢弃，重新创建一个restart ClassLoader，由于需要加载的类相比较少，所以实现了较快的重启时间（5秒以内）。
-
-默认情况下，修改了/META-INF/maven, /META-INF/resources ,/resources ,/static ,/public或者/templates目录下的内容不会引起应用的重新启动。意思是，java代码，pom文件，application.properties(yml)文件的修改都会引起重新启动。
-
-通过以下方式，我们可以指定只有哪些目录下的内容修改不会引起重启：
-
-`spring.devtools.restart.exclude=static/**,public/**`
-
-以上配置说明只有static目录和public目录下的内容修改后不会引起重启。
-
->由于默认的配置已经比较合理，所以有一种可能的情况是，我们希望在默认的配置下，添加其他我们想要的目录，在这个目录下修改内容时也不重新启动，此时可以将spring.devtools.restart.exclude改为spring.devtools.restart.additional-exclude即可。
 
 # Spring Boot的嵌入式容器
 

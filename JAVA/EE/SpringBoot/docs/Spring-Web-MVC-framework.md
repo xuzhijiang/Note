@@ -14,7 +14,7 @@
 - Spring Boot Web MVC数据校验
 - 异常处理
 
-## 控制器(Controller)
+# 控制器(Controller)
 
 ![](pics/SpringMVC-处理流程图.png)
 
@@ -26,7 +26,7 @@
 
 学习过程中需要特别注意一下数据的传送方式，主要有两种：一是数据如何从client传给Server端，二是如何在Server端保存多个HTTP请求之间的状态信息。
 
-## Spring Boot Web MVC 实现文件上传
+# Spring Boot Web MVC 实现文件上传
 
 Spring MVC对文件上传提供了良好的支持，而在SpringBoot中可以更为简单地配置文件上传所需的内容。
 
@@ -50,15 +50,21 @@ spring.servlet.multipart.max-request-size=20MB
 spring.servlet.multipart.resolve-lazily=false
 ```
 
-## Spring Boot Web MVC数据校验
+# Spring Boot Web MVC数据校验-validator
 
 在实际开发中，为了保证数据的安全，必须对用户提交上来的数据进行有效性检测,数据有效性检测分为两类
 
 1. 一类是在客户端进行的，常用的Web前端框架(比如Vue和React）都提供了相应的功能，在提交数据之前对数据的有效性进行检测;
 2. 另一类则是服务端数据检测，就是在调用Spring Boot Web MVC控制器方法之前对客户端数据的有效性进行校验。
 
->这里介绍的是如何使用Spring Boot MVC框架在服务端完成数据有效性检测的工作。
-    
+这里介绍的是如何使用Spring Boot MVC框架在服务端完成数据有效性检测的工作:
+
+![](pics/Spring-Validation01.png)    
+![](pics/Spring-Validation02.png)    
+![](pics/Spring-Validation03.png)    
+![](pics/Spring-Validation04.png)    
+![](pics/Spring-Validation05.png) 
+  
 ![](pics/数据校验示例01.png)
 ![](pics/数据校验示例02.png)
 ![](pics/数据校验示例03.png)
@@ -67,9 +73,7 @@ spring.servlet.multipart.resolve-lazily=false
 
 ![](pics/常用的数据校验规则.png) 
 
-- [好的总结](https://www.funtl.com/zh/supplement1/#jsr-303-%E7%AE%80%E4%BB%8B)
-
-## 异常处理
+# Spring MVC异常处理
 
 Spring Boot提供了一个默认的映射：/error，当处理中抛出异常之后，会转到/error中处理，并且该请求有一个全局的错误页面用来展示异常内容。
 
@@ -84,6 +88,14 @@ Spring Boot提供了一个默认的映射：/error，当处理中抛出异常之
 虽然，Spring Boot中实现了默认的error映射，但是在实际应用中，上面你的错误页面对用户来说并不够友好，我们通常需要自定义异常提示.
 
 >Spring Boot项目的默认异常处理机制，是由一个内置的BasicErrorController实现的。
+
+# spring mvc拦截器
+
+![](pics/拦截器.png)
+![](pics/拦截器02.png)
+![](pics/拦截器03.png)
+
+简单概括:perHandle()方法是按照配置文件顺序执行 然后逆序执行每个拦截器的postHandle()方法 ，最后逆序执行afterCompletion()方法
 
 # 使用WebMvcConfigurer
 
@@ -108,12 +120,25 @@ Spring Boot提供了一个默认的映射：/error，当处理中抛出异常之
 ![](pics/Spring整合SpringMVC06.png)
 ![](pics/Spring整合SpringMVC07.png)
 
-# spring mvc拦截器
+# SpringBoot热加载
 
-![](pics/拦截器.png)
-![](pics/拦截器02.png)
-![](pics/拦截器03.png)
+spring-boot-devtools是一个自动应用代码更改到最新的App上面去，使应用可以自动重启的模块
+.原理是在发现代码有更改之后，重新启动应用，但是比速度比手动停止后再启动还要更快，更快的深层原理是使用了两个ClassLoader，一个Classloader加载那些不会改变的类（第三方Jar包），另一个ClassLoader加载会更改的类，称为restart ClassLoader,这样在有代码更改的时候，原来的restart ClassLoader 被丢弃，重新创建一个restart ClassLoader，由于需要加载的类相比较少，所以实现了较快的重启时间（5秒以内）。
 
-简单概括:perHandle()方法是按照配置文件顺序执行 然后逆序执行每个拦截器的postHandle()方法 ，最后逆序执行afterCompletion()方法
+默认情况下，修改了/META-INF/maven, /META-INF/resources ,/resources ,/static ,/public或者/templates目录下的内容不会引起应用的重新启动。意思是，java代码，pom文件，application.properties(yml)文件的修改都会引起重新启动。
+
+通过以下方式，我们可以指定只有哪些目录下的内容修改不会引起重启：
+
+`spring.devtools.restart.exclude=static/**,public/**`
+
+以上配置说明只有static目录和public目录下的内容修改后不会引起重启。
+
+>由于默认的配置已经比较合理，所以有一种可能的情况是，我们希望在默认的配置下，添加其他我们想要的目录，在这个目录下修改内容时也不重新启动，此时可以将spring.devtools.restart.exclude改为spring.devtools.restart.additional-exclude即可。
+
+![](pics/实现热部署01.png)
+![](pics/实现热部署02.png)
+![](pics/实现热部署03.png)
+![](pics/实现热部署04.png)
+![](pics/实现热部署05.png)
 
 - [来源](https://www.funtl.com/zh/spring-mvc/第一个-Controller-控制器.html#概述)
