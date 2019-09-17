@@ -1,7 +1,5 @@
 package com.funtl.hello.spring.cloud.zuul.fallback;
 
-// 配置网关路由失败时的回调, 解决api网关路由失败的问题.
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.http.HttpHeaders;
@@ -17,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 路由 hello-spring-cloud-web-admin-feign 失败时的回调
+ * 配置Zuul网关路由 hello-spring-cloud-web-admin-feign 失败时的回调,解决api网关路由失败的问题.
  */
 @Component
 public class WebAdminFeignFallbackProvider implements FallbackProvider {

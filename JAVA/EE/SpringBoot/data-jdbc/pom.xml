@@ -19,7 +19,9 @@
 	<properties>
 		<!-- 指定源码编码方式UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<!-- 指定源码/class为1.8 -->
+		<!-- compiling level: 8 -->
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<!-- 指定虚拟机为Java 1.8 -->
@@ -74,11 +76,20 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<release>8</release>
+				</configuration>
+			</plugin>
 			<!-- 使用spring-boot-maven-plugin打包可执行jar -->
+			<!-- create SpringBoot executable application jar -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<!-- exclude devtools -->
 					<excludeDevtools>true</excludeDevtools>
 				</configuration>
 			</plugin>

@@ -1,4 +1,3 @@
-
 <!-- MarkdownTOC -->
 
 - [使用 SpringBoot+Dubbo 搭建一个简单分布式服务](#使用-springbootdubbo-搭建一个简单分布式服务)
@@ -10,20 +9,22 @@
 
 <!-- /MarkdownTOC -->
 
+# 什么是 Duboo？
 
-# 使用 SpringBoot+Dubbo 搭建一个简单分布式服务
+Apache Dubbo |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC 框架，它提供了三大核心能力：`面向接口的远程方法调用`，`智能容错`和`负载均衡`，以及`服务自动注册和发现`。简单来说 Dubbo 是一个分布式服务框架，一个RPC远程服务调用方案.
 
-### 什么是分布式?
+她最大的特点是按照分层的方式来架构，使用这种方式可以使各个层之间解耦合（或者最大限度地松耦合）。
 
-分布式或者说 SOA (Service-Oriented Architecture)分布式重要的就是`面向服`务，说简单的分布式就是我们把整个系统拆分成不同的服务然后将这些服务放在不同的服务器上减轻单体服务的压力提高并发量和性能。比如电商系统可以简单地拆分成订单系统、商品系统、登录系统等等。
+Dubbo 采用的是一种非常简单的模型，要么是提供方提供服务，要么是消费方消费服务，所以基于这一点可以抽象出服务提供方（Provider）和服务消费方（Consumer）两个角色。
 
-### 什么是 Duboo？
+- [官网](http://dubbo.apache.org/zh-cn)
+- [GitHub](https://github.com/apache/incubator-dubbo)
 
-Apache Dubbo |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC 框架，它提供了三大核心能力：`面向接口的远程方法调用`，`智能容错`和`负载均衡`，以及`服务自动注册和发现`。简单来说 Dubbo 是一个分布式服务框架，一个RPC远程服务调用方案，以及SOA服务治理方案。
+![](Dubbo特性.png)
 
-### Dubbo 架构
+# Dubbo 架构
 
-下面我们再来看看 Dubbo 的架构，我们后面会使用 zookeeper 作为注册中心，这也是 Dubbo 官方推荐的一种方式(现在不推荐使用zookeeper了)。
+后面会使用 zookeeper 作为注册中心，这也是 Dubbo 官方推荐的一种方式(现在最新的已经不推荐使用zookeeper了)
 
 ![Dubbo 架构](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-26/46816446.jpg)
 

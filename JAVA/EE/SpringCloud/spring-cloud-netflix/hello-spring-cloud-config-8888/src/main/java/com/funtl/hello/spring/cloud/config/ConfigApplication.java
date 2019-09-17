@@ -24,8 +24,11 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * http://localhost:8888/master/config-client-dev.properties
  */
 @SpringBootApplication
-@EnableEurekaClient // 把当前服务注册到eureka,说明这是一个服务提供者.
-@EnableConfigServer// 通过 @EnableConfigServer 注解，开启配置服务器功能
+// 通过注解 @EnableEurekaClient 表明自己是一个 Eureka Client.
+// 说明在配置文件中,要把当前服务注册到eureka服务端,说明这是一个服务提供者.能够被其他服务消费者在eureka上发现.
+@EnableEurekaClient
+// 通过 @EnableConfigServer 注解表明这是一个Spring Cloud Config Server.
+@EnableConfigServer
 public class ConfigApplication {
 
     public static void main(String[] args) {

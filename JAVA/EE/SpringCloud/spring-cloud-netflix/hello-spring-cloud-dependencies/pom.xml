@@ -45,18 +45,60 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Spring Settings -->
-        <spring-cloud.version>Finchley.RC1</spring-cloud.version>
+        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+<!--        <spring-cloud.version>Finchley.RC1</spring-cloud.version>-->
+
+        <!-- ZipKin Settings -->
+        <zipkin.version>2.10.1</zipkin.version>
+
+        <!-- Spring Boot Admin -->
+        <spring.boot.admin.version>2.0.0</spring.boot.admin.version>
+        <jolokia.core.version>1.6.0</jolokia.core.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <!--在 properties 配置中预定义了版本号为 Finchley.RC1 ，表示我们的 Spring Cloud 使用的是 F 版-->
+            <!-- https://repo1.maven.org/maven2/org/springframework/cloud/ -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin</artifactId>
+                <version>${zipkin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-server</artifactId>
+                <version>${zipkin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.java</groupId>
+                <artifactId>zipkin-autoconfigure-ui</artifactId>
+                <version>${zipkin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jolokia</groupId>
+                <artifactId>jolokia-core</artifactId>
+                <version>${jolokia.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring.boot.admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring.boot.admin.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -247,6 +289,7 @@
             </snapshots>
         </repository>
     </repositories>
+
     <!-- 插件仓库   -->
     <pluginRepositories>
         <pluginRepository>

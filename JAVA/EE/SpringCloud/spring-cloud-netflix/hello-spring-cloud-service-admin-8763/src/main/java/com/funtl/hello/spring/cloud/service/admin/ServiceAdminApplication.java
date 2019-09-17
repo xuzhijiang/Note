@@ -4,7 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-// 服务提供者
+/**
+ * 提供多个ServiceAdmin服务(8762/8763),服务提供者实现负载均衡效果.
+ */
 @SpringBootApplication
 @EnableEurekaClient
 public class ServiceAdminApplication {

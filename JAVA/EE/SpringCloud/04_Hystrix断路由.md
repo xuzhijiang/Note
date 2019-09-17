@@ -8,11 +8,11 @@
 
 Netflix 开源了 Hystrix 组件，实现了熔断器模式，Spring Cloud 对这一组件进行了整合。在微服务架构中，一个请求需要调用多个服务是非常常见的，如下图：
 
-![](Hystrix_01.png)
+![](pics/Hystrix_01.png)
 
 较底层的服务如果出现故障，会导致连锁故障。当对特定的服务的调用的不可用达到一个阀值（Hystrix 是 5 秒 20 次） 熔断器将会被打开。
 
-![](Hystrix_02.png)
+![](pics/Hystrix_02.png)
 
 熔断器打开后，为了避免连锁故障，通过 fallback 方法可以直接返回一个固定值。
 
@@ -35,11 +35,11 @@ Hystrix还提供了准实时的调用监控仪表盘(Hystrix Dashboard)，Hystri
 
 ## 什么情况下会触发 fallback 方法
 
-![](什么情况下会触发fallback方法.png)
+![](pics/什么情况下会触发fallback方法.png)
 
 ## fallback 方法在什么情况下会抛出异常
 
-![](fallback方法在什么情况下会抛出异常.png)
+![](pics/fallback方法在什么情况下会抛出异常.png)
 
 # Hystrix Dashboard 界面监控参数
 

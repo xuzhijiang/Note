@@ -1,19 +1,30 @@
-# 一、Spring Boot-配置文件
+# SpringBoot 配置文件存放位置及读取顺序(会注入Environment对象中.)
 
-SpringBoot的默认情况下会加载classpath下两个默认的配置文件：application.properties和application.yml。通常情况下，我们只要选择其中一种即可。
+SpringBoot配置文件可以使用yml格式和properties格式,默认可以放到以下目录中：
+                                     
+1. 项目根目录的/config目录
+2. 项目根目录下
+3. classpath根路径下的/config目录(项目的resources目录下)
+4. classpath根路径(项目的resources目录下)
 
-默认情况下，SpringBoot按照如下优先顺序加载application.properties或者application.yml文件中的配置，并注入Environment对象中.
+![](pics/springboot配置文件存放位置.png)
 
-1. 用户当前所在目录下的/config子目录
-2. 用户当前所在目录
-3. classpath根路径下的/config目录
-4. classpath根路径
+某一个目录下,同时存在yml和properties文件,SpringBoot会先加载yml,然后加载properties,properties中的属性会覆盖yml中的.
 
->也就是说1的优先级最高，4的优先级最低。如果出现配置项重复，优先级高的会覆盖优先级低的配置项。
+## yml和properties一共4种
 
-Springboot提供大量的默认配置,一部分是Spring自身的默认配置，另一部分是与springboot整合的第三方框架的默认配置。`我们可以在配置文件中覆盖其默认配置，也可以自定义我们自己的配置项`
+- Bootstrap.yml
+- bootstrap.properties
+- application.yml
+- application.properties
 
-## 属性的引用
+bootstrap.yml（bootstrap.properties）在application.yml（application.properties）之前加载
+
+## bootstrap典型场景
+
+使用 Spring Cloud Config Server的时候，可以在 bootstrap.yml里面指定spring.application.name和 spring.cloud.config.server.git.uri, 以及一些加密/解密的信息
+
+# 属性的引用
 
 我们直接在application.properties中定义一些自己使用的属性，然后通过@Value("${属性名}")注解来加载对应的配置属性:
 

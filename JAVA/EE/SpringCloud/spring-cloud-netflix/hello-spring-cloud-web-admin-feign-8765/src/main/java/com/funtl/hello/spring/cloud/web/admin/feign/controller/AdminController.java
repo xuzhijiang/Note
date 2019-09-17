@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-// 创建测试用的 Controller
+/**
+ * 测试访问: 在浏览器上多次访问 http://localhost:8765/hi?message=HelloFeign
+ *
+ * 浏览器内容交替显示
+ */
 @RestController
 public class AdminController {
 

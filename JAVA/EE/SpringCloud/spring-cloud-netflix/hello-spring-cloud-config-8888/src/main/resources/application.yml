@@ -9,8 +9,14 @@ spring:
           uri: https://github.com/xuzhijiang/Note # 配置文件的仓库地址
           # 配置文件放在uri对应的仓库的JAVA/EE/SpringCloud/spring-cloud-config-repos/spring-cloud-netflix/config-client目录下
           search-paths: JAVA/EE/SpringCloud/spring-cloud-config-repos/spring-cloud-netflix/config-client
-          username: xuzhijiang
-          password: xuzhijiang@12345
+          username: your username
+          password: your pass
+  zipkin:
+    base-url: http://localhost:9411
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
 
 server:
   port: 8888

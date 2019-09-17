@@ -38,3 +38,5 @@ passwd命令用于设置用户的认证信息，包括用户密码、密码过�
 1. 通过脚本获取尝试登陆失败的IP
 2. 将获取的IP写入到/etc/hosts.deny文件，进行屏蔽
 3. 使用inotify-tools，监控/var/log/secure文件，来实时更新/etc/hosts.deny文件
+
+- [http://www.novicex.cn/post/y20.html](http://www.novicex.cn/post/y20.html)

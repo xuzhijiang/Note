@@ -13,13 +13,10 @@ import java.io.IOException;
 /**
  * Zuul 路由网关的服务过滤演示
  *
- * 创建服务过滤器
- *
  * 测试过滤器
  *
  * 浏览器访问：http://localhost:8769/api/a/hi?message=HelloZuul 网页显示
  * Token is empty
- *
  *
  * 浏览器访问：http://localhost:8769/api/b/hi?message=HelloZuul&token=123 网页显示
  * Hi，your message is :"HelloZuul" i am from port：8763

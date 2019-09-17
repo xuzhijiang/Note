@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-// 入口类没有需要特殊处理的地方，代码如下：
 @SpringBootApplication
 @EnableDiscoveryClient
 public class ConfigClientApplication {
@@ -12,6 +11,7 @@ public class ConfigClientApplication {
         SpringApplication.run(ConfigClientApplication.class, args);
     }
 }
+
 /**
  * 附：开启 Spring Boot Profile
  *
