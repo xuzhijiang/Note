@@ -29,52 +29,58 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
-        <!-- Spring Boot Dubbo 依赖 -->
+        <!-- dubbo的依赖感觉比较乱,可以从https://repo1.maven.org/maven2/上确认发布的时间 -->
+        <!-- dubbo-spring-boot-starter: Dubbo Starter，0.2.0 版本支持 Spring Boot 2.x，是一个长期维护的版本。注：0.1.0 版本已经不推荐使用了，是个短期维护的版本，如果你还在用旧版，请大家尽快升级。-->
         <dependency>
-            <groupId>io.dubbo.springboot</groupId>
-            <artifactId>spring-boot-starter-dubbo</artifactId>
-            <version>1.0.0</version>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>0.2.0</version>
+        </dependency>
+        <!-- dubbo-spring-boot-actuator:0.2.0：Dubbo 的服务状态检查 -->
+        <dependency>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>dubbo-spring-boot-actuator</artifactId>
+            <version>0.2.0</version>
         </dependency>
 
-        <!--Dubbo Provider 中使用熔断器的依赖-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-            <version>2.0.2.RELEASE</version>
-        </dependency>
-
+        <!--  刚才创建的接口项目，如果无法依赖别忘记先 mvn clean install 到本地仓库      -->
         <dependency>
             <groupId>com.funtl</groupId>
             <artifactId>hello-dubbo-service-user-api</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 
+        <!-- kryo序列化 -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.4</version>
+            <groupId>de.javakaffee</groupId>
+            <artifactId>kryo-serializers</artifactId>
+            <version>0.42</version>
         </dependency>
 
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.6.4</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+            <version>2.0.2.RELEASE</version>
         </dependency>
 
+        <!--  hystrix dashboard依赖     -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+            <version>2.0.1.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -82,6 +88,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.funtl.hello.dubbo.service.user.provider.HelloDubboServiceUserProviderApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -1,12 +1,18 @@
 server:
   port: 80
 
+spring:
+  application:
+    name: feign-consumer-dept
+
+# Feign 中使用熔断器
+# 在Feign中不需要在Application上添加类似于Ribbon中使用的@EnableHystrix熔断器注解来启用熔断器
+# Feign 是默认集成了熔断器的，但默认是关闭的。需要在配置文件中配置打开它:
 feign:
   hystrix:
     enabled: true
-# 添加Eureka的服务注册地址
+
 eureka:
   client:
-    register-with-eureka: false #自己不能注册
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/

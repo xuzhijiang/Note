@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ *
+ * 服务的端点检查: http://localhost:9091/actuator/nacos-discovery 你会在浏览器上看到：
+ */
 @RestController
 public class NacosConsumerController {
 

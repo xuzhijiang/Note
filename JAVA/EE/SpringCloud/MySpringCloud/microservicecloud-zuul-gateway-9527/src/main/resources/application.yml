@@ -10,20 +10,23 @@ eureka:
     service-url: 
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka  
   instance:
-    instance-id: gateway-9527.com
+    instance-id: gateway-dept-9527
     prefer-ip-address: true 
- 
- 
-zuul: 
-  #ignored-services: my-microservicecloud-dept-8001 # 忽略真实地址，只让虚拟地址访问
+
+zuul:
   prefix: /openPrefix # 用户访问地址的时候必须添加上前缀
-  ignored-services: "*" # 忽略真实地址，只让虚拟地址访问
+  # 配置要忽略的服务,这里是忽略所有服务名字,只让虚拟地址访问
+  ignored-services: "*"
+  #ignored-services: feign-consumer-dept
   routes: 
-    mydept.serviceId: my-microservicecloud-dept-8001 # 真实地址
-    mydept.path: /mydept/**   # 虚拟地址
- 
+    mydept:
+      # 以 /mydept/ 开头的请求都转发给 feign-consumer-dept 服务
+      path: /mydept/** # 配置虚拟地址
+      serviceId: feign-consumer-dept
+
 info:
-  app.name: xzj-microcloud-zuul-gateway-9527
-  company.name: www.xzj.com
-  build.artifactId: ${project.artifactId}
-  build.version: ${project.version}
+  app.name: microcloud-zuul-gateway-9527
+  company.name: www.company.com
+  build:
+    artifactId: ${project.artifactId}
+    version: ${project.version}

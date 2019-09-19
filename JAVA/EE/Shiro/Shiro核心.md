@@ -1,3 +1,5 @@
+- [shiro教程](https://www.vxzsk.com/766.html)
+
 Apache Shiro 是一个强大易用的 Java 安全框架，提供了认证、授权、加密和会话管理等功能.
 相比较 Spring Security，Shiro 小巧的多.对比 Spring Security，可能没有 Spring Security 做的功能强大，但是在实际工作时可能并不需要那么复杂的东西，所以使用小而简单的 Shiro 就足够了.
 

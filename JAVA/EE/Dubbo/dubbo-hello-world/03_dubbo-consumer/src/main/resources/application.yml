@@ -1,8 +1,0 @@
-server:
-  port: 9099
-
-spring:
-  dubbo:
-    application:
-      name: dubbo-consumer
-      registry: zookeeper://ip:2181

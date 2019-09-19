@@ -6,7 +6,6 @@
 
     <!--创建服务接口项目-->
     <!-- 创建一个名为 hello-dubbo-service-user-api 的项目，该项目只负责定义接口 -->
-
     <groupId>com.funtl</groupId>
     <artifactId>hello-dubbo-service-user-api</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -17,6 +16,5 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
     </properties>
-
 
 </project>

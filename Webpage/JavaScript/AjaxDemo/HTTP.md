@@ -34,7 +34,7 @@ Cache-Control是金字塔顶尖的规则, 它藐视一切其他设置, 只要其
 - public: 资源将被客户端和代理服务器,CDN等缓存
 - private: 资源仅被客户端缓存, 代理服务器不缓存
 - no-store: 不进行任何缓存
-- no-cache: 相当于max-age:0,must-revalidate即资源被缓存, 但是缓存立刻过期, 同时下次访问时强制验证资源有效性.
+- no-cache: 相当于max-age:0,must-revalidate即资源被缓存, 但是缓存立刻过期, 同时下次访问时强制验证资源有效性,缓存服务器需要先向源服务器验证缓存资源的有效性.
 - max-age:缓存资源, 但是在指定时间(单位为秒)后缓存过期          
 - s-maxage: 同上, 依赖public设置, 覆盖max-age, 且只在代理服务器上有效（比如CDN缓存）.max-age用于普通缓存，而s-maxage用于代理缓存。
 - must-revalidation: 如果缓存失效, 强制重新向服务器(或代理)发起验证
@@ -158,6 +158,8 @@ Cache-Control:max-age=600 覆盖 Expires 字段.
 
 所以，一般我们会运用的方式是：在资源文件后面加上表示，如config.f1ec3.js、config.v1.js之类的，然后给资源设置较长的缓存时间，如一年: Cache-Control: max-age=31536000, 这样子，就不会造成304的回包现象。然后一旦资源发生更新时，我们可以改变资源后面的标识符，实现静态资源非覆盖式更新。
 
+![参考](https://cloud.tencent.com/developer/article/1169232)
+
 # CORS(Cross-Origin Resource Sharing)
 
 两个主机拥有相同的protocol，port，host，就是同源(origin),不满足同源策略就是跨域资源访问cors，现在浏览器已经支持了cors的支持了
@@ -208,11 +210,15 @@ Access-Control-Max-Age: 86400
 
 由于以POST、PUT方式传送JSON格式的数据在REST中很常见，所以要跨域正确处理POST和PUT请求，服务器端必须正确响应OPTIONS请求。
 
+---
+
+    注意,这部分已经作废,看Network下的http协议.md
+
 # Cookie
 
 缺陷：只要满足cookie的作用路径和域，都会带上cookie信息(携带请求头中的Cookie字段)，所以会产生流量代价，
 cookie是明文传递的，所以不secure
-
+    
 ## 常用HTTP方法:
 
     方法            描述	          是否包含主体
@@ -250,4 +256,6 @@ text/xml, application/xml etc.
 如果我们不在URL中提供port，则请求转到协议的默认端口, 端口号0到1023是众所周知的服务的保留端口，
 例如80表示HTTP，443表示HTTPS，21表示FTP等。
 
-![参考](https://cloud.tencent.com/developer/article/1169232)
+        注意,这部分已经作废,看Network下的http协议.md
+
+----

@@ -97,7 +97,7 @@ maxClientCnxns=60
 
 # 日志清理
 
-![](对zk进行日志清理.png)
+![](pics/对zk进行日志清理.png)
 
 # 参考
 

@@ -5,11 +5,11 @@ JSON Web Token（缩写 JWT）是目前最流行的跨域认证解决方案，�
 ![](跨域认证问题01.png)
 ![](跨域认证问题02.png)
 
-![](JWT01.png)
-![](JWT02.jpg)
-![](JWT03.png)
-![](JWT04.png)
-![](JWT05.jpg)
+![](pics/JWT01.png)
+![](pics/JWT02.jpg)
+![](pics/JWT03.png)
+![](pics/JWT04.png)
+![](pics/JWT05.jpg)
 
 # 来源
 

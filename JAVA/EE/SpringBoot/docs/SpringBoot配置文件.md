@@ -18,7 +18,8 @@ SpringBoot配置文件可以使用yml格式和properties格式,默认可以放�
 - application.yml
 - application.properties
 
-bootstrap.yml（bootstrap.properties）在application.yml（application.properties）之前加载
+bootstrap.yml（bootstrap.properties）在application.yml（application.properties）之前加载,bootstrap.yml优先级更高,
+一般bootstrap.yml用在spring cloud中,用于从远程仓库pull配置,把本地的application.yml中的配置覆盖.
 
 ## bootstrap典型场景
 

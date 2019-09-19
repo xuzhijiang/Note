@@ -51,3 +51,11 @@ Spring Boot框架本身并没有对工程结构有特别的要求，但是按照
 - DTO(Data Transfer Object):数据传输对象,并没有放到页面上做展示,(实体类对象包含完整的数据,但是传给前端的就不一定是完整的数据,因为前端可能用不到有些数据,我们为了节省流量就用DTO)
 - Entity: 实体类,一般用实体类表示数据中的表,也就是entity用来做orm的.和数据库一一对应的关系.
 - Domain: 领域模型,(不同领域,比如银行,保险,电商,物流,医疗,对应的模型是不一样的,银行中的Account,User和电商中的User就不一样)
+
+# idea开发spring boot
+
+![](pics/idea运行多个不同port的服务.png)
+![](pics/idea使用maven要注意使用的是哪个maven.png)
+![](pics/idea标记一个目录.png)
+![](pics/使用idea的终端.png)
+![](pics/新项目一开始要让idea托管.png)

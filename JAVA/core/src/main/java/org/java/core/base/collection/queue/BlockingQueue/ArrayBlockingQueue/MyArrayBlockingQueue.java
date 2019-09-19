@@ -27,10 +27,10 @@ public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E> {
     // 内部通用锁
     final ReentrantLock lock;
 
-    //take时候用于等待的条件
+    // 可以take的条件
     private final Condition notEmpty;
 
-    //put时候用于等待的条件
+    // 可以put的条件
     private final Condition notFull;
 
     // 拿数据的索引，用于take，poll，peek，remove方法
@@ -129,7 +129,6 @@ public class MyArrayBlockingQueue<E> implements MyBlockingQueue<E> {
         // 使用条件对象notEmpty通知，比如使用take方法的时候队列里没有数据，被阻塞。
         // 这个时候队列insert了一条数据，需要调用signal进行通知
         // 有这个条件说明这个类在调用的时候一定要持有锁，否则这个notEmpty就没有用。
-        // 插入之后要通知一下可能在put时候进入阻塞状态的线程
         notEmpty.signal();
     }
 

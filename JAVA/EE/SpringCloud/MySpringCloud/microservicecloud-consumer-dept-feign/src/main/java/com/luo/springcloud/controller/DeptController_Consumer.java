@@ -17,19 +17,17 @@ public class DeptController_Consumer {
     private DeptClientService service;
 
     //http://localhost/consumer/dept/add?dname=AI
-    @RequestMapping(value="/consumer/dept/add")
+    @RequestMapping(value="/dept/add")
     public boolean add(Dept dept){
         return service.add(dept);
     }
 
-    //http://localhost/consumer/dept/get/2
-    @RequestMapping(value = "/consumer/dept/get/{id}")
+    @RequestMapping(value = "/dept/get/{id}")
     public Dept get(@PathVariable("id") Long id){
         return service.get(id);
     }
 
-    //  http://localhost/consumer/dept/list
-    @RequestMapping(value = "/consumer/dept/list")
+    @RequestMapping(value = "/dept/list")
     public List<Dept> list(){
         return service.list();
     }

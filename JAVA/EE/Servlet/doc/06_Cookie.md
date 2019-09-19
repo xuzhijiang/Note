@@ -22,7 +22,7 @@
     再比如为了更好的用户体验（比如实现购物车），就有了会话机制。有了会话机制，
     服务器可以区分不同客户端发来的请求，把同一个客户端的操作归类在一起。
 
-![](会话机制实现了区分客户端.jpg)
+![](pics/会话机制实现了区分客户端.jpg)
 ---
 
 ## 其次，如何定义一个会话？
@@ -70,10 +70,14 @@ Set-Cookie: table=10
 
 ![](pics/browser-cookie2.jpg)
 
-Cookie的两种类型
+## Cookie的两种类型
 
-- 会话Cookie (Session Cookie)
-- 持久性Cookie (Persistent Cookie)
+- 会话Cookie (Session Cookie):浏览器关闭之后它会被自动删除，也就是说它仅在会话期内有效
+- 持久性Cookie (Persistent Cookie):指定一个特定的过期时间（Expires）或有效期（max-age）之后就成为了持久性的 Cookie
+
+```html
+Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT;
+```
 
 上面代码中，服务器向浏览器响应的Cookie就是会话Cookie。会话Cookie被保存在浏览器的内存中，当浏览器关闭时，内存被释放，内存中的Cookie自然也就烟消云散。关闭浏览器引发Cookie消失，下次还要重新登录。能不能向客户端响应持久性Cookie呢？只要设置Cookie的持久化时间即可！
 
@@ -87,7 +91,24 @@ Set-Cookie的内容中，多了一个Expires，它代表过期时间，比如现
 
 一般，响应给客户端的Cookie都是会话Cookie（不设置MaxAge），是存在浏览器内存中的。所以关闭浏览器后，内存中Cookie就消失了。Cookie消失，则下次请求服务器时，请求头中不存在代表用户信息的Cookie（唯一标识用户，表示其状态），那么浏览器就无法识别请求的用户。
 
-### Java Servlet中的Cookies
+## cookie作用域
+
+Domain 标识指定了哪些主机可以接受 Cookie。如果不指定，默认为当前文档的主机（不包含子域名）。如果指定了 Domain，则一般包含子域名。例如，如果设置 Domain=mozilla.org，则 Cookie 也包含在子域名中（如 developer.mozilla.org）
+
+Path 标识指定了主机下的哪些路径可以接受 Cookie（该 URL 路径必须存在于请求 URL 中）。以字符 %x2F ("/") 作为路径分隔符，子路径也会被匹配。例如，设置 Path=/docs，则以下地址都会匹配：
+
+- /docs
+- /docs/Web/
+- /docs/Web/HTTP
+
+>只要满足cookie的作用路径和域，都会带上cookie信息(携带请求头中的Cookie字段)，所以会产生流量代价，
+cookie是明文传递的，所以不secure
+
+## 浏览器禁用 Cookie
+
+此时无法使用 Cookie 来保存用户信息，只能使用 Session。除此之外，不能再将 Session ID 存放到 Cookie 中，而是使用 URL 重写技术，将 Session ID 作为 URL 的参数进行传递。
+
+# Servlet中的Cookies
 
 客户端可以向服务器发送多个cookie，除了键值对之外，服务器还在响应头中向客户端发送一些其他数据,例如 comment, domain, maximum time before cookie expires,以及Path where browser should send the cookie back in request.`但是当client向浏览器发送cookie时，它只会发送cookie的name和value。`:
 

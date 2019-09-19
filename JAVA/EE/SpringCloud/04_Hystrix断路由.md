@@ -43,6 +43,8 @@ Hystrix还提供了准实时的调用监控仪表盘(Hystrix Dashboard)，Hystri
 
 # Hystrix Dashboard 界面监控参数
 
+![](pics/熔断器仪表盘监控说明.png)
+
 >Hystrix 常用配置信息(修改application.properties)
 
 # 超时时间（默认1000ms，单位：ms）
@@ -58,7 +60,7 @@ Hystrix还提供了准实时的调用监控仪表盘(Hystrix Dashboard)，Hystri
 
 - hystrix.threadpool.default.maxQueueSize：最大排队长度。默认 -1，使用 SynchronousQueue。其他值则使用 LinkedBlockingQueue。如果要从 -1 换成其他值则需重启，即该值不能动态调整，若要动态调整，需要使用到下边这个配置
 - hystrix.threadpool.default.queueSizeRejectionThreshold：排队线程数量阈值，默认为 5，达到时拒绝，如果配置了该选项，队列的大小是该队列
-注意： 如果 maxQueueSize=-1 的话，则该选项不起作用
+- 注意： 如果 maxQueueSize=-1 的话，则该选项不起作用
 
 # 断路器
 
@@ -68,7 +70,8 @@ Hystrix还提供了准实时的调用监控仪表盘(Hystrix Dashboard)，Hystri
 
 # fallback
 
-- hystrix.command.default.fallback.isolation.semaphore.maxConcurrentRequests：调用线程允许请求 HystrixCommand.GetFallback() 的最大数量，默认 10。超出时将会有异常抛出，注意：该项配置对于 THREAD 隔离模式也起作用
+- hystrix.command.default.fallback.isolation.semaphore.maxConcurrentRequests：调用线程允许请求 
+- HystrixCommand.GetFallback() 的最大数量，默认 10。超出时将会有异常抛出，注意：该项配置对于 THREAD 隔离模式也起作用
 
 # 属性配置参数
 

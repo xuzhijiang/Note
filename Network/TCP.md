@@ -1,4 +1,11 @@
-## 三次握手(建立连接)
+# 三次握手和4次挥手图解
+
+![](pics/tcp-ip结构体系.png)
+![](pics/tcp-ip结构体系02.png)
+![](pics/tcp-ip结构体系03.png)
+![](pics/tcp-ip结构体系04.png)
+
+# 三次握手(建立连接)
 
 ```
 SYN: synchronization(同步)

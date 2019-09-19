@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <modules>
         <module>../hello-spring-cloud-alibaba-nacos-provider-8081</module>
         <module>../hello-spring-cloud-alibaba-nacos-consumer-9091</module>
@@ -32,17 +33,20 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <!-- Spring Settings -->
+        <!--
+            当前 Spring Cloud Alibaba 的 0.2.1.RELEASE 版本基于 Spring Cloud Finchley（F）开发，
+            故在选择 Spring Boot 版本时不要使用 2.1.0 及以上版本
+            （因为 2.1.x 版本必须使用 Spring Cloud Greenwich，俗称 G 版），
+            请使用官方 Demo 中使用的 2.0.6.RELEASE，以免发生意想不到的问题（比如服务无法注册到服务器）
+        -->
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
         <spring-cloud-alibaba.version>0.2.1.RELEASE</spring-cloud-alibaba.version>
     </properties>
 
     <dependencyManagement>
+        <!-- Spring Cloud Alibaba 项目是基于 Spring Cloud  -->
+        <!--  引入spring cloud依赖管理 -->
         <dependencies>
-            <!--
-                与 Spring Cloud Netflix 的区别
-                主要增加了 org.springframework.cloud:spring-cloud-alibaba-dependencies-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -50,12 +54,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--spring-cloud-alibaba-dependencies：在 properties 配置中预定义了版本号为 0.2.1.RELEASE ，表示我们的 Spring Cloud Alibaba 对应的是 Spring Cloud Finchley 版本-->
+
+            <!--  引入spring cloud alibaba依赖管理 -->
+            <!--
+                    spring-cloud-alibaba-dependencies最新版本是 0.2.1.RELEASE 和 0.1.1.RELEASE，
+                    0.2.1.RELEASE 对应的是 Spring Cloud Finchley 版本，
+                    版本 0.1.1.RELEASE 对应的是 Spring Cloud Edgware 版本。
+            -->
             <dependency>
-                <!--
-                    项目的最新版本是 0.2.1.RELEASE 和 0.1.1.RELEASE，
-                    版本 0.2.1.RELEASE 对应的是 Spring Cloud Finchley 版本，
-                    版本 0.1.1.RELEASE 对应的是 Spring Cloud Edgware 版本。-->
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
                 <version>${spring-cloud-alibaba.version}</version>
@@ -149,7 +155,7 @@
                     </executions>
                 </plugin>
 
-                <!-- YUI Compressor (CSS/JS压缩) -->
+                <!-- YUI Compressor (自动将项目中的CSS/JS压缩) -->
                 <plugin>
                     <groupId>net.alchim31.maven</groupId>
                     <artifactId>yuicompressor-maven-plugin</artifactId>
@@ -181,7 +187,7 @@
             </plugins>
         </pluginManagement>
 
-        <!-- 资源文件配置 -->
+        <!-- 资源文件配置(jar打包有时候不打包资源文件.) -->
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -208,7 +214,6 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-
         <repository>
             <id>sonatype-repos</id>
             <name>Sonatype Repository</name>
@@ -231,7 +236,6 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-
         <repository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>

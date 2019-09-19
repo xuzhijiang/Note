@@ -4,7 +4,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848 # Nacos Server 启动监听的ip地址和端口
+        server-addr: 127.0.0.1:8848
 
 server:
   port: 9091

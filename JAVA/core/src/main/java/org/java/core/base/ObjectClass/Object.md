@@ -143,20 +143,12 @@ public final native void notify();
 
 >跟notify一样，唯一的区别就是会唤醒在此对象监视器上等待的所有线程，而不是一个线程。同样，如果当前线程不是对象监视器的所有者，那么调用notifyAll同样会发生IllegalMonitorStateException异常。
 
-以下这段代码直接调用notify或者notifyAll方法会发生IllegalMonitorStateException异常，这是因为调用这两个方法需要当前线程是对象监视器的所有者：
-
-```java
-Factory factory = new Factory();
-factory.notify();
-factory.notifyAll();
-```
-
 ## wait(long timeout) throws InterruptedException方法
 
 * wait(long timeout)方法同样是一个native方法，并且也是final的，不允许子类重写。wait方法会让当前线程等待直到另外一个线程调用对象的notify或notifyAll方法，或者超过参数设置的timeout超时时间。
 * 跟notify和notifyAll方法一样，调用wait方法的当前线程必须是此对象的监视器所有者，否则还是会发生IllegalMonitorStateException异常。
 
->wait方法会让当前线程(我们先叫做线程T)将其自身放置在"对象的等待集中"，并且放弃该对象上的所有同步要求。出于线程调度目的，线程T是不可用并处于休眠状态，直到发生以下四件事中的任意一件：
+>假如一个线程叫T,在T线程中调用某一个对象锁的wait方法会让T线程释放当前的对象锁。出于线程调度目的，线程T是不可用并处于休眠状态，直到发生以下四件事中的任意一件：
 
 1. 其他某个线程调用此对象的notify方法，并且线程T碰巧被任选为被唤醒的线程
 2. 其他某个线程调用此对象的notifyAll方法

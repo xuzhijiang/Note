@@ -21,14 +21,13 @@
             <version>${project.version}</version>
         </dependency>
 
-        <!--由于Ribbon是客户端的负载均衡工具，
-        所以我们需要修改的是客户端项目microservicecloud-consumer-dept-80-->
-        <!-- Ribbon相关 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
 
+        <!--由于Ribbon是客户端的负载均衡工具，
+所以我们需要修改的是客户端项目microservicecloud-consumer-dept-80-->
         <!-- 使用Ribbon来实现负载均衡 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -56,6 +55,5 @@
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
     </dependencies>
-
 
 </project>

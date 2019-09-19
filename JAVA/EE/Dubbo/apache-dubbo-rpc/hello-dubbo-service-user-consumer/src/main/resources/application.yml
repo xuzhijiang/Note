@@ -1,0 +1,66 @@
+# Spring boot application
+spring:
+  application:
+    name: hello-dubbo-service-user-consumer
+server:
+  port: 9090
+
+# UserService service version
+user:
+  service:
+    version: 1.0.0
+
+# Dubbo Config properties
+dubbo:
+  scan:
+    # # 扫描dubbo的注解，否则注册不到服务
+    basePackages: com.funtl.hello.dubbo.service.user.consumer.controller
+  ## ApplicationConfig Bean
+  application:
+    id: hello-dubbo-service-user-consumer
+    name: hello-dubbo-service-user-consumer
+  protocol:
+    id: dubbo
+    name: dubbo
+    serialization: kryo # 使用dubbo使用kryo序列化
+  ## RegistryConfig Bean
+  registry:
+    id: zookeeper
+    # address: zookeeper://192.168.10.131:2181?backup=192.168.10.131:2182,192.168.10.131:2183
+    address: zookeeper://ip:2181
+  # consumer端负载均衡配置
+  consumer:
+    loadbalance: roundrobin
+
+# Dubbo Endpoint (default status is disable)
+endpoints:
+  dubbo:
+    enabled: true
+
+management:
+  server:
+    port: 9091
+  # Dubbo Health
+  health:
+    dubbo:
+      status:
+        ## StatusChecker Name defaults (default : "memory", "load" )
+        defaults: memory
+  # Enables Dubbo All Endpoints
+  endpoint:
+    dubbo:
+      enabled: true
+    dubbo-shutdown:
+      enabled: true
+    dubbo-configs:
+      enabled: true
+    dubbo-services:
+      enabled: true
+    dubbo-references:
+      enabled: true
+    dubbo-properties:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"

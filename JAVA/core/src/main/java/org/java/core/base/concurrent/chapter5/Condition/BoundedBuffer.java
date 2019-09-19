@@ -5,6 +5,20 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 实现Java 阻塞队列
+ *
+ * 在自己实现之前先搞清楚阻塞队列的几个特点：
+ * 基本队列特性：先进先出。
+ * 写入队列空间不可用时会阻塞。
+ * 获取队列数据为空时将阻塞。
+ *
+ * 实现队列的方式多种，总的来说就是数组和链表；其实我们只需要搞清楚其中一个即可，不同的特性主要表现为数组和链表的区别。这里是使用数组实现.
+ *
+ * 注意要实现循环队列.以及put和take都要改变同一个count变量,所以要用同一把锁,否则会出现count数据不一致.
+ *
+ * 错误的实现案例: https://segmentfault.com/a/1190000020005820, 这个案例会出现count数据不一致以及死锁.因为put和take使用了2个不同的锁.
+ */
 public class BoundedBuffer {
 
     final Lock lock = new ReentrantLock();
@@ -13,9 +27,6 @@ public class BoundedBuffer {
     // 要为特定 Lock 实例获得 Condition 实例，可以使用其 newCondition() 方法。
     final Condition canPut = lock.newCondition();
 
-    // 我们喜欢在单独的等待 set 中保存 put 线程和 take 线程，
-    // 这样就可以在缓冲区中的项或空间变得可用时利用最佳规划，一次只通知一个线程。
-    // 可以使用两个 Condition 实例来做到这一点。
     final Condition canTake = lock.newCondition();
 
     final Object[] items = new Object[100];
@@ -44,10 +55,8 @@ public class BoundedBuffer {
     }
 
     /**
-     * 作为一个示例，假定有一个有界的缓冲区，它支持 put 和 take 方法。
+     * 假定有一个有界的缓冲区，它支持 put 和 take 方法。
      * 如果试图在空的缓冲区上执行 take 操作，则在某一个项变得可用之前，线程将一直阻塞；
-     * @return
-     * @throws InterruptedException
      */
     public Object take() throws InterruptedException {
         lock.lock();
@@ -70,8 +79,9 @@ public class BoundedBuffer {
 
     public static void main(String[] args) {
         final BoundedBuffer boundedBuffer = new BoundedBuffer();
-        for(int i=0;i<8;i++){
 
+        for(int i=0;i<100;i++){
+            // 偶数put,奇数take
             if((i%2) == 0){
                 new Thread(new Runnable() {
                     @Override

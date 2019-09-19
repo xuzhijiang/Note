@@ -1,9 +1,0 @@
-# ÅäÖÃ·şÎñ¶Ë¿Ú
-server:
-  port: 9090
-
-spring:
-  dubbo:
-    application:
-      name: dubbo-provider
-    registry: zookeeper://ip:2181

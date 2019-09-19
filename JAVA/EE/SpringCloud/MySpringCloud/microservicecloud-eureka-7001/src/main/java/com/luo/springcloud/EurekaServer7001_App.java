@@ -5,19 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
- * Eureka服务注册与发现
- *
- * Eureka三大角色
- *
- * - Eureka Server提供服务注册和发现
- * - Service Provider服务提供方将自身服务注册到Eureka， 从而使服务的消费者能够找到
- * - Service Consumer服务消费方从Eureka获取注册服务列表，从而能够消费
- */
-
-/**
- * 输入http://localhost:7001/，看到Spring Eureka界面表示成功，
- * 这个访问链接和程序中的application.yml配置吻合。
- *
  * Eureka集群测试:
  *
  * - 访问eureka7001.com:7001

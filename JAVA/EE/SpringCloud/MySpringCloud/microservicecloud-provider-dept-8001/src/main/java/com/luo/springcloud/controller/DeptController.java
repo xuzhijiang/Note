@@ -24,10 +24,6 @@ public class DeptController {
         return service.get(id);
     }
 
-    /**
-     * http://localhost:8001/dept/list以JSON的方式返回数据
-     * @return
-     */
     @RequestMapping(value = "dept/list", method = RequestMethod.GET)
     public List<Dept> list(){
         return service.list();
