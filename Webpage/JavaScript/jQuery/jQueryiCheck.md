@@ -1,0 +1,5 @@
+![](pics/jQueryiCheck01.png)
+![](pics/jQueryiCheck02.png)
+![](pics/jQueryiCheck03.png)
+![](pics/jQueryiCheck04.png)
+![](pics/jQueryiCheck05.png)

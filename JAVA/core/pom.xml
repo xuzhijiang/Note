@@ -19,6 +19,7 @@
 		<mysql.version>5.0.5</mysql.version>
 		<javax.json.version>1.1</javax.json.version>
 		<oracle.version>10.2.0.2.0</oracle.version>
+		<jackson.version>2.9.5</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -75,6 +76,24 @@
 			<artifactId>guava</artifactId>
 			<version>22.0</version>
 		</dependency>
+
+		<!-- Json Begin -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<!-- Json End -->
 	</dependencies>
 	
 	<build>

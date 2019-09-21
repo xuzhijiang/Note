@@ -1,25 +1,21 @@
-## CAS(Java中的非阻塞同步策略)
+# CAS(Java中的非阻塞线程同步策略)
 
-### 概述
+![](pics/为什么要用CAS.png)
+![](pics/CAS原理分析01.png)
+![](pics/CAS原理分析02.png)
+![](pics/CAS原理分析03.png)
+![](pics/CAS原理分析04.png)
+![](pics/在java领域的广泛应用01.png)
+![](pics/在java领域的广泛应用02.png)
+![](pics/在java领域的广泛应用03.png)
+![](pics/在java领域的广泛应用04.png)
+![](pics/在java领域的广泛应用05.png)
 
-CAS操作，即compareAndSwap,是一种有名的无锁算法。无锁编程，即不使用锁的情况下实现多线程之间的变量同步。
-CAS是原子操作。
-
-### CAS指令的原子性
-
-原子操作的业务表现形式是“不可被中断或不可被分割操作”。所谓CAS（Compare And Swap）比较并交换就是一种原子操作。简单来说执行CAS需要两个参数，一个新值，一个旧值，当比较内存的值与旧值相符时，则替换为新值，否则不执行替换操作。Java若要实现CAS则需要CPU指令集配合，JDK1.5加入了这个特性，并在随后的版本对其进行丰富。
-
->Java是通过一个sun.misc.Unsafe的类，完成CAS指令操作的，然而我们从AQS的源码中也发现了sun.misc.Unsafe类的踪影.
-
-### volatile关键字
+# volatile关键字
 
 >volatile在多线程环境下保证了共享变量内存可见性。意思是线程A修改了volatile修饰的共享变量，线程B能够感知修改。如果volatile合理使用的话，将会比Synchronized的执行成本更低。从底层的角度来说，为了提高处理速度，`CPU不直接和内存进行通信`，而是先将数据读入到CPU缓存后在进行操作，但不知何时将会更新到内存。声明变量加入volatile关键字后，每次修改该变量，JVM就会通知处理器将CPU缓存内的值强制更新到内存中，这就是所谓的“可见性”.
 
-#### volatile和synchronized比较
-
-volatile和synchronized可以实现效果等价，但是性能来说前者更优，原因前面也说了，Synchronized在多线程环境下会引起上下文切换及调度，在并发量大的前提下，有不小的性能开销。因此合理使用volatile有助于我们代码性能的优化。
-
-### CAS存在三大问题
+# CAS存在三大问题
 
 >CAS虽然很高效，但是它也存在三大问题:
 
@@ -28,7 +24,7 @@ JDK从1.5开始提供了AtomicStampedReference类来解决ABA问题，具体操�
 2. 循环时间长开销大。CAS操作如果长时间不成功，会导致其一直自旋，给CPU带来非常大的开销。
 3. 只能保证一个共享变量的原子操作。对一个共享变量执行操作时，CAS能够保证原子操作，但是对多个共享变量操作时，CAS是无法保证操作的原子性的。Java从1.5开始JDK提供了AtomicReference类来保证引用对象之间的原子性，可以把多个变量放在一个对象里来进行CAS操作。
 
-### CAS的ABA问题描述以及解决方案
+## ABA问题描述以及解决方案
 
 线程1从内存位置V取出 A，这时候线程2也从内存位置 V 取出 A，此时线程1处于挂起状态，线程2将位置V的值改成 B，最后再改成 A，这时候线程1再执行，发现位置 V 的值没有变化，尽管线程 1 也更改成功了，但是不代表这个过程就是没有问题的。
 
@@ -65,3 +61,6 @@ public boolean compareAndSet(V   expectedReference,V   newReference,int expected
 }
 ```
 
+# 好文
+
+- [java高并发：CAS无锁原理及广泛应用](https://www.jishuwen.com/d/2BtD)

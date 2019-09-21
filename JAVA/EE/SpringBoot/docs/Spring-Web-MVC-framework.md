@@ -97,6 +97,26 @@ Spring Boot提供了一个默认的映射：/error，当处理中抛出异常之
 
 简单概括:perHandle()方法是按照配置文件顺序执行 然后逆序执行每个拦截器的postHandle()方法 ，最后逆序执行afterCompletion()方法
 
+# Spring MVC 表单标签库
+
+![](pics/SpringMVC表单标签库01.png)
+![](pics/SpringMVC表单标签库02.png)
+![](pics/SpringMVC表单标签库03.png)
+![](pics/SpringMVC表单标签库04.png)
+![](pics/SpringMVC表单标签库05.png)
+![](pics/SpringMVC表单标签库06.png)
+![](pics/SpringMVC表单标签库07.png)
+![](pics/SpringMVC表单标签库08.png)
+
+# jQuery Validation
+
+- [](https://www.funtl.com/zh/supplement1/jQuery-Validation.html)
+
+![](pics/jQueryValidation01.png)
+![](pics/jQueryValidation02.png)
+![](pics/jQueryValidation03.png)
+![](pics/jQueryValidation04.png)
+
 # 使用WebMvcConfigurer
 
 ![](pics/使用WebMvcConfigurer配置SpringMVC01.png)
@@ -140,5 +160,7 @@ spring-boot-devtools是一个自动应用代码更改到最新的App上面去，
 ![](pics/实现热部署03.png)
 ![](pics/实现热部署04.png)
 ![](pics/实现热部署05.png)
+
+>idea可以安装一个叫jRebel的热部署插件.
 
 - [来源](https://www.funtl.com/zh/spring-mvc/第一个-Controller-控制器.html#概述)
