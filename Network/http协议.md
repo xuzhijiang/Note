@@ -31,6 +31,7 @@
 -  **401 Unauthorized** ：该状态码表示发送的请求需要有认证信息。如果之前已进行过一次请求，则表示用户认证失败。
 -  **403 Forbidden** ：请求不允许
 -  **404 Not Found** 未找到资源.
+-  **405  Method Not Allowed** 请求的方法不允许.
 -  **500 Internal Server Error** ：服务器正在执行请求时发生错误。
 -  **503 Service Unavailable** ：服务器暂时处于超负载或正在进行停机维护，现在无法处理请求。
 

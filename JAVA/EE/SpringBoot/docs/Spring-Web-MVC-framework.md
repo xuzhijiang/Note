@@ -108,15 +108,6 @@ Spring Boot提供了一个默认的映射：/error，当处理中抛出异常之
 ![](pics/SpringMVC表单标签库07.png)
 ![](pics/SpringMVC表单标签库08.png)
 
-# jQuery Validation
-
-- [](https://www.funtl.com/zh/supplement1/jQuery-Validation.html)
-
-![](pics/jQueryValidation01.png)
-![](pics/jQueryValidation02.png)
-![](pics/jQueryValidation03.png)
-![](pics/jQueryValidation04.png)
-
 # 使用WebMvcConfigurer
 
 ![](pics/使用WebMvcConfigurer配置SpringMVC01.png)

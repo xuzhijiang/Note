@@ -78,6 +78,7 @@ public class MapperUtils {
      * 字符串转换为 Map<String, T>
      */
     public static <T> Map<String, T> json2map(String jsonString, Class<T> clazz) throws Exception {
+        // TypeReference指定了要转换成什么类型
         Map<String, Map<String, Object>> map = objectMapper.readValue(jsonString, new TypeReference<Map<String, T>>() {
         });
         Map<String, T> result = new HashMap<String, T>();

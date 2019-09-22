@@ -51,6 +51,7 @@ site:http://www.apple.com/
 11. ctrl+alt+b: 选中一个接口的方法,然后可以定位具体的实现类中
 12. Ctrl+Alt+S打开配置
 13. 列模式: 按住 alt 不放，上下拖鼠标
+14. ctrl+R: 批量替换.
 
 ### Java书写规范
 
