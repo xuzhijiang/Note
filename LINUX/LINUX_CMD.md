@@ -17,6 +17,9 @@ export PATH=$PATH:$JAVA_HOME/bin
 >Linux命令大全：[http://man.linuxde.net/](http://man.linuxde.net/)
 
 ```shell
+# c是压缩compress, z表示gzip格式的压缩,v表示显示文件目录,f表示显示文件名
+tar -czvf myshop.tar.gz .
+
 # 查看linxu系统的版本
 cat /etc/os-release
 

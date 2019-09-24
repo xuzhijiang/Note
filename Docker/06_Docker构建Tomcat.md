@@ -1,18 +1,18 @@
-```shell
-docker search tomcat
+# 将项目web-admin.zip容器化部署项目到tomcat
 
+```shell script
+docker search tomcat
 # 这里我们拉取官方的镜像
 docker pull tomcat
 
-# 运行容器：
-docker run --name tomcat -p 8080:8080 -v $PWD/test:/usr/local/tomcat/webapps/test -d tomcat
-
-# 命令说明：
-# -p 8080:8080：将容器的8080端口映射到主机的8080端口
-# -v $PWD/test:/usr/local/tomcat/webapps/test：将主机中当前目录下的test挂载到容器的/test
-
-# 查看容器启动情况
-docker ps
-
-# 通过浏览器访问验证
+# 拷贝web-admin.zip到/usr/local/docker/tomcat/ROOT
+cp web-admin.zip /usr/local/docker/tomcat/ROOT && cd /usr/local/docker/tomcat/ROOT
+# 解压zip,这时ROOT下会出现3个文件夹,static,WEB-INF,META-INF
+unzip web-admin.zip
+# 然后把zip就可以删除了
+rm web-admin.zip
+# 切换到/usr/local/docker/tomcat
+cd /usr/local/docker/tomcat
+# 启动tomcat容器(启动之前要修改web-admin.zip中的mysql数据源等)
+docker run -p 8080:8080 --name myshop -v /usr/local/docker/tomcat/ROOT:/usr/local/tomcat/webapps/ROOT -d tomcat
 ```

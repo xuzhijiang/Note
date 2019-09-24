@@ -170,23 +170,8 @@ name1=value1&name2=value2
 
 # 幂等性
 
-幂等的 HTTP 方法，同样的请求被执行一次与连续执行多次的效果是一样的，服务器的状态也是一样的。
-
-GET是幂等的，而 POST不是
-
-GET /pageX HTTP/1.1 是幂等的，连续调用多次，客户端接收到的结果都是一样的：
-
-```
-GET /pageX HTTP/1.1
-GET /pageX HTTP/1.1
-GET /pageX HTTP/1.1
-GET /pageX HTTP/1.1
-```
-
-POST /add_row HTTP/1.1 不是幂等的，如果调用多次，就会增加多行记录：
-
-```
-POST /add_row HTTP/1.1   -> Adds a 1nd row
-POST /add_row HTTP/1.1   -> Adds a 2nd row
-POST /add_row HTTP/1.1   -> Adds a 3rd row
-```
+![](pics/幂等性00.png)
+![](pics/幂等性01.png)
+![](pics/幂等性02.png)
+![](pics/幂等性03.png)
+![](pics/幂等性04.png)

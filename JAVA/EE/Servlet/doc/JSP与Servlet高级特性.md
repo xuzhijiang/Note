@@ -1,7 +1,6 @@
-## JSP与Servlet高级特性
+# JSP与Servlet高级特性
 
 * 异步处理
-* 实例展示：登录验证码
 
 这三个特性在现代Web后端开发框架中得到了普遍的支持。特别是异步处理，更是发展态势良好，各Web后端开发框架都纷纷在这块推出新技术。
 
@@ -126,28 +125,3 @@ asyncContext.complete() or asyncContext.dispatch()
 2. 异步监听器不需要使用@WebListener注册，而是由异步Servlet自己调用addListener方法注册
 
 > 示例： AsyncListenerServlet
-
-### 实例展示(验证码)
-
-#### 了解验证码功能的实现与原理
-
-验证码本质上就是一张临时生成的图片：可以使用java.awt.Graphics2D类和java.awt.BufferedImage类绘图生成验证码图片。
-
-#### 验证码的生成
-
-> 示例： ValidateUserDemo
-
-在后台生成随机字串，进行绘图，在前端使用<img>显示验证码，JavaScript实现刷新。
-
-> 要点：注意清空浏览器缓存的方法注意如何解决getOutputStream异常问题
-
-> 示例： ValidateUserDemo
-
-access: http:localhost:8080/
-
-#### 使用框架生成验证码
-
-Kaptcha是一个基于SimpleCaptcha的验证码开源项目。官网地址：http://code.google.com/p/kaptcha/
-
-##### 特点：本身是使用Servlet实现的。生成的验证码放到了Session中，其Key可以在
-web.xml中指定制。提供多种手段定制生成的验证码图片。示例仅完成了使用kaptcha的验证功能，完成前面自定义验证码的功能留为作业……

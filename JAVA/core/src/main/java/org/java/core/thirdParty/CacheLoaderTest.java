@@ -1,4 +1,4 @@
-package org.java.core.thirdParty.guava;
+package org.java.core.thirdParty;
 
 import com.google.common.cache.*;
 

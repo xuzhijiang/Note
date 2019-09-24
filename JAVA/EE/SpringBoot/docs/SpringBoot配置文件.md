@@ -11,7 +11,7 @@ SpringBoot配置文件可以使用yml格式和properties格式,默认可以放�
 
 某一个目录下,同时存在yml和properties文件,SpringBoot会先加载yml,然后加载properties,properties中的属性会覆盖yml中的.
 
-## yml和properties一共4种
+## yml和properties
 
 - Bootstrap.yml
 - bootstrap.properties
@@ -44,7 +44,7 @@ public class Application {
 }
 ```
 
-## 使用随机数:
+    使用随机数:
 
 在一些情况下，有些参数我们需要希望它不是一个固定的值，比如密钥、服务端口等。Spring Boot的属性配置文件中可以通过${random}来产生int值、long值或者string字符串，来支持属性的随机值.
 
@@ -165,26 +165,6 @@ person.dog.name=dog
 person.dog.age=15
 ~~~
 
-使用@ImportResource(locations = {"classpath: beans.xml"})注解加载Spring配置文件。如下
-
-~~~xml
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <bean id="helloService" class="com.springboot.service.HelloService"></bean>
-</beans>
-~~~
-
->但是，在SpringBoot中不推荐再继续使用xml配置文件来启动项目，推进使用全注解的方式来给容器添加组件，使用@bean注解和@Configuration注解，如下：
-
-说明：
-
-1. @Configuration注解指明当前类是一个配置类，就是用来代替之前的Spring.xml配置文件
-2. 在Spring.xml文件中，使用<bean></bean>标签来添加组件，在配置类中使用@bean注解
-3. @bean注解标记在方法中就是将方法的返回值添加到容器中，容器中这个组件的默认id就是方法名
-
 ### 配置文件中的占位符
 
 配置文件中可以使用随机数：${random.value/int/long}等。
@@ -204,36 +184,6 @@ person:
     name: '${person.name}小猫\n小狗'
     age: 4
 ~~~
-
-#### 6.Profile多环境支持
-
-1. 使用多Profile文件的方法，在编写配置文件名时带上不同环境的标识，文件名application-{profile}.yml
-2. 使用yaml多文档块的方式
-3. 激活指定的profile
-
-第一种方法就是在建立不同的配置文件application.yml、application-dev.yml、application-pro.yml。程序默认使用application.yml，在application.yml中使用spring.profiles.active=dev来激活指定的配置文件。
-
-第二种配置方法如下
-
-~~~yaml
-server:
-  port: 8080
-Spring:
-  profiles:
-    active: dev
----
-server:
-  port: 8081
-spring:
-  profiles: dev
----
-server:
-  port: 8084
-spring:
-  profiles: pro
-~~~
-
-激活指定环境也可以在项目打成jar包的时候使用命令的形式java -jar jar名 --spring.profiles.active=dev
 
 ### 配置文件加载位置
 
@@ -262,6 +212,8 @@ application.yml文件中到底都能配置什么?
 
 以HttpEncodingAutoConfiguration为例解释自动配置原理
 
+@Conditional根据满足某一个特定条件创建一个特定的Bean。比方说，当某一个jar包在一个类路径下的时候，自动配置一个或多个Bean；或者只有某个Bean被创建才会创建另外一个Bean。总的来说，就是根据特定条件来控制Bean的创建行为，这样我们可以利用这个特性进行一些自动的配置。
+
 ~~~java
 @Configuration //表示这是一个配置类
 @EnableConfigurationProperties({HttpEncodingProperties.class})
@@ -289,7 +241,7 @@ application.yml文件中到底都能配置什么?
 public class HttpEncodingProperties {
 ~~~
 
-### SpringBoot自动配置的精髓
+# SpringBoot自动配置的精髓
 
 SpringBoot在启动的时候就会加载大量的自动配置类
 
@@ -318,6 +270,36 @@ jpa:
     # ，其中表名就是实体类的名字，表字段就是实体类的对应字段.
   show-sql: true
 ```
+
+# Profile多环境支持
+
+1. 使用多Profile文件的方法，在编写配置文件名时带上不同环境的标识，文件名application-{profile}.yml,如application-prod.yml
+2. 使用yaml多文档块的方式
+3. 激活指定的profile
+
+第一种方法就是在建立不同的配置文件application.yml、application-dev.yml、application-pro.yml。程序默认使用application.yml，在application.yml中使用spring.profiles.active=dev来激活指定的配置文件。
+
+第二种配置方法如下
+
+~~~yaml
+server:
+  port: 8080
+Spring:
+  profiles:
+    active: dev
+---
+server:
+  port: 8081
+spring:
+  profiles: dev
+---
+server:
+  port: 8084
+spring:
+  profiles: pro
+~~~
+
+激活指定环境也可以在项目打成jar包的时候使用命令的形式java -jar jar名 --spring.profiles.active=dev
 
 springboot项目中yaml中可以定义多个profile，也可以指定激活的profile：
 

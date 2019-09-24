@@ -18,9 +18,18 @@ POM 代表项目对象模型.
 ![](pics/Maven插件01.png)
 ![](pics/Maven插件02.png)
 
+    idea配置更新快照版本
+    
 ![](pics/maven快照.png)
-
 ![](pics/maven-snapshots理解.png)
+
+    idea配置自己的Maven
+    
+![](pics/更新Maven仓库索引.png)
+![](pics/idea配置用户自己的maven.png)
+
+    使用maven刷新项目
+    
 ![](pics/idea-maven刷新.png)
 
 # Maven 常用命令
@@ -60,57 +69,8 @@ mvn deploy (all of the above, and install package into remote (aka public) repos
 1. Compile:缺省值，适用于所有阶段(编译，测试，运行)，会随着项目一起发布，是一个比较强的依赖。打包的时候需要包含进去。
 2. Test: 表示依赖项目仅仅参与测试相关的工作，只在测试时使用，用于编译和运行测试代码。不会随项目发布。比较典型的如junit,junit只有在执行单元测试时候需要，当我们进行真正项目发布的时候junit是不需要进行编译和发布的。
 3. runtime: 被依赖项目无需参与项目的编译，适用运行和测试阶段。与compile相比，跳过编译而已，举例说明一下：在代码中调用了一个接口一个方法，这个接口并没有对应的实现。这段代码在编译期间并不会报错，但是在代码运行的时候会出现问题。jdbc驱动可以使用runtime的scope，因为只有在真正运行的时候才会调用到驱动的代码。
-4. provided: 打包的时候不打包进去,别的设施(例如web容器)会提供。该依赖参与编译，测试，运行等周期。相当于compile，但是在打包阶段做了exclude的动作
-
-```xml
-<!-- tomcat会提供这个servlet-api.jar 包，所以当我们项目发布的时候这个包是不需要打到包里的 -->
-<dependency>  
- <groupId>javax.servlet</groupId>  
-  <artifactId>servlet-api</artifactId>  
-    <version>2.5</version>  
-    <scope>provided</scope>  
-</dependency>  
-<dependency>  
-    <groupId>javax.servlet.jsp</groupId>  
-    <artifactId>jsp-api</artifactId>  
-    <version>2.1</version>  
-    <scope>provided</scope>  
-</dependency>  
-```
-
+4. provided: 打包的时候不打包进去,别的设施(例如web容器)会提供。该依赖参与编译，测试，运行等周期。相当于compile，但是在打包阶段做了exclude的动作,例如servlet相关的jar,容器会提供,所以我们项目发布的时候这个包是不需要打到包里的
 5. 从参与度(编译，测试，运行)来说，也provided相同，不过被依赖项不会从maven仓库抓，而是从本地文件系统拿，一定需要配合systemPath属性使用。
-
-# maven替换中央仓库- 阿里云
-
-第一种: 修改local repo仓库地址
-
-```shell
-# 修改maven根目录下的conf文件夹中的setting.xml文件
-# 修改maven配置文件($M2_HOME/conf/settings.xml)
-cd  $M2_HOME/conf/
-sudo vim settings.xml
-
-# 或者在.m2下面添加一个settings.xml文件
-```
-
-### 第二种: 修改某一个项目的仓库地址
-
-```xml
-# pom.xml文件里添加
-<repositories>
-        <repository>  
-            <id>alimaven</id>  
-            <name>aliyun maven</name>  
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>  
-            <releases>  
-                <enabled>true</enabled>  
-            </releases>  
-            <snapshots>  
-                <enabled>false</enabled>  
-            </snapshots>  
-        </repository>  
-</repositories>  
-```
 
 # Nexus
 
@@ -190,3 +150,46 @@ Nexus 是一个强大的仓库管理器，极大地简化了内部仓库的维�
 ## Linux下使用
 
 - [https://yq.aliyun.com/articles/7427](https://yq.aliyun.com/articles/7427)
+
+# 解决Maven无法自动下载依赖的问题
+
+![](pics/解决Maven无法自动下载依赖的问题01.png)
+![](pics/解决Maven无法自动下载依赖的问题02.png)
+![](pics/解决Maven无法自动下载依赖的问题03.png)
+
+# Maven镜像仓库替换为阿里云镜像仓库
+
+## 第一种方式: 直接修改Maven配置文件.
+
+```shell
+# 修改maven配置文件: $MAVEN_HOME/conf/settings.xml, 或者在$USER_HOME/.m2/下面添加一个settings.xml文件,里面添加:
+<!-- 阿里镜像仓库 -->
+<mirrors>
+<mirror>
+    <id>alimaven</id>
+    <name>aliyun maven</name>
+    <url>
+        http://maven.aliyun.com/nexus/content/groups/public/
+    </url>
+    <mirrorOf>central</mirrorOf>
+</mirror>
+</mirrors>
+```
+
+## 第二种: 修改某一个项目,直接引用alimaven
+
+```xml
+<repositories>
+    <repository>  
+        <id>alimaven</id>  
+        <name>aliyun maven</name>  
+        <url>http://maven.aliyun.com/nexus/content/groups/public/</url>  
+        <releases>  
+            <enabled>true</enabled>  
+        </releases>  
+        <snapshots>  
+            <enabled>true</enabled>  
+        </snapshots>  
+    </repository>  
+</repositories>  
+```

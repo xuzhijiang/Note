@@ -1,4 +1,4 @@
-package org.java.core.base.Jdk7NewFeature;
+package org.java.core.base;
 
 /**
  * Java 7改进了switch case以支持String

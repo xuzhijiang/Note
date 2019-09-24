@@ -25,4 +25,14 @@ $ docker image ls
 # 删除 image 文件
 $ docker image rm [imageName]
 
+# 删除所有镜像
+docker rmi $(docker images -q)
+
+# 删除所有虚悬镜像(dangling image)
+# 删除所有虚悬镜像的时候要把相关的容器都停止了,否则删不了.
+docker image prune
+# 如果基于虚悬镜像启动了容器,就删除失败了,要先删除了容器之后才可以删除.
+
+# 删除所有虚悬镜像
+docker rmi $(docker images -q -f dangling=true)
 ```

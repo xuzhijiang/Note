@@ -1,140 +1,149 @@
-# Docker Compose 简介
+# Docker Compose
 
-## 概念
+学Docker,Compose是必会的.
 
-[Compose](https://docs.docker.com/compose/) 是 Docker 公司推出的一个工具软件，可以管理多个 Docker 容器组成一个应用。
+[Compose](https://docs.docker.com/compose/) 定位是 「定义和运行多个 Docker 容器的应用」
 
-你需要定义一个 YAML 格式的docker-compose.yml，写好多个容器之间的调用关系。然后，只要一个命令，就能同时启动/关闭这些容器。
+![](什么是DockerCompose.png)
 
----
+你需要定义一个 YAML 格式的docker-compose.yml，写好多个容器之间的调用关系。然后，只要一个命令，就能同时启动/关闭这些容器
 
-容器:一个应用实际上可以运行多个相同镜像的实例,也就是多个容器实例.
-
-项目(project):由一组关联的容器实例组成的一个完整业务单元。
-
-一个项目可以由多个容器实例关联而成，Compose 面向项目进行管理。
-
----
-
-```shell
-# 启动所有服务(up：构建、启动容器)
-$ docker-compose up
-
-# 关闭所有服务
-$ docker-compose stop
-```
-
-## Docker Compose 的安装
+# Docker Compose 的安装
 
 Mac 和 Windows 在安装 docker 的时候，会一起安装 docker compose。[Linux 系统下的安装参考官方文档](https://docs.docker.com/compose/install/#install-compose)
 
 ```shell
-$ docker-compose --version
+$ docker-compose version
 ```
 
 [安装与卸载](https://yeasy.gitbooks.io/docker_practice/compose/install.html)
 
-## WordPress 示例
+# Docker Compose 入门
 
-在docker-demo目录下，新建docker-compose.yml文件，写入下面的内容。
-
-```shell
-<!-- 两个顶层标签表示有两个容器mysql和web -->
-mysql:
-    image: mysql:5.7
-    environment:
-     - MYSQL_ROOT_PASSWORD=123456
-     - MYSQL_DATABASE=wordpress
-web:
-    image: wordpress
-    links:
-     - mysql
-    environment:
-     - WORDPRESS_DB_PASSWORD=123456
-    ports:
-     - "127.0.0.3:8080:80"
-    working_dir: /var/www/html
-    volumes:
-     - wordpress:/var/www/html
+```shell script
+cd /usr/local/docker/tomcat && vim docker-compose.yml
 ```
 
-- environment: 向容器进程传入一个环境变量WORDPRESS_DB_PASSWORD，该变量会被用作数据库密码
+    简单的先使用docker-compose启动一个tomcat
 
->详细参数解释可以看: https://www.jianshu.com/p/658911a8cff3
+>注意yml中不要有制表符,不能按table,只能有空格.
 
-```shell
-# 启动两个容器
-$ docker-compose up
-
-# 浏览器访问 http://127.0.0.3:8080，应该就能看到 WordPress 的安装界面。
-
-# 现在关闭两个容器
-$ docker-compose stop
-
-# 关闭以后，这两个容器文件还存在，写在里面的数据不会丢失。下次启动的时候，还可以复用。
-
-# 下面的命令可以把这两个容器文件删除（容器必须已经停止运行）。
-$ docker-compose rm
-```
-
-## docker-compose.yml示例
-
-注意每个服务都必须通过 image 指令指定镜像或 build 指令（需要 Dockerfile）来自动构建生成镜像。
-
-如果使用 build 指令，在 Dockerfile 中设置的选项(例如：CMD, EXPOSE, VOLUME, ENV 等) 将会自动被获取，无需在 docker-compose.yml 中再次设置。
-
-command: 启动后默认执行的命令。
-
-```shell
-# 这个compose定义了2个服务: web and redis.
-
-version: '3'
+```shell script
+version: '3' # 这个不是随便写的,是docker-compose配置语言的版本
 services: # 多个容器(服务)集合
-  web: # 指定服务名称
-    build: . # 指定 Dockerfile 所在路径
+  tomcat: # 名字随便起,但是要有意义.
+    restart: always # 代表总是开机启动
+    image: tomcat # 使用哪个image
+    container_name: compose-tomcat # 容器名
     ports: # 指定端口映射
-      - "5000:5000" # 第一个5000是外部服务器端口，第二个是容器内部的port
-  redis:
-    image: "redis:alpine" # 指定要使用的镜像
+      - 8080:8080 # 第一个5000是宿主机端口，第二个是容器port
+```
+
+# Docker Compose 常用命令
+
+```shell script
+# 注意docker-compose必须在有docker-compose.yml的目录下执行,如果当前目录没有这个yml文件,需要指定文件路径,例如docker-compose -f /usr/local/tomcat/docker-compose.yml up,但是一般不这么玩.
 
 # 在 docker-compose.yml 所在路径下执行命令就会自动构建镜像并使用镜像启动容器:
+# 前台运行
 docker-compose up
-docker-compose up -d  // 后台启动并运行容器
-```
 
-## Docker Compose 常用命令与配置
+# 启动并后台运行容器
+docker-compose up -d
 
-```shell
 # ps：列出所有运行容器
 docker-compose ps
 
-# logs：查看服务日志输出
-docker-compose logs
+# 守护态运行查看日志输出
+docker-compose logs [container-name]
 
-# 打印绑定的公共端口，下面命令可以输出 eureka 服务 8761 端口所绑定的公共端口
-docker-compose port eureka 8761
+#启动
+docker-compose start
 
-# build：构建或者重新构建服务
-docker-compose build
+#停止
+docker-compose stop
 
-# start：启动指定服务已存在的容器
-docker-compose start eureka
-
-#stop：停止已运行的服务的容器
-docker-compose stop eureka
-
-# rm：删除指定服务的容器
-docker-compose rm eureka
-
-# kill：通过发送 SIGKILL 信号来停止指定服务的容器
-docker-compose kill eureka
-
-# scale：设置指定服务运气容器的个数，以 service=num 形式指定
-docker-compose scale user=3 movie=3
-
-# run：在一个服务上执行一个命令
-docker-compose run web bash
+#停止并移除容器
+docker-compose down
 ```
+
+# Docker Compose 实战部署项目到容器
+
+```shell script
+# MySQL5
+version: '3.1'
+services:
+  tomcat:
+    restart: always
+    image: tomcat
+    container_name: web_container
+    ports:
+      - 8080:8080
+    volumes:
+      - /usr/local/docker/tomcat/webapps/test:/usr/local/tomcat/webapps/test # 左边宿主,右边容器
+    environment:
+      TZ: Asia/Shanghai
+  mysql:
+    restart: always
+    image: mysql:5.7.22
+    container_name: mysql_myshop_container
+    ports:
+      - 3306:3306
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: 123456
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+      --max_allowed_packet=128M # 初始化参数
+      --sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO"
+    volumes:
+      - mysql-data:/var/lib/mysql #  给容器的/var/lib/mysql目录起了一个叫mysql-data的名字,启动后可通过docker volume ls查看到叫mysql-data的volume
+
+volumes: # 数据卷可以单独管理,也可以统一管理,这是2种写法,这里mysql是统一管理,tomcat是单独管理.,这里的volumes是和 services是对齐的.
+  mysql-data: # 这里的mysql-data在宿主机的路径是: /var/lib/docker/volumes/myshop_mysql-data/_data下.
+```
+
+```shell script
+# MySQL8
+version: '3.1'
+services:
+  tomcat:
+    restart: always
+    image: tomcat
+    container_name: tomcat
+    ports:
+      - 8080:8080
+    volumes:
+      - /usr/local/docker/tomcat/webapps/test:/usr/local/tomcat/webapps/test
+    environment:
+      TZ: Asia/Shanghai
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+```
+
+>注意连接mysql的时候,数据源要正确.
 
 # 参考
 

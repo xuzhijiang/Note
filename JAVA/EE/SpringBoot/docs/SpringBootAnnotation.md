@@ -59,6 +59,26 @@
 
 这个值除了直接指定，还可以从项目的application.properties文件中提取: @Value("${age}")获取配置文件中的属性值
 
+# @ConfigurationProperties
+
+通过@ConfigurationProperties加载properties文件内的配置，通过prefix属性指定
+properties的配置的前缀，必要时，也可以通过locations指定properties文件的位置，例如：
+
+```java
+@ConfigurationProperties(prefix="xzj",locations={"classpath:config/author.properties"})
+```
+
+注意需要添加以下项目依赖：
+
+```xml
+<!--允许使用@ConfigurationProperties-->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-configuration-processor</artifactId>
+    <optional>true</optional>
+</dependency>
+```
+
 # @SpringBootApplication
 
 @SpringBootApplication = @Configuration + @EnableAutoConfiguration + @ComponentScan
@@ -88,10 +108,8 @@
 
 ```java
 @SpringBootApplication
-@ImportResource("applicationContext.xml")
-public class Application {
-    //...
-}    
+@ImportResource({"classpath:some-context.xml", "classpath:another-context.xml"})
+public class Application {}    
 ```
 
 # 条件注解-ConditionalOn
@@ -129,6 +147,21 @@ public RequestContextListener requestContextListener() {
 ![](pics/JUnit注解.png)
 ![](pics/常用断言方法.png)
 
+# @PageableDefault
+
+>分页功能的实现:
+
+```java
+@PostMapping("/orders/search")
+public Page<SearchOrderOut> getOrders(@RequestBody @Valid Search search,
+	@PageableDefault(
+		sort = {"modifiedDate", "createdDate"},
+		direction = Sort.Direction.DESC
+		) Pageable pageable){
+	return preOrderService.getOrders(search, pageable);
+}
+```
+
 # 其他
 
 - @PostConstruct: Spring bean对象构造完后调用.
@@ -143,3 +176,8 @@ public RequestContextListener requestContextListener() {
 - @PreDestroy
 - @Autowired: 能将一个Bean“自动”从外部注入到本Bean中,当然可以通过@Autowired的required属性为false定义一个可选的注入
 - @PropertySource
+- @GetMapping: 对应HTTP的GET请求，获取资源.
+- @PostMapping: 对应HTTP的POST请求，创建资源
+- @PutMapping: 对应HTTP的PUT请求，提交所有资源属性以及修改资源
+- @PatchMapping: 对应HTTP的PATCH请求，提交资源部分修改的属性.
+- @DeleteMapping: 对应HTTP的DELETE请求，删除服务器端的资源

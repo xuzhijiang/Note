@@ -2,6 +2,7 @@ package com.servlet.core;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -34,6 +35,13 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String user = request.getParameter("user");
         String pwd = request.getParameter("pwd");
+
+        // 我们这里可以遍历所有传上来的参数
+        Enumeration<String> parameterNames = request.getParameterNames();
+        while (parameterNames.hasMoreElements()) {
+            String key = parameterNames.nextElement();
+            System.out.println(String.format("key: %s   value: %s", key, request.getParameter(key)));
+        }
 
         String userID = getServletConfig().getInitParameter("user");
         String password = getServletConfig().getInitParameter("pwd");

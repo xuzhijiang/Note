@@ -61,3 +61,12 @@ Spring Boot框架本身并没有对工程结构有特别的要求，但是按照
 ![](pics/idea标记一个目录.png)
 ![](pics/使用idea的终端.png)
 ![](pics/新项目一开始要让idea托管.png)
+
+# Lombok
+
+![](pics/Lombok01.png)
+![](pics/Lombok02.png)
+
+# JRebel
+
+![](pics/JRebel01.png)

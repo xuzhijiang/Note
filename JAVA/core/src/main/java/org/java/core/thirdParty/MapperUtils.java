@@ -1,4 +1,4 @@
-package org.java.core.base.util;
+package org.java.core.thirdParty;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.type.TypeReference;
