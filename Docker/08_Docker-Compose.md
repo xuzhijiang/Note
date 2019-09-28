@@ -4,7 +4,7 @@
 
 [Compose](https://docs.docker.com/compose/) 定位是 「定义和运行多个 Docker 容器的应用」
 
-![](什么是DockerCompose.png)
+![](pics/什么是DockerCompose.png)
 
 你需要定义一个 YAML 格式的docker-compose.yml，写好多个容器之间的调用关系。然后，只要一个命令，就能同时启动/关闭这些容器
 
@@ -18,26 +18,33 @@ $ docker-compose version
 
 [安装与卸载](https://yeasy.gitbooks.io/docker_practice/compose/install.html)
 
-# Docker Compose 入门
+# Docker Compose安装tomcat
 
 ```shell script
 cd /usr/local/docker/tomcat && vim docker-compose.yml
+docker-compose up -d
 ```
-
-    简单的先使用docker-compose启动一个tomcat
 
 >注意yml中不要有制表符,不能按table,只能有空格.
 
 ```shell script
 version: '3' # 这个不是随便写的,是docker-compose配置语言的版本
 services: # 多个容器(服务)集合
-  tomcat: # 名字随便起,但是要有意义.
+  tomcat1: # 名字随便起,但是要有意义.
     restart: always # 代表总是开机启动
     image: tomcat # 使用哪个image
-    container_name: compose-tomcat # 容器名
+    container_name: compose-tomcat1 # 容器名
     ports: # 指定端口映射
       - 8080:8080 # 第一个5000是宿主机端口，第二个是容器port
+  tomcat2:
+    restart: always
+    image: tomcat
+    container_name: compose-tomcat2
+    ports:
+      - 9091:8080
 ```
+
+>这个docker-compose.yml是怎么写出来的?直接根据官方的docker run命令后的参数改造过来的.
 
 # Docker Compose 常用命令
 

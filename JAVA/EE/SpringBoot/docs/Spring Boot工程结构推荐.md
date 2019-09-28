@@ -12,6 +12,7 @@ Spring Boot框架本身并没有对工程结构有特别的要求，但是按照
 * 逻辑层(Service）置于com.example.myproject.service包下
 * Web层(web）置于com.example.myproject.web包下
 
+```shell script
 .
 └── com
     └── example
@@ -32,6 +33,7 @@ Spring Boot框架本身并没有对工程结构有特别的要求，但是按照
                 ├── filter
                 ├── listener
                 └── servlet
+```
 
 * 我们一般会在启动类上添加注解:
 

@@ -1,17 +1,16 @@
-# Nginx 负载均衡
+# Nginx 负载均衡(软件上的负载均衡)
 
-## 什么是负载均衡
+负载均衡，英文名称为 Load Balance，意思是把请求分摊到多个服务器处理.
 
-负载均衡，英文名称为 Load Balance，意思是把请求分摊到多个服务器处理，例如 Web服务器、FTP 服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。
+nginx 作为负载均衡服务器，用户请求先到达 nginx，再由 nginx 根据负载配置将请求转发至 tomcat 服务器
 
-## Nginx 实现负载均衡
+# Nginx 实现负载均衡
 
-- nginx 作为负载均衡服务器，用户请求先到达 nginx，再由 nginx 根据负载配置将请求转发至 tomcat 服务器
 - nginx 负载均衡服务器：192.168.75.145:80
 - tomcat1 服务器：192.168.75.145:9090
 - tomcat2 服务器：192.168.75.145:9091
 
-## Nginx 配置负载均衡
+# Nginx 配置负载均衡
 
     修改 /usr/local/docker/nginx/conf 目录下的 nginx.conf 配置文件：
 
@@ -31,7 +30,7 @@ http {
 
     keepalive_timeout  65;
     
-    #定义名为myapp1的负载均衡组，在下面引用
+    # 定义名为myapp1的负载均衡组，在下面引用
     upstream myapp1 {
         # 权重为10
         server 192.168.75.145:9090 weight=10;
@@ -49,7 +48,7 @@ http {
 }
 ```
 
-## 相关配置说明
+# 相关配置说明
 
 ```shell
 # 定义负载均衡设备的 Ip及设备状态 

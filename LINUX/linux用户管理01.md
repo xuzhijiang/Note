@@ -1,42 +1,54 @@
-# Linux 用户管理
+# 使用root用户
+
+```shell script
+# Linux 系统默认是关闭 Root 账户的,也就是默认root是没有密码的
+# linux下登录一个账户必须要秘密,没有密码无法登录,这种是最安全的,因为外界不可能登录root账户
+# 我们需要为 Root 用户设置一个初始密码才可以使用:
+sudo passwd root
+
+# 切换到root用户
+su
+
+# linux默认不允许远程登录root账号,所以要修改配置允许远程登录 Root
+vim /etc/ssh/sshd_config
+# 注释此行: # PermitRootLogin without-password
+# 加入此行: PermitRootLogin yes   
+
+# 重启服务
+service ssh restart
+```
+
+>按照系统运维管理的规范,是不可以直接使用超级管理员的,必须使用代理账户或指定的权限账户.
+
+    tips: guests: 来宾,客户,只能看,其他的删除,创建都没有权限.
+
+# Linux用户账户说明
+
+一个用户必须隶属于一个组,不然这个用户什么权限都没有,因为权限是赋予组的,一个用户属于这个组,就拥有了这个组的所有权限.当然一个用户可以属于多个组,这样这个 用户就拥有了这些组的所有权限.
+
+当一个用户同时属于多个组中时，在/etc/passwd 文件中记录的是用户所属的主组，也就是登录时所属的默认组
 
 用户的账号可以帮助系统管理员对使用系统的用户进行跟踪，并控制他们对系统资源的访问.
 
-**Linux用户管理相关命令:**
-- `useradd 选项 用户名`:添加用户账号
-- `userdel 选项 用户名`:删除用户帐号
-- `usermod 选项 用户名`:修改帐号
-- usermod -s /sbin/nologin nginx
-- `passwd 用户名`:更改或创建用户的密码
-- `passwd -S 用户名` :显示用户账号密码信息
-- `passwd -d 用户名`:  清除用户密码
+![](pics/用户账户说明.png)
+![](pics/组说明.png)
+![](pics/账户系统文件说明01.png)
+![](pics/账户系统文件说明02.png)
 
-useradd可用来建立新的用户帐号。帐号建好之后，再用passwd设定帐号的密码．而可用userdel删除帐号。使用useradd指令所建立的帐号，实际上是保存在/etc/passwd文本文件中。
+![](pics/账户系统文件说明03.png)
 
-passwd命令用于设置用户的认证信息，包括用户密码、密码过期时间等。系统管理者则能用它管理系统用户的密码。只有管理者可以指定用户名称，一般用户只能变更自己的密码。
+---
+    /etc/group 中的每条记录分四个字段：
+    
+    1. 第一字段：用户组名称
+    2. 第二字段：用户组口令，一般不用,一般为空
+    3. 第三字段：GID(组标识号)
+    4. 第四字段：组内的用户列表.
+---
 
-# Linux系统用户组的管理
+![](pics/账户系统文件说明04.png)
 
-每个用户都有一个用户组，系统可以对一个用户组中的所有用户进行集中管理。不同Linux 系统对用户组的规定有所不同，如Linux下的用户属于与它同名的用户组，这个用户组在创建用户时同时创建。
-
-用户组的管理涉及用户组的添加、删除和修改。组的增加、删除和修改实际上就是对/etc/group文件的更新。
-
-**Linux系统用户组的管理相关命令:**
-- `groupadd 选项 用户组` :增加一个新的用户组
-- `groupdel 用户组`:要删除一个已有的用户组
-- `groupmod 选项 用户组` : 修改用户组的属性
-
-# 如何解决: There were 49 failed login attempts？
-
-目前已有的解决办法如下：
-
-1. 使用 ssh-keygen，禁用密码登陆
-2. 使用PAM模块，参考HowTo: Configure Linux To Track and Log Failed Login Attempt Records，其实就是登陆尝试次数设置和延时
-
-我的解决思路如下：
-
-1. 通过脚本获取尝试登陆失败的IP
-2. 将获取的IP写入到/etc/hosts.deny文件，进行屏蔽
-3. 使用inotify-tools，监控/var/log/secure文件，来实时更新/etc/hosts.deny文件
-
-- [http://www.novicex.cn/post/y20.html](http://www.novicex.cn/post/y20.html)
+![](pics/账户管理常用命令01.png)
+![](pics/账户管理常用命令02.png)
+![](pics/账户管理常用命令03.png)
+![](pics/账户管理常用命令04.png)

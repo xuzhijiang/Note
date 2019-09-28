@@ -1,12 +1,4 @@
-## 文件类型与目录结构
-
-Linux支持5种文件类型:
-
-- 普通文件
-- 链接文件
-- 目录文件
-- 设备文件(包括硬盘，打印机等)
-- 命名管道(可以通过该文件完成进程间通信)
+# 目录结构
 
 **常见目录说明：**
 
@@ -25,8 +17,8 @@ Linux支持5种文件类型:
 - **/tmp：** 用于存放各种临时文件，是公用的临时文件存储点；
 - **/var：** 用于存放运行时需要改变数据的文件，比方说各种服务的日志文件等；
 - **/lost+found：**  这个目录平时是空的，系统非正常关机而留下“无家可归”的文件（windows下叫什么.chk）就在这里。
-- 
-### linux系统下bin的差异
+
+# linux系统下bin的差异
 
 1. sbin: The 's' in sbin means 'system'. Therefore, system binaries reside in sbin directories.
 2. /bin: /bin和/sbin,用于在mounted较大的分区例如/usr等分区之前需要的在小的分区上使用的二进制命令，
@@ -39,4 +31,4 @@ Linux支持5种文件类型:
 >/sbin: /sbin，与/bin不同，用于mount /usr等分区之前所需的系统管理程序(普通用户通常不使用）,基本系统二进制文件(system bin),
 superuser (root) privileges required(要求超级用户权限).
 
-用户自己安装的软件都是装到/usr/local/下的,例如安装nginx: /usr/local/nginx
+用户自己手动安装的软件都是装到/usr/local/下的,例如安装nginx: /usr/local/nginx

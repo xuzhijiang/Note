@@ -1,16 +1,14 @@
-# Nginx 虚拟主机
-
-## 什么是虚拟主机？
+# 什么是虚拟主机？
 
 它可以将一台计算机分成多个虚拟主机，每个虚拟主机可以独立对外提供 www 服务，这样就可以实现一台主机对外提供多个 web服务，每个虚拟主机之间是独立的，互不影响的。
 
 通过 Nginx 可以实现虚拟主机的配置，Nginx 支持三种类型的虚拟主机配置
 
-- 基于不同IP的虚拟主机
+- 基于不同IP的虚拟主机(不怎么用)
 - 基于域名的虚拟主机
 - 基于端口的虚拟主机
 
-## conf目录下的 nginx.conf配置文件的结构
+# conf目录下的 nginx.conf配置文件的结构
 
 - main块: 配置影响nginx全局的指令。一般有运行nginx服务器的用户组，nginx进程pid存放路径，日志存放路径，worker process数(work进程的个数)等。
 - events块: 可配置worker_connections-每个worker能够并发响应的最大请求数
@@ -19,9 +17,7 @@
 - server: 配置虚拟主机的相关参数，一个http中可以有多个server。
 - location块: 配置请求的路由，以及允许根据用户请求的URI来匹配指定的各location以进行访问配置
 
-详细的配置可以参考: [](https://blog.csdn.net/tjiyu/article/details/53027619)
-
-### 基于不同端口的虚拟主机配置
+# 基于不同端口的虚拟主机配置
 
 - Nginx 对外提供 80 和 8080 两个端口监听服务
 - 请求 80 端口则请求 html80 目录下的 html

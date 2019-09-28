@@ -1,36 +1,114 @@
-# Docker Registry
+# Docker仓库
 
-镜像构建完成后，可以很容易的在当前机器上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker Registry 就是这样的服务。
+![](pics/Docker仓库01.png)
 
-注意: docker Registry是管理仓库的.
-
-一个 Docker Registry(集中的存储、分发镜像) 中可以包含多个 仓库（Repository）；每个仓库可以包含多个 标签（Tag）；每个标签对应一个镜像。
-
-通常，一个仓库会包含同一个软件不同版本的镜像，而标签就常用于对应该软件的各个版本。我们可以通过 <仓库名>:<标签> 的格式来指定具体是这个软件哪个版本的镜像。如果不给出标签，将以 latest 作为默认标签。
-
-以 Ubuntu 镜像 为例，ubuntu 是仓库的名字，其内包含有不同的版本标签，如，16.04, 18.04。我们可以通过 ubuntu:16.04，或者 ubuntu:18.04 来具体指定所需哪个版本的镜像。如果忽略了标签，比如 ubuntu，那将视为 ubuntu:latest。
-
->根据是否是官方提供，可将镜像资源分为两类:
+>根据是否是官方提供，仓库名可以分为2类:
 
 1. 一种是类似ubuntu这样的镜像，被称为基础镜像或官方镜像。这样的镜像往往使用单个单词作为名字。
-2. 还有一种类型，比如 tianon/centos 镜像，它是由 Docker 的用户创建并维护的，往往带有用户名称前缀。可以通过前缀 username/ 来指定使用某个用户提供的镜像，比如 tianon 用户。
+2. 还有一种类型，比如 tianon/centos 镜像，它是由 Docker 的用户创建并维护的，往往带有用户名称前缀。可以通过前缀 username/来指定使用某个用户提供的镜像，比如 tianon 用户。
 
-也就是仓库名经常以 两段式路径 形式出现，比如 jwilder/nginx-proxy，前者往往意味着 Docker Registry 多用户环境下的用户名，后者则往往是对应的软件名。但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。
+![](pics/docker仓库的默认组.png)
 
-# Docker Registry 公开服务
+![](pics/Docker仓库02.png)
+![](pics/Docker仓库03.png)
 
-Docker Registry 公开服务是开放给用户使用、允许用户管理镜像的 Registry 服务。一般这类公开服务允许用户免费上传、下载公开的镜像，并可能提供收费服务供用户管理私有镜像。
+# 安装Docker Registry私服
 
-最常使用的 Registry 公开服务是官方的 Docker Hub，这也是默认的 Registry，并拥有大量的高质量的官方镜像。除此以外，还有 CoreOS 的 Quay.io，CoreOS 相关的镜像存储在这里；Google 的 Google Container Registry，Kubernetes 的镜像使用的就是这个服务。
+用来存储我们自己docker镜像.
 
-由于某些原因，在国内访问这些服务可能会比较慢。国内的一些云服务商提供了针对 Docker Hub 的镜像服务（Registry Mirror），这些镜像服务被称为加速器。常见的有 阿里云加速器、DaoCloud 加速器 等。使用加速器会直接从国内的地址下载 Docker Hub 的镜像，比直接从 Docker Hub 下载速度会提高很多。在 安装 Docker 一节中有详细的配置方法。
+![](pics/安装DockerRegistry私服01.png)
 
-国内也有一些云服务商提供类似于 Docker Hub 的公开服务。比如 时速云镜像仓库、网易云镜像服务、DaoCloud 镜像市场、阿里云镜像库 等。
+```shell script
+cd /usr/local/docker/ && mkdir registry && cd registry
+vim docker-compose.yml
+docker-compose up -d
+```
 
-# 私有 Docker Registry
+```yaml
+# docker-compose.yml
+version: '3.1'
+services:
+  registry:
+    image: registry
+    restart: always
+    container_name: registry
+    ports:
+      - 5000:5000
+    volumes:
+      - /usr/local/docker/registry/data:/var/lib/registry
+```
 
-除了使用公开服务外，用户还可以在本地搭建私有 Docker Registry。Docker 官方提供了 Docker Registry 镜像，可以直接使用做为私有 Registry 服务。在 私有仓库 一节中，会有进一步的搭建私有 Registry 服务的讲解。
+![](pics/安装DockerRegistry私服02.png)
 
-开源的 Docker Registry 镜像只提供了 Docker Registry API 的服务端实现，足以支持 docker 命令，不影响使用。但不包含图形界面，以及镜像维护、用户管理、访问控制等高级功能。在官方的商业化版本 Docker Trusted Registry 中，提供了这些高级功能。
+# 配置Docker Registry客户端
 
-除了官方的 Docker Registry 外，还有第三方软件实现了 Docker Registry API，甚至提供了用户界面以及一些高级功能。比如，Harbor 和 Sonatype Nexus。
+![](pics/配置DockerRegistry客户端01.png)
+
+![](pics/配置DockerRegistry客户端02.png)
+
+# 测试镜像上传
+
+```shell script
+# 注意下要把ip换成真实的ip或者域名
+docker pull redis
+# 将本地的redis标记为: ip+port/名称:tag,这里tag没有,也就是默认是latest
+docker tag redis ip:5000/redis
+# 正常情况下去拉去镜像的时候,要的是完整的: ip+port/镜像名称:tag,但是如果我不带 "ip+port/" 前缀的话,默认从官服中央仓库中走
+# 现在应该要用我们自己的,所以要说明我们自己的私有的redis镜像的ip+port
+
+# 这个时候我们来push,push 的是完整的镜像名称: ip+port/名称:tag,这里没有tag,默认就是latest的
+docker push ip:5000/redis
+
+# 所以我们从官方拉去镜像的时候,默认给我们提供了ip和端口,但实际上一个完整的镜像名称是包含了ip和端口的:ip:port/image_name:tag
+
+# 查看全部镜像或者访问浏览器.
+curl -XGET http://ip:5000/v2/_catalog
+# 查看指定镜像的列表,这里是查看redis的.
+curl -XGET http://ip:5000/v2/redis/tags/list
+
+# 测试拉取镜像(在另一台机器上执行)
+# 先删除镜像(在另一台机器上执行)
+docker rmi redis
+docker rmi ip:5000/redis
+# 再拉取镜像(在另一台机器上执行)
+docker pull ip:5000/redis
+
+# 我们可以搞一个有版本号(tag)的镜像
+docker tag redis ip:5000/redis:8.5.32
+# 第二次push就快了,因为docker是分层结构,所以复用了第一次上传的
+docker push ip:5000/redis:8.5.32
+```
+
+# 部署 Docker Registry WebUI
+
+![](pics/部署DockerRegistryWebUI01.png)
+
+    docker-registry-frontend
+
+>我们使用 docker-compose 来安装和运行，docker-compose.yml 配置如下：
+
+```yaml
+# 可以把这部分归并到上面registry的docker-compose.yml中,因为docker-compose.yml就是管理多个容器服务的.
+version: '3.1'
+services:
+  frontend:
+    # konradkleine表示第三方的人上传的,不是官方的,这个代表的是用户名
+    # 因为走的是官方的docker hub,所以不必给ip和port,但是你要给一个用户名,也就是konradkleine
+    # 其实完整的路径是 "ip+port/用户名/镜像名:tag" 其中如果是个人的,是有用户名的,如果没有用户名,一般就是官方的.
+    image: konradkleine/docker-registry-frontend:v2
+    ports:
+      - 8080:80
+    volumes:
+      # 这里的点是相对于docker-compose.yml路径的.
+      - ./certs/frontend.crt:/etc/apache2/server.crt:ro
+      - ./certs/frontend.key:/etc/apache2/server.key:ro
+    environment:
+      #  docker私有Registry的host
+      - ENV_DOCKER_REGISTRY_HOST=127.0.0.1
+      # docker私有Registry的端口
+      - ENV_DOCKER_REGISTRY_PORT=5000
+```
+
+    注意：请将配置文件中的主机和端口换成自己仓库的地址
+
+运行成功后在浏览器访问：http://ip:8080

@@ -1,4 +1,4 @@
-# 动静分离
+# 动静分离(相当于是一个伪cdn)
 
 ```shell
 worker_processes  1;

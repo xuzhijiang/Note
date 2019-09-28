@@ -1,6 +1,6 @@
 # Web开发技术演化
 
-- 过去的SSH(Spring Framework + Struts/SpringMVC + Hibernate)
+- 过去的SSH(Spring + Struts/SpringMVC + Hibernate)
 - 现在的SSM(Spring Boot + Spring Boot MVC + Mybatis)
 
 # Spring Web MVC framework(简称Spring MVC)

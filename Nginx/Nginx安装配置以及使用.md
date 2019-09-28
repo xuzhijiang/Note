@@ -1,6 +1,24 @@
+# Docker 来安装和运行 Nginx
+
+docker-compose.yml 配置如下：
+
+```yaml
+version: '3.1'
+services:
+  nginx:
+    restart: always
+    image: nginx
+    container_name: nginx
+    ports:
+      - 81:80
+    volumes:
+      # 点代表当前yml的所在的目录
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./wwwroot:/usr/share/nginx/wwwroot
+```
+
 # 安装Nginx
 
-参考链接: 
 - https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/
 - https://www.thegeekstuff.com/2011/07/install-nginx-from-source/
 - https://blog.csdn.net/tjiyu/article/details/53027881

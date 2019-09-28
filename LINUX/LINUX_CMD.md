@@ -1,22 +1,21 @@
-## LINUX
+# LINUX常用命令
 
-## /etc/profile.d和/etc/profile的关系
+- [Linux命令大全](http://man.linuxde.net/)
 
-以配置java环境变量为例(这里只是按照jdk的一种方式而已，还有很多种方式，例如可以直接通过系统的yum包管理器去安装),在/etc/profile.d/创建java.sh，然后输入:
+```shell script
+# 可以查看当前活跃的用户列表
+w
 
-```shell
-export JAVA_HOME=/usr/java/jdk-8u101-linux-x64
-export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-export PATH=$PATH:$JAVA_HOME/bin
-```
+# 查看java的位置
+whereis java
 
->因为在/etc/profile中会遍历/etc/profile.d下的sh，然后自动source.
+mkdir -p dirname # recursively create directory.
 
-### RedHat命令
+# 通过vmstat命令查看当前操作系统每秒的上下文切换次数:命令"vmstat 1 10"的含义是：每个1秒统计一次，统计10次后结束。其中cs那一列表示的就是上下文切换次数,cs是context switch的简写
 
->Linux命令大全：[http://man.linuxde.net/](http://man.linuxde.net/)
+# 创建符号链接,create a symlink at /usr/bin/bar which references the original file /opt/foo
+ln -s /opt/foo /usr/bin/bar
 
-```shell
 # c是压缩compress, z表示gzip格式的压缩,v表示显示文件目录,f表示显示文件名
 tar -czvf myshop.tar.gz .
 
@@ -96,35 +95,4 @@ rm -rf file
 
 # 切换用户
 su -username
-```
-
-### Unix常用命令
-
-```shell
-# 查看java的位置
-whereis java
-
-mkdir -p dirname # recursively create directory.
-
-# 通过vmstat命令查看当前操作系统每秒的上下文切换次数:命令"vmstat 1 10"的含义是：每个1秒统计一次，统计10次后结束。其中cs那一列表示的就是上下文切换次数,cs是context switch的简写
-
-# 创建符号链接,create a symlink at /usr/bin/bar which references the original file /opt/foo
-ln -s /opt/foo /usr/bin/bar
-```
-
-## Android
-
-```
-# 查看sdk版本号: 
-cat /proc/msp/sys
-
-# 查看图层
-dumpsys SurfaceFlinger --fps=1
-
-# 查看广播
-dumpsys |grep BroadcastRecord
-
-monkey命令
-
-aapt
 ```
