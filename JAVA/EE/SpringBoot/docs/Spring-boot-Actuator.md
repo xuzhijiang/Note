@@ -383,6 +383,3 @@ endpoints.health.sensitive=false
 # actuator的health接口是否开启
 endpoints.health.enabled=true
 ```
-
-未完:在传统Spring应用中使用spring-boot-actuator模块提供监控端点
-http://blog.didispace.com/spring-boot-actuator-without-boot/

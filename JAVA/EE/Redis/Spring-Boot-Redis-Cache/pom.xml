@@ -24,6 +24,7 @@
 	</properties>
 
 	<dependencies>
+		<!-- spring-boot-starter-data-redis内部连接redis使用的是新的lettuce,而不是jedis,可以看右边侧栏中的maven依赖就可以看到 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>

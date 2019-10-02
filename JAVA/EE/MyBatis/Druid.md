@@ -1,5 +1,7 @@
 # druid介绍
 
+![](pics/Druid性能优势.png)
+
 ![](pics/druid01.png)
 ![请求-归还数据库连接100万次耗时,单位是毫秒](pics/druid02.png)
 ![](pics/druid03.png)

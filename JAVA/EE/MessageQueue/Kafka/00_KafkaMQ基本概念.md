@@ -1,7 +1,3 @@
-# 简介
-
-Apache Kafka是一种高吞吐量的分布式"发布-订阅消息系统",使用Scala开发,Kafka借鉴了JMS规范的思想，但是确并没有完全遵循JMS规范,同时也借鉴了AMQP,
-
 # Kafka基本架构
 
 它的架构包括以下组件：Topic,producer，broker(服务代理/中间人/掮客/经纪人)，consumer,

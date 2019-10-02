@@ -1,30 +1,33 @@
-# Session
-
-## 有了Cookie，为什么还需要Session？
+# 有了Cookie，为什么还需要Session？
 
 有可能是出于安全性和传输效率的考虑。首先，Cookie是存在客户端的，如果保存了敏感信息(为了区别用户需要保存用户的个人信息)，会被其他用户看到。其次，如果信息太多保存在cookie，可能影响传输效率。
 
-相比较Cookie存在客户端，Session则是服务端的东西。
+相比较Cookie存在客户端，Session会话则是服务端的东西。
 
-这回，我们不再把"name=xzj;time=6pm;table=99"这样的数据作为Cookie放在请求头/响应头里传来传去了，而是只给客户端传一个JSESSIONID（也是一个Cookie）！此时，真正的数据存在服务器端的Session中，Cookie中只是存了Session的id，即JSESSIONID。下次访问该网站时，把JSESSIONID带上，即可在服务器端找到对应的Session，也相当于“带去”了用户信息。
+tomcat 会话机制当然也实现了 cookie，访问 tomcat 服务器时，浏览器中可以看到一个名为 JSESSIONID 的 cookie,这个名字是tomcat专有的,我们也可以改，这就是 tomcat 会话机制维护的会话 id.
 
->HttpSession使用“JSESSIONID”这个cookie来跟踪用户会话。
+这回，我们不再把"name=xzj;time=6pm;table=99"这样的数据作为Cookie放在请求头/响应头里传来传去了，而是只给客户端传一个JSESSIONID（也是一个Cookie）！此时，真正的数据存在服务器端的Session中，Cookie中只是存了Session的id，即JSESSIONID。下次访问该网站时，把JSESSIONID带上，即可在服务器端找到对应的Session，然后服务端在Session中找用户信息.
 
-![](Session-Cookie.jpg)
+![](pics/Session-Cookie.jpg)
 
 同样的，既然返回的JSESSIONID也是一个Cookie，那么也分为会话Cookie和持久性Cookie，可以通过设置MaxAge更改
 
-![](Session-create.jpg)
+![](pics/Session-create.jpg)
 
 >另外要注意的是，Session有个默认最大不活动时间：30分钟（可在配置文件中修改数值）。也就是说，创建Session并返回JSESSIONID给客户端后，如果30分钟内你没有再次访问，即使你下次再带着JSESSIONID来，服务端也找不到对应ID的Session了，因为它已经被销毁。此时你必须重新登录。
 
 其实，只要你在服务器端创建了Session，即使不写addCookie("JSESSIONID", id)，JSESSIONID仍会被作为Cookie返回。注意，这次我没有addCookie()，只是简单打印，用于和响应信息作对比
 
-![](没有addCookie().jpg)
+![](pics/没有addCookie().jpg)
 
 结果服务器自动默认new一个Cookie，将刚才创建的Session的JSESSIONID返回。默认是会话Cookie，浏览器关闭就消失！
 
 ![](pics/没有addCookie-browser.jpg)
+
+# Session作用演示: 判断一个用户是否是登录状态
+
+![](pics/判断用于的登录状态.png)
+![](pics/判断用于的登录状态02.png)
 
 # Session序列化(自己可以通过关闭和重启服务器验证)
 

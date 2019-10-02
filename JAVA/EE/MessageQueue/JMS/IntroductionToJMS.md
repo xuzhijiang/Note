@@ -17,6 +17,9 @@ JMS API仅用于在"基于Java的应用程序中实现Messaging系统"，不支�
 
 JMS API支持两种消息传递模型: Point-To-Point Model(P2P Model) 和 Publish-Subscribe Model(Pub/Sub Model)(发布/订阅模型）
 
+- 点到点（P2P）模型: 一条消息只能被一个消费者使用，未被消费的消息在队列中保留直到被消费或超时
+- 发布/订阅（Pub/Sub）模型: 发布者发布一条消息，该消息通过topic传递给这个topic的所有订阅者，**在一条消息广播之后才订阅的用户则是收不到该条消息的**.
+
 ## 点对点的消息模型特点(Point-to-Point Messaging Model)
 
 ![](Point-to-Point.png)

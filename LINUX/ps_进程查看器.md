@@ -12,7 +12,7 @@ ps命令是Process Status的缩写.ps命令列出的是当前那些进程的快�
 4. T 停止 traced or stopped
 5. Z 僵死 a defunct (”zombie”) process
 
-```shell
+```shell script
 # 列出目前所有的正在内存中的程序
 ps -aux
 
@@ -30,6 +30,14 @@ ps -ef | grep ssh
 
 # 将与这次登入相关的 PID(进程id) 与相关信息列示出来
 ps -l
+
+pstree -a
+
+# 查看与该进程相关联的文件
+lsof -p pid
+
+# 根据进程 ID 查询一下产生进程的程序路径：
+ll /proc/pid/exe
 ```
 
 ### 输出列的含义

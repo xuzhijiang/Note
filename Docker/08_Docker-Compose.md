@@ -70,7 +70,7 @@ docker-compose start
 #停止
 docker-compose stop
 
-#停止并移除容器
+# 停止并移除容器,这个命令可以在测试环境中使用,但是在生成环境中使用要注意,因为会把容器直接给删除了.
 docker-compose down
 ```
 

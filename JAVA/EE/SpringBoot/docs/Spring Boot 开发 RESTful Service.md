@@ -48,6 +48,17 @@ REST是国外的一个博士论文中提出的,“REST(Representational State Tr
 ![](pics/restful11.png)
 ![](pics/api文档设计.png)
 
+# 配置 Swagger2 接口文档引擎
+
+![](pics/配置Swagger2接口文档引擎01.png)
+![](pics/配置Swagger2接口文档引擎02.png)
+![](pics/配置Swagger2接口文档引擎03.png)
+![](pics/配置Swagger2接口文档引擎04.png)
+![](pics/配置Swagger2接口文档引擎05.png)
+![](pics/配置Swagger2接口文档引擎06.png)
+![](pics/配置Swagger2接口文档引擎07.png)
+![](pics/配置Swagger2接口文档引擎08.png)
+
 # 参考
 
 - [https://www.funtl.com/zh/apache-http-client/你怎么理解-RESTful.html](https://www.funtl.com/zh/apache-http-client/你怎么理解-RESTful.html)
