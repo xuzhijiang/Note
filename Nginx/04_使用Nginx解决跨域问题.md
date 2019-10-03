@@ -30,7 +30,12 @@
 ![](pics/nginx实现跨域.png)
 ![](pics/nginx实现跨域02.png)
 
-# SpringBoot配置跨域
+# SpringBoot配置跨域的两种方式
+
+    Java配置的方式
 
 ![](pics/Spring%20Boot%20配置%20CORS%2001.png)
+
+    注解的方式
+    
 ![](pics/Spring%20Boot%20配置%20CORS02.png)
