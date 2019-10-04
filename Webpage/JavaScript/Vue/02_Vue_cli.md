@@ -81,6 +81,10 @@ npm i element-ui -S --registry=https://registry.npm.taobao.org
 npm install sass-loader node-sass --save-dev --registry=https://registry.npm.taobao.org
 # 安装依赖
 npm install --registry=https://registry.npm.taobao.org
+# 安装axios用于通信
+npm install axios -s --registry=https://registry.npm.taobao.org
+# 安装vuex用于状态管理
+npm install vuex --save --registry=https://registry.npm.taobao.org
 # 启动工程
 npm run dev
 

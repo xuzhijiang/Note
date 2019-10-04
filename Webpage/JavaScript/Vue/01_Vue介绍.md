@@ -7,6 +7,12 @@ Vue.js 就是一个 MVVM 的实现者,MVVM最重要的是ViewModel,ViewModel是�
 
 jquery几乎就是为了pc端的,为了兼容ie6,7,8.等.但是在移动端就不好使.
 
+# Vuex 快速入门
+
+Vuex 是一个专为 Vue.js 应用程序开发的 状态管理模式.
+
+![](pics/解决浏览器刷新后Vuex数据消失问题.png)
+
 # 常用库
 
 - [饿了么](https://element.eleme.cn/#/zh-CN/component/installation)
