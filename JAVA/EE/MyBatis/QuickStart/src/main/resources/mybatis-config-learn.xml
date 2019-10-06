@@ -98,11 +98,12 @@
         -->
         <!--<package name="org.mybatis.core.model"/>-->
 
-        <!--alias表示别名，type表示类的全路径-->
+        <!--针对单个别名定义-->
         <typeAlias  alias="User" type="org.mybatis.core.model.User"/>
+        
         <!--如果我们有多个类需要起别名，则需要将所有的别名都列出,-->
-        <!--特别的，如果这些类都位于同一个包下，我们可以直接通过package属性指定，不需要逐一列出。-->
-        <!--<package name="org.mybatis.core.model"/>-->
+        <!--特别的，如果这些类都位于同一个包下，我们可以直接通过package属性指定，不需要逐一列出,这就是批量别名定义-->
+        <package name="org.mybatis.core.model"/>
 
         <!--
         默认会使用java实体类首字母小写的非限定类名来作为它的别名。

@@ -14,6 +14,7 @@ public class UserController {
     @Reference(version = "${user.service.version}")
     private UserService userService;
 
+    // Hystrix 实现服务熔断
     //在调用方法上增加 @HystrixCommand 注解，并指定 fallbackMethod 方法
     @HystrixCommand(fallbackMethod = "hiError")
     @RequestMapping(value = "hi", method = RequestMethod.GET)

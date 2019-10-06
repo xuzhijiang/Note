@@ -13,6 +13,7 @@ public class UserServiceImpl implements UserService {
     @Value("${dubbo.protocol.port}")
     private String port;
 
+    // Hystrix 实现服务熔断
     // 在调用方法上增加 @HystrixCommand 配置，此时调用会经过 Hystrix 代理
     // 当对特定的服务的调用(这里就是sayHi)的不可用达(指抛出异常等)到一个阀值（默认是Hystrix 是 5 秒 20 次） 熔断器将会被打开。
     // 这里是自定义为2秒10次就触发熔断.

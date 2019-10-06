@@ -36,7 +36,7 @@ dubbo:
   registry:
     id: zookeeper
     #address: zookeeper://192.168.10.131:2181?backup=192.168.10.131:2182,192.168.10.131:2183
-    address: zookeeper://ip:2181
+    address: zookeeper://94.191.29.122:2181
   provider:
     loadbalance: roundrobin
 

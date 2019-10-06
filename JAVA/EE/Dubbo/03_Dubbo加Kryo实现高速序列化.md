@@ -7,11 +7,11 @@
 
 # Dubbo中启用 Kryo
 
-1[](pics/启用kryo01.png)
-1[](pics/启用kryo02.png)
-1[](pics/启用kryo03.png)
-1[](pics/启用kryo04.png)
-1[](pics/启用kryo05.png)
+![](pics/启用kryo01.png)
+![](pics/启用kryo02.png)
+![](pics/启用kryo03.png)
+![](pics/启用kryo04.png)
+![](pics/启用kryo05.png)
 
 # 为什么需要手动注册
 

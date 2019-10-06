@@ -42,7 +42,8 @@
         </dependency>
 
         <!-- dubbo的依赖感觉比较乱,可以从https://repo1.maven.org/maven2/上确认发布的时间 -->
-        <!-- dubbo-spring-boot-starter: Dubbo Starter，0.2.0 版本支持 Spring Boot 2.x，是一个长期维护的版本。注：0.1.0 版本已经不推荐使用了，是个短期维护的版本，如果你还在用旧版，请大家尽快升级。-->
+        <!-- dubbo-spring-boot-starter: Dubbo Starter，0.2.0 版本支持 Spring Boot 2.x，是一个长期维护的版本。
+        注：0.1.0 版本已经不推荐使用了，是个短期维护的版本，如果你还在用旧版，请大家尽快升级。-->
         <dependency>
             <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>

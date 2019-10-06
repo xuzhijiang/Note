@@ -40,13 +40,13 @@ Dubbo 采用的是一种非常简单的模型，要么是提供方提供服务�
 >搭建dubbo admin控制台步骤:
 
 - git clone https://github.com/apache/dubbo-admin.git
-- 安装nodejs后,依照官网,配置taobao代理
+- 新版dubbo admin控制台已改为前后分离模式，前端采用 Vue.js 开发，故需要 NodeJS 支持，请自行安装,安装nodejs后,依照官网,配置taobao镜像加速.
 - 在 dubbo-admin-server/src/main/resources/application.properties中指定zk注册中心地址
 - 构建: mvn clean package
 - 启动: mvn --projects dubbo-admin-server spring-boot:run
 - http://localhost:8080
 
-## dubbo admin Frontend Build Setup
+# dubbo admin前端
 
 ```shell
 # 安装依赖(配置淘宝镜像加速)
@@ -63,3 +63,7 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
+
+# 参考
+
+- [https://www.funtl.com/zh/apache-dubbo-rpc/Dubbo-Admin-管理控制台.html](https://www.funtl.com/zh/apache-dubbo-rpc/Dubbo-Admin-管理控制台.html)

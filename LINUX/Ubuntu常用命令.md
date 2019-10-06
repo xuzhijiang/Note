@@ -21,6 +21,18 @@ apt-get autoremove nginx
 
 	/etc/apt/sources.list
 
+# 修改软件数据源为阿里云
+
+```shell
+# 最好把原来的数据源备份
+cp /etc/apt/sources.list /etc/apt/sources.list.bak
+echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse' > /etc/apt/sources.list
+echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse' >> /etc/apt/sources.list
+echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse' >> /etc/apt/sources.list
+echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse' >> /etc/apt/sources.list
+apt-get update -y && apt-get clean
+```
+
 # Ubuntu安装jdk
 
 ```shell script

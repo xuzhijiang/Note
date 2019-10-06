@@ -45,13 +45,10 @@
     </typeAliases>
 
     <environments default="development">
-        <!--environments元素：
-            表示环境配置。在实际开发中，我们通常有多个环境，例如开发环境(development)、
-            测试环境(test)、生产环境(production)等，不同的环境的配置都是不同的。
-            因此在environments元素中，可以配置多个表示具体某个环境的environment子元素。
+        <!--表示环境配置。例如开发环境(development)、
+            测试环境(test)、生产环境(production)等.
             而default属性用于指定默认的环境。
         -->
-
         <environment id="development">
             <!-- environment元素：表示具体的某个环境，以id属性作为标识。
                  每个environment元素内部都必须要配置2个子元素：transactionManager和dataSource。-->
