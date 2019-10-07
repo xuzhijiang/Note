@@ -1,0 +1,12 @@
+![](pics/为什么需要链路追踪01.png)
+![](pics/为什么需要链路追踪02.png)
+![](pics/为什么需要链路追踪03.png)
+
+![](pics/SkyWalking服务端配置01.png)
+![](pics/SkyWalking服务端配置02.png)
+![](pics/SkyWalking服务端配置03.png)
+![](pics/SkyWalking服务端配置04.png)
+![](pics/SkyWalking服务端配置05.png)
+![](pics/SkyWalking服务端配置06.png)
+![](pics/SkyWalking服务端配置07.png)
+![](pics/SkyWalking服务端配置08.png)

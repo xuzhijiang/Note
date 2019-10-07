@@ -1,6 +1,6 @@
 spring:
   application:
-    name: nacos-provider
+    name: nacos-provider # 服务的名字必须要有
   cloud:
     nacos:
       discovery:

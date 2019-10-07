@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 /**
- *
  * 服务的端点检查: http://localhost:9091/actuator/nacos-discovery 你会在浏览器上看到：
  */
 @RestController
 public class NacosConsumerController {
 
+    /**
+     * 这里采用最原始的一种方式来 访问服务提供者，即显示的使用 LoadBalanceClient 和 RestTemplate 结合的方式来访问
+     */
     @Autowired
     private LoadBalancerClient loadBalancerClient;
 

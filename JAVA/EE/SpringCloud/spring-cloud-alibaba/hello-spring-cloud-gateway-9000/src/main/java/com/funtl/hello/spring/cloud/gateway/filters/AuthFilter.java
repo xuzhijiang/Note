@@ -15,13 +15,11 @@ import reactor.core.publisher.Mono;
 
 import java.util.Map;
 
-// 创建全局过滤器
-//实现 GlobalFilter, Ordered 接口并在类上增加 @Component 注解就可以使用过滤功能了，非常简单方便
-
 /**
- * 鉴权过滤器
+ * 创建全局过滤器: 鉴权过滤器
  */
 @Component
+//实现 GlobalFilter, Ordered 接口并在类上增加 @Component 注解就可以使用过滤功能了，非常简单方便
 public class AuthFilter implements GlobalFilter, Ordered {
 
     @Override
@@ -54,7 +52,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
     }
 
     /**
-     * 设置过滤器的执行顺序
+     * 设置过滤器的执行顺序,数字越小,优先级越高,当有多个Filter的时候会起作用.
      * @return
      */
     @Override

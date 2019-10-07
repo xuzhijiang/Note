@@ -5,12 +5,16 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-    # 添加 Sentinel控制
+    # 添加 Sentinel Dashboard配置
+    # 这里的 spring.cloud.sentinel.transport.port 端口配置会在应用feign对应的机器上启动一个 Http Server，
+    # 该 Server 会与 Sentinel 控制台做交互。比如 Sentinel 控制台添加了 1 个限流规则，
+    # 会把规则数据 push 给这个 Http Server 接收，
+    # Http Server 再将规则注册到 Sentinel 中。
     sentinel:
       transport:
         # 注：由于 8719 端口已被 sentinel-dashboard 占用，故这里修改端口号为 8720；不修改也能注册，会自动帮你在端口号上 + 1；
-        port: 8720 # 本应用使用的端口，用来和sentinel控制台交互
-        dashboard: localhost:8080 # Sentinel控制台应用的ip和端口
+        port: 8720 # 本应用使用的端口，用来和sentinel dashboard交互
+        dashboard: localhost:8080 # Sentinel dashboard应用的ip和端口,这个可以和feign不在同一台机器上
 
 server:
   port: 9092

@@ -1,6 +1,6 @@
 # 使用路由网关统一访问接口
 
-## 什么是 Spring Cloud Gateway
+## 什么是 Spring Cloud Gateway(替代 Netflix ZUUL)
 
 Spring Cloud Gateway 是 Spring 官方基于 Spring 5.0，Spring Boot 2.0 和 Project Reactor 等技术开发的网关。
 
@@ -19,7 +19,7 @@ Spring Cloud Gateway 作为 Spring Cloud 生态系中的网关，目标是替代
 
 ## Spring Cloud Gateway 工程流程
 
-![](Gateway-workflow.jpg)
+![](pics/Gateway-workflow.jpg)
 
 客户端向 Spring Cloud Gateway 发出请求。然后在 Gateway Handler Mapping 中找到与请求相匹配的路由，将其发送到 Gateway Web Handler。Handler 再通过指定的过滤器链来将请求发送到我们实际的服务执行业务逻辑，然后返回。
 

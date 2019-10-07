@@ -42,7 +42,8 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <!--Nacos Config 客户端的使用依赖-->
+        <!-- 为了使用Spring Cloud Alibaba Nacos Config要添加的依赖,
+             用来替换Spring Cloud Config Server-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>

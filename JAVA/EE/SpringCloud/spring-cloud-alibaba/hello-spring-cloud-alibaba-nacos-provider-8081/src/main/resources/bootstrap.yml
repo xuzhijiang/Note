@@ -1,16 +1,21 @@
-# 创建名为 bootstrap.properties 的配置文件并删除之前创建的 application.yml 配置文件
-
-# 这里的应用名对应 Nacos Config 中的 Data ID，实际应用名称以配置中心的配置为准
+# 创建名为 bootstrap.properties 的配置文件
+# 并删除之前创建的 application.yml 配置文件,必须删除了本地的application.yml才会去加载远程的配置文件,
+# 否则就不会去加载.
 spring:
   application:
+    # 这里的应用名对应 Nacos Config 中的 Data ID，实际应用名称以配置中心的配置为准
     name: nacos-provider-config
+  profiles:
+    active: prod
   cloud:
     nacos:
       config:
-        # 指定查找名为 nacos-provider-config.yaml 的配置文件
+        # 指定查找名为 nacos-provider-config.yaml 的配置文件,yaml指明了后缀
         file-extension: yaml
         # Nacos Server 的地址
         server-addr: 127.0.0.1:8848
+        refresh:
+          enabled: true # 注意这个文件是动态随服务器变化的,把这个属性改为false就不会动态变化了
 
 # 注意：在之前的 Spring Cloud Netflix 课程中有提到过 Spring Boot 配置文件的加载顺序，
 # 依次为 bootstrap.properties -> bootstrap.yml -> application.properties -> application.yml ，其中 bootstrap.properties 配置为最高优先级

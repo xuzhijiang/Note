@@ -1,14 +1,13 @@
 package com.funtl.hello.spring.cloud.alibaba.nacos.provider.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 访问 http://localhost:8848/nacos
- * 你会发现一个服务已经注册在服务中了，服务名为 nacos-provider
- *
  * spring-cloud-starter-alibaba-nacos-discovery 在实现的时候提供了一个 EndPoint端点,
  * 地址为 http://ip:port/actuator/nacos-discovery
  * (http://localhost:8081/actuator/nacos-discovery)。
@@ -29,4 +28,18 @@ public class NacosProviderController {
     public String echo(@PathVariable(value = "message") String message) {
         return "Hello Nacos Discovery " + message + ", i am from port: " + port;
     }
+
+    /**
+     * 下面的是为了测试是否可以从远程Nacos Server拉取配置文件
+     */
+
+    // 注入配置文件上下文
+//    @Autowired
+//    private ConfigurableApplicationContext applicationContext;
+
+    // 从上下文中读取配置
+//    @GetMapping(value = "/hi")
+//    public String sayHi() {
+//        return "Hello " + applicationContext.getEnvironment().getProperty("username");
+//    }
 }

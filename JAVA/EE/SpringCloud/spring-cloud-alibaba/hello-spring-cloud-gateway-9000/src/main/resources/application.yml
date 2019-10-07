@@ -10,7 +10,7 @@ spring:
     # 使用 Sentinel 作为熔断器
     sentinel:
       transport:
-        port: 8721
+        port: 8721 # gateway使用8721和sentinel dashboard来进行交互
         dashboard: localhost:8080
     # 路由网关配置
     gateway:
@@ -28,6 +28,8 @@ spring:
           predicates:
             # Method 方法谓词，这里是匹配 GET 和 POST 请求
             - Method=GET,POST
+          # filters: 局部过滤器,针对某一个路由过滤的规则
+            #-
         - id: NACOS-CONSUMER-FEIGN
           uri: lb://nacos-consumer-feign
           predicates:

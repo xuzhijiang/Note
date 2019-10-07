@@ -39,16 +39,14 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <!--主要增加了 org.springframework.cloud:spring-cloud-starter-openfeign 依赖-->
+        <!-- 使用Feign -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <!-- Spring Cloud End -->
 
-        <!--    Feign 中使用 Sentinel
-            如果要在您的项目中引入 Sentinel，使用 group ID 为 org.springframework.cloud
-            和 artifact ID 为 spring-cloud-starter-alibaba-sentinel 的 starter。-->
+        <!-- Feign 中使用 Sentinel 要添加的依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>

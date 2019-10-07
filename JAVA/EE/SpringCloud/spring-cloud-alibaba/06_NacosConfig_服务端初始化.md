@@ -1,8 +1,8 @@
-# Nacos Config 服务端初始化
+# Nacos Config 服务端初始化(类似于Spring Cloud Config Server)
 
 ## 分布式配置中心
 
-在分布式系统中，由于服务数量巨多，为了方便服务配置文件统一管理，实时更新，所以需要分布式配置中心组件。
+为了方便配置文件统一管理，实时更新.
 
 ## Nacos Config
 
