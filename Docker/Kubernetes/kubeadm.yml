@@ -1,0 +1,49 @@
+apiVersion: kubeadm.k8s.io/v1beta2
+bootstrapTokens:
+- groups:
+  - system:bootstrappers:kubeadm:default-node-token
+  token: abcdef.0123456789abcdef
+  ttl: 24h0m0s
+  usages:
+  - signing
+  - authentication
+kind: InitConfiguration
+localAPIEndpoint:
+  # 修改成master的ip地址
+  advertiseAddress: 192.168.32.110
+  bindPort: 6443
+nodeRegistration:
+  criSocket: /var/run/dockershim.sock
+  name: kubernetes-master
+  taints:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/master
+# 可以把多个配置放在一个配置文件里,下面又是一个单独的配置
+---
+apiServer:
+  timeoutForControlPlane: 4m0s
+apiVersion: kubeadm.k8s.io/v1beta2
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+controllerManager: {}
+dns:
+  type: CoreDNS
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+# 国内不能访问 Google，修改为阿里云
+imageRepository: registry.aliyuncs.com/google_containers
+kind: ClusterConfiguration
+# kubernetes的版本要和自己安装的版本对上,否则启动不起来
+kubernetesVersion: v1.16.0
+networking:
+  dnsDomain: cluster.local
+  # 我们在docker的时候有一个问题,每次都要把端口映射出来,映射出来之后才能通信
+  # 容器与容器之间肯定是部署在不同计算机上的,还要在相同的网络里面,这样才可以使用服务名进行通信.
+  # 加上这个podSubnet就是为了解决这个问题的.
+  # pod可以运行一组容器,解决了容器之间的通信问题,这个配置很显然是为了实现容器与容器之间的通信
+  # 配置 POD 所在网段为我们虚拟机不重叠的网段（这里用的是 Flannel 默认网段）
+  # 每一台机器上都运行了一个pod,pod中运行了一组容器,
+  podSubnet: "10.244.0.0/16"
+  serviceSubnet: 10.96.0.0/12
+scheduler: {}

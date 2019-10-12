@@ -36,16 +36,15 @@
 
 ... #main全局块
 
-# woker进程数量,通常设置成和 CPU 的数量相等
+# worker进程数量,一个cpu是2核的,就设置成2.因为cpu要切换,要为了充分资源
 worker_processes  1;
 
 #events块
 events {
-    # epoll 是多路复用 IO(I/O Multiplexing) 中的一种方式
+    # epoll 是多路复用 IO(I/O Multiplexing) 中的一种方式,只建立一个连接,但是可以处理多个请求,提高处理效率.
     # 但是仅用于 linux2.6 以上内核,可以大大提高 nginx 的性能
     use epoll;
-    # 每个worker进程都有一个独立的连接池，连接池的大小是worker_connections
-    # 单个后台 worker process 进程的最大并发链接数
+    # 每个worker进程支持的最大并发连接数(每个worker进程都有一个独立的连接池,这个连接池代表了最大连接数)
     worker_connections  1024;
 }
 
@@ -94,7 +93,7 @@ http {
         #server全局块
         # 监听的ip和端口，配置 192.168.75.145:80
         listen       80;
-        # 虚拟主机名称,这里配置ip地址
+        # 虚拟主机名称,这里配置ip地址,可以是基于域名的
         server_name  192.168.75.145;
 
         #location块
