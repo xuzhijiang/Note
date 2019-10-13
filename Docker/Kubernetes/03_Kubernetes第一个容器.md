@@ -21,16 +21,18 @@ kubectl run nginx --image=nginx --replicas=2 --port=80
 # 查看全部 Pods 的状态
 kubectl get pods
 
-# 查看已部署的服务(我们部署的就是pod)
-# 我们部署了一个名为nginx的deplooyment
+# 查看已发布的deployment,上面2个pod构成了这个deployment
+# 可以看到一个名为nginx的deplooyment,这个上面run后面的名字一致
 kubectl get deployment
 
 # 发布服务(把deployment发布为service)
 # 使用负载均衡模式发布服务，让用户可以访问
-# 暴露一个名叫nginx和deployment,和上面的对应,暴露80端口,类型是负载均衡,我们有2个nginx,也就是水平扩展了.
+# (暴露)expose一个名叫nginx和deployment,和上面的对应,暴露80端口,类型(type)是负载均衡,我们有2个nginx,也就是水平扩展了.
+# type一共有4种ClusterIP,NodePort,LoadBalancer,Ingress,可以看到最下面的图,这里是使用LoadBalancer
+# 其中ClusterIP是只允许内网访问的暴漏,其余是允许外网访问方式的暴漏.
 kubectl expose deployment nginx --port=80 --type=LoadBalancer
 
-# 查看已发布的服务(已经暴漏到外网的服务)
+# 查看已发布的服务(已经暴漏的服务)
 # service就是已经暴漏出来的服务
 kubectl get services
 
@@ -49,3 +51,16 @@ kubectl delete service nginx
 ```
 
 ![](pics/k8s服务暴漏.png)
+
+# Kubernetes Ingress 简介
+
+![](pics/KubernetesIngress简介01.png)
+![](pics/KubernetesIngress简介02.png)
+![](pics/KubernetesIngress简介03.png)
+![](pics/KubernetesIngress简介04.png)
+![](pics/KubernetesIngress简介05.png)
+![](pics/KubernetesIngress简介06.png)
+![](pics/KubernetesIngress简介07.png)
+![](pics/KubernetesIngress简介08.png)
+![](pics/KubernetesIngress简介09.png)
+![](pics/KubernetesIngress简介10.png)

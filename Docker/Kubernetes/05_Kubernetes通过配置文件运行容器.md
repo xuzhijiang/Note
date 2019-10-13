@@ -1,11 +1,15 @@
 ![](pics/Kubernetes通过配置文件运行容器01.png)
 
-## 创建 YAML 配置文件
+## 创建 YAML 配置文件(以运行nginx为例)
 
     创建一个名为 nginx.yml 的配置文件
 
 ```yaml
-# API 版本号
+# API 版本号,可以通过 "kubectl api-versions" 查看
+# 注意: Deployment的apiVersion写法为extensions/v1beta1，extensions/v1beta1被废弃所以导致执行出错
+# 修改成apps/v1即可
+# 可以看https://v1-13.docs.kubernetes.io/docs/reference/federation/extensions/v1beta1/definitions/
+# https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-apiversion-definition-guide.html
 apiVersion: apps/v1
 # 类型，如：Pod/ReplicationController/Deployment/Service/Ingress
 # 意思就是我部署的是一个Deployment
@@ -65,6 +69,8 @@ spec:
 ```shell script
 # 部署
 kubectl create -f nginx.yml
+# 或者
+kubectl apply -f ingress.yml 
 
 # 删除
 kubectl delete -f nginx.yml
