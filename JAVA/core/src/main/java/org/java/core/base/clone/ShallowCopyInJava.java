@@ -1,7 +1,12 @@
 package org.java.core.base.clone;
 
 /**
- * 要使用java对象克隆方法，我们必须实现标记接口java.lang.Cloneable.他只是一个标记接口，接口里面没有任何方法要实现，以便它不会在运行时抛出CloneNotSupportedException。对象克隆也是受保护(protected)的方法，因此我们必须重写它以与其他类一起使用。
+ * 要使用java对象克隆方法，我们必须实现标记接口java.lang.Cloneable.他只是一个标记接口，
+ * 接口里面没有任何方法要实现，以便它不会在运行时抛出CloneNotSupportedException。
+ * 对象克隆也是受保护(protected)的方法，因此我们必须重写它以与其他类一起使用。
+ *
+ * 使用 clone() 方法来拷贝一个对象即复杂又有风险，它会抛出异常，并且还需要类型转换。
+ * Effective Java 书上讲到，最好不要去使用 clone()，可以使用拷贝构造函数或者拷贝工厂来拷贝一个对象。
  */
 public class ShallowCopyInJava {
 	
@@ -42,6 +47,10 @@ public class ShallowCopyInJava {
 
 		/**
 		 * Default version of clone() method. It creates shallow copy of an object.
+		 *
+		 * clone() 方法并不是 Cloneable 接口的方法，而是 Object 的一个 protected 方法。
+		 * Cloneable 接口只是规定，如果一个类没有实现 Cloneable 接口又调用了 clone() 方法，
+		 * 就会抛出 CloneNotSupportedException。
 		 */
 		protected Object clone() throws CloneNotSupportedException {
 			// Java Object类附带了native clone（）方法，该方法返回现有实例的副本

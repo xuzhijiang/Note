@@ -9,6 +9,7 @@ import java.nio.channels.ReadableByteChannel;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Date;
+import java.util.Scanner;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -540,5 +541,21 @@ public class FileUtils {
             return name.toLowerCase().endsWith(ext);
         }
 
+    }
+
+    /**
+     * 获取用键盘输入
+     */
+    @Test
+    public void consoleInputAndOutput() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            String s = scanner.nextLine();
+            System.out.println(s);
+            if ("ok".equals(s)) {
+                break;
+            }
+        }
+        scanner.close();
     }
 }

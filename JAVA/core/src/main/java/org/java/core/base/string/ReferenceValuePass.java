@@ -1,7 +1,10 @@
 package org.java.core.base.string;
 
 /**
- * String的值传递和引用传递
+ * 一句话总结：
+ *
+ * 对象类型永远传引用；
+ * 基本类型传值。
  */
 public class ReferenceValuePass {
 	public static void main(String[] args) {

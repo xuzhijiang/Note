@@ -2,9 +2,7 @@ package org.java.core.base;
 
 /**
  * Java 7改进了switch case以支持String
- *
- *  根据Java7的对于在Switch中的String中的文档，java编译器生成更加有效的字节码对于
- *  Stirng在switch中的比起链式的if-else-if语句.
+ * switch 不支持 long.支持常用的int/Integer，String，enum
  */
 public class SwitchStringExample {
 
