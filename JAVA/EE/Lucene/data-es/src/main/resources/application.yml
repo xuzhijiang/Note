@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: data-es
+  jdbc:
+    show-sql: true
+  data:
+    elasticsearch:
+      # 默认为elasticsearch
+      cluster-name: elasticsearch
+      # 配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
+      # cluster-nodes:
+      properties:
+        path:
+          # elasticsearch日志存储目录
+          logs: ./elasticsearch/log
+          # elasticsearch数据存储目录
+          data: ./elasticsearch/data
+
+server:
+  port: 9090
