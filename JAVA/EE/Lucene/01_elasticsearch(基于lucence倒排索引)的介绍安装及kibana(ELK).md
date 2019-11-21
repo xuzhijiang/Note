@@ -89,3 +89,19 @@ POST _analyze
 ```
 
 ![](pics/es支持的同义词-分词器.png)
+
+# elasticsearch-head安装
+
+![](pics/elasticsearch-head.png)
+![](pics/elasticsearch-head02.png)
+
+```yml
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+```
+
+[elasticsearch-head安装](https://github.com/mobz/elasticsearch-head)
+
+# 参考
+
+[资料](https://www.bilibili.com/video/av67957955?p=1)
