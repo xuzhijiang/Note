@@ -18,13 +18,8 @@ import java.util.Locale;
 // 也就是第三步请求的时候，携带了cookie的信息中声明了位置信息.
 @Controller
 public class i18nController {
-
-    private static final Logger logger = LoggerFactory.getLogger(i18nController.class);
-
     @RequestMapping(value = "/i18n", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
-        logger.info("Welcome home! The client locale is {}.", locale);
         return "i18n";
     }
-
 }

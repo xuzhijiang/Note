@@ -11,15 +11,11 @@ import com.legacy.springmvc.jdbc.model.Employee;
 public class SpringMain {
 
 	public static void main(String[] args) {
-		//Get the Spring Context
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring.xml");
 		
-		//Get the EmployeeDAO Bean
 		//EmployeeDAO employeeDAO = ctx.getBean("employeeDAO", EmployeeDAO.class);
-		//To use JdbcTemplate
 		EmployeeDAO employeeDAO = ctx.getBean("employeeDAOJDBCTemplate", EmployeeDAO.class);
 		
-		//Run some tests for JDBC CRUD operations
 		Employee emp = new Employee();
 		int rand = new Random().nextInt(1000);
 		emp.setId(rand);
@@ -29,7 +25,6 @@ public class SpringMain {
 		//Create
 		employeeDAO.save(emp);
 		
-		//Read
 		Employee emp1 = employeeDAO.getById(rand);
 		System.out.println("Employee Retrieved::"+emp1);
 		
@@ -44,9 +39,7 @@ public class SpringMain {
 		//Delete
 		employeeDAO.deleteById(rand);
 		
-		//Close Spring Context
 		ctx.close();
-		
 		System.out.println("DONE");
 	}
 

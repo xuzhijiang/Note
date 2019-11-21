@@ -25,9 +25,6 @@
     </properties>
 
     <dependencies>
-        <!--spring-boot-starter，其中包含了spring-boot-starter-logging，
-		该依赖内容就是Spring Boot默认的日志框架Logback，所以我们在引入log4j之前，
-		需要先排除该包的依赖，再引入log4j的依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -38,7 +35,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--引入log4j2, 注意spring-boot-starter-log4j已经停止更新了在2016年,新的是log4j2-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>

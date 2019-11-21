@@ -4,9 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!--
-		Bean配置
-		
-		如果查看上面的所有类，它们都使用标准JDBC API，并且没有对Spring JDBC框架的引用。 
+		如果查看上面的所有类，它们都使用标准JDBC API，并且没有对Spring JDBC框架的引用。
 		当我们创建Spring Bean配置文件并定义bean时，Spring JDBC框架类就会出现。
 		 我们将在Spring Bean上下文文件中创建DataSource并将其设置为我们的DAO实现类。
 

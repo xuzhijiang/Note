@@ -5,7 +5,10 @@
 	<groupId>com.di</groupId>
 	<artifactId>dependency_inject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <modules>
+        <module>../logging-example</module>
+    </modules>
+    <packaging>pom</packaging>
 
 	<name>dependency_inject</name>
 	<description>Depedency Inject  Demo project for Spring Boot</description>

@@ -10,9 +10,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/**
- * 访问此链接测试Swagger: http://localhost:8080/swagger-ui.html
- */
+// 测试Swagger: http://localhost:8080/swagger-ui.html
 @SpringBootApplication
 public class RestApplication {
 

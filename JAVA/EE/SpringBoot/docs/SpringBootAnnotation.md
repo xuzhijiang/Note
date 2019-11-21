@@ -1,3 +1,13 @@
+# 用于声明Bean的注解
+
+- @Component组件，没有明确的角色，通常用于定义普通的没有特殊含义的Bean
+- @Service在业务逻辑层(service层)使用,通常用于标识那些包容了“业务逻辑(business logic)”的Bean。
+- @Repository:表示带注释的类是“存储库(Repository)”,此注释用作@Component的特化，并且建议与DAO类一起使用(advisable to use with DAO classes.),在数据访问层(dao层）使用， 通常用于标识那些包容了数据存取(Data Access）代码的Bean
+- @Controller在展现层使用，它即Spring MVC中的控制器。
+- @Configuration：用于标识“配置类”， Spring Boot项目在启动时会自动扫描并加载标记有此注解的类,在@Configuration注解修饰的类中把@Bean附加于特定的方法之上，方法返回的对象将成为一个Spring可以管理的Bean。
+
+>@Service和@Repository都派生自@Component,但没有添加任何的特性,@Controller也派生自@Component。
+
 # Component
 
 @Component(value = "aa"): aa就是当前bean的name,或者说id
@@ -78,17 +88,6 @@ properties的配置的前缀，必要时，也可以通过locations指定propert
     <optional>true</optional>
 </dependency>
 ```
-
-# @SpringBootApplication
-
-@SpringBootApplication = @Configuration + @EnableAutoConfiguration + @ComponentScan
-
-- @ComponentScan: 执行组件扫描(使用@Component，@Service，@Repository，@Controller等注释的Bean)-扫描与Application类相同的包或子包中的其他配置和bean
-- @EnableAutoConfiguration  - 告诉SpringBoot自动依据类路径的设置添加bean.
-- @Configuration和@Bean一起使用,用于定义bean
-
-@EnableAutoConfiguration 注解的作用是让 SpringBoot来“猜测” 如何配置 Spring。猜测的依据很简单，就是根据依赖的jar包。因为在我们的依赖中，包含了 Tomcat和SpringMvc ，因此SpringBoot的自动配置机制就会认为这是一个web应用。
-因此在main方法run后，就启动 tomcat，让用户通过url来访问
 
 # @ComponentScan
 

@@ -1,17 +1,17 @@
 package com.springboot.core.aspect;
 
-import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
@@ -44,7 +44,7 @@ import java.util.Arrays;
 @Component// @Component注解表示将该类交于Spring容器来管理，
 public class WebLogAspect {
 
-    private Logger logger = Logger.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 优化解决AOP切面中的同步问题:

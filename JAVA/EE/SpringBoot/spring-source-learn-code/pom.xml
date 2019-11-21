@@ -28,13 +28,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <!-- 测试Log注解的时候，因为自定义了PointcutAdvisor ，
         所以pom中要引入aop-starter,否则就我们自定义的Log就不生效-->
         <dependency>
@@ -42,10 +48,16 @@
             <artifactId>log-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.1</version>
+        </dependency>
+        <!-- 测试自己的redis-starter -->
+        <dependency>
+            <groupId>org.starter.redis</groupId>
+            <artifactId>redis-starter</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 
@@ -57,6 +69,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

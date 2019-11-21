@@ -1,0 +1,2 @@
+com.spring.autoconfiguration.component.MyEnableAutoConfig=\
+com.spring.autoconfiguration.config.SpringRedisConfig

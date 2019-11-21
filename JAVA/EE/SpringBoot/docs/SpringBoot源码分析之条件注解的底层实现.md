@@ -1,3 +1,8 @@
+# 如何阅读Spring源码
+
+[如何阅读Spring源码
+](https://zhuanlan.zhihu.com/p/72581899)
+
 ## 条件注解的作用
 
 >条件注解存在的意义在于动态识别。比如@ConditionalOnClass会检查`类加载器中是否存在对应的类`，如果有的话被注解修饰的类就有资格被Spring容器所注册，否则会被skip。springBoot内部提供了特有的注解：条件注解(Conditional Annotation)。比如@ConditionalOnBean、@ConditionalOnClass、
