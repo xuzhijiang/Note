@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: amqp
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 9099
+
+queue:
+  a: queue-AA
+  b: queue-BB
+  c: queue-CC
+  d: queue-DD
+  e: queue-EE
+  f: queue-FF

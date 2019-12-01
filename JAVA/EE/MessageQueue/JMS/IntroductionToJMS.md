@@ -1,10 +1,8 @@
-# 什么是JMS
+# JMS（JAVA Message Service）
 
-JMS（JAVA Message Service）是java消息服务，JMS的客户端之间可以通过JMS服务进行异步的消息传输。**JMS API是JavaEE规范**，它包含用于实现消息服务的API(JMS API是一组通用接口，不包含任何实现)。
+JMS是java消息服务，通过JMS进行异步的消息传输。**JMS API是JavaEE规范**，(JMS API是一组通用接口，不包含任何实现)
 
-JMS API仅用于在"基于Java的应用程序中实现Messaging系统"，不支持其他语言,跨语言支持的比较差.
-
-**ActiveMQ 就是基于 JMS 规范实现的。**
+JMS API仅用于"基于Java的应用程序中"，不支持其他语言,跨语言支持的比较差.ActiveMQ 就是基于 JMS 规范实现的（ActiveMQ 性能差，如果没有历史原因，不推荐使用）
 
 # JMS的优点
 
@@ -13,12 +11,10 @@ JMS API仅用于在"基于Java的应用程序中实现Messaging系统"，不支�
 3. 可靠：JMS确保有且仅将消息传递到目标系统一次.
 4. 互操作性：JMS API允许其他Java平台语言(如Scala和Groovy）之间的互操作性
 
-# JMS消息传递模型
+# JMS支持两种消息传递模型
 
-JMS API支持两种消息传递模型: Point-To-Point Model(P2P Model) 和 Publish-Subscribe Model(Pub/Sub Model)(发布/订阅模型）
-
-- 点到点（P2P）模型: 一条消息只能被一个消费者使用，未被消费的消息在队列中保留直到被消费或超时
-- 发布/订阅（Pub/Sub）模型: 发布者发布一条消息，该消息通过topic传递给这个topic的所有订阅者，**在一条消息广播之后才订阅的用户则是收不到该条消息的**.
+- 点到点: 一条消息只能被一个消费者使用，未被消费的消息在队列中保留直到被消费或超时
+- 发布/订阅: 发布者发布一条消息，该消息通过topic传递给这个topic的所有订阅者，**在一条消息广播之后才订阅的用户则是收不到该条消息的**.
 
 ## 点对点的消息模型特点(Point-to-Point Messaging Model)
 

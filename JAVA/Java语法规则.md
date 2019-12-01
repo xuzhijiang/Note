@@ -1,4 +1,132 @@
-成员变量与局部变量区别     
+# 访问权限
+
+Java 中的访问权限修饰符：private、不加访问修饰符(表示包级可见)，protected 以及 public.
+
+可见性： private < friendly < protected < public
+
+# 接口
+
+从 Java 8 开始，接口也可以拥有默认的方法实现，这是因为不支持默认方法的接口的维护成本太高了。在 Java 8 之前，如果一个接口想要添加新的方法，那么要修改所有实现了该接口的类。
+
+接口的成员（字段 + 方法）默认都是 public 的，并且不允许定义为 private 或者 protected。
+
+接口的字段默认都是 static 和 final 的
+
+# 接口和抽象类的区别是什么？
+
+- 接口的方法默认是 public，所有方法在接口中不能有实现(Java 8 开始接口方法可以有默认实现），抽象类可以有非抽象的方法。
+- 接口中的字段默认是 final和static 的，而抽象类中则不一定
+- 接口中的 方法/变量 是public的
+
+# 异常
+
+Throwable 是异常的顶级类，分为两种： **java.lang.Error(错误)**  和 **java.lang.Exception(异常)**。
+
+![](pics/异常分类.png)
+
+- Error 用来表示 JVM 无法处理的错误,表示运行应用程序中较严重问题。例如当内存不够时，将出现 OutOfMemoryError。这些异常发生时，Java虚拟机（JVM）一般会选择线程终止,这些错误表示故障发生于虚拟机自身、或者发生在虚拟机试图执行应用时.
+- Exception（异常）:是程序本身可以处理的异常,常见异常有RuntimeException，NullPointerException，ArithmeticException，ArrayIndexOutOfBoundsException。 
+
+>异常和错误的区别：异常能被程序本身可以处理，错误是无法处理
+
+```java
+// Throwable类常用方法
+// getMessage(): 返回异常发生时的详细信息
+// printStackTrace(): 在控制台上打印Throwable对象封装的异常信息
+```
+
+# final
+
+>final修饰变量的时候：
+ 
+- 如果修饰的是int等基本类型变量，例如int a = 10；给这个变量赋值一次之后，就不能再修改这个变量的值了
+- 如果修饰的是引用类型的变量，比如修饰的变量是Person的一个实例，那么给这个变量赋值一次之后，不可以再指向其他新的Person实例，但是这个变量所引用的person的属性是可以修改的。
+
+# Java 面向对象编程三大特性: 封装 继承 多态
+
+- 封装: 把一个对象的属性私有化，同时提供一些可以被外界访问的属性的方法
+- 继承: 通过继承，子类可以用父类的功能，通过继承能够方便地复用以前的代码
+- 多态: animal.run(); cat.run(); bird.run(); 调用run方法的时候，传的参数是Animal,`run (Animal animal)`
+
+# 构造器 Constructor 是否可被 override?
+ 
+继承的时候我们就知道父类的私有属性和构造方法并不能被继承，所以 Constructor 也就不能被 override
+
+# 在 Java 中定义没有参数的构造方法的作用
+
+- 因为Java是一门严谨的语言，要构造孙子，先要构造父亲，要构造父亲，先要构造爷爷。
+- 每一级在自己构造之前，必须先调用super让上一级先构造成功。
+- 注意是必须加super，而且第一行必须是super，有时候好像我们自己没有加super，那是因为编译器自动给你加的，那说明也是必须加的
+
+# Java序列化中如果有些字段不想进行序列化，怎么办？
+
+对于不想进行序列化的变量，使用transient关键字修饰。transient只能修饰变量，不能修饰类和方法
+
+# Java 与 C++ 的区别
+
+- Java 是纯粹的面向对象语言，所有的对象都继承自 java.lang.Object，C++ 为了兼容 C 即支持面向对象也支持面向过程。
+- Java 支持自动垃圾回收，而 C++ 需要手动回收。
+- Java 不支持多重继承，只能通过实现多个接口来达到相同目的，而 C++ 支持多重继承。
+- Java 不支持条件编译，C++ 通过 #ifdef #ifndef 等预处理命令从而实现条件编译。
+
+# == 与 equals区别
+
+基本数据类型==比较的是值，引用数据类型==比较的是内存地址
+ 
+**equals()** : 它的作用也是判断两个对象是否相等。有两种使用情况：
+
+- 一个自定义类没有覆盖 equals() 方法。当使用 equals() 比较两个对象时，等价于通过“==”比较这两个对象,也就是使用父类Object中的equals方法，比较的是地址。
+- 如果类覆盖了 equals() 方法。用来来判断两个对象的内容是否相等；若它们的内容相等，则返回 true 。例如`java.lang.String`.
+
+>两个Integer比较，是引用比较，永远用equals.两个int比较，只能用==,一个是Integer，一个是int，不想让编译器帮你自动转的话，I.intValue() == i
+
+# 为什么要有 hashCode
+
+我们以“HashSet 如何检查重复”为例子来说明为什么要有hashCode。
+
+#  你重写过 hashcode 和 equals 么，为什么重写equals时必须重写hashCode方法？
+
+我以HashSet中存放Student为例，Student有2个成员变量，name和age，如果重写了equals方法，new Student('a', 20)和new Student('a',20)这两个对象equals后，返回true，但是如果我们不重写hashcode(),则2个对象的hashcode肯定不同，那么HashSet中就会存放重复的对象，这个和Set的是违背的。
+
+```java
+Student s1 = new Student('xzj', 18);
+Student s2 = new Student('xzj', 20);
+System.out.println(s1.hashCode()); // 1020371697
+System.out.println(s2.hashCode()); // 789451787
+HashSet set = new HashSet();
+// 只重写equals，不重写hashcode，会导致重复
+set.add(s1);
+set.add(s2);
+```
+
+- 如果两个对象使用equals方法进行比较并且相等，那么在两个对象上调用hashCode就必须产生的结果
+- 如果两个对象根据equals(Object)方法比较并不相等，则不要求在每个对象上调用hashCode都必须产生不同的结果。
+- 因此，equals 方法被覆盖过，则 hashCode 方法也必须被覆盖
+
+# 如何编写hashCode
+
+```java
+public int hashCode() {
+    int result = 17;
+    result = 31 * result + (name == null ? 0 : name.hashCode());
+    result = 31 * result + (age == null ? 0 : age.hashCode());
+    return result;
+}
+```
+
+- 把某个非零的常数值，比如17，保存在变量int result中
+- 然后累加每个成员变量的hashcode.
+
+# 线程有哪些状态
+
+- NEW
+- RUNNABLE
+- BLOCKED
+- WAITING
+- TIMED_WAITING
+- TERMINATED
+
+# 成员变量与局部变量区别     
 
     3. 默认值不同
         成员变量,有自己的默认值
@@ -25,22 +153,8 @@ super：
 
     
 
-final：
-    final是最终修饰符，可以修饰类、成员方法、变量。
-    final修饰的类：最终的类，不能被继承
-    final修饰的变量： 相当于是一个常量,  一次赋值,终身不变
-    final修饰的方法： 最终的方法，子类不能重写，可以继承过来使用
 
-    final修饰的引用数据类型变量，可以修改对象里面的属性内容，不可改变地址值
-    final修饰的成员变量，不能使用默认值，必须在创建对象之前完成赋值。
 
-static:
-    静态修饰符，被static修饰的内容属于类不专属于某个对象，多个对象共享使用这一个成员
-    使用static修饰的成员可以用类名直接访问，建议这样使用：
-        类名.静态方法名(参数);
-        类名.静态常量名;
-    静态修饰的成员只能直接访问静态修饰的成员，不能出现this、super,因为类是优于对象产生
-        
 包的访问：(前提 类用public修饰)
     同一个包下，随意访问
     不同包下：
@@ -48,17 +162,7 @@ static:
             创建对象格式：包名.类名 变量名 = new包名.类名();
         为了方便，可以选择导包后，再直接使用类名本身，不加包名  在package后，class前使用import导入类
         如果是lang包下的类，可以不导包，直接使用
-访问权限：
-    权限修饰符
-        public : 公共的
-        protected: 受保护的
-        默认的：不写就是默认的default
-        private : 私有的
-                    public  protected   默认的 private
-        在当前类中       Y       Y           Y       Y
-        同一包中的其他类Y       Y           Y
-        不同包中的子类 Y       Y
-        不同包中的其他类Y
+
 代码块：一块执行代码的区域用{}包裹
         局部代码块：定义在方法中的，用来限制变量的作用范围
         构造代码块：定义在类中方法外，用来给对象中的成员初始化赋值
@@ -146,15 +250,6 @@ Object o = 0.78; System.out.println(o instanceof Double);    // true
 Object o = 0.7; System.out.println(o instanceof Float);    // false
 注意instanceof后面的类型必须是对象类型，不能为primitive原始类型，否则编译不过去.
 
-
-对于消息系统，个人的建议：
-
-轻量级 选择 RabbitMQ
-重量级 选择 Kafka
-如果没有历史原因，不要再选择 ActiveMQ
-
-系统吞吐量(tian)
-
 为什么Thread.stop被废弃.
 
 java.util.UUID
@@ -217,7 +312,7 @@ Servlet的Listener涉及到的是观察者模式(Observer)
 
 使用synchronized的3种方式: 静态方法,实例方法,代码块.
 
-Comparator是策略模式的体现.
+
 
 锁的粒度,表锁,行锁,整个数据库的锁.
 
@@ -239,4 +334,3 @@ Comparator是策略模式的体现.
 spring mvc依赖了哪些jar包啊?
 
 spring-webmvc.(spring-webmvc已经依赖了spring-web,spring-aop,spring-beans,spring-context,spring-core等.) 
-

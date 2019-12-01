@@ -92,7 +92,9 @@ Spring Boot提供了一个默认的映射：/error，当处理中抛出异常之
 # spring mvc拦截器
 
 ![](pics/拦截器.png)
+
 ![](pics/拦截器02.png)
+
 ![](pics/拦截器03.png)
 
 简单概括:perHandle()方法是按照配置文件顺序执行 然后逆序执行每个拦截器的postHandle()方法 ，最后逆序执行afterCompletion()方法
@@ -100,8 +102,11 @@ Spring Boot提供了一个默认的映射：/error，当处理中抛出异常之
 # Spring MVC 表单标签库
 
 ![](pics/SpringMVC表单标签库01.png)
+
 ![](pics/SpringMVC表单标签库02.png)
+
 ![](pics/SpringMVC表单标签库03.png)
+
 ![](pics/SpringMVC表单标签库04.png)
 ![](pics/SpringMVC表单标签库05.png)
 ![](pics/SpringMVC表单标签库06.png)
@@ -121,14 +126,21 @@ Spring Boot提供了一个默认的映射：/error，当处理中抛出异常之
 # Spring 整合 Spring MVC
 
 ![](pics/DispatcherServlet组件.png)
+
 ![](pics/DispatcherServlet工作原理.png)
 
 ![](pics/Spring整合SpringMVC01.png)
+
 ![](pics/Spring整合SpringMVC02.png)
+
 ![](pics/Spring整合SpringMVC03.png)
+
 ![](pics/Spring整合SpringMVC04.png)
+
 ![](pics/Spring整合SpringMVC05.png)
+
 ![](pics/Spring整合SpringMVC06.png)
+
 ![](pics/Spring整合SpringMVC07.png)
 
 # SpringBoot热加载

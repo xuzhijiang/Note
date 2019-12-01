@@ -3,12 +3,15 @@
 - top
 - htop (需要安装下,这个对人可读性好,而且是彩色显示.yum install htop)
 
-## top命令
+# top命令
 
->top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况.top是一个动态显示过程,即可以通过用户按键来不断刷新当前状态.如果在前台执行该命令,它将独占前台,直到用户终止该程序为止.top命令提供了实时的对系统处理器的状态监视.该命令可以按CPU使用.内存使用和执行时间对任务进行排序.
+- top能够实时显示系统中各个进程的资源占用状况.
+- top是一个动态显示过程,即可以通过用户按键来不断刷新当前状态.
+- top命令提供了实时的对系统处理器的状态监视.
 
-```shell
-$ top
+```shell script
+top
+
 top - 09:14:56 up 264 days, 20:56,  1 user,  load average: 0.02, 0.04, 0.00
 Tasks:  87 total,   1 running,  86 sleeping,   0 stopped,   0 zombie
 Cpu(s):  0.0%us,  0.2%sy,  0.0%ni, 99.7%id,  0.0%wa,  0.0%hi,  0.0%si,  0.2%st
@@ -19,16 +22,33 @@ PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
 2 root      20   0     0    0    0 S  0.0  0.0   0:00.00 kthreadd
 3 root      20   0     0    0    0 S  0.0  0.0   7:15.20 ksoftirqd/0
 4 root      RT   0     0    0    0 S  0.0  0.0   0:00.00 migration/0
+
+# 根据上一步top能看出pid
+# 通过top -Hp pid可以查看该进程下各个线程的cpu使用情况
+top -Hp pid
+top -H -p <pid>
+
+# 按理说，都是某个进程下的线程， 应该进程id PID一样啊，但实际却都不一样
+# 实际是被PID的名字给弄混了，pid除了能代表是process id的意思,还能代表pthread id
+# 也就是每个进程中线程的(process thread)id, 在内核中，每个线程都有自己的PID
+# linux将线程作为轻量级进程也分配了pid
+# 线程ID在某进程中是唯一的，在不同的进程中的线程ID值可能相同
 ```
 
-### 第一行
+    Linux通过进程查看线程的方法:
+    
+    1. htop按t(显示进程线程嵌套关系)和H(显示线程) ，然后F4过滤进程名
+    2. ps -eLf | grep java (e是显示全部进程，L是显示线程，f全格式输出
+    3. top -Hp <pid> (实时) 
+
+## 第一行
 
 1. 09:14:56 ： 系统当前时间
 2. 264 days, 20:56 ： 系统开机到现在经过了多少时间
 3. 1 users ： 当前在线用户
 4. load average: 0.02, 0.04, 0.00： 系统1分钟、5分钟、15分钟的CPU负载信息
 
-### 第二行
+## 第二行
 
 * Tasks：任务
 * 87 total：很好理解，就是当前有87个任务，也就是87个进程。
@@ -37,7 +57,7 @@ PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
 * 0 stopped：停止的进程数
 * 0 zombie：僵死的进程数
 
-### 第三行
+## 第三行
 
 * Cpu(s)：表示这一行显示CPU总体信息
 * 0.0%us：用户态进程占用CPU时间百分比，不包含renice值为负的任务占用的CPU的时间。
@@ -50,7 +70,7 @@ PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
 
 >注：这里显示数据是所有cpu的平均值，如果想看每一个cpu的处理情况，按1即可；折叠，再次按1
 
-### 第四行
+## 第四行
 
 * Men：内存的意思
 * 8175320kk total：物理内存总量
@@ -58,7 +78,7 @@ PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
 * 116452k free：空闲的物理内存量
 * 283084k buffers：用作内核缓存的物理内存量
 
-### 第五行
+## 第五行
 
 * Swap：交换空间
 * 6881272k total：交换区总量
@@ -66,7 +86,7 @@ PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
 * 2870828k free：空闲的交换区量
 * 4336992k cached：缓冲交换区总量
 
-### 进程信息
+## 进程信息
 
 1. PID：进程的ID
 2. USER：进程所有者
@@ -81,7 +101,7 @@ PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
 11. TIME+：该进程启动后占用的总的CPU时间，即占用CPU使用时间的累加值。
 12. COMMAND：进程启动命令名称
 
-### top命令交互操作指令
+# top命令交互操作指令
 
 1. q：退出top命令
 2. <Space>：立即刷新
@@ -115,7 +135,7 @@ while true;do top;sleep 1;done
 # htop 支持鼠标操作
 ```
 
-### Linux查看物理内存占用率
+# Linux查看物理内存占用率
 
 ```shell
 # Linux下看内存和CPU使用率一般都用top命令，
@@ -193,7 +213,6 @@ Swap:            0B          0B          0B
 
 # Estimation of how much memory is available for starting new applications
 ```
-
 
 # 参考
 

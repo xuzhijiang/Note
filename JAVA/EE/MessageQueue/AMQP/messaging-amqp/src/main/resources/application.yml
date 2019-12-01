@@ -9,3 +9,24 @@ spring:
 
 server:
   port: 9090
+
+exchange:
+  direct: direct-exchange
+  topic: topic-exchange
+  fanout: fanout-exchange
+
+queue:
+  a: queue-AA
+  b: queue-BB
+  c: queue-CC
+  d: queue-DD
+  e: queue-EE
+  f: queue-FF
+
+routing:
+  direct:
+    one: direct1
+    two: direct2
+  topic:
+    orange: '*.orange.*'
+    color: '#.color.#'

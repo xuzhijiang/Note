@@ -157,6 +157,7 @@ Event对象其实就是被监听对象的包装，那么创建IOC时，要Servle
 # 使用WebApplicationInitializer的方式创建DispatcherServlet
 
 ![](pics/使用WebApplicationInitializer的方式创建DispatcherServlet.png)
+
 ![](pics/使用WebApplicationInitializer的方式创建DispatcherServlet02.png)
 
 # 究竟Springboot如何配置DispatcherServlet
@@ -169,6 +170,7 @@ Event对象其实就是被监听对象的包装，那么创建IOC时，要Servle
 # SpringBoot中如何创建ContextLoaderListener
 
 ![](pics/SpringBoot中如何创建ContextLoaderListener01.png)
+
 ![](pics/SpringBoot中如何创建ContextLoaderListener02.png)
 
 # 参考

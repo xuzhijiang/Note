@@ -11,8 +11,8 @@ import javax.sql.DataSource;
 
 /**
  * 本例使用的是内存数据库,所以此类无用,暂时注释掉关键部分.
- * 使用的时候,需要这样创建JdbcTemplate:
  *
+ * 使用的时候,需要这样创建JdbcTemplate:
  * jdbcTemplate = new JdbcTemplate(dataSource);
  *
  * 将本类中的DataSource设置到JdbcTemplate中.
@@ -33,4 +33,5 @@ public class DataSourceConfig {
         driverManagerDataSource.setDriverClassName(environment.getProperty("driverClassName"));
         return driverManagerDataSource;
     }
+
 }

@@ -10,7 +10,7 @@ yum -y install wget
 yum install xxx.rmp
 
 # 卸载软件 (along with all its dependencies)
-yum remove xxx.rmp
+yum [-y] remove xxx.rmp
 
 # 升级软件
 yum update
@@ -105,4 +105,15 @@ chkconfig --add tomcat
 chkconfig tomcat --list
 
 service tomcat version # 中间的tomcat就是上面的/etc/rc.d/init.d/tomcat脚本名字
+```
+
+# centos下开机自启服务
+
+```shell script
+# 开机自启mysql
+chkconfig mysql on
+# 关闭开机自启mysql
+chkconfig mysql off
+# 检查是否是开机自启
+ntsysv
 ```

@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>first_springboot_app</name>
+    <name>spring-source-learn</name>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -58,6 +58,16 @@
             <groupId>org.starter.redis</groupId>
             <artifactId>redis-starter</artifactId>
             <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>8.5.31</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper</artifactId>
+            <version>7.0.47</version>
         </dependency>
     </dependencies>
 

@@ -4,6 +4,7 @@
     <property name="appName" value="my-log"></property>
 
     <appender name="appLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 这里会输出到项目所在磁盘的${LOG_HOME}/${appName}.log中 -->
         <file>${LOG_HOME}/${appName}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_HOME}/${appName}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>

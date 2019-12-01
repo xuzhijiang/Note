@@ -1,12 +1,17 @@
 package com.amqp.core.controller;
 
-import com.amqp.core.common.MessageQueueConstants;
+import com.amqp.core.domain.Payload;
+import com.amqp.core.service.ProducerService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,35 +19,53 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @RestController
+@RequestMapping(value = "/api/producer")
 public class ProducerController {
 
     final Log log = LogFactory.getLog(getClass());
 
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private ProducerService producerService;
 
-    @GetMapping("/sendMessage")
-    public String sendMessage() {
-        new Thread(() -> {
-            for (int i = 0; i < 100; i++) {
-                LocalDateTime time = LocalDateTime.now();
-                rabbitTemplate.convertAndSend(MessageQueueConstants.EXCHANGE, MessageQueueConstants.ROUTING_KEY, time.toString());
-            }
-        }).start();
-        return "ok";
-    }
+    @Value("${routing.direct.one}")
+    private String direct1RoutingKey;
+
+    @Value("${routing.direct.two}")
+    private String direct2RoutingKey;
 
     @Autowired
-    AmqpTemplate amqpTemplate;
+    private RabbitTemplate rabbitTemplate;
 
-    @GetMapping(value = "/send")
-    String sendMessage(@RequestParam(name = "message", defaultValue = "") String message) {
-        if (message.isEmpty()) {
-            message = "Message<" + UUID.randomUUID().toString() + ">";
-        }
+    private Payload payload = new Payload("hello payload");
 
-        amqpTemplate.convertAndSend(MessageQueueConstants.EXCHANGE, MessageQueueConstants.ROUTING_KEY, message);
-        return "Message sent ok!";
+    @GetMapping("/direct1")
+    public ResponseEntity sendDirect1Message() {
+        producerService.sendToDirectExchange(payload, direct1RoutingKey);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/direct2")
+    public ResponseEntity sendDirect2Message() {
+        producerService.sendToDirectExchange(payload, direct2RoutingKey);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/topic/orange")
+    public ResponseEntity sendTopicOrangeMessage() {
+        producerService.sendToTopicExchange(payload, "quick.orange.rabbit");
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/topic/color")
+    public ResponseEntity sendTopicColorMessage() {
+        producerService.sendToTopicExchange(payload, "quick.color.rabbit");
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/fanout")
+    public ResponseEntity sendFanoutMessage() {
+        producerService.sendToFanoutExchange(payload);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

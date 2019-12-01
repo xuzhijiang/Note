@@ -16,37 +16,13 @@
 
 Zookeeper将所有数据存储在内存中，所以并不是用来存储大规模业务数据，而是用于存储少量的状态和配置信息，每个节点的数据最大不能超过 1MB.ZNode是ZooKeeper中数据的最小单元,znode用由斜杠分割的路径表示，例如/foo/path1
 
->在Zookeeper中的node可以分为4类:
+![](znode理解.png)
 
-- 持久节点: 默认的节点类型,创建节点的客户端与 Zookeeper 断开连接后，该节点依旧存在.除非主动进行ZNode的移除操作.
-- 持久节点顺序节点: 在创建节点时，Zookeeper 根据创建的时间顺序给该节点名称进行编号.也就是这些节点是有顺序的.
-- 临时节点: 当创建节点的客户端与 Zookeeper 断开连接后，临时节点会被删除
-- 临时顺序节点: 在创建节点时，Zookeeper 根据创建的时间顺序给该节点名称进行编号；当创建节点的客户端与 Zookeeper 断开连接后，临时节点会被删除.
+ZNode 的组成:
 
->Zookeeper 分布式锁恰恰应用了临时顺序节点.
-
-![](pics/Zookeeper分布式锁的原理01.png)
-![](pics/Zookeeper分布式锁的原理02.png)
-![](pics/Zookeeper分布式锁的原理03.png)
-![](pics/Zookeeper分布式锁的原理04.png)
-![](pics/Zookeeper分布式锁的原理05.png)
-![](pics/Zookeeper分布式锁的原理06.png)
-![](pics/Zookeeper分布式锁的原理07.png)
-![](pics/Zookeeper分布式锁的原理08.png)
-![](pics/Zookeeper分布式锁的原理09.png)
-![](pics/Zookeeper分布式锁的原理10.png)
-![](pics/zk实现分布式锁-临时节点的有序性.png)
-
->Zookeeper 和 Redis 分布式锁的比较
-
-![](pics/Zookeeper和Redis分布式锁的比较.png)
-
-# ZNode的结构
-
-每个 ZNode 由2部分组成:
-
-- stat：包含 Znode 的各种元数据，比如事务 ID、版本号、时间戳、大小等等。
-- data：zookeeper相对于redis的好处
+- path: 上图app1节点的path就是/apps/app1,通过path来操作这个节点的数据.比如增删改查都是基于这个path来操作的.
+- data：数据(没有类型,也就是数据就是以字节类型存在)
+- stat：状态信息,包含 Znode 的各种元数据，比如事务 ID、版本号、时间戳、大小等等。
 - ACL：记录 Znode 的访问权限，即哪些人或哪些 IP 可以访问本节点。
 - child：当前节点的子节点引用
 
@@ -54,27 +30,63 @@ Zookeeper将所有数据存储在内存中，所以并不是用来存储大规�
 
 ```shell
 [zk: 127.0.0.1:2181(CONNECTED) 6] get /dubbo    
-# 该数据节点关联的数据内容为空
+# 该数据节点关联的数据内容为空,对应上面的data
 null
 # 下面是该数据节点的一些状态信息，其实就是 Stat 对象的格式化输出
 cZxid = 0x2
 ctime = Tue Nov 27 11:05:34 CST 2018
 mZxid = 0x2
 mtime = Tue Nov 27 11:05:34 CST 2018
-pZxid = 0x3
+pZxid = 0x3 上级节点的zxid
 cversion = 1
-dataVersion = 0
-aclVersion = 0
-ephemeralOwner = 0x0
-dataLength = 0
-numChildren = 1
+dataVersion = 0 数据的版本
+aclVersion = 0 权限的版本
+ephemeralOwner = 0x0 判断它是不是一个临时节点.
+dataLength = 0 数据长度
+numChildren = 1 子节点的数量
 ```
 
-这些状态信息其实就是 Stat 对象的格式化输出。Stat 类中包含了一个数据节点的所有状态信息的字段，包括事务ID、版本信息和子节点个数等，如下图所示:
+>Zxid：事务id,任何数据的变更都会导致zxid的变更,拿到zxid,就可以知道这个节点中数据的版本.
 
-![Stat 类](https://images.gitbook.cn/a841e740-1c55-11e9-b5b7-abf0ec0c666a)
+![](znode数据节点的状态信息说明.png)
 
-![数据节点的状态信息说明](https://images.gitbook.cn/f44d8630-1c55-11e9-b5b7-abf0ec0c666a)
+Zookeeper采用ACL（AccessControlLists）策略来进行权限控制，类似于 UNIX 文件系统的权限控制。Zookeeper 定义了如下5种权限。
+
+![](http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-10/27473480.jpg)
+
+其中尤其需要注意的是，CREATE和DELETE这两种权限都是针对子节点的权限控制。
+
+# znode分类
+
+- 持久节点: 默认的节点类型,创建节点的客户端与 Zookeeper 断开连接后，该节点依旧存在.除非主动进行ZNode的移除操作.
+- 持久节点顺序节点: 在创建节点时，Zookeeper 根据创建的时间顺序给该节点名称进行编号.也就是这些节点是有顺序的.
+- 临时节点: 当创建节点的客户端与 Zookeeper 断开连接后，临时节点会被删除
+- 临时顺序节点: 在创建节点时，Zookeeper 根据创建的时间顺序给该节点名称进行编号；当创建节点的客户端与 Zookeeper 断开连接后，临时节点会被删除.
+
+---
+    从zkCli创建znode语法:
+    
+    -s 顺序节点
+    -e 临时节点
+    -c 容器节点
+    -t ttl 定时会把这个节点删除掉,ttl就是多长时间之后
+    
+    持久节点的创建(默认创建的就是持久节点):
+    创建方式：create path data
+    持久节点可以有child node
+    
+    临时节点的创建方式：create -e path data
+    例如: create -e /temp "I'm a temp node"
+    然后quit之后在进入cli,/temp已经没了.
+    临时node不能有child node
+    
+    持久节点顺序节点创建方式：create -s path data
+    znode会自动增加一个编号
+    可以有child node
+    
+    临时顺序节点创建方式：create -s -e path data
+    临时顺序节点，就是在临时节点的基础上，增加了一个自动编号的功能
+---
 
 # Znode基本操作
 

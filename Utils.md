@@ -52,6 +52,9 @@ site:http://www.apple.com/
 12. Ctrl+Alt+S打开配置
 13. 列模式: 按住 alt 不放，上下拖鼠标
 14. ctrl+R: 批量替换.
+15. alt+<-: 看源代码的时候可以后退到调用的地方.
+16. 移动一行： Shift + Alt + 上下方向箭头
+16. 所有的抽象method都重写: ctrl+i
 
 ### Java书写规范
 

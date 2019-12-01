@@ -3,7 +3,8 @@ package com.spring.CommonSource;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
- * AbstractContextLoaderInitializer：其用于动态的往ServletContext中注册一个ContextLoaderListener，从而创建Root WebApplicationContext
+ * AbstractContextLoaderInitializer：其用于动态的往ServletContext中注册一个ContextLoaderListener，
+ * 从而创建Root WebApplicationContext
  *
  * AbstractDispatcherServletInitializer：其用于动态的往ServletContext中注册一个DispatcherServlet，从而创建Servlet WebApplicationContext
  *

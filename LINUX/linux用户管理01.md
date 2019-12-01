@@ -1,4 +1,4 @@
-# 使用root用户
+# 使用root用户远程登录
 
 ```shell script
 # Linux 系统默认是关闭 Root 账户的,也就是默认root是没有密码的
@@ -52,3 +52,55 @@ service ssh restart
 ![](pics/账户管理常用命令02.png)
 ![](pics/账户管理常用命令03.png)
 ![](pics/账户管理常用命令04.png)
+
+# 实战创建一个新用户
+
+```shell
+# 查看新建的用户的权限
+id zk
+
+# 将zk添加到root组(或者改为有root权限的组也可以)
+usermod -a -G root zk
+
+# 切换到新建用户
+su - zk
+
+# 查看当前用户
+who i am
+
+# 删除一个用户
+userdel zk
+
+# 删除一个组
+groupdel groupname
+```
+
+# 解决xx is not in the sudoers
+
+```shell script
+# xx is not in the sudoers file解决方法
+# sudo不是一个组,有sudoer权限的用户/组被定义在一个配置文件中,你可以通过visud访问
+# 切换到root用户，运行visudo
+visudo
+# 找到root ALL=(ALL) ALL，在下面添加一行xxx ALL=(ALL) ALL ,其中xxx是你要加入的用户名称
+```
+
+# 授予aa用户sudo权限
+
+```shell script
+# 方式1：在sudoers文件中找到有sudo权限的组，添加aa用户到这些组之一，假如你有以下一行在sudoers中:
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL 
+# 然后使用"usermod -a -G admin aa"添加aa到admin组
+usermod -a -G admin aa
+
+# 方式2：创建一个新的bb组，然后把用户aa加到这个组中
+# bb组有所有sudo的权限
+%bb  ALL=(ALL:ALL) ALL
+usermod -a -G bb aa
+
+# 方法3: 为用户aa在sudoers文件中设置一个特殊的rule(注意这里不带%开头，因为%代表的是一个组，不带%表示是一个用户)
+aa ALL=(ALL:ALL) ALL 
+
+# 请注意，对于我提到的所有规则，我在任何地方都使用默认的ALL。 第一个ALL是允许的用户，第二个是主机，第三个是运行命令时的用户，最后一个是允许的命令。 如果ALL对于您的用例而言过于宽泛，您可以调整规则。
+```

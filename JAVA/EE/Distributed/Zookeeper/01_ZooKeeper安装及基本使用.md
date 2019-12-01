@@ -1,8 +1,6 @@
 # ZooKeeper要求的预配置
 
-`JDK >= 1.6`,8GB以上的RAM.
-
-由于ZooKeeper将数据保存在内存中以实现高吞吐量和低延迟(high throughput and low latency)，因此生产系统最适合使用8GB内存。 太小的内存可能导致JVM交换，这可能导致ZooKeeper服务器延迟。 高ZooKeeper服务器延迟可能导致客户端会话超时等问题，从而对系统功能产生负面影响.
+JDK >= 1.6,由于ZooKeeper将数据保存在内存中以实现高吞吐量和低延迟(high throughput and low latency)，因此生产系统最适合使用8GB内存。 太小的内存可能导致JVM交换，这可能导致ZooKeeper服务器延迟。 高ZooKeeper服务器延迟可能导致客户端会话超时等问题，从而对系统功能产生负面影响.
 
 # 安装ZooKeeper单机
 
@@ -65,35 +63,19 @@ maxClientCnxns=60
 
 # 从client执行命令
 
-0. 以下命令都是在上面连接成功后,在zk client执行的
-1. 查看节点: ls /
-2. 创建一个新的znode: create /zk_test my_data,这个命令创建了一个新的znode,并且把字符串my_data和这个节点关联.
-3. 发出另一个命令"ls /",查看目录的样子(查看节点), 通过 stat 命令查看节点状态: stat /zookeeper
-4. 查看节点数据: get /zk_test
-5. 更新和节点关联的数据,We can change the data associated with zk_test by issuing the set command, as in: `set /zk_test junk`
-6. 删除节点: delete /zk_test (需要注意的一点是如果你要删除某一个节点，那么这个节点必须无子节点才行)
-7. 输入quit来关闭client session, 关闭客户端会话后，ZooKeeper Server将继续运行
-8. 关闭ZooKeeper服务: bin/zkServer.sh stop
-9. ls2 命令返回的信息包括2部分：子节点列表 + 当前节点的stat信息: ls2 /zookeeper
-
-# 每个节点参数说明
-
->Zxid： Every change to the ZooKeeper state receives a stamp in the form of a zxid (ZooKeeper Transaction Id). This exposes the total ordering of all changes to ZooKeeper. Each change will have a unique zxid and if zxid1 is smaller than zxid2 then zxid1 happened before zxid2.
-
-```
-# "get /zk_test"可以列出这个znode节点的参数
-
-# czxid: The zxid of the change that caused this znode to be created.(导致创建此znode的更改的zxid)
-# mzxid: The zxid of the change that last modified this znode.(最后修改这个znode的更改zxid)
-# ctime: The time in milliseconds from epoch when this znode was created.(创建此znode时间（以毫秒为单位）)
-# mtime: The time in milliseconds from epoch when this znode was last modified.(最后修改这个znode的的时间)
-# version: The number of changes to the data of this znode.(此znode数据的更改次数)
-# cversion: The number of changes to the children of this znode.(此znode的子节点的更改次数)
-# aversion: The number of changes to the ACL of this znode.(此znode的ACL更改次数)
-# ephemeralOwner: The session id of the owner of this znode if the znode is an ephemeral(短暂的) node. If it is not an ephemeral node, it will be zero.(如果znode是短暂节点，则为此znode的所有者的会话ID。 如果它不是短暂的节点，则它将为零。)
-# dataLength: The length of the data field of this znode.(此znode的数据字段的长度)
-# numChildren: The number of children of this znode.
-```
+- 以下命令都是在上面连接成功后,在zk client中执行的
+- 输入help可以查看帮助
+- 查看节点: ls /
+- 创建一个新的znode叫/zk_test,数据data是"my_data": create /zk_test "my_data"
+- 创建一个新的znode叫/apps,数据data是"this is app": create /apps "this is app"
+- 创建一个新的znode叫/apps/app1,数据data是"this is app1": create /apps/app1 "this is app1"
+- 发出另一个命令"ls /",查看目录的样子(查看节点), 通过 stat 命令查看节点状态: stat /zookeeper
+- 查看节点数据 "get 节点的路径path": get /zk_test
+- 更新和节点关联的数据,We can change the data associated with zk_test by issuing the set command, as in: `set /zk_test junk`
+- 删除节点: delete /zk_test (需要注意的一点是如果你要删除某一个节点，那么这个节点必须无子节点才行)
+- 输入quit来关闭client session, 关闭客户端会话后，ZooKeeper Server将继续运行
+- 关闭ZooKeeper服务: bin/zkServer.sh stop
+- ls2 命令返回的信息包括2部分：子节点列表 + 当前节点的stat信息: ls2 /zookeeper
 
 # 日志清理
 
@@ -101,5 +83,4 @@ maxClientCnxns=60
 
 # 参考
 
-- [http://www.tianshouzhi.com/api/tutorials/zookeeper/215](http://www.tianshouzhi.com/api/tutorials/zookeeper/215)
 - [https://zhuanlan.zhihu.com/p/67140930](https://zhuanlan.zhihu.com/p/67140930)

@@ -1,5 +1,7 @@
 # LINUX常用命令
 
+![](pics/linux各个发行版对应包管理器.png)
+
 - [Linux命令大全](http://man.linuxde.net/)
 
 ```shell script
@@ -18,6 +20,7 @@ ln -s /opt/foo /usr/bin/bar
 
 # c是压缩compress, z表示gzip格式的压缩,v表示显示文件目录,f表示显示文件名
 tar -czvf myshop.tar.gz .
+tar -zxvf aaa.tar.gz -C /usr/local
 
 # 查看linxu系统的版本
 cat /etc/os-release
@@ -88,11 +91,8 @@ vi /etc/sysconfig/network
 # 查看文件，包括隐藏文件
 ls -alh
 
-# 删除文件 包括其子文件
-# -r表示向下递归，不管有多少目录一律删除
-# -f表示强制删除，不做任何提示。
-rm -rf file
-
 # 切换用户
-su -username
+su - username
+
+tail -f filename
 ```

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.builders.PathSelectors;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+// update(): 执行DML语句。增、删、改语句
+// queryXXX(): 查询(DQL语句)
 @RestController
 public class JDBCController {
 
@@ -28,7 +31,8 @@ public class JDBCController {
 
     @PostConstruct
     public void init() {
-        jdbcTemplate.execute("DROP TABLE IF EXISTS user");
+        String sqlDropTable = "DROP TABLE IF EXISTS user";
+        jdbcTemplate.execute(sqlDropTable);
         jdbcTemplate.execute("CREATE TABLE user (" //
                 + "id VARCHAR(50) NOT NULL," //
                 + "email VARCHAR(50) NOT NULL," //
@@ -50,6 +54,7 @@ public class JDBCController {
         }
     }
 
+    // INSERT
     //@Transactional可以应用于方法和类.
     // 如果你希望所有方法都具有事务管理功能，则应该应用于类.
     @Transactional
@@ -58,35 +63,63 @@ public class JDBCController {
         String id = randomString();
         Long now = System.currentTimeMillis();
         // 保存一个用户对象
-        jdbcTemplate.update(
-                "INSERT INTO user (id, email, name, gender, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?)", // SQL
-                id, req.getEmail(), req.getName(), req.isGender(), now, now);
+        String sql = "INSERT INTO user (id, email, name, gender, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, id, req.getEmail(), req.getName(), req.isGender(), now, now);
         return getUserById(id);
     }
 
+    // QUERY ALL
+    // 查询所有记录，将其封装为List集合
     @GetMapping("/api/users")
     public List<User> getUsers() {
-        return jdbcTemplate.query("SELECT * FROM user ORDER BY createdAt", new BeanPropertyRowMapper<>(User.class));
+        String sql = "SELECT * FROM user ORDER BY createdAt";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
     }
 
+    // QUERY ALL
+    // 查询所有记录，将其封装为List集合
+    public List<User> getUsersByMyself() {
+        String sql = "SELECT * FROM user ORDER BY createdAt";
+        List<User> list = jdbcTemplate.query(sql, new RowMapper<User>() {
+            @Override
+            public User mapRow(ResultSet rs, int i) throws SQLException {
+                User user = new User();
+                user.setId(rs.getString("id"));
+                user.setEmail(rs.getString("email"));
+                user.setName(rs.getString("name"));
+                user.setGender(rs.getBoolean("gender"));
+                user.setCreatedAt(rs.getLong("createdAt"));
+                user.setUpdatedAt(rs.getLong("updatedAt"));
+                return null;
+            }
+        });
+        return list;
+    }
+
+    // QUERY ONE
     @GetMapping("/api/users/{id}")
     public User getUserById(@PathVariable("id") String id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM user WHERE id=?", new BeanPropertyRowMapper<>(User.class), id);
+        String sql = "SELECT * FROM user WHERE id=?";
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), id);
         // 下面这种方式也可以.
         //return jdbcTemplate.queryForObject("SELECT * FROM user WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
     }
 
+    // UPDATE
     @PutMapping("/api/users/{id}")
     public User updateUser(@PathVariable("id") String id, @RequestBody UserReq req) {
+        String sql = "UPDATE user SET email=?, name=?, gender=?, updatedAt=? WHERE id=?";
         // 返回受影响的行
-        int line = jdbcTemplate.update("UPDATE user SET email=?, name=?, gender=?, updatedAt=? WHERE id=?", // SQL
+        int line = jdbcTemplate.update(sql, // SQL
                 req.getEmail(), req.getName(), req.isGender(), System.currentTimeMillis(), id);
         return getUserById(id);
     }
 
+    // DELETE
     @DeleteMapping("/api/users/{id}")
     public boolean deleteUser(@PathVariable("id") String id) {
-        int n = jdbcTemplate.update("DELETE FROM user WHERE id=?", id);
+        String sql = "DELETE FROM user WHERE id=?";
+        int n = jdbcTemplate.update(sql, id);
         return n == 1;// 或者判断n>0也可以,也就是有多少行受影响.
     }
 
@@ -129,4 +162,10 @@ public class JDBCController {
         return user;
     }
 
+    // 查询总记录数
+    public void testQueryForObject() {
+        String sql="select * from user";
+        Long total = jdbcTemplate.queryForObject(sql, Long.class);
+        System.out.println(total);
+    }
 }
