@@ -3,8 +3,14 @@
 >注意,这里都是基于1.7的.
 
 ![](pics/LinkedHashMap01.png)
+
 ![](pics/LinkedHashMap02.png)
+
 ![](pics/JDK引入LinkedHashMap的目的.png)
+
+# LinkedHashMap 是如何保证它的顺序的？(面试题)
+
+LinkedHashMap 是通过插入排序（就是你 put 的时候的顺序是什么，取出来的时候就是什么样子）和访问排序（改变排序把访问过的放到末端）让键值有序。
 
 # 数据结构
 

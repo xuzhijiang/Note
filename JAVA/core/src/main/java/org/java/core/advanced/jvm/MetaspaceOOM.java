@@ -6,12 +6,11 @@ import net.sf.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
 
-/**
- * 1.7以及之前的方法区内存溢出 1.8之后修改为元数据区
- */
 public class MetaspaceOOM {
 
     public static void main(String[] args) {
+        // 使用 `cglib` 不停的创建新类，最终会抛出: java.lang.OutOfMemoryError: Metaspace
+        // 注意：这里的 OOM 伴随的是元数据区溢出
         while (true) {
             Enhancer enhancer = new Enhancer();
             enhancer.setSuperclass(Object.class);

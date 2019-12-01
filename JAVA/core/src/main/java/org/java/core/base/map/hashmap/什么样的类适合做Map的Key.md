@@ -1,0 +1,5 @@
+# 什么样的类适合做Map的Key
+
+Map使用hashCode和equals方法来实现get和put操作。所以可变类不适合做Map的key。
+
+因为如果一个可以的hashCode或equals的值在put之后发生更改，则在get操作将无法获得正确的值。因为Map是根据key的hashCode来计算value的位置的，如果key的hashCode变化了，将计算错误的位置.

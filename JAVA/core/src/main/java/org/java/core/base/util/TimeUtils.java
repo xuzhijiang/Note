@@ -34,12 +34,12 @@ public class TimeUtils {
      */
     @Test
     public void getCurrentDateTimeNumber() {
-        String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date(System
-                .currentTimeMillis()));
-        Long result = Long.valueOf(date);
+        String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date(System.currentTimeMillis()));
         System.out.println(date);
+        Long result = Long.valueOf(date);
         System.out.println(result);
-        System.out.println(new SimpleDateFormat("yyyy年MM月dd日").format(new Date(System.currentTimeMillis())));
+        System.out.println(new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒").format(new Date()));
+        System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
     }
 
     @Test

@@ -3,7 +3,6 @@ package org.java.core.base;
 class ValueOrReferenceTest {
 
     public static void main(String[] args) {
-
         //let’s assume that “red” is pointing to 50 and “blue” is pointing
         //to 100 and these are the memory location of both Balloon objects.
         //50和100是2个对象在heap内存的位置
@@ -17,7 +16,6 @@ class ValueOrReferenceTest {
 
         foo(blue);
         System.out.println("blue color="+blue.getColor());
-
     }
 
     private static void foo(Balloon balloon) { //baloon=100
@@ -50,4 +48,5 @@ class ValueOrReferenceTest {
             this.color = color;
         }
     }
+
 }

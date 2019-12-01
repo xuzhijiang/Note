@@ -22,13 +22,12 @@ Map这种容器存储的是键值对的映射,一个键值对被称为一个Entr
 
 Map提供了三个集合视图: 键集，键值映射集(entry) 和 值集合
 
-Map不保证key的顺序，但它取决于实现(这里是不能保证,不是一定没有顺序,要取决于具体的实现)。例如，HashMap不保证映射的顺序，但TreeMap就可以保证.
+    Map不保证键(key)的顺序，它取决于实现。比如,HashMap是无序的，TreeMap 和 LinkedHashMap是有序的.
 
 # 常用实现类
 
 - HashMap：基于哈希表实现的散列结构,使用拉链法(1.8达到阈值后使用红黑树解决冲突)解决冲突,底层采用数组+链表实现(线程不安全)
-- HashTable：和 HashMap 类似(内部也是数组+链表)，只不过它是线程安全的.它是遗留类,比较老了，不应该再去使用它,jdk早就不更新了,现在可以使用 ConcurrentHashMap 来支持线程安全，并且 ConcurrentHashMap 的效率会更高.
-- TreeMap：有序Map，底层通过红黑树实现。(注意不是基于哈希表)
+- TreeMap：有序的Map，底层通过红黑树实现。(注意不是基于哈希表)
 - LinkedHashMap：使用双向链表来维护元素的顺序，顺序为插入顺序或者最近最少使用（LRU）顺序。
 - ConcurrentHashMap: 线程安全的HashMap.
 
@@ -41,3 +40,19 @@ Map不保证key的顺序，但它取决于实现(这里是不能保证,不是一
 ![](TreeMap类图.png)
 
 >AbstractMap类提供了Map接口的骨架实现，大多数Map具体类扩展了AbstractMap类并实现了所需的方法
+
+# TreeMap和LinkedHashMap哪个有序实现比较好？(面试题)
+
+TreeMap是可以按照我们的意愿来对键值对排序(比如学生的score),因为我们可以提供比较器,LinkedHashMap只能是按照插入顺序或者是访问顺序来遍历,比较适合于用作LRU.要区别二者.
+
+# HashMap 与 HashTable 区别
+
+- 默认容量不同,一个是11,一个是16
+- HashTable线程安全,因为synchronized.hashmap不是线程安全的.
+- HashTable 要慢，因为加锁
+- hashtable也是数组 + 链表方式存储,它是遗留类,比较老了，不应该再去使用它
+
+# 可以使用 CocurrentHashMap 来代替 Hashtable 吗？
+
+Hashtable 是 synchronized 的，但是ConcurrentHashMap 同步性能更好，因为它使用了分段锁(1.7),锁的粒度更小.支持并发性更好.
+

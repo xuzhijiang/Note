@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * 从一个文本文件中一行一行的读取
+ * 从文本文件中一行一行的读取
  */
 public class ReadFileLineByLineUtils {
 
@@ -55,7 +55,6 @@ public class ReadFileLineByLineUtils {
 
 		String line;
 		while((line = br.readLine()) != null){
-			//process the line
 			System.out.println(line);
 		}
 		br.close();

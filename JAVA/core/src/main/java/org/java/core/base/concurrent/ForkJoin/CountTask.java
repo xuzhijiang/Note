@@ -5,6 +5,8 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.Future;
 import java.util.concurrent.RecursiveTask;
 
+// java.util.concurrent.ForkJoinPool
+// Fork/Join框架是JDK1.7中引入的利用多处理器特性的并发编程框架
 public class CountTask extends RecursiveTask<Integer> {
 
     private static final int THRESHOLD = 2; // 阈值
