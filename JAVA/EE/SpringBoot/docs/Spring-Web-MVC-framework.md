@@ -2,6 +2,7 @@
 
 - 过去的SSH(Spring + Struts/SpringMVC + Hibernate)
 - 现在的SSM(Spring Boot + Spring Boot MVC + Mybatis)
+- SM(Spring + Mybatis)
 
 # Spring Web MVC framework(简称Spring MVC)
 

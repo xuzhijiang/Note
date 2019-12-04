@@ -1,2 +1,2 @@
-com.spring.autoconfiguration.component.MyEnableAutoConfig=\
-com.spring.autoconfiguration.config.SpringRedisConfig
+com.autoconfiguration.component.MyEnableAutoConfig=\
+com.autoconfiguration.config.SpringRedisConfig

@@ -33,28 +33,6 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
     }
 
     /*
-    // 配置视图解析器
-    @Bean
-    public InternalResourceViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("/WEB-INF/views/");
-        viewResolver.setSuffix(".jsp");
-        return viewResolver;
-    }
-
-    @Bean
-    public MultipartResolver multipartResolver() {
-        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
-        commonsMultipartResolver.setDefaultEncoding("UTF-8");
-        commonsMultipartResolver.setMaxUploadSize(1024*1024*10);// 10M
-        return commonsMultipartResolver;
-    }
-
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(new MappingJackson2HttpMessageConverter());
-    }
 
     // 请求视图解析
     @Override

@@ -1,5 +1,7 @@
 package com.spi;
 
+import org.apache.catalina.startup.WebappServiceLoader;
+
 import javax.servlet.ServletContainerInitializer;
 import java.util.ServiceLoader;
 
@@ -15,15 +17,18 @@ public class MainClass {
 
     public static void main(String[] args) {
         ServiceLoader<IParseDoc> iParseDocs = ServiceLoader.load(IParseDoc.class);
+        // ServiceLoader中有一个静态变量:
+        // private static final String PREFIX = "META-INF/services/";
+        // String fullName = PREFIX + service.getName();
         for (IParseDoc iParseDoc : iParseDocs) {
             iParseDoc.parse();
         }
 
         // spring boot就是通过spi机制来启动的
-        // 在spring-web这个jar包下的META-INF/services中有一个名为:
+        // 在org.springframework:spring-web这个jar包下的META-INF/services中有一个名为:
         // javax.servlet.ServletContainerInitializer的文件,里面内容是这个javax.servlet.ServletContainerInitializer
         // 接口的实现类: org.springframework.web.SpringServletContainerInitializer
-        // 所以tomcat启动的时候,会通过SPI机制,如下进行调用:
+        // 所以tomcat启动的时候,会通过SPI机制,如下进行调用(tomcat源码中spi机制的使用.png):
 
         // ServiceLoader<ServletContainerInitializer> servletContainerInitializers = ServiceLoader.load(ServletContainerInitializer.class);
         // for (ServletContainerInitializer servletContainerInitializer : servletContainerInitializers) {
@@ -37,6 +42,11 @@ public class MainClass {
         // 在这个onStartup()方法中,最终会调用org.springframework.web.WebApplicationInitializer实现类的
         // onStartup()方法
         // 我们的servlet/listener/filter都是在这个onStartup()方法中注册的.
+
+
+        // 真实的tomcat调用:
+        // WebappServiceLoader<ServletContainerInitializer> loader = new WebappServiceLoader<>(context);
+        // loader.load(ServletContainerInitializer.class);
     }
 
 }

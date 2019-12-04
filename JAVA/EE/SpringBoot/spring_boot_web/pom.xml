@@ -9,7 +9,6 @@
     <packaging>war</packaging>
 
     <name>spring_boot_web</name>
-    <description>Demo project for Spring Boot</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -161,6 +161,10 @@ public Page<SearchOrderOut> getOrders(@RequestBody @Valid Search search,
 }
 ```
 
+# @DependOn
+
+![](pics/DependOn.png)
+
 # 其他
 
 - @PostConstruct: Spring bean对象构造完后调用.
