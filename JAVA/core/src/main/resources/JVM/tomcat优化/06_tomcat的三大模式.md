@@ -37,6 +37,8 @@
 
 ## 将tomcat的启动模式改为APR
 
+    tomcat换成apr模式之后,tomcat就很牛逼了,想挂都难.
+
 ![](../pics/tomcat-APR模式说明.png)
 
 ![](../pics/tomcat-APR模式的使用方式.png)

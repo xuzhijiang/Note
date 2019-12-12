@@ -6,9 +6,7 @@ import java.util.Date;
 import java.util.concurrent.*;
 
 /**
- * 有时我们需要定期执行任务或在特定延迟后执行任务。Java提供了Timer Class，通过它我们可以实现这一点，
- * 但有时我们需要并行运行类似的任务。 因此，创建多个Timer对象将是系统的开销，并且最好有一个计划任务的线程池。
- *
+ * // 调度的线程池,每隔一段时间调度一次
  * 因此如果您将period指定为1秒并且您的线程运行5秒，那么下一个线程将在第一个工作线程完成它的执行后立即开始执行。
  */
 public class ScheduledThreadPoolExecutorTest {

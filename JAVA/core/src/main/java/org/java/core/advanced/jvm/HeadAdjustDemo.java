@@ -1,9 +1,11 @@
 package org.java.core.advanced.jvm;
 
 /**
- * 堆内存调优
+ * 堆内存调优示例
  *
- * 默认的情况下分配的内存是总内存的“1 / 4”、而初始化的内存为“1 / 64”
+ * 通过程序获得初始堆内存大小和最大的堆内存大小
+ *
+ * Xms默认为物理内存的1/64, Xmx默认为物理内存的1/4
  */
 public class HeadAdjustDemo {
 

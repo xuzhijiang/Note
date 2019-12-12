@@ -11,7 +11,7 @@ public class HardwareInfo {
     public void getAvailableProcessors() {
         // java把运行时数据区抽象成了Runtime这个类
         int availableProcessors = Runtime.getRuntime().availableProcessors();
-        System.out.println("虚拟机可用最大数量的处理器的个数: " + availableProcessors);
+        System.out.println("处理器的个数: " + availableProcessors);
     }
 
 }

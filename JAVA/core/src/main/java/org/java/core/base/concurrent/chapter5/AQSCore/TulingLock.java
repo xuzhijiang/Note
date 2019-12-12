@@ -1,6 +1,6 @@
 package org.java.core.base.concurrent.chapter5.AQSCore;
 
-import org.java.core.base.concurrent.chapter5.Unsafe.UnsafeInstance;
+import org.java.core.advanced.Unsafe.UnsafeInstance;
 import sun.misc.Unsafe;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.locks.LockSupport;

@@ -28,4 +28,4 @@
 
 LinkedList实现了Deque,使得LinkedList类也具有队列(双端队列)的特性:
 
-![](../../queue/deque/Deque方法.png)
+![](../../../../../../../../resources/collection/Queue/Deque/Deque方法.png)

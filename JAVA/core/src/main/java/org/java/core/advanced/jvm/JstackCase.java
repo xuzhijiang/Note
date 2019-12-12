@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 public class JstackCase {
 
     private static Executor executor = Executors.newFixedThreadPool(5);
+
     private static Object obj = new Object();
 
     public static void main(String[] args) {

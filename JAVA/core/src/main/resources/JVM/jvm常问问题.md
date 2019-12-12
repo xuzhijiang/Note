@@ -1,3 +1,5 @@
+## 常见面试题
+
 请谈谈你对JVM的理解?java8的虚拟机有什么更新？
 
 java8之前和8之后,虚拟机有什么区别?
@@ -35,37 +37,30 @@ Execution Engine执行引擎负责解释命令，提交操作系统执行。
 
 5个常见的java异常
 
-## 常见面试题
+如何查看一个正在运行中的java程序,它的某个jvm参数是否开启?具体值是多少?
 
-1. 介绍下Java内存区域（运行时数据区）。
 
-2. 对象的访问定位的两种方式。https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247484960&idx=1&sn=ff3739fe849030178346bef28a4556c3&chksm=cea249ebf9d5c0fdbde7c86155d0d7ac8925153742aff472bcb79e5e9d400534a855bad38375&token=1082669959&lang=zh_CN#rd
+1. 介绍下Java内存区域（运行时数据区）
+
+2. 对象的访问定位的两种方式。(使用句柄和使用直接指针访问)
 
 1. 如何判断对象是否死亡（两种方法）。
 
-2. 简单的介绍一下强引用、软引用、弱引用、虚引用（虚引用与软引用和弱引用的区别、使用软引用能带来的好处）。
+2. 简单的介绍一下强引用、软引用、弱引用、虚引用（虚引用与软引用和弱引用的区别、使用软引用能带来的好处）
 
 3. 垃圾收集有哪些算法，各自的特点？
 
 4. HotSpot为什么要分为新生代和老年代？
 
-5. 常见的垃圾回收器有那些？https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247484959&idx=1&sn=9ac740edba59981b7c89482043776280&chksm=cea249d4f9d5c0c21703382510a47d4bb387932bd814ac891fd214b92cead5d2cf0ee2dff797&token=1082669959&lang=zh_CN#rd
+5. 常见的垃圾回收器有那些？
 
 6. 介绍一下CMS,G1收集器。
 
 7. Minor Gc和Full GC 有什么不同呢？
 
-
-
  [虚拟机性能监控和故障处理工具](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247484957&idx=1&sn=713ed6003d23ef883ded14cb43e9ebb7&chksm=cea249d6f9d5c0c0ce0854a03f0d02fcacc8a46e29c2fd4f085a375b00e1cd1b632937a9895e&token=1082669959&lang=zh_CN#rd)
 
 1. JVM调优的常见命令行工具有哪些？
-
- [深入理解虚拟机之类文件结构](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247484956&idx=1&sn=05f46ccacacdbce7c43de594d3fe93db&chksm=cea249d7f9d5c0c1ef6d29b0fbbf0701acd28490deb0974ae71b4d23ae793bec0b0993a4c829&token=1082669959&lang=zh_CN#rd)
-
-1. 简单介绍一下Class类文件结构（常量池主要存放的是那两大常量？Class文件的继承关系是如何确定的？字段表、方法表、属性表主要包含那些信息？）
-
-[深入理解虚拟机之虚拟机字节码执行引擎](https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247484952&idx=1&sn=d0ec9443600dc5b2a81782b7ae0691d5&chksm=cea249d3f9d5c0c50642f1829fd6fe9e35d155bbbb6718611330c7c46c7158279275b533181e&token=1082669959&lang=zh_CN#rd)
 
 1. 简单说说类加载过程，里面执行了哪些操作？
 
