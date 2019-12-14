@@ -1,0 +1,23 @@
+# 日志级别控制
+# 配置格式：logging.level.*=LEVEL
+# logging.level：日志级别控制前缀，*为包名或Logger名
+# LEVEL：选项TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF,可以使用root级别和package级别来控制日志的输入级别.
+
+# 举例：
+# spring.security.core包下所有class以DEBUG级别输出
+# logging.level.spring.security.core=DEBUG
+
+# root日志以WARN级别输出
+# logging.level.root=WARN
+
+# 通过命令行改变日志的输出级别
+# Sping Boot 默认输出ERROR , WARN , INFO级别的日志。我们可以通过命令行使能DEBUG ,TRACE级别的日志输出，
+# 效果是跟配置文件一样的。想象我们有一个名为my-app.jar的]JAR,可以在启动应用时,使用DEBUG级别日志输出
+# java -jar my-app.jar --debug
+# 或者在application.properties中配置
+# debug=true
+
+# 相同的方式使能TRACE级别的日志
+# java -jar my-app.jar --trace
+# 在application.properties
+# trace=true

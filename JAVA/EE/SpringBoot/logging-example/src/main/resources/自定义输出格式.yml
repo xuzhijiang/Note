@@ -1,0 +1,10 @@
+# ---------------------------------自定义输出格式
+# 在Spring Boot中可以通过在application.properties配置如下参数控制输出格式：
+
+# 1. logging.pattern.console：定义输出到console的样式(不支持JDK Logger）,我们也可以为为mylogfile.log分配一个路径，如concretepage/mylogfile.log。这种情况下我们将在相对根目录下创建
+# logging.pattern.console= %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n
+
+# 2. logging.pattern.file：定义输出到file的样式(不支持JDK Logger）
+# logging.pattern.file= %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n
+
+# logging.pattern.level :定义渲染不同级别日志的格式。默认是%5p.

@@ -8,11 +8,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- * BaseDao<T>称为BaseDao<T>
- * BaseDao<User>称为参数化的类型ParameterizedType
- * BaseDao<User>中的User称为类型参数变量
- */
 public abstract class BaseDao<T> {
 
     //private static BasicDataSource datasource = new BasicDataSource();

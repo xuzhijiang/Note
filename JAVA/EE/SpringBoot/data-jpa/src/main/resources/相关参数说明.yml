@@ -1,0 +1,29 @@
+# 0. 为了便于学习，可以配置Spring Data JPA显示它所发出的SQL命令: spring.jpa.show-sql=true
+
+# 1. ------------------------------定义DataSource的相关配置参数---------------------------------
+# 以spring.datasource打头（如使用嵌入式数据库则不需要）
+# Spring Boot会尽可能地依据数据源URL去判断数据源是什么类型的，然后根据其默认的情况去匹配驱动类
+# 下述配置信息足以让其知道需要加载MySQL的JDBC数据库驱动程序
+# spring.datasource.url=jdbc:mysql://localhost:3306/mydb?characterEncoding=utf8&useSSL=false
+# spring.datasource.username=root
+# spring.datasource.password=password
+# spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+
+
+# 2. --------------------------------Spring Data JPA相关的配置---------------------------------
+# Spring Data JPA相关的配置都以"spring.jpa"打头
+
+# spring.jpa.hibernate.ddl-auto
+# 这个参数其主要作用是：自动创建、更新、验证数据库表结构。该参数的几种配置如下：
+# create: 每次运行该程序，没有表格会根据实体类新建表格，有表的话,表内有数据会清空(慎用！！！)
+# create-drop: 每次运行该程序,会根据实体类创建表,程序结束,表就自动删除
+# update: 最常用的属性，第一次程序运行,会根据实体类创建表(前提是先建立好数据库），
+# 以后每次运行程序,会根据实体类自动更新表结构,这个操作启动的时候会去检查schema是否一致，如果不一致会做schema更新,schema就是表结构
+# validate: 启动时验证现有schema与你配置的hibernate是否一致，如果不一致就抛出异常，并不做更新
+
+
+# After doing this, the schema file was generated automatically in the project root.
+# spring.jpa.properties.javax.persistence.schema-generation.create-source=metadata
+# spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create
+# spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=create.sql

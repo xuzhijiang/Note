@@ -10,11 +10,11 @@
 	</parent>
 
 	<!-- App相关信息 -->
-	<groupId>spring.security.core</groupId>
+	<groupId>springboot.security.core</groupId>
 	<artifactId>SpringBootSecurity</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Secure SpringBoot App</name>
+	<name>spring-boot-security</name>
 
 	<properties>
 		<!-- 指定源码编码方式UTF-8 -->
@@ -27,7 +27,6 @@
 	</properties>
 
 	<dependencies>
-		<!-- 依赖spring-boot-starter-web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

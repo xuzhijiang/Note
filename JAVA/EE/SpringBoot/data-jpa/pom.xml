@@ -14,7 +14,7 @@
 	<artifactId>data-jpa</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Spring Boot Data Jpa App</name>
+	<name>spring-data-jpa</name>
 
 	<properties>
 		<!-- 指定源码编码方式UTF-8 -->
@@ -27,7 +27,6 @@
 	</properties>
 
 	<dependencies>
-		<!-- 依赖spring-boot-starter-web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -36,7 +35,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		<!-- 使用Swagger调试API -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -47,14 +45,12 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.6.1</version>
 		</dependency>
-		<!-- 引入Spring Data Jpa-->
         <!--data-jpa的依赖内部内部包含了hibernate依赖,说明Spring Data JPA的具体实现还是hibernate-->
         <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<!-- 引入Hsqldb作为数据库，因为是嵌入式数据库，所以不需要在application.yml中
-		 设置数据库连接信息,-->
+		<!-- 引入Hsqldb作为数据库，因为是嵌入式数据库，所以不需要在application.yml中设置数据库连接信息-->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>

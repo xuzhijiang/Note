@@ -6,7 +6,6 @@ import com.annotation.custom.jpa.annotation.Table;
 public class User {
 
     private String name;
-
     private int age;
 
     public User(String name, int age) {

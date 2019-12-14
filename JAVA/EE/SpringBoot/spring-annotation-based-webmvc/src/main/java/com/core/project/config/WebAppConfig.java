@@ -1,10 +1,7 @@
 package com.core.project.config;
 
 import com.core.project.interceptor.MyWebInterceptor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.*;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
@@ -28,7 +25,9 @@ import java.util.List;
 @ComponentScan(basePackages = {"com.core.project"}, includeFilters = {
         @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {RestController.class, Controller.class})
 }, useDefaultFilters = false)
-@EnableWebMvc
+@EnableWebMvc // @EnableWebMvc Annotation用于在Spring框架中启用Spring Web MVC应用程序功能
+// @Import Annotation用于注册LoginSecurityConfig中的bean进入IoC.
+@Import(value = { SecurityConfig.class })
 public class WebAppConfig implements WebMvcConfigurer {
 
     /**
@@ -67,13 +66,13 @@ public class WebAppConfig implements WebMvcConfigurer {
      * 文件上传下载的组件
      * @return
      */
-    @Bean
-    public MultipartResolver multipartResolver() {
-        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
-        commonsMultipartResolver.setDefaultEncoding("UTF-8");
-        commonsMultipartResolver.setMaxUploadSize(1024*1024*10);// 10M
-        return commonsMultipartResolver;
-    }
+//    @Bean
+//    public MultipartResolver multipartResolver() {
+//        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+//        commonsMultipartResolver.setDefaultEncoding("UTF-8");
+//        commonsMultipartResolver.setMaxUploadSize(1024*1024*10);// 10M
+//        return commonsMultipartResolver;
+//    }
 
     /**
      * 配置视图解析器
@@ -92,19 +91,19 @@ public class WebAppConfig implements WebMvcConfigurer {
      * 注册处理国际化资源的组件
      * @return
      */
-    @Bean
-    public AcceptHeaderLocaleContextResolver localeResolver() {
-        AcceptHeaderLocaleContextResolver acceptHeaderLocaleContextResolver = new AcceptHeaderLocaleContextResolver();
-        return acceptHeaderLocaleContextResolver;
-    }
+//    @Bean
+//    public AcceptHeaderLocaleContextResolver localeResolver() {
+//        AcceptHeaderLocaleContextResolver acceptHeaderLocaleContextResolver = new AcceptHeaderLocaleContextResolver();
+//        return acceptHeaderLocaleContextResolver;
+//    }
 
     /**
      * 配置消息转换器,用于处理json
      * @param converters
      */
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(new MappingJackson2HttpMessageConverter());
-    }
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        converters.add(new MappingJackson2HttpMessageConverter());
+//    }
 
 }

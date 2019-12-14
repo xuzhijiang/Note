@@ -3,6 +3,7 @@ package com.core.project.config;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Configuration // spring3.0的注解
 // @ComponentScan扫描出来的是BeanDefinition,IoC会根据Bean定义生成bean实例
 @ComponentScan(basePackages = "com.core.project", excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {RestController.class}),
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {RestController.class, Controller.class}),
         @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = WebAppConfig.class)
 })
 public class RootConfig {

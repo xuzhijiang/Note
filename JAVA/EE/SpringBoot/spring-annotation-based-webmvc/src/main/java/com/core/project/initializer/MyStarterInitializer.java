@@ -32,7 +32,6 @@ public class MyStarterInitializer extends AbstractAnnotationConfigDispatcherServ
     }
 
     /**
-     *
      * @return 我们前端控制器DispatcherServlet的拦截路径(获得DispatchServlet拦截的url)
      */
     @Override

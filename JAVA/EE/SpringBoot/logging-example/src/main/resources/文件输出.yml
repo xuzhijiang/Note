@@ -1,0 +1,8 @@
+## ///////////////////////////////////////////////文件输出/////////////////////////////////////////
+# Spring Boot默认配置只会输出到控制台，并不会记录到文件中，但是我们通常生产环境使用时都需要以文件方式记录。
+# 若要增加文件输出，需要在application.properties中配置logging.file或logging.path属性。
+
+# logging.file，用来定义文件名。他不仅仅可以配置文件名，也可以路径+文件名。如：logging.file=my.log,如果没有配置logging.path,将在根目录中创建.我们也可以为为mylogfile.log分配一个路径，如concretepage/mylogfile.log。这种情况下我们将在相对根目录下创建.
+# logging.path，配置日志的路径(可以是相对,也可以是绝对路径)。如果没有配置logging.file,Spring Boot 将默认使用spring.log作为文件名。如：logging.path=/var/log
+
+# 日志文件会在10Mb大小的时候被截断，产生新的日志文件
