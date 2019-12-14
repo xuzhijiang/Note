@@ -1,4 +1,4 @@
-package org.java.core.base.io.bio.demo01;
+package org.java.core.base.io.bio;
 
 import java.io.IOException;
 import java.io.InputStream;

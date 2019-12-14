@@ -1,4 +1,4 @@
-package org.java.core.base.io.bio.net;
+package org.java.core.base.io.bio;
 
 import org.junit.Test;
 

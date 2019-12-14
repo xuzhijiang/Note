@@ -1,4 +1,4 @@
-springboot2.0后,微服务架构下,tomcat基本上不再用,而是使用Undertow,能够增加吞吐量.
+springboot2.0后,微服务架构下,tomcat基本上不再用,而是使用Undertow替换tomcat,能够增加吞吐量.
 
 
 tomcat现在基本用不到了,都会用Undertow了
@@ -8,3 +8,4 @@ tomcat现在基本用不到了,都会用Undertow了
 
 
 所以现在人家会问你有没有把springboot2.1以后的版本部署在Undertow下面,
+

@@ -39,7 +39,7 @@ NIO 包含下面几个核心的组件：
 - 线程之间的切换对于操作系统来说是昂贵的。 因此，为了提高系统效率选择器是有用的。
 - 要使用Selector的话，我们必须把Channel注册到Selector上，然后就可以调用Selector的select()方法。这个方法会进入阻塞，直到有一个channel的状态符合条件。当方法返回后，线程可以处理这些事件。
 
-![一个单线程中Slector维护3个Channel的示意图](Selector.png)
+![一个单线程中Slector维护3个Channel的示意图](../../pics/Selector.png)
 
 ## NIO 读数据和写数据方式
 

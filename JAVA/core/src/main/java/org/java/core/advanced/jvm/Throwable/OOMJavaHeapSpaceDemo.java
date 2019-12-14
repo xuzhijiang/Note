@@ -8,8 +8,8 @@ import java.util.Random;
 public class OOMJavaHeapSpaceDemo {
 
     public static void main(String[] args) {
-        testOOMError0();
-//        testOOMError1();
+//        testOOMError0();
+        testOOMError1();
     }
 
     /**
