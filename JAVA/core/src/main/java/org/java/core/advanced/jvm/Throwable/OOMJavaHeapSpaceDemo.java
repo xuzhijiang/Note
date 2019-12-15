@@ -23,7 +23,7 @@ public class OOMJavaHeapSpaceDemo {
     }
 
     /**
-     * VM参数：-Xms8m -Xmx8m -XX:+PrintGCDetails
+     * VM参数：-Xms8m -Xmx8m -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=C:/Users/xu/Desktop/dump.hprof
      */
     public static void testOOMError1() {
         // 40MB

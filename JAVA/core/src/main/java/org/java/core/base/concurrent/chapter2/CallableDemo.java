@@ -8,10 +8,13 @@ import java.util.concurrent.TimeUnit;
 public class CallableDemo {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        // 思考: Thread和Runnable是怎么关联起来的? 答: 通过Thread的构造器:
+        // 思考: Thread和Runnable是怎么关联起来的?
+        // 答: 通过Thread的构造器:
         //  public Thread(Runnable target, String name){}
 
-        // 再思考: Thread和Callable怎么关联起来呢? 难道Thread也有这么一个构造器? 答: Thread没有接受Callable参数的构造器
+        // 再思考: Thread和Callable怎么关联起来呢? 难道Thread也有这么一个构造器?
+        // 答: Thread没有接受Callable参数的构造器
+        // public Thread(Runnable target, String name) {}
 
         Callable<Integer> callable = new MyCallable();
         // public FutureTask(Callable<V> callable) {}
@@ -20,7 +23,8 @@ public class CallableDemo {
 
         // 使用的构造方法是:
         //  public Thread(Runnable target, String name){}
-        // Thread不能直接接受Callable,但是可以接受Runnable,所以就要找一个中间人,这个中间人实现了Runnable,而且这个中间人可以接受Callable
+        // Thread不能直接接受Callable,但是可以接受Runnable,所以就要找一个中间人,这个中间人实现了Runnable,
+        // 而且这个中间人可以接受Callable
         // 这个中间人就是FutureTask, FutureTask实现了Runnable接口
         new Thread(futureTask, "AA").start();
         // 多个线程执行同一个FutureTask对象,FutureTask中的Callable只会执行一次

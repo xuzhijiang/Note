@@ -1,6 +1,6 @@
 # Set
 
-![](../core/Collection_interfaces.png)
+![](../../../java/org/java/core/base/collection/core/Collection_interfaces.png)
 
 ## Set特点
 

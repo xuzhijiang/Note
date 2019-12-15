@@ -1,6 +1,6 @@
 # HashSet
 
-![](../../core/Set实现类类图.jpg)
+![](../../../../java/org/java/core/base/collection/core/Set实现类类图.jpg)
 
     AbstractSet提供了Set接口的骨干实现，以减少实现Set的工作量。
 
@@ -15,7 +15,9 @@
 ## HashSet内部实现 
 
 ![](HashSet内部实现.png)
+
 ![](HashSet内部实现02.png)
+
 ![](HashSet内部实现03.png)
 
 ## LinkedHashSet
@@ -23,4 +25,18 @@
 LinkedHashSet继自HashSet，但是内部的map是使用LinkedHashMap构造的，并且accessOrder为false(也就是不使用访问顺序,使用插入顺序)。所以LinkedHashSet遍历的顺序就是插入顺序。
 
 ![](LinkedHashSet内部实现.png)
+
 ![](LinkedHashSet内部实现02.png)
+
+# 多线程的安全性
+
+    由于HashSet其实本质上就是HashMap，所以是线程不安全的，多线程并发会出现问题
+    
+    会在扩容的时候形成环形链表。导致在查询key的时候在环形链表上导致死循环,进而导致CPU使用率飙升
+
+    这个HashSet初始化时如果没有指定大小，仅仅只是默认值，那么在大量的并发写入时候会导致频繁的扩容，
+    在java7的条件下可能会形成环形链表。导致这个e.next永远不为空，导致死循环.
+
+    换为ConcurrentHashMap同时把value写成固定的null一样可以达到HashSet的效果
+
+    初始化 ConcurrentHashMap的大小尽量大一些，避免频繁的扩容
