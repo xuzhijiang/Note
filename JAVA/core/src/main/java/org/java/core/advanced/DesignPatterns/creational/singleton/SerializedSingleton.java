@@ -2,15 +2,6 @@ package org.java.core.advanced.DesignPatterns.creational.singleton;
 
 import java.io.Serializable;
 
-/**
- * Sometimes in distributed systems, we need to implement 
- * Serializable interface in Singleton class so that we can 
- * store it’s state in file system and retrieve it at later 
- * point of time. Here is a small singleton class that implements 
- * Serializable interface also.
- * <p><br>
- * 
- */
 public class SerializedSingleton implements Serializable{
 
 	private static final long serialVersionUID = -5192695839088380039L;
@@ -27,7 +18,6 @@ public class SerializedSingleton implements Serializable{
 	
 	//The problem with above serialized singleton class is that 
 	//whenever we deserialize it, it will create a new instance of the class
-	
 	
 	/**
 	 * So it destroys the singleton pattern, to overcome this scenario all 

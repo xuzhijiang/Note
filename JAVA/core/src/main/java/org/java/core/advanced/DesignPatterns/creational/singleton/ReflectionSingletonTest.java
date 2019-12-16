@@ -10,6 +10,7 @@ import java.lang.reflect.Constructor;
  *  Reflection is very powerful and used in a lot of frameworks like Spring and Hibernate
  */
 public class ReflectionSingletonTest {
+
 	public static void main(String[] args) {
 		EagerInitializedSingleton instanceOne = EagerInitializedSingleton.getInstance();
 
@@ -28,4 +29,5 @@ public class ReflectionSingletonTest {
 		System.out.println(instanceOne.hashCode());
 		System.out.println(instanceTwo.hashCode());
 	}
+
 }

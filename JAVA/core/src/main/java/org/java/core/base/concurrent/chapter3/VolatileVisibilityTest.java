@@ -1,4 +1,4 @@
-package org.java.core.base.concurrent.chapter4;
+package org.java.core.base.concurrent.chapter3;
 
 public class VolatileVisibilityTest {
 
@@ -12,7 +12,8 @@ public class VolatileVisibilityTest {
             try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
             number = 200;
             // 把number从当前线程的工作内存中写回到主内存中
-            System.out.println(Thread.currentThread().getName() + "-----------> change number: " + number);
+            System.out.println(Thread.currentThread().getName() + "-----------> updated number value: " + number);
+            // 这样改完number之后,main线程不知道number改了,还在那里傻傻的一直死循环
         }, "AAA").start();
 
         while (number == 10) {

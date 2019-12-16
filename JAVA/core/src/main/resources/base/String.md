@@ -1,5 +1,7 @@
 # String
 
+    String类就重新了Object的equals和hashCode.String类的equals不再比较地址,而是比较内容.
+    
 >String 中的 equals 方法是被重写过的，因为 object 的 equals 方法是比较的对象的内存地址，而 String 的 equals 方法比较的是对象的值
 
 ## String为什么是不可变的

@@ -1,4 +1,4 @@
-package org.java.core.base.concurrent.chapter4;
+package org.java.core.base.concurrent.chapter3;
 
 /**
  * 为了解决StackOverFlowError,
