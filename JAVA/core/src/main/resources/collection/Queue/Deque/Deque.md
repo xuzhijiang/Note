@@ -13,7 +13,7 @@
 - LinkedList：基于双向链表实现的双端队列.
 - ArrayDeque: 底层使用循环数组实现双向队列
 
-![](../../../../java/org/java/core/base/collection/list/linkedList/LinkedList类图.png)
+![](../../List/LinkedList/LinkedList类图.png)
 
 ## ArrayDeque特点
 

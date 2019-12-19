@@ -1,10 +1,10 @@
 # HashSet
 
-![](../../../../java/org/java/core/base/collection/core/Set实现类类图.jpg)
+![](../../core/Set实现类类图.jpg)
 
     AbstractSet提供了Set接口的骨干实现，以减少实现Set的工作量。
 
-## HashSet特点
+# HashSet特点
 
 - 不允许存储重复元素,元素是无序的(因为HashMap存放键值对是无序的),允许为null值,不能通过索引访问元素.
 - HashSet内部使用HashMap，HashSet集合内部所有的操作都是基于HashMap完成的
@@ -12,21 +12,21 @@
 - HashSet使用HashMap存储元素，因此对象应该提供hashCode(）和equals(）方法的良好实现
 - 不支持有序性操作。并且失去了元素的插入顺序信息，也就是说使用 Iterator 遍历 HashSet 得到的结果不是插入顺序。
 
-## HashSet内部实现 
+# HashSet底层数据结构是什么?
 
-![](HashSet内部实现.png)
+    内部结构是HashMap
 
-![](HashSet内部实现02.png)
+# HashSet的add方法是如何利用内部的HashMap存储元素的?
 
-![](HashSet内部实现03.png)
+    add()方法传入的参数作为HashMap的key,值是一个内部固定的叫PRESENT的Object类型的对象.
 
-## LinkedHashSet
+# HashSet内部实现 
 
-LinkedHashSet继自HashSet，但是内部的map是使用LinkedHashMap构造的，并且accessOrder为false(也就是不使用访问顺序,使用插入顺序)。所以LinkedHashSet遍历的顺序就是插入顺序。
+![](../../pics/HashSet内部实现.png)
 
-![](LinkedHashSet内部实现.png)
+![](../../pics/HashSet内部实现02.png)
 
-![](LinkedHashSet内部实现02.png)
+![](../../pics/HashSet内部实现03.png)
 
 # 多线程的安全性
 

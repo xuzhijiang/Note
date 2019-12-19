@@ -77,8 +77,4 @@ public class ReentrantLockTest {
         t2.join();
     }
 
-    private void work() {
-
-    }
-
 }

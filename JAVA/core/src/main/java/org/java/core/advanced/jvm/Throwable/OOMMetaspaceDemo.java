@@ -11,7 +11,8 @@ import java.lang.reflect.Method;
  * 堆外内存是一个超集,元空间所占用的堆外内存是一个子集,堆外内存除了分配了一块空间给了元空间
  * ,还可以供ByteBuffer分配对象实现0拷贝
  *
- * Caused by: java.lang.OutOfMemoryError: Metaspace
+ * java8中的错误: Caused by: java.lang.OutOfMemoryError: Metaspace
+ * java7以及之前是: Caused by: java.lang.OutOfMemoryError: PermGen space
  */
 public class OOMMetaspaceDemo {
 

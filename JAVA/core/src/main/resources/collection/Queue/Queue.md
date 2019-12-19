@@ -1,6 +1,6 @@
 # Queue
 
-![](../../../java/org/java/core/base/collection/core/Collection_interfaces.png)
+![](../core/Collection_interfaces.png)
 
 ![](../pics/Queue的类图.png)
 

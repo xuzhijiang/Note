@@ -3,12 +3,7 @@ package org.java.core.base.collection.list.CopyOnWrite;
 import java.util.Arrays;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * @since 1.5
- */
 public class MyCopyOnWriteArrayList<E> {
-
-    private static final long serialVersionUID = 8673264195747942595L;
 
     final transient ReentrantLock lock = new ReentrantLock();
 
@@ -66,33 +61,6 @@ public class MyCopyOnWriteArrayList<E> {
         } finally {
             lock.unlock();
         }
-    }
-
-    public E remove(int index) {
-        final ReentrantLock lock = this.lock;
-        lock.lock();
-        try {
-            Object[] elements = getArray();
-            int len = elements.length;
-            E oldValue = get(elements, index);
-            int numMoved = len - index - 1;
-            if (numMoved == 0)
-                setArray(Arrays.copyOf(elements, len - 1));
-            else {
-                Object[] newElements = new Object[len - 1];
-                System.arraycopy(elements, 0, newElements, 0, index);
-                System.arraycopy(elements, index + 1, newElements, index,
-                        numMoved);
-                setArray(newElements);
-            }
-            return oldValue;
-        } finally {
-            lock.unlock();
-        }
-    }
-
-    private E get(Object[] elements, int index) {
-        return (E) elements[index];
     }
 
 }
