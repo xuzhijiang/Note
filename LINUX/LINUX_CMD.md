@@ -11,9 +11,8 @@ w
 # 查看java的位置
 whereis java
 
-mkdir -p dirname # recursively create directory.
-
-# 通过vmstat命令查看当前操作系统每秒的上下文切换次数:命令"vmstat 1 10"的含义是：每个1秒统计一次，统计10次后结束。其中cs那一列表示的就是上下文切换次数,cs是context switch的简写
+# recursively create directory.
+mkdir -p dirname
 
 # 创建符号链接,create a symlink at /usr/bin/bar which references the original file /opt/foo
 ln -s /opt/foo /usr/bin/bar

@@ -41,7 +41,7 @@ gcc --version
 
 # rpm命令
 
-```shell
+```shell script
 # 通过rpm安装						
 rpm -ivh somesoft.rpm
 
@@ -51,11 +51,14 @@ rpm -e somefost.rpm
 # 查询安装信息	
 rpm -qi somefost.rpm
 
-查询安装后位置：			
+# 查询安装后位置	
 rpm -ql somefost.rpm
 
 # 查看已安装软件包,并且过滤java(前提是java是通过rpm安装的)
 rpm -qa | grep java
+
+# 查看命令是属于哪个软件包的
+rpm -qf /usr/bin/ab
 ```
 
 # CentOS 7 更换阿里 yum源

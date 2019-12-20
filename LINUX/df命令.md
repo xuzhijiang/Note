@@ -1,7 +1,7 @@
 # df
 
 ```shell
-# 查看硬盘的大小以及使用情况
+# 查看硬盘的大小以及使用情况-h (human readable)
 df -T -h
 
 # Filesystem(文件系统) Type(类型) (Mounted on)把文件系统挂载在哪个目录下

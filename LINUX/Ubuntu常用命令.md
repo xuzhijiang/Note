@@ -46,19 +46,20 @@ mv jdk1.8.0_152/ /usr/local/java/
 chown -R root:root /usr/local/java/
 
 # 配置系统环境变量
-vim /etc/environment
-# 添加如下语句
-PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-export JAVA_HOME=/usr/local/java/jdk1.8.0_152
-export JRE_HOME=/usr/local/java/jdk1.8.0_152/jre
-export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
 
-# 配置用户环境变量
+# 1. 只为单个用户配置
+vim ~/.bashrc
+export JAVA_HOME=/usr/local/jdk
+export CLASSPATH=./:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH:$HOME/bin
+
+source ~/.bashrc
+
+# 2. 为整个系统配置
 vim /etc/profile
 # 在中间加入
-export JAVA_HOME=/usr/local/java/jdk1.8.0_152
-export JRE_HOME=/usr/local/java/jdk1.8.0_152/jre
-export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+export JAVA_HOME=/usr/local/jdk
+export CLASSPATH=./:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
 export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH:$HOME/bin
 
 # 使用户环境变量生效
@@ -82,3 +83,28 @@ export PATH=$PATH:$JAVA_HOME/bin
 ```
 
 在/etc/profile中会遍历/etc/profile.d下的sh，然后自动source.
+
+# Ubuntu安装tomcat以及优化
+
+```shell script
+# 1. 从官网下载tar.gz格式的通用安装包: https://tomcat.apache.org/
+# 2. 解压: tar -zxvf **.tar.gz
+cd /opt/apache-tomcat-7.0.96/bin
+./startup.sh
+./shutdown.sh
+```
+
+# ubuntu安装gcc和make
+
+```shell script
+# c语言的编译器: gcc
+apt-get install gcc
+
+# C++的编译器: g++
+# configure: error: Invalid C++ compiler or C++ compiler flags
+# 就需要安装C++的编译器:
+apt-get install g++
+
+# https://askubuntu.com/questions/192645/make-command-not-found
+apt-get install make
+```
