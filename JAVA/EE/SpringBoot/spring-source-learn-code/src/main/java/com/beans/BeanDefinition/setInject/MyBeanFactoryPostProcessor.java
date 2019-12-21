@@ -4,6 +4,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.ConstructorArgumentValues;
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,10 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         // 从BeanDefinitionMap<beanName,BeanDefinition>中得到beanName对应的BeanDefinition.
         GenericBeanDefinition rootBeanDefinition = (GenericBeanDefinition) beanFactory.getBeanDefinition("instA");
-        // rootBeanDefinition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
+        // 修改注入模型,通过TYPE来注入,这样InstA中就不用在instB上添加@Autowired,也可以把InstB注入到InstA中
+        // 注入模型为AUTOWIRE_BY_TYPE和AUTOWIRE_BY_NAME都会调用InstA中的setInstB方法/
+        // 这样,InstA中的instB字段上就不用加@Autowired注解了
+        rootBeanDefinition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 
         // 懒加载: 只有使用到的时候,bean才会被初始化,容器启动的时候,不会被实例化
         // 非懒加载: 容器启动的时候,会被实例化

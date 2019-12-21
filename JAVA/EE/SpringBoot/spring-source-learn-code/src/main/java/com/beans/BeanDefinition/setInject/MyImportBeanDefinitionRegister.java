@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.type.AnnotationMetadata;
 
 // ImportBeanDefinitionRegistrar(导入BeanDefinition的注册器): 可以把BeanDefinition导入到BeanDefinitionMap中
+// 这种玩法只能导入一个BeanDefinition
 public class MyImportBeanDefinitionRegister implements ImportBeanDefinitionRegistrar {
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {

@@ -10,12 +10,12 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * User service.
- */
 @RestController
 public class UserService {
 
+	/**
+	 * 会使用我们自己配置的DataSource
+	 */
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 

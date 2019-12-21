@@ -9,8 +9,8 @@ public class MyImportSelector implements ImportSelector {
     // 这个就是SpringBoot自动装配原理的核心
     @Override
     public String[] selectImports(AnnotationMetadata importingClassMetadata) {
-        // 可以批量加载(可以写多个)
         // 唯独这种方法可以匹配加载
+        // 可以批量加载多个(可以写多个)
         return new String[]{"com.beans.BeanDefinition.setInject.InstB"};
     }
 }

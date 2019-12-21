@@ -11,7 +11,8 @@ public class MainClass {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfig.class);
         //InstD instD = (InstD) ctx.getBean("instA");
         //InstD instD = ctx.getBean("instD");
-        //InstA instA = ctx.getBean(InstA.class);
+        InstA instA = ctx.getBean(InstA.class);
+        System.out.println("instA: " + instA);
     }
 
 }

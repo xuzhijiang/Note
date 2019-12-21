@@ -31,3 +31,13 @@
 ![](pics/通过栈追踪源码是哪里调过来的.png)
 
 ![](pics/给断点添加条件.png)
+
+# 通过idea查看内存中某个类的instance的数量
+
+![](pics/通过idea查看内存中某个类的instance的数量.png)
+
+# debug过程中,使用idea计算结果
+
+![](pics/debug过程中,使用idea计算结果01.png)
+![](pics/debug过程中,使用idea计算结果02.png)
+![](pics/debug过程中,使用idea计算结果03.png)

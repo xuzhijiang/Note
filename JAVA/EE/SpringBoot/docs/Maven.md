@@ -158,14 +158,16 @@ mvn deploy:deploy-file # deploy-file指的是要部署文件
 ![](pics/设置部署策略01.png)
 ![](pics/设置部署用户名.png)
 
-# Linux下使用
+# Linux下使用Nexus
 
 - [https://yq.aliyun.com/articles/7427](https://yq.aliyun.com/articles/7427)
 
 # 解决Maven无法自动下载依赖的问题
 
 ![](pics/解决Maven无法自动下载依赖的问题01.png)
+
 ![](pics/解决Maven无法自动下载依赖的问题02.png)
+
 ![](pics/解决Maven无法自动下载依赖的问题03.png)
 
 # Maven镜像仓库替换为阿里云镜像仓库
@@ -203,4 +205,29 @@ mvn deploy:deploy-file # deploy-file指的是要部署文件
         </snapshots>  
     </repository>  
 </repositories>  
+```
+
+# 如何使用Maven把框架源码安装到本地
+
+    举例: 把org.mybatis:mybatis-spring框架源码安装到本地需要这个插件:
+
+![](pics/使用Maven把框架源码安装到本地.png)    
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-source-plugin</artifactId>
+    <version>3.0.1</version>
+    <configuration>
+      <attach>true</attach>
+    </configuration>
+    <executions>
+      <execution>
+        <phase>compile</phase>
+        <goals>
+          <goal>jar</goal>
+        </goals>
+      </execution>
+    </executions>
+</plugin>
 ```

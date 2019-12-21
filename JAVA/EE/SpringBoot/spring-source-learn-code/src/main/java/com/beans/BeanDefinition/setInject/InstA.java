@@ -1,17 +1,24 @@
 package com.beans.BeanDefinition.setInject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class InstA {
 
-    //@Autowired
+    // 注入模型,默认是0
+//    @Autowired
     private InstB instB;
 
     public InstB getInstB() {
         return instB;
     }
 
+    // 如果注入模型为AUTOWIRE_BY_TYPE和AUTOWIRE_BY_NAME,那么spring会都会调用setInstB方法
+    // 这个方法需要的参数InstB是从哪里来的?怎么找到的? 答: 是从ioc容器中拿到的.
+    // 如果注入模型为: AUTOWIRE_BY_TYPE,则根据类型为InstB来寻找
+    // 如果注入模型为: AUTOWIRE_BY_NAME,则根据bean的名字为instB来寻找.
+    // AUTOWIRE_BY_TYPE容错率更高
     public void setInstB(InstB instB) {
         this.instB = instB;
     }
@@ -27,4 +34,5 @@ public class InstA {
                 "instB=" + instB +
                 '}';
     }
+
 }

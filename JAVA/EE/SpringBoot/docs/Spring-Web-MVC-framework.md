@@ -4,7 +4,6 @@
 - 现在的SSM(Spring Boot + Spring Boot MVC + Mybatis)
 - SM(Spring + Mybatis)
 
-
 # Spring Web MVC framework(简称Spring MVC)
 
     mvc这种理念,具体的实现有springmvc/struts2
