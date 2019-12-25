@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.concurrent.*;
 
 /**
- * // 调度的线程池,每隔一段时间调度一次
  * 因此如果您将period指定为1秒并且您的线程运行5秒，那么下一个线程将在第一个工作线程完成它的执行后立即开始执行。
  */
 public class ScheduledThreadPoolExecutorTest {
@@ -16,29 +15,20 @@ public class ScheduledThreadPoolExecutorTest {
         int corePoolSize = 5;
         ThreadFactory threadFactory = Executors.defaultThreadFactory();
         // ExecutorsE类提供了4个工厂方法，可以帮助我们快速的创建ScheduledThreadPoolExecutor
-        Executors.newScheduledThreadPool(corePoolSize);
-        Executors.newScheduledThreadPool(corePoolSize, threadFactory);
-        Executors.newSingleThreadScheduledExecutor();
-        Executors.newSingleThreadScheduledExecutor(threadFactory);
+        Executors.newScheduledThreadPool(corePoolSize);// maximumPoolSize为Interger.MAX_VALUE
+        Executors.newScheduledThreadPool(corePoolSize, threadFactory); // maximumPoolSize为Interger.MAX_VALUE
+        Executors.newSingleThreadScheduledExecutor(); // corePoolSize为1, maximumPoolSize为Interger.MAX_VALUE
+        Executors.newSingleThreadScheduledExecutor(threadFactory); // maximumPoolSize为Interger.MAX_VALUE
     }
 
-    /**
-     * 任务提交时间，延迟2秒执行
-     */
     @Test
     public void testScheduleWithRunnable() throws InterruptedException {
-        // Java通过实现ScheduledExecutorService接口的ScheduledThreadPoolExecutor类提供预定的线程池实现.
         ScheduledExecutorService scheduledThreadPoolExecutor = Executors.newScheduledThreadPool(5);
-        // 单线程池
-        //ScheduledExecutorService scheduledThreadPoolExecutor = Executors.newSingleThreadScheduledExecutor();
 
         // 延时2秒去执行任务,不会周期性执行.
-        // 请注意，所有schedule（）方法都返回ScheduledFuture的实例，我们可以使用它来获取线程的线程状态信息和延迟时间。
-        ScheduledFuture<?> scheduledFuture = scheduledThreadPoolExecutor.schedule(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("test ScheduledThreadPoolExecutor schedule");
-            }
+        // 请注意，所有schedule（）方法都返回ScheduledFuture的实例
+        ScheduledFuture<?> scheduledFuture = scheduledThreadPoolExecutor.schedule(() -> {
+            System.out.println("test ScheduledThreadPoolExecutor schedule");
         }, 2, TimeUnit.SECONDS);
         System.out.println(scheduledFuture.isDone());
         System.out.println(scheduledFuture.isCancelled());
@@ -51,12 +41,9 @@ public class ScheduledThreadPoolExecutorTest {
     public void testScheduleWithCallable() throws InterruptedException {
         ScheduledExecutorService scheduledThreadPoolExecutor = Executors.newScheduledThreadPool(5);
         // 延时2秒去执行任务,不会周期性执行.
-        ScheduledFuture<String> scheduledFuture = scheduledThreadPoolExecutor.schedule(new Callable<String>() {
-            @Override
-            public String call() {
-                System.out.println("callable .......");
-                return "return value";
-            }
+        ScheduledFuture<String> scheduledFuture = scheduledThreadPoolExecutor.schedule(() -> {
+            System.out.println("callable .......");
+            return "return value";
         }, 2, TimeUnit.SECONDS);
         System.out.println(scheduledFuture.isDone());
         Thread.sleep(10000);
@@ -70,16 +57,12 @@ public class ScheduledThreadPoolExecutorTest {
     @Test
     public void testScheduleAtFixedRate() throws InterruptedException {
         ScheduledExecutorService scheduledThreadPoolExecutor = Executors.newScheduledThreadPool(5);
-        ScheduledFuture<?> scheduledFuture = scheduledThreadPoolExecutor.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("test ScheduledThreadPoolExecutor testScheduleAtFixedRate: " + new Date());
-            }
-            // 初始 延时为0, 固定的频率2秒一次执行,
+        // 初始 延时为0, 固定的频率2秒一次执行,
+        ScheduledFuture<?> scheduledFuture = scheduledThreadPoolExecutor.scheduleAtFixedRate(() -> {
+            System.out.println("test ScheduledThreadPoolExecutor testScheduleAtFixedRate: " + new Date());
         }, 0, 2, TimeUnit.SECONDS);
 
         TimeUnit.SECONDS.sleep(10);
-
         scheduledThreadPoolExecutor.shutdown();
     }
 
@@ -89,19 +72,14 @@ public class ScheduledThreadPoolExecutorTest {
         ScheduledExecutorService scheduledThreadPoolExecutor = Executors.newScheduledThreadPool(5);
 
         // 初始延迟启动定期执行，然后以给定的延迟执行。 延迟时间是从线程完成执行的时间开始
-        scheduledThreadPoolExecutor.scheduleWithFixedDelay(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("test fixedDelay: " + new Date());
-            }
+        scheduledThreadPoolExecutor.scheduleWithFixedDelay(() -> {
+            System.out.println("test fixedDelay: " + new Date());
         }, 1, 4, TimeUnit.SECONDS);
 
         Thread.sleep(10000);
-
         scheduledThreadPoolExecutor.shutdown();
-        System.out.println(".......: " + scheduledThreadPoolExecutor.isTerminated());
+
         while (!scheduledThreadPoolExecutor.isTerminated()) {
-            // wait for all tasks to finish
             System.out.println("等待所有任务完成......");
         }
         System.out.println("Finished all threads");

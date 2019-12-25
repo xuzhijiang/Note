@@ -1,5 +1,6 @@
 package org.java.core.advanced.DesignPatterns.creational.singleton;
 
+// 面试题: 懒汉和饿汉单例模式
 public class SingletonDemo01 {
 
     private static SingletonDemo01 instance = null;

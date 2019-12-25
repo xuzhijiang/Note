@@ -71,13 +71,15 @@ public class ContainerNotUnsafeDemo {
          * 3. 解决方案:
          *  3.1 new Vector<>();这是一个线程安全的List,但是Vector很少用,很少用的原因: 因为它使用了synchronized,并发性急剧下降.
          *  3.2 Collections.synchronizedList(new ArrayList<>()); 内部也是使用了synchronized
-         *  3.3 new CopyOnWriteArrayList<>(); 写时复制(是一种读写分离的思想)-最终我们使用的是这个List
+         *  3.3 new CopyOnWriteArrayList<>(); 写时复制(是一种读写分离的思想)-最终我们使用的是这个List,是一个线程安全的List,
+         *  内部使用的是ReentrantLock来保证线程安全.
          *
          *  面试官会考你,对于并发情况,各种List的熟练情况和掌握情况,基本上这三个你能答出来,
          *  说明你具备在并发下面干活的资质和基础知识扎实.
          *
          * 4. 优化建议(同样的错误不犯2次)
          *
-          */}
+          */
+    }
 
 }

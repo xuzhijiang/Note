@@ -11,6 +11,10 @@
 
 # 实现类
 
+![](../../pics/BlockingQueue继承结构图.png)
+
+    LinkedBlockingQueue,ArrayBlockingQueue,PriorityBlockingQueue,SynchronousQueue
+
 ![](../../pics/PriorityBlockingQueue类图.png)
 
 ![](../../pics/PriorityBlockingQueue类图01.png)

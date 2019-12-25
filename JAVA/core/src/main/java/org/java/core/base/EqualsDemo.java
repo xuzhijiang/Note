@@ -3,8 +3,8 @@ package org.java.core.base;
 import java.util.Arrays;
 
 /**
- * 1. 两端如果是基本数据类型，则比较的是基本数据类型的值是否相等
- * 2. 两端如果是对象类型,则比较的是地址是否相等
+ * 1. ==两端如果是基本数据类型，则比较的是值是否相等
+ * 2. ==两端如果是引用类型,则比较的是地址是否相等
  */
 public class EqualsDemo {
 

@@ -5,8 +5,9 @@
 
 	<groupId>org.java.core</groupId>
 	<artifactId>JavaCore</artifactId>
-	<version>2.0</version>
+	<version>3.0</version>
 	<packaging>jar</packaging>
+	<name>JavaCore</name>
 
 	<properties>
 		<!-- 指定源码编码方式UTF-8 -->
@@ -29,54 +30,38 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
-
 		<!-- oracle -->
 		<!-- <dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc14</artifactId>
 			<version>${oracle.version}</version>
 		</dependency> -->
-
 		<dependency>
 			<groupId>io.netty</groupId>
 			<artifactId>netty-all</artifactId>
 			<version>4.1.22.Final</version>
 		</dependency>
-
-		<!-- javax.json -->
-		<dependency>
-			<groupId>javax.json</groupId>
-			<artifactId>javax.json-api</artifactId>
-			<version>${javax.json.version}</version>
-		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>compile</scope>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/javassist/javassist -->
 		<dependency>
 			<groupId>javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.12.1.GA</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/cglib/cglib -->
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>3.2.10</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>22.0</version>
 		</dependency>
-
 		<!-- Json Begin -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -99,10 +84,15 @@
 			<artifactId>druid</artifactId>
 			<version>1.1.6</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.8</version>
+		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>core</finalName>
+		<finalName>Java-Core</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

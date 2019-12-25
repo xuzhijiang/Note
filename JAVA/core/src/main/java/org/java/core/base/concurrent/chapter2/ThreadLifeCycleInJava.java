@@ -26,6 +26,8 @@ public class ThreadLifeCycleInJava {
                 }
             }
         }, "xzj-RUNNABLE-Thread");
+        // start()之后代表线程进入了就绪状态,代表可以运行了,但是并不是马上线程就启动了.
+        // start()之后,什么时候真正run方法? 答案是等待操作系统的调度.依赖于OS
         stateRunnableThread.start();
         // 通过jps和jstack查看线程状态
         System.out.println("THREAD STATE RUNNABLE: " + stateRunnableThread.getState());

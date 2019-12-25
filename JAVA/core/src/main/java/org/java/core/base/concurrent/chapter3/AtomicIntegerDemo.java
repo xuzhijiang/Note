@@ -21,6 +21,5 @@ public class AtomicIntegerDemo {
 
         // 指定初始值
         AtomicInteger atomicInteger1 = new AtomicInteger(100);
-
     }
 }

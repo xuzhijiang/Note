@@ -31,5 +31,13 @@ public class StringDelayLoadDemo {
         System.out.println("9");
         System.out.println("0");
         System.out.println(x); // 字符串的个数  2581
+
+        // 这句话创建了几个对象？,在36打个断点
+        String s1 = new String("xxxooooxxxoo");
+        // 答; 创建了两个对象,先有字符串"xxxooooxxxoo"放入字符串常量池，
+        // 然后 new 了一个字符串对象"xxxooooxxxoo"放入堆中
+        // (字符串常量"xxxooooxxxoo"在编译期就已经确定放入字符串常量池，而堆上的字符串对象是在运行时才确定
+        String s2 = "xxxooooxxxoo"; // 看看String的个数变化没有 (答: 没有,上面new的时候,StringTable中的xxxooooxxxoo就已经被创建好了)
+        System.out.println(s1 == s2); // false
     }
 }

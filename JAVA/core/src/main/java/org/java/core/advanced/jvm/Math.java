@@ -1,6 +1,6 @@
 package org.java.core.advanced.jvm;
 
-import org.java.core.advanced.javassist.User;
+import org.java.core.advanced.jvm.javassist.User;
 
 public class Math {
     // Math.class这个字节码文件最终会被加载到方法区。

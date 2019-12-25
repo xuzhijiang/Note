@@ -1,3 +1,10 @@
+# StringTable(字符串常量池)
+
+    StringTable: 就是我们一般说的字符串常量池,或者叫串池
+    
+    注意StringTable要和方法区的运行时常量池区分开,方法区的运行时常量池区在1.8的jdk中是不包含
+    StringTable的,1.8中,StringTable是存放在堆中.
+
 # StringTable特性
 
 ![](../../pics/StringTable特性.png)
@@ -6,8 +13,8 @@
 
     参见: JVM\jvm内存模型\1.02_线程共享区域-方法区.md
     
-    在 Java7 之前，StringTable(串池)是放在运行时常量池中(属于永久代)
-    而在 Java 7以及之后，StringTable(串池)被移到堆中。
+    在 Java7 之前，StringTable(字符串常量池)是放在永久代中
+    而在 Java 7以及之后，StringTable(字符串常量池)被移到堆中
 
 # StringTable的垃圾回收机制
 

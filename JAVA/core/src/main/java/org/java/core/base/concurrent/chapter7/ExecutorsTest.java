@@ -1,15 +1,7 @@
 package org.java.core.base.concurrent.chapter7;
 
-import org.junit.Test;
-
 import java.util.concurrent.*;
 
-/**
- * 数组/集合/线程池,屁股后面都可以带s的辅助工具类
- * Array Arrays
- * Collection Collections
- * Executor Executors
- */
 public class ExecutorsTest {
 
     public static void main(String[] args) {

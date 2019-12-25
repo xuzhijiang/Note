@@ -2,6 +2,8 @@ package org.java.core.base.concurrent.chapter2;
 
 import org.junit.Test;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 演示优先级高的线程可能比一个优先级低线程获取到更多的运行机会：
  */
@@ -18,33 +20,57 @@ public class PriorityDemo {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        // 创建线程t1，设置优先级为10
-        Thread t1 = new Thread("thread name - Priority 10") {
-            @Override
-            public void run() {
-                for(int i=0;i<100000;i++) {
+        Thread t1 = new Thread(() -> {
+                for(int i=0;i<100;i++) {
+                    try {
+                        TimeUnit.SECONDS.sleep(1L);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     System.out.println(Thread.currentThread().getName() + "执行了: " + i + "次");
                 }
-            }
-        };
+        }, "AAA");
+        // 设置优先级为10
         t1.setPriority(Thread.MAX_PRIORITY);
 
-        // 创建线程t2，设置优先级为1
-        Thread t2 = new Thread("thread name Priority 1") {
-            @Override
-            public void run() {
-                for(int i = 0 ;i< 100000;i++){
-                    System.out.println(this.getName() + "执行了: " + i + "次");
+        Thread t2 = new Thread(() -> {
+            for(int i = 0 ;i< 100000;i++){
+                try {
+                    TimeUnit.SECONDS.sleep(1L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                System.out.println(Thread.currentThread().getName() + "\t 执行了: " + i + "次");
             }
-        };
+        }, "BBB");
+        // 设置优先级为1
         t2.setPriority(Thread.MIN_PRIORITY);
 
         t1.start();
         t2.start();
-
-        t1.join();
-        t2.join();
-        System.out.println("main is over");
     }
+
+    /**
+     * 可以看到在windows操作系统上，线程优先级好像是有作用的，P1和P10线程对应的操作系统优先级是不一样的
+     * 但是对于CentOS 6.5，可以看到对应的线程优先级都是0，说明，线程的优先级设置被忽略了
+     */
+    /*
+    "BBB" #12 prio=1 os_prio=-2 tid=0x000000001dfc3000 nid=0x39e4 waiting on condition [0x000000001e93e000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+        at java.lang.Thread.sleep(Native Method)
+        at java.lang.Thread.sleep(Thread.java:340)
+        at java.util.concurrent.TimeUnit.sleep(TimeUnit.java:386)
+        at org.java.core.base.concurrent.chapter2.PriorityDemo.lambda$main$1(PriorityDemo.java:39)
+        at org.java.core.base.concurrent.chapter2.PriorityDemo$$Lambda$2/1854731462.run(Unknown Source)
+        at java.lang.Thread.run(Thread.java:745)
+
+"AAA" #11 prio=10 os_prio=2 tid=0x000000001dfc2800 nid=0x368c waiting on condition [0x000000001e83f000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+        at java.lang.Thread.sleep(Native Method)
+        at java.lang.Thread.sleep(Thread.java:340)
+        at java.util.concurrent.TimeUnit.sleep(TimeUnit.java:386)
+        at org.java.core.base.concurrent.chapter2.PriorityDemo.lambda$main$0(PriorityDemo.java:26)
+        at org.java.core.base.concurrent.chapter2.PriorityDemo$$Lambda$1/1922154895.run(Unknown Source)
+        at java.lang.Thread.run(Thread.java:745)
+     */
 }

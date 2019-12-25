@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * StringTable在java6/java7/java8中的位置,结论:
+ * StringTable(字符串常量池)在java6/java7/java8中的位置,结论:
  * java6: StringTable存放在永久代
  * java7: 存放在堆中
  * java8: 存放在堆中
+ *
+ * 注意StringTable(字符串常量池)要和方法区中的运行时常量池区分开,不是一个概念
  */
 public class StringTableLocationDemo {
     /**

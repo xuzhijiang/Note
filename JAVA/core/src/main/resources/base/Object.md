@@ -12,7 +12,7 @@
 - public final void wait() throws InterruptedException
 - protected void finalize() throws Throwable {}
 
-## hashCode()方法
+# hashCode()方法
 
 hashCode方法也是一个native方法。该方法返回对象的哈希码，主要使用在哈希表中，比如JDK中的HashMap。
 
@@ -101,7 +101,7 @@ public boolean equals(Object o) {
 
 >`再强调一下：如果2个对象的equals方法相等，那么他们的hashCode值也必须相等(`否则会有重复数据存放在map中`)，反之，如果2个对象hashCode值相等，但是equals不相等，这样会影响性能(`会存入到同一串链表中`)，所以还是建议2个方法都一起重写。`
 
-## equals方法
+# equals方法
 
 ```java
 // Object类的默认实现如下: 即比较2个对象的内存地址是否相等：
@@ -110,7 +110,7 @@ public boolean equals(Object obj) {
 }
 ```
 
-## clone方法
+# clone方法
 
 >创建并返回当前对象的一份拷贝。一般情况下，对于任何对象 x，表达式 x.clone() != x 为true，x.clone().getClass() == x.getClass() 也为true。
 
@@ -122,7 +122,7 @@ public class Object {
 }
 ```
 
-## toString方法
+# toString方法
 
 
 ```java
@@ -134,33 +134,16 @@ public String toString() {
 
 >toString方法的结果应该是一个简明但易于读懂的字符串。建议Object所有的子类都重写这个方法。
 
-## notify方法
+# wait() throws InterruptedException方法
 
-notify方法是一个native方法，并且也是final的，不允许子类重写。
+    只能用在同步方法或者同步控制块中使用，否则会在运行时抛出 IllegalMonitorStateException
+    wait方法相当于放弃了当前线程对对象监视器的所有者(也就是说释放了对象的锁)
 
-```java
-public final native void notify();
-```
-
-* 唤醒一个在此对象监视器上等待的线程(监视器相当于就是锁的概念)。如果所有的线程都在此对象上等待，那么只会选择一个线程。选择是任意性的，并在对实现做出决定时发生。一个线程在对象监视器上等待可以调用wait方法。
-* 直到当前线程放弃对象上的锁之后，被唤醒的线程才可以继续处理。被唤醒的线程将以常规方式与在该对象上主动同步的其他所有线程进行竞争。例如，唤醒的线程在作为锁定此对象的下一个线程方面没有可靠的特权或劣势。
-* notify方法只能被作为此对象监视器的所有者的线程来调用。一个线程要想成为对象监视器的所有者，可以使用以下3种方法：
-
-1. 执行对象的同步实例方法(`即实例方法上使用synchronized`)
-2. 使用synchronized内置锁(`即synchronized同步代码块`)
-3. 对于Class类型的对象，执行同步静态方法(`静态方法上使用synchronized`)
-
->一次只能有一个线程拥有对象的监视器。如果当前线程不是此对象监视器的所有者的话会抛出IllegalMonitorStateException异常,注意点：notify只能在拥有对象监视器的所有者线程中调用，否则会抛出IllegalMonitorStateException异常
-
-## notifyAll方法
-
->跟notify一样，唯一的区别就是会唤醒在此对象监视器上等待的所有线程，而不是一个线程。同样，如果当前线程不是对象监视器的所有者，那么调用notifyAll同样会发生IllegalMonitorStateException异常。
-
-## wait(long timeout) throws InterruptedException方法
-
-* wait(long timeout)方法同样是一个native方法，并且也是final的，不允许子类重写。wait方法会让当前线程等待直到另外一个线程调用对象的notify或notifyAll方法，或者超过参数设置的timeout超时时间。
-* 跟notify和notifyAll方法一样，调用wait方法的当前线程必须是此对象的监视器所有者，否则还是会发生IllegalMonitorStateException异常。
-
+    是一个native方法，也是final的，不允许子类重写。
+    wait方法会让当前线程等待直到另外一个线程调用对象的notify或notifyAll方法，或者超过参数设置的timeout超时时间
+    
+    如果当前线程在等待之前或在等待时被任何其他线程中断，则会抛出InterruptedException异常
+ 
 >假如一个线程叫T,在T线程中调用某一个对象锁的wait方法会让T线程释放当前的对象锁。出于线程调度目的，线程T是不可用并处于休眠状态，直到发生以下四件事中的任意一件：
 
 1. 其他某个线程调用此对象的notify方法，并且线程T碰巧被任选为被唤醒的线程
@@ -168,36 +151,29 @@ public final native void notify();
 3. 其他某个线程调用Thread.interrupt方法中断线程T
 4. 时间到了参数设置的超时时间。如果timeout参数为0，则不会超时，会一直进行等待
 
->所以可以理解wait方法相当于放弃了当前线程对对象监视器的所有者(也就是说释放了对象的锁)
+---
 
-之后，线程T会被等待集中被移除，并且重新进行线程调度。然后，该线程以常规方式与其他线程竞争，以获得在该对象上同步的权利；一旦获得对该对象的控制权，该对象上的所有其同步声明都将被恢复到以前的状态，这就是调用wait方法时的情况。然后，线程T从wait方法的调用中返回。所以，从wait方法返回时，该对象和线程T的同步状态与调用wait方法时的情况完全相同。
+    之后，线程T会重新被OS调度。然后，该线程以常规方式与其他线程竞争，拉获得锁；
+    
+    一旦在此获得锁，线程T从wait方法的调用中返回,然后接着继续执行.
 
-在没有被通知、中断或超时的情况下，线程还可能会发生一个所谓的虚假唤醒 (spurious wakeup)。虽然这种情况在实践中很少发生，但是应用程序必须通过以下方式防止其发生，即对应该导致该线程被提醒的条件进行测试，如果不满足该条件，则继续等待。换句话说，等待应总是发生在循环中，如下面的示例：
+    在没有被通知、中断或超时的情况下，线程还可能会发生一个所谓的虚假唤醒 (spurious wakeup),所以要使用while循环来避免虚假唤醒.
 
-```java
-synchronized (obj) {
-    while (<condition does not hold>)
-        obj.wait(timeout);
-        ... // Perform action appropriate to condition
-}
-```
+# notify方法
 
-如果当前线程在等待之前或在等待时被任何线程中断，则会抛出InterruptedException异常。
+    是一个native方法，并且也是final的，不允许子类重写
 
-## wait(long timeout, int nanos) throws InterruptedException方法
+    唤醒一个在对象监视器上等待的线程。如果所有的线程都在此对象上等待，那么只会选择一个线程。
+    选择是任意性的
 
-跟wait(long timeout)方法类似，多了一个nanos参数，这个参数表示额外时间（以毫微秒为单位，范围是 0-999999）。 所以超时的时间还需要加上nanos毫秒。
-,需要注意的是`wait(0, 0)`和`wait(0)`效果是一样的，即一直等待。`wait() throws InterruptedException方法`跟之前的2个wait方法一样，只不过该方法一直等待，没有超时时间这个概念。
+    被唤醒的线程才可以继续处理。被唤醒的线程将以常规方式与在该对象上主动同步的其他所有线程进行竞争。
 
-```java
-// 以下这段代码直接调用wait方法会发生IllegalMonitorStateException异常，这是因为调用wait方法需要当前线程是对象监视器的所有者：org/java/core/base/ObjectClass/WaitNotifyTest.java
-Factory factory = new Factory();
-factory.wait();
-```
+# notifyAll方法
 
-一般情况下，wait方法和notify方法会一起使用的，wait方法阻塞当前线程，notify方法唤醒当前线程，一个使用wait和notify方法的生产者消费者例子代码如下：
+    跟notify一样，唯一的区别就是会唤醒在此对象监视器上等待的所有线程，而不是一个线程。
+    同样，如果当前线程不是对象监视器的所有者，那么调用notifyAll同样会发生IllegalMonitorStateException异常。
 
-## finalize方法
+# finalize方法
 
 ```java
 // finalize方法是一个protected方法，Object类的默认实现是不进行任何操作。
@@ -206,4 +182,4 @@ protected void finalize() throws Throwable { }
 
 >该方法的作用是实例被垃圾回收器回收的时候触发的操作，就好比 “死前的最后一波挣扎”。
 
-直接写个弱引用例子：`org.java.core.advanced.jvm.FinalizeTest`
+直接写个弱引用例子：`org.java.core.advanced.jvm.reference.FinalizeTest`

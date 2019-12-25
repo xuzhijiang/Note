@@ -1,5 +1,6 @@
 package java.lang;
 
+/*
 public class Float {
     // 运行会报错: Error: Main method not found in class java.lang.Float
     // 原因: 双亲委派机制导致,最终会加载jdk的java.lang.Float,而不是我们自己的java.lang.Float
@@ -8,3 +9,4 @@ public class Float {
         System.out.println("定义一个和jdk中包名和类名都一样的java.lang.Float");
     }
 }
+*/

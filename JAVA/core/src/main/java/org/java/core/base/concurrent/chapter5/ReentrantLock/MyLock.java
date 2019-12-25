@@ -3,22 +3,6 @@ package org.java.core.base.concurrent.chapter5.ReentrantLock;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 
-
-// Lock是一个接口，它定义了锁获取和释放的基本操作
-
-/**
- * // Lock接口使用的模板方法
- *     Lock lock = new ReentrantLock();
- *     ...
- *     lock.lock();//获取锁
- *     try {
- *         ...
- *     } finally {
- *         lock.unlock();//释放锁
- *     }
- * //在finally中释放锁，目的是在保证获取到锁之后，一定能够被释放。
- * 不要将锁的获取过程写在try块中。因为如果在获取锁(自定义锁的实现)时，发生了异常，异常抛出的同时，也会导致锁的无故释放。
- */
 public interface MyLock {
     // 阻塞的方式获取锁，调用该方法当前线程会获取锁，当锁获得后，该方法返回
     void lock();

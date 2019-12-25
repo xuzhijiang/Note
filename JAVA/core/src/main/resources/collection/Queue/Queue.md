@@ -13,8 +13,6 @@
 - PriorityQueue：基于堆结构实现，可以用它来实现优先级队列
 - LinkedList虽然是一种List,但是也实现了Queue接口
 
-![](PriorityQueue-Class-Diagram.jpg)
-
 # 特点
 
 7. BlockingQueues不接受null元素。 如果我们执行任何与null相关的操作，它将抛出NullPointerException。
