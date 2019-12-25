@@ -28,7 +28,7 @@
 -  **304 Not Modified** ：如果请求报文首部包含一些条件，例如：If-Match，If-Modified-Since，If-None-Match，If-Range，If-Unmodified-Since，如果满足条件，则服务器会返回 304 状态码。你访问的资源未修改，所请求的资源未修改，浏览器读取缓存数据
 -  **307 Temporary Redirect** ：临时重定向，与 302 的含义类似，但是 307 要求浏览器不会把重定向请求的 POST 方法改成 GET 方法
 -  **400 Bad Request** ：请求语法错误，服务器无法理解
--  **401 Unauthorized** ：该状态码表示发送的请求需要有认证信息。如果之前已进行过一次请求，则表示用户认证失败。
+-  **401 Unauthorized** ：未授权
 -  **403 Forbidden** ：请求不允许
 -  **404 Not Found** 未找到资源.
 -  **405  Method Not Allowed** 请求的方法不允许.
@@ -96,7 +96,7 @@
 | 首部字段名 | 说明 |
 |-----|---- |
 | Allow | 资源可支持的 HTTP 方法 |
-| Content-Encoding | 实体主体适用的编码方式 |
+| Content-Encoding | http请求的内容的编码方式 |
 | Content-Language | 实体主体的自然语言 |
 | Content-Length | 实体主体的大小 |
 | Content-Location | 替代对应资源的 URI |

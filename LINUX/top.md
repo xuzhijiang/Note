@@ -2,9 +2,7 @@
 
     uptime命令是一个top的精简版命令,可以看到load averge
 
-- top能够实时显示系统中各个进程的资源占用状况.
-- top是一个动态显示过程,即可以通过用户按键来不断刷新当前状态.
-- top命令提供了实时的对系统cpu处理器的状态监视.
+    top能够实时显示cpu和内存占用百分比.
 
 ```shell script
 top
@@ -14,6 +12,7 @@ top
 # 这个命令如果不停的按键盘上的1,可以看到有几个cpu的核,可以看到是每一个cpu它的平均负载
 top - 09:14:56 up 264 days, 20:56,  1 user,  load average: 0.02, 0.04, 0.00
 Tasks:  87 total,   1 running,  86 sleeping,   0 stopped,   0 zombie
+# us代表user,sy代表system
 Cpu(s):  0.0%us,  0.2%sy,  0.0%ni, 99.7%id,  0.0%wa,  0.0%hi,  0.0%si,  0.2%st
 Mem:    377672k total,   322332k used,    55340k free,    32592k buffers
 Swap:   397308k total,    67192k used,   330116k free,    71900k cached
@@ -63,7 +62,7 @@ top -H -p <pid>
 * 0.0%us：用户态进程占用CPU时间百分比，不包含renice值为负的任务占用的CPU的时间。
 * 0.7%sy：内核占用CPU时间百分比
 * 0.0%ni：改变过优先级的进程占用CPU的百分比
-* 99.3%id：空闲CPU时间百分比
+* 99.3%id：空闲CPU时间百分比(id是idle的缩写)
 * 0.0%wa：等待I/O的CPU时间百分比
 * 0.0%hi：CPU硬中断时间百分比
 * 0.0%si：CPU软中断时间百分比
@@ -134,3 +133,7 @@ while true;do top;sleep 1;done
 # 杀进程时不需要输入进程号
 # htop 支持鼠标操作
 ```
+
+# htop
+
+    htop (需要安装下,这个对人可读性好,而且是彩色显示.yum install htop)

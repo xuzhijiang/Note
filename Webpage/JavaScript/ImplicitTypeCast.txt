@@ -13,3 +13,7 @@ Number      1               true                     "1"        new Number(1)
 Number      Infinity        true                     "Infinity" new Number(Infinity)
 Number      NaN             false                    "NaN"      new Number(NaN)
 Object      {}              true        NaN          "[object Object]"
+
+java属于强类型语言,需要先编译,再运行. int a = 10;
+
+js属于弱类型脚本语言,不用编译,直接可以运行, var 推断类型: var a = 10;

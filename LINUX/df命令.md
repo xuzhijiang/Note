@@ -1,4 +1,4 @@
-# df
+# df(disk free)
 
 ```shell
 # 查看硬盘的大小以及使用情况-h (human readable)

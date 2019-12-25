@@ -4,6 +4,12 @@
 - 现在的SSM(Spring Boot + Spring Boot MVC + Mybatis)
 - SM(Spring + Mybatis)
 
+---
+
+    SSM 整合分为两个部分: 
+    第一部分: Spring 和 SpringMVC的整合=====>叫SS整合
+    第二部分: SM的整合====>Spring整合Mybatis
+
 # Spring Web MVC framework(简称Spring MVC)
 
     mvc这种理念,具体的实现有springmvc/struts2

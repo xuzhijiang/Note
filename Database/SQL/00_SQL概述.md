@@ -2,6 +2,8 @@
 
 SQL是结构化查询语言Structured Query Language的缩写.标准 SQL 由 ANSI 标准委员会管理，从而称为 ANSI SQL。各个 DBMS 都有自己的实现
 
+    RDBMS: Relational database management system
+    
 ## 主流关系数据库
 
 >目前，主流的关系数据库主要分为以下几类：
