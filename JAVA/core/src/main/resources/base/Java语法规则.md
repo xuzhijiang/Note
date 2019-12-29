@@ -353,3 +353,46 @@ final可以用来修饰类，修饰属性，修饰方法，修饰参数
 
 4.	Object类
 java.lang.Object类中只有一个空参的构造器，
+
+<table>
+    <thead>
+        <tr>
+            <th>数据类型</th>
+            <th>零值</th>
+            <th>数据类型</th>
+            <th>零值</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>int</td>
+            <td>0</td>
+            <td>boolean</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td>long</td>
+            <td>0L</td>
+            <td>float</td>
+            <td>0.0f</td>
+        </tr>
+        <tr>
+            <td>short</td>
+            <td>(short)0</td>
+            <td>double</td>
+            <td>0.0d</td>
+        </tr>
+        <tr>
+            <td>char</td>
+            <td>'u0000'</td>
+            <td>reference</td>
+            <td>null</td>
+        </tr>
+        <tr>
+            <td>byte</td>
+            <td>(byte)0</td>
+            <td> </td>
+            <td> </td>
+        </tr>
+    </tbody>
+</table>

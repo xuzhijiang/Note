@@ -9,7 +9,7 @@ public class LinkedHashMapDemo {
 
     @Test
     public void testInsertOrder() {
-        LinkedHashMap<String, String> map = new LinkedHashMap<>();
+        Map<String, String> map = new LinkedHashMap<>();
         map.put("语文", "1");
         map.put("数学", "2");
         map.put("英语", "3");

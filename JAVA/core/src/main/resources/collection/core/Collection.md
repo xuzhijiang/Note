@@ -57,3 +57,26 @@ Java中的容器包括 Collection 和 Map 两类，Collection 存储着对象的
 ## Collection遍历
 
 Collection 继承了 Iterable 接口，其中Iterable接口定义的 iterator() 方法能够产生一个 Iterator 对象，通过这个对象就可以迭代遍历 Collection 中的元素.(迭代器模式)
+
+# 总结
+
+    List
+    
+- **Arraylist：** Object数组
+- **Vector：** Object数组
+- **LinkedList：** 双向链表(JDK1.6之前为循环链表，JDK1.7取消了循环)
+
+---
+    Map 
+
+-  **HashMap：** JDK1.8之前HashMap由数组+链表组成的，数组是主体，链表则是为了解决哈希冲突.JDK1.8以后当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间
+-  **LinkedHashMap:** LinkedHashMap 继承自 HashMap，底层仍然是由数组和链表或红黑树组成。另外，LinkedHashMap 在上面结构的基础上，增加了一条双向链表，使得上面的结构可以保持键值对的插入顺序。同时通过对链表进行相应的操作，实现了访问顺序相关逻辑
+-  **HashTable:** 数组+链表组成的，数组是主体，链表是为了解决哈希冲突
+-  **TreeMap:** 红黑树（自平衡的排序二叉树）
+
+---
+    Set
+
+- **HashSet（无序，唯一）:**  基于 HashMap 实现的
+- **LinkedHashSet：** LinkedHashSet 继承与 HashSet，并且其内部是通过 LinkedHashMap 来实现的
+- **TreeSet（有序，唯一）：** 红黑树(自平衡的排序二叉树)

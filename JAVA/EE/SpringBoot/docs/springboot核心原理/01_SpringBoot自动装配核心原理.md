@@ -72,9 +72,15 @@ BeanDefinition包含的属性字段如上图.比如说要描述当前这个bean�
     
 ![](../pics/SpringBootApplication注解05.png)
 
+![](../pics/AutoConfigurationImportSelector核心方法解析.png)
+
 ![](../pics/SpringBootApplication注解06.png)
 
 ![](../pics/SpringBootApplication注解07.png)
+
+    spring-boot-starter-autoconfigure中的spring.factories文件
+    不是所有的AutoConfiguration都会加载，会根据AutoConfiguration上的@ConditionalOnClass等条件判断是否加载。
+    这里加载的仅仅是key为org.springframework.boot.autoconfigure.EnableAutoConfiguration的值
 
 ![](../pics/SpringBootApplication注解09.png)
 

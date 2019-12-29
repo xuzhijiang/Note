@@ -1,4 +1,35 @@
+# AOP核心概念
+
+![](../pics/AOP核心概念.png)
+
+    aop: 就是在不侵入原始的业务代码的情况下,把这些功能代码,比如说日志打印/参数校验的功能/权限认证功能/事务,等功能抽取出来,
+    形成一个个切面.这个过程叫抽取横切关注点.把相同功能的横切关注点抽取出来,形成一个个的切面.
+
+    AOP中的基本概念：5种类型的通知（Before，After，After-returning，After-throwing，Around）
+
+# spring aop什么时候使用jdk代理,什么时候使用cglib?在可选的情况下,如何进行指定?
+
+    Spring AOP 同时支持 CGLIB、JDK动态代理
+    
+    spring默认使用的是jdk的代理,但是有一个前提,是目标类要实现接口.JDK动态代理模式只能代理接口而不能代理类
+
+    如果我们代理的类实现了接口，Spring AOP 将会采用 JDK 动态代理来生成 AOP 代理类
+    
+    如果我们代理的类没有实现接口，Spring AOP 将直接采用 CGLIB 来生成 AOP 代理类
+
+    如何强制使用cblib代理? 
+    @EnableAspectJAutoProxy(proxyTargetClass = true) // true: 强制使用cblib代理
+    如果我们将proxyTargetClass固定为false 且代理类实现了接口才会走jdk代理
+
+![](../pics/aop使用的哪个代理.png)
+
+![](../pics/选择aop的动态代理方式01.png)
+
+![](../pics/选择aop的动态代理方式02.png)
+
 # Spring AOP的实现原理?
+
+    AOP是基于 动态代理,说spring aop,肯定要牵扯到设计模式->动态代理模式.
 
 AOP的实现，最关键的有两步：
 
@@ -86,47 +117,3 @@ AOP递归责任链：
 ,传入拦截器链和目标对象，new CglibMethodInvocation()并调用proceed()
 3. proceed()先执行全部拦截器，最后执行目标方法
 4. 目标方法的return是整个递归责任链的精华所在
-
-## Spring Boot中使用AOP
-
-### 引入AOP依赖
-
-在Spring Boot中引入AOP就跟引入其他模块一样，非常简单，只需要在pom.xml中加入如下依赖：
-
-```xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-aop</artifactId>
-</dependency>
-```
-
-在完成了引入AOP依赖包后，一般来说并不需要去做其他配置。也许在Spring中使用过注解配置方式的人会问是否需要在程序主类中增加@EnableAspectJAutoProxy来启用，实际并不需要。
-
-可以看下面关于AOP的默认配置属性，其中spring.aop.auto属性默认是开启的，也就是说只要引入了AOP依赖后，默认已经增加了@EnableAspectJAutoProxy。
-
-```
-# AOP
-spring.aop.auto=true # Add @EnableAspectJAutoProxy.
-spring.aop.proxy-target-class=false # Whether subclass-based (CGLIB) proxies are to be created (true) as
- opposed to standard Java interface-based proxies (false).
-```
-
->而当我们需要使用CGLIB来实现AOP的时候，需要配置spring.aop.proxy-target-class=true，不然默认使用的是标准Java的实现。
-
-### 优化：AOP切面的优先级
-
-由于通过AOP实现，程序得到了很好的解耦，但是也会带来一些问题，比如：我们可能会对Web层做多个切面，校验用户，校验头信息等等，这个时候经常会碰到切面的处理顺序问题。
-
-所以，我们需要定义每个切面的优先级，我们需要@Order(i)注解来标识切面的优先级。i的值越小，优先级越高。假设我们还有一个切面是CheckNameAspect用来校验name必须为xxx，我们为其设置@Order(10)，而上文中WebLogAspect设置为@Order(5)，所以WebLogAspect有更高的优先级，这个时候执行顺序是这样的：
-
-- 在@Before中优先执行@Order(5)的内容，再执行@Order(10)的内容
-- 在@After和@AfterReturning中优先执行@Order(10)的内容，再执行@Order(5)的内容
-
->所以我们可以这样子总结：
-
-* 在切入点前的操作，按order的值由小到大执行
-* 在切入点后的操作，按order的值由大到小执行
-
-# 参考:
-
-- [https://www.zhihu.com/question/23641679/answer/704897152](https://www.zhihu.com/question/23641679/answer/704897152)

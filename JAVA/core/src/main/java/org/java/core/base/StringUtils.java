@@ -1,6 +1,8 @@
 package org.java.core.base;
 
 import org.junit.Test;
+
+import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
@@ -118,5 +120,17 @@ public class StringUtils {
         // 末尾的空字符是不算的，第一个空字符是算的.
         String s = "abcaada";
         System.out.println(Arrays.toString(s.split("a")));
+    }
+
+    //用反射的方式改变字符串的值
+    @Test
+    public void changePoolString() throws NoSuchFieldException, IllegalAccessException {
+        String s1 = "293";
+        Field field = s1.getClass().getDeclaredField("value");
+        field.setAccessible(true);
+        char value[] = (char[]) field.get(s1);
+        value[1] = 'c';
+        System.out.println(s1);
+
     }
 }
