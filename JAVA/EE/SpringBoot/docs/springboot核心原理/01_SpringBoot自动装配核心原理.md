@@ -127,3 +127,64 @@ BeanDefinition包含的属性字段如上图.比如说要描述当前这个bean�
 # @Import的三种玩法
 
     项目示例:  spring-source-learn-code中的com.beans.BeanDefinition.setInject.MainConfig    
+
+# SpringBoot自动配置总结
+
+application.yml文件中到底都能配置什么?
+
+1. SpringBoot启动的时候加载主配置类，在主配置类中使用了@SpringBootApplication注解，点进去发现会开启@EnableAutoConfiguration注解自动配置。
+2. @EnableAutoConfiguration的作用：利用@Import({AutoConfigurationImportSelector.class})给容器中导入一些组件，点进去找到selectImports方法中List<String> configurations = this.getCandidateConfigurations(annotationMetadata, attributes);
+3. SpringFactoriesLoader.loaFactoryNames()扫描所有jar包类路径下META_INF/Spring.factories,把扫描到的这些文件的内容包装成一个properties对象，从properties中获取EnableAutoConfiguration.class类（类名）对应的值，然后将他们添加到容器中
+
+**总结将类路径下META-INF/Spring.factories里面配置的所有EnableAutoConfiguration的值加入到容器中**
+
+以HttpEncodingAutoConfiguration为例解释自动配置原理
+
+@Conditional根据满足某一个特定条件创建一个特定的Bean。比方说，当某一个jar包在一个类路径下的时候，自动配置一个或多个Bean；或者只有某个Bean被创建才会创建另外一个Bean。总的来说，就是根据特定条件来控制Bean的创建行为，这样我们可以利用这个特性进行一些自动的配置。
+
+~~~java
+@Configuration //表示这是一个配置类
+@EnableConfigurationProperties({HttpEncodingProperties.class})
+//启动指定类的ConfigurationProperties功能
+@ConditionalOnWebApplication(//Spring底层有@conditiona注解，根据不同的条件，如果满足指定的条件才会让配置类中的配置就会生效，判断当前应用是否为web应用。
+    type = Type.SERVLET
+)
+@ConditionalOnClass({CharacterEncodingFilter.class})
+//判断当前项目中有没有CharacterEncodingFilter这个类
+@ConditionalOnProperty(//判断配置文件中是否存在某个配置spring.http.encoding
+    prefix = "spring.http.encoding",
+    value = {"enabled"},
+    matchIfMissing = true
+)
+~~~
+
+根据当前不同的条件判断，决定这个配置类是否生效。
+
+所有可以在配置文件中能配置的属性都是在xxxProperties类中封装着，配置文件能配置什么就可以参照某个功能对应的这个属性类
+
+~~~java
+@ConfigurationProperties(
+    prefix = "spring.http.encoding"
+)//从配置文件中获取指定的值和bean的属性进行绑定，也就是说在yaml文件中可以配置spring.http.encoding
+public class HttpEncodingProperties {
+~~~
+
+    SpringBoot自动配置的精髓
+
+SpringBoot在启动的时候就会加载大量的自动配置类
+
+我们看我们需要的功能有没有在SpringBoot默认写好的自动配置文件类中，如果自动配置文件类中有我们需要的组件，就不在需要我们配置。
+
+1、快捷键Alt+Shift+N打开自动搜索，输入*AutoConfiguration，选择自己需要的配置文件类
+
+2、在配置文件类中选择注解xxxProperties.class
+
+3、在ConfigurationProperties注解后面就是可以配置的属性名，字段名就是属性值
+
+自动配置文件类只有满足条件才能生效，如何知道那些自动配置类生效，使用方法如下：
+
+~~~yaml
+debug: true
+~~~
+
+在yaml文件中配置应用以debug模式来启动，在控制台就会打印那些自动配置类已经生效了。其中Negative matches就是没有生效的配置类。Positive matches就是生效的自动配置。

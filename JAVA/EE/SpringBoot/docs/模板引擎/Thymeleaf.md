@@ -2,7 +2,7 @@
 
 直接打开html页面展现html页面，但是渲染后,是渲染后页面,做到了不破坏HTML自身内容的数据逻辑分离,所以比jsp好.
 
-## 2.SpringBoot引入thymeleaf
+# SpringBoot使用thymeleaf
 
 1、pom.xml文件中引入thymeleaf
 
@@ -59,11 +59,12 @@ Thymeleaf提供了一个用于整合Spring MVC的可选模块，在应用开发�
 
 Thymeleaf提供了诸如循环、条件判断、样式处理等手段，可以方便地控制HTML代码的生成过程，既可以用于在Server端生成全部HTML页面的传统Web应用，也可用于开发“单页面应用(SPA： Single PageApplication）”类型的现代Web应用。
 
-#### Thymeleaf的默认参数配置
+# springboot中Thymeleaf的默认参数配置
 
 如有需要修改默认配置的时候，只需复制下面要修改的属性到application.properties中，并修改成需要的值，如修改模板文件的扩展名，修改默认的模板路径等:
 
 ```
+spring.thymeleaf.servlet.content-type=text/html
 # Enable template caching.
 spring.thymeleaf.cache=true 
 # Check that the templates location exists.

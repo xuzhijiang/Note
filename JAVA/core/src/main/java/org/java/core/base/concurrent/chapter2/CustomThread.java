@@ -1,4 +1,4 @@
-package org.java.core.base.concurrent.chapter1;
+package org.java.core.base.concurrent.chapter2;
 
 public class CustomThread extends Thread {
 

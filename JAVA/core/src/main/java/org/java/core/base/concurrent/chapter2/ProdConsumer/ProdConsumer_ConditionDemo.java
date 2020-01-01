@@ -1,4 +1,4 @@
-package org.java.core.base.concurrent.chapter2.threadCommunication;
+package org.java.core.base.concurrent.chapter2.ProdConsumer;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;

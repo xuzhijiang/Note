@@ -27,3 +27,12 @@ springbootstudy-0.0.1-SNAPSHOT.jar是我们打包好的，内部包含了其他�
 
 1. 步骤一、修改打包方式打开pom.xml，将打包方式由jar改为war
 2. 步骤二、调整嵌入式Tomcat插件的编译方式,默认情况下， spring-boot-starter-web会启动一个嵌入式的tomcat，因为现在我们是要生成一个war包，跑在外部的tomcat上，所以，给项目添加一个tomcat依赖(spring-boot-starter-tomcat)，并将其scope设置为“provided(表明这些组件由外部容器提供）”从而覆盖掉默认设置。
+
+--------------------------------------
+
+不允许直接上传war到tomcat的原因:
+
+1.0.0.war -> 会在webapps下自动解压为1.0.0这个文件夹.
+然后又发布了1.0.1.war,又在webapps下自动解压为1.0.1这个文件夹,问题来了,你要走的其实是1.0.1这个版本,但是文件在1.0.0下,
+
+改成myshop.war也不行,会自动删除myshop,然后再自动解压,原来的文件就没了.

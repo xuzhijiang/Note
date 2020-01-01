@@ -1,4 +1,4 @@
-package org.java.core.base.concurrent.chapter1;
+package org.java.core.base.concurrent.chapter2;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;

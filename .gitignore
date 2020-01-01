@@ -26,14 +26,13 @@ gen/
 bin/
 
 # Maven
-/target
+target/
+!.mvn/wrapper/maven-wrapper.jar
 
 # Gradle
 .gradle/
 build/
 
-target/
-!.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
 .apt_generated
@@ -61,3 +60,7 @@ nbdist/
 
 *.log
 /logs
+
+## JRebel ##
+rebel.xml
+

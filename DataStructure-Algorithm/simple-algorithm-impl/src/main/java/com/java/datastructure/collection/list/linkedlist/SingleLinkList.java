@@ -3,15 +3,13 @@ package com.java.datastructure.collection.list.linkedlist;
 import java.util.Iterator;
 
 /**
- * 单端链表(单向链表)
+ * 单向链表
  *
  * 注意区分:
- * 单端链表: 只维护firstNode或者lastNode
- * 双端链表: 维护firstNode和lastNode
- * 单向链表: 每个node,只维护了这个node的next
- * 双向链表: 每个node,维护了这个node的prev和这个node的next
+ * 双向链表: 维护firstNode和lastNode,每个node,维护了这个node的prev和这个node的next
+ * 单向链表: 只维护firstNode,每个node,只维护了这个node的next.
  *
- * JDK的LinkedList是双端双向链表
+ * JDK的LinkedList是双向链表
  */
 public class SingleLinkList<T> implements Iterable<T> {
 
@@ -107,7 +105,7 @@ public class SingleLinkList<T> implements Iterable<T> {
         if(!isEmpty()){
             Node current = firstNode;
             while(current!=null){
-                System.out.println(current.getData() + "\t");
+                System.out.print(current.getData() + "\t");
                 current = current.getNext();
             }
         }

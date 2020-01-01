@@ -1,7 +1,7 @@
 package com.java.datastructure.collection.list.linkedlist;
 
 /**
- * 双端链表(单向链表)
+ * 双向链表
  *
  * 我们想在链表的尾端插入元素,如果不维护对最后一个节点的引用，我们必须要迭代整个链表才能得到最后一个节点，
  * 然后再插入，效率很低。因此我们在双端链表中添加一个addLast方法，用于添加节点到末尾。

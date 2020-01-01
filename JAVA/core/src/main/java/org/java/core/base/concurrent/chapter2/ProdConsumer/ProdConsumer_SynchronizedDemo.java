@@ -1,4 +1,4 @@
-package org.java.core.base.concurrent.chapter2.threadCommunication;
+package org.java.core.base.concurrent.chapter2.ProdConsumer;
 
 /**
  * V1.0版的生产消费模式

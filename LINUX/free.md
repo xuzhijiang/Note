@@ -1,6 +1,6 @@
 # Linux查看物理内存占用率
 
-```shell
+```shell script
 # Linux下看内存和CPU使用率一般都用top命令，
 # 但是实际在用的时候，用top查看出来的内存占用率都非常高，如：
 Mem: 4086496k total, 4034428k used, 52068k free, 112620k buffers
@@ -75,6 +75,9 @@ Swap:            0B          0B          0B
 # The available memory is just a estimate of how memory can be really used in your system for loading programs, so it is not a precise value.
 
 # Estimation of how much memory is available for starting new applications
+
+# 查看内存信息:
+cat /proc/meminfo  
 ```
 
 # 参考

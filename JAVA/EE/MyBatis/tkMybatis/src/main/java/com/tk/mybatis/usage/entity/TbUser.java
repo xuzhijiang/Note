@@ -1,11 +1,13 @@
 package com.tk.mybatis.usage.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "tb_user")
-public class TbUser {
+public class TbUser implements Serializable {
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

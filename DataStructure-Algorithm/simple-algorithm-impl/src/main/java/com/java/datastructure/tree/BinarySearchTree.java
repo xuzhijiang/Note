@@ -1,5 +1,10 @@
 package com.java.datastructure.tree;
 
+import com.java.algorithm.search.BinarySearch.BinarySearch;
+
+import java.util.LinkedList;
+
+// 二叉排序树: 二叉搜索树的中序遍历就是从小到大输出
 public class BinarySearchTree {
 
     int data; // 表示数据
@@ -19,7 +24,7 @@ public class BinarySearchTree {
             } else {
                 insert(root.left, data);
             }
-        } else { // 放在root的右边
+        } else { // 放在root的右子树
             if (root.right == null) {
                 root.right = new BinarySearchTree(data);
             } else {
@@ -29,11 +34,47 @@ public class BinarySearchTree {
     }
 
     // 中序遍历 左根(输出)右, 二叉搜索树的中序遍历就是从小到大输出
-    public void in(BinarySearchTree root) {
+    public static void in(BinarySearchTree root) {
         if (root != null) {
             in(root.left);
-            System.out.print(root.data + " ");
+            System.out.print(root.data + ", ");
             in(root.right);
+        }
+    }
+
+    // 前序遍历
+    public static void pre(BinarySearchTree root) {
+        if (root != null) {
+            System.out.print(root.data + ", ");
+            pre(root.left);
+            pre(root.right);
+        }
+    }
+
+    // 后序遍历
+    public static void post(BinarySearchTree root) {
+        if (root != null) {
+            post(root.left);
+            post(root.right);
+            System.out.print(root.data + ",");
+        }
+    }
+
+    // 层序遍历
+    public static void level(BinarySearchTree root) {
+        LinkedList<BinarySearchTree> queue = new LinkedList<>();
+
+        queue.offer(root); // 排队到队尾
+        while (!queue.isEmpty()) {
+            BinarySearchTree current = queue.poll(); // 队头的出队
+            System.out.print(current.data + ", ");
+
+            if (current.left != null) {
+                queue.offer(current.left);
+            }
+            if (current.right != null) {
+                queue.offer(current.right);
+            }
         }
     }
 
@@ -45,6 +86,22 @@ public class BinarySearchTree {
             root.insert(root, data[i]);
         }
         System.out.println("中序遍历为: ");
-        root.in(root);
+        BinarySearchTree.in(root);
+
+        System.out.println();
+        System.out.println();
+        System.out.println("前序遍历: ");
+        BinarySearchTree.pre(root);
+
+        System.out.println();
+        System.out.println();
+        System.out.println("后序遍历: ");
+        BinarySearchTree.post(root);
+
+
+        System.out.println();
+        System.out.println();
+        System.out.println("层序遍历: ");
+        BinarySearchTree.level(root);
     }
 }
