@@ -1,0 +1,1 @@
+![](../pics/解决properties配置文件在idea中出现乱码.png)

@@ -31,13 +31,3 @@ public class Person {
     private Cat cat;
 }
 ```
-
-# @Value与@ConfigurationProperties的区别
-
-    @Value注解只能用于基本类型的值注入
-
-|            | @ConfigurationProperties | @Value |
-| ---------- | ------------------------ | ------ |
-| 功能         | 批量注入配置文件中的属性             | 单个指定   |
-| SpEL       | 不支持                      | 支持     |
-| 复杂类型封装     | 支持                       | 不支持    |

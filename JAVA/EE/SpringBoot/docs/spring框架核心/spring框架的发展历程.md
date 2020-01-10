@@ -4,6 +4,8 @@
 2. Spring Boot - 自动化配置--->注解为主
 3. Spring Cloud - 单体应用--->分布式微服务系统
 
+- [查看spring和springboot最新版本](https://spring.io/projects/spring-boot#learn)
+
 # spring和springboot的jar包命名区别?
 
     spring的groupId命名: org.springframework

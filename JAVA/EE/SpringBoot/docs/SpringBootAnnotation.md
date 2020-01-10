@@ -36,11 +36,13 @@
 
 # ResponseBody
 
-![](pics/ResponseBody01.png)
-![](pics/ResponseBody02.png)
+    @ResponseBody可以修饰方法和类,修饰类的时候表示 这个类的所有方法返回的结果直接写到http的ResponseBody中
+    @ResponseBody: 一旦方法返回响应对象，MappingJackson2HttpMessageConverter就会将其转换为JSON,
+    写入http的响应体ResponseBody中.
 
-@ResponseBody注释: 一旦handler method返回响应对象，MappingJackson2HttpMessageConverter
-就会启动(kicks in)并将其转换为JSON响应。
+![](pics/ResponseBody01.png)
+
+![](pics/ResponseBody02.png)
 
 # @RequestBody
 
@@ -53,7 +55,15 @@
 
 # RestController
 
-@RestController：Spring4之后加入的注解，原来在@Controller中返回json需要@ResponseBody来配合，如果直接用@RestController替代@Controller就不需要再配置@ResponseBody，默认返回json格式。
+    @RestController：Spring4之后加入的注解，原来在@Controller中返回json需要@ResponseBody来配合，
+    如果直接用@RestController替代@Controller就不需要再配置@ResponseBody，默认返回json格式。
+
+```java
+// @RestController可以替代@Controller和@ResponseBody的原因
+@Controller
+@ResponseBody
+public @interface RestController {}
+```
 
 # @PathVariable
 
@@ -108,7 +118,7 @@ properties的配置的前缀，必要时，也可以通过locations指定propert
 ```java
 @SpringBootApplication
 @ImportResource({"classpath:some-context.xml", "classpath:another-context.xml"})
-public class Application {}    
+public class MainApplication {}    
 ```
 
 # 条件注解-ConditionalOn
@@ -178,9 +188,14 @@ public Page<SearchOrderOut> getOrders(@RequestBody @Valid Search search,
 - @RequestHeader and @ResponseHeader
 - @PreDestroy
 - @Autowired: 能将一个Bean“自动”从外部注入到本Bean中,当然可以通过@Autowired的required属性为false定义一个可选的注入
-- @PropertySource
+- @PropertySource: 加载指定的属性配置文件；(person.properties),配合@ConfigurationProperties(prefix = "person")使用
 - @GetMapping: 对应HTTP的GET请求，获取资源.
 - @PostMapping: 对应HTTP的POST请求，创建资源
 - @PutMapping: 对应HTTP的PUT请求，提交所有资源属性以及修改资源
 - @PatchMapping: 对应HTTP的PATCH请求，提交资源部分修改的属性.
 - @DeleteMapping: 对应HTTP的DELETE请求，删除服务器端的资源
+
+# spring boot测试
+
+@SpringBootTest: 这是一个SpringBoot的单元测试
+@RunWith(SpringRunner.class) : 单元测试使用springboot的驱动器跑,而不是junit的驱动器

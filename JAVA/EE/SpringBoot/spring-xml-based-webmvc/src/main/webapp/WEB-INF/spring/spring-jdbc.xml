@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+    <!--
+        1. tx：annotation-driven用于告诉Spring启用基于注释的声明式事务管理
+        2. transaction-manager属性用于提供事务管理器bean名称
+        3. 事务管理器名称的默认值是transactionManager，但我仍然要避免混淆
+        4. proxy-target-class用于告诉Spring使用基于类的代理，如果没有它，
+        您将获得运行时异常
+    -->
+
+    <!-- Enable Annotation based Declarative Transaction Management -->
+    <!-- 启用基于注解的声明式事务管理 -->
+    <tx:annotation-driven proxy-target-class="true"
+                          transaction-manager="myTransactionManager"/>
+
+    <!-- Creating TransactionManager Bean, since JDBC we are creating of type
+        DataSourceTransactionManager -->
+    <!-- 创建TransactionManager other,因为我们使用的是JDBC,所以我们应该使用jdbc对应的事务管理器-->
+    <bean id="myTransactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--
+        1. 如果使用JDBC,则应该使用org.springframework.jdbc.datasource.DriverManagerDataSource,
+        2. 如果使用Hibernate作为ORM工具,则应该使用org.springframework.orm.hibernate3	.HibernateTransactionManager
+        3. jpa要使用org.springframework.orm.jpa.JpaTransactionManager"-->
+
+
+    <!-- 什么叫声明式事务管理 -->
+    <!-- 您可能会认为我们可以通过为connection设置auto-commit为false并根据所有语句的结果(提交或回滚事务）轻松完成。
+    显然我们可以做到，但这会产生很多boiler-plate代码.此外，相同的代码将出现在我们正在寻找事务管理的所有位置，从而导致紧密耦合和不可维护的代码。
+
+Spring声明式事务管理通过使用AOP来实现松散耦合并避免在我们的应用程序中使用样板代码来解决这些问题。
+-->
+</beans>

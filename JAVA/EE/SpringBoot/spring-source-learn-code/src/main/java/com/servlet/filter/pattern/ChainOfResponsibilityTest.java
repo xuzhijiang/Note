@@ -3,7 +3,7 @@ package com.servlet.filter.pattern;
 import java.util.ArrayList;
 
 /**
- * 责任链设计模式主类
+ * 责任链设计模式
  */
 public class ChainOfResponsibilityTest {
 
@@ -37,7 +37,6 @@ interface Filter {
 
 // 认证过滤器
 class AuthenticationFilter implements Filter {
-
     @Override
     public void doFilter(Request request, Response response, FilterChain chain) {
         System.out.println("验证用户是否是合法用户");

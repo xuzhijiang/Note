@@ -1,0 +1,58 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev # 激活指定的文档块
+
+
+---
+server:
+  port: 8081
+spring:
+  profiles: dev # Define profile for this document 为这个文档块定义,定义它属于什么profile
+
+fetch:
+  proxies:
+    office:
+      name: Office Internal Use
+      host: office.proxy.example.com
+      headers:
+        - UserName
+        - UserToken
+    www:
+      name: ${PUBLIC_PROXY:Access Internet}
+      host: internet.proxy.example.com
+      port: 8080
+      headers:
+        - FromAddress
+        - AuthToken
+    test:
+      name: Test Only
+      host: test.proxy.example.com
+
+person:
+  lastName: 李四${random.uuid}
+  age: ${random.int}
+  birth: 2006/09/01
+  boss: false
+  maps: {k1: v1, k2: v2}
+  lists:
+    - lisi
+    - zhaoliu
+  dog:
+    name: ${person.lastName}小狗
+    age: 12
+
+
+---
+server:
+  port: 8082
+spring:
+  profiles: prod
+
+
+---
+server:
+  port: 8083
+spring:
+  profiles: test

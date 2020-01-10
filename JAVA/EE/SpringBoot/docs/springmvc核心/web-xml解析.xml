@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+        id="WebApp_ID" version="2.5">
+
+    <!--WEB应用的名字 -->
+    <display-name>
+    </display-name>
+
+    <!-- 欢迎界面,一般为index.* -->
+    <welcome-file-list>
+        <welcome-file>filter-welcome.html</welcome-file>
+    </welcome-file-list>
+
+    <!--WEB应用的描述-->
+    <description>
+    </description>
+
+
+    <!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+    <!-- 由所有Servlets和Filters共享的Spring根容器(父容器)的定义 -->
+    <!-- ContextLoaderListener用于干什么呢? 用于加载根容器中的beans -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/spring/root-context.xml</param-value>
+        <!-- param-value可以指定多个文件,用逗号隔开 -->
+        <!-- <param-value>/WEB-INF/applicationContext.xml, /WEB-INF/action-servlet.xml</param-value> -->
+    </context-param>
+
+
+    <servlet>
+        <servlet-name>springDispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <!-- 可以使用类路径的形式,也可以直接指定相对路径的形式 -->
+            <param-value>classpath:springmvc.xml</param-value>
+            <!-- <param-value>/WEB-INF/spring/servlet-context.xml</param-value> -->
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springDispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- 设置CharacterEncodingFilter,解决POST请求乱码,注意这个Filter只能解决POST请求的乱码 -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <!-- 配置这个参数可以设置request(请求)的字符集 -->
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <!-- 配置这个参数可以设置response(响应)的字符集 -->
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <!-- /*: 拦截所有的请求. -->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!--如果某个会话在一定时间内未被访问，服务器可以抛弃它以节省内存，可通过使用HttpSession的setMaxInactiveInterval方法明确设置单个会话对象的超时值，或者可利用session-config元素制定缺省超时值-->
+    <session-config>
+    </session-config>
+
+    <!--在返回特定HTTP状态代码时，或者特定类型的异常被抛出时，能够制定将要显示的页面-->
+    <error-page>
+    </error-page>
+</web-app>
