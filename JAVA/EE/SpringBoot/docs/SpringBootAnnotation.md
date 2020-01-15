@@ -37,7 +37,11 @@
 # ResponseBody
 
     @ResponseBody可以修饰方法和类,修饰类的时候表示 这个类的所有方法返回的结果直接写到http的ResponseBody中
-    @ResponseBody: 一旦方法返回响应对象，MappingJackson2HttpMessageConverter就会将其转换为JSON,
+    
+    @ResponseBody作用: 通知Spring依据HTTP请求信息(即accept值）选择合适的转换器(converter）转换
+    成client能够接受的格式,返回给client.选择什么转换器是根据Http请求的Request Headers的Accept字段来确认.
+    
+    比如转成json: 一旦方法返回响应对象，MappingJackson2HttpMessageConverter就会将其转换为JSON,
     写入http的响应体ResponseBody中.
 
 ![](pics/ResponseBody01.png)
@@ -46,7 +50,11 @@
 
 # @RequestBody
 
-用于将"请求主体JSON数据(request body JSON data)"映射到Employee对象，这也是由MappingJackson2HttpMessageConverter映射完成的。
+    @RequestBody只能作用于参数,作用是: 通知Spring将客户端发来的数据(从HTTP的请求的body中提取）转换为Java对象.
+
+    比如: 用于将"请求主体JSON数据(request body JSON data)"映射到Employee对象，
+    这也是由MappingJackson2HttpMessageConverter映射完成的。
+
 
 # ModelAttribute
 
@@ -104,6 +112,8 @@ properties的配置的前缀，必要时，也可以通过locations指定propert
 在Spring Boot项目中，默认情况下，会扫描程序入口点类所在的包及下属子包中的Bean组件。如果Bean组件放在其他的包中，则可以给配置类添加@ComponentScan注解,指定额外的要扫描Bean组件的包.
 
 通过@ComponentScan注解扫描特定的包只是这一注解最常见的用法罢了，这一注解其实包容有诸多的属性，比如它可以定义过滤器，将特定的Bean排除在外。
+
+@ComponentScan注解。这个注解的作用类似于我们在spring的xml配置文件中的base-package的作用。在主配置类上添加这个注解后，会自动扫描所有的子包，寻找含有@Repository、@Service、@Controller、@Component、@RestController、@Configuration注解的类，实现实例化和依赖注入等功能。对于一些依赖的第三方jar，由于这些类上并没有添加以上的这些注解，因此通过@ComponentScan无法直接获取其实例。例如我们再进行Mybatis与Spring整合的使用，使用到SqlSessionFactory，通过@ComponentScan无法获取其实例。对于这种情况， SpringBoot官方倾向于在一个添加@Configuration注解的类上，来获取需要依赖注入的Bean。不过结合目前的Spring使用情况来说，大部分公司都是XML+注解联合使用的。因此Spring也提供了另外一个注解@ImportResource，来导入类路径下的xml格式的配置文件:`@ImportResource (value={"applicationContext.xml" })`。
 
 # @JsonView的应用场景
 

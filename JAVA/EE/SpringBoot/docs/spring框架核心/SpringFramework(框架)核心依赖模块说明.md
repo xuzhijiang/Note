@@ -10,7 +10,7 @@
 
 # spring-webmvc
 
-    @ModelAndView,@HandlerInterceptorAdapter,DispatcherServlet.
+    HandlerInterceptor,WebMvcConfigurer,@ModelAndView,@HandlerInterceptorAdapter,DispatcherServlet
 
 # spring-beans
 
