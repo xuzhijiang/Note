@@ -20,7 +20,7 @@
 		<mysql.version>5.0.5</mysql.version>
 		<javax.json.version>1.1</javax.json.version>
 		<oracle.version>10.2.0.2.0</oracle.version>
-		<jackson.version>2.9.5</jackson.version>
+		<jackson.version>2.12.1</jackson.version>
 	</properties>
 
 	<dependencies>
