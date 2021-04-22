@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.4.6</version>
+            <version>3.5.6</version>
         </dependency>
 
         <!-- 在基础篇开篇中，我们提到过mybatis在工作过程中，依赖数据源(DataSource)，
