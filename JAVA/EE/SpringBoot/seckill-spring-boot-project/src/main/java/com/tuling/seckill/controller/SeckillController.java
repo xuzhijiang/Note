@@ -5,6 +5,7 @@ import com.tuling.seckill.common.ReturnMessage;
 import com.tuling.seckill.model.Product;
 import com.tuling.seckill.service.OrderService;
 import com.tuling.seckill.service.ProductService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooDefs;
@@ -13,20 +14,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
-@RequestMapping(value = "/seckill")
+@Slf4j
 public class SeckillController {
-
-    // 用logger打印一般都是异步打印日志,这块要修改优化.
-    private static final Logger logger = LoggerFactory.getLogger(SeckillController.class);
 
     @Autowired
     private OrderService orderService;
@@ -34,7 +30,6 @@ public class SeckillController {
     private ProductService productService;
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
-
     @Autowired
     private ZooKeeper zooKeeper;
 
@@ -46,14 +41,16 @@ public class SeckillController {
     @PostConstruct
     public void init() {
         List<Product> products = productService.listProducts();
+        // 把所有需要秒杀的商品的库存存到redis中, key为: product_stock_商品id value: 这件商品的库存
         for (Product p : products) {
             // 用最主流的技术,现在很少人使用jedis直接操作了.
-            stringRedisTemplate.opsForValue().set(Constants.REDIS_PRODUCT_STOCK_PREFIX + p.getId(), p.getStock() + "");
+            stringRedisTemplate.opsForValue().set(Constants.REDIS_PRODUCT_STOCK_PREFIX + p.getId(), String.valueOf(p.getStock()));
         }
     }
 
-    @PostMapping("/{productId}")
-    public ReturnMessage seckill(@PathVariable("productId") Long productId) throws KeeperException, InterruptedException {
+    @GetMapping("/seckill/{productId}")
+    public ReturnMessage seckill(@PathVariable("productId") Long productId)
+            throws KeeperException, InterruptedException {
         // redis虽然快,但是redis毕竟是一个远程的服务,就算再快,jvm这样一个外部应用程序和redis打交道,仍然有网络开销
         // 如果能够减少这些网络开销,对系统并发的性能提升也是很大的.
         if (productSoldOutMap.get(productId) != null) { // 这个其实就是jvm级别的缓存
@@ -61,22 +58,26 @@ public class SeckillController {
         }
 
         // redis的原子减操作,多个线程来做减操作,redis后台会帮你排队,不会出现并发问题.这个方法是线程安全的.
-        Long stock = stringRedisTemplate.opsForValue().decrement(Constants.REDIS_PRODUCT_STOCK_PREFIX + productId); // 返回值是剩余库存
+        // 返回值是剩余库存
+        Long stock = stringRedisTemplate.opsForValue().decrement(Constants.REDIS_PRODUCT_STOCK_PREFIX + productId);
         if (stock < 0) {
+            // 设置这个 productId 的商品已经被售罄!
             productSoldOutMap.put(productId, true);
-            logger.info("=========设置商品{}售完标记====", productId);
+            log.info("=========设置商品{}售完标记==>>>>", productId);
 
-            // 还原库存,防止少卖,如果不还原,这个stock减到负几十也是有可能的
+            // 还原redis中库存,防止少卖,如果不还原,这个stock减到负几十也是有可能的
             stock = stringRedisTemplate.opsForValue().increment(Constants.REDIS_PRODUCT_STOCK_PREFIX + productId);
             // 还原之后,最后stock库存是可以还原到0的
-            logger.info("===========stock: " + stock);
+            log.info("===========还原stock到=====>>>>> " + stock);
 
+            // 格式: /product_sold_out_flag/商品id
             String zkSoldOutProductPath = Constants.getZKSoldOutProductPath(productId);
-            if (zooKeeper.exists(zkSoldOutProductPath, true) == null) { // 如果路径不存在
-                // 判断路径是否存在,如果不存在则创建/product_sold_out_flag/productId
+            // 判断路径是否存在,如果路径不存在则创建/product_sold_out_flag/productId
+            if (zooKeeper.exists(zkSoldOutProductPath, true) == null) {
+                // 创建路径的同时 设置值为 true, 而且这个节点是持久节点
                 zooKeeper.create(zkSoldOutProductPath, "true".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
             }
-            // 监听zk售完标记节点(对zkSoldOutProductPath这个路径设置监听)
+            // 监听商品售完标记 (也就是对zkSoldOutProductPath这个路径设置监听)
             zooKeeper.exists(zkSoldOutProductPath, true); // 对某个节点 设置监听
 
             return ReturnMessage.error("商品已售罄");
@@ -96,7 +97,7 @@ public class SeckillController {
                 zooKeeper.setData(Constants.getZKSoldOutProductPath(productId), "false".getBytes(), -1);
             }
 
-            logger.error("创建订单失败", e);
+            log.error("创建订单失败", e);
             return ReturnMessage.error("创建订单失败: " + e.getMessage());
         }
         return ReturnMessage.success();

@@ -60,21 +60,16 @@ import java.util.List;
  */
 public class Searcher {
 
-    // 搜索索引库文件
-
     public static void main(String args[]) throws Exception {
-        // 搜索条件(不区分大小写)
-        String queryString = "lucene";
 //        String queryString = "compass";
-
-        // 进行搜索得到结果
-        // ==============================
 
         Directory directory = FSDirectory.open(new File("./indexDir/"));// 索引库目录
         Analyzer analyzer = new StandardAnalyzer();
 
-        // 1、把查询字符串转为查询对象(存储的都是二进制文件，普通的String肯定无法查询，因此需要转换)
-        QueryParser queryParser = new QueryParser("title",analyzer);// 只在标题里面查询
+        // 1、把查询字符串转为查询对象(存储的都是二进制文件，普通的明文String肯定无法查询，因此需要转换)
+        QueryParser queryParser = new QueryParser("title",analyzer); // 只在标题里面查询
+        // 构建要查询的字符串(不区分大小写)
+        String queryString = "lucene";
         // 要在哪些字段上查询存放在queryParser，要查询的内容就存放在query里
         Query query = queryParser.parse(queryString);
 

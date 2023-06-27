@@ -5,8 +5,6 @@ import java.util.Queue;
 
 public interface MyDeque<E> extends Queue<E> {
 
-    // *** Deque methods ***
-
     /**
      * 如果容量够的话,往deque的front插入元素,如果容量满了,就抛出异常.
      * 当有容量限制的时候,应该优先使用offerFirst
@@ -70,50 +68,20 @@ public interface MyDeque<E> extends Queue<E> {
     E peekLast();
 
     // *** Queue methods ***
-
     boolean add(E e);
-
     boolean offer(E e);
-
     E remove();
-
     E poll();
-
     E element();
-
     E peek();
 
-
     // *** Stack methods ***
-
-    /**
-     * Pushes an element onto the stack represented by this deque (in other
-     * words, at the head of this deque) if it is possible to do so
-     * immediately without violating capacity restrictions, throwing an
-     * {@code IllegalStateException} if no space is currently available.
-     *
-     * <p>This method is equivalent to {@link #addFirst}.
-     */
     void push(E e);
-
-    /**
-     * Pops an element from the stack represented by this deque.  In other
-     * words, removes and returns the first element of this deque.
-     *
-     * <p>This method is equivalent to {@link #removeFirst()}.
-     */
     E pop();
 
     // *** Collection methods ***
-
     boolean remove(Object o);
-
     boolean contains(Object o);
-
     public int size();
-
     Iterator<E> iterator();
-
-    Iterator<E> descendingIterator();
-
 }

@@ -61,7 +61,7 @@ public class XATest {
             // phase2(第二阶段): 提交所有事务分支
             boolean onePhase = false; // TM判断有2个事务分支,所以不能优化为一阶段提交
             // 判断第一阶段预提交的结果,来决定第二阶段如何进行.
-            if (rm1_prepare == XAResource.XA_OK && rm2_prepare == XAResource.XA_OK) { // 所有分支都prepare成功,提
+            if (rm1_prepare == XAResource.XA_OK && rm2_prepare == XAResource.XA_OK) { // 所有分支都prepare成功,则进行提交
                 rm1.commit(xid1, onePhase);
                 rm2.commit(xid2, onePhase);
             } else { // 如果有事务分支没有成功,则回滚.

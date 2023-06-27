@@ -21,7 +21,6 @@ public class TwoLinkedListMergeToOne {
 
         Node result = merge(node1.next, node2.next);
 
-
         System.out.println("合并后打印result*****************");
         print(result);
     }

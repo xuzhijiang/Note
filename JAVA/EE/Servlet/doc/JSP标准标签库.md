@@ -1,94 +1,55 @@
-# JSP具体语法规则
+# JSP中9大隐式对象
 
-### JSP隐式对象
+    隐式对象指那些由系统提供，可以在JSP页面直接使用的对象：
 
-隐式对象指那些由系统提供，可以在JSP页面直接使用的对象：
+    对象          所属类型
+    request     javax.servlet.http.HttpServletRequest
+    response    javax.servlet.http.HttpServletResponse
+    out         javax.servlet.jsp.JspWriter
+    session     javax.servlet.http.HttpSession
+    application javax.servlet.ServletContext
+    config      javax.servlet.ServletConfig
+    pageContext javax.servlet.jsp.PageContext
+    page        javax.servlet.jsp.HttpJspPage
+    exception   java.lang.Throwable
 
-对象          所属类型
-request     javax.servlet.http.HttpServletRequest
-response    javax.servlet.http.HttpServletResponse
-out         javax.servlet.jsp.JspWriter
-session     javax.servlet.http.HttpSession
-application javax.servlet.ServletContext
-config      javax.servlet.ServletConfig
-pageContext javax.servlet.jsp.PageContext
-page        javax.servlet.jsp.HttpJspPage
-exception   java.lang.Throwable
+# 内置对象示例
 
-### 保存数据的“范围”
+    access: http://localhost:8080/implicitObjects.jsp
+    示例中用到的内置对象: request, response, session, config, application
 
-PageContext对象提供了一个有趣的方法：
-
-`public abstract void setAttribute(String name, Object value, int scope)`
-
-有4种scope取值：
-
-* PAGE_SCOPE
-* REQUEST_SCOPE
-* SESSION_SCOPE
-* APPLICATION_SCOPE
-
-```jsp
-<%
-//product is a Java object
-pageContext.setAttribute("product", product,PageContext.REQUEST_SCOPE);
-%>
-```
-
-### 内置对象示例
-
-access: http://localhost:8080/implicitObjects.jsp
-
-示例中用到的内置对象: request, response, session, config, application
-
-### 设置输出编码
-
-在默认情况下，JSP编译器会将JSP页面的内容类型设为text/html。如果要使
-用不同的类型，则需要通过调用response.setContentType()或者使用页面指
-令来设置内容类型.
-
-`response.setContentType("text/json");`
-
-### 页面指令
+# 页面指令
 
 ```jsp
 <%@ page attribute1="value1" attribute2="value2" ... %>
 ```
 
-指令属性名 说明
-import    定义一个或多个本页面中将被导入和使用的java类型。
-session   值为True，本页面加入会话管理；值为False则相反。
-buffer    以KB为单位，定义隐式对象out的缓冲大小。必须以KB后缀结尾。默认大小为8KB或更大(取决于JSP容器）。该值可以为none，这意味着没有缓冲，所有数据将直接写入PrintWriter。
-autoFlush 默认值为True。若值为True，则当输出缓冲满时会自写入输出流。而值为False，则仅当调用隐式对象的flush方法时，才会写入输出流。因此，若缓冲溢出，则会抛出异常。
-isThreadSafe 定义该页面的线程安全级别
-info      返回调用容器生成的Servlet类的getServletInfo方法的结果
+    指令属性名 说明
+    import    定义一个或多个本页面中将被导入和使用的java类型。
+    session   值为True，本页面加入会话管理；值为False则相反。
+    buffer    以KB为单位，定义隐式对象out的缓冲大小。必须以KB后缀结尾。默认大小为8KB或更大(取决于JSP容器）。该值可以为none，这意味着没有缓冲，所有数据将直接写入PrintWriter。
+    autoFlush 默认值为True。若值为True，则当输出缓冲满时会自写入输出流。而值为False，则仅当调用隐式对象的flush方法时，才会写入输出流。因此，若缓冲溢出，则会抛出异常。
+    isThreadSafe 定义该页面的线程安全级别
+    info      返回调用容器生成的Servlet类的getServletInfo方法的结果
+    
+    指令属性名 说明
+    errorPage    定义当出错时用来处理错误的页面。
+    isErrorPage  标识本页是一个错误处理页面。
+    contentType  定义本页面隐式对象response的内容类型，默认是text/html。
+    pageEncoding 定义本页面的字符编码，默认是ISO-8859-1
+    isELIgnored  配置是否忽略EL表达式。 EL是Expression Language的缩写。
+    language     定义本页面的脚本语言类型，默认是Java。
+    Extends      定义JSP实现类要继承的父类。
 
-指令属性名 说明
-errorPage    定义当出错时用来处理错误的页面。
-isErrorPage  标识本页是一个错误处理页面。
-contentType  定义本页面隐式对象response的内容类型，默认是text/html。
-pageEncoding 定义本页面的字符编码，默认是ISO-8859-1
-isELIgnored  配置是否忽略EL表达式。 EL是Expression Language的缩写。
-language     定义本页面的脚本语言类型，默认是Java。
-Extends      定义JSP实现类要继承的父类。
+# include指令
 
-### include指令
-
-使用include指令将其他文件中的内容包含到当前JSP页面。一个页面中可以
-有多个include指令。若存在一个内容会在多个不同页面中使用或一个页面不
-同位置使用的场景，则将该内容模块化到一个include文件非常有用。
+    使用include指令将其他文件中的内容包含到当前JSP页面
 
 ```jsp
 <%@ include file="url"%>
 ```
 
-JSP转换器处理include指令时，将指令替换为指令所包含文件的内容。
-
-#### include指令的用法
-
->include指令也可以包含静态HTML文件
-
-access: http://localhost:8080/main.jsp
+    include指令也可以包含静态HTML文件
 
 ### 表达式
 

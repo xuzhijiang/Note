@@ -14,8 +14,6 @@
 
 # RequestMapping注解
 
->@RestController和@RequestMapping ("/" )，不是SpringBoot 中的内容，是SpringMVC中的内容
-
 ![](pics/RequestMapping注解.png)
 
 - ContentType: 用来告诉服务器当前发送的数据是什么格式 
@@ -73,14 +71,6 @@
 public @interface RestController {}
 ```
 
-# @PathVariable
-
-从URI中提取数据并将其映射到函数的参数中
-
-# @RequestParam:
-
-获取请求参数的值,public String hello(@RequestParam(value = "id",required = false,defaultValue = "0") Integer id){}
-
 # @Value
 
 给Bean中的字段添加@Value注解，能为其设置默认值。
@@ -134,14 +124,6 @@ public class MainApplication {}
 # 条件注解-ConditionalOn
 
 ```java
-//判断当前项目中有没有CharacterEncodingFilter这个类
-@ConditionalOnClass({CharacterEncodingFilter.class})
-
-//Spring底层有@conditiona注解，根据不同的条件，如果满足指定的条件才会让配置类中的配置就会生效，判断当前应用是否为web应用。
-@ConditionalOnWebApplication(
-    type = Type.SERVLET
-)
-
 //判断配置文件中是否存在某个配置spring.http.encoding
 @ConditionalOnProperty(
     prefix = "spring.http.encoding",
@@ -194,16 +176,9 @@ public Page<SearchOrderOut> getOrders(@RequestBody @Valid Search search,
 - @Primary:声明默认的，首要的bean(在没有具体指明名字的时候使用).
 - Springboot中显示的导入配置类的方法; @Import(value = { LoginSecurityConfig.class })
 - @ComponentScan(basePackages="pkg")-这个是为了导入和MainApplication不是同一个包,也不是其子包的package中的配置.
-- @Qualifier: 如果在注入时发现符合要求的Bean有多个，可以使用@Qualifier来人为指定选哪个Bean
 - @RequestHeader and @ResponseHeader
 - @PreDestroy
-- @Autowired: 能将一个Bean“自动”从外部注入到本Bean中,当然可以通过@Autowired的required属性为false定义一个可选的注入
 - @PropertySource: 加载指定的属性配置文件；(person.properties),配合@ConfigurationProperties(prefix = "person")使用
-- @GetMapping: 对应HTTP的GET请求，获取资源.
-- @PostMapping: 对应HTTP的POST请求，创建资源
-- @PutMapping: 对应HTTP的PUT请求，提交所有资源属性以及修改资源
-- @PatchMapping: 对应HTTP的PATCH请求，提交资源部分修改的属性.
-- @DeleteMapping: 对应HTTP的DELETE请求，删除服务器端的资源
 
 # spring boot测试
 

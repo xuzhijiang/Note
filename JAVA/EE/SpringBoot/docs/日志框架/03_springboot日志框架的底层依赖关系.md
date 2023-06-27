@@ -12,6 +12,7 @@
     
     spring-boot-starter这个jar中帮我们自动导入了spring-boot-starter-logging.
     
+
 # 接下来看一下 spring-boot-starter-logging是如何统一日志框架为slf4j+logback的?
     
     1) SpringBoot底层也是使用slf4j+logback的方式进行日志记录

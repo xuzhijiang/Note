@@ -1,0 +1,16 @@
+kubectl get serviceaccount -n kube-system
+
+kubectl get po --all-namespaces
+
+# 在命名空间为kube-system的地方,tiller-deploy拥有的serviceAccount
+kubectl get deploy --namespace kube-system tiller-deploy --output yaml|grep  serviceAccount
+
+1、查看指定pod的日志
+
+kubectl logs <pod_name>
+
+kubectl logs -f <pod_name> #类似tail -f的方式查看(tail -f 实时查看日志文件 tail -f 日志文件log)
+
+2、查看指定pod中指定容器的日志
+
+kubectl logs <pod_name> -c <container_name>

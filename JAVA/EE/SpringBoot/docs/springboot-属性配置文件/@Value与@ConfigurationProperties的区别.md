@@ -14,3 +14,5 @@
     如果说，我们专门编写了一个javaBean来和配置文件进行映射，我们就直接使用@ConfigurationProperties；
 
     松散绑定（松散语法,即last-name/last_name/lastName可以相互匹配）
+    
+    // server.tomcat.uri-encoding(uriEncoding和uri-encoding松散匹配)

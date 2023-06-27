@@ -1,10 +1,9 @@
 package org.lucene.core.entity;
 
 /**
- * 一个文章可能包含的字段有：id,标题、摘要、关键字、内容、发表时间、作者等信息。
- * 我们希望不论哪一个字段包含用户搜索的关键字，都可以搜 索到这片文章。
+ * 我们希望: 不论Article的哪一个Field包含用户搜索的关键字，都可以搜索到对应的Article
  *
- * 因此在用户发表文章的时候，我们往数据库中存储记录的时候，同时通过Lucene对文章建立索引。
+ * 因此在用户发表Article的时候，我们往数据库中存储记录的时候，同时通过Lucene对Article建立索引
  */
 public class Article {
     private Integer id;

@@ -82,7 +82,6 @@
 				</configuration>
 			</plugin>
 			<!-- 使用spring-boot-maven-plugin打包可执行jar -->
-			<!-- create SpringBoot executable application jar -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

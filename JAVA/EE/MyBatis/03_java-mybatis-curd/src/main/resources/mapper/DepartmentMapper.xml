@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--http://mybatis.org/dtd/mybatis-3-mapper.dtd定义了xml中支持哪些标签-->
+<mapper namespace="org.mybatis.core.mapper.DepartmentMapper">
+    <select id="getDeptById" resultType="org.mybatis.core.model.Department">
+        select id,dept_name departmentName from tb_dept where id=#{id}
+    </select>
+
+    <!--
+    场景二：
+        查询Department的时候将Department对应的所有员工信息也查询出来
+     -->
+    <!--
+        public class Department {
+            private Integer id;
+            private String departmentName;
+            private List<User> users;
+        }
+      did  dept_name  ||  eid  last_name  email   gender
+     -->
+    <!--嵌套结果集的方式，使用collection标签定义关联的集合类型的属性封装规则  -->
+    <resultMap id="MyDept" type="org.mybatis.core.model.Department">
+        <id column="did" property="id"></id>
+        <result column="dept_name" property="departmentName"></result>
+        <!--
+            collection定义关联集合类型的属性的封装规则
+            ofType:指定集合里面元素的类型
+        -->
+        <collection property="users" ofType="org.mybatis.core.model.User">
+            <!-- 定义这个集合中元素的封装规则 -->
+            <id column="uid" property="id"></id>
+            <result column="last_name" property="lastName"></result>
+            <result column="gender" property="gender"></result>
+            <result column="email" property="email"></result>
+            <result column="did" property="dept.id"></result>
+            <result column="dept_name" property="dept.departmentName"></result>
+        </collection>
+    </resultMap>
+    <select id="getDeptByIdPlus" resultMap="MyDept">
+        SELECT
+            d.id did,d.dept_name dept_name,
+            u.id uid,u.last_name last_name,u.gender gender,u.email email
+        FROM tb_dept d  LEFT JOIN
+        USER u ON d.id = u.d_id where d.id = #{id}
+    </select>
+
+
+    <!-- collection：分段查询(分步骤查询) -->
+    <resultMap id="MyDeptStep" type="org.mybatis.core.model.Department">
+        <id column="id" property="id"></id>
+        <result column="dept_name" property="departmentName"></result>
+        <collection property="users"
+                    select="org.mybatis.core.mapper.UserMapperPlus.getUsersByDeptId"
+                    column="{deptId=id}" fetchType="lazy">
+        </collection>
+    </resultMap>
+    <select id="getDeptByIdStep" resultMap="MyDeptStep">
+        select id,dept_name from tb_dept where id=#{id}
+    </select>
+
+    <!-- 扩展：多列的值传递过去：
+        将多列的值封装map传递；
+        column="{key1=column1,key2=column2}"
+    fetchType="lazy"：表示使用延迟加载；
+            - lazy：延迟
+            - eager：立即
+     -->
+</mapper>

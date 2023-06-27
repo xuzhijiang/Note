@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.32.150:3307/mydb
+    username: root
+    password: root
+    driver-class-name: org.gjt.mm.mysql.Driver
+    initialSize: 2
+    minIdle: 2
+    maxActive: 2
+    maxWait: 60000 # 配置获取连接等待超时的时间
+  rabbitmq:
+    host: 192.168.32.150
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: / # 虚拟主机
+
+server:
+  port: 8089

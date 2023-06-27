@@ -26,12 +26,11 @@ scp -r /opt/soft/test root@10.6.159.147:/opt/soft/scptest
 # 从远程复制到本地
 
 ```shell script
-# 从远程复制到本地的scp命令与上面的命令一样，只要将从本地复制到远程的命令后面2个参数互换顺序就行了。
-# 3. 从远程复制文件到本地目录
+# 从远程复制 文件 到本地目录
 # 说明： 从10.6.159.147机器上的/opt/soft/的目录中下载demo.tar 文件到本地/opt/soft/目录中
 scp root@10.6.159.147:/opt/soft/demo.tar /opt/soft/
 
-# 4. 从远处复制目录到本地
+# 从远处复制 目录 到本地
 # 说明： 从10.6.159.147机器上的/opt/soft/中下载test目录到本地的/opt/soft/目录来。
 scp -r root@10.6.159.147:/opt/soft/test /opt/soft/
 ```

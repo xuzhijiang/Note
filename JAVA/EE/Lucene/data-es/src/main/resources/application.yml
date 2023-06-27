@@ -1,20 +1,11 @@
 spring:
-  application:
-    name: data-es
-  jdbc:
-    show-sql: true
-  data:
-    elasticsearch:
-      # 默认为elasticsearch
-      cluster-name: elasticsearch
-      # 配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
-      # cluster-nodes:
-      properties:
-        path:
-          # elasticsearch日志存储目录
-          logs: ./elasticsearch/log
-          # elasticsearch数据存储目录
-          data: ./elasticsearch/data
+  elasticsearch:
+    jest:
+      uris: http://192.168.32.134:9200, http://192.168.32.134:9201, http://192.168.32.134:9203
+      #username: elastic
+      #password: 123456
+      read-timeout: 20000 #读取超时
+      connection-timeout: 20000 #连接超时
 
 server:
   port: 9090

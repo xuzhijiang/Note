@@ -1,0 +1,30 @@
+# 项目访问路径
+server: # 和server有关的配置属性都在中ServerProperties
+  servlet: # 通用的servlet容器设置相关属性
+    context-path: /curd
+  tomcat: # 通用的Tomcat的设置
+    uri-encoding: UTF-8
+
+# 国际化配置文件（包名.基础名）
+spring:
+  messages:
+    basename: i18n.login
+  thymeleaf:
+    cache: false # 禁用模板引擎的缓存
+  mvc:
+    date-format: yyyy-MM-dd
+  servlet:
+    multipart:
+      location: d:/upload
+      max-file-size: 5MB
+      max-request-size: 20MB
+
+logging:
+  level:
+    com:
+      springboot:
+        web:
+          restful:
+            curd:
+              controller: error
+              interceptor: error

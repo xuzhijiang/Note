@@ -44,7 +44,7 @@ public class MainClass {
         // 我们的servlet/listener/filter都是在这个onStartup()方法中注册的.
 
 
-        // 真实的tomcat调用:
+        // 真实的tomcat启动的时候会调用:
         // WebappServiceLoader<ServletContainerInitializer> loader = new WebappServiceLoader<>(context);
         // loader.load(ServletContainerInitializer.class);
     }

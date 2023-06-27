@@ -1,6 +1,4 @@
-Expression Language(表达式语言):EL
-
-### 概述
+### Expression Language(表达式语言):EL
 
 * EL表达式以“${”开头，并以“}”结束: ${expression}.
 * 如果需要的只是文本“${”， 则需要在它前面加一个转义符， 如“\${”.

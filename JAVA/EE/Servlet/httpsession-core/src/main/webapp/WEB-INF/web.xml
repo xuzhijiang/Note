@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>HttpSession-demo</display-name>
+  <welcome-file-list>
+    <welcome-file>login.html</welcome-file>
+  </welcome-file-list>
+
+  <!-- 在Servlet 3.0中，可以这样修改Session和Cookie的过期时间 -->
+  <session-config>
+    <!-- 修改整个Session 的过期时间 -->
+    <!-- 如果session-timeout元素的值为零或负数，则表示会话将永远不会超时 -->
+    <session-timeout>720</session-timeout> <!-- 720 minutes = 12 hours -->
+    <!-- 修改某一个Cookie的过期时间-->
+    <cookie-config>
+      <name>xzj_SESSION</name>
+      <max-age>300</max-age><!-- 300 seconds-->
+    </cookie-config>
+  </session-config>
+</web-app>

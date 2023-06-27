@@ -122,6 +122,14 @@ public class StringUtils {
         System.out.println(Arrays.toString(s.split("a")));
     }
 
+    @Test
+    public void stringSplitSpace() {
+        String s = "a good   example";
+        System.out.println(Arrays.toString(s.split(" ")));
+        System.out.println(Arrays.toString(s.split(" +")));
+        System.out.println("    ".trim().length());
+    }
+
     //用反射的方式改变字符串的值
     @Test
     public void changePoolString() throws NoSuchFieldException, IllegalAccessException {

@@ -11,6 +11,7 @@ public class MainConfig {
     @Bean
     @Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public InstB getPrototypeBean() {
+        System.out.println("prototype类型的InstB被创建了!!!");
         return new InstB();
     }
 }

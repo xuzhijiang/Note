@@ -14,9 +14,10 @@ Java中的容器包括 Collection 和 Map 两类，Collection 存储着对象的
 >当然也可以换个角度分,把容器分为线程不安全的容器和并发容器(多线程安全的).
 
 ![](Java集合框架类图.png)
+
 ![](Java集合概述.png)
 
-## Collection(集合)
+# Collection(集合)
 
 ![](Collection类图01.png)
 
@@ -36,47 +37,43 @@ Java中的容器包括 Collection 和 Map 两类，Collection 存储着对象的
 
 ![](Java_collection_list_implementations.jpg)
 
->注意jdk8中新特性: 接口中可以使用default关键字来实现一个方法.
+    注意jdk8中新特性: 接口中可以使用default关键字来实现一个方法.
 
-## Collection重要的实现类(都是3大子接口的实现类)
+# Collection重要的实现类(都是3大子接口的实现类)
 
-* ArrayList(线程不安全的)
-* LinkedList(线程不安全的)
-* HashMap(线程不安全的)
-* TreeMap(线程不安全的)
-* HashSet(线程不安全的)
-* TreeSet(线程不安全的)
-* Vector(线程安全,因为内部的方法都使用了synchronized修饰)
+* ArrayList(线程不安全的) - Object数组
+* Vector(线程安全,因为内部的方法都使用了synchronized修饰) - Object数组
+* LinkedList(线程不安全的) - 双向链表(JDK1.6之前为循环链表，JDK1.7取消了循环)
+* CopyOnWriteArrayList(线程安全)
+
+---
+
+* HashMap(线程不安全的) - JDK1.8之前HashMap由数组+链表组成的，数组是主体，链表则是为了解决哈希冲突.JDK1.8以后当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间
+* TreeMap(线程不安全的,红黑树,自平衡的二叉查找树)
+* ConcurrentHashMap(线程安全)
+* LinkedHashMap(线程不安全): 继承自 HashMap，底层仍然是由数组和链表或红黑树组成。另外，LinkedHashMap 在上面结构的基础上，增加了一条双向链表，使得上面的结构可以保持键值对的插入顺序。同时通过对链表进行相应的操作，实现了访问顺序相关逻辑
+
+---
+
+* HashSet(线程不安全的,无序，唯一,基于 HashMap 实现的)
+- LinkedHashSet(继承与 HashSet，并且其内部是通过 LinkedHashMap 来实现的)
+* TreeSet(线程不安全的,有序，唯一)
+* CopyOnWriteArraySet(线程安全)
 
 ![](Vector.png)
+
+---
+
+* ArrayBlockingQueue(多线程安全,使用ReentrantLock)-数组有界队列
+* LinkedBlockingQueue(多线程安全,使用ReentrantLock)- 链表有界队列
+* PriorityBlockingQueue(优先级排序无界队列-多线程安全-使用ReentrantLock)
+* DelayQueue(延时无界队列-多线程安全-使用ReentrantLock)
+* ConcurrentLinkedQueue(无界线程安全基于链表的队列-使用cas实现线程安全)
 
 ## `java.util.Collection`接口中的方法
 
 ![](Collection接口中定义的方法.png)
 
-## Collection遍历
+# Collection遍历
 
 Collection 继承了 Iterable 接口，其中Iterable接口定义的 iterator() 方法能够产生一个 Iterator 对象，通过这个对象就可以迭代遍历 Collection 中的元素.(迭代器模式)
-
-# 总结
-
-    List
-    
-- **Arraylist：** Object数组
-- **Vector：** Object数组
-- **LinkedList：** 双向链表(JDK1.6之前为循环链表，JDK1.7取消了循环)
-
----
-    Map 
-
--  **HashMap：** JDK1.8之前HashMap由数组+链表组成的，数组是主体，链表则是为了解决哈希冲突.JDK1.8以后当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间
--  **LinkedHashMap:** LinkedHashMap 继承自 HashMap，底层仍然是由数组和链表或红黑树组成。另外，LinkedHashMap 在上面结构的基础上，增加了一条双向链表，使得上面的结构可以保持键值对的插入顺序。同时通过对链表进行相应的操作，实现了访问顺序相关逻辑
--  **HashTable:** 数组+链表组成的，数组是主体，链表是为了解决哈希冲突
--  **TreeMap:** 红黑树（自平衡的排序二叉树）
-
----
-    Set
-
-- **HashSet（无序，唯一）:**  基于 HashMap 实现的
-- **LinkedHashSet：** LinkedHashSet 继承与 HashSet，并且其内部是通过 LinkedHashMap 来实现的
-- **TreeSet（有序，唯一）：** 红黑树(自平衡的排序二叉树)

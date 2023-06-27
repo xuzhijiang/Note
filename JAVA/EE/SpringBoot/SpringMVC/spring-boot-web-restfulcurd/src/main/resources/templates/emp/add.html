@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <title>Dashboard Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <!--    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet">-->
+    <link href="asserts/css/bootstrap.min.css" th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+<body>
+<!-- 引入topbar   -->
+<div th:replace="commons/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--  引入侧边栏     -->
+        <!--  activeUri是以键值对的形式引入 -->
+        <div th:replace="commons/bar::#sidebar(activeUri='emps')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <!--因为我们的项目是: 添加员工和修改员工信息公用add.html, 所以需要区分是修改员工还是添加；-->
+            <form th:action="@{/emp}" method="post">
+                <!--发送put请求修改员工数据-->
+                <!--
+                1、SpringMVC中配置HiddenHttpMethodFilter;（这个Filter在SpringBoot中是自动配置好的,看WebMvcAutoConfiguration）
+                2、页面创建一个post表单
+                3、创建一个input项，name="_method";值就是我们指定的请求方式
+                -->
+                <!-- emp不为null的时候,这个隐藏标签才会生成-->
+                <input type="hidden" name="_method" value="put" th:if="${emp!=null}" />
+                <input type="hidden" name="id" th:if="${emp!=null}" th:value="${emp.id}"/>
+                <div class="form-group">
+                    <label>LastName</label>
+                    <!-- name属性要和Employee的lastName属性一一对应 -->
+                    <input type="text" name="lastName" class="form-control" placeholder="zhangsan" th:value="${emp!=null}?${emp.lastName}"/>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <!-- name属性要和Employee的email属性一一对应 -->
+                    <input name="email" type="text" class="form-control" placeholder="zhangsan@gmail.com" th:value="${emp!=null}?${emp.email}"/>
+                </div>
+                <div class="form-group">
+                    <label>Gender</label><br/>
+                    <div class="form-check form-check-inline">
+                        <!-- name属性要和Employee的gender属性一一对应 -->
+                        <!-- 如果是男提交1,女提交0 -->
+                        <!-- input提交的其实就是value属性所对应的值 -->
+                        <input type="radio" class="form-check-input" name="gender" value="1" th:checked="${emp!=null}?${emp.gender==1}"/>
+                        <label class="form-check-label">男</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="gender" value="0" th:checked="${emp!=null}?${emp.gender==0}"/>
+                        <label class="form-check-label">女</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <!-- form提交的是部门的id,即Employee中的属性department所对应的id -->
+                    <select class="form-control" name="department.id">
+                        <!-- 提交的其实就是value属性所对应的值 -->
+                        <option th:each="dept:${departments}" th:text="${dept.departmentName}" th:value="${dept.id}" th:selected="${emp!=null}?${dept.id == emp.department.id}">1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Birth</label>
+                    <input type="text" name="birth" class="form-control" placeholder="zhangsan" th:value="${emp!=null}?${#dates.format(emp.birth, 'yyyy-MM-dd HH:mm')}"/>
+                </div>
+                <div class="form-group">
+                    <!-- 因为是修改和添加公用add.html,所以这里要判断下: 使用三元运算符: th:text="${emp!=null}?'修改':'添加'"-->
+<!--                    <input type="submit" class="btn btn-primary"/>-->
+                    <button type="submit" class="btn btn-primary"  th:text="${emp!=null}?'修改':'添加'">添加</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</div>
+
+<!--引入公共的footer js-->
+<div th:include="commons/common_js_footer::commons_js_footer"></div>
+</body>
+</html>

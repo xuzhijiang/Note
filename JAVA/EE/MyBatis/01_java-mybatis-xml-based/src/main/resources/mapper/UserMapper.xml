@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--http://mybatis.org/dtd/mybatis-3-mapper.dtd定义了xml中支持哪些标签-->
+<mapper namespace="org.mybatis.core.mapper.UserMapper">
+    <!--
+        namespace:名称空间;指定为接口的全类名
+        id：唯一标识
+        resultType：返回值类型
+        #{id}：从传递过来的参数中取出id值
+     -->
+    <insert id="insertUser" parameterType="org.mybatis.core.model.User">
+        INSERT INTO user(id, last_name, email, gender) VALUES (#{id}, #{lastName}, #{email}, #{gender})
+    </insert>
+
+    <!-- mybatis会更加精确的匹配databaseId的sql. -->
+    <!-- 第一个因为没有标识databaseId,所以如果当前为mysql数据库,那么会加载databaseId=mysql的sql.-->
+    <select id="selectById" parameterType="int" resultType="User">
+             SELECT * FROM user where id=#{id}
+    </select>
+    <select id="selectById" parameterType="int" resultType="User" databaseId="mysql-xzj">
+        SELECT * FROM user where id=#{id}
+    </select>
+    <select id="selectById" parameterType="int" resultType="User" databaseId="oracle-xzj">
+        select EMPLOYEE_ID id,LAST_NAME	lastName,EMAIL email
+		from employees where EMPLOYEE_ID=#{id}
+    </select>
+
+</mapper>

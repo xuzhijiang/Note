@@ -1,3 +1,29 @@
+# centos6常用服务类命令
+
+![](pics/centos6-常用服务类(service)命令.png)
+
+    centos6服务操作命令使用service
+    
+    查看服务的方法: 在/etc/init.d/目录下有对应的服务名
+    
+    查看服务是不是开机自启动的: chkconfig --list | grep xxx
+    
+    设置自启动用chkconfig --level 级别 服务名 on
+    
+    level中常用的是3和5,没有图形化界面是3,有图形化界面是5.
+
+![](pics/运行级别分类.png)
+
+# centos7常用服务类命令
+
+![](centos7-常用服务类(service)命令.png)
+
+    centos7服务操作使用命令systemctl
+    
+    查看服务状态: systemctl status service_name
+    
+    设置自启动用systemctl enable service_name
+
 # yum命令
 
 ```shell
@@ -35,14 +61,14 @@ yum list installed | less
 yum install java-1.7.0-openjdk*
 
 # 安装gcc
-yum install gcc
+yum install -y make cmake gcc gcc-c++
 gcc --version
 ```
 
 # rpm命令
 
 ```shell script
-# 通过rpm安装						
+# 安装某种以rpm结尾的软件包,我希望有日志,进度条,有提示,使用-ivh					
 rpm -ivh somesoft.rpm
 
 # 卸载 						
@@ -54,7 +80,7 @@ rpm -qi somefost.rpm
 # 查询安装后位置	
 rpm -ql somefost.rpm
 
-# 查看已安装软件包,并且过滤java(前提是java是通过rpm安装的)
+# 查看某个软件是否被安装(前提是这个软件是通过rpm安装的)
 rpm -qa | grep java
 
 # 查看命令是属于哪个软件包的

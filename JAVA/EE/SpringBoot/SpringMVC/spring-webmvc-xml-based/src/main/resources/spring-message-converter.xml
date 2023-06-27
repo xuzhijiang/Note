@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns="http://www.springframework.org/schema/mvc"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        Configure bean to convert JSON to POJO and vice versa.
+        配置下面的bean以支持把"JSON到POJO的转换以及POJO到JSON的转换".
+    -->
+    <beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    </beans:bean>
+
+    <!--
+        定义一个类型为Jaxb2RootElementHttpMessageConverter的bean，使应用去支持XML.
+    -->
+    <beans:bean id="xmlMessageConverter"
+                class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
+    </beans:bean>
+
+    <!--
+        将MappingJackson2HttpMessageConverter插入RequestMappingHandlerAdapter
+        messageConverters，以便Jackson API启动并将JSON转换为Java Bean，
+        反之亦然。 通过这种配置，我们将在request body中使用JSON，我们将在响应中接收JSON数据。
+    -->
+    <!-- 增加上面配置的bean到RequestMappingHandlerAdapter的属性messageConverters。-->
+    <beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <beans:property name="messageConverters">
+            <beans:list>
+                <beans:ref bean="jsonMessageConverter"/>
+                <beans:ref bean="xmlMessageConverter"/>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+</beans:beans>

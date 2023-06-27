@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: security-springboot
+  output:
+    ansi:
+      enabled: DETECT
+  datasource:
+    url: jdbc:mysql://192.168.32.150:3307/user_db
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+server:
+  port: 9090
+  servlet:
+    context-path: /security-springboot

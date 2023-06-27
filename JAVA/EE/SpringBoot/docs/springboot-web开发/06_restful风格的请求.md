@@ -1,7 +1,3 @@
-# REST(Representational State Transfer)
-
-    表现状态转换”,让访问的api看上去更优雅.(RESTful只是一种风格，并不是强制的标准)
-
 # CRUD-员工列表
 
 ---
@@ -9,7 +5,7 @@
     URI：  /资源名称/资源标识       HTTP请求方式区分对资源CRUD操作
 
     普通CRUD和RestfulCRUD的区别:
-    a. 普通CRUD通过uri来区分操作
+    a. 普通CRUD通过url来区分操作
     b. 用http请求的方法来区分
 
 |      | 普通CRUD（通过uri来区分操作） | RestfulCRUD       |

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>秒杀商品</title>
+    </head>
+    <body>
+        <h1>iPhone秒杀！！！</h1>
+        <form id="msform" th:action="@{/seckill}" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="productId" value="101">
+            <input type="button"  id="miaosha_btn" name="seckill_btn" value="秒杀"/>
+        </form>
+
+        <script  type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+        <script  type="text/javascript">
+            $(function(){
+                $("#miaosha_btn").click(function(){
+                    var url=$("#msform").attr("action");
+                    $.post(url,$("#msform").serialize(),function(data){
+                        if(data=="false"){
+                            alert("抢光了" );
+                            $("#miaosha_btn").attr("disabled",true);
+                        }
+                    } );
+                })
+            })
+        </script>
+    </body>
+</html>

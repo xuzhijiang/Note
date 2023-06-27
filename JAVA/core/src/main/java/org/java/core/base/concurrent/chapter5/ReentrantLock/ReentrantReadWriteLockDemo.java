@@ -28,7 +28,7 @@ public class ReentrantReadWriteLockDemo {
             try {
                 System.out.println(Thread.currentThread().getName() + "\t 正在写入: " + key);
                 // 模拟网络延时
-                try { TimeUnit.SECONDS.sleep(2L); } catch (InterruptedException e) { e.printStackTrace(); }
+                try { TimeUnit.SECONDS.sleep(3L); } catch (InterruptedException e) { e.printStackTrace(); }
                 map.put(key, value);
                 System.out.println(Thread.currentThread().getName() + "\t 写入完成");
             } finally {
@@ -44,7 +44,7 @@ public class ReentrantReadWriteLockDemo {
             try {
                 System.out.println(Thread.currentThread().getName() + "\t 正在读取: " + key);
                 // 模拟网络延时
-                try { TimeUnit.SECONDS.sleep(2L); } catch (InterruptedException e) { e.printStackTrace(); }
+                try { TimeUnit.SECONDS.sleep(4L); } catch (InterruptedException e) { e.printStackTrace(); }
                 Object value = map.get(key);
                 System.out.println(Thread.currentThread().getName() + "\t 完成读取: " + value);
             } finally {

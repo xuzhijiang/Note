@@ -2,7 +2,7 @@
 
 ![](../pics/JPA定义.png)
 
-    jpa统一了java应用程序使用各个orm框架的方式.
+    这个api是javaee的一个规范,jpa统一了java应用程序使用各个orm框架的方式.
 
     JPA是Java持久化标准接口，JPA是一套ORM规范,注意JPA不是ORM实现，它只是制订了规范，
     提供了编程的API接口,但具体实现则由服务厂商来提供实现.

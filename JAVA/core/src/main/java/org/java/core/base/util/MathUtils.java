@@ -91,4 +91,26 @@ public class MathUtils {
         int unsignedRight = num >>> 1;
         System.out.println(Integer.toBinaryString(unsignedRight));
     }
+
+    /**
+     * java中二进制,8进制,16进制如何表示
+     */
+    @Test
+    public void print2And8And16() {
+        // 二进制: 0，1组成,以0b开头
+        int binary = 0b11111111111111111111111111111101;
+        System.out.println("binary: " + binary);
+
+        // 八进制： 由0，1，....，7.以0开头
+        // java中的十进制前面是不能加0的,加了0就代表你写的数字是八进制
+        // 错误的8进制: 09 (在编译的时候就会报错)
+        int Octal = 07;
+        System.out.println("八进制: " + Octal);
+
+        // 十进制：由0，1......,9
+
+        // 十六进制：由0，1，......9，a,b,c,d,e,f(大小写均可)组成。
+        int hex = 0x20;
+        System.out.println("16进制: " + hex);
+    }
 }

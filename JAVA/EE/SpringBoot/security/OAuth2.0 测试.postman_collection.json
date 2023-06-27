@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "83a05889-a2d0-4ec9-80e2-87229e5f3fbe",
+		"name": "OAuth2.0 测试",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01_授权码模式测试",
+			"item": [
+				{
+					"name": "1. 申请授权码",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:53020/uaa/oauth/authorize?client_id=c1&response_type=code&scope=all&redirect_uri=http://localhost",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53020",
+							"path": [
+								"uaa",
+								"oauth",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "c1",
+									"description": "客户端准入标识"
+								},
+								{
+									"key": "response_type",
+									"value": "code",
+									"description": "授权码模式,固定为code"
+								},
+								{
+									"key": "scope",
+									"value": "all",
+									"description": "客户端权限"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost",
+									"description": "跳转uri，当授权码申请成功后会跳转到此地址，并在后边带上code参数（授权码）"
+								}
+							]
+						},
+						"description": "1). 你要申请授权码,按规则,所以访问:http://localhost:53020/uaa/oauth/authorize?client_id=c1&response_type=code&scope=all&redirect_uri=http://localhost.\n\n2). 返回一个html页面,要求输入用户密码来认证,因为你要申请授权码,所以要先认证一下.认证的时候就用到了UserDetailsService的实现类,也就是我们自己写的SpringDataUserDetailsService.\n\n\n总结:\n\n发出这个请求,返回返回的页面是一个登录页面,需要用户输入用户名和密码,类似于在第三方网站,用qq登录的时候,返回一个qq登录页面\n"
+					},
+					"response": []
+				},
+				{
+					"name": "2. 申请令牌",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "c1",
+									"description": "客户端准入标识",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "secret",
+									"description": "客户端秘钥",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"description": "授权类型，填写authorization_code，表示授权码模式",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "6ZpwzG",
+									"description": "授权码，就是刚刚获取的授权码，注意：授权码只使用一次就无效了，需要重新申请",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost",
+									"description": "申请授权码时的跳转url，一定和申请授权码时用的redirect_uri一致",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:53020/uaa/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53020",
+							"path": [
+								"uaa",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. 申请授权码",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:53020/uaa/oauth/authorize?client_id=c1&response_type=code&scope=ROLE_ADMIN&redirect_uri=http://localhost",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53020",
+							"path": [
+								"uaa",
+								"oauth",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "c1",
+									"description": "客户端准入标识"
+								},
+								{
+									"key": "response_type",
+									"value": "code",
+									"description": "授权码模式,固定为code"
+								},
+								{
+									"key": "scope",
+									"value": "ROLE_ADMIN",
+									"description": "客户端权限"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost",
+									"description": "跳转uri，当授权码申请成功后会跳转到此地址，并在后边带上code参数（授权码）"
+								}
+							]
+						},
+						"description": "这个测试用例是: 从数据库中读取客户端信息.scope必须和数据库中的oauth_client_details表中的scope一致"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "02_简化模式",
+			"item": [
+				{
+					"name": "简化模式测试",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:53020/uaa/oauth/authorize?client_id=c1&response_type=token&scope=all&redirect_uri=http://localhost",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53020",
+							"path": [
+								"uaa",
+								"oauth",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "c1"
+								},
+								{
+									"key": "response_type",
+									"value": "token",
+									"description": "response_type=token，说明是简化模式"
+								},
+								{
+									"key": "scope",
+									"value": "all"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "03_密码模式",
+			"item": [
+				{
+					"name": "密码模式测试",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "c1",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "secret",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"description": "授权类型，填写password表示密码模式",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "zhangsan",
+									"description": "资源拥有者用户名",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"description": "资源拥有者密码",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:53020/uaa/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53020",
+							"path": [
+								"uaa",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "这种模式十分简单，但是却意味着直接将用户敏感信息泄漏给了client，因此这就说明这种模式只能用于client是我\r\n们自己开发的情况下。\r\n\r\n因此密码模式一般用于我们自己开发的原生App或应用",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c6345abf-a252-46f5-951a-802582caa287",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d07bb451-5af4-4f1b-9411-bc3b15bc2d88",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "04_客户端模式",
+			"item": [
+				{
+					"name": "客户端模式测试",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:53020/uaa/oauth/token?client_id=c1&client_secret=secret&grant_type=client_credentials",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53020",
+							"path": [
+								"uaa",
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "c1"
+								},
+								{
+									"key": "client_secret",
+									"value": "secret"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"description": "授权类型，填写client_credentials表示客户端模式"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "这种模式是最方便但最不安全的模式。因此这就要求我们对client完全的信任，而client本身也是安全的。因\r\n此这种模式一般用来提供给我们完全信任的服务器端服务。比如，合作方系统对接，拉取一组用户信息。",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8d9b12d8-aee3-43b2-849d-c65c3d51583c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "60175779-5b21-4b1b-95a1-1bbd890292c2",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "访问uaa服务来校验令牌",
+			"item": [
+				{
+					"name": "校验token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ7XCJmdWxsbmFtZVwiOlwi5byg5LiJXCIsXCJpZFwiOlwiMVwiLFwibW9iaWxlXCI6XCIxMjMzNDJcIixcInVzZXJuYW1lXCI6XCJ6aGFuZ3NhblwifSIsInNjb3BlIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiLCJST0xFX0FQSSJdLCJleHAiOjE1ODcyMDcyMDYsImF1dGhvcml0aWVzIjpbInAxIiwicDIiXSwianRpIjoiYjVlMTZhNzctZDcxZi00ZWYzLTg3MzMtMTZmZDlmODhhZjE0IiwiY2xpZW50X2lkIjoiYzEifQ.mL8D2cz_SVu0rMCUfENVWinLFRpUUkS8PAOqy86SR-Q",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:53020/uaa/oauth/check_token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53020",
+							"path": [
+								"uaa",
+								"oauth",
+								"check_token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "order资源服务测试",
+			"item": [
+				{
+					"name": "资源服务测试",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ7XCJmdWxsbmFtZVwiOlwi5byg5LiJXCIsXCJpZFwiOlwiMVwiLFwibW9iaWxlXCI6XCIxMjMzNDJcIixcInBhc3N3b3JkXCI6XCIkMmEkMTAkYUZzT0Z6dWp0UENuVUNVS2NvenNIdXgwclEvM2ZhQUhHRlNWYjlZLkIxbnRwbUVoalJ0cnVcIixcInVzZXJuYW1lXCI6XCJ6aGFuZ3NhblwifSIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE1ODcxOTA0MTIsImF1dGhvcml0aWVzIjpbInAxIiwicDIiXSwianRpIjoiMWVlNDU4YTYtY2Q0My00NjY4LTkyZWQtNGEwNTUxNDcwMThiIiwiY2xpZW50X2lkIjoiYzEifQ.XiKRG_zgYhu63EkhhNYWlyNmvSvpF3w-4QB_o3Xi4mA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:53021/order/r1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53021",
+							"path": [
+								"order",
+								"r1"
+							]
+						},
+						"description": "按照oauth2.0协议要求，请求资源需要在header中携带一个key叫Authorization,值为：Bearer token 的这么一个header"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "分布式认证测试",
+			"item": [
+				{
+					"name": "1. 通过网关申请令牌",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "c1",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "secret",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"description": "授权类型，填写password表示密码模式",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "zhangsan",
+									"description": "资源拥有者用户名",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"description": "资源拥有者密码",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:53010/uaa/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53010",
+							"path": [
+								"uaa",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. 通过网关校验令牌",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ7XCJmdWxsbmFtZVwiOlwi5byg5LiJXCIsXCJpZFwiOlwiMVwiLFwibW9iaWxlXCI6XCIxMjMzNDJcIixcInVzZXJuYW1lXCI6XCJ6aGFuZ3NhblwifSIsInNjb3BlIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiLCJST0xFX0FQSSJdLCJleHAiOjE1ODcyMDc3MzAsImF1dGhvcml0aWVzIjpbInAxIiwicDIiXSwianRpIjoiM2ZlMDc0MmItMDUwZi00NGM0LWExMTEtYzUyM2ZkYjE5ZDhkIiwiY2xpZW50X2lkIjoiYzEifQ.BA81bXnc6B6FjnpYvh8IeM_TjYfQJaTuMMSpxIXI95w",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:53010/uaa/oauth/check_token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53010",
+							"path": [
+								"uaa",
+								"oauth",
+								"check_token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. 通过网关访问资源服务",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsicmVzMSJdLCJ1c2VyX25hbWUiOiJ7XCJmdWxsbmFtZVwiOlwi5byg5LiJXCIsXCJpZFwiOlwiMVwiLFwibW9iaWxlXCI6XCIxMjMzNDJcIixcInVzZXJuYW1lXCI6XCJ6aGFuZ3NhblwifSIsInNjb3BlIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiLCJST0xFX0FQSSJdLCJleHAiOjE1ODcyMDc3MzAsImF1dGhvcml0aWVzIjpbInAxIiwicDIiXSwianRpIjoiM2ZlMDc0MmItMDUwZi00NGM0LWExMTEtYzUyM2ZkYjE5ZDhkIiwiY2xpZW50X2lkIjoiYzEifQ.BA81bXnc6B6FjnpYvh8IeM_TjYfQJaTuMMSpxIXI95w"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:53010/order/r1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "53010",
+							"path": [
+								"order",
+								"r1"
+							]
+						},
+						"description": "按照oauth2.0协议要求，请求资源需要在header中携带一个key叫Authorization,值为：Bearer token 的这么一个header"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

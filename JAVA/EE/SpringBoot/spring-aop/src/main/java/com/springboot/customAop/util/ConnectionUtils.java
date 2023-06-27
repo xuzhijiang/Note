@@ -1,6 +1,6 @@
 package com.springboot.customAop.util;
 
-import org.apache.commons.dbcp.BasicDataSource;
+import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -17,12 +17,12 @@ public class ConnectionUtils {
      */
     private ThreadLocal<Connection> t1 = new ThreadLocal<>();
 
-    private static BasicDataSource dataSource = new BasicDataSource();
+    private static HikariDataSource dataSource = new HikariDataSource();
 
     //静态代码块,设置连接数据库的参数
     static {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/mydb");
+        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/mydb");
         dataSource.setUsername("root");
         dataSource.setPassword("password");
     }

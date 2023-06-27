@@ -95,3 +95,17 @@ su - username
 
 tail -f filename
 ```
+
+# curl
+
+```shell script
+# 使用cURL命令(catch url)来测试
+curl -X POST url;
+curl -X GET url;
+curl -H "name:xzj" -H "id:1" http://localhost:9090/mvc/headers
+curl -H "Content-Type:text/html" http://127.0.0.1:9090/mvc/produceConsumer
+curl -H "Content-Type:text/html" -H "Accept:application/json" -i http://127.0.0.1:9090/mvc/produceConsumer
+curl -H "Content-Type:text/html" -H "Accept:application/xml" -i http://127.0.0.1:9090/mvc/produceConsumer
+curl http://localhost:9090/mvc/pathVar/10/Lisa;
+curl http://localhost:9090/mvc/obj?id=20;
+```

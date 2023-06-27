@@ -12,6 +12,7 @@ public class TulingFilter implements Filter {
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         System.out.println("TulingFilter----->doFilter----------->");
+        servletResponse.getOutputStream().print("tuling filter ");
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

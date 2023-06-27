@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.32.150:3307/mydb
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: 192.168.32.150
+    port: 6379
+
+server:
+  port: 9090
+
+# 驼峰命名规则开启
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 方便查看是否调用数据库
+logging:
+  level:
+    com:
+      springboot:
+        cache:
+          core:
+            mapper: debug
+
+# 方便查看哪些 xxAutoConfiguration被自动配置了
+debug: true

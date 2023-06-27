@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 导入外部参数文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!-- 连接池：druid -->
+    <bean id="druid" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
+          destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="1"/>
+        <property name="minIdle" value="1"/>
+        <property name="maxActive" value="${jdbc.maxPoolSize}"/>
+
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="3000"/>
+
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+
+        <!-- 配置一个连接在池中最小空闲的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+    </bean>
+
+
+    <!-- SqlSessionFactory
+         配置: 1.连接池
+              2.mapper文件信息
+              3.别名-可选
+              4.插件-可选
+     -->
+    <bean id="sqlSessionFactory04" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--<property name="configLocation" value="classpath:configuration.xml"/>-->
+        <!-- 连接池 -->
+        <property name="dataSource" ref="druid"/>
+        <!-- mapper文件
+             如果和dao接口在同包且同名，则如下注入可以省略
+         -->
+        <!--<property name="mapperLocations" value="classpath:com/qianfeng/dao/*.xml"/>-->
+        <!--<property name="mapperLocations">
+            <array>
+                <value>classpath:mapper/*.xml</value>
+            </array>
+        </property>-->
+        <!-- 别名 -->
+        <property name="typeAliasesPackage" value="com.qianfeng.pojo"/>
+        <!-- 插件 -->
+        <!-- 细节参数：settings -->
+    </bean>
+
+    <!-- MapperScannerConfigurer
+     1. 找到所有DAO接口
+     2. 并根据SqlSessionFactory的支持，创建出DAO实现类的对象
+     3. 将对象纳入工厂，且id=首字母小写的接口类名
+ -->
+    <!-- 扫描所有mapper，为每个dao定制实现类   sqlSession.getMapper(UserDAO.class)
+         DAO实现的对象会 纳入工厂，并且beanID=DAO的首字母小写接口类名=“userDAO”
+         1> DAO接口
+         2> DAO映射文件
+         3> SqlSession
+    -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 如果当前工厂中 只有一个SqlSessionFactory,则此项注入可以省略 -->
+        <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory04"/>-->
+        <!-- DAO接口位置 -->
+        <!--<property name="basePackage" value="com.qianfeng.dao,com.qianfeng2.dao2"/>-->
+        <property name="basePackage" value="com.qianfeng.dao"/>
+    </bean>
+
+
+
+    <!-- 事务管理 -->
+    <!-- 事务管理器 -->
+    <bean id="tx" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="druid"/>
+    </bean>
+    <!-- 支持 @Transactional 实现事务 -->
+    <tx:annotation-driven transaction-manager="tx"/>
+
+    <!-- 配置注解扫描：让spring去发现注解，进而实现对应的功能 -->
+    <context:component-scan base-package="com.qianfeng">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:exclude-filter>
+    </context:component-scan>
+
+    <!-- 导入shiro相关的配置文件 -->
+    <import resource="classpath:shiro_applicationContext.xml"/>
+    <!-- 导入reids相关的配置文件 -->
+    <import resource="classpath:applicationContext_redis.xml"/>
+</beans>

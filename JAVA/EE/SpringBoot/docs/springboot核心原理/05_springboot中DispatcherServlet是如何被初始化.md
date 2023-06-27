@@ -5,6 +5,8 @@
     注意:这里讲的是springboot如何初始化DispatcherServlet的,不是讲springmvc如何初始化DispatcherServlet的
     springboot和springmvc初始化DispatcherServlet是不同的步骤.是两个东西
 
+    核心: 在DispatcherServletAutoConfiguration这个自动化配置类中添加的
+
 ![](../pics/Springboot中DispatcherServlet是如何被初始化的01.png)
 
 ![](../pics/Springboot中DispatcherServlet是如何被初始化的02.png)

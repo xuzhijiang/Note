@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mybatis.core.mapper.UserMapper">
+    <insert id="insert" parameterType="org.mybatis.core.model.User"
+            useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO user(last_name, email, gender, d_id) VALUES (#{lastName}, #{email}, #{gender}, #{dId})
+    </insert>
+
+    <select id="selectById" parameterType="int" resultType="User">
+             SELECT * FROM user where id=#{id}
+    </select>
+    <select id="selectById" parameterType="int" resultType="User" databaseId="mysql-xzj">
+        SELECT * FROM user where id=#{id}
+    </select>
+    <select id="selectById" parameterType="int" resultType="User" databaseId="oracle-xzj">
+        select EMPLOYEE_ID id,LAST_NAME	lastName,EMAIL email
+		from employees where EMPLOYEE_ID=#{id}
+    </select>
+
+    <select id="selectAll" resultType="org.mybatis.core.model.User">
+        select * from user
+    </select>
+
+    <insert id="insertEnum" parameterType="org.mybatis.core.model.User"
+            useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO user(last_name, email, gender, d_id, user_status) VALUES (#{lastName}, #{email}, #{gender}, #{dId}, #{userStatus})
+    </insert>
+</mapper>

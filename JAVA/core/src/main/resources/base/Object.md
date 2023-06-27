@@ -101,15 +101,6 @@ public boolean equals(Object o) {
 
 >`再强调一下：如果2个对象的equals方法相等，那么他们的hashCode值也必须相等(`否则会有重复数据存放在map中`)，反之，如果2个对象hashCode值相等，但是equals不相等，这样会影响性能(`会存入到同一串链表中`)，所以还是建议2个方法都一起重写。`
 
-# equals方法
-
-```java
-// Object类的默认实现如下: 即比较2个对象的内存地址是否相等：
-public boolean equals(Object obj) {
-    return (this == obj);
-}
-```
-
 # clone方法
 
 >创建并返回当前对象的一份拷贝。一般情况下，对于任何对象 x，表达式 x.clone() != x 为true，x.clone().getClass() == x.getClass() 也为true。

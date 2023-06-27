@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: data-jpa
+  # JPA配置:
+  jpa:
+    show-sql: true #    控制台显示SQL
+    hibernate:
+      ddl-auto: update #     更新或者创建数据表结构
+
+server:
+  port: 9090

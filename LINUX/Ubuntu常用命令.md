@@ -8,6 +8,16 @@
 
 - [虚拟机安装ubuntu server视频](https://www.bilibili.com/video/av29384041/?p=9)
 
+# ubuntu版本
+
+    版本	版本号	代号
+    Lucid(10.04)	10.04	lucid
+    Precise(12.04): precise	12.04	precise
+    Trusty(14.04): trusty	14.04	trusty
+    Utopic(14.10): utopic	14.10	utopic
+    Ubuntu 16.04 TLS： xenial	16.04	xenial
+    Ubuntu 18.04 TLS： bionic	18.04	bionic
+
 # Ubuntu常用命令
 
 ```shell script
@@ -68,6 +78,11 @@ source /etc/profile
 # 为其他用户更新用户环境变量
 su lusifer
 source /etc/profile
+
+# windows上环境变量配置
+JAVA_HOME: D:\Program Files\java\jdk-11.0.1
+CLASSPATH: .;%JAVA_HOME%\lib;%JAVA_HOME%\jre\lib;
+PATH: %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;
 ```
 
 - [视频演示](https://www.bilibili.com/video/av27165645/)
@@ -97,10 +112,10 @@ cd /opt/apache-tomcat-7.0.96/bin
 # ubuntu安装gcc和make
 
 ```shell script
-# c语言的编译器: gcc
+# 安装c语言的编译器: gcc
 apt-get install gcc
 
-# C++的编译器: g++
+# 安装C++的编译器: g++
 # configure: error: Invalid C++ compiler or C++ compiler flags
 # 就需要安装C++的编译器:
 apt-get install g++

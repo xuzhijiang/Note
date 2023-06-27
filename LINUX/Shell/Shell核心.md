@@ -195,37 +195,6 @@ sed -i 's/\.$/\!/g' regular_express.txt
 sed -i '$a # This is a test' regular_express.txt
 ```
 
-# awk
-
-```shell
-cd ~/ && vim score.txt
-```
-
->score.txt
-
-```shell
-name yw sx
-lisi 3  60
-ww   4  70
-lucy 7 80
-```
-
-```shell
-# 打印所有行
-awk '{printf("%s\n",$0)}' score.txt
-
-# 打印第一列
-awk '{printf("%s\n",$1)}' score.txt
-
-# 打印第2列
-awk '{printf("%s\n",$2)}' score.txt
-awk '{printf("%s\n",$3)}' score.txt
-
-# 把l开头的行过滤了出来
-awk '/l/{printf("%s\n",$0)}' score.txt
-awk '/l/{printf("%s\n",$3)}' score.txt
-```
-
 # 文档
 
 - [https://www.runoob.com/linux/linux-comm-sed.html](https://www.runoob.com/linux/linux-comm-sed.html)

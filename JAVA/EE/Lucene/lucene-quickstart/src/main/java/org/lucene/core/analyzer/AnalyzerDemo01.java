@@ -44,13 +44,13 @@ public class AnalyzerDemo01 {
 
     // 查看某段内容的分词结果
     public static void main(String[] args) throws IOException {
-        analyzeEnglish();
+//        analyzeEnglish(); // 测试English的分词效果
 
-        analyzeChinese();
+//        analyzeChinese(); // 测试Chinese的分词效果
 
-        //testIKAnalyzer();
+        testIKAnalyzer();
 
-        testPaoding();
+        // testPaoding();
     }
 
     private static void testPaoding() throws IOException{
@@ -103,12 +103,11 @@ public class AnalyzerDemo01 {
     }
 
     /**
-     * 对于中文，实际上是一个字一个字的进行分词，这样明显是不行的。
+     * 对于中文，标准分词器StandardAnalyzer实际上是一个字一个字的进行分词，这样明显是不行的。
      * 即使官方提供的Analyzer子类ChineseAnalyzer，分词也打不到我们想要的效果
      *
      * 在使用Lucene建立索引的时候，官方提供的分词器由于对中文支持不友好，
      * 所以我们需要使用另外的分词器，比较火的是庖丁解牛分词器和IKAnalyzer分词
-     * @throws IOException
      */
     private static void analyzeChinese() throws IOException{
         Analyzer analyzer = new StandardAnalyzer();
@@ -121,7 +120,7 @@ public class AnalyzerDemo01 {
         }
     }
 
-    // 可以看到"An IndexWriter creates and maintains an index"这段话的分词效果
+    // 测试 "An IndexWriter creates and maintains an index"这个句子的分词效果
     private static void analyzeEnglish() throws IOException {
         Analyzer analyzer = new StandardAnalyzer();
         String text = "An IndexWriter creates and maintains an index";

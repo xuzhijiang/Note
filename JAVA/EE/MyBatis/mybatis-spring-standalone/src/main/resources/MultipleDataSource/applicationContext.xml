@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="ds_user" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="root"/>
+        <property name="password" value="password"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/mydb"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    </bean>
+
+    <bean id="ds_account" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="root"/>
+        <property name="password" value="password"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/my_account"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    </bean>
+
+    <bean id="ssf_user" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="ds_user"/>
+        <property name="mapperLocations" value="classpath*:MultipleDataSource/db_user/**/*.xml"/>
+        <property name="configuration">
+            <bean class="org.apache.ibatis.session.Configuration">
+                <property name="mapUnderscoreToCamelCase" value="true"></property>
+            </bean>
+        </property>
+    </bean>
+
+<!-- 再次提醒，在使用多数据源时，将操作不同库的xml映射文件、以及对应的映射器接口放到不同的目录下很重要，
+如果不这样，在使用时你几乎100%会遇到问题，一般都是报出数据库表找不到的错误。-->
+    <bean id="ssf_account" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="ds_account"/>
+        <property name="mapperLocations" value="classpath*:MultipleDataSource/db_account/**/*.xml"/>
+        <property name="configuration">
+            <bean class="org.apache.ibatis.session.Configuration">
+                <property name="mapUnderscoreToCamelCase" value="true"></property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="sqlSessionTemplate_user" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="ssf_user"/>
+    </bean>
+
+    <bean id="sqlSessionTemplate_account" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="ssf_account"/>
+    </bean>
+
+    <bean id="userDao" class="com.mybatis.core.MultipleDataSource.UserDao">
+        <property name="sqlSessionTemplate" ref="sqlSessionTemplate_user"/>
+    </bean>
+
+    <bean id="accountDao" class="com.mybatis.core.MultipleDataSource.AccountDao">
+        <property name="sqlSessionTemplate" ref="sqlSessionTemplate_account"/>
+    </bean>
+
+    <!--最后，由于你现在有2个数据源，因此你应该配置两个事务管理器，如：-->
+    <!--    如果你是使用@Transactional注解来进行声明式事务管理，应该要指定你使用的是哪一个事务管理器，
+    如：@Transactional("accountTxManager") -->
+</beans>

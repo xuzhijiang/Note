@@ -2,7 +2,7 @@
 
 - 条件运算符: =,>,<,>=,<=,<>或者!=,不等于一般使用标准的<>
 - 逻辑运算符: AND/OR/NOT <条件>:表示“不符合该条件”的记录.
-- like/ BETWEEN: 在2个值之间,例如: BETWEEN 1 AND 20;包括1和20. /  IS NULL: 判断是否为NULL值(NULL 与 0、空字符串都不同) /判断是否为非null值: IS NOT NULL/in
+- like/ BETWEEN: 在2个值之间,例如: BETWEEN 1 AND 20;包括1和20. /  IS NULL: 判断是否为NULL值 /判断是否为非null值: IS NOT NULL
 - =或者<>不能用于判断null值.
 - 安全等于 <=> ,这个也可以用于判断是否为null
 - 要组合三个或者更多的条件，就需要用小括号()表示如何进行条件运算.

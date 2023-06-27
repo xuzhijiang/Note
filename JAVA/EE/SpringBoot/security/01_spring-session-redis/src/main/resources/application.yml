@@ -1,0 +1,43 @@
+spring:
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://192.168.32.150:3307/mydb
+#    data-username: root
+#    password: root
+  session:
+    store-type: redis # 使用redis存储session
+  redis:
+    host: 192.168.32.150
+    port: 6379
+#    password: pwd
+    database: 0
+    # 更新策略，ON_SAVE在调用#SessionRepository#save(Session)时，在response commit前刷新缓存，
+    # IMMEDIATE只要有任何更新就会刷新缓存
+    flush-mode: on_save  # 默认
+    # 存储session的密钥的命名空间
+    namespace: spring:session #默认
+
+server:
+  servlet:
+    session:
+      timeout: "PT10M" # 设置session过期时间,这里设置为10分钟
+      cookie:
+        name: "xzj-cookie-name"
+        max-age: 300
+#      persistent: true
+
+#  Duration是Java8新增的，用来计算日期差值，并且是被final声明，是线程安全的
+#  Duration转换字符串方式，默认为正；负以-开头，紧接着P。
+#  以下字母不区分大小写：
+#
+#  D：天
+#  T：天和小时之间的分隔符
+#  H：小时
+#  M：分钟
+#  S：秒
+#  每个单位都必须是数字，且时分秒顺序不能乱
+#  比如：
+#
+#  P2DT3M5S：2天3分5秒
+#  P3D：3`天
+#  PT3H：3小时

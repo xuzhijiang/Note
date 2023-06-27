@@ -1,7 +1,5 @@
 package com.java.datastructure.tree;
 
-import com.java.algorithm.search.BinarySearch.BinarySearch;
-
 import java.util.LinkedList;
 
 // 二叉排序树: 二叉搜索树的中序遍历就是从小到大输出
@@ -33,29 +31,29 @@ public class BinarySearchTree {
         }
     }
 
-    // 中序遍历 左根(输出)右, 二叉搜索树的中序遍历就是从小到大输出
-    public static void in(BinarySearchTree root) {
+    // 前序遍历
+    public static void preOrder(BinarySearchTree root) {
         if (root != null) {
-            in(root.left);
             System.out.print(root.data + ", ");
-            in(root.right);
+            preOrder(root.left);
+            preOrder(root.right);
         }
     }
 
-    // 前序遍历
-    public static void pre(BinarySearchTree root) {
+    // 中序遍历 左根(输出)右, 二叉搜索树的中序遍历就是从小到大输出
+    public static void inOrder(BinarySearchTree root) {
         if (root != null) {
+            inOrder(root.left);
             System.out.print(root.data + ", ");
-            pre(root.left);
-            pre(root.right);
+            inOrder(root.right);
         }
     }
 
     // 后序遍历
-    public static void post(BinarySearchTree root) {
+    public static void postOrder(BinarySearchTree root) {
         if (root != null) {
-            post(root.left);
-            post(root.right);
+            postOrder(root.left);
+            postOrder(root.right);
             System.out.print(root.data + ",");
         }
     }
@@ -86,17 +84,17 @@ public class BinarySearchTree {
             root.insert(root, data[i]);
         }
         System.out.println("中序遍历为: ");
-        BinarySearchTree.in(root);
+        BinarySearchTree.inOrder(root);
 
         System.out.println();
         System.out.println();
         System.out.println("前序遍历: ");
-        BinarySearchTree.pre(root);
+        BinarySearchTree.preOrder(root);
 
         System.out.println();
         System.out.println();
         System.out.println("后序遍历: ");
-        BinarySearchTree.post(root);
+        BinarySearchTree.postOrder(root);
 
 
         System.out.println();

@@ -1,0 +1,17 @@
+spring:
+  mail:
+    host: smtp.qq.com # 邮件发送服务器的主机
+    # port: 465 # 邮件发送服务器的端口
+    protocol: smtp # smtp是邮件发送协议，pop3和imap是邮件接收协议。因为我们要发送邮件，因此是smtp
+    username: 2233835996@qq.com # 登录 邮件发送服务器的 用户名
+    password: dnzrcvtsqlaueaei # 该邮箱的授权码，而不是该邮箱的密码
+    properties:
+      mail.smtp.ssl.enable: true
+  rabbitmq:
+    host: 192.168.32.132
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 9090

@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter
+@WebFilter(value = "/AngleHello")
 public class AngleFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         System.out.println("AngleFilter----->容器启动----------->");

@@ -14,7 +14,7 @@ public class ChainOfResponsibilityTest {
         Filter authenticationFilter = new AuthenticationFilter();
         Filter httpHeaderPrintFilter = new HttpHeaderPrintFilter();
 
-        // 过滤器链
+        // 过滤器链 (存放N多个过滤器)
         FilterChain filterChain = new FilterChain();
         // 注册过滤器,链式调用
         filterChain.addFilter(authenticationFilter).addFilter(httpHeaderPrintFilter);
@@ -40,7 +40,7 @@ class AuthenticationFilter implements Filter {
     @Override
     public void doFilter(Request request, Response response, FilterChain chain) {
         System.out.println("验证用户是否是合法用户");
-        // chain.doFilter(request, response);
+         chain.doFilter(request, response);
     }
 }
 

@@ -15,11 +15,6 @@ public class OrderService {
     @Autowired
     private ProductService productService;
 
-    @Transactional
-    public void saveOrder(Order order) {
-        orderDao.saveOrder(order);
-    }
-
     public Order getOrderById(Long id) {
         return orderDao.getOrderById(id);
     }
@@ -36,7 +31,7 @@ public class OrderService {
 
     @Transactional
     public void seckill(Long productId) {
-        // 查询商品
+        // 查询商品信息
         Product product = productService.getProductById(productId);
 
         if (product.getStock() <= 0) {
@@ -46,7 +41,7 @@ public class OrderService {
         // 减库存不能这么写,你已经在写bug了,因为并发会导致超卖
         // int stockNum = product.getStock() - 1;
 
-        // 创建秒杀订单
+        // 创建订单
         Order order = new Order();
         order.setProductId(productId);
         order.setAmount(product.getPrice());
@@ -58,6 +53,11 @@ public class OrderService {
             // 所以要抛异常给前台,说明你没有下单成功.
             throw new RuntimeException("商品已售罄");
         }
+    }
+
+    @Transactional
+    public void saveOrder(Order order) {
+        orderDao.saveOrder(order);
     }
 
 }

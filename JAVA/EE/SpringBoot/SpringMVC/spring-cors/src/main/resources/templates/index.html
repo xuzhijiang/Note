@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap-theme.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/mycss.css}"/>
+</head>
+<body class="text-center container">
+<h2>index.html</h2>
+<p class="well">这是一个Thymeleaf引擎生成的网页，其数据由MVC控制器传入</p>
+<h4 class="myclass" th:text="${info}"></h4>
+</body>
+</html>

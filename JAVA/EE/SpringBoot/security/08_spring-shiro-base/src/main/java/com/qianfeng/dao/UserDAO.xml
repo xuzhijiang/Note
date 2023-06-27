@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+  dtd:docuemtn type definition  为当前提供约束
+     ：标签   属性   层级    顺序
+  Mapper文件，映射文件，替换DAO实现类
+-->
+<mapper namespace="com.qianfeng.dao.UserDAO">
+
+    <select id="queryUserByUsername" parameterType="string" resultType="User">
+        select id,username,password
+        from t_user
+        where username = #{username}
+    </select>
+
+</mapper>

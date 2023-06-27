@@ -25,8 +25,14 @@
 ![](pics/账户系统文件说明04.png)
 
 ![](pics/账户管理常用命令01.png)
+
 ![](pics/账户管理常用命令02.png)
+
 ![](pics/账户管理常用命令03.png)
+
+    创建工作组,名字为nginx: groupadd -r nginx
+    把nginx这个用户添加到nginx组: useradd -r -g nginx nginx
+    
 ![](pics/账户管理常用命令04.png)
 
 # 实战创建一个新用户
@@ -49,6 +55,8 @@ userdel zk
 
 # 删除一个组
 groupdel groupname
+# 配置nginx这个用户不可以登录
+usermod -s /sbin/nologin nginx
 ```
 
 # 解决xx is not in the sudoers

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--http://mybatis.org/dtd/mybatis-3-mapper.dtd定义了xml中支持哪些标签-->
+<mapper namespace="org.mybatis.core.mapper.DepartmentMapper">
+    <!-- 配置二级缓存 -->
+    <!-- 引用缓存：namespace：指定和哪个名称空间下的缓存一样 -->
+    <cache-ref namespace="org.mybatis.core.mapper.UserMapper"/>
+</mapper>

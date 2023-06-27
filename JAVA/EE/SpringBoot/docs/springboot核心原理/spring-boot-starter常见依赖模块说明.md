@@ -8,6 +8,12 @@
 - spring-boot-starter-test：测试模块，包括JUnit、Hamcrest、Mockito
 - spring-boot-starter：帮我们导入了web模块正常运行所依赖的组件；
 - spring-boot-configuration-processor: 导入yml/properties配置文件处理器，导入后yml/properties配置文件进行绑定后就会有提示
+- spring-boot-starter-web: web支持，SpringMVC， Servlet支持等
+- mybatis-spring-boot-starter: SpringBoot的Mybatis启动器
+- spring-boot-starter-data-jpa: spring data jpa支持
+- spring-boot-starter-cache: Spring Boot缓存支持
+- spring-boot-starter-data-redis: Spring Data Redis支持
+- spring-boot-starter-actuator: 这个模块是图形化监控要用,多次强调过
 
 # 父项目
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>登录页面</title>
+</head>
+<body>
+    <h1 align="center">欢迎登陆管理系统</h1>
+    <hr>
+    <div align="center">
+        <div th:if="${param.error}" style="color: red;">
+            用户名或密码错
+        </div>
+        <div th:if="${param.logout}">
+            您已注销成功
+        </div>
+        <form th:action="@{/login}" method="post">
+            用户名:<input type="text" name="username"/><br>
+            密码:<input type="password" name="password"><br/>
+            <input type="checkbox" name="remeber-xzj"> 记住我<br/>
+            <input type="submit" value="登陆">
+        </form>
+    </div>
+</body>
+</html>

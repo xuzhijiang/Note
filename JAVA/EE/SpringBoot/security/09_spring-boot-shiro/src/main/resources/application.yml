@@ -1,0 +1,20 @@
+spring:
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3307/shiro
+      username: root
+      password: root
+      #schema: database/import.sql
+      #sql-script-encoding: utf-8
+      # type: com.alibaba.druid.pool.DruidDataSource
+    jpa:
+      database: mysql
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+      properties:
+         hibernate:
+            dialect: org.hibernate.dialect.MySQL5Dialect
+    thymeleaf:
+       cache: false
+       mode: LEGACYHTML5

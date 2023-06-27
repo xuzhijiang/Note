@@ -19,7 +19,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
       <exclusions>
-    <!--因为要统一为log4j打印,所以排除slf4j的实现logback-->
+      <!--因为要统一为log4j打印,所以排除springboot中slf4j的默认实现logback相关的依赖-->
         <exclusion>
           <artifactId>logback-classic</artifactId>
           <groupId>ch.qos.logback</groupId>

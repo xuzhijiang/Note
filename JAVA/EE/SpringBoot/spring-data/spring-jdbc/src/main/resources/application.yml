@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    driverClassName: org.h2.Driver # 用的是嵌入式数据库h2的驱动, 支持松散匹配
+    # driverClassName: org.hsqldb.jdbc.JDBCDriver # 用的是嵌入式数据库hsql的驱动, 支持松散匹配
+    # url: jdbc:hsqldb:mem:db1
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    type: com.alibaba.druid.pool.DruidDataSource
+    ###################以下为druid增加的配置###########################
+    # 上面这些属性会被加载到DataSourceProperties中,下面的属性因为没有在DataSourceProperties中定义,所以
+    # 不会被加载到DataSourceProperties中,所以也就没有自动提示.
+    initialSize: 5 # 初始大小
+    minIdle: 5 # 最小空闲
+    maxActive: 20 # 最大活跃
+    maxWait: 60000 # # 配置获取连接等待超时的时间
+    timeBetweenEvictionRunsMillis: 60000 # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    minEvictableIdleTimeMillis: 300000 # # 配置一个连接在池中最小生存的时间，单位是毫秒
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true # # 打开PSCache，并且指定每个连接上PSCache的大小(PS: PreparedStatements)
+    #   配置监控统计拦截的filters，去掉后,监控界面 sql无法统计，'wall'用于防火墙
+    filters: stat,wall # Spring Boot 默认的日志系统是 logback，并没有依赖 log4j,如果filters中配置了log4j就会报错
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true # # 合并多个DruidDataSource的监控数据
+    #  通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+server:
+  port: 9090

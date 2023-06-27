@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- 导入thymeleaf的名称空间,导入名字空间之后就有提示了 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>你好</title>
+</head>
+<body>
+<!--直接打开这个html页面会展现默认的信息，但是经过渲染后,会展示后台添加的信息,做到了不破坏HTML自身内容的数据和模板分离,所以比jsp好.-->
+<!--th:text 将div里面的文本内容设置为${hello}中的内容 -->
+<!-- 除了th:text, 其他的比如th:id和th:text作用类似,如果后台没有添加对应的${hello}信息,就使用div01这个id值-->
+<!--如果后台没有添加对应的${hello}信息,就使用myDiv这个class值-->
+<div id="div01" class="myDiv" th:id="${hello}" th:class="${hello}" th:text="${hello}">这是显示欢迎信息</div>
+<!--这个是内置的对象-->
+<span th:text="${#locale.country}">US</span>
+<hr/>
+
+<!--th:text（转义特殊字符）th:utext（不转义）-->
+<div th:text="${hello}"></div>
+<div th:utext="${hello}"></div>
+<hr/>
+
+<!--th:each每次遍历都会生成当前这个标签，这里相当于生成三个h4标签-->
+<h4 th:text="${user}" th:each="user:${users}"></h4>
+<hr/>
+
+<h4>
+    <!--高级写法：行内写法：[[...]] or [(...)]相当于th:text(会转义)和th:utext(不转义)-->
+    <!--这里是生成 三个span标签-->
+    <span th:each="user:${users}">[[${user}]]</span>
+</h4>
+
+<hr/>
+<div th:insert="footer::copy"></div>
+<!-- ////////////////   -->
+<div th:replace="footer::copy"></div>
+<!-- ////////////////   -->
+<div th:include="footer::copy"></div>
+
+<hr/>
+
+<form th:action="@{/upload}" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit"/>
+</form>
+</body>
+</html>

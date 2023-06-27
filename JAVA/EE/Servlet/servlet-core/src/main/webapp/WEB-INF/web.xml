@@ -1,0 +1,67 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+
+    <welcome-file-list>
+        <welcome-file>login.html</welcome-file>
+    </welcome-file-list>
+
+    <context-param>
+        <param-name>secret</param-name>
+        <param-value>xxx</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>response-method-test-servlet</servlet-name>
+        <servlet-class>com.servlet.core.HttpServletResponseMethodTest</servlet-class>
+        <init-param>
+            <param-name>name1</param-name>
+            <param-value>Servlet中的初始化值</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>response-method-test-servlet</servlet-name>
+        <url-pattern>/responseMethodTest</url-pattern>
+    </servlet-mapping>
+
+    <!-- 验证码 -->
+    <servlet>
+        <servlet-name>Kaptcha</servlet-name>
+        <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Kaptcha</servlet-name>
+        <url-pattern>/kaptcha.jpg</url-pattern>
+    </servlet-mapping>
+
+    <!---->
+    <servlet>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--可以在DispatcherServlet中得到ServletConfig,从而获得SpringMVC配置文件的位置,创建SpringMVC的Bean容器(子容器)-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-mvc.xml</param-value>
+        </init-param>
+        <!-- Servlet有2个创建时机. 1. 第一次被请求时创建  2. 随项目启动创建-->
+        <!-- 当值为0或者大于0时，表示容器在应用启动时就加载并初始化这个servlet -->
+        <!-- 当值小于0或者没有指定时，则表示容器在该servlet被请求时才会被创建 -->
+        <!-- 正数的值越小，该servlet的优先级越高，应用启动时就越先加载 -->
+        <!-- 当值相同时，容器就会自己选择顺序来加载 -->
+        <!-- 所以: 取值0，1，2，3，4，5代表的是优先级 -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <!-- 拦截方式1: *.do -->
+        <!--<url-pattern>*.do</url-pattern>-->
+
+        <!-- 拦截方式2: /* -->
+        <!--<url-pattern>/*</url-pattern>-->
+
+        <!-- 拦截方式3: / -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>

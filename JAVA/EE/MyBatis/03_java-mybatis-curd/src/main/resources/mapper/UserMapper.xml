@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--http://mybatis.org/dtd/mybatis-3-mapper.dtd定义了xml中支持哪些标签-->
+<mapper namespace="org.mybatis.core.mapper.UserMapper">
+    <!--
+        parameterType：参数类型，可以省略，因为上面的id为getEmpById这个也没有写parameterType.
+获取自增主键的值：
+        mysql支持自增主键，自增主键值的获取，mybatis也是利用Statement.getGeneratedKeys()得到ResultSet,
+        然后使用 JDBC 的ResultSet.getGeneratedKeys 方法来取出由数据库内部生成的主键，默认值：false
+        useGeneratedKeys="true"；告诉mybatis使用自增主键获取主键值策略
+        keyProperty；指定对应的主键属性，也就是mybatis获取到主键值以后，将这个值封装给javaBean的哪个属性
+        keyColumn :指定自动生成的主键列名,这个设置仅在某些数据库（像 PostgreSQL）是必须的，当主键列不是表中的第一列的时候需要设置
+
+        结论: 如果你的数据库支持自动生成主键的字段（如MySQL和SQL Server），那么你可以设置 useGeneratedKeys=”true”，
+        然后再把 keyProperty设置到目标属性上就OK了
+    -->
+    <insert id="addUser" parameterType="org.mybatis.core.model.User"
+            useGeneratedKeys="true" keyProperty="id" databaseId="mysql-xzj">
+        insert into user(last_name,email,gender)
+		values(#{lastName},#{email},#{gender})
+    </insert>
+    <!--
+	获取非自增主键的值：
+		Oracle不支持自增；Oracle使用序列来模拟自增；
+		每次插入的数据的主键是从序列中拿到的值；如何获取到这个值；
+	 -->
+    <insert id="addUser" databaseId="oracle-oracle">
+        <!--
+        keyProperty:查出的主键值封装给javaBean的哪个属性
+        order="BEFORE":当前获取主键的sql在插入sql之前运行.
+               AFTER：当前sql在插入sql之后运行
+        resultType:查出的数据的返回值类型
+
+        BEFORE运行顺序：
+            先运行selectKey查询id的sql；查出id值封装给javaBean的id属性
+            在运行插入的sql；就可以取出id属性对应的值
+        AFTER运行顺序：
+            先运行插入的sql（从序列中取出新值作为id）；
+            再运行selectKey查询id的sql,然后把EMPLOYEES_SEQ.currval封装给javabean的id属性.
+         -->
+        <selectKey keyProperty="id" order="BEFORE" resultType="Integer">
+            <!-- 编写查询主键的sql语句 -->
+            <!-- BEFORE-->
+            select EMPLOYEES_SEQ.nextval from dual
+            <!-- AFTER：(这种方式可能有问题,我们最终使用的是before的方式)
+             select EMPLOYEES_SEQ.currval from dual -->
+        </selectKey>
+
+        <!-- 插入时的主键是从序列中拿到的 -->
+        <!-- BEFORE:-->
+        insert into employees(EMPLOYEE_ID,LAST_NAME,EMAIL)
+        values(#{id},#{lastName},#{email<!-- ,jdbcType=NULL -->})
+        <!-- AFTER：
+        insert into employees(EMPLOYEE_ID,LAST_NAME,EMAIL)
+        values(employees_seq.nextval,#{lastName},#{email}) -->
+    </insert>
+
+    <update id="updateUser" parameterType="org.mybatis.core.model.User">
+             UPDATE user
+             SET last_name=#{lastName}, email=#{email} ,gender=#{gender}
+             WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById" parameterType="int">
+             DELETE FROM user WHERE id=#{id}
+    </delete>
+
+    <select id="getUserByIdAndLastName01" resultType="org.mybatis.core.model.User">
+        select * from user where id=#{arg0} and last_name=#{arg1}
+    </select>
+    <select id="getUserByIdAndLastName02" resultType="org.mybatis.core.model.User">
+        select * from user where id=#{param1} and last_name=#{param2}
+    </select>
+    <select id="getUserByIdAndLastName03" resultType="org.mybatis.core.model.User">
+        select * from user where id=#{id} and last_name=#{lastName}
+    </select>
+    <select id="getUserByIdAndLastName04" resultType="org.mybatis.core.model.User">
+        select * from user where id=#{id} and last_name=#{lastName}
+    </select>
+    <select id="getUserByIdAndLastName05" resultType="org.mybatis.core.model.User">
+        select * from ${tableName} where id=#{id} and last_name='${lastName}'
+    </select>
+
+    <!--resultType：如果返回的是一个集合，要写集合中具体元素的类型,而不是List  -->
+    <select id="getUsersByLastNameLike" resultType="User">
+        select * from user where last_name like #{lastName}
+    </select>
+
+
+    <!--resultType：因为返回的是一条记录,所以resultType为map  -->
+    <select id="getUserByIdReturnMap" resultType="map">
+        select * from user where id=#{id}
+    </select>
+    <!--resultType：因为返回的是多条记录,所以resultType为具体元素的类型  -->
+    <select id="getUserByLastNameLikeReturnMap" resultType="User">
+        select * from user where last_name like #{lastName}
+    </select>
+</mapper>

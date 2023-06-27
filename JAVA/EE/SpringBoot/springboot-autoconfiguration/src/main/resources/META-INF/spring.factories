@@ -1,0 +1,2 @@
+com.springboot.autoconfiguration.core.autoconfig.MyEnableAutoConfig=\
+com.springboot.autoconfiguration.core.config.SpringRedisConfig

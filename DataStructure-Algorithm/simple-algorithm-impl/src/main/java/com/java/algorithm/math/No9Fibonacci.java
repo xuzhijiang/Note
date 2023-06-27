@@ -1,10 +1,6 @@
 package com.java.algorithm.math;
 
-import javax.security.sasl.SaslServer;
-
 /**
- * 题目：写一个函数，输入n，求斐波那契数列的第n项。(n>=0)
- *
  *                              0,              n=0
  * 斐波那契数列定义如下：f(n)=  1,              n=1
  *                              f(n-1)+f(n-2)   n>=2
@@ -14,9 +10,9 @@ public class No9Fibonacci {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         // System.out.println(generateFibonacciByCycle(50));// 注意int的范围，输入50会超int的范围.
-        //System.out.println("result: " + generateFibonacciByRecursive(45));
-        System.out.println(generateFibonacciByCycle(50));
-        System.out.println(fib2(50, 0, 1));
+//        System.out.println("result: " + generateFibonacciByRecursive(45));
+        System.out.println(generateFibonacciByCycle(45));
+        System.out.println(fib2(45, 0, 1));
         System.out.println("耗时: " + (System.currentTimeMillis() - start) / 1000 + "秒");
     }
 
@@ -30,25 +26,23 @@ public class No9Fibonacci {
     }
 
     /**
-     * 非递归(for循环计算)
+     * 非递归的方式
      */
     static long generateFibonacciByCycle(int n) {
-        if (n < 2)
-            return n;
-        // f(n-2)
-        long beforePrev = 0;
-        // f(n-1)
-        long prev = 1;
-        long sum = 0;
-        for (long i=2;i<=n;i++){
+        if (n <= 1) return n;
+
+        long fib0 = 0;
+        long fib1 = 1;
+        long result = 0;
+        for (long i = 2; i <= n; i++){
             // 计算出f(n) = f(n-1) + f(n-2)
-            sum = beforePrev + prev;
+            result = fib0 + fib1;
             // f(n-2)
-            beforePrev = prev;
+            fib0 = fib1;
             // f(n-1)
-            prev = sum;
+            fib1 = result;
         }
-        return sum;
+        return result;
     }
 
     /**

@@ -1,5 +1,8 @@
 USE mydb;
 
+drop table if exists `product`;
+drop table if exists `seckillorder`;
+
 CREATE TABLE `product`(
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(255) NOT NULL,
@@ -10,7 +13,7 @@ CREATE TABLE `product`(
 )ENGINE=INNODB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 INSERT INTO product (id,NAME,price,stock,pic) VALUES
-	(1, '华为P40', 5000, 0, 'images/123456'),
+	(1, '华为P40', 5000, 100, 'images/123456'),
 	(6, '华为P30', 3000, 100, 'images/123456');
 
 CREATE TABLE `seckillorder`(

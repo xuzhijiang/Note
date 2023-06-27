@@ -7,7 +7,7 @@
     
     - logback需要导入logback-classic和logback-core
     
-    - log4j需要导入org.slf4j.slf4j-log4j12这个jar,这是一个中间适配的jar,
-    这个jar内部导入了slf4j-api.jar,log4j.jar
+    - log4j需要导入org.slf4j:slf4j-log4j12这个jar,这是一个中间适配的jar,
+    这个jar内部导入了org.slf4j:slf4j-api.jar,log4j:log4j.jar
     
     - jdk需要导入slf4j-jdk14.jar

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+		function setCookie(cname,cvalue,exdays) {
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays*24*60*60*1000));
+			var expires = "expires=" + d.toGMTString();
+			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
+		
+		function getCookie(cname) {
+			var name = cname + "=";
+			var decodedCookie = decodeURIComponent(document.cookie);
+			var ca = decodedCookie.split(';');
+			for(var i = 0; i < ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
+		
+		function checkCookie() {
+			var user=getCookie("username");
+			if (user != "") {
+				alert("再次欢迎您，" + user);
+			} else {
+				user = prompt("请输入姓名：","");
+				if (user != "" && user != null) {
+				setCookie("username", user, 30);
+				}
+			}
+		}
+
+		function init() {
+			// 1. 通过 JavaScript，可以这样创建 cookie：
+			document.cookie = "userKey=ljljfwoiej";
+			// 您还可以添加有效日期（UTC 时间）。默认情况下，在浏览器关闭时会删除 cookie：
+			document.cookie = "username=John Doe; expires=Sun, 31 Dec 2027 12:00:00 UTC";
+			// 通过 path 参数，您可以告诉浏览器 cookie 属于什么路径。默认情况下，cookie 属于当前页。
+			document.cookie = "username=Bill Gates; expires=Sun, 31 Dec 2017 12:00:00 UTC; path=/";
+			//setCookie("username", "lisi", 30);
+
+			// 2. 通过 JavaScript，可以这样读取 cookie：
+			// document.cookie 会在一条字符串中返回所有 cookie，比如：cookie1=value; cookie2=value; cookie3=value;
+			var x = document.cookie;
+
+			// 3. 通过 JavaScript 改变 cookie
+			// 旧 cookie 被覆盖
+			document.cookie = "username=Steve Jobs; expires=Sun, 31 Dec 2017 12:00:00 UTC; path=/";
+
+			// 4. 通过 JavaScript 删除 cookie, 删除 cookie 非常简单。
+			// 删除 cookie 时不必指定 cookie 值：直接把 expires 参数设置为过去的日期即可：
+			document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			// 您应该定义 cookie 路径以确保删除正确的 cookie。如果你不指定路径，一些浏览器不会让你删除 cookie。
+		}
+	</script>
+</head>
+<body onload="init();">
+	<p id="aaa">ttt</p>
+
+	The cookies associated with this document is: 
+	<script type="text/javascript">
+		document.write(document.cookie)
+	</script>
+</body>
+</html>

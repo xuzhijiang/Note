@@ -1,28 +1,3 @@
-# webjars
-
-[webjars官网](http://www.webjars.org/)
-    
-    www.webjars.org: 将常用的前端框架打包,然后可以以maven依赖的方式让我们引入.
-
-    webjars：以jar包的方式引入静态资源；
-
-```xml
-<!--引入jquery-webjar,在访问的时候只需要写webjars下面资源的名称即可-->
-<dependency>
-    <groupId>org.webjars</groupId>
-    <artifactId>jquery</artifactId>
-    <version>3.4.1</version>
-</dependency>
-```
-
-![](../pics/webjars导入之后的目录结构.png)
-
-    所有 /webjars/** ，都去 classpath:/META-INF/resources/webjars/ 找资源；
-
-    访问jQuery.js的路径为：http://localhost:9090/webjars/jquery/3.4.1/jquery.js
-
-![](../pics/webjars路径映射.png)
-
 # SpringBoot对静态资源的映射规则
 
     "/**" 访问当前项目的任何资源，都去（静态资源的文件夹）找映射
